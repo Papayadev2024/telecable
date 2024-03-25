@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
+            /*
             DashboardTableSeeder::class,
             AnalyticsTableSeeder::class,
             FintechTableSeeder::class,
@@ -28,6 +29,9 @@ class DatabaseSeeder extends Seeder
             CampaignSeeder::class,
             MarketerSeeder::class,
             CampaignMarketerSeeder::class,
+            */
+            UsersSeeder::class,
+            MessageSeeder::class,
         ]);
     }
 }

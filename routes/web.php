@@ -13,6 +13,7 @@ use App\Http\Controllers\CampaignController;
 
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Datos Generales
     Route::resource('/datosgenerales', GeneralController::class);
+
+    //Datos Generales
+    Route::resource('/servicios', ServiceController::class);
 
     /* 
     // Route for the getting the data feed
