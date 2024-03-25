@@ -11,6 +11,8 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CampaignController;
 
+use App\Http\Controllers\MessageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,16 +24,25 @@ use App\Http\Controllers\CampaignController;
 |
 */
 
-Route::redirect('/', 'login');
+//Route::redirect('/', 'login');
+Route::get('/', function () {
+    return view('public/index');
+})->name('index');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
-    // Route for the getting the data feed
-    Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/analytics', [DashboardController::class, 'analytics'])->name('analytics');
     Route::get('/dashboard/fintech', [DashboardController::class, 'fintech'])->name('fintech');
+
+    //messages
+    Route::resource('/mensajes', MessageController::class);
+
+    /* 
+    // Route for the getting the data feed
+    Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
+
+    
     Route::get('/ecommerce/customers', [CustomerController::class, 'index'])->name('customers');
     Route::get('/ecommerce/orders', [OrderController::class, 'index'])->name('orders');
     Route::get('/ecommerce/invoices', [InvoiceController::class, 'index'])->name('invoices');
@@ -191,7 +202,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/component/icons', function () {
         return view('pages/component/icons-page');
     })->name('icons-page');
+    
+    */ 
+
     Route::fallback(function() {
         return view('pages/utility/404');
-    });    
+    });
 });

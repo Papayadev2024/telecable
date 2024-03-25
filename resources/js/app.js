@@ -6,6 +6,7 @@ import { Chart } from 'chart.js';
 // Import flatpickr
 import flatpickr from 'flatpickr';
 
+
 // import component from './components/component';
 import dashboardCard01 from './components/dashboard-card-01';
 import dashboardCard02 from './components/dashboard-card-02';
@@ -30,6 +31,8 @@ Chart.defaults.plugins.tooltip.caretSize = 0;
 Chart.defaults.plugins.tooltip.caretPadding = 20;
 Chart.defaults.plugins.tooltip.cornerRadius = 4;
 Chart.defaults.plugins.tooltip.padding = 8;
+
+
 
 // Register Chart.js plugin to add a bg option for chart area
 Chart.register({
@@ -101,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
       instance.element.value = dateStr.replace('to', '-');
     },
   });
+  
   dashboardCard01();
   dashboardCard02();
   dashboardCard03();
