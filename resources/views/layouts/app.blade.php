@@ -14,21 +14,20 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-        
+        <!-- DataTable -->
+        <!--
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.tailwindcss.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.0.3/js/dataTables.tailwindcss.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        -->
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
         @livewireStyles
-        
-
-        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-        <script src="https://cdn.datatables.net/2.0.3/js/dataTables.tailwindcss.js"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
-        
-        
         
         <script>
             if (localStorage.getItem('dark-mode') === 'false' || !('dark-mode' in localStorage)) {
