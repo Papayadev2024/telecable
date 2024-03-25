@@ -60,6 +60,7 @@
     <script>
         $('document').ready(function(){
             new DataTable('#tabladatos');
+            
         })
     </script>
 

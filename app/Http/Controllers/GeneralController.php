@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreGeneralRequest;
 use App\Http\Requests\UpdateGeneralRequest;
 use App\Models\General;
+use Illuminate\Http\Request;
+
 
 class GeneralController extends Controller
 {
@@ -49,16 +51,34 @@ class GeneralController extends Controller
     {
         //El que muestra el form para editar
         //return "mostrar el unico registro";
-        return view('pages.general.edit');
+    
+        $general = General::find(1);
+
+        if (!$general) {
+            return redirect()->back()->with('error', 'El registro no existe');
+        }
+
+        
+        return view('pages.general.edit', compact('general'));
         
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateGeneralRequest $request, General $general)
+    public function update(Request $request, $id)
     {
-        //Este es el proceso que actualiza
+
+            $general = General::findOrfail($id); 
+
+            // Actualizar los campos del registro con los datos del formulario
+            $general->update($request->all());
+
+            // Guardar 
+            $general->save();  
+
+            return back()->with('success', 'Registro actualizado correctamente');
+
     }
 
     /**
