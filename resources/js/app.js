@@ -7,8 +7,7 @@ import { Chart } from 'chart.js';
 import flatpickr from 'flatpickr';
 
 // Import Sweetaler2
-import Swal from 'sweetalert2';
-import Swal from 'sweetalert2/dist/sweetalert2.js';
+
 
 // import component from './components/component';
 import dashboardCard01 from './components/dashboard-card-01';
