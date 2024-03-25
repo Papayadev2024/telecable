@@ -54,9 +54,9 @@ class GeneralController extends Controller
     
         $general = General::find(1);
 
-        if (!$general) {
-            return redirect()->back()->with('error', 'El registro no existe');
-        }
+        // if (!$general) {
+        //     return redirect()->back()->with('error', 'El registro no existe');
+        // }
 
         
         return view('pages.general.edit', compact('general'));

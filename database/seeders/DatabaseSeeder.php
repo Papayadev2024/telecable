@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             */
             UsersSeeder::class,
             MessageSeeder::class,
+            GeneralSeeder::class,
         ]);
     }
 }
