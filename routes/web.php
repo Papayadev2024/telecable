@@ -12,6 +12,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\CampaignController;
 
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\GeneralController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //messages
     Route::resource('/mensajes', MessageController::class);
+
+    //Datos Generales
+    Route::resource('/datosgenerales', GeneralController::class);
 
     /* 
     // Route for the getting the data feed

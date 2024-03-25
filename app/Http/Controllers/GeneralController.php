@@ -13,7 +13,9 @@ class GeneralController extends Controller
      */
     public function index()
     {
-        //
+        //llames a los registros para mostrarlos en tabla
+        
+        
     }
 
     /**
@@ -21,7 +23,7 @@ class GeneralController extends Controller
      */
     public function create()
     {
-        //
+        //El formjulario para crear
     }
 
     /**
@@ -29,7 +31,7 @@ class GeneralController extends Controller
      */
     public function store(StoreGeneralRequest $request)
     {
-        //
+        //este es el proceso que crea
     }
 
     /**
@@ -37,7 +39,7 @@ class GeneralController extends Controller
      */
     public function show(General $general)
     {
-        //
+        //este es el que muestra
     }
 
     /**
@@ -45,7 +47,10 @@ class GeneralController extends Controller
      */
     public function edit(General $general)
     {
-        //
+        //El que muestra el form para editar
+        //return "mostrar el unico registro";
+        return view('pages.general.edit');
+        
     }
 
     /**
@@ -53,7 +58,7 @@ class GeneralController extends Controller
      */
     public function update(UpdateGeneralRequest $request, General $general)
     {
-        //
+        //Este es el proceso que actualiza
     }
 
     /**
@@ -61,6 +66,6 @@ class GeneralController extends Controller
      */
     public function destroy(General $general)
     {
-        //
+        //Este es el proceso que borra
     }
 }
