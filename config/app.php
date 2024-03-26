@@ -170,6 +170,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
+        
+        //Add Image Intervention
+          
+        //Intervention\Image\ImageServiceProvider::class,
+
     ])->toArray(),
 
     /*
@@ -185,6 +190,9 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+
+        //Add Image Intervention
+        //'Image' => Intervention\Image\Facades\Image::class,
     ])->toArray(),
 
 ];

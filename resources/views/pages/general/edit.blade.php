@@ -1,12 +1,19 @@
 <x-app-layout>
-    <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+<div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
     <form action="{{ route('datosgenerales.update', $general->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
             <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-normal">Datos generales del negocio</h2>
+                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Datos generales del negocio</h2>
             </header>
+            @if(session('success'))
+                <script>
+                    window.onload = function() {
+                        mostrarAlerta();
+                    }
+                </script>
+            @endif
             <div class="p-3">
         
                 <div>
@@ -154,7 +161,7 @@
 
                                     <div class="md:col-span-5 text-right mt-6">
                                         <div class="inline-flex items-end">
-                                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Actualizar datos</button>
+                                        <button type="submit" id="form_general" onclick="confirmarActualizacion()" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Actualizar datos</button>
                                         </div>
                                     </div>
 
@@ -182,14 +189,38 @@
     
     $('document').ready(function(){
 
+        // Función para mostrar la alerta de confirmación antes de enviar el formulario
+    function confirmarActualizacion() {
         Swal.fire({
-        title: "Good job!",
-        text: "You clicked the button!",
-        icon: "success"
+            title: '¿Estás seguro?',
+            text: 'Esta acción actualizará los datos.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, actualizar',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Envía el formulario si se confirma la acción
+                document.getElementById('form_general').submit();
+            }
+        });
+    }
+
+
+        function mostrarAlerta() {
+            Swal.fire({
+                title: '¡Actualizado!',
+                text: 'Los datos se han actualizado correctamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+            });
+         }       
+
+
     });
 
         
-    })
 </script>
+
 
 </x-app-layout>

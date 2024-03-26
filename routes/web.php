@@ -43,9 +43,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Datos Generales
     Route::resource('/datosgenerales', GeneralController::class);
 
-    //Datos Generales
+    //Servicios
     Route::resource('/servicios', ServiceController::class);
 
+    //test
+    Route::get('/test', [ServiceController::class, 'test']);
     /* 
     // Route for the getting the data feed
     Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
