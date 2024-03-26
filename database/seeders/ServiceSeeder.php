@@ -20,7 +20,7 @@ class ServiceSeeder extends Seeder
                 'title' => 'Servicio '. $i,
                 'description' => 'Yep Advisors, entendemos que cada individuo tiene objetivos financieros únicos. Nuestro servicio de Wealth Management ofrece soluciones personalizadas diseñadas para proteger y hacer tu patrimonio. Desde la planificación de la jubilación hasta la gestión de inversiones, nuestro enfoque centrado en el cliente garantiza que tus necesidades estén siempre en el centro de nuestras decisiones. Confía en nosotros para ayudarte a alcanzar tus metas financieras con confianza y tranquilidad.',
                 'url_image' => 'https://picsum.photos/id/'. $i * 33 .'/50',
-                'status' => 0,
+                'status' => 1,
             ]);
         }
         
