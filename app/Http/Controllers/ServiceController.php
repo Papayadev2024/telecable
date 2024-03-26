@@ -64,7 +64,6 @@ class ServiceController extends Controller
             'title'=>'required',
         ]);
 
-        // 
 
         $service = new Service();
 
@@ -85,13 +84,12 @@ class ServiceController extends Controller
            
             $service->name_image = $nombreImagen;
             
-           
-
         }
 
             $service->title = $request->title;
             $service->description = $request->description;
-
+            $service->status = 1;
+            
             $service->save();
     }
 
