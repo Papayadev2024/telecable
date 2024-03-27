@@ -23,6 +23,7 @@
                                 <th>Titulo</th>
                                 <th>Foto</th>
                                 <th>Status</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,10 +31,17 @@
                             @foreach($servicios as $item)
                                 <tr>
                                     <td>{{$item->title}}</td>
-                                    <td class="px-3 py-2"><img src="{{$item->url_image}}" alt=""></td>
+                                    <td class="px-3 py-2"><img class="w-20" src="{{ asset('storage/images/servicios/'.$item->name_image) }}" alt=""></td>
+                                    <td>Status</td>
                                     <td>
-                                        <a href="" class="bg-red-600 p-2 rounded text-white"><i class="fa-regular fa-trash-can"></i></a>
-                                        <!--a href="" class="bg-yellow-400 p-2 rounded text-white mr-6"><i class="fa-regular fa-pen-to-square"></i></a-->
+                                    <form action="{{  route('servicios.destroy', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-600 p-2 rounded text-white"><i class="fa-regular fa-trash-can"></i></button>
+                                        <!-- <a href="" class="bg-red-600 p-2 rounded text-white"><i class="fa-regular fa-trash-can"></i></a> -->
+                                    </form>
+                                        
+                                        <a href="{{ route('servicios.edit', $item->id) }}" class="bg-yellow-400 p-2 rounded text-white mr-6"><i class="fa-regular fa-pen-to-square"></i></a>
                                     </td>
                                 </tr>    
                             @endforeach
@@ -44,6 +52,7 @@
                                 <th>Titulo</th>
                                 <th>Foto</th>
                                 <th>Status</th>
+                                <th>Acciones</th>
                             </tr>
                         </tfoot>
                     </table>
