@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id()->unsigned();
-            $table->unsignedBigInteger('subcategory_id');
+           
 
             $table->string('name');
             $table->string('description');
             $table->boolean('state')->default(false);
             $table->timestamps();
 
-            $table->foreign('subcategory_id')->references('id')->on('subcategories');
+           
         });
     }
 
