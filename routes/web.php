@@ -45,7 +45,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Servicios
     Route::resource('/servicios', ServiceController::class);
-
+    Route::post('/servicios/deleteService', [ServiceController::class, 'deleteService'] )->name('servicio.deleteService');
+    Route::post('/servicios/updateVisible', [ServiceController::class, 'updateVisible'] )->name('servicio.updateVisible');
     //test
     Route::get('/test', [ServiceController::class, 'test']);
     /* 
