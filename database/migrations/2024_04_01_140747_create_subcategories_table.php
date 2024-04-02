@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('subcategories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('category_id');
 
-            $table->string('title');
-            $table->text('description');
-            $table->string('url_image')->nullable();
-            $table->string('name_image')->nullable();
-            $table->boolean('visible')->default(false);
-            $table->boolean('status')->default(false);
-
+            $table->string('name');
+            $table->string('description');
+            $table->boolean('state')->default(false);
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('subcategories');
     }
 };

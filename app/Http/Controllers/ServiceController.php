@@ -59,39 +59,32 @@ class ServiceController extends Controller
                
             $img =  $manager->read($request->file('imagen'));
 
-            // Obtener las dimensiones de la imagen
+            //seteamos el tamaño de que deben de tener las imagenes que se suban
+            $qwidth = 808;
+            $qheight = 445;
+
+            // Obtener las dimensiones de la imagen que se esta subiendo
             $width = $img->width();
             $height = $img->height();
 
-             // Determinar si la imagen es horizontal o vertical
-            // $isHorizontal = $width > $height;
-           
-            // if ($isHorizontal) {
-                // Calcular la nueva altura para mantener la proporción
-            $newHeight = ceil(($height / $width) * 808);
-    
-                // Recortar la imagen si la nueva altura es mayor que 445
-                if ($newHeight > 445) {
-                    $img->resize(808, 445)->crop(808, 445);
-                } else {
-                    $img->resize(808, $newHeight);
-                }
-            // } else {
-                // Calcular la nueva anchura para mantener la proporción
-                // $newWidth = ceil(($width / $height) * 445);
-    
-                // Recortar la imagen si la nueva anchura es mayor que 808
-                // if ($newWidth > 808) {
-                //     $img->resize(808, 445)->crop(808, 445);
-                // } else {
-                //     $img->resize($  , 445);
-                // }
-            
+            if($width > $height){
+                //dd('Horizontal');
+                //si es horizontal igualamos el alto de la imagen a alto que queremos
+                $img->resize(height: 445)->crop(808, 445);
+
+            }else{
+                //dd('Vertical');
+                //En caso sea vertical la imagen
+                //igualamos el ancho y cropeamos
+                $img->resize(width: 808)->crop(808, 445);
+            }
+                     
 
             $ruta = storage_path() . '/app/public/images/servicios/';
+            
             $img->save($ruta.$nombreImagen);
             
-            
+           
             $service->url_image = $ruta;
             $service->name_image = $nombreImagen;
             
@@ -100,6 +93,8 @@ class ServiceController extends Controller
             $service->title = $request->title;
             $service->description = $request->description;
             $service->status = 1;
+            $service->visible = 1;
+
 
             $service->save();
 
@@ -152,8 +147,30 @@ class ServiceController extends Controller
 
             $rutanueva = storage_path() . '/app/public/images/servicios/'; 
             $nombreImagen = Str::random(10) . '_' . $request->file('imagen')->getClientOriginalName();
+
             $img =  $manager->read($request->file('imagen'));
-            $img = $img->resize(600,200)->save($rutanueva.$nombreImagen);
+
+            $width = $img->width();
+            $height = $img->height();
+
+            $qwidth = 808;
+            $qheight = 445;
+
+            if($width > $height){
+                //dd('Horizontal');
+                //si es horizontal igualamos el alto de la imagen a alto que queremos
+                $img->resize(height: 445)->crop(808, 445);
+
+            }else{
+                //dd('Vertical');
+                //En caso sea vertical la imagen
+                //igualamos el ancho y cropeamos
+                $img->resize(width: 808)->crop(808, 445);
+            }
+
+     
+            $img->save($rutanueva.$nombreImagen);
+
            
             $service->url_image = $rutanueva;
             $service->name_image = $nombreImagen;
@@ -173,15 +190,61 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         $service = Service::findOrfail($id); 
-        $ruta = storage_path() .'/app/public/images/servicios/'. $service->name_image; 
+        
+        
 
-        if(File::exists($ruta))
-        {
-            File::delete($ruta);
-        }
+        $service->status = false;
 
-        $service->delete();    
-        return redirect()->route('servicios.index')->with('success', 'Servicio eliminado exitosamente.');
+
+        $service->save();
+
+        // $service = update(['status' => false]);
+        // $ruta = storage_path() .'/app/public/images/servicios/'. $service->name_image; 
+
+        // if(File::exists($ruta))
+        // {
+        //     File::delete($ruta);
+        // }
+
+        // $service->delete();    
+        // return redirect()->route('servicios.index')->with('success', 'Servicio eliminado exitosamente.');
 }
 
+
+    public function deleteService(Request $request)
+    {
+        //Recupero el id mandado mediante ajax
+        $id = $request->id;
+        //Busco el servicio con id como parametro
+        $service = Service::findOrfail($id); 
+        //Modifico el status a false
+        $service->status = false;
+        //Guardo 
+        $service->save();
+
+        // Devuelvo una respuesta JSON u otra respuesta según necesites
+        return response()->json(['message' => 'Servicio eliminado.']);
+    }
+
+
+
+       public function updateVisible(Request $request)
+    {
+        // Lógica para manejar la solicitud AJAX
+        //return response()->json(['mensaje' => 'Solicitud AJAX manejada con éxito']);
+        $id = $request->id;
+
+        $field = $request->field;
+
+        $status = $request->status;
+
+        $service = Service::findOrFail($id);
+        
+        $service->$field = $status;
+
+        $service->save();
+
+         return response()->json(['message' => 'Servicio eliminado.']);
+    
+    }
 }
