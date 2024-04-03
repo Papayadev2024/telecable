@@ -28,6 +28,12 @@ class ServiceController extends Controller
         return view('pages.service.index', compact('servicios'));
     }
 
+
+    public function mostrarFront(){
+        $servicios = Service::where("status", "=", true)->get();
+        return view('public.index', compact('servicios'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

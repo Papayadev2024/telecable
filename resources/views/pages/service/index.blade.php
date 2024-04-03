@@ -17,7 +17,7 @@
                 <!-- Table -->
                 <div class="overflow-x-auto">
                     
-                    <table id="tabladatos" class="display text-lg" style="width:100%">
+                    <table id="tabladatos" class="display text-lg" style="width:100%" >
                         <thead>
                             <tr>
                                 <th>Titulo</th>
@@ -80,13 +80,14 @@
     </div>
 
     <script>
+
+      
+
         $('document').ready(function(){
            
-            new DataTable('#tabladatos');
-
-          
-
-            
+            new DataTable('#tabladatos',{
+                responsive: true
+            });
 
             $( ".btn_delete" ).on( "click", function(e) {
                 

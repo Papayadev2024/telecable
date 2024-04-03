@@ -27,9 +27,13 @@ use App\Http\Controllers\ServiceController;
 */
 
 //Route::redirect('/', 'login');
-Route::get('/', function () {
-    return view('public/index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('public/index');
+// })->name('index');
+
+Route::get('/', [ServiceController::class, 'mostrarFront'] )->name('index');
+Route::resource('/contacto', ContactController::class);
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
