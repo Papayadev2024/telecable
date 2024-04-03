@@ -24,8 +24,8 @@ class ServiceController extends Controller
         //
         $servicios = Service::where("status", "=", true)->get();
 
-       
         return view('pages.service.index', compact('servicios'));
+
     }
 
 
@@ -133,11 +133,10 @@ class ServiceController extends Controller
     {
        
         $service = Service::findOrfail($id); 
-
         $service->title = $request->title;
         $service->description = $request->description;
-        $service->status = 1;
-
+        
+        
         if($request->hasFile("imagen")){
            
             $manager = new ImageManager(new Driver());

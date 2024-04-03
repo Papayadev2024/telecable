@@ -2,7 +2,7 @@
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
         
         <section class="py-4 border-b border-slate-100 dark:border-slate-700">
-            <a href="{{ route('servicios.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm" >Crear servicio</a>
+            <a href="{{ route('testimonios.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm" >Crear testimonio</a>
         </section>
 
 
@@ -10,7 +10,7 @@
             
             
             <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Servicios</h2>
+                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Testimonios</h2>
             </header>
             <div class="p-3">
         
@@ -20,18 +20,20 @@
                     <table id="tabladatos" class="display text-lg" style="width:100%" >
                         <thead>
                             <tr>
-                                <th>Titulo</th>
-                                <th>Foto</th>
+                                <th>Nombre</th>
+                                <th>Ocupación</th>
+                                <th>Testimonio</th>
                                 <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach($servicios as $item)
+                            @foreach($testimony as $item)
                                 <tr>
-                                    <td>{{$item->title}}</td>
-                                    <td class="px-3 py-2"><img class="w-20" src="{{ asset('storage/images/servicios/'.$item->name_image) }}" alt=""></td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->ocupation}}</td>
+                                    <td>{{$item->testimonie}}</td>
                                     <td>
                                         <form method="POST" action="">
                                           @csrf
@@ -41,7 +43,7 @@
                                             dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
                                             before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
                                             before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
-                                            id='{{'v_'.$item->id}}' data-field='visible' data-idService='{{$item->id}}' data-titleService='{{$item->title}}' {{$item->visible == 1 ? 'checked' : ''}}>
+                                            id='{{'v_'.$item->id}}' data-field='visible' data-idService='{{$item->id}}' data-titleService='{{$item->name}}' {{$item->visible == 1 ? 'checked' : ''}}>
                                             <label for="{{'v_'.$item->id}}"></label>
                                          </form>
 
@@ -50,7 +52,7 @@
                                     </td>
                                     <td class="flex flex-row justify-end items-center gap-5">
                                   
-                                        <a href="{{ route('servicios.edit', $item->id) }}" class="bg-yellow-400 px-3 py-2 rounded text-white  "><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a href="{{ route('testimonios.edit', $item->id) }}" class="bg-yellow-400 px-3 py-2 rounded text-white  "><i class="fa-regular fa-pen-to-square"></i></a>
                                         {{-- {{  route('servicios.destroy', $item->id) }} --}}
                                         <form action=" " method="POST">
                                             @csrf
@@ -65,8 +67,9 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Titulo</th>
-                                <th>Foto</th>
+                                <th>Nombre</th>
+                                <th>Ocupación</th>
+                                <th>Testimonio</th>
                                 <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
@@ -95,7 +98,7 @@
 
                 Swal.fire({
                     title: "Seguro que deseas eliminar?",
-                    text: "Vas a eliminar un servicio",
+                    text: "Vas a eliminar un testimonio",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
@@ -107,7 +110,7 @@
                         
                         $.ajax({
 
-                                url: '{{ route("servicio.deleteService") }}',
+                                url: '{{ route("testimonios.deleteTestimony") }}',
                                 method: 'POST',
                                 data:{
                                     _token: $('input[name="_token"]').val(),
@@ -149,7 +152,7 @@
 
 
                 $.ajax({
-                    url: "{{ route('servicio.updateVisible') }}",
+                    url: "{{ route('testimonios.updateVisible') }}",
                     method: 'POST',
                     data:{
                         _token: $('input[name="_token"]').val(),

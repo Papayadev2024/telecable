@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('testimonies', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('ocupation')->nullable();
+            $table->string('testimonie')->nullable();
+            $table->boolean('visible')->default(false);
+            $table->boolean('status')->default(false);
+
+            
             $table->timestamps();
         });
     }
