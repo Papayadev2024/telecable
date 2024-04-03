@@ -17,6 +17,8 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BlogController;
+
 
 
 
@@ -68,6 +70,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('/servicios', ServiceController::class);
     Route::post('/servicios/deleteService', [ServiceController::class, 'deleteService'] )->name('servicio.deleteService');
     Route::post('/servicios/updateVisible', [ServiceController::class, 'updateVisible'] )->name('servicio.updateVisible');
+
+
+     //Blog
+     Route::resource('/blog', BlogController::class);
+     Route::post('/blog/deleteBlog', [BlogController::class, 'deleteBlog'] )->name('blog.deleteBlog');
+     Route::post('/blog/updateVisible', [BlogController::class, 'updateVisible'] )->name('blog.updateVisible');
+
+
     //test
     // Route::get('/test', [ServiceController::class, 'test']);
     /* 
