@@ -6,12 +6,15 @@ use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
-// use Intervention\Image\Facades\Image;
+
+//use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-// use Illuminate\Support\Facades\Image;
+//use Illuminate\Support\Facades\Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+
 
 
 class ServiceController extends Controller
@@ -59,26 +62,33 @@ class ServiceController extends Controller
                
             $img =  $manager->read($request->file('imagen'));
 
+            // Redimensionar la imagen a 808x445
+            //$resizedImage = Image::make($img)
+            $img->resize(808, 445, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+
             //seteamos el tamaño de que deben de tener las imagenes que se suban
-            $qwidth = 808;
-            $qheight = 445;
+            //$qwidth = 808;
+            //$qheight = 445;
 
             // Obtener las dimensiones de la imagen que se esta subiendo
-            $width = $img->width();
-            $height = $img->height();
+            //$width = $img->width();
+            //$height = $img->height();
 
             //revisamos si la imagen que esta subiendo es horizontal o vertical
-            if($width > $height){
+            //if($width > $height){
                 //dd('Horizontal');
                 //si es horizontal igualamos el alto de la imagen a alto que queremos
-                $img->resize(height: 445)->crop(808, 445);
+                //$img->resize(height: 445)->crop(808, 445);
 
-            }else{
+            //}else{
                 //dd('Vertical');
                 //En caso sea vertical la imagen
                 //igualamos el ancho y cropeamos
-                $img->resize(width: 808)->crop(808, 445);
-            }
+               // $img->resize(width: 808)->crop(808, 445);
+            //}
 
              // Determinar si la imagen es horizontal o vertical
             // $isHorizontal = $width > $height;
