@@ -14,6 +14,12 @@ export default {
     darkMode: 'class',
     theme: {
         extend: {
+
+            fontWeight: {
+                medium: "500",
+                regular: "400",
+                semibold: "600",
+              },
             boxShadow: {
                 DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.02)',
                 md: '0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
@@ -37,9 +43,40 @@ export default {
                 '4xl': ['2.25rem', { lineHeight: '1.25', letterSpacing: '-0.02em' }],
                 '5xl': ['3rem', { lineHeight: '1.25', letterSpacing: '-0.02em' }],
                 '6xl': ['3.75rem', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+                mediumSize: "56px",
+                regularSize: "18px",
+                basicSize: "16px",
+                basic: "14px",
+                basicLittle: "12px",
+                subtitle: "48px",
+                littleTitle: "24px",
+                middleTitle: "40px",
+                middle: "32px",
             },
+
+              backgroundColor: {
+                colorButton: "#173525",
+                colorBackground: "#2D694B",
+                colorFooter: "#173525",
+                colorCombo: "#F9FCFB",
+              },
+              textColor: {
+                colorSubtitle: "#113E55",
+                colorSubtitleLittle: "#173525",
+                colorAdd: "#2D694B",
+              },
+              borderColor: {
+                selectCheck: "#173525",
+              },
+
             screens: {
-                xs: '480px',
+                xs: '320px',
+                "2xs": "370px",
+                sm: "640px",
+                md: "768px",
+                lg: "1024px",
+                xl: "1280px",
+                "2xl": "1536px",
             },
             borderWidth: {
                 3: '3px',
@@ -70,6 +107,7 @@ export default {
             addVariant('sidebar-expanded', ({ modifySelectors, separator }) => {
                 modifySelectors(({ className }) => `.sidebar-expanded .${e(`sidebar-expanded${separator}${className}`)}`);
             });
-        }),        
+        }),
+      
     ],
 };

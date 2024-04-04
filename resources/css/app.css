@@ -7,3 +7,17 @@
 @import 'additional-styles/flatpickr.css';
 
 @import 'tailwindcss/utilities';
+
+
+
+
+
+@layer components{
+
+    #tabladatos_wrapper .dt-length select{
+        @apply px-5;
+    }
+
+     
+}
+

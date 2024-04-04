@@ -14,6 +14,14 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\TestimonyController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BlogController;
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +35,13 @@ use App\Http\Controllers\ServiceController;
 */
 
 //Route::redirect('/', 'login');
-Route::get('/', function () {
-    return view('public/index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('public/index');
+// })->name('index');
+
+Route::get('/', [ServiceController::class, 'mostrarFront'] )->name('index');
+Route::resource('/contacto', ContactController::class);
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -43,11 +55,31 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Datos Generales
     Route::resource('/datosgenerales', GeneralController::class);
 
+    //Testimonies
+    Route::resource('/testimonios', TestimonyController::class);
+    Route::post('/testimonios/deleteTestimony', [TestimonyController::class, 'deleteTestimony'] )->name('testimonios.deleteTestimony');
+    Route::post('/testimonios/updateVisible', [TestimonyController::class, 'updateVisible'] )->name('testimonios.updateVisible');
+
+    //Categorías
+    Route::resource('/categorias', CategoryController::class);
+    Route::post('/categorias/deleteCategory', [CategoryController::class, 'deleteCategory'] )->name('categorias.deleteCategory');
+    Route::post('/categorias/updateVisible', [CategoryController::class, 'updateVisible'] )->name('categorias.updateVisible');
+
+
     //Servicios
     Route::resource('/servicios', ServiceController::class);
+    Route::post('/servicios/deleteService', [ServiceController::class, 'deleteService'] )->name('servicio.deleteService');
+    Route::post('/servicios/updateVisible', [ServiceController::class, 'updateVisible'] )->name('servicio.updateVisible');
+
+
+     //Blog
+     Route::resource('/blog', BlogController::class);
+     Route::post('/blog/deleteBlog', [BlogController::class, 'deleteBlog'] )->name('blog.deleteBlog');
+     Route::post('/blog/updateVisible', [BlogController::class, 'updateVisible'] )->name('blog.updateVisible');
+
 
     //test
-    Route::get('/test', [ServiceController::class, 'test']);
+    // Route::get('/test', [ServiceController::class, 'test']);
     /* 
     // Route for the getting the data feed
     Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
