@@ -32,7 +32,7 @@
                             @foreach($posts as $item)
                                 <tr>
                                     <td>{{$item->title}}</td>
-                                    <td>{{$item->category_id}}</td>
+                                    <td>{{$item->categories->name}}</td>
                                     <td class="px-3 py-2"><img class="w-20" src="{{ asset('storage/images/posts/'.$item->name_image) }}" alt=""></td>
                                     <td>
                                         <form method="POST" action="">
@@ -52,7 +52,7 @@
                                     </td>
                                     <td class="flex flex-row justify-end items-center gap-5">
                                   
-                                        <a href="{{ route('blogs.edit', $item->id) }}" class="bg-yellow-400 px-3 py-2 rounded text-white  "><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a href="{{ route('blog.edit', $item) }}" class="bg-yellow-400 px-3 py-2 rounded text-white  "><i class="fa-regular fa-pen-to-square"></i></a>
                                         {{-- {{  route('servicios.destroy', $item->id) }} --}}
                                         <form action=" " method="POST">
                                             @csrf
