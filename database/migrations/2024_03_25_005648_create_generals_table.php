@@ -14,9 +14,14 @@ return new class extends Migration
         Schema::create('generals', function (Blueprint $table) {
             $table->id();
             $table->string('address')->nullable();
+            $table->string('inside')->nullable();
+            $table->string('district')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
             $table->string('cellphone')->nullable();
             $table->string('office_phone')->nullable();
             $table->string('email')->nullable();
+            $table->string('schedule')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('youtube')->nullable();
@@ -24,6 +29,7 @@ return new class extends Migration
             $table->string('whatsapp')->nullable();
             $table->string('form_email')->nullable();
             $table->string('business_hours')->nullable();
+            $table->string('mensaje_whatsapp')->nullable();
             $table->timestamps();
         });
     }
