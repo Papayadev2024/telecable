@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
 
-            $table->string('full_name');
-            $table->string('email');
-            $table->string('phone');
-            $table->text('message');
-            $table->boolean('status')->default(false);
+            $table->string('full_name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('message')->nullable();
+            $table->string('service_prodcut')->nullable();
+            $table->string('source')->nullable();
+            $table->boolean('status')->default(true);
             $table->boolean('is_read')->default(false);
+            $table->string('comunication')->nullable();
             
             $table->timestamps();
         });

@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             CampaignMarketerSeeder::class,
             */
             UsersSeeder::class,
-            //MessageSeeder::class,
+            MessageSeeder::class,
             GeneralSeeder::class,
             //ServiceSeeder::class,
         ]);
