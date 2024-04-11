@@ -129,7 +129,6 @@ class LogosClientController extends Controller
     }
 
     function deleteLogo(Request $request) {
-        dump($request->id);
 
         $logo = ClientLogos::findOrfail($request->id); 
         
