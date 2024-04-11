@@ -18,10 +18,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
-
-
-
-
+use App\Http\Controllers\LogosClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +73,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::resource('/blog', BlogController::class);
      Route::post('/blog/deleteBlog', [BlogController::class, 'deleteBlog'] )->name('blog.deleteBlog');
      Route::post('/blog/updateVisible', [BlogController::class, 'updateVisible'] )->name('blog.updateVisible');
+
+    //Crud Logos
+    Route::resource('/logos', LogosClientController::class);
+    Route::post('/logos/deleteLogo', [LogosClientController::class, 'deleteLogo'] )->name('logos.deleteLogo');
 
 
     //test
