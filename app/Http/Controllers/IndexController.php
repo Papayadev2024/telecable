@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreIndexRequest;
 use App\Http\Requests\UpdateIndexRequest;
 use App\Models\Index;
+use App\Models\Message;
 
 class IndexController extends Controller
 {
@@ -64,4 +65,33 @@ class IndexController extends Controller
     {
         //
     }
+
+    /**
+     * Save contact from blade
+     */
+    public function guardarContacto(Request $request)
+    {
+        //Del modelo
+        //'full_name', 'email', 'phone', 'message', 'status', 'is_read'
+
+        $reglasValidacion = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|integer|max:99999999999',
+        ];
+        $mensajes = [
+            'name.required' => 'El campo nombre es obligatorio.',
+            'email.required' => 'El campo correo electrónico es obligatorio.',
+            'email.email' => 'El formato del correo electrónico no es válido.',
+            'email.max' => 'El campo correo electrónico no puede tener más de :max caracteres.',
+            'phone.required' => 'El campo teléfono es obligatorio.',
+            'phone.integer' => 'El campo teléfono debe ser un número entero.',
+        ];
+        $request->validate($reglasValidacion, $mensajes);
+        $formlanding = Message::create($request->all());
+        // return redirect()->route('landingaplicativos', $formlanding)->with('mensaje','Mensaje enviado exitoso')->with('name', $request->nombre);
+        return response()->json(['message'=> 'Mensaje enviado con exito']);
+    }
+
+    
 }

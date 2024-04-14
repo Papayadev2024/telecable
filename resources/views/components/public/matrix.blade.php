@@ -30,5 +30,26 @@
     
     @yield('scripts_improtados')
 
+    <script>
+        $('#formContactos').submit(function(event) {
+            // Evita que se envíe el formulario automáticamente
+            //console.log('evcnto')
+            event.preventDefault();
+            let formDataArray = $(this).serializeArray();
+            //console.log(formDataArray);
+            $.ajax({
+            url: '{{ route('guardarContactos') }}',
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                Swal.fire({
+                title: response.message,
+                icon: "success",
+                });
+            }
+            });
+        })
+    </script>
+
 </body>
 </html>
