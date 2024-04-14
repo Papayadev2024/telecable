@@ -9,9 +9,6 @@
 @import 'tailwindcss/utilities';
 
 
-
-
-
 @layer components{
 
     #tabladatos_wrapper .dt-length select{

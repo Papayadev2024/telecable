@@ -8,6 +8,10 @@ import flatpickr from 'flatpickr';
 
 // Import Sweetaler2
 
+// Import AOS
+import 'aos/dist/aos.css'
+import Aos from 'aos';
+Aos.init();
 
 // import component from './components/component';
 import dashboardCard01 from './components/dashboard-card-01';

@@ -33,13 +33,6 @@ use App\Http\Controllers\IndexController;
 |
 */
 
-//Route::redirect('/', 'login');
-// Route::get('/', function () {
-//     return view('public/index');
-// })->name('index');
-
-//Route::get('/', [ServiceController::class, 'mostrarFront'] )->name('index');
-//Route::resource('/contacto', ContactController::class);
 Route::get('/', [IndexController::class, 'index'] )->name('index');
 
 
