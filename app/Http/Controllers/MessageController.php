@@ -44,6 +44,8 @@ class MessageController extends Controller
     {
         //
         $message = Message::findOrFail($id);
+        $message->is_read = 1; 
+        $message->save();
         return view('pages.message.show', compact('message'));
     }
 
