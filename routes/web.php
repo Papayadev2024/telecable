@@ -20,6 +20,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LogosClientController;
 
+use App\Http\Controllers\IndexController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,8 +38,9 @@ use App\Http\Controllers\LogosClientController;
 //     return view('public/index');
 // })->name('index');
 
-Route::get('/', [ServiceController::class, 'mostrarFront'] )->name('index');
-Route::resource('/contacto', ContactController::class);
+//Route::get('/', [ServiceController::class, 'mostrarFront'] )->name('index');
+//Route::resource('/contacto', ContactController::class);
+Route::get('/', [IndexController::class, 'index'] )->name('index');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
