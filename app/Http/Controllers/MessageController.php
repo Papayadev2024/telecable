@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Message;
+use Illuminate\Http\Request;
+
 
 class MessageController extends Controller
 {
@@ -31,9 +33,23 @@ class MessageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMessageRequest $request)
+    public function store(Request $request)
     {
         //
+    }
+    function storePublic(Request $request)
+    {
+        $mensaje = new Message();
+
+        $mensaje->full_name = $request-> nombre; 
+        $mensaje->email = $request-> email; 
+        $mensaje->phone = $request-> telefono; 
+        $mensaje->source = $request-> textoSeleccionado; 
+        $mensaje->service_product = $request-> textoMeet; 
+
+        $mensaje->save();
+
+        return response()->json(['message' => 'Solicitud enviada Correctamente']);
     }
 
     /**
@@ -44,8 +60,10 @@ class MessageController extends Controller
     {
         //
         $message = Message::findOrFail($id);
+
         $message->is_read = 1; 
         $message->save();
+
         return view('pages.message.show', compact('message'));
     }
 

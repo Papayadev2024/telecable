@@ -9,6 +9,7 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class LogosClientController extends Controller
 {
@@ -61,17 +62,18 @@ class LogosClientController extends Controller
             if($width > $height){
                 //dd('Horizontal');
                 //si es horizontal igualamos el alto de la imagen a alto que queremos
-                $img->resize(height: 445)->crop(808, 445);
+                
+                // $img->resize(height: 445)->crop(808, 445);
 
             }else{
                 //dd('Vertical');
                 //En caso sea vertical la imagen
                 //gualamos el ancho y cropeamos
-                $img->resize(width: 808)->crop(808, 445);
+                
+                // $img->resize(width: 808)->crop(808, 445);
            }
                      
-
-            $ruta = storage_path() . '/app/public/images/logos/';
+            $ruta = 'storage/images/logos/';
             if (!file_exists($ruta)) {
                 mkdir($ruta, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
             }
