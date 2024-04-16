@@ -21,7 +21,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-        return redirect()->route('staff.index')->with('success', 'Publicación creado exitosamente.');
+        return view('pages.staff.create');
         
     }
 
@@ -33,7 +33,7 @@ class StaffController extends Controller
         $data = $request->all();
         Staff::create($request->all());
 
-        return view('pages.staff.index'); 
+        return redirect()->route('staff.index')->with('success', 'Publicación creado exitosamente.');
 
         
         

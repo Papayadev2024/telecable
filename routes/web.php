@@ -22,6 +22,7 @@ use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\StrengthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +86,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::resource('/staff', StaffController::class);
         Route::post('/staff/updateVisible', [StaffController::class, 'updateVisible'])->name('staff.updateVisible');
 
+        Route::resource('/strength', StrengthController::class);
+        Route::post('/strength/updateVisible', [StrengthController::class, 'updateVisible'])->name('strength.updateVisible');
+        Route::post('/strength/borrar', [StrengthController::class, 'borrar'])->name('strength.borrar');
         //t
 
         Route::fallback(function() {
