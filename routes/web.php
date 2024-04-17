@@ -25,6 +25,7 @@ use App\Http\Controllers\LogosClientController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StrengthController;
+use App\Http\Controllers\ValoresAtributosController;
 use App\Models\AboutUs;
 
 /*
@@ -101,6 +102,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::resource('/attributes', AttributesController::class);
         Route::post('/attributes/updateVisible', [AttributesController::class, 'updateVisible'])->name('attributes.updateVisible');
         Route::post('/attributes/borrar', [AttributesController::class, 'borrar'])->name('attributes.borrar');
+
+        Route::resource('/valoresattributes', ValoresAtributosController::class);
+
 
 
         Route::fallback(function() {
