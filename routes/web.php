@@ -104,6 +104,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('/attributes/borrar', [AttributesController::class, 'borrar'])->name('attributes.borrar');
 
         Route::resource('/valoresattributes', ValoresAtributosController::class);
+        Route::post('/valoresattributes/borrar', [ValoresAtributosController::class, 'borrar'])->name('valoresattributes.borrar');
+        Route::post('/valoresattributes/updateVisible', [ValoresAtributosController::class, 'updateVisible'])->name('valoresattributes.updateVisible');
 
 
 
