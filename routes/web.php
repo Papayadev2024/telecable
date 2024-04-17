@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\LogosClientController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StrengthController;
+use App\Models\AboutUs;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,7 +91,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::resource('/strength', StrengthController::class);
         Route::post('/strength/updateVisible', [StrengthController::class, 'updateVisible'])->name('strength.updateVisible');
         Route::post('/strength/borrar', [StrengthController::class, 'borrar'])->name('strength.borrar');
-        //t
+        //
+
+        Route::resource('/aboutus', AboutUsController::class);
+        Route::post('/aboutus/updateVisible', [AboutUsController::class, 'updateVisible'])->name('aboutus.updateVisible');
+        Route::post('/aboutus/borrar', [AboutUsController::class, 'borrar'])->name('aboutus.borrar');
+
 
         Route::fallback(function() {
             return view('pages/utility/404');
