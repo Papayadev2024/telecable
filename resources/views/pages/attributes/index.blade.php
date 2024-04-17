@@ -167,7 +167,7 @@
 
           $.ajax({
 
-            url: '{{ route('attributes.borrar') }}',
+            url: "{{ route('attributes.borrar') }}",
             method: 'POST',
             data: {
               _token: $('input[name="_token"]').val(),

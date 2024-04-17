@@ -95,7 +95,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::resource('/strength', StrengthController::class);
         Route::post('/strength/updateVisible', [StrengthController::class, 'updateVisible'])->name('strength.updateVisible');
         Route::post('/strength/borrar', [StrengthController::class, 'borrar'])->name('strength.borrar');
-        //
+      
+        //Atributes
 
         Route::resource('/aboutus', AboutUsController::class);
         Route::post('/aboutus/updateVisible', [AboutUsController::class, 'updateVisible'])->name('aboutus.updateVisible');
@@ -105,12 +106,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('/attributes/updateVisible', [AttributesController::class, 'updateVisible'])->name('attributes.updateVisible');
         Route::post('/attributes/borrar', [AttributesController::class, 'borrar'])->name('attributes.borrar');
 
+        //valores atributes
+        Route::resource('/valoresattributes', ValoresAtributosController::class);
+
 
         //Etiquetas
         Route::resource('/tags', TagController::class);
-        Route::post('/attributes/borrar', [AttributesController::class, 'deleteTags'])->name('tags.deleteTags');
+        Route::post('/tags/deleteTags', [TagController::class, 'deleteTags'])->name('tags.deleteTags');
 
-
+        
         
         Route::fallback(function() {
             return view('pages/utility/404');
