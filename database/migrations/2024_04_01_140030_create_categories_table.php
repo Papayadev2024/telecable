@@ -16,7 +16,7 @@ return new class extends Migration
            
 
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->boolean('visible')->default(false);
             $table->boolean('status')->default(false);
             $table->timestamps();

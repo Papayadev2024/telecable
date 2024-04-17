@@ -34,12 +34,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Tag(); 
+        $tags = new Tag(); 
        
-        $category->name = $request->name;
-        $category->type = $request->type;
-       
-        $category->save();
+        $tags->name = $request->name;
+        $tags->description = $request->description;
+        $tags->type = $request->type;
+        $tags->color = $request->color;
+
+        $tags->save();
        
         return redirect()->route('tags.index')->with('success', 'Etiqueta creada');
     }
@@ -55,17 +57,11 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
-    {
-
-        
-        $tag = Tag::findOrfail($id);
-
-        
-        // $idtag = $tag->id;
-        // $tag = Tag::where('id', $idtag)->first();
-        
-        return view('pages.tags.edit', compact('tag'));
+    public function edit(Tag $tag)
+    {           
+         $idtag = $tag->id;
+         $tags = Tag::where('id', $idtag)->first();
+         return view('pages.tags.edit', compact('tags'));
     }
 
     /**
@@ -73,12 +69,10 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tag = Tag::findOrfail($id); 
-        // $tag = Tag::where('id', $id)->first();
+       
+        $tag = Tag::where('id', $id)->first();
 
         $tag->update($request->all());
-
-        $tag->save();
 
         return redirect()->route('tags.index')->with('success', 'Categoria modificada');
     }
@@ -91,13 +85,13 @@ class TagController extends Controller
         //
     }
 
-    public function deleteCategory(Request $request)
+    public function deleteTags(Request $request)
     {
         $id = $request->id;
        
         $category = Tag::findOrfail($id); 
        
-        $category->status = false;
+        // $category->status = false;
        
         $category->save();
 

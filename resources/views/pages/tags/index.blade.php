@@ -21,6 +21,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
+                                <th>Descripción</th>
                                 <th>Color</th>
                                 {{-- <th>Visible</th> --}}
                                 <th>Acciones</th>
@@ -31,7 +32,8 @@
                             @foreach($tags as $item)
                                 <tr>
                                     <td>{{$item->name}}</td>
-                                    <td>color</td>
+                                    <td>{{$item->description}}</td>
+                                    <td ><div class="rounded-full w-8 h-8 mx-auto" style="background-color: {{ $item->color }}"></div></td>
                                     {{-- <td>
                                         <form method="POST" action="">
                                           @csrf
@@ -66,6 +68,7 @@
                         <tfoot>
                             <tr>
                                 <th>Nombre</th>
+                                <th>Descripción</th>
                                 <th>Color</th>
                                 {{-- <th>Visible</th> --}}
                                 <th>Acciones</th>
@@ -95,7 +98,7 @@
 
                 Swal.fire({
                     title: "Seguro que deseas eliminar?",
-                    text: "Vas a eliminar una categoría",
+                    text: "Si eliminas, se perderán todas las relaciones con los productos",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
@@ -107,7 +110,7 @@
                         
                         $.ajax({
 
-                                url: '{{ route("categorias.deleteCategory") }}',
+                                url: '{{ route("tags.deleteTags") }}',
                                 method: 'POST',
                                 data:{
                                     _token: $('input[name="_token"]').val(),
@@ -131,47 +134,6 @@
                     });
 
             });
-
-
-            $( ".btn_swithc" ).on( "change", function() {
-                
-                var status = 0;
-                var id = $(this).attr('data-idService');
-                var titleService = $(this).attr('data-titleService');
-                var field = $(this).attr('data-field');
-               
-                if( $(this).is(':checked') ){
-                    status = 1;
-                }else{
-                    status = 0;
-                 }
-
-
-
-                $.ajax({
-                    url: "{{ route('categorias.updateVisible') }}",
-                    method: 'POST',
-                    data:{
-                        _token: $('input[name="_token"]').val(),
-                        status: status,
-                        id: id,
-                        field: field,
-                    }
-                }).done(function(res){
-                   
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: titleService +" a sido modificado",
-                        showConfirmButton: false,
-                        timer: 1500
-
-                    }); 
-
-                })     
-            });
-
-
 
         })
     </script>

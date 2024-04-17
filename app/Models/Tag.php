@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','slug','type','status'];
+    protected $fillable = ['name','description','color','slug','type','status'];
 
     public function articles(): \Illuminate\Database\Eloquent\Relations\MorphToMany
 {

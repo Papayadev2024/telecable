@@ -106,6 +106,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         //Etiquetas
         Route::resource('/tags', TagController::class);
+        Route::post('/attributes/borrar', [AttributesController::class, 'deleteTags'])->name('tags.deleteTags');
+
 
         
         Route::fallback(function() {
