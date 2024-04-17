@@ -14,4 +14,9 @@ class Attributes extends Model
     'valores',
     'color',
     'status'];
+
+    public function values()
+    {
+        return $this->hasMany(Attributes::class, 'attribute_id');
+    }
 }

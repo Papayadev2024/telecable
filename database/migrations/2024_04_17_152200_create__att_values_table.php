@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attributes', function (Blueprint $table) {
+        Schema::create('attributes_values', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->string('imagen')->nullable();
-            $table->text('descripcion')->nullable();
-            $table->string('valores')->nullable();
+            $table->unsignedBigInteger('attribute_id');
+            $table->string('valor');
+            $table->string('descripcion')->nullable();
             $table->string('color')->nullable();
+            $table->string('imagen')->nullable();
             $table->boolean('visible')->default(true);
             $table->boolean('status')->default(true);
             $table->timestamps();
+
+            $table->foreign('attribute_id')->references('id')->on('attributes');
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('att_values');
     }
 };
