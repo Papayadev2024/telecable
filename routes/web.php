@@ -24,6 +24,7 @@ use App\Http\Controllers\LogosClientController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StrengthController;
+use App\Http\Controllers\TagController;
 use App\Models\AboutUs;
 
 /*
@@ -98,6 +99,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('/aboutus/borrar', [AboutUsController::class, 'borrar'])->name('aboutus.borrar');
 
 
+        //Etiquetas
+        Route::resource('/tags', TagController::class);
+
+        
         Route::fallback(function() {
             return view('pages/utility/404');
         });
