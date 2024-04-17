@@ -26,6 +26,8 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StrengthController;
 use App\Http\Controllers\ValoresAtributosController;
+
+use App\Http\Controllers\TagController;
 use App\Models\AboutUs;
 
 /*
@@ -93,7 +95,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::resource('/strength', StrengthController::class);
         Route::post('/strength/updateVisible', [StrengthController::class, 'updateVisible'])->name('strength.updateVisible');
         Route::post('/strength/borrar', [StrengthController::class, 'borrar'])->name('strength.borrar');
-        //
+      
+        //Atributes
 
         Route::resource('/aboutus', AboutUsController::class);
         Route::post('/aboutus/updateVisible', [AboutUsController::class, 'updateVisible'])->name('aboutus.updateVisible');
@@ -103,12 +106,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('/attributes/updateVisible', [AttributesController::class, 'updateVisible'])->name('attributes.updateVisible');
         Route::post('/attributes/borrar', [AttributesController::class, 'borrar'])->name('attributes.borrar');
 
+        //valores atributes
         Route::resource('/valoresattributes', ValoresAtributosController::class);
         Route::post('/valoresattributes/borrar', [ValoresAtributosController::class, 'borrar'])->name('valoresattributes.borrar');
         Route::post('/valoresattributes/updateVisible', [ValoresAtributosController::class, 'updateVisible'])->name('valoresattributes.updateVisible');
 
 
+        //Etiquetas
+        Route::resource('/tags', TagController::class);
+        Route::post('/tags/deleteTags', [TagController::class, 'deleteTags'])->name('tags.deleteTags');
 
+        
+        
         Route::fallback(function() {
             return view('pages/utility/404');
         });
