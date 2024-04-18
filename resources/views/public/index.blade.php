@@ -361,375 +361,279 @@
         </section>
 
 
-         <!-- productos destacados -->
-      <section class="font-poppins">
-        <div
-          class="grid grid-cols-1 gap-12 md:gap-0 md:grid-cols-4 grid-rows-1 pt-12 w-11/12 mx-auto"
-        >
-          <div
-            class="col-span-1 md:col-span-3 order-1 md:order-1 flex flex-col gap-2"
-          >
-            <h2
-              class="font-medium text-[40px] mt-2 leading-none md:leading-tight"
-            >
-              Productos destacados
-            </h2>
-            <p class="font-normal text-lg">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-              officiis tempora harum placeat Lorem, ipsum dolor sit amet
-              consectetur adipisicing elit. Nemo, officiis tempora harum
-              placeat.
-            </p>
-          </div>
-          <div
-            class="col-span-1 md:col-span-1 order-3 md:order-2 flex justify-center items-center w-full"
-          >
-            <a
-              href="catalogo.html"
-              class="font-semibold text-[16px] bg-transparent md:duration-500 py-4 px-5 rounded-3xl border-[1px] border-colorBorder flex-initial w-full md:w-56 text-center inline-block"
-            >
-              Ver todo
-            </a>
-          </div>
-
-          <div class="col-span-1 md:col-span-4 order-2 md:order-3">
-            <!-- grilla de productos destacados -->
-            <div class="md:hidden grid grid-cols-2 gap-5">
-              <div class="flex flex-col relative">
-                <div
-                  class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
-                >
-                  <div class="px-4">
-                    <a
-                      class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10"
-                    >
-                      Nuevo
+        <!-- productos destacados -->
+        <section class="font-poppins">
+            <div class="grid grid-cols-1 gap-12 md:gap-0 md:grid-cols-4 grid-rows-1 pt-12 w-11/12 mx-auto">
+                <div class="col-span-1 md:col-span-3 order-1 md:order-1 flex flex-col gap-2">
+                    <h2 class="font-medium text-[40px] mt-2 leading-none md:leading-tight">
+                        Productos destacados
+                    </h2>
+                    <p class="font-normal text-lg">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo,
+                        officiis tempora harum placeat Lorem, ipsum dolor sit amet
+                        consectetur adipisicing elit. Nemo, officiis tempora harum
+                        placeat.
+                    </p>
+                </div>
+                <div class="col-span-1 md:col-span-1 order-3 md:order-2 flex justify-center items-center w-full">
+                    <a href="catalogo.html"
+                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-4 px-5 rounded-3xl border-[1px] border-colorBorder flex-initial w-full md:w-56 text-center inline-block">
+                        Ver todo
                     </a>
-                  </div>
-                  <div>
-                    <div class="relative flex justify-center items-center">
-                      <img src="./images/img/deco_1.png" class="" />
-                    </div>
-
-                    <!-- ------ -->
-                    <div class="addProduct text-center flex justify-center">
-                      <a
-                        href="#addProducto"
-                        class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl"
-                      >
-                        Agregar al carrito
-                      </a>
-                    </div>
-                  </div>
                 </div>
-                <div
-                  class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2"
-                >
-                  <div class="flex items-center gap-2">
-                    <div class="flex md:gap-2 py-2">
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                    </div>
-                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                  </div>
-                  <h2
-                    class="font-semibold text-[12px] md:text-[16px] text-[#141718]"
-                  >
-                    Fusce sagittis eleifend sem eget dictum
-                  </h2>
-                  <p
-                    class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5"
-                  >
-                    <span>$595.00</span>
 
-                    <span
-                      class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through"
-                      >$1000.00</span
-                    >
-                  </p>
-                </div>
-              </div>
+                <div class="col-span-1 md:col-span-4 order-2 md:order-3">
+                    <!-- grilla de productos destacados -->
+                    <div class="md:hidden grid grid-cols-2 gap-5">
+                        <div class="flex flex-col relative">
+                            <div
+                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
+                                <div class="px-4">
+                                    <a
+                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                        Nuevo
+                                    </a>
+                                </div>
+                                <div>
+                                    <div class="relative flex justify-center items-center">
+                                        <img src="./images/img/deco_1.png" class="" />
+                                    </div>
 
-              <div class="flex flex-col relative">
-                <div
-                  class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
-                >
-                  <div class="px-4">
-                    <a
-                      class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10"
-                    >
-                      Nuevo
-                    </a>
-                  </div>
-                  <div>
-                    <div class="relative flex justify-center items-center">
-                      <img src="./images/img/deco_2.png" class="" />
-                    </div>
+                                    <!-- ------ -->
+                                    <div class="addProduct text-center flex justify-center">
+                                        <a href="#addProducto"
+                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
+                                            Agregar al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex md:gap-2 py-2">
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                    </div>
+                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
+                                </div>
+                                <h2 class="font-semibold text-[12px] md:text-[16px] text-[#141718]">
+                                    Fusce sagittis eleifend sem eget dictum
+                                </h2>
+                                <p class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5">
+                                    <span>$595.00</span>
 
-                    <!-- ------ -->
-                    <div class="addProduct text-center flex justify-center">
-                      <a
-                        href="#addProducto"
-                        class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl"
-                      >
-                        Agregar al carrito
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2"
-                >
-                  <div class="flex items-center gap-2">
-                    <div class="flex md:gap-2 py-2">
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                    </div>
-                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                  </div>
-                  <h2
-                    class="font-semibold text-[12px] md:text-[16px] text-[#141718]"
-                  >
-                    Fusce sagittis eleifend sem eget dictum
-                  </h2>
-                  <p
-                    class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5"
-                  >
-                    <span>$595.00</span>
-
-                    <span
-                      class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through"
-                      >$1000.00</span
-                    >
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex flex-col relative">
-                <div
-                  class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
-                >
-                  <div class="px-4">
-                    <a
-                      class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10"
-                    >
-                      Nuevo
-                    </a>
-                  </div>
-                  <div>
-                    <div class="relative flex justify-center items-center">
-                      <img src="./images/img/deco_3.png" class="" />
-                    </div>
-
-                    <!-- ------ -->
-                    <div class="addProduct text-center flex justify-center">
-                      <a
-                        href="#addProducto"
-                        class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl"
-                      >
-                        Agregar al carrito
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2"
-                >
-                  <div class="flex items-center gap-2">
-                    <div class="flex md:gap-2 py-2">
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                    </div>
-                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                  </div>
-                  <h2
-                    class="font-semibold text-[12px] md:text-[16px] text-[#141718]"
-                  >
-                    Fusce sagittis eleifend sem eget dictum
-                  </h2>
-                  <p
-                    class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5"
-                  >
-                    <span>$595.00</span>
-
-                    <span
-                      class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through"
-                      >$1000.00</span
-                    >
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex flex-col relative">
-                <div
-                  class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
-                >
-                  <div class="px-4">
-                    <a
-                      class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10"
-                    >
-                      Nuevo
-                    </a>
-                  </div>
-                  <div>
-                    <div class="relative flex justify-center items-center">
-                      <img src="./images/img/deco_4.png" class="" />
-                    </div>
-
-                    <!-- ------ -->
-                    <div class="addProduct text-center flex justify-center">
-                      <a
-                        href="#addProducto"
-                        class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl"
-                      >
-                        Agregar al carrito
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2"
-                >
-                  <div class="flex items-center gap-2">
-                    <div class="flex md:gap-2 py-2">
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                    </div>
-                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                  </div>
-                  <h2
-                    class="font-semibold text-[12px] md:text-[16px] text-[#141718]"
-                  >
-                    Fusce sagittis eleifend sem eget dictum
-                  </h2>
-                  <p
-                    class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5"
-                  >
-                    <span>$595.00</span>
-
-                    <span
-                      class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through"
-                      >$1000.00</span
-                    >
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- carrousel productos destacados -->
-            <div class="hidden md:block">
-              <div class="swiper productos-destacados my-5">
-                <div
-                  class="swiper-pagination-productos-destacados mb-80 md:mb-32"
-                ></div>
-                <div class="swiper-wrapper mt-[80px]">
-                  <div class="swiper-slide rounded-2xl">
-                    <div class="flex flex-col relative">
-                      <div
-                        class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
-                      >
-                        <div class="px-4">
-                          <a
-                            class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10"
-                          >
-                            Nuevo
-                          </a>
+                                    <span
+                                        class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through">$1000.00</span>
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                          <div
-                            class="relative flex justify-center items-center"
-                          >
-                            <img src="./images/img/deco_1.png" class="" />
-                          </div>
 
-                          <!-- ------ -->
-                          <div
-                            class="addProduct text-center flex justify-center"
-                          >
-                            <a
-                              href="#addProducto"
-                              class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl"
-                            >
-                              Agregar al carrito
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2"
-                      >
-                        <div class="flex items-center gap-2">
-                          <div class="flex gap-2 py-2">
-                            <img src="./images/svg/start.svg" alt="estrella" />
-                            <img src="./images/svg/start.svg" alt="estrella" />
-                            <img src="./images/svg/start.svg" alt="estrella" />
-                            <img
-                              src="./images/svg/start_sin_color.svg"
-                              alt="estrella"
-                            />
-                            <img
-                              src="./images/svg/start_sin_color.svg"
-                              alt="estrella"
-                            />
-                          </div>
-                          <p class="font-semibold text-[14px] text-[#6C7275]">
-                            (35)
-                          </p>
-                        </div>
-                        <h2 class="font-semibold text-[16px] text-[#141718]">
-                          Fusce sagittis eleifend sem eget dictum
-                        </h2>
-                        <p
-                          class="font-semibold text-[14px] text-[#121212] flex gap-5"
-                        >
-                          <span>$595.00</span>
+                        <div class="flex flex-col relative">
+                            <div
+                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
+                                <div class="px-4">
+                                    <a
+                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                        Nuevo
+                                    </a>
+                                </div>
+                                <div>
+                                    <div class="relative flex justify-center items-center">
+                                        <img src="./images/img/deco_2.png" class="" />
+                                    </div>
 
-                          <span
-                            class="font-normal text-[14px] text-[#6C7275] line-through"
-                            >$1000.00</span
-                          >
-                        </p>
-                      </div>
+                                    <!-- ------ -->
+                                    <div class="addProduct text-center flex justify-center">
+                                        <a href="#addProducto"
+                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
+                                            Agregar al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex md:gap-2 py-2">
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                    </div>
+                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
+                                </div>
+                                <h2 class="font-semibold text-[12px] md:text-[16px] text-[#141718]">
+                                    Fusce sagittis eleifend sem eget dictum
+                                </h2>
+                                <p class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5">
+                                    <span>$595.00</span>
+
+                                    <span
+                                        class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through">$1000.00</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col relative">
+                            <div
+                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
+                                <div class="px-4">
+                                    <a
+                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                        Nuevo
+                                    </a>
+                                </div>
+                                <div>
+                                    <div class="relative flex justify-center items-center">
+                                        <img src="./images/img/deco_3.png" class="" />
+                                    </div>
+
+                                    <!-- ------ -->
+                                    <div class="addProduct text-center flex justify-center">
+                                        <a href="#addProducto"
+                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
+                                            Agregar al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex md:gap-2 py-2">
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                    </div>
+                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
+                                </div>
+                                <h2 class="font-semibold text-[12px] md:text-[16px] text-[#141718]">
+                                    Fusce sagittis eleifend sem eget dictum
+                                </h2>
+                                <p class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5">
+                                    <span>$595.00</span>
+
+                                    <span
+                                        class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through">$1000.00</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col relative">
+                            <div
+                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
+                                <div class="px-4">
+                                    <a
+                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                        Nuevo
+                                    </a>
+                                </div>
+                                <div>
+                                    <div class="relative flex justify-center items-center">
+                                        <img src="./images/img/deco_4.png" class="" />
+                                    </div>
+
+                                    <!-- ------ -->
+                                    <div class="addProduct text-center flex justify-center">
+                                        <a href="#addProducto"
+                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
+                                            Agregar al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex md:gap-2 py-2">
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                    </div>
+                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
+                                </div>
+                                <h2 class="font-semibold text-[12px] md:text-[16px] text-[#141718]">
+                                    Fusce sagittis eleifend sem eget dictum
+                                </h2>
+                                <p class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5">
+                                    <span>$595.00</span>
+
+                                    <span
+                                        class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through">$1000.00</span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                  </div>
 
-                  <div class="swiper-slide rounded-2xl">
+                    <!-- carrousel productos destacados -->
+                    <div class="hidden md:block">
+                        <div class="swiper productos-destacados my-5">
+                            <div class="swiper-pagination-productos-destacados mb-80 md:mb-32"></div>
+                            <div class="swiper-wrapper mt-[80px]">
+
+                                @foreach ($destacados as $item)
+                                    <div class="swiper-slide rounded-2xl">
+                                        <div class="flex flex-col relative">
+                                            <div
+                                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
+                                                <div class="px-4">
+                                                    <a
+                                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                                        Nuevo
+                                                    </a>
+                                                </div>
+                                                <div>
+                                                    <div class="relative flex justify-center items-center">
+                                                        <img src="{{ asset($item->imagen) }}" class="" />
+                                                    </div>
+
+                                                    <!-- ------ -->
+                                                    <div class="addProduct text-center flex justify-center">
+                                                        <a href="#addProducto"
+                                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
+                                                            Agregar al carrito
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
+                                                <div class="flex items-center gap-2">
+                                                    <div class="flex gap-2 py-2">
+                                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                                    </div>
+                                                    <p class="font-semibold text-[14px] text-[#6C7275]">
+                                                        (35)
+                                                    </p>
+                                                </div>
+                                                <h2 class="font-semibold text-[16px] text-[#141718]">
+                                                    {{ $item->producto }}
+                                                </h2>
+                                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
+                                                    @if ($item->descuento == 0)
+                                                        <span>{{ $item->precio }}</span>
+                                                    @else
+                                                        <span>{{ $item->descuento }}</span>
+                                                        <span
+                                                            class="font-normal text-[14px] text-[#6C7275] line-through">{{ $item->precio }}</span>
+                                                    @endif
+
+
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                {{-- <div class="swiper-slide rounded-2xl">
                     <div class="flex flex-col relative">
                       <div
                         class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
@@ -1147,383 +1051,292 @@
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </div> --}}
+
+
+                            </div>
+                            <!-- <div class="swiper-pagination-productos-destacados"></div> -->
+                        </div>
+                    </div>
                 </div>
-                <!-- <div class="swiper-pagination-productos-destacados"></div> -->
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <!-- productos en oferta -->
-      <section class="font-poppins mt-10 mb-20">
-        <div
-          class="grid grid-cols-1 gap-12 md:gap-0 md:grid-cols-4 grid-rows-1 pt-12 w-11/12 mx-auto"
-        >
-          <div class="col-span-1 md:col-span-3 order-1 md:order-1">
-            <h2
-              class="font-medium text-[40px] mt-2 leading-none md:leading-tight"
-            >
-              Productos en Oferta
-            </h2>
+        </section>
+        <!-- productos en oferta -->
+        <section class="font-poppins mt-10 mb-20">
+            <div class="grid grid-cols-1 gap-12 md:gap-0 md:grid-cols-4 grid-rows-1 pt-12 w-11/12 mx-auto">
+                <div class="col-span-1 md:col-span-3 order-1 md:order-1">
+                    <h2 class="font-medium text-[40px] mt-2 leading-none md:leading-tight">
+                        Productos en Oferta
+                    </h2>
 
-            <p class="font-normal text-lg basis-3/6">
-              Etiam cursus semper odio non consectetur. Pellentesque et molestie
-              risus. Aliquam eu nibh pulvinar, sollicitudin sapien vel, aliquam
-              orci.
-            </p>
-          </div>
+                    <p class="font-normal text-lg basis-3/6">
+                        Etiam cursus semper odio non consectetur. Pellentesque et molestie
+                        risus. Aliquam eu nibh pulvinar, sollicitudin sapien vel, aliquam
+                        orci.
+                    </p>
+                </div>
 
-          <div
-            class="col-span-1 md:col-span-1 order-3 md:order-2 flex justify-center items-center w-full"
-          >
-            <a
-              href="catalogo.html"
-              class="font-semibold text-[16px] bg-transparent md:duration-500 py-4 px-5 rounded-3xl border-[1px] border-colorBorder flex-initial w-full md:w-56 text-center inline-block"
-            >
-              Ver todo
-            </a>
-          </div>
-
-          <div class="col-span-1 md:col-span-4 order-2 md:order-3">
-            <!-- grilla de productos en oferta -->
-            <div class="md:hidden grid grid-cols-2 gap-5">
-              <div class="flex flex-col relative">
-                <div
-                  class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
-                >
-                  <div class="px-4">
-                    <a
-                      class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10"
-                    >
-                      En programación
+                <div class="col-span-1 md:col-span-1 order-3 md:order-2 flex justify-center items-center w-full">
+                    <a href="catalogo.html"
+                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-4 px-5 rounded-3xl border-[1px] border-colorBorder flex-initial w-full md:w-56 text-center inline-block">
+                        Ver todo
                     </a>
-                  </div>
-                  <div>
-                    <div class="relative flex justify-center items-center">
-                      <img src="./images/img/deco_1.png" class="" />
-                    </div>
-
-                    <!-- ------ -->
-                    <div class="addProduct text-center flex justify-center">
-                      <a
-                        href="#addProducto"
-                        class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl"
-                      >
-                        Agregar al carrito
-                      </a>
-                    </div>
-                  </div>
                 </div>
-                <div
-                  class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2"
-                >
-                  <div class="flex items-center gap-2">
-                    <div class="flex md:gap-2 py-2">
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                    </div>
-                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                  </div>
-                  <h2
-                    class="font-semibold text-[12px] md:text-[16px] text-[#141718]"
-                  >
-                    Fusce sagittis eleifend sem eget dictum
-                  </h2>
-                  <p
-                    class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5"
-                  >
-                    <span>$595.00</span>
 
-                    <span
-                      class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through"
-                      >$1000.00</span
-                    >
-                  </p>
-                </div>
-              </div>
+                <div class="col-span-1 md:col-span-4 order-2 md:order-3">
+                    <!-- grilla de productos en oferta -->
+                    <div class="md:hidden grid grid-cols-2 gap-5">
+                        <div class="flex flex-col relative">
+                            <div
+                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
+                                <div class="px-4">
+                                    <a
+                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                        En programación
+                                    </a>
+                                </div>
+                                <div>
+                                    <div class="relative flex justify-center items-center">
+                                        <img src="./images/img/deco_1.png" class="" />
+                                    </div>
 
-              <div class="flex flex-col relative">
-                <div
-                  class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
-                >
-                  <div class="px-4">
-                    <a
-                      class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10"
-                    >
-                      En programación
-                    </a>
-                  </div>
-                  <div>
-                    <div class="relative flex justify-center items-center">
-                      <img src="./images/img/deco_2.png" class="" />
-                    </div>
+                                    <!-- ------ -->
+                                    <div class="addProduct text-center flex justify-center">
+                                        <a href="#addProducto"
+                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
+                                            Agregar al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex md:gap-2 py-2">
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                    </div>
+                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
+                                </div>
+                                <h2 class="font-semibold text-[12px] md:text-[16px] text-[#141718]">
+                                    Fusce sagittis eleifend sem eget dictum
+                                </h2>
+                                <p class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5">
+                                    <span>$595.00</span>
 
-                    <!-- ------ -->
-                    <div class="addProduct text-center flex justify-center">
-                      <a
-                        href="#addProducto"
-                        class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl"
-                      >
-                        Agregar al carrito
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2"
-                >
-                  <div class="flex items-center gap-2">
-                    <div class="flex md:gap-2 py-2">
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                    </div>
-                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                  </div>
-                  <h2
-                    class="font-semibold text-[12px] md:text-[16px] text-[#141718]"
-                  >
-                    Fusce sagittis eleifend sem eget dictum
-                  </h2>
-                  <p
-                    class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5"
-                  >
-                    <span>$595.00</span>
-
-                    <span
-                      class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through"
-                      >$1000.00</span
-                    >
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex flex-col relative">
-                <div
-                  class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
-                >
-                  <div class="px-4">
-                    <a
-                      class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10"
-                    >
-                      En programación
-                    </a>
-                  </div>
-                  <div>
-                    <div class="relative flex justify-center items-center">
-                      <img src="./images/img/deco_3.png" class="" />
-                    </div>
-
-                    <!-- ------ -->
-                    <div class="addProduct text-center flex justify-center">
-                      <a
-                        href="#addProducto"
-                        class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl"
-                      >
-                        Agregar al carrito
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2"
-                >
-                  <div class="flex items-center gap-2">
-                    <div class="flex md:gap-2 py-2">
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                    </div>
-                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                  </div>
-                  <h2
-                    class="font-semibold text-[12px] md:text-[16px] text-[#141718]"
-                  >
-                    Fusce sagittis eleifend sem eget dictum
-                  </h2>
-                  <p
-                    class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5"
-                  >
-                    <span>$595.00</span>
-
-                    <span
-                      class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through"
-                      >$1000.00</span
-                    >
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex flex-col relative">
-                <div
-                  class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
-                >
-                  <div class="px-4">
-                    <a
-                      class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10"
-                    >
-                      En programación
-                    </a>
-                  </div>
-                  <div>
-                    <div class="relative flex justify-center items-center">
-                      <img src="./images/img/deco_4.png" class="" />
-                    </div>
-
-                    <!-- ------ -->
-                    <div class="addProduct text-center flex justify-center">
-                      <a
-                        href="#addProducto"
-                        class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl"
-                      >
-                        Agregar al carrito
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2"
-                >
-                  <div class="flex items-center gap-2">
-                    <div class="flex md:gap-2 py-2">
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img src="./images/svg/start.svg" alt="estrella" />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                      <img
-                        src="./images/svg/start_sin_color.svg"
-                        alt="estrella"
-                      />
-                    </div>
-                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                  </div>
-                  <h2
-                    class="font-semibold text-[12px] md:text-[16px] text-[#141718]"
-                  >
-                    Fusce sagittis eleifend sem eget dictum
-                  </h2>
-                  <p
-                    class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5"
-                  >
-                    <span>$595.00</span>
-
-                    <span
-                      class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through"
-                      >$1000.00</span
-                    >
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- carrousel productos oferta -->
-            <div class="hidden md:block">
-              <div class="swiper productos-oferta my-5">
-                <div
-                  class="swiper-pagination-productos-oferta mb-80 md:mb-32"
-                ></div>
-
-                <div class="swiper-wrapper mt-[80px]">
-                  <div class="swiper-slide rounded-2xl">
-                    <div class="flex flex-col relative">
-                      <div
-                        class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
-                      >
-                        <div class="px-4">
-                          <a
-                            class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-32 text-center text-white rounded-[5px] absolute top-[18px] z-10"
-                          >
-                            En programación
-                          </a>
+                                    <span
+                                        class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through">$1000.00</span>
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                          <div
-                            class="relative flex justify-center items-center"
-                          >
-                            <img src="./images/img/deco_1.png" class="" />
-                          </div>
 
-                          <!-- ------ -->
-                          <div
-                            class="addProduct text-center flex justify-center"
-                          >
-                            <a
-                              href="#addProducto"
-                              class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl"
-                            >
-                              Agregar al carrito
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2"
-                      >
-                        <div class="flex items-center gap-2">
-                          <div class="flex gap-2 py-2">
-                            <img src="./images/svg/start.svg" alt="estrella" />
-                            <img src="./images/svg/start.svg" alt="estrella" />
-                            <img src="./images/svg/start.svg" alt="estrella" />
-                            <img
-                              src="./images/svg/start_sin_color.svg"
-                              alt="estrella"
-                            />
-                            <img
-                              src="./images/svg/start_sin_color.svg"
-                              alt="estrella"
-                            />
-                          </div>
-                          <p class="font-semibold text-[14px] text-[#6C7275]">
-                            (35)
-                          </p>
-                        </div>
-                        <h2 class="font-semibold text-[16px] text-[#141718]">
-                          Fusce sagittis eleifend sem eget dictum
-                        </h2>
-                        <p
-                          class="font-semibold text-[14px] text-[#121212] flex gap-5"
-                        >
-                          <span>$595.00</span>
+                        <div class="flex flex-col relative">
+                            <div
+                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
+                                <div class="px-4">
+                                    <a
+                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                        En programación
+                                    </a>
+                                </div>
+                                <div>
+                                    <div class="relative flex justify-center items-center">
+                                        <img src="./images/img/deco_2.png" class="" />
+                                    </div>
 
-                          <span
-                            class="font-normal text-[14px] text-[#6C7275] line-through"
-                            >$1000.00</span
-                          >
-                        </p>
-                      </div>
+                                    <!-- ------ -->
+                                    <div class="addProduct text-center flex justify-center">
+                                        <a href="#addProducto"
+                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
+                                            Agregar al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex md:gap-2 py-2">
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                    </div>
+                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
+                                </div>
+                                <h2 class="font-semibold text-[12px] md:text-[16px] text-[#141718]">
+                                    Fusce sagittis eleifend sem eget dictum
+                                </h2>
+                                <p class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5">
+                                    <span>$595.00</span>
+
+                                    <span
+                                        class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through">$1000.00</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col relative">
+                            <div
+                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
+                                <div class="px-4">
+                                    <a
+                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                        En programación
+                                    </a>
+                                </div>
+                                <div>
+                                    <div class="relative flex justify-center items-center">
+                                        <img src="./images/img/deco_3.png" class="" />
+                                    </div>
+
+                                    <!-- ------ -->
+                                    <div class="addProduct text-center flex justify-center">
+                                        <a href="#addProducto"
+                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
+                                            Agregar al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex md:gap-2 py-2">
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                    </div>
+                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
+                                </div>
+                                <h2 class="font-semibold text-[12px] md:text-[16px] text-[#141718]">
+                                    Fusce sagittis eleifend sem eget dictum
+                                </h2>
+                                <p class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5">
+                                    <span>$595.00</span>
+
+                                    <span
+                                        class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through">$1000.00</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col relative">
+                            <div
+                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
+                                <div class="px-4">
+                                    <a
+                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                        En programación
+                                    </a>
+                                </div>
+                                <div>
+                                    <div class="relative flex justify-center items-center">
+                                        <img src="./images/img/deco_4.png" class="" />
+                                    </div>
+
+                                    <!-- ------ -->
+                                    <div class="addProduct text-center flex justify-center">
+                                        <a href="#addProducto"
+                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
+                                            Agregar al carrito
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex md:gap-2 py-2">
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                    </div>
+                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
+                                </div>
+                                <h2 class="font-semibold text-[12px] md:text-[16px] text-[#141718]">
+                                    Fusce sagittis eleifend sem eget dictum
+                                </h2>
+                                <p class="font-semibold text-[8px] md:text-[14px] text-[#121212] flex gap-5">
+                                    <span>$595.00</span>
+
+                                    <span
+                                        class="font-normal text-[8px] md:text-[14px] text-[#6C7275] line-through">$1000.00</span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                  </div>
 
-                  <div class="swiper-slide rounded-2xl">
+                    <!-- carrousel productos oferta -->
+                    <div class="hidden md:block">
+                        <div class="swiper productos-oferta my-5">
+                            <div class="swiper-pagination-productos-oferta mb-80 md:mb-32"></div>
+
+                            <div class="swiper-wrapper mt-[80px]">
+
+                                @foreach ($descuentos as $item)
+                                    <div class="swiper-slide rounded-2xl">
+                                        <div class="flex flex-col relative">
+                                            <div
+                                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
+                                                <div class="px-4">
+                                                    <a
+                                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-32 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                                        En programación
+                                                    </a>
+                                                </div>
+                                                <div>
+                                                    <div class="relative flex justify-center items-center">
+                                                        <img src="{{ asset($item->imagen) }}" class="" />
+                                                    </div>
+
+                                                    <!-- ------ -->
+                                                    <div class="addProduct text-center flex justify-center">
+                                                        <a href="#addProducto"
+                                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
+                                                            Agregar al carrito
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
+                                                <div class="flex items-center gap-2">
+                                                    <div class="flex gap-2 py-2">
+                                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                                        <img src="./images/svg/start.svg" alt="estrella" />
+                                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                                    </div>
+                                                    <p class="font-semibold text-[14px] text-[#6C7275]">
+                                                        (35)
+                                                    </p>
+                                                </div>
+                                                <h2 class="font-semibold text-[16px] text-[#141718]">
+                                                    {{ $item->producto }}
+                                                </h2>
+                                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
+
+                                                    @if ($item->descuento == 0)
+                                                        <span>{{ $item->price }}</span>
+                                                    @else
+                                                        <span>{{ $item->descuento }}</span>
+                                                        <span
+                                                            class="font-normal text-[14px] text-[#6C7275] line-through">{{ $item->precio }}</span>
+                                                    @endif
+
+
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                {{-- <div class="swiper-slide rounded-2xl">
                     <div class="flex flex-col relative">
                       <div
                         class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative"
@@ -1801,578 +1614,498 @@
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </div> --}}
+
+                            </div>
+                            <!-- <div class="swiper-pagination-productos-oferta"></div> -->
+                        </div>
+                    </div>
                 </div>
-                <!-- <div class="swiper-pagination-productos-oferta"></div> -->
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
 
-      <section>
-        <div
-          class="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:grid-rows-[700px] h-[100%]"
-        >
-          <div class="basis-1/2 flex items-center justify-center">
-            <img
-              src="./images/img/vestibulo.png"
-              alt="vestibulo"
-              class="w-full h-full object-cover object-center"
-            />
-          </div>
-          <div class="basis-1/2 beneficioRelative px-5 md:px-10">
-            <!-- aca va beneficion -->
-            <div class="swiper myBeneficios h-full">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <div class="flex flex-col gap-5 my-12">
-                    <p class="font-semibold text-[24px]">Beneficios 01</p>
-
-                    <h2
-                      class="font-semibold text-[48px] leading-none md:leading-tight"
-                    >
-                      Vestibulum mole massa nec hendrerit, nec com nulla sed
-                      magna
-                    </h2>
-
-                    <p class="font-normal text-[18px]">
-                      Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
-                      aliquet ornare quam. Nunc pharetra, tellus eu venenatis
-                      vestibulum, ante nibh rutrum erat, ac malesuada neque
-                      tellus ut diam. Praesent ac aliquet metus, id porta nisi.
-                      Praesent et libero a tellus.
-                    </p>
-
-                    <p class="font-normal text-[18px]">
-                      Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
-                      aliquet ornare quam. Nunc pharetra, tellus eu venenatis
-                      vestibulum, ante nibh rutrum erat, ac malesuada neque
-                      tellus ut diam. Praesent ac aliquet metus, id porta nisi.
-                      Praesent et libero a tellus varius faucibus. Mauris velit
-                      urna, rhoncus consequat euismod.
-                    </p>
-                  </div>
+        <section>
+            <div class="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:grid-rows-[700px] h-[100%]">
+                <div class="basis-1/2 flex items-center justify-center">
+                    <img src="./images/img/vestibulo.png" alt="vestibulo"
+                        class="w-full h-full object-cover object-center" />
                 </div>
-                <div class="swiper-slide">
-                  <div class="flex flex-col gap-5 mt-10">
-                    <p class="font-semibold text-[24px]">Beneficios 02</p>
+                <div class="basis-1/2 beneficioRelative px-5 md:px-10">
+                    <!-- aca va beneficion -->
+                    <div class="swiper myBeneficios h-full">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="flex flex-col gap-5 my-12">
+                                    <p class="font-semibold text-[24px]">Beneficios 01</p>
 
-                    <h2
-                      class="font-semibold text-[48px] leading-none md:leading-tight"
-                    >
-                      Vestibulum mole massa nec hendrerit, nec com nulla sed
-                      magna
-                    </h2>
+                                    <h2 class="font-semibold text-[48px] leading-none md:leading-tight">
+                                        Vestibulum mole massa nec hendrerit, nec com nulla sed
+                                        magna
+                                    </h2>
 
-                    <p class="font-normal text-[18px]">
-                      Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
-                      aliquet ornare quam. Nunc pharetra, tellus eu venenatis
-                      vestibulum, ante nibh rutrum erat, ac malesuada neque
-                      tellus ut diam. Praesent ac aliquet metus, id porta nisi.
-                      Praesent et libero a tellus.
-                    </p>
+                                    <p class="font-normal text-[18px]">
+                                        Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
+                                        aliquet ornare quam. Nunc pharetra, tellus eu venenatis
+                                        vestibulum, ante nibh rutrum erat, ac malesuada neque
+                                        tellus ut diam. Praesent ac aliquet metus, id porta nisi.
+                                        Praesent et libero a tellus.
+                                    </p>
 
-                    <p class="font-normal text-[18px]">
-                      Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
-                      aliquet ornare quam. Nunc pharetra, tellus eu venenatis
-                      vestibulum, ante nibh rutrum erat, ac malesuada neque
-                      tellus ut diam. Praesent ac aliquet metus, id porta nisi.
-                      Praesent et libero a tellus varius faucibus. Mauris velit
-                      urna, rhoncus consequat euismod.
-                    </p>
-                  </div>
+                                    <p class="font-normal text-[18px]">
+                                        Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
+                                        aliquet ornare quam. Nunc pharetra, tellus eu venenatis
+                                        vestibulum, ante nibh rutrum erat, ac malesuada neque
+                                        tellus ut diam. Praesent ac aliquet metus, id porta nisi.
+                                        Praesent et libero a tellus varius faucibus. Mauris velit
+                                        urna, rhoncus consequat euismod.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="flex flex-col gap-5 mt-10">
+                                    <p class="font-semibold text-[24px]">Beneficios 02</p>
+
+                                    <h2 class="font-semibold text-[48px] leading-none md:leading-tight">
+                                        Vestibulum mole massa nec hendrerit, nec com nulla sed
+                                        magna
+                                    </h2>
+
+                                    <p class="font-normal text-[18px]">
+                                        Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
+                                        aliquet ornare quam. Nunc pharetra, tellus eu venenatis
+                                        vestibulum, ante nibh rutrum erat, ac malesuada neque
+                                        tellus ut diam. Praesent ac aliquet metus, id porta nisi.
+                                        Praesent et libero a tellus.
+                                    </p>
+
+                                    <p class="font-normal text-[18px]">
+                                        Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
+                                        aliquet ornare quam. Nunc pharetra, tellus eu venenatis
+                                        vestibulum, ante nibh rutrum erat, ac malesuada neque
+                                        tellus ut diam. Praesent ac aliquet metus, id porta nisi.
+                                        Praesent et libero a tellus varius faucibus. Mauris velit
+                                        urna, rhoncus consequat euismod.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="flex flex-col gap-5 mt-10">
+                                    <p class="font-semibold text-[24px]">Beneficios 03</p>
+
+                                    <h2 class="font-semibold text-[48px] leading-none md:leading-tight">
+                                        Vestibulum mole massa nec hendrerit, nec com nulla sed
+                                        magna
+                                    </h2>
+
+                                    <p class="font-normal text-[18px]">
+                                        Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
+                                        aliquet ornare quam. Nunc pharetra, tellus eu venenatis
+                                        vestibulum, ante nibh rutrum erat, ac malesuada neque
+                                        tellus ut diam. Praesent ac aliquet metus, id porta nisi.
+                                        Praesent et libero a tellus.
+                                    </p>
+
+                                    <p class="font-normal text-[18px]">
+                                        Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
+                                        aliquet ornare quam. Nunc pharetra, tellus eu venenatis
+                                        vestibulum, ante nibh rutrum erat, ac malesuada neque
+                                        tellus ut diam. Praesent ac aliquet metus, id porta nisi.
+                                        Praesent et libero a tellus varius faucibus. Mauris velit
+                                        urna, rhoncus consequat euismod.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="flex flex-col gap-5 mt-10">
+                                    <p class="font-semibold text-[24px]">Beneficios 04</p>
+
+                                    <h2 class="font-semibold text-[48px] leading-none md:leading-tight">
+                                        Vestibulum mole massa nec hendrerit, nec com nulla sed
+                                        magna
+                                    </h2>
+
+                                    <p class="font-normal text-[18px]">
+                                        Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
+                                        aliquet ornare quam. Nunc pharetra, tellus eu venenatis
+                                        vestibulum, ante nibh rutrum erat, ac malesuada neque
+                                        tellus ut diam. Praesent ac aliquet metus, id porta nisi.
+                                        Praesent et libero a tellus.
+                                    </p>
+
+                                    <p class="font-normal text-[18px]">
+                                        Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
+                                        aliquet ornare quam. Nunc pharetra, tellus eu venenatis
+                                        vestibulum, ante nibh rutrum erat, ac malesuada neque
+                                        tellus ut diam. Praesent ac aliquet metus, id porta nisi.
+                                        Praesent et libero a tellus varius faucibus. Mauris velit
+                                        urna, rhoncus consequat euismod.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination-beneficios"></div>
+                    </div>
                 </div>
-
-                <div class="swiper-slide">
-                  <div class="flex flex-col gap-5 mt-10">
-                    <p class="font-semibold text-[24px]">Beneficios 03</p>
-
-                    <h2
-                      class="font-semibold text-[48px] leading-none md:leading-tight"
-                    >
-                      Vestibulum mole massa nec hendrerit, nec com nulla sed
-                      magna
-                    </h2>
-
-                    <p class="font-normal text-[18px]">
-                      Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
-                      aliquet ornare quam. Nunc pharetra, tellus eu venenatis
-                      vestibulum, ante nibh rutrum erat, ac malesuada neque
-                      tellus ut diam. Praesent ac aliquet metus, id porta nisi.
-                      Praesent et libero a tellus.
-                    </p>
-
-                    <p class="font-normal text-[18px]">
-                      Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
-                      aliquet ornare quam. Nunc pharetra, tellus eu venenatis
-                      vestibulum, ante nibh rutrum erat, ac malesuada neque
-                      tellus ut diam. Praesent ac aliquet metus, id porta nisi.
-                      Praesent et libero a tellus varius faucibus. Mauris velit
-                      urna, rhoncus consequat euismod.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="swiper-slide">
-                  <div class="flex flex-col gap-5 mt-10">
-                    <p class="font-semibold text-[24px]">Beneficios 04</p>
-
-                    <h2
-                      class="font-semibold text-[48px] leading-none md:leading-tight"
-                    >
-                      Vestibulum mole massa nec hendrerit, nec com nulla sed
-                      magna
-                    </h2>
-
-                    <p class="font-normal text-[18px]">
-                      Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
-                      aliquet ornare quam. Nunc pharetra, tellus eu venenatis
-                      vestibulum, ante nibh rutrum erat, ac malesuada neque
-                      tellus ut diam. Praesent ac aliquet metus, id porta nisi.
-                      Praesent et libero a tellus.
-                    </p>
-
-                    <p class="font-normal text-[18px]">
-                      Cras et sapien nisl. Sed magna erat, rutrum eu est ac,
-                      aliquet ornare quam. Nunc pharetra, tellus eu venenatis
-                      vestibulum, ante nibh rutrum erat, ac malesuada neque
-                      tellus ut diam. Praesent ac aliquet metus, id porta nisi.
-                      Praesent et libero a tellus varius faucibus. Mauris velit
-                      urna, rhoncus consequat euismod.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-pagination-beneficios"></div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="my-12">
-        <div class="bg-[#F5F5F5] font-poppins">
-          <div
-            class="relative bg-[#F5F5F5] px-6 pt-10 pb-8 mt-8 ring-gray-900/5 sm:mx-auto sm:rounded-lg sm:px-10"
-          >
-            <div class="mx-auto px-5">
-              <div class="flex flex-col items-center">
-                <h2
-                  class="font-semibold text-[40px] text-[#151515] text-center leading-none md:leading-tight"
-                >
-                  Vestibulum mole massa, nec com nulla sed magna
-                </h2>
-              </div>
-              <div
-                class="mx-auto mt-8 grid max-w-[900px] divide-y divide-neutral-200"
-              >
-                <div class="py-5">
-                  <details class="group">
-                    <summary
-                      class="flex cursor-pointer list-none items-center justify-between font-medium"
-                    >
-                      <span class="font-bold text-[20px] text-[#151515]">
-                        ¿Mauris at velit interdum, bibendum ligula quis, varius
-                        libersssssssso?</span
-                      >
-                      <span class="transition group-open:rotate-180">
-                        <svg
-                          width="18"
-                          height="20"
-                          viewBox="0 0 18 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
-                            stroke="#EB5D2C"
-                            stroke-width="3.33333"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </span>
-                    </summary>
-                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
-                      Springerdata offers a variety of billing options,
-                      including monthly and annual subscription plans, as well
-                      as pay-as-you-go pricing for certain services. Payment is
-                      typically made through a credit card or other secure
-                      online payment method.
-                    </p>
-                  </details>
+        <section class="my-12">
+            <div class="bg-[#F5F5F5] font-poppins">
+                <div class="relative bg-[#F5F5F5] px-6 pt-10 pb-8 mt-8 ring-gray-900/5 sm:mx-auto sm:rounded-lg sm:px-10">
+                    <div class="mx-auto px-5">
+                        <div class="flex flex-col items-center">
+                            <h2 class="font-semibold text-[40px] text-[#151515] text-center leading-none md:leading-tight">
+                                Preguntas Frecuentes
+                            </h2>
+                        </div>
+                        <div class="mx-auto mt-8 grid max-w-[900px] divide-y divide-neutral-200">
+                            <div class="py-5">
+                                <details class="group">
+                                    <summary
+                                        class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                        <span class="font-bold text-[20px] text-[#151515]">
+                                            ¿Mauris at velit interdum, bibendum ligula quis, varius
+                                            libersssssssso?</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
+                                                    stroke="#EB5D2C" stroke-width="3.33333" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
+                                        Springerdata offers a variety of billing options,
+                                        including monthly and annual subscription plans, as well
+                                        as pay-as-you-go pricing for certain services. Payment is
+                                        typically made through a credit card or other secure
+                                        online payment method.
+                                    </p>
+                                </details>
+                            </div>
+                            <div class="py-5">
+                                <details class="group">
+                                    <summary
+                                        class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                        <span class="font-bold text-[20px] text-[#151515]">
+                                            ¿Mauris at velit interdum, bibendum ligula quis, varius
+                                            libero?</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
+                                                    stroke="#EB5D2C" stroke-width="3.33333" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
+                                        Springerdata offers a variety of billing options,
+                                        including monthly and annual subscription plans, as well
+                                        as pay-as-you-go pricing for certain services. Payment is
+                                        typically made through a credit card or other secure
+                                        online payment method.
+                                    </p>
+                                </details>
+                            </div>
+                            <div class="py-5">
+                                <details class="group">
+                                    <summary
+                                        class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                        <span class="font-bold text-[20px] text-[#151515]">
+                                            ¿Mauris at velit interdum, bibendum ligula quis, varius
+                                            libero?</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
+                                                    stroke="#EB5D2C" stroke-width="3.33333" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
+                                        Springerdata offers a variety of billing options,
+                                        including monthly and annual subscription plans, as well
+                                        as pay-as-you-go pricing for certain services. Payment is
+                                        typically made through a credit card or other secure
+                                        online payment method.
+                                    </p>
+                                </details>
+                            </div>
+                            <div class="py-5">
+                                <details class="group">
+                                    <summary
+                                        class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                        <span class="font-bold text-[20px] text-[#151515]">
+                                            ¿Mauris at velit interdum, bibendum ligula quis, varius
+                                            libero?</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
+                                                    stroke="#EB5D2C" stroke-width="3.33333" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
+                                        Springerdata offers a variety of billing options,
+                                        including monthly and annual subscription plans, as well
+                                        as pay-as-you-go pricing for certain services. Payment is
+                                        typically made through a credit card or other secure
+                                        online payment method.
+                                    </p>
+                                </details>
+                            </div>
+                            <div class="py-5">
+                                <details class="group">
+                                    <summary
+                                        class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                        <span class="font-bold text-[20px] text-[#151515]">
+                                            ¿Mauris at velit interdum, bibendum ligula quis, varius
+                                            libero?</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
+                                                    stroke="#EB5D2C" stroke-width="3.33333" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
+                                        Springerdata offers a variety of billing options,
+                                        including monthly and annual subscription plans, as well
+                                        as pay-as-you-go pricing for certain services. Payment is
+                                        typically made through a credit card or other secure
+                                        online payment method.
+                                    </p>
+                                </details>
+                            </div>
+                            <div class="py-5">
+                                <details class="group">
+                                    <summary
+                                        class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                        <span class="font-bold text-[20px] text-[#151515]">
+                                            ¿Mauris at velit interdum, bibendum ligula quis, varius
+                                            libero?</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
+                                                    stroke="#EB5D2C" stroke-width="3.33333" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
+                                        Springerdata offers a variety of billing options,
+                                        including monthly and annual subscription plans, as well
+                                        as pay-as-you-go pricing for certain services. Payment is
+                                        typically made through a credit card or other secure
+                                        online payment method.
+                                    </p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="py-5">
-                  <details class="group">
-                    <summary
-                      class="flex cursor-pointer list-none items-center justify-between font-medium"
-                    >
-                      <span class="font-bold text-[20px] text-[#151515]">
-                        ¿Mauris at velit interdum, bibendum ligula quis, varius
-                        libero?</span
-                      >
-                      <span class="transition group-open:rotate-180">
-                        <svg
-                          width="18"
-                          height="20"
-                          viewBox="0 0 18 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
-                            stroke="#EB5D2C"
-                            stroke-width="3.33333"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </span>
-                    </summary>
-                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
-                      Springerdata offers a variety of billing options,
-                      including monthly and annual subscription plans, as well
-                      as pay-as-you-go pricing for certain services. Payment is
-                      typically made through a credit card or other secure
-                      online payment method.
-                    </p>
-                  </details>
-                </div>
-                <div class="py-5">
-                  <details class="group">
-                    <summary
-                      class="flex cursor-pointer list-none items-center justify-between font-medium"
-                    >
-                      <span class="font-bold text-[20px] text-[#151515]">
-                        ¿Mauris at velit interdum, bibendum ligula quis, varius
-                        libero?</span
-                      >
-                      <span class="transition group-open:rotate-180">
-                        <svg
-                          width="18"
-                          height="20"
-                          viewBox="0 0 18 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
-                            stroke="#EB5D2C"
-                            stroke-width="3.33333"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </span>
-                    </summary>
-                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
-                      Springerdata offers a variety of billing options,
-                      including monthly and annual subscription plans, as well
-                      as pay-as-you-go pricing for certain services. Payment is
-                      typically made through a credit card or other secure
-                      online payment method.
-                    </p>
-                  </details>
-                </div>
-                <div class="py-5">
-                  <details class="group">
-                    <summary
-                      class="flex cursor-pointer list-none items-center justify-between font-medium"
-                    >
-                      <span class="font-bold text-[20px] text-[#151515]">
-                        ¿Mauris at velit interdum, bibendum ligula quis, varius
-                        libero?</span
-                      >
-                      <span class="transition group-open:rotate-180">
-                        <svg
-                          width="18"
-                          height="20"
-                          viewBox="0 0 18 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
-                            stroke="#EB5D2C"
-                            stroke-width="3.33333"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </span>
-                    </summary>
-                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
-                      Springerdata offers a variety of billing options,
-                      including monthly and annual subscription plans, as well
-                      as pay-as-you-go pricing for certain services. Payment is
-                      typically made through a credit card or other secure
-                      online payment method.
-                    </p>
-                  </details>
-                </div>
-                <div class="py-5">
-                  <details class="group">
-                    <summary
-                      class="flex cursor-pointer list-none items-center justify-between font-medium"
-                    >
-                      <span class="font-bold text-[20px] text-[#151515]">
-                        ¿Mauris at velit interdum, bibendum ligula quis, varius
-                        libero?</span
-                      >
-                      <span class="transition group-open:rotate-180">
-                        <svg
-                          width="18"
-                          height="20"
-                          viewBox="0 0 18 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
-                            stroke="#EB5D2C"
-                            stroke-width="3.33333"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </span>
-                    </summary>
-                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
-                      Springerdata offers a variety of billing options,
-                      including monthly and annual subscription plans, as well
-                      as pay-as-you-go pricing for certain services. Payment is
-                      typically made through a credit card or other secure
-                      online payment method.
-                    </p>
-                  </details>
-                </div>
-                <div class="py-5">
-                  <details class="group">
-                    <summary
-                      class="flex cursor-pointer list-none items-center justify-between font-medium"
-                    >
-                      <span class="font-bold text-[20px] text-[#151515]">
-                        ¿Mauris at velit interdum, bibendum ligula quis, varius
-                        libero?</span
-                      >
-                      <span class="transition group-open:rotate-180">
-                        <svg
-                          width="18"
-                          height="20"
-                          viewBox="0 0 18 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
-                            stroke="#EB5D2C"
-                            stroke-width="3.33333"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </span>
-                    </summary>
-                    <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
-                      Springerdata offers a variety of billing options,
-                      including monthly and annual subscription plans, as well
-                      as pay-as-you-go pricing for certain services. Payment is
-                      typically made through a credit card or other secure
-                      online payment method.
-                    </p>
-                  </details>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="font-poppins text-[#151515] w-full testimoniosRelative">
-        <h2
-          class="w-11/12 mx-auto font-semibold text-[40px] text-center md:text-left"
-        >
-          Testimonios
-        </h2>
+        <section class="font-poppins text-[#151515] w-full testimoniosRelative">
+            <h2 class="w-11/12 mx-auto font-semibold text-[40px] text-center md:text-left">
+                Testimonios
+            </h2>
 
-        <div class="swiper myTestimonios mt-5">
-          <div class="swiper-pagination-testimonios"></div>
-          <div class="swiper-wrapper mb-12 md:mt-[80px]">
-            <div class="swiper-slide">
-              <div class="carousel-cell bg-[#F5F5F5] p-10">
-                <div class="flex gap-2 py-2">
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+            <div class="swiper myTestimonios mt-5">
+                <div class="swiper-pagination-testimonios"></div>
+                <div class="swiper-wrapper mb-12 md:mt-[80px]">
+                    <div class="swiper-slide">
+                        <div class="carousel-cell bg-[#F5F5F5] p-10">
+                            <div class="flex gap-2 py-2">
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <p class="font-bold text-[20px]">Name N.</p>
+                                <img src="./images/svg/check.svg" alt="check" />
+                            </div>
+                            <p class="font-normal text-[16px]">
+                                “Donec ultricies aliquam tortor, eleifend ultricies sapien
+                                fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
+                                dolor. Vivamus eget placerat erat, eget consequat nisi.”
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-cell bg-[#F5F5F5] p-10">
+                            <div class="flex gap-2 py-2">
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <p class="font-bold text-[20px]">Name N.</p>
+                                <img src="./images/svg/check.svg" alt="check" />
+                            </div>
+                            <p class="font-normal text-[16px]">
+                                “Donec ultricies aliquam tortor, eleifend ultricies sapien
+                                fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
+                                dolor. Vivamus eget placerat erat, eget consequat nisi.”
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-cell bg-[#F5F5F5] p-10">
+                            <div class="flex gap-2 py-2">
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <p class="font-bold text-[20px]">Name N.</p>
+                                <img src="./images/svg/check.svg" alt="check" />
+                            </div>
+                            <p class="font-normal text-[16px]">
+                                “Donec ultricies aliquam tortor, eleifend ultricies sapien
+                                fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
+                                dolor. Vivamus eget placerat erat, eget consequat nisi.”
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-cell bg-[#F5F5F5] p-10">
+                            <div class="flex gap-2 py-2">
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <p class="font-bold text-[20px]">Name N.</p>
+                                <img src="./images/svg/check.svg" alt="check" />
+                            </div>
+                            <p class="font-normal text-[16px]">
+                                “Donec ultricies aliquam tortor, eleifend ultricies sapien
+                                fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
+                                dolor. Vivamus eget placerat erat, eget consequat nisi.”
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-cell bg-[#F5F5F5] p-10">
+                            <div class="flex gap-2 py-2">
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <p class="font-bold text-[20px]">Name N.</p>
+                                <img src="./images/svg/check.svg" alt="check" />
+                            </div>
+                            <p class="font-normal text-[16px]">
+                                “Donec ultricies aliquam tortor, eleifend ultricies sapien
+                                fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
+                                dolor. Vivamus eget placerat erat, eget consequat nisi.”
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-cell bg-[#F5F5F5] p-10">
+                            <div class="flex gap-2 py-2">
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <p class="font-bold text-[20px]">Name N.</p>
+                                <img src="./images/svg/check.svg" alt="check" />
+                            </div>
+                            <p class="font-normal text-[16px]">
+                                “Donec ultricies aliquam tortor, eleifend ultricies sapien
+                                fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
+                                dolor. Vivamus eget placerat erat, eget consequat nisi.”
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-cell bg-[#F5F5F5] p-10">
+                            <div class="flex gap-2 py-2">
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <p class="font-bold text-[20px]">Name N.</p>
+                                <img src="./images/svg/check.svg" alt="check" />
+                            </div>
+                            <p class="font-normal text-[16px]">
+                                “Donec ultricies aliquam tortor, eleifend ultricies sapien
+                                fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
+                                dolor. Vivamus eget placerat erat, eget consequat nisi.”
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-cell bg-[#F5F5F5] p-10">
+                            <div class="flex gap-2 py-2">
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <p class="font-bold text-[20px]">Name N.</p>
+                                <img src="./images/svg/check.svg" alt="check" />
+                            </div>
+                            <p class="font-normal text-[16px]">
+                                “Donec ultricies aliquam tortor, eleifend ultricies sapien
+                                fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
+                                dolor. Vivamus eget placerat erat, eget consequat nisi.”
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-cell bg-[#F5F5F5] p-10">
+                            <div class="flex gap-2 py-2">
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                            </div>
+                            <div class="flex gap-5 items-center">
+                                <p class="font-bold text-[20px]">Name N.</p>
+                                <img src="./images/svg/check.svg" alt="check" />
+                            </div>
+                            <p class="font-normal text-[16px]">
+                                “Donec ultricies aliquam tortor, eleifend ultricies sapien
+                                fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
+                                dolor. Vivamus eget placerat erat, eget consequat nisi.”
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex gap-5 items-center">
-                  <p class="font-bold text-[20px]">Name N.</p>
-                  <img src="./images/svg/check.svg" alt="check" />
-                </div>
-                <p class="font-normal text-[16px]">
-                  “Donec ultricies aliquam tortor, eleifend ultricies sapien
-                  fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
-                  dolor. Vivamus eget placerat erat, eget consequat nisi.”
-                </p>
-              </div>
             </div>
-            <div class="swiper-slide">
-              <div class="carousel-cell bg-[#F5F5F5] p-10">
-                <div class="flex gap-2 py-2">
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                </div>
-                <div class="flex gap-5 items-center">
-                  <p class="font-bold text-[20px]">Name N.</p>
-                  <img src="./images/svg/check.svg" alt="check" />
-                </div>
-                <p class="font-normal text-[16px]">
-                  “Donec ultricies aliquam tortor, eleifend ultricies sapien
-                  fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
-                  dolor. Vivamus eget placerat erat, eget consequat nisi.”
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="carousel-cell bg-[#F5F5F5] p-10">
-                <div class="flex gap-2 py-2">
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                </div>
-                <div class="flex gap-5 items-center">
-                  <p class="font-bold text-[20px]">Name N.</p>
-                  <img src="./images/svg/check.svg" alt="check" />
-                </div>
-                <p class="font-normal text-[16px]">
-                  “Donec ultricies aliquam tortor, eleifend ultricies sapien
-                  fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
-                  dolor. Vivamus eget placerat erat, eget consequat nisi.”
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="carousel-cell bg-[#F5F5F5] p-10">
-                <div class="flex gap-2 py-2">
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                </div>
-                <div class="flex gap-5 items-center">
-                  <p class="font-bold text-[20px]">Name N.</p>
-                  <img src="./images/svg/check.svg" alt="check" />
-                </div>
-                <p class="font-normal text-[16px]">
-                  “Donec ultricies aliquam tortor, eleifend ultricies sapien
-                  fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
-                  dolor. Vivamus eget placerat erat, eget consequat nisi.”
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="carousel-cell bg-[#F5F5F5] p-10">
-                <div class="flex gap-2 py-2">
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                </div>
-                <div class="flex gap-5 items-center">
-                  <p class="font-bold text-[20px]">Name N.</p>
-                  <img src="./images/svg/check.svg" alt="check" />
-                </div>
-                <p class="font-normal text-[16px]">
-                  “Donec ultricies aliquam tortor, eleifend ultricies sapien
-                  fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
-                  dolor. Vivamus eget placerat erat, eget consequat nisi.”
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="carousel-cell bg-[#F5F5F5] p-10">
-                <div class="flex gap-2 py-2">
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                </div>
-                <div class="flex gap-5 items-center">
-                  <p class="font-bold text-[20px]">Name N.</p>
-                  <img src="./images/svg/check.svg" alt="check" />
-                </div>
-                <p class="font-normal text-[16px]">
-                  “Donec ultricies aliquam tortor, eleifend ultricies sapien
-                  fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
-                  dolor. Vivamus eget placerat erat, eget consequat nisi.”
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="carousel-cell bg-[#F5F5F5] p-10">
-                <div class="flex gap-2 py-2">
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                </div>
-                <div class="flex gap-5 items-center">
-                  <p class="font-bold text-[20px]">Name N.</p>
-                  <img src="./images/svg/check.svg" alt="check" />
-                </div>
-                <p class="font-normal text-[16px]">
-                  “Donec ultricies aliquam tortor, eleifend ultricies sapien
-                  fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
-                  dolor. Vivamus eget placerat erat, eget consequat nisi.”
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="carousel-cell bg-[#F5F5F5] p-10">
-                <div class="flex gap-2 py-2">
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                </div>
-                <div class="flex gap-5 items-center">
-                  <p class="font-bold text-[20px]">Name N.</p>
-                  <img src="./images/svg/check.svg" alt="check" />
-                </div>
-                <p class="font-normal text-[16px]">
-                  “Donec ultricies aliquam tortor, eleifend ultricies sapien
-                  fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
-                  dolor. Vivamus eget placerat erat, eget consequat nisi.”
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="carousel-cell bg-[#F5F5F5] p-10">
-                <div class="flex gap-2 py-2">
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                  <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                </div>
-                <div class="flex gap-5 items-center">
-                  <p class="font-bold text-[20px]">Name N.</p>
-                  <img src="./images/svg/check.svg" alt="check" />
-                </div>
-                <p class="font-normal text-[16px]">
-                  “Donec ultricies aliquam tortor, eleifend ultricies sapien
-                  fringilla condimentum. Aliquam erat volutpat. Morbi ac nibh
-                  dolor. Vivamus eget placerat erat, eget consequat nisi.”
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
     </main>
 

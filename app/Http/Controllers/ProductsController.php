@@ -98,6 +98,7 @@ class ProductsController extends Controller
 
      return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
   }
+  
   private function stringToObject($key,$atributos){
     
     $parts = explode(':', $key);

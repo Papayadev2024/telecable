@@ -23,7 +23,7 @@
                                 <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th>Color</th>
-                                {{-- <th>Visible</th> --}}
+                                <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -34,7 +34,7 @@
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->description}}</td>
                                     <td ><div class="rounded-full w-8 h-8 mx-auto" style="background-color: {{ $item->color }}"></div></td>
-                                    {{-- <td>
+                                    <td>
                                         <form method="POST" action="">
                                           @csrf
                                             <input type="checkbox" id="hs-basic-usage" class="check_v btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
@@ -49,7 +49,7 @@
 
                                        
 
-                                    </td> --}}
+                                    </td>
                                     <td class="flex flex-row justify-end items-center gap-5">
                                   
                                         <a href="{{ route('tags.edit', $item->id) }}" class="bg-yellow-400 px-3 py-2 rounded text-white  "><i class="fa-regular fa-pen-to-square"></i></a>
@@ -70,7 +70,7 @@
                                 <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th>Color</th>
-                                {{-- <th>Visible</th> --}}
+                                <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
                         </tfoot>
