@@ -40,6 +40,7 @@ class TagController extends Controller
         $tags->description = $request->description;
         $tags->type = $request->type;
         $tags->color = $request->color;
+       
 
         $tags->save();
        

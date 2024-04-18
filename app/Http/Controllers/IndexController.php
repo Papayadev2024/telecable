@@ -6,6 +6,7 @@ use App\Http\Requests\StoreIndexRequest;
 use App\Http\Requests\UpdateIndexRequest;
 use App\Models\Index;
 use App\Models\Message;
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 
@@ -16,20 +17,13 @@ class IndexController extends Controller
      */
     public function index()
     {
-        //
-        return view('public.index');
-    }
+        $productos = Products::all();
+        $destacados = Products::where('destacar','=', 1)->get();
+        $descuentos = Products::where('descuento','>', 0)->get();
 
-    public function register()
-    {
-        //
-        return view('public.register');
-    }
 
-    public function loginsecond()
-    {
-        //
-        return view('public.login');
+
+        return view('public.index', compact('productos', 'destacados', 'descuentos'));
     }
 
     public function catalogo()

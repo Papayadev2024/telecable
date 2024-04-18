@@ -46,8 +46,6 @@ use App\Models\AboutUs;
 Route::get('/', [IndexController::class, 'index'] )->name('index');
 Route::get('/nosotros', [IndexController::class, 'index'] )->name('nosotros');
 Route::get('/servicios', [IndexController::class, 'index'] )->name('servicios');
-Route::get('/register', [IndexController::class, 'register'] )->name('register');
-Route::get('/loginsecond', [IndexController::class, 'loginsecond'] )->name('loginsecond');
 Route::get('/catalogo', [IndexController::class, 'catalogo'] )->name('catalogo');
 Route::get('/comentario', [IndexController::class, 'comentario'] )->name('comentario');
 Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
