@@ -88,7 +88,6 @@ class ProductsController extends Controller
       if (strtolower($data['recomendar']) == 'on') $data['recomendar'] = 1;
     }
     
-    
 
     $data['atributes'] = $jsonAtributos;
     $cleanedData = Arr::where($data, function ($value, $key) {
@@ -97,7 +96,7 @@ class ProductsController extends Controller
 
     Products::create($cleanedData);
 
-    return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
+     return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
   }
   private function stringToObject($key,$atributos){
     
