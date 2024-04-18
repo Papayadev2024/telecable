@@ -125,8 +125,10 @@ class ProductsController extends Controller
   public function edit(string $id)
   {
     $product = Products::find($id);
+    $atributos = Attributes::where("status", "=", true)->get();
+    $valorAtributo = AttributesValues::where("status", "=", true)->get();
 
-    return view('pages.products.edit', compact('product'));
+    return view('pages.products.edit', compact('product','atributos', 'valorAtributo'));
   
   }
 
