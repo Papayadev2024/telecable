@@ -93,10 +93,10 @@ class ProductsController extends Controller
     $jsonAtributos = json_encode($atributos);
 
     if (array_key_exists('destacar', $data)) {
-      if (strtolower($data['destacar']) == 'on') $data['destacar'] = 0;
+      if (strtolower($data['destacar']) == 'on') $data['destacar'] = 1;
     }
     if (array_key_exists('recomendar', $data)) {
-      if (strtolower($data['recomendar']) == 'on') $data['recomendar'] = 0;
+      if (strtolower($data['recomendar']) == 'on') $data['recomendar'] = 1;
     }
     
     
@@ -122,9 +122,12 @@ class ProductsController extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(Products $products)
+  public function edit(string $id)
   {
-    //
+    $product = Products::find($id);
+
+    return view('pages.products.edit', compact('product'));
+  
   }
 
   /**
