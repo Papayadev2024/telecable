@@ -92,8 +92,14 @@ class ProductsController extends Controller
 
     $jsonAtributos = json_encode($atributos);
 
-    if (strtolower($data['destacar']) == 'on') $data['destacar'] = 0;
-    if (strtolower($data['recomendar']) == 'on') $data['recomendar'] = 0;
+    if (array_key_exists('destacar', $data)) {
+      if (strtolower($data['destacar']) == 'on') $data['destacar'] = 0;
+    }
+    if (array_key_exists('recomendar', $data)) {
+      if (strtolower($data['recomendar']) == 'on') $data['recomendar'] = 0;
+    }
+    
+    
 
     $data['atributes'] = $jsonAtributos;
     $cleanedData = Arr::where($data, function ($value, $key) {
@@ -132,9 +138,13 @@ class ProductsController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Products $products)
+  public function borrar(Request $request)
   {
-    //
+    //softdelete
+    $product = Products::find($request->id);
+    $product->status = 0 ; 
+    $product->save();
+
   }
 
   public function updateVisible(Request $request)
