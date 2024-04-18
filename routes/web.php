@@ -20,6 +20,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
@@ -140,6 +141,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::resource('/products', ProductsController::class);
         Route::post('/products/updateVisible', [ProductsController::class, 'updateVisible'])->name('products.updateVisible');
         Route::post('/products/borrar', [ProductsController::class, 'borrar'])->name('products.borrar');
+
+        Route::resource('/faqs', FaqsController::class);
+        Route::post('/faqs/updateVisible', [FaqsController::class, 'updateVisible'])->name('faqs.updateVisible');
+        Route::post('/faqs/borrar', [FaqsController::class, 'borrar'])->name('faqs.borrar');
 
         
         
