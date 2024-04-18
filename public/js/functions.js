@@ -264,3 +264,112 @@ var CarrosuelCatalogo = new Swiper(".producto-catalogo", {
   },
 });
 
+
+
+var input = document.querySelector(".input-box");
+
+input.onclick = function () {
+this.classList.toggle("open");
+let list = this.nextElementSibling;
+if (list.style.maxHeight) {
+    list.style.maxHeight = null;
+    list.style.boxShadow = null;
+} else {
+    list.style.maxHeight = list.scrollHeight + "px";
+    list.style.boxShadow =
+    "0 1px 2px 0 rgba(0, 0, 0, 0.15),0 1px 3px 1px rgba(0, 0, 0, 0.1)";
+}
+};
+
+var rad = document.querySelectorAll(".radio");
+rad.forEach((item) => {
+item.addEventListener("change", () => {
+    input.innerHTML = item.nextElementSibling.innerHTML;
+    input.click();
+});
+});
+
+
+
+
+var inputDistrito = document.querySelector(".input-box-distrito");
+inputDistrito.onclick = function () {
+  this.classList.toggle("open-distrito");
+  let listDistrito = this.nextElementSibling;
+  if (listDistrito.style.maxHeight) {
+    listDistrito.style.maxHeight = null;
+    listDistrito.style.boxShadow = null;
+  } else {
+    listDistrito.style.maxHeight = listDistrito.scrollHeight + "px";
+    listDistrito.style.boxShadow =
+      "0 1px 2px 0 rgba(0, 0, 0, 0.15),0 1px 3px 1px rgba(0, 0, 0, 0.1)";
+  }
+};
+
+var radDistrito = document.querySelectorAll(".radio-distrito");
+radDistrito.forEach((item) => {
+  item.addEventListener("change", () => {
+    inputDistrito.innerHTML = item.nextElementSibling.innerHTML;
+    inputDistrito.click();
+  });
+});
+
+
+
+
+var inputProvincia = document.querySelector(".input-box-provincia");
+inputProvincia.onclick = function () {
+  this.classList.toggle("open-provincia");
+  let listProvincia = this.nextElementSibling;
+  if (listProvincia.style.maxHeight) {
+    listProvincia.style.maxHeight = null;
+    listProvincia.style.boxShadow = null;
+  } else {
+    listProvincia.style.maxHeight = listProvincia.scrollHeight + "px";
+    listProvincia.style.boxShadow =
+      "0 1px 2px 0 rgba(0, 0, 0, 0.15),0 1px 3px 1px rgba(0, 0, 0, 0.1)";
+  }
+};
+
+var radProvincia = document.querySelectorAll(".radio-provincia");
+radProvincia.forEach((item) => {
+  item.addEventListener("change", () => {
+    inputProvincia.innerHTML = item.nextElementSibling.innerHTML;
+    inputProvincia.click();
+  });
+});
+
+
+
+
+
+
+var input = document.querySelector(".input-box");
+
+input.onclick = function () {
+  console.log("click");
+  this.classList.toggle("open");
+  let list = this.nextElementSibling;
+  if (list.style.maxHeight) {
+    list.style.maxHeight = null;
+    list.style.boxShadow = null;
+  } else {
+    list.style.maxHeight = list.scrollHeight + "px";
+    list.style.boxShadow =
+      "0 1px 2px 0 rgba(0, 0, 0, 0.15),0 1px 3px 1px rgba(0, 0, 0, 0.1)";
+  }
+};
+
+var rad = document.querySelectorAll(".radio");
+rad.forEach((item) => {
+  item.addEventListener("change", () => {
+    console.log("change");
+    input.innerHTML = item.nextElementSibling.innerHTML;
+    input.click();
+  });
+});
+
+
+
+
+

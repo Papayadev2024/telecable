@@ -20,6 +20,87 @@ class IndexController extends Controller
         return view('public.index');
     }
 
+    public function register()
+    {
+        //
+        return view('public.register');
+    }
+
+    public function loginsecond()
+    {
+        //
+        return view('public.login');
+    }
+
+    public function catalogo()
+    {
+        //
+        return view('public.catalogo');
+    }
+
+    public function comentario()
+    {
+        //
+        return view('public.comentario');
+    }
+
+    public function contacto()
+    {
+        //
+        return view('public.contact');
+    }
+
+    public function carrito()
+    {
+        //
+        return view('public.checkout_carrito');
+    }
+
+    public function pago()
+    {
+        //
+        return view('public.checkout_pago');
+    }
+
+    public function agradecimiento()
+    {
+        //
+        return view('public.checkout_agradecimiento');
+    }
+
+    public function micuenta()
+    {
+        //
+        return view('public.dashboard');
+    }
+
+
+    public function pedidos()
+    {
+        //
+        return view('public.dashboard_order');
+    }
+
+
+    public function direccion()
+    {
+        //
+        return view('public.dashboard_direccion');
+    }
+
+    public function error()
+    {
+        //
+        return view('public.404');
+    }
+
+    public function producto()
+    {
+        //
+        return view('public.product');
+    }
+
+//  --------------------------------------------
     /**
      * Show the form for creating a new resource.
      */

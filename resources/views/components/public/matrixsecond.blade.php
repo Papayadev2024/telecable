@@ -11,16 +11,11 @@
     {{-- Aqui van los CSS --}}
     @yield('css_importados')
 
-    {{-- Swipper --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Index</title>
 </head>
 <body class="body">
-    <div class="overlay"></div>
-    @include('components.public.header')
     
     <div class="main">
         {{-- Aqui va el contenido de cada pagina --}}
@@ -28,7 +23,7 @@
 
     </div>
 
-    @include('components.public.footer')
+   
     
     
     @yield('scripts_importados')
