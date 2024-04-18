@@ -1,114 +1,266 @@
+const checkbox = document.getElementById("check");
+const bag = document.querySelector(".bag");
+const bodyModalCarrito = document.querySelector(".body");
+let isMenuOpen = false; // Variable para controlar el estado del menú
+const card = document.querySelector(".cartContainer");
+checkbox.addEventListener("click", checkboxOnClick);
 
-const wealth = document.getElementById("wealth");
-const finanzas = document.getElementById("finanzas");
-const estructuracion = document.getElementById("estructuracion");
-const services = document.querySelectorAll(".services");
-const imagesServicios = document.querySelectorAll(".images-servicios");
+// Agregar event listener al checkbox para controlar el estado del menú
+function checkboxOnClick() {
+  // Cambiar el top del carrito
+  const scrollTopPosition = window.scrollY;
+  card.style.top = scrollTopPosition + "px";
 
+  isMenuOpen = checkbox.checked;
+  if (isMenuOpen) {
+    bodyModalCarrito.classList.add("dark");
+    bodyModalCarrito.classList.add("overflow-hidden");
+    // Agregar el event listener al documento cuando se abre el menú
+    document.addEventListener("click", handleDocumentClick);
+  } else {
+    bodyModalCarrito.classList.remove("dark");
+    bodyModalCarrito.classList.remove("overflow-hidden");
+    // Quitar el event listener del documento cuando se cierra el menú
+    document.removeEventListener("click", handleDocumentClick);
+  }
+}
 
-console.log(wealth);
-/*  */
+// Función para manejar el clic en el documento
+function handleDocumentClick(event) {
+  // Verificar si el menú está abierto y si el clic no ocurrió dentro del nav ni en el checkbox
+  if (isMenuOpen && !bag.contains(event.target) && event.target !== checkbox) {
+    bag.classList.add("hidden"); // Ocultar el nav
+    checkbox.checked = false; // Desmarcar el checkbox
+    bodyModalCarrito.classList.remove("dark");
+    bodyModalCarrito.classList.remove("overflow-hidden");
+    isMenuOpen = false; // Actualizar el estado del menú
+    // Quitar el event listener del documento después de cerrar el menú
+    document.removeEventListener("click", handleDocumentClick);
+  }
+}
 
-// const flechaWeath = document.querySelector(".flecha-weath");
-// const flechaFinanzas = document.querySelector(".flecha-finanzas");
-// const flechaEstructura = document.querySelector(".flecha-estructura");
-
-// Clases a agregar y quitar
-const addClasses = [
-  "text-colorSubtitleLittle",
-  "font-semibold",
-  "text-littleTitle",
-];
-const removeClasses = [
-  "font-regular",
-  "text-regularSize",
-  "text-colorSubtitleLittle",
-  "font-semibold",
-  "text-littleTitle",
-];
-
-document.addEventListener("DOMContentLoaded", () => {
-  flechaFinanzas.classList.add("hidden");
-  flechaEstructura.classList.add("hidden");
+// Detener la propagación de clics dentro del nav para evitar cerrarlo al hacer clic dentro
+bag.addEventListener("click", function (event) {
+  event.stopPropagation(); // Evitar que el clic se propague al documento
 });
 
-loadEventListeners();
 
-function loadEventListeners() {
-  wealth.addEventListener("click", showWealthManagement);
-  finanzas.addEventListener("click", showFinanzas);
-  estructuracion.addEventListener("click", showEstructuras);
-}
 
-function showFinanzas() {
-  console.log("finanzas");
-
-  services[0].classList.add("hidden");
-  services[1].classList.remove("hidden");
-  services[2].classList.add("hidden");
-
-  imagesServicios[0].classList.add("hidden");
-  imagesServicios[1].classList.remove("hidden");
-  imagesServicios[2].classList.add("hidden");
-
-  // flechaWeath.classList.add("hidden");
-  // flechaFinanzas.classList.remove("hidden");
-  // flechaEstructura.classList.add("hidden");
-
-  updateElementClasses(finanzas, addClasses, removeClasses);
-  deleteElementClasses(wealth, estructuracion);
-}
-
-function showWealthManagement() {
-  console.log("wealth");
-
-  services[0].classList.remove("hidden");
-  services[1].classList.add("hidden");
-  services[2].classList.add("hidden");
-
-  imagesServicios[0].classList.remove("hidden");
-  imagesServicios[1].classList.add("hidden");
-  imagesServicios[2].classList.add("hidden");
-
-  // flechaEstructura.classList.add("hidden");
-  // flechaWeath.classList.remove("hidden");
-  // flechaFinanzas.classList.add("hidden");
-
-  updateElementClasses(wealth, addClasses, removeClasses);
-  deleteElementClasses(finanzas, estructuracion);
-}
-
-function showEstructuras() {
-  console.log("estructuras");
-
-  services[0].classList.add("hidden");
-  services[1].classList.add("hidden");
-  services[2].classList.remove("hidden");
-
-  imagesServicios[0].classList.add("hidden");
-  imagesServicios[1].classList.add("hidden");
-  imagesServicios[2].classList.remove("hidden");
-
-  // flechaEstructura.classList.remove("hidden");
-  // flechaWeath.classList.add("hidden");
-  // flechaFinanzas.classList.add("hidden");
-
-  // Llamar a la función para actualizar las clases
-  updateElementClasses(estructuracion, addClasses, removeClasses);
-  deleteElementClasses(finanzas, wealth);
-}
-
-function updateElementClasses(element, addClasses, removeClasses) {
-  element.classList.remove(...removeClasses);
-  element.classList.add(...addClasses);
-}
-
-function deleteElementClasses(elementFinanza, elementWealth) {
-  elementFinanza.classList.remove(...addClasses);
-  elementWealth.classList.remove(...addClasses);
-}
 
 function show() {
   document.querySelector(".hamburger").classList.toggle("open");
   document.querySelector(".navigation").classList.toggle("active");
 }
+
+
+/* --------------------------- CARROUSEL ---------------------------- */
+var carrouselTestimonios = new Swiper(".myTestimonios", {
+  slidesPerView: 4, //3
+  spaceBetween: 25,
+  loop: true,
+  grabCursor: true,
+  centeredSlides: true,
+  initialSlide: 0,
+  pagination: {
+    el: ".swiper-pagination-testimonios",
+    clickable: true,
+    /* dynamicBullets: true, */
+  },
+  autoplay: {
+    delay: 1500,
+    disableOnInteraction: false,
+  },
+
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 4,
+    },
+  },
+});
+
+/* ------------------------------------------------------------------ */
+
+var carrouselBeneficios = new Swiper(".myBeneficios", {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  loop: true,
+  grab: false,
+  centeredSlides: false,
+  initialSlide: 0, // Empieza en el cuarto slide (índice 3)
+  pagination: {
+    el: ".swiper-pagination-beneficios",
+    clickable: true,
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+  },
+});
+
+/* ------------------------------------------- */
+
+var carrouselCategorias = new Swiper(".categorias", {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  loop: false,
+  grab: false,
+  centeredSlides: true,
+  initialSlide: 0, // Empieza en el cuarto slide (índice 3)
+  pagination: {
+    el: ".swiper-pagination-categorias",
+    clickable: true,
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+  },
+});
+
+/* --------------------------------------------- */
+
+var carrosuelDestacados = new Swiper(".productos-destacados", {
+  slidesPerView: 4,
+  spaceBetween: 10,
+  loop: true,
+  grab: false,
+
+  centeredSlides: false,
+  initialSlide: 0, // Empieza en el cuarto slide (índice 3)
+  pagination: {
+    el: ".swiper-pagination-productos-destacados",
+    clickable: true,
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 4,
+    },
+  },
+});
+
+/* --------------------------------------------- */
+
+var carrouselOferta = new Swiper(".productos-oferta", {
+  slidesPerView: 4,
+  spaceBetween: 10,
+  loop: true,
+  grab: false,
+  centeredSlides: false,
+  initialSlide: 0, // Empieza en el cuarto slide (índice 3)
+  pagination: {
+    el: ".swiper-pagination-productos-oferta",
+    clickable: true,
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 4,
+    },
+  },
+});
+
+/* --------------------------------------------- */
+
+var carrosuelComplementario = new Swiper(".productos-complementarios", {
+  slidesPerView: 4,
+  spaceBetween: 10,
+  loop: true,
+  grab: false,
+  centeredSlides: false,
+  initialSlide: 0, // Empieza en el cuarto slide (índice 3)
+
+  pagination: {
+    el: ".swiper-pagination-producto-complementario",
+    clickable: true,
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 4,
+    },
+  },
+});
+
+/* --------------------------------------------- */
+
+var carrouselHeader = new Swiper(".header-slider", {
+  slidesPerView: 1,
+  spaceBetween: 10,
+  loop: true,
+  grab: true,
+  centeredSlides: false,
+  initialSlide: 0, // Empieza en el cuarto slide (índice 3)
+  pagination: {
+    el: ".swiper-pagination-slider-header",
+    clickable: true,
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+  },
+});
+
+/* ------------------------------------------ */
+
+var carrosuelProductoSlider = new Swiper(".producto-slider", {
+  slidesPerView: 1,
+  spaceBetween: 10,
+  loop: true,
+  grab: true,
+  centeredSlides: false,
+  initialSlide: 0, // Empieza en el cuarto slide (índice 3)
+  pagination: {
+    el: ".swiper-pagination-productos",
+    clickable: true,
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+  },
+});
+
+/* ------------------------------------------ */
+
+var CarrosuelCatalogo = new Swiper(".producto-catalogo", {
+  slidesPerView: 1,
+  spaceBetween: 10,
+  loop: true,
+  grab: true,
+  centeredSlides: false,
+  initialSlide: 0, // Empieza en el cuarto slide (índice 3)
+  pagination: {
+    el: ".swiper-pagination-producto-catalogo",
+    clickable: true,
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+  },
+});
+
