@@ -54,8 +54,8 @@
                               dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
                               before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
                               before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
-                        id='{{ 'v_' . $item->id }}' data-field='visible' data-idService='{{ $item->id }}'
-                        data-titleService='{{ $item->valor }}' {{ $item->visible == 1 ? 'checked' : '' }}>
+                        id='{{ 'v_' . $item->id }}' data-field='destacar' data-idService='{{ $item->id }}'
+                        data-titleService='{{ $item->producto }}' {{ $item->destacar == 1 ? 'checked' : '' }}>
                       <label for="{{ 'v_' . $item->id }}"></label>
                     </form>
 
@@ -72,8 +72,8 @@
                               dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
                               before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
                               before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
-                        id='{{ 'v_' . $item->id }}' data-field='visible' data-idService='{{ $item->id }}'
-                        data-titleService='{{ $item->valor }}' {{ $item->visible == 1 ? 'checked' : '' }}>
+                        id='{{ 'v_' . $item->id }}' data-field='recomendar' data-idService='{{ $item->id }}'
+                        data-titleService='{{ $item->producto }}' {{ $item->recomendar == 1 ? 'checked' : '' }}>
                       <label for="{{ 'v_' . $item->id }}"></label>
                     </form>
 
@@ -85,7 +85,7 @@
                   <td>
                     <form method="POST" action="">
                       @csrf
-                      <input type="checkbox" id="hs-basic-usage"
+                      <input type="checkbox" id="switch_visible"
                         class="check_v btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
                               rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none 
                               checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 dark:bg-gray-800 dark:border-gray-700 
@@ -93,7 +93,7 @@
                               before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
                               before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
                         id='{{ 'v_' . $item->id }}' data-field='visible' data-idService='{{ $item->id }}'
-                        data-titleService='{{ $item->valor }}' {{ $item->visible == 1 ? 'checked' : '' }}>
+                        data-titleService='{{ $item->producto }}' {{ $item->visible == 1 ? 'checked' : '' }}>
                       <label for="{{ 'v_' . $item->id }}"></label>
                     </form>
 
@@ -101,7 +101,7 @@
 
                   </td>
 
-                  <td class="flex flex-row justify-end items-center gap-5">
+                  <td class="flex justify-center items-center gap-5 text-center sm:text-right">
 
                     <a href="{{ route('products.edit', $item->id) }}"
                       class="bg-yellow-400 px-3 py-2 rounded text-white  "><i
@@ -152,7 +152,7 @@
 
     $(".btn_swithc").on("change", function() {
 
-      console.log('swithc')
+
 
       let status = 0;
       let id = $(this).attr('data-idService');
@@ -165,7 +165,7 @@
         status = 0;
       }
 
-      console.log(status)
+      console.log(titleService)
 
       $.ajax({
         url: "{{ route('products.updateVisible') }}",
@@ -175,6 +175,7 @@
           status: status,
           id: id,
           field: field,
+          titleService
         }
       }).done(function(res) {
 
