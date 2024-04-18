@@ -54,7 +54,7 @@
                               before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
                               before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
                         id='{{ 'v_' . $item->id }}' data-field='visible' data-idService='{{ $item->id }}'
-                        data-titleService='{{ $item->titulo }}' {{ $item->status == 1 ? 'checked' : '' }}>
+                        data-titleService='{{ $item->valor }}' {{ $item->visible == 1 ? 'checked' : '' }}>
                       <label for="{{ 'v_' . $item->id }}"></label>
                     </form>
 
@@ -64,7 +64,7 @@
 
                   <td class="flex flex-row justify-end items-center gap-5">
 
-                    <a href="{{ route('attributes.edit', $item->id) }}"
+                    <a href="{{ route('valoresattributes.edit', $item->id) }}"
                       class="bg-yellow-400 px-3 py-2 rounded text-white  "><i
                         class="fa-regular fa-pen-to-square"></i></a>
 
@@ -127,7 +127,7 @@
       console.log(status)
 
       $.ajax({
-        url: "{{ route('attributes.updateVisible') }}",
+        url: "{{ route('valoresattributes.updateVisible') }}",
         method: 'POST',
         data: {
           _token: $('input[name="_token"]').val(),
@@ -168,7 +168,7 @@
 
           $.ajax({
 
-            url: '{{ route('attributes.borrar') }}',
+            url: `{{ route('valoresattributes.borrar') }}`,
             method: 'POST',
             data: {
               _token: $('input[name="_token"]').val(),

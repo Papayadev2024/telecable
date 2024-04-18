@@ -90,9 +90,19 @@ class ValoresAtributosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request,string $id)
     {
-        //
+      
+      $attributesValues = AttributesValues::with('attribute')
+      ->whereHas('attribute', function ($query) use ($id) {
+          $query->where('attributes_values.id', $id);
+      })
+      ->get();
+      $attributes = Attributes::where("status", "=", true)->get(); // actualizar a where status = 1 
+      $attributesValues = $attributesValues[0];
+
+
+      return view('pages.attrValues.edit', compact('attributesValues','attributes'));
     }
 
     /**
@@ -100,14 +110,72 @@ class ValoresAtributosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+      $request->validate([
+        'valor' => 'required',
+      ]);
+      $AttValues = AttributesValues::find($id);
+      try {
+      
+        if ($request->hasFile("imagen")) {
+          $file = $request->file('imagen');
+          $routeImg = 'storage/images/imagen/';
+          $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+  
+          $this->saveImg($file, $routeImg, $nombreImagen);
+  
+          $AttValues->imagen = $routeImg . $nombreImagen;
+          // $AttValues->name_image = $nombreImagen;
+        }
+        
+  
+        $AttValues->attribute_id = $request->attribute_id;
+        $AttValues->valor = $request->valor;
+        $AttValues->descripcion = $request->descripcion;
+        $AttValues->color = $request->color;
+        $AttValues->save();
+  
+        return redirect()->route('valoresattributes.index')->with('success', 'Publicación creado exitosamente.');
+      } catch (\Throwable $th) {
+
+        return response()->json(['messge' => 'Verifique sus datos '.$th], 400);
+      }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function borrar(Request $request)
     {
-        //
+      $id = $request-> id;
+      $service = AttributesValues::findOrfail($id);
+
+      $service->status = false;
+
+      $service->save();
+      return response()->json(['message' => 'Registro eliminado.']);
+    }
+
+    public function updateVisible(Request $request)
+    {
+        // Lógica para manejar la solicitud AJAX
+        //return response()->json(['mensaje' => 'Solicitud AJAX manejada con éxito']);
+        try {
+          $id = $request->id;
+
+          $status = $request->status;
+  
+          $testimony = AttributesValues::findOrFail($id);
+          
+          $testimony->visible = $status;
+  
+          $testimony->save();
+  
+           return response()->json(['message' => 'Estado modificado.']);
+        } catch (\Throwable $th) {
+          return response()->json(['message' => $th],400);
+
+        }
+       
+    
     }
 }
