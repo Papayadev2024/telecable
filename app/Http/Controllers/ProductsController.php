@@ -74,18 +74,7 @@ class ProductsController extends Controller
 
       if (strstr($key, ':')) {
         // Separa el nombre del atributo y su valor
-        $parts = explode(':', $key);
-        $nombre = strtolower($parts[0]); // Nombre del atributo
-        $valor = strtolower($parts[1]); // Valor del atributo en minúsculas
-
-        // Verifica si el atributo ya existe en el array
-        if (isset($atributos[$nombre])) {
-          // Si el atributo ya existe, agrega el nuevo valor a su lista
-          $atributos[$nombre][] = $valor;
-        } else {
-          // Si el atributo no existe, crea una nueva lista con el valor
-          $atributos[$nombre] = [$valor];
-        }
+        $atributos = $this->stringToObject($key, $atributos);
         unset($request[$key]);
       }
     }
@@ -109,6 +98,22 @@ class ProductsController extends Controller
     Products::create($cleanedData);
 
     return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
+  }
+  private function stringToObject($key,$atributos){
+    
+    $parts = explode(':', $key);
+        $nombre = strtolower($parts[0]); // Nombre del atributo
+        $valor = strtolower($parts[1]); // Valor del atributo en minúsculas
+
+        // Verifica si el atributo ya existe en el array
+        if (isset($atributos[$nombre])) {
+          // Si el atributo ya existe, agrega el nuevo valor a su lista
+          $atributos[$nombre][] = $valor;
+        } else {
+          // Si el atributo no existe, crea una nueva lista con el valor
+          $atributos[$nombre] = [$valor];
+        }
+    return $atributos; 
   }
 
   /**
@@ -135,9 +140,56 @@ class ProductsController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Products $products)
+  public function update(Request $request, string $id)
   {
-    //
+    $product = Products::find($id);
+    $data = $request->all();
+    $atributos = null;
+
+    $request->validate([
+      'producto' => 'required',
+    ]);
+
+    if ($request->hasFile("imagen")) {
+      $file = $request->file('imagen');
+      $routeImg = 'storage/images/imagen/';
+      $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+      $this->saveImg($file, $routeImg, $nombreImagen);
+
+      $data['imagen'] = $routeImg . $nombreImagen;
+      // $AboutUs->name_image = $nombreImagen;
+    }
+
+    foreach ($request->all() as $key => $value) {
+
+      if (strstr($key, ':')) {
+        // Separa el nombre del atributo y su valor
+        $atributos = $this->stringToObject($key,$atributos);
+        unset($request[$key]);
+      }
+    }
+
+    $jsonAtributos = json_encode($atributos);
+
+    if (array_key_exists('destacar', $data)) {
+      if (strtolower($data['destacar']) == 'on') $data['destacar'] = 1;
+    }
+    if (array_key_exists('recomendar', $data)) {
+      if (strtolower($data['recomendar']) == 'on') $data['recomendar'] = 1;
+    }
+    
+    
+
+    $data['atributes'] = $jsonAtributos;
+    $cleanedData = Arr::where($data, function ($value, $key) {
+      return !is_null($value);
+    });
+    $product->update($cleanedData);
+
+    
+
+    return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
   }
 
   /**

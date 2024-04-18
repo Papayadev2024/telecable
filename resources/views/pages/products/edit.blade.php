@@ -2,7 +2,7 @@
 
 
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <div
@@ -95,9 +95,11 @@
 
 
 
+
               <div class="md:col-span-5">
                 <label for="imagen">Impagen Principal</label>
                 <div class="relative mb-2  mt-2">
+                  <img src="{{ asset($product->imagen) }}" class="rounded-lg mb-2 w-52" alt="Imagen actual">
                   <input id="imagen" name="imagen"
                     class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     aria-describedby="user_avatar_help" id="user_avatar" type="file">
@@ -188,7 +190,7 @@
                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                           @if (is_array($atributesArray) &&
                                   isset($atributesArray[$item->titulo]) &&
-                                  in_array($value->valor, $atributesArray[$item->titulo])) checked @endif>
+                                  in_array(strtolower($value->valor), $atributesArray[strtolower($item->titulo)])) checked @endif>
                         <label for="{{ $item->titulo }}:{{ $value->valor }}"
                           class="ml-2">{{ $value->valor }}</label>
                       </div>

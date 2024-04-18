@@ -96,8 +96,8 @@
 
               <div class="md:col-span-5">
                 <label for="imagen">Imagen principal</label>
-                <div class="relative mb-2  mt-2">
-                  <img src="{{ asset($attributesValues->imagen) }}" class="rounded-lg mb-2" alt="Imagen actual">
+                <div class="relative mb-2  mt-2 ">
+                  <img src="{{ asset($attributesValues->imagen) }}" class="rounded-lg mb-2 w-52" alt="Imagen actual">
 
                   <!-- Input para cargar una nueva imagen -->
                   <input id="imagen" name="imagen" value="{{ old('imagen') }}"
