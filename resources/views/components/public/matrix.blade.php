@@ -6,6 +6,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <link rel="stylesheet" href="{{asset('css/styles.css')}}"/>
+
     {{-- Aqui van los CSS --}}
     @yield('css_improtados')
 
@@ -16,10 +18,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Index</title>
 </head>
-<body>
+<body class="body">
+    <div class="overlay"></div>
     @include('components.public.header')
     
-    <div class="main bg-slate-100 p-6">
+    <div class="main">
         {{-- Aqui va el contenido de cada pagina --}}
         @yield('content')
 
@@ -28,28 +31,9 @@
     @include('components.public.footer')
     
     
-    @yield('scripts_improtados')
-
-    <script>
-        $('#formContactos').submit(function(event) {
-            // Evita que se envíe el formulario automáticamente
-            //console.log('evcnto')
-            event.preventDefault();
-            let formDataArray = $(this).serializeArray();
-            //console.log(formDataArray);
-            $.ajax({
-            url: '{{ route('guardarContactos') }}',
-            method: 'POST',
-            data: $(this).serialize(),
-            success: function(response) {
-                Swal.fire({
-                title: response.message,
-                icon: "success",
-                });
-            }
-            });
-        })
-    </script>
+    @yield('scripts_importados')
+    {{-- @vite(['resources/js/functions.js']) --}}
+    <script src="{{asset('js/functions.js')}}"></script>
 
 </body>
 </html>

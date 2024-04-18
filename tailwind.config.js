@@ -30,7 +30,7 @@ export default {
                 blue: '2px solid rgba(0, 112, 244, 0.5)',
             },
             fontFamily: {
-                inter: ['Inter', 'sans-serif'],
+                poppins: ["Poppins", "sans-serif"],
             },
             fontSize: {
                 xs: ['0.75rem', { lineHeight: '1.5' }],
@@ -54,19 +54,26 @@ export default {
                 middle: "32px",
             },
 
-              backgroundColor: {
-                colorButton: "#173525",
-                colorBackground: "#2D694B",
-                colorFooter: "#173525",
-                colorCombo: "#F9FCFB",
+            backgroundColor: {
+                colorBackgroundHeader: "#21201E",
+                colorBackgroundMainTop: "#21201E",
+                colorBackgroundProducts: "#F8F6F2",
+                colorBackgroundNewProduct: "#38CB89",
               },
               textColor: {
                 colorSubtitle: "#113E55",
                 colorSubtitleLittle: "#173525",
                 colorAdd: "#2D694B",
+                colorTextBlack: "#151515",
               },
               borderColor: {
                 selectCheck: "#173525",
+                colorBorder: "#151515",
+              },
+
+              backgroundImage: {
+                "close-menu": "url(../images/prueba/icon-close.svg)",
+                "open-menu": "url(../images/prueba/icon-hamburger.svg)",
               },
 
             screens: {
