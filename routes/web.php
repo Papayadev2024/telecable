@@ -23,6 +23,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StrengthController;
 use App\Http\Controllers\ValoresAtributosController;
@@ -135,6 +136,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         //Etiquetas
         Route::resource('/tags', TagController::class);
         Route::post('/tags/deleteTags', [TagController::class, 'deleteTags'])->name('tags.deleteTags');
+
+        Route::resource('/products', ProductsController::class);
+        Route::post('/products/updateVisible', [ProductsController::class, 'updateVisible'])->name('products.updateVisible');
+        Route::post('/products/borrar', [ProductsController::class, 'borrar'])->name('products.borrar');
 
         
         
