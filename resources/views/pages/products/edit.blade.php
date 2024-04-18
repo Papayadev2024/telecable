@@ -73,9 +73,9 @@
                 <div class="md:col-span-5">
                   <label for="description">Descripcion</label>
                   <div class="relative mb-2 mt-2">
-                    <textarea type="text" rows="2" id="description" name="description" value="{{ $product->description }}"
+                    <textarea type="text" rows="2" id="description" name="description"
                       class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Descripción"></textarea>
+                      placeholder="Descripción">{{ $product->description }}</textarea>
                   </div>
                 </div>
 
@@ -207,16 +207,18 @@
                         @if ($value->attribute_id == $item->id)
                           @php
                             $atributesArray = json_decode($product->atributes, true);
+                            $titulo = strtolower($item->titulo);
+                            $valor = strtolower($value->valor);
                           @endphp
                           <div class="flex items-center mb-2">
-                            <input type="checkbox" id="{{ $item->titulo }}:{{ $value->valor }}"
-                              name="{{ $item->titulo }}:{{ $value->valor }}"
+                            <input type="checkbox" id="{{ $titulo }}:{{ $valor }}"
+                              name="{{ $titulo }}:{{ $valor }}"
                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                               @if (is_array($atributesArray) &&
-                                      isset($atributesArray[$item->titulo]) &&
-                                      in_array(strtolower($value->valor), $atributesArray[strtolower($item->titulo)])) checked @endif>
-                            <label for="{{ $item->titulo }}:{{ $value->valor }}"
-                              class="ml-2">{{ $value->valor }}</label>
+                                      isset($atributesArray[$titulo]) &&
+                                      in_array(strtolower($valor), $atributesArray[$titulo])) checked @endif>
+                            <label for="{{ $titulo }}:{{ $valor }}"
+                              class="ml-2">{{ $valor }}</label>
                           </div>
                         @endif
                       @endforeach
@@ -332,9 +334,10 @@
   </script>
 
   <script>
-    $('document').ready(function() {
+    let editor = null
+    $('document').ready(async function() {
 
-      tinymce.init({
+      editor = await tinymce.init({
         selector: 'textarea#description',
         height: 500,
         plugins: [
