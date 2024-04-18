@@ -1,6 +1,6 @@
 @extends('components.public.matrix')
 
-@section('css_improtados')
+@section('css_importados')
 
 @stop
 
@@ -2377,7 +2377,7 @@
     </main>
 
 
-@section('scripts_improtados')
+@section('scripts_importados')
     <script></script>
 @stop
 

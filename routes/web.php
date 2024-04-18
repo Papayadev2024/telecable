@@ -45,6 +45,33 @@ use App\Models\AboutUs;
 Route::get('/', [IndexController::class, 'index'] )->name('index');
 Route::get('/nosotros', [IndexController::class, 'index'] )->name('nosotros');
 Route::get('/servicios', [IndexController::class, 'index'] )->name('servicios');
+Route::get('/register', [IndexController::class, 'register'] )->name('register');
+Route::get('/login', [IndexController::class, 'login'] )->name('login');
+Route::get('/catalogo', [IndexController::class, 'catalogo'] )->name('catalogo');
+Route::get('/comentario', [IndexController::class, 'comentario'] )->name('comentario');
+Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
+Route::get('/carrito', [IndexController::class, 'carrito'] )->name('carrito');
+Route::get('/pago', [IndexController::class, 'pago'] )->name('pago');
+Route::get('/agradecimiento', [IndexController::class, 'agradecimiento'] )->name('agradecimiento');
+Route::get('/404', [IndexController::class, 'error'] )->name('error');
+Route::get('/producto', [IndexController::class, 'producto'] )->name('producto');
+
+
+
+Route::get('/micuenta', [IndexController::class, 'micuenta'] )->name('micuenta');
+Route::get('/micuenta/pedidos', [IndexController::class, 'pedidos'] )->name('pedidos');
+Route::get('/micuenta/direccion', [IndexController::class, 'direccion'] )->name('direccion');
+
+
+
+
+
+
+
+
+
+
+
 
 Route::post('guardarContactos', [IndexController::class, 'guardarContacto'] )->name('guardarContactos');
 
