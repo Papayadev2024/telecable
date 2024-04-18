@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{asset('css/styles.css')}}"/>
 
     {{-- Aqui van los CSS --}}
-    @yield('css_improtados')
+    @yield('css_importados')
 
     {{-- Swipper --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
