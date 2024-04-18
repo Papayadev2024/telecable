@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('descuento', 12, 2)->default(0);
             $table->decimal('stock', 12, 2)->default(0);
             $table->string('imagen')->nullable();
-            $table->json('atributes')->nulleable();
+            $table->json('atributes')->nullable();
             $table->boolean('destacar')->default(false);
             $table->boolean('recomendar')->default(false);
 

@@ -6,6 +6,7 @@ use App\Models\Attributes;
 use App\Models\AttributesValues;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Str;
@@ -54,6 +55,10 @@ class ProductsController extends Controller
     $data = $request->all();
     $atributos = null;
 
+    $request->validate([
+      'producto' => 'required',
+    ]);
+
     if ($request->hasFile("imagen")) {
       $file = $request->file('imagen');
       $routeImg = 'storage/images/imagen/';
@@ -84,24 +89,19 @@ class ProductsController extends Controller
         unset($request[$key]);
       }
     }
-    /*
-    producto
-    precio
-    descuento
-    stock
-    imagen
-    destacar
-    recomendar
-    atributes
-    */
+    
     $jsonAtributos = json_encode($atributos);
     
     if(strtolower($data['destacar']) == 'on') $data['destacar'] = 0 ;
     if(strtolower($data['recomendar'] )== 'on') $data['recomendar'] = 0 ;
 
     $data['atributes'] = $jsonAtributos;
+    $cleanedData = Arr::where($data, function ($value, $key) {
+      return !is_null($value);
+    });
+    dump($cleanedData);
 
-    Products::create($data);
+    Products::create($cleanedData);
 
     return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
 
@@ -141,5 +141,23 @@ class ProductsController extends Controller
 
   public function updateVisible(Request $request)
   {
+    dump($request->all());
+    $id = $request->id;
+        $field = $request->field;
+        $status = $request->status;
+
+        // Verificar si el producto existe
+        $product = Products::find($id);
+
+        if (!$product) {
+            return response()->json(['message' => 'Producto no encontrado'], 404);
+        }
+
+        // Actualizar el campo dinámicamente
+        $product->update([
+            $field => $status
+        ]);
+    return response()->json(['message' => 'registro actualizado']);
+
   }
 }
