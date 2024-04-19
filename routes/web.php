@@ -55,7 +55,7 @@ Route::get('/carrito', [IndexController::class, 'carrito'] )->name('carrito');
 Route::get('/pago', [IndexController::class, 'pago'] )->name('pago');
 Route::get('/agradecimiento', [IndexController::class, 'agradecimiento'] )->name('agradecimiento');
 Route::get('/404', [IndexController::class, 'error'] )->name('error');
-Route::get('/producto', [IndexController::class, 'producto'] )->name('producto');
+Route::get('/producto/{id}', [IndexController::class, 'producto'] )->name('producto');
 
 
 
