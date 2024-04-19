@@ -6,7 +6,13 @@
 
 
 @section('content')
-
+  <?php
+  // Definición de la función capitalizeFirstLetter()
+  function capitalizeFirstLetter($string)
+  {
+      return ucfirst($string);
+  }
+  ?>
 
   <main class="my-10 font-poppins">
     <section class="w-11/12 mx-auto flex flex-col md:flex-row gap-10">
@@ -23,21 +29,13 @@
                 <img src="{{ asset($productos[0]->imagen) }}" alt="piso_flotante_laminado_1" />
               </div>
             </div>
-            <div class="flex justify-center items-center">
-              <img src="./images/img/piso_flotante_laminado_2.png" alt="piso_flotante_laminado_2" />
-            </div>
-            <div class="flex justify-center items-center">
-              <img src="./images/img/piso_flotante_laminado_3.png" alt="piso_flotante_laminado_3" />
-            </div>
-            <div class="flex justify-center items-center">
-              <img src="./images/img/piso_flotante_laminado_4.png" alt="piso_flotante_laminado_4" />
-            </div>
-            <div class="flex justify-center items-center">
-              <img src="./images/img/piso_flotante_laminado_5.png" alt="piso_flotante_laminado_5" />
-            </div>
-            <div class="flex justify-center items-center">
-              <img src="./images/img/piso_flotante_laminado_6.png" alt="piso_flotante_laminado_6" />
-            </div>
+            @foreach ($productosConGalerias as $galeria)
+              <div class="flex justify-center items-center">
+                <img src="{{ asset($galeria->imagen) }}" alt="piso_flotante_laminado_2" />
+              </div>
+            @endforeach
+
+
           </div>
         </div>
 
@@ -114,8 +112,11 @@
         </div>
         <div class="border-b-[1px] border-gray-300 flex flex-col gap-5">
           <div class="flex flex-col gap-5">
-            <p class="font-semibold text-[16px] text-[#6C7275]">Medidas</p>
-            <p class="font-normal text-[20px]">17 1/2x20 5/8 "</p>
+            @foreach ($especificaciones as $item)
+              <p class="font-semibold text-[16px] text-[#6C7275]">{{ capitalizeFirstLetter($item->tittle) }}</p>
+              <p class="font-normal text-[20px]">{{ capitalizeFirstLetter($item->specifications) }}</p>
+            @endforeach
+
             <div class="flex">
               <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer">
                 <button id=disminuir type="button"><span class="text-[30px]">-</span></button>
@@ -542,6 +543,12 @@
 
 @section('scripts_importados')
   <script>
+    $(document).ready(function() {
+      function capitalizeFirstLetter(string) {
+        string = string.toLowerCase()
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+    })
     $('#disminuir').on('click', function() {
       console.log('disminuyendo')
       let cantidad = Number($('#cantidadSpan span').text())

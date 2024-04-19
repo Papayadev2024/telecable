@@ -15,7 +15,10 @@ use App\Models\Slider;
 use App\Models\Strength;
 use App\Models\Testimony;
 use App\Models\Category;
+use App\Models\Specifications;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 
 class IndexController extends Controller
@@ -110,7 +113,15 @@ class IndexController extends Controller
     {
 
         $productos = Products::where('id', '=', $id)->get();
+        $especificaciones = Specifications::where('product_id', '=', $id)->get();
+        $productosConGalerias = DB::select("
+            SELECT products.*, galeries.*
+            FROM products
+            INNER JOIN galeries ON products.id = galeries.product_id
+            WHERE products.id = :productId limit 5 
+        ", ['productId' => $id]);
 
+        
         $IdProductosComplementarios = $productos->toArray();
         $IdProductosComplementarios= $IdProductosComplementarios[0]['categoria_id'];
 
@@ -118,7 +129,7 @@ class IndexController extends Controller
         $atributos = Attributes::where("status", "=", true)->get();
         $valorAtributo = AttributesValues::where("status", "=", true)->get();
 
-        return view('public.product', compact('productos', 'atributos', 'valorAtributo', 'ProdComplementarios'));
+        return view('public.product', compact('productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones'));
     }
 
     //  --------------------------------------------
