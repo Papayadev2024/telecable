@@ -21,6 +21,7 @@ use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FaqsController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
@@ -56,6 +57,7 @@ Route::get('/pago', [IndexController::class, 'pago'] )->name('pago');
 Route::get('/agradecimiento', [IndexController::class, 'agradecimiento'] )->name('agradecimiento');
 Route::get('/404', [IndexController::class, 'error'] )->name('error');
 Route::get('/producto/{id}', [IndexController::class, 'producto'] )->name('producto');
+
 
 
 
