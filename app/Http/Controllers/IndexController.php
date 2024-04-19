@@ -38,11 +38,11 @@ class IndexController extends Controller
         $faqs= Faqs::where('status','=', 1)->where('visible', '=' ,1)->get();
         $testimonie = Testimony::where('status','=', 1)->where('visible', '=' ,1)->get();
         $slider= Slider::where('status','=', 1)->where('visible', '=' ,1)->get();
-
+        $category= Category::where('status','=', 1)->where('destacar','=', 1)->get();
         
 
         
-        return view('public.index', compact('productos', 'destacados', 'descuentos', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias'));
+        return view('public.index', compact('productos', 'destacados', 'descuentos', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category'));
     }
 
     public function catalogo()
@@ -207,4 +207,8 @@ class IndexController extends Controller
         // return redirect()->route('landingaplicativos', $formlanding)->with('mensaje','Mensaje enviado exitoso')->with('name', $request->nombre);
         return response()->json(['message' => 'Mensaje enviado con exito']);
     }
+
+
+
+
 }

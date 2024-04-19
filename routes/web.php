@@ -95,6 +95,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::resource('/categorias', CategoryController::class);
         Route::post('/categorias/deleteCategory', [CategoryController::class, 'deleteCategory'] )->name('categorias.deleteCategory');
         Route::post('/categorias/updateVisible', [CategoryController::class, 'updateVisible'] )->name('categorias.updateVisible');
+        Route::get('/categorias/contarCategorias', [CategoryController::class, 'contarCategoriasDestacadas'] )->name('categorias.contarCategoriasDestacadas');
+
 
 
         //Servicios

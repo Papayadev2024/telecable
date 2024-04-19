@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id()->unsigned();
-           
-
             $table->string('name');
+            $table->string('slug')->nullable();
             $table->string('description')->nullable();
-            $table->boolean('destacado')->default(false);
+            $table->string('url_image')->nullable();
+            $table->string('name_image')->nullable();
+            
+            $table->boolean('destacar')->default(false);
+
             $table->boolean('visible')->default(true);
             $table->boolean('status')->default(true);
-            $table->timestamps();
-
-           
+            $table->timestamps();    
         });
     }
 
