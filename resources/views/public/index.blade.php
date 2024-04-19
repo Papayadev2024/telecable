@@ -378,7 +378,7 @@
 
                                     <!-- ------ -->
                                     <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
+                                        <a href="{{route('producto')}}"
                                             class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
                                             Ver producto
                                         </a>
@@ -438,7 +438,7 @@
 
                                                     <!-- ------ -->
                                                     <div class="addProduct text-center flex justify-center">
-                                                        <a href="#addProducto"
+                                                        <a href="{{route('producto')}}"
                                                             class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
                                                             Ver producto
                                                         </a>
@@ -528,7 +528,7 @@
 
                                     <!-- ------ -->
                                     <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
+                                        <a href="{{route('producto')}}"
                                             class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
                                             Ver producto
                                         </a>
@@ -589,7 +589,7 @@
 
                                                     <!-- ------ -->
                                                     <div class="addProduct text-center flex justify-center">
-                                                        <a href="#addProducto"
+                                                        <a href="{{route('producto')}}"
                                                             class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
                                                             Ver producto
                                                         </a>
