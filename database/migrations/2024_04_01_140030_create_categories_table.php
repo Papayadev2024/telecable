@@ -17,8 +17,9 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('description')->nullable();
-            $table->boolean('visible')->default(false);
-            $table->boolean('status')->default(false);
+            $table->boolean('destacado')->default(false);
+            $table->boolean('visible')->default(true);
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
            

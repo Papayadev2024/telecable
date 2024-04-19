@@ -92,6 +92,7 @@
                 </div>
 
 
+
                 <div class="">
 
                   <label for="destacar">Destacar
@@ -351,6 +352,8 @@
     });
   </script>
 
+
+
   <script>
     $('document').ready(function() {
 
@@ -369,6 +372,21 @@
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px;}'
       });
 
+
+      // Note that the name "myFormDropzone" is the camelized
+      // id of the form.
+      /* Dropzone.options.myFormDropzone = {
+              // Configuration options go here
+            };
+       */
+
+
+      Dropzone.options.myFormDropzone = {
+        autoProcessQueue: false,
+        uploadMultiple: true,
+        maxFilezise: 10,
+        maxFiles: 4,
+      }
     })
   </script>
   <script>
@@ -405,6 +423,7 @@
       document.getElementById('menu-button').setAttribute('aria-expanded', !isExpanded);
     }
   </script>
+
 
 
 
