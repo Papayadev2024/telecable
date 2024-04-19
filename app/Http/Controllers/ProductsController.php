@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attributes;
 use App\Models\AttributesValues;
+use App\Models\Category;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -31,7 +32,8 @@ class ProductsController extends Controller
   {
     $atributos = Attributes::where("status", "=", true)->get();
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
-    return view('pages.products.create', compact('atributos', 'valorAtributo'));
+    $categoria = Category::all();
+    return view('pages.products.create', compact('atributos', 'valorAtributo', 'categoria'));
   }
 
   public function saveImg($file, $route, $nombreImagen)

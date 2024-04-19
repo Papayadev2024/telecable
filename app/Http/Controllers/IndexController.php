@@ -94,10 +94,15 @@ class IndexController extends Controller
     {
 
         $productos = Products::where('id', '=', $id)->get();
+
+        $IdProductosComplementarios = $productos->toArray();
+        $IdProductosComplementarios= $IdProductosComplementarios[0]['categoria_id'];
+
+        $ProdComplementarios = Products::where('categoria_id', '=', $IdProductosComplementarios)->get(); 
         $atributos = Attributes::where("status", "=", true)->get();
         $valorAtributo = AttributesValues::where("status", "=", true)->get();
 
-        return view('public.product', compact('productos', 'atributos', 'valorAtributo'));
+        return view('public.product', compact('productos', 'atributos', 'valorAtributo', 'ProdComplementarios'));
     }
 
     //  --------------------------------------------

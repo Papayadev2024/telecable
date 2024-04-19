@@ -23,5 +23,10 @@ class Products extends Model
     'description',
     'costo_x_art',
     'peso',
+    'categoria_id'
   ];
+  public function categories()
+    {
+        return $this->belongsTo(Category::class, 'categoria_id');
+    }
 }

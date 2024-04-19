@@ -105,6 +105,10 @@
               <span class="line-through font-medium text-[20px] text-[#6C7275]">{{ $productos[0]->precio }}</span>
             </p>
           @else
+            <p class="font-medium text-[28px] mb-5">
+              s/ {{ $productos[0]->precio }}
+
+            </p>
           @endif
 
         </div>
@@ -114,13 +118,13 @@
             <p class="font-normal text-[20px]">17 1/2x20 5/8 "</p>
             <div class="flex">
               <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer">
-                <span class="text-[30px]">-</span>
+                <button id=disminuir type="button"><span class="text-[30px]">-</span></button>
               </div>
-              <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
+              <div id=cantidadSpan class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
                 <span class="text-[20px]">2</span>
               </div>
               <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer">
-                <span class="text-[30px]">+</span>
+                <button id=aumentar type="button"><span class="text-[30px]">+</span></button>
               </div>
             </div>
           </div>
@@ -282,293 +286,64 @@
             <div class="swiper productos-complementarios my-5">
               <div class="swiper-pagination-producto-complementario mb-80 md:mb-32"></div>
               <div class="swiper-wrapper mt-[80px]">
-                <div class="swiper-slide rounded-2xl">
-                  <div class="flex flex-col relative">
-                    <div
-                      class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                      <a
-                        class="font-semibold text-[12px] bg-[#38CB89] py-2 px-2 flex-initial w-24 text-center text-[#151515] rounded-[5px] absolute top-[18px] z-10">
-                        Nuevo1
-                      </a>
-                      <div class="z-0">
-                        <div class="relative">
-                          <img src="./images/img/producto_complementario_1.png" alt="producto_complementario_1"
-                            class="w-full" />
-                        </div>
+                @foreach ($ProdComplementarios as $item)
+                  <div class="swiper-slide rounded-2xl">
+                    <div class="flex flex-col relative">
+                      <div
+                        class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
+                        <a
+                          class="font-semibold text-[12px] bg-[#38CB89] py-2 px-2 flex-initial w-24 text-center text-[#151515] rounded-[5px] absolute top-[18px] z-10">
+                          Nuevo1
+                        </a>
+                        <div class="z-0">
+                          <div class="relative">
+                            <img src="{{ asset($item->imagen) }}" alt="producto_complementario_1" class="w-full" />
+                          </div>
 
-                        <!-- ------ -->
-                        <div class="addProduct text-center flex justify-center">
-                          <a href="#addProducto"
-                            class="font-semibold text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                            Agregar al carrito
-                          </a>
+                          <!-- ------ -->
+                          <div class="addProduct text-center flex justify-center">
+                            <a href="#addProducto"
+                              class="font-semibold text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-52 text-center text-white rounded-3xl">
+                              Agregar al carrito
+                            </a>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                      <div class="flex items-center gap-2">
-                        <div class="flex gap-2 py-2">
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                      <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
+                        <div class="flex items-center gap-2">
+                          {{-- <div class="flex gap-2 py-2">
+                            <img src="./images/svg/start.svg" alt="estrella" />
+                            <img src="./images/svg/start.svg" alt="estrella" />
+                            <img src="./images/svg/start.svg" alt="estrella" />
+                            <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                            <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                          </div> --}}
+                          <p class="font-semibold text-[14px] text-[#6C7275]">
+                            ({{ $item->stock }})
+                          </p>
                         </div>
-                        <p class="font-semibold text-[14px] text-[#6C7275]">
-                          (35)
-                        </p>
-                      </div>
-                      <h2 class="font-semibold text-[16px] text-[#141718]">
-                        Fusce sagittis eleifend sem eget dictum
-                      </h2>
-                      <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                        <span>$595.00</span>
+                        <h2 class="font-semibold text-[16px] text-[#141718]">
+                          {{ $item->producto }}
+                        </h2>
+                        @if ($item->descuento > 0)
+                          {{-- validamos si tiene descuento  --}}
+                          <p class="font-medium text-[28px] mb-5">
+                            s/ {{ $item->descuento }}
+                            <span class="line-through font-medium text-[20px] text-[#6C7275]">{{ $item->precio }}</span>
+                          </p>
+                        @else
+                          <p class="font-medium text-[28px] mb-5">
+                            s/ {{ $item->precio }}
 
-                        <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                      </p>
+                          </p>
+                        @endif
+                      </div>
                     </div>
                   </div>
-                </div>
+                @endforeach
 
-                <div class="swiper-slide rounded-2xl">
-                  <div class="flex flex-col relative">
-                    <div
-                      class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center">
-                      <a
-                        class="font-semibold text-[12px] bg-[#38CB89] py-2 px-2 flex-initial w-24 text-[#151515] rounded-[5px] absolute top-[18px] text-center z-10">
-                        Nuevo
-                      </a>
-                      <div class="z-0">
-                        <div class="relative">
-                          <img src="./images/img/producto_complementario_1.png" alt="producto_complementario_2"
-                            class="w-full" />
-                        </div>
 
-                        <!-- ------ -->
-                        <div class="addProduct text-center flex justify-center">
-                          <a href="#addProducto"
-                            class="font-semibold text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                            Agregar al carrito
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                      <div class="flex items-center gap-2">
-                        <div class="flex gap-2 py-2">
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                        </div>
-                        <p class="font-semibold text-[14px] text-[#6C7275]">
-                          (35)
-                        </p>
-                      </div>
-                      <h2 class="font-semibold text-[16px] text-[#141718]">
-                        Fusce sagittis eleifend sem eget dictum
-                      </h2>
-                      <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                        <span>$595.00</span>
 
-                        <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="swiper-slide rounded-2xl">
-                  <div class="flex flex-col relative">
-                    <div
-                      class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                      <a
-                        class="font-semibold text-[12px] bg-[#38CB89] py-2 px-2 flex-initial w-24 text-center text-[#151515] rounded-[5px] absolute top-[18px] z-10">
-                        Nuevo
-                      </a>
-                      <div class="z-0">
-                        <div class="relative">
-                          <img src="./images/img/producto_complementario_1.png" alt="producto_complementario_2"
-                            class="w-full" />
-                        </div>
-
-                        <!-- ------ -->
-                        <div class="addProduct text-center flex justify-center">
-                          <a href="#addProducto"
-                            class="font-semibold text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                            Agregar al carrito
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                      <div class="flex items-center gap-2">
-                        <div class="flex gap-2 py-2">
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                        </div>
-                        <p class="font-semibold text-[14px] text-[#6C7275]">
-                          (35)
-                        </p>
-                      </div>
-                      <h2 class="font-semibold text-[16px] text-[#141718]">
-                        Fusce sagittis eleifend sem eget dictum
-                      </h2>
-                      <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                        <span>$595.00</span>
-
-                        <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="swiper-slide rounded-2xl">
-                  <div class="flex flex-col relative">
-                    <div
-                      class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center">
-                      <a
-                        class="font-semibold text-[12px] bg-[#38CB89] py-2 px-2 flex-initial w-24 text-center text-[#151515] rounded-[5px] absolute top-[18px] z-10">
-                        Nuevo
-                      </a>
-                      <div class="z-0">
-                        <div class="relative">
-                          <img src="./images/img/producto_complementario_1.png" alt="producto_complementario_2"
-                            class="w-full" />
-                        </div>
-
-                        <!-- ------ -->
-                        <div class="addProduct text-center flex justify-center">
-                          <a href="#addProducto"
-                            class="font-semibold text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                            Agregar al carrito
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                      <div class="flex items-center gap-2">
-                        <div class="flex gap-2 py-2">
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                        </div>
-                        <p class="font-semibold text-[14px] text-[#6C7275]">
-                          (35)
-                        </p>
-                      </div>
-                      <h2 class="font-semibold text-[16px] text-[#141718]">
-                        Fusce sagittis eleifend sem eget dictum
-                      </h2>
-                      <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                        <span>$595.00</span>
-
-                        <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="swiper-slide rounded-2xl">
-                  <div class="flex flex-col relative">
-                    <div
-                      class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center">
-                      <a
-                        class="font-semibold text-[12px] bg-[#38CB89] py-2 px-2 flex-initial w-24 text-center text-[#151515] rounded-[5px] absolute top-[18px] z-10">
-                        Nuevo
-                      </a>
-                      <div class="z-0">
-                        <div class="relative">
-                          <img src="./images/img/producto_complementario_1.png" alt="producto_complementario_2"
-                            class="w-full" />
-                        </div>
-
-                        <!-- ------ -->
-                        <div class="addProduct text-center flex justify-center">
-                          <a href="#addProducto"
-                            class="font-semibold text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                            Agregar al carrito
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                      <div class="flex items-center gap-2">
-                        <div class="flex gap-2 py-2">
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                        </div>
-                        <p class="font-semibold text-[14px] text-[#6C7275]">
-                          (35)
-                        </p>
-                      </div>
-                      <h2 class="font-semibold text-[16px] text-[#141718]">
-                        Fusce sagittis eleifend sem eget dictum
-                      </h2>
-                      <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                        <span>$595.00</span>
-
-                        <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="swiper-slide rounded-2xl">
-                  <div class="flex flex-col relative">
-                    <div
-                      class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center">
-                      <a
-                        class="font-semibold text-[12px] bg-[#38CB89] py-2 px-2 flex-initial w-24 text-center text-[#151515] rounded-[5px] absolute top-[18px] z-10">
-                        Nuevo
-                      </a>
-                      <div class="z-0">
-                        <div class="relative">
-                          <img src="./images/img/producto_complementario_1.png" alt="producto_complementario_2"
-                            class="w-full" />
-                        </div>
-
-                        <!-- ------ -->
-                        <div class="addProduct text-center flex justify-center">
-                          <a href="#addProducto"
-                            class="font-semibold text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                            Agregar al carrito
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                      <div class="flex items-center gap-2">
-                        <div class="flex gap-2 py-2">
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                          <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                        </div>
-                        <p class="font-semibold text-[14px] text-[#6C7275]">
-                          (35)
-                        </p>
-                      </div>
-                      <h2 class="font-semibold text-[16px] text-[#141718]">
-                        Fusce sagittis eleifend sem eget dictum
-                      </h2>
-                      <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                        <span>$595.00</span>
-
-                        <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <!-- <div class="swiper-pagination"></div> -->
@@ -766,7 +541,26 @@
 
 
 @section('scripts_importados')
-  <script></script>
+  <script>
+    $('#disminuir').on('click', function() {
+      console.log('disminuyendo')
+      let cantidad = Number($('#cantidadSpan span').text())
+      if (cantidad > 0) {
+        cantidad--
+        $('#cantidadSpan span').text(cantidad)
+      }
+
+
+    })
+    // cantidadSpan
+    $('#aumentar').on('click', function() {
+      console.log('aumentando')
+      let cantidad = Number($('#cantidadSpan span').text())
+      cantidad++
+      $('#cantidadSpan span').text(cantidad)
+
+    })
+  </script>
 @stop
 
 @stop
