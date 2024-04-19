@@ -337,10 +337,7 @@
             Productos destacados
           </h2>
           <p class="font-normal text-lg">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-            officiis tempora harum placeat Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Nemo, officiis tempora harum
-            placeat.
+            Explora nuestra selección destacada: productos de calidad y tendencia que te encantarán. Descubre lo mejor de nuestra tienda en línea.
           </p>
         </div>
         <div class="col-span-1 md:col-span-1 order-3 md:order-2 flex justify-center items-center w-full">
@@ -484,9 +481,7 @@
           </h2>
 
           <p class="font-normal text-lg basis-3/6">
-            Etiam cursus semper odio non consectetur. Pellentesque et molestie
-            risus. Aliquam eu nibh pulvinar, sollicitudin sapien vel, aliquam
-            orci.
+            Descuentos irresistibles en productos seleccionados. ¡Aprovecha nuestras ofertas y ahorra en tus compras favoritas! ¡No te lo pierdas
           </p>
         </div>
 
