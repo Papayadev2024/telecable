@@ -14,6 +14,7 @@ use App\Models\Products;
 use App\Models\Slider;
 use App\Models\Strength;
 use App\Models\Testimony;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 
@@ -25,6 +26,7 @@ class IndexController extends Controller
     public function index()
     {
         $productos = Products::all();
+        $categorias = Category::all();
         $destacados = Products::where('destacar','=', 1)->get();
         $descuentos = Products::where('descuento','>', 0)->get();
 
@@ -35,13 +37,17 @@ class IndexController extends Controller
         $slider= Slider::where('status','=', 1)->where('visible', '=' ,1)->get();
 
         
-        return view('public.index', compact('productos', 'destacados', 'descuentos', 'general', 'benefit', 'faqs', 'testimonie', 'slider'));
+
+        
+        return view('public.index', compact('productos', 'destacados', 'descuentos', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias'));
     }
 
     public function catalogo()
     {
         $general = General::all();
-        return view('public.catalogo', compact('general'));
+        $faqs= Faqs::where('status','=', 1)->where('visible', '=' ,1)->get();
+        
+        return view('public.catalogo', compact('general', 'faqs'));
     }
 
     public function comentario()

@@ -131,6 +131,7 @@
       <h2 class="block md:hidden font-poppins font-semibold text-[40px] w-11/12 mx-auto">
         Categorías
       </h2>
+      
 
       <div>
         <!-- grilla categorias -->
@@ -141,11 +142,10 @@
               <div class="bg-gradient-to-l from-[#E4E4E4] to-[#F3F5F7] rounded-3xl flex flex-col h-full">
                 <div class="font-poppins p-10 flex flex-col gap-2">
                   <h2 class="font-semibold text-[24px]">
-                    Categoría: Fusce sagitis eleifend
+                    Categoría: {{ $categorias[0]->name }}
                   </h2>
                   <p class="my-2 font-normal text-[16px]">
-                    Morbi vitae leo sit amet libero accumsan tempor id vitae
-                    neque. Sed tincidunt fermentum sem 1.
+                    {{ $categorias[0]->description }}
                   </p>
 
                   <div>
@@ -165,11 +165,10 @@
               <div class="flex">
                 <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2">
                   <h2 class="font-semibold text-[24px]">
-                    Categoría: Fusce sagitis eleifend 2
+                    Categoría: {{ $categorias[1]->name }}
                   </h2>
                   <p class="my-2 font-normal text-[16px]">
-                    Morbi vitae leo sit amet libero accumsan tempor id vitae
-                    neque. Sed tincidunt fermentum sem 2.
+                    {{ $categorias[1]->description }}
                   </p>
 
                   <div>
@@ -194,10 +193,10 @@
 
                 <div class="font-poppins basis-1/3 p-4 flex flex-col gap-2">
                   <h2 class="font-semibold text-[24px]">
-                    Categoría: Fusce sagitis eleifend 3
+                    Categoría: {{ $categorias[2]->name }}
                   </h2>
                   <p class="my-2 font-normal text-[16px]">
-                    Morbi vitae leo sit amet libero accumsan.
+                    {{ $categorias[2]->description }}
                   </p>
 
                   <div>
@@ -217,10 +216,10 @@
 
                 <div class="font-poppins basis-1/3 p-4 flex flex-col gap-2">
                   <h2 class="font-semibold text-[24px]">
-                    Categoría: Fusce sagitis eleifend 4
+                    Categoría: {{ $categorias[3]->name }}
                   </h2>
                   <p class="my-2 font-normal text-[16px]">
-                    Morbi vitae leo sit amet libero accumsan. 4
+                    {{ $categorias[3]->name }}
                   </p>
                   <div>
                     <a href="#catalogo"
@@ -337,10 +336,7 @@
             Productos destacados
           </h2>
           <p class="font-normal text-lg">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-            officiis tempora harum placeat Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Nemo, officiis tempora harum
-            placeat.
+            Explora nuestra selección destacada: productos de calidad y tendencia que te encantarán. Descubre lo mejor de nuestra tienda en línea.
           </p>
         </div>
         <div class="col-span-1 md:col-span-1 order-3 md:order-2 flex justify-center items-center w-full">
@@ -484,9 +480,7 @@
           </h2>
 
           <p class="font-normal text-lg basis-3/6">
-            Etiam cursus semper odio non consectetur. Pellentesque et molestie
-            risus. Aliquam eu nibh pulvinar, sollicitudin sapien vel, aliquam
-            orci.
+            Descuentos irresistibles en productos seleccionados. ¡Aprovecha nuestras ofertas y ahorra en tus compras favoritas! ¡No te lo pierdas
           </p>
         </div>
 
