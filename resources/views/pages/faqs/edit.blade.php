@@ -70,9 +70,9 @@
                       </g>
                     </svg>
                   </div>
-                  <input type="text" id="respuesta" name="respuesta" value="{{ $faqs->respuesta }}"
+                  <textarea type="text" id="respuesta" name="respuesta" 
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Respuesta">
+                    placeholder="Respuesta">{{ $faqs->respuesta }}</textarea>
                 </div>
               </div>
 
@@ -96,7 +96,7 @@
     $('document').ready(function() {
 
       tinymce.init({
-        selector: 'textarea#description',
+        selector: '#respuesta',
         height: 500,
         plugins: [
           'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',

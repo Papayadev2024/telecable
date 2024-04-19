@@ -147,7 +147,8 @@ class ServiceController extends Controller
         $service = Service::findOrfail($id);
         $service->title = $request->title;
         $service->description = $request->description;
-
+        $service->link = $request->link;
+       
 
         if ($request->hasFile("imagen")) {
 

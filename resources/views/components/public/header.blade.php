@@ -14,13 +14,13 @@
         <a href="/" class="">Home</a>
       </li>
       <li>
-        <a href="catalogo.html" class="r">Catálogo</a>
+        <a href="{{route('catalogo')}}" class="r">Catálogo</a>
       </li>
       <li>
-        <a href="contacto.html" class="">Contacto</a>
+        <a href="{{route('contacto')}}" class="">Contacto</a>
       </li>
       <li>
-        <a href="comentar.html" class="">Comentar</a>
+        <a href="{{route('comentario')}}" class="">Comentar</a>
       </li>
     </ul>
   </nav>
@@ -29,9 +29,11 @@
 
 <header>
   <div class="absolute z-10 md:hidden top-[65px] left-[10px]">
+   
     <button aria-label="hamburguer" class="hamburger" onclick="show()">
       <img src="{{ asset('images/img/menu_hamburguer.png') }}" alt="menu hamburguesa" class="w-44" />
     </button>
+    
   </div>
 
   <div class="bg-colorBackgroundHeader">
@@ -45,7 +47,7 @@
   <div>
     <div class="flex justify-between items-center w-11/12 mx-auto my-5">
       <div class="hidden md:block">
-        <a href="index.html">
+        <a href="{{route('index')}}">
           <img src="{{ asset('images/svg/logo_decotab_header.svg') }}" alt="decotab" />
         </a>
 
@@ -54,14 +56,14 @@
       <div class="hidden md:block">
         <div>
           <nav class="text-black flex gap-5">
-            <a href="/" class="font-medium font-poppins text-[14px]">Home
+            <a href="{{route('index')}}" class="font-medium font-poppins text-[14px]">Home
             </a>
-            <a href="catalogo.html" class="font-medium font-poppins text-[14px]">Catálogo
+            <a href="{{route('catalogo')}}" class="font-medium font-poppins text-[14px]">Catálogo
             </a>
-            <a href="contacto.html" class="font-medium font-poppins text-[14px]">Contacto
+            <a href="{{route('contacto')}}" class="font-medium font-poppins text-[14px]">Contacto
             </a>
 
-            <a href="comentar.html" class="font-medium font-poppins text-[14px]">Comentar
+            <a href="{{route('comentario')}}" class="font-medium font-poppins text-[14px]">Comentar
             </a>
           </nav>
         </div>
@@ -80,8 +82,8 @@
       </div>
 
       <div class="flex justify-end w-full md:w-auto md:justify-center items-center gap-5">
-        <a href="catalogo.html"><img src="{{ asset('images/svg/search_header.svg') }}" alt="buscar" /></a>
-        <a href="login_user.html"><img src="{{ asset('images/svg/header_user.svg') }}" alt="user" /></a>
+        <a href="{{route('catalogo')}}"><img src="{{ asset('images/svg/search_header.svg') }}" alt="buscar" /></a>
+        <a href="{{route('login')}}"><img src="{{ asset('images/svg/header_user.svg') }}" alt="user" /></a>
 
         <div class="bg-[#EB5D2C] flex justify-center items-center rounded-full w-7 h-7">
           <span class="text-white">1</span>

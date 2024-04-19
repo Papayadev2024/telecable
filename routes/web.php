@@ -25,6 +25,7 @@ use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StrengthController;
 use App\Http\Controllers\ValoresAtributosController;
@@ -45,8 +46,8 @@ use App\Models\AboutUs;
 
 /* Las rutas publicas */
 Route::get('/', [IndexController::class, 'index'] )->name('index');
-Route::get('/nosotros', [IndexController::class, 'index'] )->name('nosotros');
-Route::get('/servicios', [IndexController::class, 'index'] )->name('servicios');
+Route::get('/nosotros', [IndexController::class, 'nosotros'] )->name('nosotros');
+Route::get('/servicios', [IndexController::class, 'servicios'] )->name('servicios');
 Route::get('/catalogo', [IndexController::class, 'catalogo'] )->name('catalogo');
 Route::get('/comentario', [IndexController::class, 'comentario'] )->name('comentario');
 Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
@@ -144,7 +145,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('/faqs/updateVisible', [FaqsController::class, 'updateVisible'])->name('faqs.updateVisible');
         Route::post('/faqs/borrar', [FaqsController::class, 'borrar'])->name('faqs.borrar');
 
-        
+               
+        Route::resource('/slider', SliderController::class);
+        Route::post('/slider/updateVisible', [SliderController::class, 'updateVisible'])->name('slider.updateVisible');
+        Route::post('/slider/deleteSlider', [SliderController::class, 'deleteSlider'])->name('slider.deleteSlider');
+
+
+
         
         Route::fallback(function() {
             return view('pages/utility/404');
