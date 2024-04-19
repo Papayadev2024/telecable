@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
+
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Index</title>
 </head>
@@ -28,8 +30,11 @@
 
     </div>
 
-    @include('components.public.footer')
     
+
+        @include('components.public.footer')
+
+   
     
     @yield('scripts_importados')
     {{-- @vite(['resources/js/functions.js']) --}}

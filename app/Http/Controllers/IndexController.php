@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreIndexRequest;
 use App\Http\Requests\UpdateIndexRequest;
+use App\Models\General;
 use App\Models\Index;
 use App\Models\Message;
 use App\Models\Products;
+use App\Models\Strength;
 use Illuminate\Http\Request;
 
 
@@ -21,9 +23,10 @@ class IndexController extends Controller
         $destacados = Products::where('destacar','=', 1)->get();
         $descuentos = Products::where('descuento','>', 0)->get();
 
-
-
-        return view('public.index', compact('productos', 'destacados', 'descuentos'));
+        $general = General::all();
+        $benefit= Strength::all();
+        
+        return view('public.index', compact('productos', 'destacados', 'descuentos', 'general', 'benefit'));
     }
 
     public function catalogo()
