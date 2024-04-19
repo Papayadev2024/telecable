@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreIndexRequest;
 use App\Http\Requests\UpdateIndexRequest;
+use App\Models\Faqs;
 use App\Models\General;
 use App\Models\Index;
 use App\Models\Message;
 use App\Models\Products;
+use App\Models\Slider;
 use App\Models\Strength;
+use App\Models\Testimony;
 use Illuminate\Http\Request;
 
 
@@ -20,31 +23,35 @@ class IndexController extends Controller
     public function index()
     {
         $productos = Products::all();
-        $destacados = Products::where('destacar','=', 1)->get();
-        $descuentos = Products::where('descuento','>', 0)->get();
+        $destacados = Products::where('destacar','=', 1)->where('status','=', 1)->where('visible', '=' ,1)->get();
+        $descuentos = Products::where('descuento','>', 0)->where('status','=', 1)->where('visible', '=' ,1)->get();
 
         $general = General::all();
-        $benefit= Strength::all();
+        $benefit= Strength::where('status','=', 1)->get();
+        $faqs= Faqs::where('status','=', 1)->where('visible', '=' ,1)->get();
+        $testimonie = Testimony::where('status','=', 1)->where('visible', '=' ,1)->get();
+        $slider= Slider::where('status','=', 1)->where('visible', '=' ,1)->get();
+
         
-        return view('public.index', compact('productos', 'destacados', 'descuentos', 'general', 'benefit'));
+        return view('public.index', compact('productos', 'destacados', 'descuentos', 'general', 'benefit', 'faqs', 'testimonie', 'slider'));
     }
 
     public function catalogo()
     {
-        //
-        return view('public.catalogo');
+        $general = General::all();
+        return view('public.catalogo', compact('general'));
     }
 
     public function comentario()
     {
-        //
-        return view('public.comentario');
+        $general = General::all();
+        return view('public.comentario', compact('general'));
     }
 
     public function contacto()
     {
-        //
-        return view('public.contact');
+        $general = General::all();
+        return view('public.contact', compact('general'));
     }
 
     public function carrito()
