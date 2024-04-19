@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreIndexRequest;
 use App\Http\Requests\UpdateIndexRequest;
+use App\Models\Attributes;
+use App\Models\AttributesValues;
 use App\Models\Index;
 use App\Models\Message;
 use App\Models\Products;
@@ -18,8 +20,8 @@ class IndexController extends Controller
     public function index()
     {
         $productos = Products::all();
-        $destacados = Products::where('destacar','=', 1)->get();
-        $descuentos = Products::where('descuento','>', 0)->get();
+        $destacados = Products::where('destacar', '=', 1)->get();
+        $descuentos = Products::where('descuento', '>', 0)->get();
 
 
 
@@ -88,13 +90,17 @@ class IndexController extends Controller
         return view('public.404');
     }
 
-    public function producto()
+    public function producto(string $id)
     {
-        //
-        return view('public.product');
+
+        $productos = Products::where('id', '=', $id)->get();
+        $atributos = Attributes::where("status", "=", true)->get();
+        $valorAtributo = AttributesValues::where("status", "=", true)->get();
+
+        return view('public.product', compact('productos', 'atributos', 'valorAtributo'));
     }
 
-//  --------------------------------------------
+    //  --------------------------------------------
     /**
      * Show the form for creating a new resource.
      */
@@ -167,8 +173,6 @@ class IndexController extends Controller
         $request->validate($reglasValidacion, $mensajes);
         $formlanding = Message::create($request->all());
         // return redirect()->route('landingaplicativos', $formlanding)->with('mensaje','Mensaje enviado exitoso')->with('name', $request->nombre);
-        return response()->json(['message'=> 'Mensaje enviado con exito']);
+        return response()->json(['message' => 'Mensaje enviado con exito']);
     }
-
-    
 }
