@@ -25,7 +25,7 @@ return new class extends Migration
             $table->json('atributes')->nullable();
             $table->boolean('destacar')->default(false);
             $table->boolean('recomendar')->default(false);
-            $table->unsignedBigInteger('categoria_id');
+            $table->unsignedBigInteger('categoria_id')->nullable();
 
             $table->boolean('visible')->default(true);
             $table->boolean('status')->default(true);
