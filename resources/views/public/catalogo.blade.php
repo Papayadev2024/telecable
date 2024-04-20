@@ -46,18 +46,10 @@
                 <div
                   class="overflow-y-scroll flex flex-col h-[150px] scroll__categorias items-start font-semibol text-[14px] text-[#6C7275] gap-2">
                   <ul class="flex flex-col gap-2">
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
-                    <li class="w-full mr-44 cursor-pointer">Categoría 1</li>
+                    @foreach($categorias as $item)
+                      <li class="w-full mr-44 cursor-pointer">{{ $item->name }}</li>  
+                    @endforeach
+                    
                   </ul>
                 </div>
               </div>

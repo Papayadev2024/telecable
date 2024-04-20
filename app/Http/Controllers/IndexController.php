@@ -49,8 +49,9 @@ class IndexController extends Controller
     {
         $general = General::all();
         $faqs= Faqs::where('status','=', 1)->where('visible', '=' ,1)->get();
+        $categorias = Category::all();
         
-        return view('public.catalogo', compact('general', 'faqs'));
+        return view('public.catalogo', compact('general', 'faqs', 'categorias'));
     }
 
     public function comentario()
