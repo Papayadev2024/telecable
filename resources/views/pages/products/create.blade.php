@@ -11,7 +11,7 @@
 
           <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">
 
-            Creacion de Producto
+            Agregar nuevo producto
           </h2>
         </header>
         <div class="flex gap-2 p-3 ">
@@ -362,10 +362,13 @@
 
         </div>
       </div>
-      <div class="md:col-span-5 text-right mt-6">
+      <div class="md:col-span-5 text-right mt-6 flex justify-between">
+        <div class="inline-flex items-end">
+          <a href="{{ URL::previous() }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
+        </div>
         <div class="inline-flex items-end">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-            Guardar Atributo
+            Guardar producto
           </button>
         </div>
       </div>

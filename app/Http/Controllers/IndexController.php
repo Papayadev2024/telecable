@@ -30,8 +30,8 @@ class IndexController extends Controller
     {
         $productos = Products::all();
         $categorias = Category::all();
-        $destacados = Products::where('destacar','=', 1)->get();
-        $descuentos = Products::where('descuento','>', 0)->get();
+        $destacados = Products::where('destacar','=', 1)->where('status','=', 1)->where('visible', '=' ,1)->get();
+        $descuentos = Products::where('descuento','>', 0)->where('status','=', 1)->where('visible', '=' ,1)->get();
 
         $general = General::all();
         $benefit= Strength::where('status','=', 1)->get();
@@ -50,8 +50,9 @@ class IndexController extends Controller
         $general = General::all();
         $faqs= Faqs::where('status','=', 1)->where('visible', '=' ,1)->get();
         $categorias = Category::all();
+        $testimonie = Testimony::where('status','=', 1)->where('visible', '=' ,1)->get();
         
-        return view('public.catalogo', compact('general', 'faqs', 'categorias'));
+        return view('public.catalogo', compact('general', 'faqs', 'categorias','testimonie'));
     }
 
     public function comentario()
