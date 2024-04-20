@@ -779,10 +779,9 @@
          <!-- FAQS -->
 
         @if ($faqs->isEmpty())
-
-            <div class="w-full flex flex-row justify-center items-center">
+            {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes faqs visibles</div>
-            </div>
+            </div> --}}
         @else
             <section class="my-12">
                 <div class="bg-[#F5F5F5] font-poppins">
@@ -834,10 +833,9 @@
         <!-- Testimonios -->
 
         @if ($testimonie->isEmpty())
-
-            <div class="w-full flex flex-row justify-center items-center">
+            {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes testimonios visibles</div>
-            </div>
+            </div> --}}
         @else
             <section class="font-poppins text-[#151515] w-full testimoniosRelative">
                 <h2 class="w-11/12 mx-auto font-semibold text-[40px] text-center md:text-left">

@@ -12,9 +12,9 @@
 
         <!------Slider Header ------>
         @if ($category->isEmpty())
-            <div class="w-full flex flex-row justify-center items-center">
+            {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes sliders visibles</div>
-            </div>
+            </div> --}}
         @else
             <div class="swiper header-slider">
                 <div class="swiper-wrapper">
@@ -144,9 +144,9 @@
 
         <!------Categorias destacadas - Grilla------>
         @if ($category->isEmpty())
-            <div class="w-full flex flex-row justify-center items-center">
+            {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes categorías destacadas visibles</div>
-            </div>
+            </div> --}}
         @else
             <section class="mt-20">
                 <h2 class="block md:hidden font-poppins font-semibold text-[40px] w-11/12 mx-auto">
@@ -338,10 +338,9 @@
 
         <!-- Productos destacados -->
         @if ($destacados->isEmpty())
-
-            <div class="w-full flex flex-row justify-center items-center">
+            {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes productos destacados visibles</div>
-            </div>
+            </div> --}}
         @else
             <section class="font-poppins">
                 <div class="grid grid-cols-1 gap-12 md:gap-0 md:grid-cols-4 grid-rows-1 pt-12 w-11/12 mx-auto">
@@ -493,9 +492,9 @@
 
         <!-- Productos en oferta -->
         @if ($descuentos->isEmpty())
-            <div class="w-full flex flex-row justify-center items-center">
+            {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes productos en oferta visibles</div>
-            </div>
+            </div> --}}
         @else
             <section class="font-poppins mt-10 mb-20">
                 <div class="grid grid-cols-1 gap-12 md:gap-0 md:grid-cols-4 grid-rows-1 pt-12 w-11/12 mx-auto">
@@ -651,10 +650,9 @@
         <!-- Beneficios -->
 
         @if ($benefit->isEmpty())
-
-            <div class="w-full flex flex-row justify-center items-center">
+            {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes beneficios visibles</div>
-            </div>
+            </div> --}}
         @else
             <section>
                 <div class="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:grid-rows-[700px] h-[100%]">
@@ -692,10 +690,9 @@
         <!-- FAQS -->
 
         @if ($faqs->isEmpty())
-
-            <div class="w-full flex flex-row justify-center items-center">
+            {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes faqs visibles</div>
-            </div>
+            </div> --}}
         @else
             <section class="my-12">
                 <div class="bg-[#F5F5F5] font-poppins">
@@ -746,10 +743,9 @@
         <!-- Testimonios -->
 
         @if ($testimonie->isEmpty())
-
-            <div class="w-full flex flex-row justify-center items-center">
+            {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes testimonios visibles</div>
-            </div>
+            </div> --}}
         @else
             <section class="font-poppins text-[#151515] w-full testimoniosRelative">
                 <h2 class="w-11/12 mx-auto font-semibold text-[40px] text-center md:text-left">
