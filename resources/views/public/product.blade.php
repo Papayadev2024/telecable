@@ -296,9 +296,16 @@
                           class="font-semibold text-[12px] bg-[#38CB89] py-2 px-2 flex-initial w-24 text-center text-[#151515] rounded-[5px] absolute top-[18px] z-10">
                           Nuevo1
                         </a>
-                        <div class="z-0">
+                        <div class="z-0 h-48">
                           <div class="relative">
-                            <img src="{{ asset($item->imagen) }}" alt="producto_complementario_1" class="w-full" />
+                            @if ($item->imagen)
+                              <img src="{{ asset($item->imagen) }}" alt="producto_complementario_1" class="w-full" />
+                            @else
+                              <div class='h-32'>
+                                <img src="{{ asset('storage/images/imagen/no_img.jpg') }}" alt="imagen_alternativa"
+                                  class="h-30 object-contain" />
+                              </div>
+                            @endif
                           </div>
 
                           <!-- ------ -->
