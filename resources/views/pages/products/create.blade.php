@@ -12,6 +12,7 @@
           <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">
 
             Agregar nuevo producto
+            Agregar nuevo producto
           </h2>
         </header>
         <div class="flex gap-2 p-3 ">
@@ -369,6 +370,7 @@
         </div>
         <div class="inline-flex items-end">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+            Guardar producto
             Guardar producto
           </button>
         </div>
