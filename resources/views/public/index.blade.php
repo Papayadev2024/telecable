@@ -133,10 +133,10 @@
       <h2 class="block md:hidden font-poppins font-semibold text-[40px] w-11/12 mx-auto">
         Categorías
       </h2>
-      
+
 
       <div>
-        
+
         <!-- grilla categorias -->
         {{-- <section class="mt-10 hidden md:block relative">
           <div class="grid grid-cols-4 gap-4 w-10/12 mx-auto">
@@ -244,181 +244,158 @@
           </div>
         </section> --}}
 
-        @if(count($category->take(4)) == 1)
-        <section class="mt-10 hidden md:block relative">
-            
+        @if (count($category->take(4)) == 1)
+          <section class="mt-10 hidden md:block relative">
+
             <div class="grid grid-cols-1 gap-4 w-10/12 mx-auto">
-            
-            @foreach($category->take(1) as $index  => $slide)
+
+              @foreach ($category->take(1) as $index => $slide)
                 <!-- Columna 1 -->
-                {{-- @if($index == 0) --}}
-                    <div class="col-span-2 row-span-2">
-                        <div class="bg-[#F3F5F7] flex flex-row h-full rounded-xl">
-                        <div class="flex justify-start items-center basis-1/2">
-                            <img
-                            src="{{ asset($slide->url_image.$slide->name_image) }}"
-                            alt="{{ $slide->name }}"
-                            class="w-full"
-                            />
-                        </div>
-    
-                        <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
-                            <h2 class="font-semibold text-[24px]">
-                                {{ $slide->name }}
-                            </h2>
-                            <p class="my-2 font-normal text-[16px]">
-                                {{ $slide->description }}
-                            </p>
-    
-                            <div>
-                            <a
-                                href=" "
-                                class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder"
-                                >Comprar
-                            </a>
-                            </div>
-                        </div>
-                        </div>
+                {{-- @if ($index == 0) --}}
+                <div class="col-span-2 row-span-2">
+                  <div class="bg-[#F3F5F7] flex flex-row h-full rounded-xl">
+                    <div class="flex justify-start items-center basis-1/2">
+                      <img src="{{ asset($slide->url_image . $slide->name_image) }}" alt="{{ $slide->name }}"
+                        class="w-full" />
                     </div>
+
+                    <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
+                      <h2 class="font-semibold text-[24px]">
+                        {{ $slide->name }}
+                      </h2>
+                      <p class="my-2 font-normal text-[16px]">
+                        {{ $slide->description }}
+                      </p>
+
+                      <div>
+                        <a href=" "
+                          class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Comprar
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 {{-- @endif --}}
-                 <!--Fin Columna 1 -->
-            @endforeach
-    
+                <!--Fin Columna 1 -->
+              @endforeach
+
             </div>
-           
-        </section>
-    
-    
+
+          </section>
         @elseif(count($category->take(4)) == 2)
-    
-        <section class="mt-10 hidden md:block relative">
-        
-          <div class="grid grid-cols-4 gap-4 w-10/12 mx-auto">
-          
-            @foreach($category->take(2) as $index  => $slide)
-               <!-- Columna 1 y 2-->
-             
-                  <div class="col-span-2 row-span-1">
-                      <div class="bg-[#F3F5F7] flex flex-row h-full rounded-xl">
-                      <div class="flex justify-start items-center basis-1/2">
-                          <img
-                          src="{{ asset($slide->url_image.$slide->name_image) }}"
-                          alt="{{ $slide->name }}"
-                          class="w-full"
-                          />
+          <section class="mt-10 hidden md:block relative">
+
+            <div class="grid grid-cols-4 gap-4 w-10/12 mx-auto">
+
+              @foreach ($category->take(2) as $index => $slide)
+                <!-- Columna 1 y 2-->
+
+                <div class="col-span-2 row-span-1">
+                  <div class="bg-[#F3F5F7] flex flex-row h-full rounded-xl">
+                    <div class="flex justify-start items-center basis-1/2">
+                      <img src="{{ asset($slide->url_image . $slide->name_image) }}" alt="{{ $slide->name }}"
+                        class="w-full" />
+                    </div>
+
+                    <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
+                      <h2 class="font-semibold text-[24px]">
+                        {{ $slide->name }}
+                      </h2>
+                      <p class="my-2 font-normal text-[16px]">
+                        {{ $slide->description }}
+                      </p>
+
+                      <div>
+                        <a href=" "
+                          class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Comprar
+                        </a>
                       </div>
-  
-                      <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
-                          <h2 class="font-semibold text-[24px]">
-                              {{ $slide->name }}
-                          </h2>
-                          <p class="my-2 font-normal text-[16px]">
-                              {{ $slide->description }}
-                          </p>
-  
-                          <div>
-                          <a
-                              href=" "
-                              class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder"
-                              >Comprar
-                          </a>
-                          </div>
-                      </div>
-                      </div>
+                    </div>
                   </div>
-              
-            <!--Fin Columna 1 -->
-          @endforeach
-          </div>
-        </section>
-       
+                </div>
+
+                <!--Fin Columna 1 -->
+              @endforeach
+            </div>
+          </section>
         @elseif(count($category->take(4)) == 3)
-    
-        <section class="mt-10 hidden md:block relative">
-        
-          <div class="grid grid-cols-4 gap-4 w-10/12 mx-auto">
-          
-            @foreach($category->take(3) as $index  => $slide)
-               <!-- Columna 1 2 y 3-->
-             
-                  <div class="col-span-2 @if($loop->first) row-span-2 @elseif(!$loop->first)  row-span-1  @endif">
-                      <div class="bg-[#F3F5F7] flex  @if($loop->first) flex-col @elseif(!$loop->first) flex-row @endif  h-full rounded-xl">
-                      <div class="flex justify-start items-center basis-1/2">
-                          <img
-                          src="{{ asset($slide->url_image.$slide->name_image) }}"
-                          alt="{{ $slide->name }}"
-                          class="w-full"
-                          />
+          <section class="mt-10 hidden md:block relative">
+
+            <div class="grid grid-cols-4 gap-4 w-10/12 mx-auto">
+
+              @foreach ($category->take(3) as $index => $slide)
+                <!-- Columna 1 2 y 3-->
+
+                <div
+                  class="col-span-2 @if ($loop->first) row-span-2 @elseif(!$loop->first)  row-span-1 @endif">
+                  <div
+                    class="bg-[#F3F5F7] flex  @if ($loop->first) flex-col @elseif(!$loop->first) flex-row @endif  h-full rounded-xl">
+                    <div class="flex justify-start items-center basis-1/2">
+                      <img src="{{ asset($slide->url_image . $slide->name_image) }}" alt="{{ $slide->name }}"
+                        class="w-full" />
+                    </div>
+
+                    <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
+                      <h2 class="font-semibold text-[24px]">
+                        {{ $slide->name }}
+                      </h2>
+                      <p class="my-2 font-normal text-[16px]">
+                        {{ $slide->description }}
+                      </p>
+
+                      <div>
+                        <a href=" "
+                          class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Comprar
+                        </a>
                       </div>
-  
-                      <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
-                          <h2 class="font-semibold text-[24px]">
-                              {{ $slide->name }}
-                          </h2>
-                          <p class="my-2 font-normal text-[16px]">
-                              {{ $slide->description }}
-                          </p>
-  
-                          <div>
-                          <a
-                              href=" "
-                              class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder"
-                              >Comprar
-                          </a>
-                          </div>
-                      </div>
-                      </div>
+                    </div>
                   </div>
-  
-  
-              
-            <!--Fin Columna 1 -->
-          @endforeach
-          </div>
-      </section>
-    
+                </div>
+
+
+
+                <!--Fin Columna 1 -->
+              @endforeach
+            </div>
+          </section>
         @elseif(count($category->take(4)) == 4)
-    
-        <section class="mt-10 hidden md:block relative">
-        
-          <div class="grid grid-cols-4 gap-4 w-10/12 mx-auto">
-          
-            @foreach($category->take(4) as $index  => $slide)
-               <!-- Columna 1 2 3 y 4-->
-             
-                  <div class="@if($loop->index == 0 || $loop->index == 1) col-span-2  @elseif($loop->index == 2 || $loop->index == 3) col-span-1 @endif  @if($loop->first) row-span-2 @elseif(!$loop->first)  row-span-1  @endif">
-                      <div class="bg-[#F3F5F7] flex  @if($loop->index == 0 || $loop->index == 2 || $loop->index == 3) flex-col @elseif($loop->index == 1) flex-row  @endif  h-full rounded-xl">
-                      <div class="flex justify-start items-center basis-1/2">
-                          <img
-                          src="{{ asset($slide->url_image.$slide->name_image) }}"
-                          alt="{{ $slide->name }}"
-                          class="w-full"
-                          />
+          <section class="mt-10 hidden md:block relative">
+
+            <div class="grid grid-cols-4 gap-4 w-10/12 mx-auto">
+
+              @foreach ($category->take(4) as $index => $slide)
+                <!-- Columna 1 2 3 y 4-->
+
+                <div
+                  class="@if ($loop->index == 0 || $loop->index == 1) col-span-2  @elseif($loop->index == 2 || $loop->index == 3) col-span-1 @endif  @if ($loop->first) row-span-2 @elseif(!$loop->first)  row-span-1 @endif">
+                  <div
+                    class="bg-[#F3F5F7] flex  @if ($loop->index == 0 || $loop->index == 2 || $loop->index == 3) flex-col @elseif($loop->index == 1) flex-row @endif  h-full rounded-xl">
+                    <div class="flex justify-start items-center basis-1/2">
+                      <img src="{{ asset($slide->url_image . $slide->name_image) }}" alt="{{ $slide->name }}"
+                        class="w-full" />
+                    </div>
+
+                    <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
+                      <h2 class="font-semibold text-[24px]">
+                        {{ $slide->name }}
+                      </h2>
+                      <p class="my-2 font-normal text-[16px]">
+                        {{ $slide->description }}
+                      </p>
+
+                      <div>
+                        <a href=" "
+                          class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Comprar
+                        </a>
                       </div>
-  
-                      <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
-                          <h2 class="font-semibold text-[24px]">
-                              {{ $slide->name }}
-                          </h2>
-                          <p class="my-2 font-normal text-[16px]">
-                              {{ $slide->description }}
-                          </p>
-  
-                          <div>
-                          <a
-                              href=" "
-                              class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder"
-                              >Comprar
-                          </a>
-                          </div>
-                      </div>
-                      </div>
+                    </div>
                   </div>
-   
-            <!--Fin Columna 1 -->
-          @endforeach
-          </div>
-      </section>
+                </div>
+
+                <!--Fin Columna 1 -->
+              @endforeach
+            </div>
+          </section>
 
 
         @endif
@@ -522,7 +499,8 @@
             Productos destacados
           </h2>
           <p class="font-normal text-lg">
-            Explora nuestra selección destacada: productos de calidad y tendencia que te encantarán. Descubre lo mejor de nuestra tienda en línea.
+            Explora nuestra selección destacada: productos de calidad y tendencia que te encantarán. Descubre lo mejor de
+            nuestra tienda en línea.
           </p>
         </div>
         <div class="col-span-1 md:col-span-1 order-3 md:order-2 flex justify-center items-center w-full">
@@ -666,7 +644,8 @@
           </h2>
 
           <p class="font-normal text-lg basis-3/6">
-            Descuentos irresistibles en productos seleccionados. ¡Aprovecha nuestras ofertas y ahorra en tus compras favoritas! ¡No te lo pierdas
+            Descuentos irresistibles en productos seleccionados. ¡Aprovecha nuestras ofertas y ahorra en tus compras
+            favoritas! ¡No te lo pierdas
           </p>
         </div>
 

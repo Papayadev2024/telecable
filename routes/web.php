@@ -22,6 +22,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\FooterController;
+use App\Http\Controllers\GalerieController;
 use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
@@ -153,6 +154,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::resource('/slider', SliderController::class);
         Route::post('/slider/updateVisible', [SliderController::class, 'updateVisible'])->name('slider.updateVisible');
         Route::post('/slider/deleteSlider', [SliderController::class, 'deleteSlider'])->name('slider.deleteSlider');
+
+        Route::resource('/galerie', GalerieController::class);
+        Route::post('/galerie/updateVisible', [GalerieController::class, 'updateVisible'])->name('galerie.updateVisible');
+        Route::post('/galerie/borrar', [GalerieController::class, 'borrar'])->name('galerie.borrar');
 
 
 
