@@ -60,7 +60,7 @@
                   </td>
                   <td class="flex justify-center items-center gap-5 text-center sm:text-right">
 
-                    <a href="{{ route('galerie.edit', $item->id) }}"
+                    <a href="{{ route('galerie.edit', $item->product_id) }}"
                       class="bg-yellow-400 px-3 py-2 rounded text-white  "><i
                         class="fa-regular fa-pen-to-square"></i></a>
 

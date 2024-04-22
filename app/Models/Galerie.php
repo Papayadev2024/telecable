@@ -15,4 +15,9 @@ class Galerie extends Model
         'color',
         'imagen'
     ];
+
+    public function galeria()
+    {
+        return $this->belongsTo(Products::class, 'product_id');
+    }
 }
