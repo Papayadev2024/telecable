@@ -32,13 +32,20 @@
                     </p>
 
                     <div class="flex flex-col md:flex-row gap-5 md:gap-10 items-center">
-                      <a href="{{ $item->link1 }}"
-                        class="font-semibold text-[16px] bg-[#74A68D] text-white py-2 px-5 rounded-3xl md:duration-500 hover:bg-[#4e8569] w-full text-center md:w-auto">
-                        {{ $item->botontext1 }}</a>
-                      <a href="{{ $item->link2 }}"
-                        class="font-semibold text-[16px] border-2 border-white bg-transparent text-white py-2 px-5 rounded-3xl hover:bg-colorBackgroundHeader duration-500 w-full md:w-auto text-center">
-                        {{ $item->botontext2 }}</a>
-                    </div>
+                     @if (!empty($item->botontext1) &&  !empty($item->link1))
+                        <a href="{{ $item->link1 }}"
+                          class="font-semibold text-[16px] bg-[#74A68D] text-white py-2 px-5 rounded-3xl md:duration-500 hover:bg-[#4e8569] w-full text-center md:w-auto">
+                          {{ $item->botontext1 }}</a>
+                     @endif
+                      
+                     @if (!empty($item->botontext2) && !empty($item->link2))
+                        <a href="{{ $item->link2 }}"
+                          class="font-semibold text-[16px] border-2 border-white bg-transparent text-white py-2 px-5 rounded-3xl hover:bg-colorBackgroundHeader duration-500 w-full md:w-auto text-center">
+                          {{ $item->botontext2 }}</a>
+                     @endif
+                       
+                    
+                      </div>
                   </div>
                 </div>
               </div>
