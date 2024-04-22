@@ -25,4 +25,10 @@ class Products extends Model
     'peso',
     'categoria_id'
   ];
+
+
+  public function categoria()
+  {
+      return $this->belongsTo(Category::class);
+  }
 }

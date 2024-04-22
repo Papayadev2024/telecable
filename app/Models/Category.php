@@ -19,4 +19,9 @@ class Category extends Model
     // {
     //     return $this->hasMany(Blog::class, 'category_id');
     // }
+
+    public function productos()
+    {
+        return $this->hasMany(Products::class);
+    }
 }

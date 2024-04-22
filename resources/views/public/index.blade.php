@@ -178,7 +178,7 @@
                                                 </p>
 
                                                 <div>
-                                                    <a href=" "
+                                                    <a href=""
                                                         class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Comprar
                                                     </a>
                                                 </div>
@@ -290,7 +290,7 @@
                                                 </p>
 
                                                 <div>
-                                                    <a href=" "
+                                                    <a href="/catalogo/{{ $slide->id }} "
                                                         class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Ver
                                                         categoría
                                                     </a>

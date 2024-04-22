@@ -14,7 +14,7 @@
         <a href="/" class="">Home</a>
       </li>
       <li>
-        <a href="{{route('catalogo')}}" class="r">Catálogo</a>
+        <a href="{{route('catalogo', 0)}}" class="r">Catálogo</a>
       </li>
       <li>
         <a href="{{route('contacto')}}" class="">Contacto</a>
@@ -58,7 +58,7 @@
           <nav class="text-black flex gap-5">
             <a href="{{route('index')}}" class="font-medium font-poppins text-[14px]">Home
             </a>
-            <a href="{{route('catalogo')}}" class="font-medium font-poppins text-[14px]">Catálogo
+            <a href="{{route('catalogo', 0)}}" class="font-medium font-poppins text-[14px]">Catálogo
             </a>
             <a href="{{route('contacto')}}" class="font-medium font-poppins text-[14px]">Contacto
             </a>
@@ -82,7 +82,7 @@
       </div>
 
       <div class="flex justify-end w-full md:w-auto md:justify-center items-center gap-5">
-        <a href="{{route('catalogo')}}"><img src="{{ asset('images/svg/search_header.svg') }}" alt="buscar" /></a>
+        {{-- <a href="{{route('catalogo')}}"><img src="{{ asset('images/svg/search_header.svg') }}" alt="buscar" /></a> --}}
         <a href="{{route('login')}}"><img src="{{ asset('images/svg/header_user.svg') }}" alt="user" /></a>
 
         <div class="bg-[#EB5D2C] flex justify-center items-center rounded-full w-7 h-7">

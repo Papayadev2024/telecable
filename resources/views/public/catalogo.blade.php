@@ -31,7 +31,7 @@
             <aside class="flex flex-col gap-5">
                 <div class="flex gap-3 open">
                     <div>
-                        <img src="./images/svg/catalogo_filtro_icon.svg" alt="logo_filtros" />
+                        <img src="{{asset('images/svg/catalogo_filtro_icon.svg')}}" alt="logo_filtros" />
                     </div>
                     <p class="font-semibold text-[20px]">Filtros</p>
                 </div>
@@ -40,53 +40,98 @@
                     <div class="hidden md:flex flex-col gap-5 show-categoria-precio">
                         <div class="flex flex-col gap-5">
                             <p class="font-semibold text-[16px]">Categorías</p>
-                            <a href="#" class="font-semibold text-[14px] underline">Todas</a>
+                            <a href="/catalogo/0" class="{{$filtro == 0 ? 'font-semibold text-[14px] underline' : 'text-[#6C7275]' }}">Todas</a>
 
                             <div>
                                 <div
                                     class="overflow-y-scroll flex flex-col h-[150px] scroll__categorias items-start font-semibol text-[14px] text-[#6C7275] gap-2">
                                     <ul class="flex flex-col gap-2">
+
                                         @foreach ($categorias as $item)
-                                            <li class="w-full mr-44 cursor-pointer">{{ $item->name }}</li>
+                                            <a href="/catalogo/{{$item->id}}"> <li  class="w-full mr-44 cursor-pointer @if ($filtro == 0)
+                                                
+                                            @else
+
+                                             {{$item->id == $categoria->id ? 'font-semibold text-[14px] underline text-black' : ''}}
+
+                                            @endif ">{{ $item->name }}</li></a>
+                                           
+
                                         @endforeach
 
                                     </ul>
                                 </div>
                             </div>
                         </div>
-
+                        {{--   --}}
                         <div class="flex flex-col gap-5">
                             <p class="font-semibold text-[16px]">Precio</p>
                             <a href="#" class="font-semibold text-[14px] underline">Todos los precios</a>
                             <div class="flex flex-col gap-2">
                                 <div class="flex justify-between items-center">
-                                    <label class="font-semibold text-[14px]" for="precio_0">s/ 0.00 - s/99.99</label>
+                                    
+                                    <a href="/catalogo/{{$filtro}}?rangefrom=0&rangeto=99.99" ><li class=" text-[14px] list-none
+                                        
+                                        @if($rangefrom == 0 && $rangeto == 99.99)
+                                            font-semibold
+                                        @else
+                                            font-normal
+                                        @endif
+                                        
+                                        " for="precio_0">s/ 0.00 - s/99.99</li></a>
                                     <!-- Agrega el siguiente código dentro de tu archivo HTML -->
-                                    <input id="precio_0" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" />
+                                    {{-- <input id="precio_0" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <label class="font-semibold text-[14px]" for="precio_1">s/ 100.00 - s/199.99</label>
+                                    <a href="/catalogo/{{$filtro}}/?rangefrom=100&rangeto=199.99" ><li class="text-[14px] list-none
+                                        @if($rangefrom == 100 && $rangeto == 199.99)
+                                        font-semibold
+                                        @else
+                                            font-normal
+                                        @endif
+                                        " for="precio_1">s/ 100.00 - s/199.99</li></a>
                                     <!-- Agrega el siguiente código dentro de tu archivo HTML -->
-                                    <input id="precio_1" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" />
+                                    {{-- <input id="precio_1" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
                                 </div>
 
                                 <div class="flex justify-between items-center">
-                                    <label class="font-semibold text-[14px]" for="precio_2">s/ 200.00 - s/299.99</label>
+                                    <a href="/catalogo/{{$filtro}}/?rangefrom=200&rangeto=299.99" ><li class="text-[14px] list-none
+
+                                        @if($rangefrom == 200 && $rangeto == 299.99)
+                                        font-semibold
+                                        @else
+                                            font-normal
+                                        @endif
+
+                                        " for="precio_2">s/ 200.00 - s/299.99</li></a>
                                     <!-- Agrega el siguiente código dentro de tu archivo HTML -->
-                                    <input id="precio_2" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" />
+                                    {{-- <input id="precio_2" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
                                 </div>
 
                                 <div class="flex justify-between items-center">
-                                    <label class="font-semibold text-[14px]" for="precio_3">s/ 300.00 - s/399.99</label>
+                                   <a href="/catalogo/{{$filtro}}/?rangefrom=300&rangeto=399.99"> <li class="text-[14px] list-none
+                                    
+                                    @if($rangefrom == 300 && $rangeto == 399.99)
+                                    font-semibold
+                                    @else
+                                        font-normal
+                                    @endif
+
+                                    " for="precio_3">s/ 300.00 - s/399.99</li></a>
                                     <!-- Agrega el siguiente código dentro de tu archivo HTML -->
-                                    <input id="precio_3" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" />
+                                    {{-- <input id="precio_3" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
                                 </div>
 
                                 <div class="flex justify-between items-center">
-                                    <label class="font-semibold text-[14px]" for="precio_4">s/ 400.00 +</label>
+                                    <a href="/catalogo/{{$filtro}}/?rangefrom=400&rangeto=100000"><li class="text-[14px] list-none
+                                     @if($rangefrom == 400 && $rangeto == 100000)
+                                    font-semibold
+                                    @else
+                                        font-normal
+                                    @endif
+                                        " for="precio_4">s/ 400.00 +</li></a>
                                     <!-- Agrega el siguiente código dentro de tu archivo HTML -->
-                                    <input id="precio_4" type="checkbox" value=""
-                                        class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" />
+                                    {{-- <input id="precio_4" type="checkbox" value="" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
                                 </div>
                             </div>
                         </div>
@@ -99,7 +144,7 @@
                 <div class="modal__mostrar-filtro">
                     <div class="flex justify-end">
                         <a href="#" class="modal__close-filtro">
-                            <img src="./images/svg/close.svg" alt="close" />
+                            <img src="{{asset('/images/svg/close.svg')}}" alt="close" />
                         </a>
                     </div>
 
@@ -109,18 +154,28 @@
             <!-- --- -->
             <section class="font-poppins my-10 w-full">
                 <div class="flex flex-col gap-2">
-                    <h2 class="font-medium text-[40px]">Productos destacados</h2>
+
+                    @if ($filtro == 0)
+                     <h2 class="font-medium text-[40px]">Productos</h2>
+                    @else
+                        <h2 class="font-medium text-[40px]">Productos - {{$categoria->name}}</h2>
+                    @endif
+                   
+
                     <p class="font-normal text-[18px]">
                         Etiam cursus semper odio non consectetur. Pellentesque et molestie
                         risus. Aliquam eu nibh pulvinar, sollicitudin sapien vel, aliquam
                         orci.
                     </p>
                 </div>
-
+                
                 <!-- GRILLA PRODUCTOS -->
                 <div>
                     <div class="grid grid-cols-2 lg:grid-cols-3 my-5 gap-10">
+
+                     @foreach ($productos as $item)
                         <div class="flex flex-col relative">
+
                             <div
                                 class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
                                 <a
@@ -129,20 +184,21 @@
                                 </a>
                                 <div>
                                     <div class="relative">
-                                        <img src="./images/img/tabla_2.png" alt="cusco" class="w-full h-[100%]" />
+                                        <img src="{{ asset($item->imagen) }}" alt="cusco" class="w-full h-[100%]" />
                                     </div>
 
                                     <!-- ------ -->
                                     <div class="addProduct text-center flex justify-center">
-                                        <a href="{{ route('products.show', 4) }}"
+                                        <a href="{{ route('producto', $item->id) }}"
                                             class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
+                                            Ver producto
                                         </a>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
+                                {{-- <div class="flex items-center gap-2">
                                     <div class="flex gap-2 py-2">
                                         <img src="./images/svg/start.svg" alt="estrella" />
                                         <img src="./images/svg/start.svg" alt="estrella" />
@@ -151,619 +207,24 @@
                                         <img src="./images/svg/start_sin_color.svg" alt="estrella" />
                                     </div>
                                     <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
+                                </div> --}}
                                 <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
+                                    {{$item->producto}}
                                 </h2>
                                 <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
+                                    @if ($item->descuento == 0)
+                                        <span>{{ $item->precio }}</span>
+                                    @else
+                                        <span>{{ $item->descuento }}</span>
+                                        <span
+                                                    class="font-normal text-[14px] text-[#6C7275] line-through">{{ $item->precio }}</span>
+                                    @endif
                                 </p>
                             </div>
+
                         </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div class="">
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_2.png" alt="cusco" class="w-auto h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div>
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_1.png" alt="cusco" class="w-full h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div class="">
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_2.png" alt="cusco" class="w-auto h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div>
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_1.png" alt="cusco" class="w-full h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div class="">
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_2.png" alt="cusco" class="w-auto h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div>
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_1.png" alt="cusco" class="w-full h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div class="">
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_2.png" alt="cusco" class="w-auto h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div>
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_1.png" alt="cusco" class="w-full h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div class="">
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_2.png" alt="cusco" class="w-auto h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div>
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_1.png" alt="cusco" class="w-full h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div class="">
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_2.png" alt="cusco" class="w-auto h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div>
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_1.png" alt="cusco" class="w-full h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div class="">
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_2.png" alt="cusco" class="w-auto h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col relative">
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div>
-                                    <div class="relative">
-                                        <img src="./images/img/tabla_1.png" alt="cusco" class="w-full h-[100%]" />
-                                    </div>
-
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="#addProducto"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Agregar al carrito
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                    </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div>
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    Fusce sagittis eleifend sem eget dictum
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    <span>$595.00</span>
-
-                                    <span class="font-normal text-[14px] text-[#6C7275] line-through">$1000.00</span>
-                                </p>
-                            </div>
-                        </div>
+                     @endforeach      
+                      
                     </div>
                 </div>
 
