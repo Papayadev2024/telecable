@@ -16,6 +16,7 @@
 
   <main class="my-10 font-poppins">
     <section class="w-11/12 mx-auto flex flex-col md:flex-row gap-10">
+      @csrf
       <div class="basis-1/2">
         <!-- grilla de productos -->
         <div class="hidden md:block">
@@ -98,12 +99,13 @@
           </p>
           @if ($productos[0]->descuento > 0)
             {{-- validamos si tiene descuento  --}}
-            <p class="font-medium text-[28px] mb-5">
+            <p id='infodescuento' class="font-medium text-[28px] mb-5">
               s/ {{ $productos[0]->descuento }}
-              <span class="line-through font-medium text-[20px] text-[#6C7275]">{{ $productos[0]->precio }}</span>
+              <span id='infoPrecio'
+                class="line-through font-medium text-[20px] text-[#6C7275]">{{ $productos[0]->precio }}</span>
             </p>
           @else
-            <p class="font-medium text-[28px] mb-5">
+            <p id='nodescuento' class="font-medium text-[28px] mb-5">
               s/ {{ $productos[0]->precio }}
 
             </p>
@@ -219,9 +221,13 @@
         </div>
         <div class="my-5 flex flex-col gap-5 border-b-[1px] border-gray-300 pb-5">
           <div class="py-2 w-full">
-            <a href="#"
-              class="text-white bg-[#74A68D] w-full py-4 rounded-3xl cursor-pointer font-semibold text-[16px] inline-block text-center">Agregar
-              al carrito</a>
+
+
+            <button type="button" id='btnAgregarCarrito'
+              class="text-white bg-[#74A68D] w-full py-4 rounded-3xl cursor-pointer font-semibold text-[16px] inline-block text-center">
+              Agregar al carrito
+            </button>
+
           </div>
 
           <div class="py-2 w-full">
@@ -310,10 +316,10 @@
 
                           <!-- ------ -->
                           <div class="addProduct text-center flex justify-center">
-                            <a href="#addProducto"
+                            <button type="button" id="btnAgregarCarrito"
                               class="font-semibold text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-52 text-center text-white rounded-3xl">
                               Agregar al carrito
-                            </a>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -549,8 +555,11 @@
 
 
 @section('scripts_importados')
+
   <script>
     $(document).ready(function() {
+
+
       function capitalizeFirstLetter(string) {
         string = string.toLowerCase()
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -573,6 +582,148 @@
       cantidad++
       $('#cantidadSpan span').text(cantidad)
 
+    })
+  </script>
+  <script>
+    let articulosCarrito = [];
+    $(document).ready(function() {
+      articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+      PintarCarrito();
+    });
+
+    function PintarCarrito() {
+      console.log('pintando carrito ')
+
+      let itemsCarrito = $('#itemsCarrito')
+
+      articulosCarrito.forEach(element => {
+        let plantilla = `<div class="flex justify-between bg-white font-poppins border-b-[1px] border-[#E8ECEF] pb-5">
+            <div class="flex justify-center items-center gap-5">
+              <div class="bg-[#F3F5F7] rounded-md p-4">
+                <img src="/public/${element.imagen}" alt="producto" class="w-24" />
+              </div>
+              <div class="flex flex-col gap-3 py-2">
+                <h3 class="font-semibold text-[14px] text-[#151515]">
+                  ${element.producto}
+                </h3>
+                <p class="font-normal text-[12px] text-[#6C7275]">
+                  ${element.color}
+                </p>
+                <div class="flex justify-center text-[#151515] border-[1px] border-[#6C7275] rounded-md">
+                  <div class="w-8 h-8 flex justify-center items-center cursor-pointer">
+                    <span class="text-[20px]">-</span>
+                  </div>
+                  <div class="w-8 h-8 flex justify-center items-center">
+                    <span class="font-semibold text-[12px]">${element.cantidad}</span>
+                  </div>
+                  <div class="w-8 h-8 flex justify-center items-center cursor-pointer">
+                    <span class="text-[20px]">+</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col justify-start py-2 gap-5 items-center pr-2">
+              <p class="font-semibold text-[14px] text-[#151515]">
+                S/ ${element.descuento ? element.descuento :element.precio }
+              </p>
+              <div>
+                X
+              </div>
+            </div>
+          </div>`
+
+        itemsCarrito.append(plantilla)
+
+      });
+
+
+
+
+
+
+    }
+
+
+
+    $('#btnAgregarCarrito').on('click', function() {
+      let url = window.location.href;
+      let partesURl = url.split('/')
+      let item = partesURl[partesURl.length - 1]
+      let cantidad = Number($('#cantidadSpan span').text())
+      item = item.replace('#', '')
+
+
+
+      // id='nodescuento'
+
+
+      $.ajax({
+
+        url: `{{ route('carrito.buscarProducto') }}`,
+        method: 'POST',
+        data: {
+          _token: $('input[name="_token"]').val(),
+          id: item,
+          cantidad
+
+        },
+        success: function(success) {
+          console.log(success)
+          let {
+            producto,
+            id,
+            descuento,
+            precio,
+            imagen,
+            color
+          } = success.data
+          let cantidad = Number(success.cantidad)
+          let detalleProducto = {
+            id,
+            producto,
+            descuento,
+            precio,
+            imagen,
+            cantidad,
+            color
+
+          }
+          let existeArticulo = articulosCarrito.some(item => item.id === detalleProducto.id)
+          if (existeArticulo) {
+            //sumar al articulo actual 
+            const prodRepetido = articulosCarrito.map(item => {
+              if (item.id === detalleProducto.id) {
+                item.cantidad += Number(detalleProducto.cantidad);
+                return item; // retorna el objeto actualizado 
+              } else {
+                return item; // retorna los objetos que no son duplicados 
+              }
+
+            });
+          } else {
+            articulosCarrito = [...articulosCarrito, detalleProducto]
+
+          }
+
+          localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+          let itemsCarrito = $('#itemsCarrito')
+          let ItemssubTotal = $('#ItemssubTotal')
+          let itemsTotal = $('#itemsTotal')
+          PintarCarrito(itemsCarrito,
+            ItemssubTotal,
+            itemsTotal, )
+
+        },
+        error: function(error) {
+          console.log(error)
+        }
+
+      })
+
+
+
+      // articulosCarrito = {...articulosCarrito , detalleProducto }
     })
   </script>
 @stop
