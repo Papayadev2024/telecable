@@ -114,9 +114,23 @@ class GalerieController extends Controller
 	{
 		//
 	}
-	public function updateVisible(string $id)
+	public function updateVisible(Request $request)
 	{
-		//
+		try {
+      $id = $request->id;
+
+      $status = $request->status;
+
+      $testimony = Galerie::findOrFail($id);
+
+      $testimony->visible = $status;
+
+      $testimony->save();
+
+      return response()->json(['message' => 'Estado modificado.']);
+    } catch (\Throwable $th) {
+      return response()->json(['message' => $th], 400);
+    }
 	}
 	public function borrar(string $id)
 	{
