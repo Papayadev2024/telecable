@@ -17,7 +17,7 @@ class GalerieController extends Controller
 	 */
 	public function index()
 	{
-		$galerie = Galerie::all();
+		$galerie = Galerie::where("status", "=", true)->get();
 		return view('pages.galerie.index', compact('galerie'));
 	}
 
@@ -114,6 +114,14 @@ class GalerieController extends Controller
 	{
 		//
 	}
+	public function borrar(Request $request)
+  {
+    //softdelete
+    $product = Galerie::find($request->id);
+    $product->status = 0;
+    $product->save();
+  }
+
 	public function updateVisible(Request $request)
 	{
 		try {
@@ -132,8 +140,5 @@ class GalerieController extends Controller
       return response()->json(['message' => $th], 400);
     }
 	}
-	public function borrar(string $id)
-	{
-		//
-	}
+	
 }
