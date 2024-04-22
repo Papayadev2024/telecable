@@ -122,7 +122,7 @@
                 <button id=disminuir type="button"><span class="text-[30px]">-</span></button>
               </div>
               <div id=cantidadSpan class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
-                <span class="text-[20px]">2</span>
+                <span class="text-[20px]">1</span>
               </div>
               <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer">
                 <button id=aumentar type="button"><span class="text-[30px]">+</span></button>

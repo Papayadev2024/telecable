@@ -57,7 +57,7 @@ class ProductsController extends Controller
   {
     $especificaciones = [];
     $data = $request->all();
-
+    $precioparafiltro = null;
     $atributos = null;
 
     $request->validate([
@@ -75,7 +75,7 @@ class ProductsController extends Controller
       // $AboutUs->name_image = $nombreImagen;
     }
 
-    
+
 
     foreach ($data as $key => $value) {
 
@@ -113,16 +113,15 @@ class ProductsController extends Controller
 
     $producto = Products::create($cleanedData);
     $this->GuardarEspecificaciones($producto->id, $especificaciones);
-      return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
+    return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
   }
   private function GuardarEspecificaciones($id, $especificaciones)
   {
-    
+
     foreach ($especificaciones as $value) {
       $value['product_id'] = $id;
       Specifications::create($value);
     }
-    
   }
 
   private function stringToObject($key, $atributos)

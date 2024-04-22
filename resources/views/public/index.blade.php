@@ -170,15 +170,15 @@
                           {{ $slide->description }}
                         </p>
 
-                        <div>
-                          <a href=" "
-                            class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Comprar
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                @endforeach
+                                                <div>
+                                                    <a href=""
+                                                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Comprar
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
 
               </div>
 
@@ -282,15 +282,15 @@
                           {{ $slide->description }}
                         </p>
 
-                        <div>
-                          <a href=" "
-                            class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Ver
-                            categoría
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                                                <div>
+                                                    <a href="/catalogo/{{ $slide->id }} "
+                                                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Ver
+                                                        categoría
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                   <!--Fin Columna 1 -->
                 @endforeach
