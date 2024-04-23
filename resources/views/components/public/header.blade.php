@@ -91,18 +91,35 @@
 
         <div class="flex justify-center items-center pl-2">
           <label for="check" class="inline-block cursor-pointer">
-            <img src="{{ asset('images/svg/header_bag.svg') }}" alt="bag" class="max-w-full h-auto" />
+            <img src="{{ asset('images/svg/header_bag.svg') }}" alt="bag" class="max-w-full h-auto cursor-pointer"
+              id="openCarrito" />
           </label>
           <!-- ----- carritos  148 sad -->
 
           <input type="checkbox" class="bag__modal" id="check" />
           <!-- bag hidden  absolute -->
-          <div class="bag hidden absolute top-0 right-0 z-[200] md:w-[600px] cartContainer">
+          <div
+            class="bag hidden absolute top-0 right-0 z-[200] md:w-[450px] cartContainer border  shadow-2xl rounded-xl  ">
             <!-- class="h-screen overflow-y-scroll " -->
             <div class="p-4 flex flex-col h-screen justify-between">
-              <h2 class="font-medium text-[28px] text-[#151515] pb-5">
-                Carrito
-              </h2>
+              <div class="flex justify-between ">
+                <h2 class="font-medium text-[28px] text-[#151515] pb-5">
+                  Carrito
+                </h2>
+                <div id="closeCarrito" class="cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                  </svg>
+
+                </div>
+
+
+              </div>
+
+              <div>
+
+              </div>
               <div class="overflow-y-scroll h-auto scroll__carrito">
                 <div class="flex flex-col gap-10" id="itemsCarrito">
 
@@ -111,11 +128,8 @@
                 </div>
               </div>
 
-              <div class="font-poppins flex flex-col gap-2 pt-36">
-                <div class="text-[#141718] flex justify-between items-center">
-                  <p id="ItemssubTotal" class="font-normal text-[16px]">Subtotal</p>
-                  <p class="font-semibold text-[16px]">S/ 0.00</p>
-                </div>
+              <div class="font-poppins flex flex-col gap-2 pt-24">
+
 
                 <div class="text-[#141718] font-medium text-[20px] flex justify-between items-center">
                   <p>Total</p>
