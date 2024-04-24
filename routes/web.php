@@ -60,7 +60,7 @@ Route::get('/404', [IndexController::class, 'error'] )->name('error');
 Route::get('/producto/{id}', [IndexController::class, 'producto'] )->name('producto');
 Route::get('/catalogo/{filtro}', [IndexController::class, 'catalogo'] )->name('catalogo');
 
-
+Route::post('/procesar/pago',[IndexController::class, 'procesarPago'])->name('procesar.pago');
 
 
 
