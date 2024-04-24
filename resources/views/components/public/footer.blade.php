@@ -6,9 +6,9 @@
           <img src="{{ asset('/images/img/logo_footer_decotab.png') }}" alt="decotab" /></a>
       </div>
       <p class="font-medium text-[20px]">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-        sed repellat, voluptatibus fugit quis cupiditate magnam, totam esse
-        vero.
+        Deco Tab es reconocido por la excelente calidad de sus productos, como Wall Panel, mármol UV y piedra PU. La
+        empresa cuenta con un equipo capacitado en la producción de estos materiales que harán de tu espacio más moderno
+        y acogedor. ¿Te encuentras interesado? Contamos con oficinas en Lima y realizamos envíos a nivel nacional.
       </p>
       @foreach ($datosgenerales as $item)
         <div class="flex gap-5">

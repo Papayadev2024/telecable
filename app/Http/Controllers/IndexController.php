@@ -199,8 +199,11 @@ class IndexController extends Controller
     $ProdComplementarios = Products::where('categoria_id', '=', $IdProductosComplementarios)->get();
     $atributos = Attributes::where("status", "=", true)->get();
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
+    $url_env = $_ENV['APP_URL'];
+    
+    
 
-    return view('public.product', compact('productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones'));
+    return view('public.product', compact('productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env'));
   }
 
   //  --------------------------------------------
