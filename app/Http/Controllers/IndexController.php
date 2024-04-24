@@ -17,6 +17,7 @@ use App\Models\Testimony;
 use App\Models\Category;
 use App\Models\Specifications;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
@@ -67,19 +68,25 @@ class IndexController extends Controller
 
 
       if ($filtro == 0) {
-
-        $productos = Products::all();
+        $productos = Products::paginate(3);
         $categoria = Category::all();
       } else {
-        $productos = Products::where('categoria_id', '=', $filtro)->get();
+        $productos = Products::where('categoria_id', '=', $filtro)->paginate(3);
         $categoria = Category::findOrFail($filtro);
       }
 
-
+     
 
       if ($rangefrom !== null && $rangeto !== null) {
 
-        // $cleanedData = $productos->toArray();
+        if ($filtro == 0) {
+          $productos = Products::all();
+          $categoria = Category::all();
+        } else {
+          $productos = Products::where('categoria_id', '=', $filtro)->get();
+          $categoria = Category::findOrFail($filtro);
+        }
+       
         $cleanedData = $productos->filter(function ($value) use ($rangefrom, $rangeto) {
 
           if ($value['descuento'] == 0) {
@@ -87,23 +94,33 @@ class IndexController extends Controller
             if ($value['precio'] <= $rangeto && $value['precio'] >= $rangefrom) {
               return $value;
             }
+
           } else {
 
             if ($value['descuento'] <= $rangeto && $value['descuento'] >= $rangefrom) {
               return $value;
             }
           }
+
+         
         });
 
-
-        $productos =  $cleanedData;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $productos = new LengthAwarePaginator(
+        $cleanedData->forPage($currentPage, 3), // Obtener los productos por página
+        $cleanedData->count(), // Contar todos los elementos
+        3, // Número de elementos por página
+        $currentPage, // Página actual
+        ['path' => request()->url()] // URL base para la paginación
+        );
+        
       }
 
 
 
       return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'rangefrom', 'rangeto'));
     } catch (\Throwable $th) {
-      dd($th);
+     
     }
   }
 

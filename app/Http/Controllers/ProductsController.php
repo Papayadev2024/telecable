@@ -57,11 +57,14 @@ class ProductsController extends Controller
   {
     $especificaciones = [];
     $data = $request->all();
-    $precioparafiltro = null;
     $atributos = null;
+    
+    $valorprecio = $request->input('precio') - 0.1;
 
     $request->validate([
       'producto' => 'required',
+      'precio' => 'required|numeric|min:0.1', 
+      'descuento' => 'numeric|min:0|max:' . $valorprecio, 
     ]);
 
     if ($request->hasFile("imagen")) {

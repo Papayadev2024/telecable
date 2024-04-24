@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\General;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Pagination\Paginator as PaginationPaginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
             // Pasar los datos a la vista
             $view->with('datosgenerales', $datosgenerales);
         });
+
+         PaginationPaginator::useTailwind();   
     }
 }

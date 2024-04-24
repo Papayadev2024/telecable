@@ -21,7 +21,7 @@ class UsersSeeder extends Seeder
             'name' => 'Admin Mundo Web',
             'email' => 'hola@mundoweb.pe',
             'password' => Hash::make('12345678'),
-        ]);
+        ])->assignRole('Admin');
 
     }
 }

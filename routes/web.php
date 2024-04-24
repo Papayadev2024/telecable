@@ -63,7 +63,7 @@ Route::get('/catalogo/{filtro}', [IndexController::class, 'catalogo'] )->name('c
 
 
 
-Route::get('/micuenta', [IndexController::class, 'micuenta'] )->name('micuenta');
+// Route::get('/micuenta', [IndexController::class, 'micuenta'] )->name('micuenta');
 Route::get('/micuenta/pedidos', [IndexController::class, 'pedidos'] )->name('pedidos');
 Route::get('/micuenta/direccion', [IndexController::class, 'direccion'] )->name('direccion');
 
@@ -74,7 +74,7 @@ Route::get('/micuenta/direccion', [IndexController::class, 'direccion'] )->name(
 Route::post('guardarContactos', [IndexController::class, 'guardarContacto'] )->name('guardarContactos');
 
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'can:admin.home'])->group(function () {
 
     Route::prefix('admin')->group(function () {
         
@@ -171,3 +171,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     
 });
+
+
+
+
+    Route::get('/micuenta', [IndexController::class, 'micuenta'] )->middleware('can:public.home')->name('micuenta');  
+

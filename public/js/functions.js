@@ -268,7 +268,7 @@ var CarrosuelCatalogo = new Swiper(".producto-catalogo", {
 
 var input = document.querySelector(".input-box");
 
-input.onclick = function () {
+input.onclick = function() {
 this.classList.toggle("open");
 let list = this.nextElementSibling;
 if (list.style.maxHeight) {
@@ -371,5 +371,17 @@ rad.forEach((item) => {
 
 
 
+ const cuentas = document.querySelectorAll(".cuentas");
+ const depositoCuenta = document.querySelector(".deposito__cuenta");
+ const radioInputTarjeta = document.querySelector(".inputVoucher");
+ cuentas.forEach((cuenta) => {
+   cuenta.addEventListener("click", (e) => {
+     if (e.target.classList.contains("inputVoucher")) {
+       depositoCuenta.classList.remove("hidden");
+     } else {
+       depositoCuenta.classList.add("hidden");
+     }
+   });
+ });
 
 
