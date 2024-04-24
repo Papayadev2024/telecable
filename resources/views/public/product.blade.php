@@ -601,7 +601,7 @@
         }
 
       });
-      localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+      Local.set('carrito', articulosCarrito)
       limpiarHTML()
       PintarCarrito()
 
@@ -609,7 +609,7 @@
     }
 
     function calcularTotal() {
-      let articulos = JSON.parse(localStorage.getItem('carrito'))
+      let articulos = Local.get('carrito')
       console.log(articulos)
       let total = articulos.map(item => {
         let monto
@@ -642,7 +642,8 @@
 
       });
       console.log(articulosCarrito)
-      localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+      Local.set('carrito', articulosCarrito)
+      // localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
       limpiarHTML()
       PintarCarrito()
 
@@ -653,7 +654,7 @@
       console.log('borrando elemento')
       articulosCarrito = articulosCarrito.filter(objeto => objeto.id !== id);
 
-      localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+      Local.set('carrito', articulosCarrito)
       limpiarHTML()
       PintarCarrito()
     }
@@ -661,7 +662,7 @@
     var appUrl = <?php echo json_encode($url_env); ?>;
     console.log(appUrl);
     $(document).ready(function() {
-      articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      articulosCarrito = Local.get('carrito') || [];
 
       PintarCarrito();
     });
@@ -794,7 +795,7 @@
 
           }
 
-          localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+          Local.set('carrito', articulosCarrito)
           let itemsCarrito = $('#itemsCarrito')
           let ItemssubTotal = $('#ItemssubTotal')
           let itemsTotal = $('#itemsTotal')
@@ -824,6 +825,8 @@
 
     })
   </script>
+
+  <script src="{{ asset('js/storage.extend.js') }}"></script>
 @stop
 
 @stop

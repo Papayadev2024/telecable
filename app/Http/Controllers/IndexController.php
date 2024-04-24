@@ -122,13 +122,28 @@ class IndexController extends Controller
   public function carrito()
   {
     //
-    return view('public.checkout_carrito');
+    $url_env = $_ENV['APP_URL'];
+    return view('public.checkout_carrito', compact('url_env'));
   }
 
   public function pago()
   {
     //
-    return view('public.checkout_pago');
+    $user = auth()->user();
+    // dump($user);
+    $distritos  = DB::select('select * from districts where active = ? order by 3', [1]);
+    $provincias = DB::select('select * from provinces where active = ? order by 3', [1]);
+    $departamento = DB::select('select * from departments where active = ? order by 2', [1]);
+    
+    $url_env = $_ENV['APP_URL'];
+    return view('public.checkout_pago', compact('url_env', 'distritos', 'provincias', 'departamento'));
+  }
+
+  public function procesarPago(Request $request) {
+
+    dump($request);
+
+    
   }
 
   public function agradecimiento()
