@@ -148,6 +148,7 @@
 
       });
       console.log(itemsCarrito)
+      Local.destroy('carrito')
       // calcularTotal()
     }
   </script>
