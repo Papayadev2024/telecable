@@ -16,11 +16,14 @@ use App\Models\Strength;
 use App\Models\Testimony;
 use App\Models\Category;
 use App\Models\Specifications;
+use App\Models\User;
+use App\Models\UserDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
-
+use function PHPUnit\Framework\isNull;
 
 class IndexController extends Controller
 {
@@ -129,21 +132,115 @@ class IndexController extends Controller
   public function pago()
   {
     //
+    $detalleUsuario = [];
     $user = auth()->user();
+    dump($user);
+    if (!isNull($user)) {
+      $detalleUsuario = UserDetails::where('email', $user->email)->get();
+    }
     // dump($user);
     $distritos  = DB::select('select * from districts where active = ? order by 3', [1]);
     $provincias = DB::select('select * from provinces where active = ? order by 3', [1]);
     $departamento = DB::select('select * from departments where active = ? order by 2', [1]);
-    
+
+
     $url_env = $_ENV['APP_URL'];
-    return view('public.checkout_pago', compact('url_env', 'distritos', 'provincias', 'departamento'));
+    return view('public.checkout_pago', compact('url_env', 'distritos', 'provincias', 'departamento', 'detalleUsuario'));
   }
 
-  public function procesarPago(Request $request) {
+  public function procesarPago(Request $request)
+  {
 
-    dump($request);
+    $codigoAleatorio = '';
+    $mensajes2compra = [
+      'email.required' => 'El campo Email es obligatorio.',
+      'nombre.required' => 'El campo Nombre es obligatorio.',
+      'apellidos.required' => 'El campo Email es obligatorio.',
+      'departamento_id.required ' => 'Seleccione un Departamento es obligatorio.',
+      'provincia_id.required' => 'Seleccione una Provincia es obligatorio.',
+      'distrito_id.required' => 'Seleccione un Distrito obligatorio.',
+      'dir_av_calle.required' => 'El campo Avenida/Calle obligatorio.',
+      'dir_numero.required' => 'El campo Numero es obligatorio.'
+    ];
 
-    
+    try {
+      $reglasPrimeraCompra = [
+        'email' => 'required',
+      ];
+      $mensajes = [
+        'email.required' => 'El campo Email es obligatorio.',
+
+      ];
+      $request->validate($reglasPrimeraCompra, $mensajes);
+
+      $email = $request->email;
+      $existeUser = UserDetails::where('email', $email)->get()->toArray();
+
+      if (count($existeUser) === 0) {
+        UserDetails::create($request->all());
+
+        $codigoAleatorio = $this->codigoVentaAleatorio();
+        $this->guardarOrden();
+
+        return response()->json(['message' => 'Data procesada correctamente','codigoCompra' => $codigoAleatorio],);
+      } else {
+        $existeUsuario = User::where('email', $email)->get()->toArray();
+        dump($request->all());
+        if ($existeUsuario) {
+          $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'departamento_id' => 'required',
+            'provincia_id' => 'required',
+            'distrito_id' => 'required',
+            'dir_av_calle' => 'required',
+            'dir_numero' => 'required',
+            'dir_bloq_lote' => 'required',
+            // Otras reglas de validación
+          ]);
+
+          if ($validator->fails()) {
+            // Aquí puedes manejar el error como desees, por ejemplo, devolver una respuesta con los errores
+            return response()->json(['errors' => $validator->errors()], 422);
+          } else {
+
+            //Procesar Compra
+            $userdetailU = UserDetails::where('email', $email)->first();
+            $userdetailU->update($request->all());
+
+            $codigoAleatorio = $this->codigoVentaAleatorio();
+            $this->guardarOrden();
+            return response()->json(['message' => 'Todos los datos estan correctos','codigoCompra' => $codigoAleatorio],);
+          }
+        } else {
+          return response()->json(['errors' => 'Por favor registrese e inicie session '], 422);
+        }
+      }
+    } catch (\Throwable $th) {
+      //throw $th;
+      return response()->json(['message' => $th], 400);
+    }
+  }
+
+  private function guardarOrden()
+  {
+    //almacenar venta, generar orden de pedido , guardar en tabla detalle de compra, li
+  }
+
+  private function codigoVentaAleatorio()
+  {
+    $codigoAleatorio = '';
+
+    // Longitud deseada del código
+    $longitudCodigo = 10;
+
+    // Genera un código aleatorio de longitud 10
+    for ($i = 0; $i < $longitudCodigo; $i++) {
+      $codigoAleatorio .= mt_rand(0, 9); // Agrega un dígito aleatorio al código
+    }
+    dump($codigoAleatorio);
+    return $codigoAleatorio;
   }
 
   public function agradecimiento()
@@ -198,8 +295,8 @@ class IndexController extends Controller
     $atributos = Attributes::where("status", "=", true)->get();
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
     $url_env = $_ENV['APP_URL'];
-    
-    
+
+
 
     return view('public.product', compact('productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env'));
   }
