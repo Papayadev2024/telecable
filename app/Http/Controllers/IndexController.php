@@ -151,11 +151,9 @@ class IndexController extends Controller
     //
     $detalleUsuario = [];
     $user = auth()->user();
-    dump($user);
     if (!isNull($user)) {
       $detalleUsuario = UserDetails::where('email', $user->email)->get();
     }
-    // dump($user);
     $distritos  = DB::select('select * from districts where active = ? order by 3', [1]);
     $provincias = DB::select('select * from provinces where active = ? order by 3', [1]);
     $departamento = DB::select('select * from departments where active = ? order by 2', [1]);
@@ -202,7 +200,6 @@ class IndexController extends Controller
         return response()->json(['message' => 'Data procesada correctamente','codigoCompra' => $codigoAleatorio],);
       } else {
         $existeUsuario = User::where('email', $email)->get()->toArray();
-        dump($request->all());
         if ($existeUsuario) {
           $validator = Validator::make($request->all(), [
             'email' => 'required',
@@ -256,7 +253,6 @@ class IndexController extends Controller
     for ($i = 0; $i < $longitudCodigo; $i++) {
       $codigoAleatorio .= mt_rand(0, 9); // Agrega un dígito aleatorio al código
     }
-    dump($codigoAleatorio);
     return $codigoAleatorio;
   }
 
