@@ -8,6 +8,7 @@
 @section('content')
 
 <main>
+    
     <section class="font-poppins mt-12 mb-0 md:my-12">
       <div class="flex flex-col w-11/12 mx-auto">
         <div class="flex flex-col gap-10 my-5">

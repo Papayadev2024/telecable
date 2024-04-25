@@ -178,5 +178,5 @@ Route::middleware(['auth:sanctum', 'verified', 'can:admin.home'])->group(functio
 
 
 
-    Route::get('/micuenta', [IndexController::class, 'micuenta'] )->middleware('can:public.home')->name('micuenta');  
+Route::get('/micuenta', [IndexController::class, 'micuenta'] )->middleware('can:public.home')->name('micuenta');
 
