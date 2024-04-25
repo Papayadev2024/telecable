@@ -303,10 +303,10 @@
                       <a href="/agradecimiento" id="pagarProductos"
                         class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none">Pagar</a>
                       <!-- <input
-                                                                                                                                                type="submit"
-                                                                                                                                                value="Checkout"
-                                                                                                                                                class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
-                                                                                                                                              /> -->
+                                                                                                                                                  type="submit"
+                                                                                                                                                  value="Checkout"
+                                                                                                                                                  class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
+                                                                                                                                                /> -->
                     </div>
 
                   </div>

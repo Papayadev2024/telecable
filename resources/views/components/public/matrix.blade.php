@@ -40,7 +40,7 @@
 
   @yield('scripts_importados')
   {{-- @vite(['resources/js/functions.js']) --}}
-  {{-- <script src="{{ asset('js/functions.js') }}"></script> --}}
+  <script src="{{ asset('js/functions.js') }}"></script>
 
 </body>
 

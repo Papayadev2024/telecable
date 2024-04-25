@@ -229,10 +229,13 @@
                 </div>
 
                 <div class="flex justify-center items-center mt-12">
-                    <a href="catalogo.html"
+                    
+                    {{$productos->appends(['rangefrom' => $rangefrom, 'rangeto' => $rangeto])->links()}}
+                  
+                    {{-- <a href="catalogo.html"
                         class="font-semibold text-[16px] bg-white md:duration-500 py-4 px-5 rounded-3xl border-[1px] border-colorBorder flex-initial text-center w-full md:w-56">
                         Cargar más
-                    </a>
+                    </a> --}}
                 </div>
             </section>
         </div>   
