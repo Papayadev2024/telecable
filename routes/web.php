@@ -77,7 +77,7 @@ Route::post('guardarContactos', [IndexController::class, 'guardarContacto'] )->n
 Route::post('carrito/buscarProducto', [CarritoController::class, 'buscarProducto'] )->name('carrito.buscarProducto');
 
 
-Route::middleware(['auth:sanctum', 'verified', 'can:admin.home'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified',  'can_admin', 'can:Admin'])->group(function () {
 
     Route::prefix('admin')->group(function () {
         
