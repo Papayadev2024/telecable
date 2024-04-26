@@ -41,7 +41,7 @@
             <li>
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
-
+                   
                     <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center py-1 px-3"
                         href="{{ route('logout') }}"
                         @click.prevent="$root.submit();"

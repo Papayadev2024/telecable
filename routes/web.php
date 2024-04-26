@@ -53,31 +53,24 @@ Route::get('/nosotros', [IndexController::class, 'nosotros'] )->name('nosotros')
 Route::get('/servicios', [IndexController::class, 'servicios'] )->name('servicios');
 Route::get('/comentario', [IndexController::class, 'comentario'] )->name('comentario');
 Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
+/* Proceso de pago */
 Route::get('/carrito', [IndexController::class, 'carrito'] )->name('carrito');
 Route::get('/pago', [IndexController::class, 'pago'] )->name('pago');
+Route::post('/procesar/pago',[IndexController::class, 'procesarPago'])->name('procesar.pago');
 Route::get('/agradecimiento', [IndexController::class, 'agradecimiento'] )->name('agradecimiento');
-Route::get('/404', [IndexController::class, 'error'] )->name('error');
+/* Catálogo y producto */
 Route::get('/producto/{id}', [IndexController::class, 'producto'] )->name('producto');
 Route::get('/catalogo/{filtro}', [IndexController::class, 'catalogo'] )->name('catalogo');
-
-Route::post('/procesar/pago',[IndexController::class, 'procesarPago'])->name('procesar.pago');
-
-
-
-// Route::get('/micuenta', [IndexController::class, 'micuenta'] )->name('micuenta');
-Route::get('/micuenta/pedidos', [IndexController::class, 'pedidos'] )->name('pedidos');
-Route::get('/micuenta/direccion', [IndexController::class, 'direccion'] )->name('direccion');
-
-
-
-
-
+Route::post('carrito/buscarProducto', [CarritoController::class, 'buscarProducto'] )->name('carrito.buscarProducto');
+/* Página 404 */
+Route::get('/404', [IndexController::class, 'error'] )->name('error');
+/* Formulario de contacto */
 Route::post('guardarContactos', [IndexController::class, 'guardarContacto'] )->name('guardarContactos');
 
-Route::post('carrito/buscarProducto', [CarritoController::class, 'buscarProducto'] )->name('carrito.buscarProducto');
 
 
-Route::middleware(['auth:sanctum', 'verified',  'can_admin', 'can:Admin'])->group(function () {
+
+Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () {
 
     Route::prefix('admin')->group(function () {
         
@@ -119,19 +112,22 @@ Route::middleware(['auth:sanctum', 'verified',  'can_admin', 'can:Admin'])->grou
         Route::resource('/logos', LogosClientController::class);
         Route::post('/logos/deleteLogo', [LogosClientController::class, 'deleteLogo'] )->name('logos.deleteLogo');
 
+        //Equipo
         Route::resource('/staff', StaffController::class);
         Route::post('/staff/updateVisible', [StaffController::class, 'updateVisible'])->name('staff.updateVisible');
 
+        //Beneficios    
         Route::resource('/strength', StrengthController::class);
         Route::post('/strength/updateVisible', [StrengthController::class, 'updateVisible'])->name('strength.updateVisible');
         Route::post('/strength/borrar', [StrengthController::class, 'borrar'])->name('strength.borrar');
       
-        //Atributes
-
+        
+        //Nosotros
         Route::resource('/aboutus', AboutUsController::class);
         Route::post('/aboutus/updateVisible', [AboutUsController::class, 'updateVisible'])->name('aboutus.updateVisible');
         Route::post('/aboutus/borrar', [AboutUsController::class, 'borrar'])->name('aboutus.borrar');
-
+       
+        //Atributes
         Route::resource('/attributes', AttributesController::class);
         Route::post('/attributes/updateVisible', [AttributesController::class, 'updateVisible'])->name('attributes.updateVisible');
         Route::post('/attributes/borrar', [AttributesController::class, 'borrar'])->name('attributes.borrar');
@@ -141,29 +137,29 @@ Route::middleware(['auth:sanctum', 'verified',  'can_admin', 'can:Admin'])->grou
         Route::post('/valoresattributes/borrar', [ValoresAtributosController::class, 'borrar'])->name('valoresattributes.borrar');
         Route::post('/valoresattributes/updateVisible', [ValoresAtributosController::class, 'updateVisible'])->name('valoresattributes.updateVisible');
 
-
         //Etiquetas
         Route::resource('/tags', TagController::class);
         Route::post('/tags/deleteTags', [TagController::class, 'deleteTags'])->name('tags.deleteTags');
 
+        //Productos
         Route::resource('/products', ProductsController::class);
         Route::post('/products/updateVisible', [ProductsController::class, 'updateVisible'])->name('products.updateVisible');
         Route::post('/products/borrar', [ProductsController::class, 'borrar'])->name('products.borrar');
 
+        //Preguntas frecuentes
         Route::resource('/faqs', FaqsController::class);
         Route::post('/faqs/updateVisible', [FaqsController::class, 'updateVisible'])->name('faqs.updateVisible');
         Route::post('/faqs/borrar', [FaqsController::class, 'borrar'])->name('faqs.borrar');
 
-               
+        //Sliders   
         Route::resource('/slider', SliderController::class);
         Route::post('/slider/updateVisible', [SliderController::class, 'updateVisible'])->name('slider.updateVisible');
         Route::post('/slider/deleteSlider', [SliderController::class, 'deleteSlider'])->name('slider.deleteSlider');
 
+        //Galeria
         Route::resource('/galerie', GalerieController::class);
         Route::post('/galerie/updateVisible', [GalerieController::class, 'updateVisible'])->name('galerie.updateVisible');
         Route::post('/galerie/borrar', [GalerieController::class, 'borrar'])->name('galerie.borrar');
-
-
 
         
         Route::fallback(function() {
@@ -176,7 +172,12 @@ Route::middleware(['auth:sanctum', 'verified',  'can_admin', 'can:Admin'])->grou
 });
 
 
+Route::middleware(['auth:sanctum', 'verified', 'can:Customer'])->group(function () {
+
+ Route::get('/micuenta', [IndexController::class, 'micuenta'] )->name('micuenta');
+ Route::get('/micuenta/pedidos', [IndexController::class, 'pedidos'] )->name('pedidos');
+ Route::get('/micuenta/direccion', [IndexController::class, 'direccion'] )->name('direccion');
+ Route::post('/micuenta/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
 
 
-Route::get('/micuenta', [IndexController::class, 'micuenta'] )->middleware('can:public.home')->name('micuenta');
-
+});

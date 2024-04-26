@@ -6,6 +6,7 @@ use App\Actions\Jetstream\DeleteUser;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
 
+
 class JetstreamServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +14,7 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+       
     }
 
     /**
@@ -22,7 +23,7 @@ class JetstreamServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configurePermissions();
-
+       
         Jetstream::deleteUsersUsing(DeleteUser::class);
     }
 

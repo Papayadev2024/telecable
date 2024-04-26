@@ -4,9 +4,10 @@ namespace App\Http\Responses;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 
-class LoginResponse implements LoginResponseContract
+
+class RegisterResponse implements RegisterResponseContract
 {
 
     public function toResponse($request)
@@ -24,7 +25,7 @@ class LoginResponse implements LoginResponseContract
             case 'Customer':
                 return redirect()->intended(config('fortify.home_public'));
             default:
-                return redirect()->route('index');
+                return redirect()->intended(config('fortify.home_public'));
         }
     }
 

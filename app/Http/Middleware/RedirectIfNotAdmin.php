@@ -20,11 +20,12 @@ class RedirectIfNotAdmin
        
         $idUsuario = auth()->user()['id']; 
 
-        $role = DB::select('SELECT        roles.name    FROM        model_has_roles        INNER JOIN roles ON model_has_roles.role_id = roles.id        INNER JOIN users ON model_has_roles.model_id = users.id        WHERE users.id =  ?', [$idUsuario]);
+        $role = DB::select('SELECT roles.name  FROM  model_has_roles  INNER JOIN roles ON model_has_roles.role_id = roles.id  INNER JOIN users ON model_has_roles.model_id = users.id  WHERE users.id =  ?', [$idUsuario]);
         
         if ( count($role) == 0 ) {
             return redirect()->route('index'); // Cambia 'login' al nombre de la ruta de tu página de inicio de sesión
         }
+
         return $next($request);
     }
 }

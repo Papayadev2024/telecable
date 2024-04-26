@@ -14,14 +14,7 @@
   }
   
   ?>
-    <?php
-    // Definición de la función capitalizeFirstLetter()
-    function capitalizeFirstLetter($string)
-    {
-        return ucfirst($string);
-    }
-    ?>
-
+  
   <main class="my-10 font-poppins" id="mainSection">
     <section class="w-11/12 mx-auto flex flex-col md:flex-row gap-10">
       @csrf

@@ -21,8 +21,13 @@ use App\Models\UserDetails;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
+use Illuminate\Support\Str;
 
 use function PHPUnit\Framework\isNull;
 
@@ -262,10 +267,38 @@ class IndexController extends Controller
     return view('public.checkout_agradecimiento');
   }
 
+  public function cambiofoto(Request $request){
+    
+   
+    $user = User::findOrFail($request->id);
+    
+    if ($request->hasFile("image")) {
+
+      $file = $request->file('image');
+      $route = 'storage/images/users/';
+      $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+      if (File::exists(storage_path().'/app/public/'.$user->profile_photo_path)) {
+        File::delete(storage_path().'/app/public/'.$user->profile_photo_path);
+      }
+      
+      $this->saveImg($file, $route, $nombreImagen);
+
+      $routeforshow = 'images/users/';
+      $user->profile_photo_path = $routeforshow.$nombreImagen;
+
+      $user->save();
+      
+      return response()->json(['message' => 'La imagen se cargó correctamente.']);
+    }
+
+    
+  }
+
   public function micuenta()
   {
-    //
-    return view('public.dashboard');
+    $user = Auth::user();
+    return view('public.dashboard', compact('user'));
   }
 
 
@@ -389,4 +422,16 @@ class IndexController extends Controller
     // return redirect()->route('landingaplicativos', $formlanding)->with('mensaje','Mensaje enviado exitoso')->with('name', $request->nombre);
     return response()->json(['message' => 'Mensaje enviado con exito']);
   }
+
+
+
+  public function saveImg($file, $route, $nombreImagen){
+		$manager = new ImageManager(new Driver());
+		$img =  $manager->read($file);
+
+		if (!file_exists($route)) {
+			mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+	}
+		$img->save($route . $nombreImagen);
+	}
 }
