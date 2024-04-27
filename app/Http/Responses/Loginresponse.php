@@ -12,7 +12,7 @@ class LoginResponse implements LoginResponseContract
     public function toResponse($request)
     {
         $role = Auth::user()->roles->pluck('name');
-        dump($role[0]);
+        
         
         if ($request->wantsJson()) {
             return response()->json(['two_factor' => false]);

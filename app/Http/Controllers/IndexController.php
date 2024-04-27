@@ -83,7 +83,7 @@ class IndexController extends Controller
         $categoria = Category::findOrFail($filtro);
       }
 
-     
+
 
       if ($rangefrom !== null && $rangeto !== null) {
 
@@ -94,7 +94,7 @@ class IndexController extends Controller
           $productos = Products::where('categoria_id', '=', $filtro)->get();
           $categoria = Category::findOrFail($filtro);
         }
-       
+
         $cleanedData = $productos->filter(function ($value) use ($rangefrom, $rangeto) {
 
           if ($value['descuento'] == 0) {
@@ -102,33 +102,28 @@ class IndexController extends Controller
             if ($value['precio'] <= $rangeto && $value['precio'] >= $rangefrom) {
               return $value;
             }
-
           } else {
 
             if ($value['descuento'] <= $rangeto && $value['descuento'] >= $rangefrom) {
               return $value;
             }
           }
-
-         
         });
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $productos = new LengthAwarePaginator(
-        $cleanedData->forPage($currentPage, 3), // Obtener los productos por página
-        $cleanedData->count(), // Contar todos los elementos
-        3, // Número de elementos por página
-        $currentPage, // Página actual
-        ['path' => request()->url()] // URL base para la paginación
+          $cleanedData->forPage($currentPage, 3), // Obtener los productos por página
+          $cleanedData->count(), // Contar todos los elementos
+          3, // Número de elementos por página
+          $currentPage, // Página actual
+          ['path' => request()->url()] // URL base para la paginación
         );
-        
       }
 
 
 
       return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'rangefrom', 'rangeto'));
     } catch (\Throwable $th) {
-     
     }
   }
 
@@ -202,7 +197,7 @@ class IndexController extends Controller
         $codigoAleatorio = $this->codigoVentaAleatorio();
         $this->guardarOrden();
 
-        return response()->json(['message' => 'Data procesada correctamente','codigoCompra' => $codigoAleatorio],);
+        return response()->json(['message' => 'Data procesada correctamente', 'codigoCompra' => $codigoAleatorio],);
       } else {
         $existeUsuario = User::where('email', $email)->get()->toArray();
         if ($existeUsuario) {
@@ -230,7 +225,7 @@ class IndexController extends Controller
 
             $codigoAleatorio = $this->codigoVentaAleatorio();
             $this->guardarOrden();
-            return response()->json(['message' => 'Todos los datos estan correctos','codigoCompra' => $codigoAleatorio],);
+            return response()->json(['message' => 'Todos los datos estan correctos', 'codigoCompra' => $codigoAleatorio],);
           }
         } else {
           return response()->json(['errors' => 'Por favor registrese e inicie session '], 422);
@@ -267,32 +262,62 @@ class IndexController extends Controller
     return view('public.checkout_agradecimiento');
   }
 
-  public function cambiofoto(Request $request){
-    
-   
+  public function cambiofoto(Request $request)
+  {
+
+
     $user = User::findOrFail($request->id);
-    
+
     if ($request->hasFile("image")) {
 
       $file = $request->file('image');
       $route = 'storage/images/users/';
       $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
-      if (File::exists(storage_path().'/app/public/'.$user->profile_photo_path)) {
-        File::delete(storage_path().'/app/public/'.$user->profile_photo_path);
+      if (File::exists(storage_path() . '/app/public/' . $user->profile_photo_path)) {
+        File::delete(storage_path() . '/app/public/' . $user->profile_photo_path);
       }
-      
+
       $this->saveImg($file, $route, $nombreImagen);
 
       $routeforshow = 'images/users/';
-      $user->profile_photo_path = $routeforshow.$nombreImagen;
+      $user->profile_photo_path = $routeforshow . $nombreImagen;
 
       $user->save();
-      
+
       return response()->json(['message' => 'La imagen se cargó correctamente.']);
     }
+  }
 
-    
+  public function actualizarPerfil(Request $request)
+  {
+
+
+
+    $user = User::findOrFail($request->id);
+    $user->name = $request->name;
+    $user->lastname = $request->lastname;
+
+    $reglasValidacion = [
+      'password' => '',
+    ];
+    $mensajes = [
+      'name.required' => 'El campo nombre es obligatorio.',
+
+    ];
+
+    $request->validate($reglasValidacion, $mensajes);
+
+
+    if ($request->password !== null && $request->newpassword === null ) {
+      echo "Por favor completa password.";
+    } elseif ($request->newpassword === null) {
+      echo "Por favor completa la variable newpassword.";
+    } elseif ($request->confirmnewpassword === null) {
+      echo "Por favor completa la variable confirmnewpassword.";
+    } else {
+      // Aquí puedes poner el código que se ejecutará si todas las variables están presentes
+    }
   }
 
   public function micuenta()
@@ -425,13 +450,14 @@ class IndexController extends Controller
 
 
 
-  public function saveImg($file, $route, $nombreImagen){
-		$manager = new ImageManager(new Driver());
-		$img =  $manager->read($file);
+  public function saveImg($file, $route, $nombreImagen)
+  {
+    $manager = new ImageManager(new Driver());
+    $img =  $manager->read($file);
 
-		if (!file_exists($route)) {
-			mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
-	}
-		$img->save($route . $nombreImagen);
-	}
+    if (!file_exists($route)) {
+      mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+    }
+    $img->save($route . $nombreImagen);
+  }
 }

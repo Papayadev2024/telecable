@@ -178,6 +178,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Customer'])->group(function 
  Route::get('/micuenta/pedidos', [IndexController::class, 'pedidos'] )->name('pedidos');
  Route::get('/micuenta/direccion', [IndexController::class, 'direccion'] )->name('direccion');
  Route::post('/micuenta/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
+ Route::post('/micuenta/actualizarPerfil', [IndexController::class, 'actualizarPerfil'] )->name('actualizarPerfil');
 
 
 });
