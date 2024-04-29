@@ -20,7 +20,10 @@
                 <div class="swiper-wrapper">
                     @foreach ($slider as $item)
                         <div class="swiper-slide rounded-2xl">
-                            <div style="background-image: url('{{ asset($item->url_image . $item->name_image) }}')"
+                            <div style="background-image: 
+                                @if ($item->name_image) url('{{ asset($item->url_image . $item->name_image) }}')
+                                @else
+                                 url('{{ asset('images/img/noimagenslider.jpg') }}') @endif"
                                 class="bg-cover bg-center bg-no-repeat min-h-[700px] flex flex-col items-start py-16 md:justify-center bg-colorBackgroundHeader">
                                 <div class="flex justify-start items-center md:py-16 w-11/12 mx-auto">
                                     <div class="text-white font-poppins flex flex-col gap-10">
@@ -156,13 +159,13 @@
             </div> --}}
         @else
             <section class="mt-20">
-                <h2 class="block md:hidden font-poppins font-semibold text-[40px] w-11/12 mx-auto">
+                <h2 class="block lg:hidden font-poppins font-semibold text-[40px] w-11/12 mx-auto">
                     Categorías
                 </h2>
                 <div>
                     @if (count($category->take(4)) == 1)
 
-                        <section class="mt-10 hidden md:block relative">
+                        <section class="mt-10 hidden lg:block relative">
 
                             <div class="grid grid-cols-1 gap-4 w-10/12 mx-auto">
 
@@ -170,21 +173,27 @@
                                     <div class="col-span-2 row-span-2">
                                         <div class="bg-[#F3F5F7] flex flex-row h-full rounded-xl">
                                             <div class="flex justify-start items-center basis-1/2">
-                                                <img src="{{ asset($slide->url_image . $slide->name_image) }}"
-                                                    alt="{{ $slide->name }}" class="w-full" />
+                                                @if ($slide->name_image)
+                                                    <img src="{{ asset($slide->url_image . $slide->name_image) }}"
+                                                        alt="{{ $slide->name }}" class="w-full h-30 object-contain" />
+                                                @else
+                                                    <img src="{{ asset('images/img/noimagen.jpg') }}"
+                                                        alt="imagen_alternativa" class="w-full h-30 object-contain" />
+                                                @endif
                                             </div>
 
                                             <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
                                                 <h2 class="font-semibold text-[24px]">
                                                     {{ $slide->name }}
                                                 </h2>
-                                                <p class="my-2 font-normal text-[16px]">
+                                                <p class="my-2 font-normal text-[16px] mb-4">
                                                     {{ $slide->description }}
                                                 </p>
 
                                                 <div>
-                                                    <a href="/catalogo/{{$item->id}}"
-                                                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Comprar
+                                                    <a href="/catalogo/{{ $slide->id }}"
+                                                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-2 px-8 rounded-3xl border-[1px] border-colorBorder">Ir
+                                                        a categoría
                                                     </a>
                                                 </div>
                                             </div>
@@ -196,7 +205,7 @@
 
                         </section>
                     @elseif(count($category->take(4)) == 2)
-                        <section class="mt-10 hidden md:block relative">
+                        <section class="mt-10 hidden lg:block relative">
 
                             <div class="grid grid-cols-4 gap-4 w-10/12 mx-auto">
 
@@ -204,21 +213,27 @@
                                     <div class="col-span-2 row-span-1">
                                         <div class="bg-[#F3F5F7] flex flex-row h-full rounded-xl">
                                             <div class="flex justify-start items-center basis-1/2">
-                                                <img src="{{ asset($slide->url_image . $slide->name_image) }}"
-                                                    alt="{{ $slide->name }}" class="w-full" />
+                                                @if ($slide->name_image)
+                                                    <img src="{{ asset($slide->url_image . $slide->name_image) }}"
+                                                        alt="{{ $slide->name }}" class="w-full h-30 object-contain" />
+                                                @else
+                                                    <img src="{{ asset('images/img/noimagen.jpg') }}"
+                                                        alt="imagen_alternativa" class="w-full h-30 object-contain" />
+                                                @endif
                                             </div>
 
-                                            <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
-                                                <h2 class="font-semibold text-[24px]">
+                                            <div
+                                                class="font-poppins basis-1/2 p-4 pb-6 flex flex-col gap-2 justify-center">
+                                                <h2 class="font-semibold text-[24px] truncate">
                                                     {{ $slide->name }}
                                                 </h2>
-                                                <p class="my-2 font-normal text-[16px]">
+                                                <p class="my-2 font-normal text-[16px] mb-4">
                                                     {{ $slide->description }}
                                                 </p>
 
                                                 <div>
-                                                    <a href="/catalogo/{{$item->id}}"
-                                                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Comprar
+                                                    <a href="/catalogo/{{ $slide->id }}"
+                                                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-3 px-[8%] rounded-3xl border-[1px] border-colorBorder">Comprar
                                                     </a>
                                                 </div>
                                             </div>
@@ -230,7 +245,7 @@
                             </div>
                         </section>
                     @elseif(count($category->take(4)) == 3)
-                        <section class="mt-10 hidden md:block relative">
+                        <section class="mt-10 hidden lg:block relative">
 
                             <div class="grid grid-cols-4 gap-4 w-10/12 mx-auto">
 
@@ -242,21 +257,27 @@
                                         <div
                                             class="bg-[#F3F5F7] flex  @if ($loop->first) flex-col @elseif(!$loop->first) flex-row @endif  h-full rounded-xl">
                                             <div class="flex justify-start items-center basis-1/2">
-                                                <img src="{{ asset($slide->url_image . $slide->name_image) }}"
-                                                    alt="{{ $slide->name }}" class="w-full" />
+                                                @if ($slide->name_image)
+                                                    <img src="{{ asset($slide->url_image . $slide->name_image) }}"
+                                                        alt="{{ $slide->name }}" class="w-full h-30 object-contain" />
+                                                @else
+                                                    <img src="{{ asset('images/img/noimagen.jpg') }}"
+                                                        alt="imagen_alternativa" class="w-full h-30 object-contain" />
+                                                @endif
                                             </div>
 
-                                            <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
-                                                <h2 class="font-semibold text-[24px]">
+                                            <div
+                                                class="font-poppins basis-1/2 p-4 pb-6 flex flex-col gap-2 justify-center">
+                                                <h2 class="font-semibold text-[24px] truncate">
                                                     {{ $slide->name }}
                                                 </h2>
-                                                <p class="my-2 font-normal text-[16px]">
+                                                <p class="my-2 font-normal text-[16px] mb-4">
                                                     {{ $slide->description }}
                                                 </p>
 
                                                 <div>
-                                                    <a href="/catalogo/{{$item->id}}"
-                                                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Comprar
+                                                    <a href="/catalogo/{{ $slide->id }}"
+                                                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-3 px-[8%] rounded-3xl border-[1px] border-colorBorder">Comprar
                                                     </a>
                                                 </div>
                                             </div>
@@ -270,7 +291,7 @@
                             </div>
                         </section>
                     @elseif(count($category->take(4)) == 4)
-                        <section class="mt-10 hidden md:block relative">
+                        <section class="mt-10 hidden lg:block relative">
 
                             <div class="grid grid-cols-4 gap-4 w-10/12 mx-auto">
 
@@ -282,21 +303,27 @@
                                         <div
                                             class="bg-[#F3F5F7] flex  @if ($loop->index == 0 || $loop->index == 2 || $loop->index == 3) flex-col @elseif($loop->index == 1) flex-row @endif  h-full rounded-xl">
                                             <div class="flex justify-start items-center basis-1/2">
-                                                <img src="{{ asset($slide->url_image . $slide->name_image) }}"
-                                                    alt="{{ $slide->name }}" class="w-full" />
+                                                @if ($slide->name_image)
+                                                    <img src="{{ asset($slide->url_image . $slide->name_image) }}"
+                                                        alt="{{ $slide->name }}" class="w-full h-30 object-contain" />
+                                                @else
+                                                    <img src="{{ asset('images/img/noimagen.jpg') }}"
+                                                        alt="imagen_alternativa" class="w-full h-30 object-contain" />
+                                                @endif
                                             </div>
 
-                                            <div class="font-poppins basis-1/2 p-4 flex flex-col gap-2 justify-center">
-                                                <h2 class="font-semibold text-[24px]">
+                                            <div
+                                                class="font-poppins basis-1/2 p-4 pb-6  flex flex-col gap-2 justify-center">
+                                                <h2 class="font-semibold text-[24px] truncate">
                                                     {{ $slide->name }}
                                                 </h2>
-                                                <p class="my-2 font-normal text-[16px]">
+                                                <p class="my-2 font-normal text-[16px] mb-4">
                                                     {{ $slide->description }}
                                                 </p>
 
                                                 <div>
                                                     <a href="/catalogo/{{ $slide->id }} "
-                                                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-1 px-5 rounded-3xl border-[1px] border-colorBorder">Ver
+                                                        class=" font-semibold text-[16px] bg-transparent md:duration-500 py-3 px-[8%]  rounded-3xl border-[1px] border-colorBorder">Ver
                                                         categoría
                                                     </a>
                                                 </div>
@@ -313,26 +340,33 @@
 
 
                     <!------Categorias destacadas - carrusel------>
-                    <section class="block md:hidden">
+                    <section class="block lg:hidden">
                         <div class="swiper categorias">
                             <!-- <div class="swiper-pagination-categorias mb-24"></div> -->
                             <div class="swiper-wrapper mb-[32x]">
                                 @foreach ($category as $item)
-                                    <a href="/catalogo/{{$item->id}}">
-                                      <div class="swiper-slide mt-0 mb-4">
-                                          <div class="flex flex-col p-4">
-                                              <div class="flex flex-col bg-[#F8F6F2] rounded-2xl">
-                                                  <h2 class="font-semibold text-[24px] text-center mt-5">
-                                                      {{ $item->name }}
-                                                  </h2>
-                                                  <div class="flex justify-center items-center">
-                                                      <img src="{{ asset($slide->url_image . $slide->name_image) }}"
-                                                          alt="tablas" class="" />
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                    </a>    
+                                    <a href="/catalogo/{{ $item->id }}">
+                                        <div class="swiper-slide mt-0 mb-4">
+                                            <div class="flex flex-col p-4">
+                                                <div class="flex flex-col bg-[#F8F6F2] rounded-2xl">
+                                                    <h2 class="font-semibold text-[24px] text-center mt-5">
+                                                        {{ $item->name }}
+                                                    </h2>
+                                                    <div class="flex justify-center items-center">
+                                                        @if ($slide->name_image)
+                                                            <img src="{{ asset($slide->url_image . $slide->name_image) }}"
+                                                                alt="{{ $slide->name_image }}"
+                                                                class="w-full h-30 object-contain" />
+                                                        @else
+                                                            <img src="{{ asset('images/img/noimagen.jpg') }}"
+                                                                alt="imagen_alternativa"
+                                                                class="w-full h-30 object-contain" />
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
                                 @endforeach
                             </div>
                             <div class="swiper-pagination-categorias"></div>
@@ -362,7 +396,7 @@
                         </p>
                     </div>
                     <div class="col-span-1 md:col-span-1 order-3 md:order-2 flex justify-center items-center w-full">
-                        <a href="catalogo.html"
+                        <a href="/catalogo/0"
                             class="font-semibold text-[16px] bg-transparent md:duration-500 py-4 px-5 rounded-3xl border-[1px] border-colorBorder flex-initial w-full md:w-56 text-center inline-block">
                             Ver todo
                         </a>
@@ -385,12 +419,11 @@
                                         <div>
                                             <div class="relative flex justify-center items-center">
                                                 @if ($item->imagen)
-                                                    <img src="{{ asset($item->imagen) }}" class="" />
+                                                    <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}"
+                                                        class="w-full h-30 object-contain" />
                                                 @else
-                                                    <div class='h-32'>
-                                                        <img src="{{ asset('storage/images/imagen/no_img.jpg') }}"
-                                                            alt="imagen_alternativa" class="h-30 object-contain" />
-                                                    </div>
+                                                    <img src="{{ asset('images/img/noimagen.jpg') }}"
+                                                        alt="imagen_alternativa" class="w-full h-30 object-contain" />
                                                 @endif
 
                                             </div>
@@ -452,13 +485,13 @@
                                                     <div>
                                                         <div class="relative flex justify-center items-center">
                                                             @if ($item->imagen)
-                                                                <img src="{{ asset($item->imagen) }}" class="" />
+                                                                <img src="{{ asset($item->imagen) }}"
+                                                                    alt="{{ $item->name }}"
+                                                                    class="w-full h-30 object-contain" />
                                                             @else
-                                                                <div class='h-40'>
-                                                                    <img src="{{ asset('storage/images/imagen/no_img.jpg') }}"
-                                                                        alt="imagen_alternativa"
-                                                                        class="h-30 object-contain" />
-                                                                </div>
+                                                                <img src="{{ asset('images/img/noimagen.jpg') }}"
+                                                                    alt="imagen_alternativa"
+                                                                    class="w-full h-30 object-contain" />
                                                             @endif
                                                         </div>
 
@@ -505,7 +538,7 @@
                                     @endforeach
 
                                 </div>
-                                <!-- <div class="swiper-pagination-productos-destacados"></div> -->
+                                {{-- <div class="swiper-pagination-productos-destacados"></div>  --}}
                             </div>
                         </div>
                     </div>
@@ -533,7 +566,7 @@
                     </div>
 
                     <div class="col-span-1 md:col-span-1 order-3 md:order-2 flex justify-center items-center w-full">
-                        <a href="catalogo.html"
+                        <a href="/catalogo/0"
                             class="font-semibold text-[16px] bg-transparent md:duration-500 py-4 px-5 rounded-3xl border-[1px] border-colorBorder flex-initial w-full md:w-56 text-center inline-block">
                             Ver todo
                         </a>
@@ -556,12 +589,11 @@
                                         <div>
                                             <div class="relative flex justify-center items-center">
                                                 @if ($item->imagen)
-                                                    <img src="{{ asset($item->imagen) }}" class="" />
+                                                    <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}"
+                                                        class="w-full h-30 object-contain" />
                                                 @else
-                                                    <div class='h-32'>
-                                                        <img src="{{ asset('storage/images/imagen/no_img.jpg') }}"
-                                                            alt="imagen_alternativa" class="h-30 object-contain" />
-                                                    </div>
+                                                    <img src="{{ asset('images/img/noimagen.jpg') }}"
+                                                        alt="imagen_alternativa" class="w-full h-30 object-contain" />
                                                 @endif
                                             </div>
 
@@ -624,13 +656,13 @@
                                                         <div class="relative flex justify-center items-center">
 
                                                             @if ($item->imagen)
-                                                                <img src="{{ asset($item->imagen) }}" class="" />
+                                                                <img src="{{ asset($item->imagen) }}"
+                                                                    alt="{{ $item->name }}"
+                                                                    class="w-full h-30 object-contain" />
                                                             @else
-                                                                <div class='h-64'>
-                                                                    <img src="{{ asset('storage/images/imagen/no_img.jpg') }}"
-                                                                        alt="imagen_alternativa"
-                                                                        class="h-30 object-contain" />
-                                                                </div>
+                                                                <img src="{{ asset('images/img/noimagen.jpg') }}"
+                                                                    alt="imagen_alternativa"
+                                                                    class="w-full h-30 object-contain" />
                                                             @endif
                                                         </div>
 
@@ -696,7 +728,7 @@
             <section>
                 <div class="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:grid-rows-[700px] h-[100%]">
                     <div class="basis-1/2 flex items-center justify-center">
-                        <img src="./images/img/vestibulo.png" alt="vestibulo"
+                        <img src="{{ asset('/images/img/vestibulo.png') }}" alt="vestibulo"
                             class="w-full h-full object-cover object-center" />
                     </div>
                     <div class="basis-1/2 beneficioRelative px-5 md:px-10">

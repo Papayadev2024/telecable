@@ -31,7 +31,7 @@
             <aside class="flex flex-col gap-5">
                 <div class="flex gap-3 open">
                     <div>
-                        <img src="{{asset('images/svg/catalogo_filtro_icon.svg')}}" alt="logo_filtros" />
+                        <img src="{{ asset('images/svg/catalogo_filtro_icon.svg') }}" alt="logo_filtros" />
                     </div>
                     <p class="font-semibold text-[20px]">Filtros</p>
                 </div>
@@ -40,7 +40,8 @@
                     <div class="hidden md:flex flex-col gap-5 show-categoria-precio">
                         <div class="flex flex-col gap-5">
                             <p class="font-semibold text-[16px]">Categorías</p>
-                            <a href="/catalogo/0" class="{{$filtro == 0 ? 'font-semibold text-[14px] underline' : 'text-[#6C7275]' }}">Todas</a>
+                            <a href="/catalogo/0"
+                                class="{{ $filtro == 0 ? 'font-semibold text-[14px] underline' : 'text-[#6C7275]' }}">Todas</a>
 
                             <div>
                                 <div
@@ -48,15 +49,13 @@
                                     <ul class="flex flex-col gap-2">
 
                                         @foreach ($categorias as $item)
-                                            <a href="/catalogo/{{$item->id}}"> <li  class="w-full mr-44 cursor-pointer @if ($filtro == 0)
-                                                
-                                            @else
+                                            <a href="/catalogo/{{ $item->id }}">
+                                                <li
+                                                    class="w-full mr-44 cursor-pointer @if ($filtro == 0) @else
 
-                                             {{$item->id == $categoria->id ? 'font-semibold text-[14px] underline text-black' : ''}}
-
-                                            @endif ">{{ $item->name }}</li></a>
-                                           
-
+                                             {{ $item->id == $categoria->id ? 'font-semibold text-[14px] underline text-black' : '' }} @endif ">
+                                                    {{ $item->name }}</li>
+                                            </a>
                                         @endforeach
 
                                     </ul>
@@ -69,67 +68,72 @@
                             <a href="#" class="font-semibold text-[14px] underline">Todos los precios</a>
                             <div class="flex flex-col gap-2">
                                 <div class="flex justify-between items-center">
-                                    
-                                    <a href="/catalogo/{{$filtro}}?rangefrom=0&rangeto=99.99" ><li class=" text-[14px] list-none
+
+                                    <a href="/catalogo/{{ $filtro }}?rangefrom=0&rangeto=99.99">
+                                        <li class=" text-[14px] list-none
                                         
-                                        @if($rangefrom == 0 && $rangeto == 99.99)
-                                            font-semibold
+                                        @if ($rangefrom == 0 && $rangeto == 99.99) font-semibold
                                         @else
-                                            font-normal
-                                        @endif
+                                            font-normal @endif
                                         
-                                        " for="precio_0">s/ 0.00 - s/99.99</li></a>
+                                        "
+                                            for="precio_0">s/ 0.00 - s/99.99</li>
+                                    </a>
                                     <!-- Agrega el siguiente código dentro de tu archivo HTML -->
                                     {{-- <input id="precio_0" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <a href="/catalogo/{{$filtro}}/?rangefrom=100&rangeto=199.99" ><li class="text-[14px] list-none
-                                        @if($rangefrom == 100 && $rangeto == 199.99)
-                                        font-semibold
+                                    <a href="/catalogo/{{ $filtro }}/?rangefrom=100&rangeto=199.99">
+                                        <li class="text-[14px] list-none
+                                        @if ($rangefrom == 100 && $rangeto == 199.99) font-semibold
                                         @else
-                                            font-normal
-                                        @endif
-                                        " for="precio_1">s/ 100.00 - s/199.99</li></a>
+                                            font-normal @endif
+                                        "
+                                            for="precio_1">s/ 100.00 - s/199.99</li>
+                                    </a>
                                     <!-- Agrega el siguiente código dentro de tu archivo HTML -->
                                     {{-- <input id="precio_1" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
                                 </div>
 
                                 <div class="flex justify-between items-center">
-                                    <a href="/catalogo/{{$filtro}}/?rangefrom=200&rangeto=299.99" ><li class="text-[14px] list-none
+                                    <a href="/catalogo/{{ $filtro }}/?rangefrom=200&rangeto=299.99">
+                                        <li class="text-[14px] list-none
 
-                                        @if($rangefrom == 200 && $rangeto == 299.99)
-                                        font-semibold
+                                        @if ($rangefrom == 200 && $rangeto == 299.99) font-semibold
                                         @else
-                                            font-normal
-                                        @endif
+                                            font-normal @endif
 
-                                        " for="precio_2">s/ 200.00 - s/299.99</li></a>
+                                        "
+                                            for="precio_2">s/ 200.00 - s/299.99</li>
+                                    </a>
                                     <!-- Agrega el siguiente código dentro de tu archivo HTML -->
                                     {{-- <input id="precio_2" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
                                 </div>
 
                                 <div class="flex justify-between items-center">
-                                   <a href="/catalogo/{{$filtro}}/?rangefrom=300&rangeto=399.99"> <li class="text-[14px] list-none
+                                    <a href="/catalogo/{{ $filtro }}/?rangefrom=300&rangeto=399.99">
+                                        <li class="text-[14px] list-none
                                     
-                                    @if($rangefrom == 300 && $rangeto == 399.99)
-                                    font-semibold
+                                    @if ($rangefrom == 300 && $rangeto == 399.99) font-semibold
                                     @else
-                                        font-normal
-                                    @endif
+                                        font-normal @endif
 
-                                    " for="precio_3">s/ 300.00 - s/399.99</li></a>
+                                    "
+                                            for="precio_3">s/ 300.00 - s/399.99</li>
+                                    </a>
                                     <!-- Agrega el siguiente código dentro de tu archivo HTML -->
                                     {{-- <input id="precio_3" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
                                 </div>
 
                                 <div class="flex justify-between items-center">
-                                    <a href="/catalogo/{{$filtro}}/?rangefrom=400&rangeto=100000"><li class="text-[14px] list-none
-                                     @if($rangefrom == 400 && $rangeto == 100000)
-                                    font-semibold
+                                    <a href="/catalogo/{{ $filtro }}/?rangefrom=400&rangeto=100000">
+                                        <li class="text-[14px] list-none
+                                     @if ($rangefrom == 400 && $rangeto == 100000) font-semibold
                                     @else
-                                        font-normal
-                                    @endif
-                                        " for="precio_4">s/ 400.00 +</li></a>
+                                        font-normal @endif
+                                        "
+                                            for="precio_4">s/ 400.00 +</li>
+                                    </a>
                                     <!-- Agrega el siguiente código dentro de tu archivo HTML -->
                                     {{-- <input id="precio_4" type="checkbox" value="" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
                                 </div>
@@ -144,7 +148,7 @@
                 <div class="modal__mostrar-filtro">
                     <div class="flex justify-end">
                         <a href="#" class="modal__close-filtro">
-                            <img src="{{asset('/images/svg/close.svg')}}" alt="close" />
+                            <img src="{{ asset('/images/svg/close.svg') }}" alt="close" />
                         </a>
                     </div>
 
@@ -156,11 +160,11 @@
                 <div class="flex flex-col gap-2">
 
                     @if ($filtro == 0)
-                     <h2 class="font-medium text-[40px]">Productos</h2>
+                        <h2 class="font-medium text-[40px]">Productos</h2>
                     @else
-                        <h2 class="font-medium text-[40px]">Productos - {{$categoria->name}}</h2>
+                        <h2 class="font-medium text-[40px]">Productos - {{ $categoria->name }}</h2>
                     @endif
-                   
+
 
                     <p class="font-normal text-[18px]">
                         Etiam cursus semper odio non consectetur. Pellentesque et molestie
@@ -168,79 +172,86 @@
                         orci.
                     </p>
                 </div>
-                
+
                 <!-- GRILLA PRODUCTOS -->
                 <div>
                     <div class="grid grid-cols-2 lg:grid-cols-3 my-5 gap-10">
 
-                     @foreach ($productos as $item)
-                        <div class="flex flex-col relative">
+                        @foreach ($productos as $item)
+                            <div class="flex flex-col relative">
 
-                            <div
-                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                                <a
-                                    class="font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                    Nuevo
-                                </a>
-                                <div>
-                                    <div class="relative">
-                                        <img src="{{ asset($item->imagen) }}" alt="cusco" class="w-full h-[100%]" />
-                                    </div>
+                                <div
+                                    class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
+                                    <a
+                                        class=" font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
+                                        Nuevo
+                                    </a>
+                                    <div>
+                                        <div class="relative">
+                                            {{-- <img src="{{ asset($item->imagen) }}" alt="cusco" class="w-full h-[100%]" /> --}}
+                                            @if ($item->imagen)
+                                                <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}"
+                                                    class="w-full h-30 object-contain py-10" />
+                                            @else
+                                                <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
+                                                    class="w-full h-30 object-contain py-10" />
+                                            @endif
+                                        </div>
 
-                                    <!-- ------ -->
-                                    <div class="addProduct text-center flex justify-center">
-                                        <a href="{{ route('producto', $item->id) }}"
-                                            class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                            Ver producto
-                                        </a>
+                                        <!-- ------ -->
+                                        <div class="addProduct2 text-center flex justify-center">
+                                            <a href="{{ route('producto', $item->id) }}"
+                                                class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
+                                                Ver producto
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                {{-- <div class="flex items-center gap-2">
-                                    <div class="flex gap-2 py-2">
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                        <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                <div class="my-2 flex flex-col items-start gap-2 basis-1/5 -mt-6">
+                                    <div class="flex items-center gap-2 ">
+                                        <div class="flex gap-2 py-6 ">
+                                            {{-- <img src="./images/svg/start.svg" alt="estrella" />
+                                            <img src="./images/svg/start.svg" alt="estrella" />
+                                            <img src="./images/svg/start.svg" alt="estrella" />
+                                            <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                            <img src="./images/svg/start_sin_color.svg" alt="estrella" /> --}}
+                                        </div>
+                                        {{-- <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p> --}}
                                     </div>
-                                    <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p>
-                                </div> --}}
-                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                    {{$item->producto}}
-                                </h2>
-                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                    @if ($item->descuento == 0)
-                                        <span>{{ $item->precio }}</span>
-                                    @else
-                                        <span>{{ $item->descuento }}</span>
-                                        <span
-                                                    class="font-normal text-[14px] text-[#6C7275] line-through">{{ $item->precio }}</span>
-                                    @endif
-                                </p>
-                            </div>
+                                    <h2 class="font-semibold text-[16px] text-[#141718]">
+                                        {{ $item->producto }}
+                                    </h2>
+                                    <p class="font-semibold text-[14px] text-[#121212] flex gap-5 ">
+                                        @if ($item->descuento == 0)
+                                            <span>{{ $item->precio }}</span>
+                                        @else
+                                            <span>{{ $item->descuento }}</span>
+                                            <span
+                                                class="font-normal text-[14px] text-[#6C7275] line-through">{{ $item->precio }}</span>
+                                        @endif
+                                    </p>
+                                </div>
 
-                        </div>
-                     @endforeach      
-                      
+                            </div>
+                        @endforeach
+
                     </div>
                 </div>
 
                 <div class="flex justify-center items-center mt-12">
-                    
-                    {{$productos->appends(['rangefrom' => $rangefrom, 'rangeto' => $rangeto])->links()}}
-                  
+
+                    {{ $productos->appends(['rangefrom' => $rangefrom, 'rangeto' => $rangeto])->links() }}
+
                     {{-- <a href="catalogo.html"
                         class="font-semibold text-[16px] bg-white md:duration-500 py-4 px-5 rounded-3xl border-[1px] border-colorBorder flex-initial text-center w-full md:w-56">
                         Cargar más
                     </a> --}}
                 </div>
             </section>
-        </div>   
+        </div>
 
-         <!-- FAQS -->
+        <!-- FAQS -->
 
         @if ($faqs->isEmpty())
             {{-- <div class="w-full flex flex-row justify-center items-center">

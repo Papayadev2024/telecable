@@ -33,6 +33,19 @@
     top: 10px;
   }
   
+  .addProduct2 {
+    position: relative;
+  
+    top: 100px;
+    width: 100%;
+  
+    -webkit-transition: top 0.5s; /* For Safari 3.1 to 6.0 */
+    transition: top 0.5s;
+  }
+  
+  .product_container:hover .addProduct2 {
+    top: -20px;
+  }
   
   /* ---------------- Modificar los Bullets de swiper Beneficios -------------------- */
   .beneficioRelative {

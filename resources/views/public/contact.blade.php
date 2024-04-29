@@ -120,33 +120,34 @@
             </div>
 
             <div class="my-16 grid grid-cols-1 md:grid-cols-2 gap-16 justify-center items-center">
-                <form action="#" class="flex flex-col gap-5">
+                <form  class="flex flex-col gap-5" id="formContactos">
+                    @csrf
                     <div class="flex flex-col gap-2">
                         <label for="nombre_completo" class="font-medium text-[12px] text-[#6C7275]">Nombre</label>
-                        <input id="nombre_completo" type="text" placeholder="Nombre Completo"
+                        <input id="name" type="text" placeholder="Nombre Completo" required  name="name"
                             class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl text-[#6C7275]" />
                     </div>
 
                     <div class="flex flex-col gap-2">
                         <label for="correo_electronico" class="font-medium text-[12px] text-[#6C7275]">Correo
                             Electrónico</label>
-                        <input id="correo_electronico" type="email" placeholder="hola@gmail.com"
+                        <input  type="email" placeholder="hola@gmail.com" required name="email" id="email"
                             class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl" />
                     </div>
 
                     <div class="flex flex-col gap-2">
                         <label for="mensaje" class="font-medium text-[12px] text-[#6C7275]">Mensaje</label>
-                        <textarea name="mensaje" id="mensaje" cols="30" rows="5"
+                        <textarea name="message" id="mensaje" cols="30" rows="5" 
                             class="border-gray-200 border-[1.5px] rounded-xl focus:outline-none"></textarea>
                     </div>
 
                     <div>
-                        <input type="submit" value="Enviar Mensaje"
+                        <input type="submit" value="Enviar Mensaje" id="btnAjax"
                             class="text-white bg-[#74A68D] py-3 rounded-2xl cursor-pointer border-2 font-semibold text-[16px] text-center border-none w-full md:w-auto px-10 inline-block" />
                     </div>
                 </form>
                 <div class="flex justify-center items-center">
-                    <img src="./images/img/imagen_ubicacion.png" alt="ubicacion" />
+                    <img src="{{asset('images/img/imagen_ubicacion.png')}}" alt="ubicacion" />
                 </div>
             </div>
         </section>
@@ -240,7 +241,69 @@
 
 
 @section('scripts_importados')
-    <script></script>
+<script>
+    function alerta(message) {
+        Swal.fire({
+            title: message,
+            icon: "error",
+        });
+    }
+
+    function validarEmail(value) {
+        console.log(value)
+        const regex =
+            /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
+
+        if (!regex.test(value)) {
+            alerta("El campo email no es válido");
+            return false;
+        }
+        return true;
+    }
+
+    $('#formContactos').submit(function(event) {
+        // Evita que se envíe el formulario automáticamente
+        //console.log('evcnto')
+
+        event.preventDefault();
+        let formDataArray = $(this).serializeArray();
+
+        if (!validarEmail($('#email').val())) {
+            return;
+        };
+
+        /* console.log(formDataArray); */
+        $.ajax({
+            url: '{{ route('guardarContactos') }}',
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#formContactos')[0].reset();
+                Swal.fire({
+                    title: response.message,
+                    icon: "success",
+                });
+
+            },
+            error: function(error) {
+                const obj = error.responseJSON.message;
+                const keys = Object.keys(error.responseJSON.message);
+                let flag = false;
+                keys.forEach(key => {
+                    if (!flag) {
+                        const e = obj[key][0];
+                        Swal.fire({
+                            title: error.message,
+                            text: e,
+                            icon: "error",
+                        });
+                        flag = true; // Marcar como mostrado
+                    }
+                });
+            }
+        });
+    })
+</script>
 @stop
 
 @stop

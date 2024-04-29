@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 use function PHPUnit\Framework\isNull;
 
@@ -391,7 +392,13 @@ class IndexController extends Controller
   {
 
     $productos = Products::where('id', '=', $id)->get();
-    $especificaciones = Specifications::where('product_id', '=', $id)->get();
+    // $especificaciones = Specifications::where('product_id', '=', $id)->get();
+    $especificaciones = Specifications::where('product_id', '=', $id)
+    ->where(function ($query) {
+        $query->whereNotNull('tittle')
+            ->orWhereNotNull('specifications');
+    })
+    ->get();
     $productosConGalerias = DB::select("
             SELECT products.*, galeries.*
             FROM products
@@ -466,28 +473,31 @@ class IndexController extends Controller
    * Save contact from blade
    */
   public function guardarContacto(Request $request)
-  {
-    //Del modelo
-    //'full_name', 'email', 'phone', 'message', 'status', 'is_read'
-
-    $reglasValidacion = [
-      'name' => 'required|string|max:255',
-      'email' => 'required|email|max:255',
-      'phone' => 'required|integer|max:99999999999',
-    ];
-    $mensajes = [
-      'name.required' => 'El campo nombre es obligatorio.',
-      'email.required' => 'El campo correo electrónico es obligatorio.',
-      'email.email' => 'El formato del correo electrónico no es válido.',
-      'email.max' => 'El campo correo electrónico no puede tener más de :max caracteres.',
-      'phone.required' => 'El campo teléfono es obligatorio.',
-      'phone.integer' => 'El campo teléfono debe ser un número entero.',
-    ];
-    $request->validate($reglasValidacion, $mensajes);
-    $formlanding = Message::create($request->all());
-    // return redirect()->route('landingaplicativos', $formlanding)->with('mensaje','Mensaje enviado exitoso')->with('name', $request->nombre);
-    return response()->json(['message' => 'Mensaje enviado con exito']);
-  }
+    {
+        
+        $data = $request->all();
+        $data['full_name'] = $request->name. ' ' . $request->last_name;
+    
+       try {
+        $reglasValidacion = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+        ];
+        $mensajes = [
+            'name.required' => 'El campo nombre es obligatorio.',
+            'email.required' => 'El campo correo electrónico es obligatorio.',
+            'email.email' => 'El formato del correo electrónico no es válido.',
+            'email.max' => 'El campo correo electrónico no puede tener más de :max caracteres.',
+        ];
+        $request->validate($reglasValidacion, $mensajes);
+        $formlanding = Message::create($data);
+        // return redirect()->route('landingaplicativos', $formlanding)->with('mensaje','Mensaje enviado exitoso')->with('name', $request->nombre);
+        return response()->json(['message'=> 'Mensaje enviado con exito']);
+       } catch (ValidationException $e) {
+       
+        return response()->json(['message'=> $e->validator->errors()], 400);
+       }
+    }
 
 
 

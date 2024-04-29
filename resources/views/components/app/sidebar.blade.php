@@ -53,12 +53,12 @@
         <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
           <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
             aria-hidden="true">•••</span>
-          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Mundo Web - BackEnd</span>
+          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Decotab - Backend</span>
         </h3>
         <ul class="mt-3">
 
           <!-- Inbox -->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['dashboard'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['dashboard'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('dashboard') }}">
@@ -75,7 +75,7 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Inbox</span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
           <!-- Messages -->
           <li
