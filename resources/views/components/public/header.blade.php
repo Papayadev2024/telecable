@@ -117,7 +117,7 @@
                                   @csrf  
                                   <button type="submit" class="font-medium text-sm text-black flex items-center py-1 px-3"
                                       href="{{ route('logout') }}" @click.prevent="$root.submit(); open = false">
-                                      {{ __('Salir') }}
+                                      {{ __('Cerrar sesión') }}
                                   </button>
                               </form>
                           </li>
@@ -177,7 +177,6 @@
                             </div>
 
                             <div class="font-poppins flex flex-col gap-2 pt-24">
-
 
                                 <div class="text-[#141718] font-medium text-[20px] flex justify-between items-center">
                                     <p>Total</p>

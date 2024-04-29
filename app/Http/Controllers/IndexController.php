@@ -24,6 +24,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -129,8 +130,39 @@ class IndexController extends Controller
 
   public function comentario()
   {
-    $general = General::all();
-    return view('public.comentario', compact('general'));
+    $comentarios = Testimony::where('status', '=' ,1)->where('visible', '=' ,1)->paginate(15);
+    $contarcomentarios = count($comentarios);
+    return view('public.comentario', compact('comentarios', 'contarcomentarios'));
+  }
+
+  public function hacerComentario(Request $request){
+    $user = auth()->user();
+    
+    $newComentario = new Testimony();
+    if (isset($user)) {
+      $alert = null;
+      $request->validate([
+        'testimonie' => 'required',
+    ], [
+        'testimonie.required' => 'Ingresa tu comentario',
+    ]);
+
+        $newComentario->name = $user->name;
+        $newComentario->testimonie = $request->testimonie;
+        $newComentario->visible = 0;
+        $newComentario->status = 1;
+        $newComentario->email = $user->email;
+        $newComentario->save();
+
+        $mensaje = "Gracias. Tu comentario pasará por una validación y será publicado.";
+        $alert = 1;
+
+    }else{  
+        $alert = 2;
+        $mensaje = "Inicia sesión para hacer un comentario";
+    }
+
+    return redirect()->route('comentario')->with(['mensaje' => $mensaje, 'alerta' => $alert]);
   }
 
   public function contacto()
@@ -190,16 +222,17 @@ class IndexController extends Controller
 
       $email = $request->email;
       $existeUser = UserDetails::where('email', $email)->get()->toArray();
-
+      
       if (count($existeUser) === 0) {
         UserDetails::create($request->all());
-
+        
         $codigoAleatorio = $this->codigoVentaAleatorio();
         $this->guardarOrden();
 
         return response()->json(['message' => 'Data procesada correctamente', 'codigoCompra' => $codigoAleatorio],);
       } else {
         $existeUsuario = User::where('email', $email)->get()->toArray();
+       
         if ($existeUsuario) {
           $validator = Validator::make($request->all(), [
             'email' => 'required',
@@ -292,32 +325,38 @@ class IndexController extends Controller
   public function actualizarPerfil(Request $request)
   {
 
-
-
+    $name= $request->name;
+    $lastname = $request->lastname;
+    $email = $request->email;
     $user = User::findOrFail($request->id);
-    $user->name = $request->name;
-    $user->lastname = $request->lastname;
+    
 
-    $reglasValidacion = [
-      'password' => '',
-    ];
-    $mensajes = [
-      'name.required' => 'El campo nombre es obligatorio.',
-
-    ];
-
-    $request->validate($reglasValidacion, $mensajes);
-
-
-    if ($request->password !== null && $request->newpassword === null ) {
-      echo "Por favor completa password.";
-    } elseif ($request->newpassword === null) {
-      echo "Por favor completa la variable newpassword.";
-    } elseif ($request->confirmnewpassword === null) {
-      echo "Por favor completa la variable confirmnewpassword.";
-    } else {
-      // Aquí puedes poner el código que se ejecutará si todas las variables están presentes
+    if($request->password !== null || $request->newpassword !== null || $request->confirmnewpassword !== null){ 
+        if (!Hash::check($request->password, $user->password)) {
+            $imprimir = "La contraseña actual no es correcta";
+            $alert = "error";
+        }else{
+            $user->password = Hash::make($request->newpassword);
+            $imprimir = "Cambio de contraseña exitosa";
+            $alert = "success";
+        }
     }
+    
+
+      if($user->name == $name &&  $user->lastname == $lastname ){
+        $imprimir = "Sin datos que actualizar";
+        $alert = "question";  
+      }else{
+        $user->name = $name;
+        $user->lastname = $lastname;
+        $alert = "success";
+        $imprimir = "Datos actualizados";  
+      }
+    
+
+    $user->save();
+    return response()->json(['message'=> $imprimir,'alert' => $alert]);
+
   }
 
   public function micuenta()
@@ -329,15 +368,17 @@ class IndexController extends Controller
 
   public function pedidos()
   {
-    //
-    return view('public.dashboard_order');
+    $user = Auth::user();
+    return view('public.dashboard_order',  compact('user'));
   }
 
 
   public function direccion()
   {
-    //
-    return view('public.dashboard_direccion');
+    $user = Auth::user();
+    $direcciones = UserDetails::where('email', $user->email)->get();
+    
+    return view('public.dashboard_direccion', compact('user', 'direcciones'));
   }
 
   public function error()

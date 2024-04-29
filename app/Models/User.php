@@ -68,4 +68,10 @@ class User extends Authenticatable
     public function isAdmin(){
         return $this->hasRole('admin');
     }
+
+
+    public function direccion()
+    {
+        return $this->hasMany(UserDetails::class);
+    }
 }

@@ -52,6 +52,7 @@ Route::get('/', [IndexController::class, 'index'] )->name('index');
 Route::get('/nosotros', [IndexController::class, 'nosotros'] )->name('nosotros');
 Route::get('/servicios', [IndexController::class, 'servicios'] )->name('servicios');
 Route::get('/comentario', [IndexController::class, 'comentario'] )->name('comentario');
+Route::post('/comentario/nuevo', [IndexController::class, 'hacerComentario'] )->name('nuevocomentario');
 Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
 /* Proceso de pago */
 Route::get('/carrito', [IndexController::class, 'carrito'] )->name('carrito');
@@ -177,7 +178,12 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Customer'])->group(function 
  Route::get('/micuenta', [IndexController::class, 'micuenta'] )->name('micuenta');
  Route::get('/micuenta/pedidos', [IndexController::class, 'pedidos'] )->name('pedidos');
  Route::get('/micuenta/direccion', [IndexController::class, 'direccion'] )->name('direccion');
+
  Route::post('/micuenta/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
+ Route::post('/micuenta/direccion/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
+ Route::post('/micuenta/pedidos/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
+
+
  Route::post('/micuenta/actualizarPerfil', [IndexController::class, 'actualizarPerfil'] )->name('actualizarPerfil');
 
 

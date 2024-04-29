@@ -590,7 +590,7 @@
 
 
     function deleteOnCarBtn(id, operacion) {
-      console.log('Elimino un elemento del cvarrio');
+      console.log('Elimino un elemento del carrito');
       console.log(id, operacion)
       const prodRepetido = articulosCarrito.map(item => {
         if (item.id === id && item.cantidad > 0) {

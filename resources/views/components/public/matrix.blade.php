@@ -19,6 +19,9 @@
   {{-- Alpine --}}
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+  {{-- Sweet Alert --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Index</title>
 </head>
