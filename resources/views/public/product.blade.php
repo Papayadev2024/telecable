@@ -319,7 +319,7 @@
                           <div class="addProduct text-center flex justify-center">
                             <button type="button" id="btnAgregarCarrito"
                               class="font-semibold text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                              Agregar al carrito
+                              Ver producto
                             </button>
                           </div>
                         </div>
