@@ -22,8 +22,8 @@
                 <!-- grilla de productos -->
                 <div class="hidden md:block">
                     <div class="grid grid-cols-2 gap-10">
-                        <div class="flex flex-col items-start bg-[#F3F5F7] gap-12 rounded-2xl">
-                            <div class="bg-[#38CB89] rounded-md px-5 py-1 mt-10 ml-10">
+                        <div class="flex flex-col items-start bg-[#F3F5F7]  rounded-2xl">
+                            <div class="bg-[#38CB89] rounded-md px-5 py-1 mt-[1%] ml-[1%] absolute">
                                 <p class="text-white font-semibold text-[12px]">-30%</p>
                             </div>
 
@@ -38,8 +38,8 @@
                             </div>
                         </div>
                         @foreach ($productosConGalerias as $galeria)
-                            <div class="flex justify-center items-center">
-                                <img src="{{ asset($galeria->imagen) }}" alt="piso_flotante_laminado_2" />
+                            <div class="flex justify-center items-center rounded-2xl object-cover bg-cover" style="background-image: url('{{ asset($galeria->imagen) }}')">
+                                <img src="{{ asset($galeria->imagen) }}" alt="piso_flotante_laminado_2" class="w-full object-cover bg-cover rounded-2xl"/>
                             </div>
                         @endforeach
 
@@ -397,150 +397,82 @@
 
                 <div class="col-span-1 md:col-span-4 order-2 md:order-3">
                     <!-- ---- CARRUSEL --- -->
-                    <div class="hidden md:block">
-                        <div class="swiper productos-complementarios my-5">
-                            <div class="swiper-pagination-producto-complementario mb-80 md:mb-32"></div>
+                    <div>
+                        <div class="swiper productos-destacados my-5">
+                            <div class="swiper-pagination-productos-destacados mb-80 md:mb-32"></div>
                             <div class="swiper-wrapper mt-[80px]">
+
                                 @foreach ($ProdComplementarios as $item)
                                     <div class="swiper-slide rounded-2xl">
                                         <div class="flex flex-col relative">
                                             <div
-                                                class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                                                <a
-                                                    class="font-semibold text-[12px] bg-[#38CB89] py-2 px-2 flex-initial w-24 text-center text-[#151515] rounded-[5px] absolute top-[18px] z-10">
-                                                    Nuevo1
-                                                </a>
-                                                <div class="z-0 h-48">
-                                                    <div class="relative">
+                                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
+                                                <div class="px-4">
+                                                    <a
+                                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                                        Nuevo
+                                                    </a>
+                                                </div>
+                                                <div>
+                                                    <div class="relative flex justify-center items-center">
                                                         @if ($item->imagen)
                                                             <img src="{{ asset($item->imagen) }}"
-                                                                alt="producto_complementario_1" class="w-full" />
+                                                                alt="{{ $item->name }}"
+                                                                class="w-full h-30 object-contain" />
                                                         @else
-                                                            <div class='h-32'>
-                                                                <img src="{{ asset('images/img/noimagen.jpg') }}"
-                                                                    alt="imagen_alternativa"
-                                                                    class="h-30 object-contain" />
-                                                            </div>
+                                                            <img src="{{ asset('images/img/noimagen.jpg') }}"
+                                                                alt="imagen_alternativa"
+                                                                class="w-full h-30 object-contain" />
                                                         @endif
                                                     </div>
 
                                                     <!-- ------ -->
                                                     <div class="addProduct text-center flex justify-center">
-                                                        <a id="btnAgregarCarrito"
-                                                            href="{{ route('producto', $item->id) }}"
-                                                            class="font-semibold text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-52 text-center text-white rounded-3xl">
+                                                        <a href="{{ route('producto', $item->id) }}"
+                                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
                                                             Ver producto
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                                <div class="flex items-center gap-2">
-                                                    {{-- <div class="flex gap-2 py-2">
-                            <img src="./images/svg/start.svg" alt="estrella" />
-                            <img src="./images/svg/start.svg" alt="estrella" />
-                            <img src="./images/svg/start.svg" alt="estrella" />
-                            <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                            <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                          </div> --}}
-                                                    <p class="font-semibold text-[14px] text-[#6C7275]">
-                                                        ({{ $item->stock }})
-                                                    </p>
+                                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
+                                                {{-- <div class="flex items-center gap-2">
+                                                <div class="flex gap-2 py-2">
+                                                    <img src="./images/svg/start.svg" alt="estrella" />
+                                                    <img src="./images/svg/start.svg" alt="estrella" />
+                                                    <img src="./images/svg/start.svg" alt="estrella" />
+                                                    <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                                    <img src="./images/svg/start_sin_color.svg" alt="estrella" />
                                                 </div>
+                                                <p class="font-semibold text-[14px] text-[#6C7275]">
+                                                    (35)
+                                                </p>
+                                            </div> --}}
                                                 <h2 class="font-semibold text-[16px] text-[#141718]">
                                                     {{ $item->producto }}
                                                 </h2>
-                                                @if ($item->descuento > 0)
-                                                    {{-- validamos si tiene descuento  --}}
-                                                    <p class="font-medium text-[28px] mb-5">
-                                                        s/ {{ $item->descuento }}
+                                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
+                                                    @if ($item->descuento == 0)
+                                                        <span>{{ $item->precio }}</span>
+                                                    @else
+                                                        <span>{{ $item->descuento }}</span>
                                                         <span
-                                                            class="line-through font-medium text-[20px] text-[#6C7275]">{{ $item->precio }}</span>
-                                                    </p>
-                                                @else
-                                                    <p class="font-medium text-[28px] mb-5">
-                                                        s/ {{ $item->precio }}
+                                                            class="font-normal text-[14px] text-[#6C7275] line-through">{{ $item->precio }}</span>
+                                                    @endif
 
-                                                    </p>
-                                                @endif
+
+
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
 
-
-
                             </div>
-
-                            <!-- <div class="swiper-pagination"></div> -->
+                            {{-- <div class="swiper-pagination-productos-destacados"></div>  --}}
                         </div>
                     </div>
 
-                    <!-- GRILLA DE PRODUCTOS -->
-                    <div class="grid grid-cols-2 md:hidden gap-5">
-                        @foreach ($ProdComplementarios as $item)
-                            <div class="flex flex-col relative">
-                                <div
-                                    class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
-                                    <div class="px-4">
-                                        <a
-                                            class="font-semibold text-[8px] md:text-[12px] bg-[#38CB89] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
-                                            Nuevo
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <div class="relative flex justify-center items-center">
-                                            @if ($item->imagen)
-                                                <img src="{{ asset($item->imagen) }}" alt="producto_complementario_1"
-                                                    class="w-full" />
-                                            @else
-                                                <div class='h-32'>
-                                                    <img src="{{ asset('images/img/noimagen.jpg') }}"
-                                                        alt="imagen_alternativa" class="h-30 object-contain" />
-                                                </div>
-                                            @endif
-                                        </div>
-
-                                        <!-- ------ -->
-                                        <div class="addProduct text-center flex justify-center">
-                                            <a href="{{ route('producto', $item->id) }}"
-                                                class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
-                                                Ver producto
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="my-2 flex flex-col items-start gap-2 basis-1/5">
-                                    <div class="flex items-center gap-2">
-                                        <div class="flex md:gap-2 py-2">
-                                            {{-- <img src="./images/svg/start.svg" alt="estrella" />
-                                            <img src="./images/svg/start.svg" alt="estrella" />
-                                            <img src="./images/svg/start.svg" alt="estrella" />
-                                            <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                            <img src="./images/svg/start_sin_color.svg" alt="estrella" /> --}}
-                                        </div>
-                                        {{-- <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p> --}}
-                                    </div>
-                                    <h2 class="font-semibold text-[12px] md:text-[16px] text-[#141718]">
-                                        {{ $item->producto }}
-                                    </h2>
-                                    @if ($item->descuento > 0)
-                                        {{-- validamos si tiene descuento  --}}
-                                        <p class="font-medium text-[28px] mb-5">
-                                            s/ {{ $item->descuento }}
-                                            <span
-                                                class="line-through font-medium text-[20px] text-[#6C7275]">{{ $item->precio }}</span>
-                                        </p>
-                                    @else
-                                        <p class="font-medium text-[28px] mb-5">
-                                            s/ {{ $item->precio }}
-
-                                        </p>
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
                 </div>
             </div>
         </section>
