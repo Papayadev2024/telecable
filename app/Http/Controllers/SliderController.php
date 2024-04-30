@@ -50,33 +50,10 @@ class SliderController extends Controller
             $manager = new ImageManager(new Driver());
 
             $nombreImagen = Str::random(10) . '_' . $request->file('imagen')->getClientOriginalName();
-
             $img =  $manager->read($request->file('imagen'));
-
-        
-            // Obtener las dimensiones de la imagen que se esta subiendo
-            $width = $img->width();
-            $height = $img->height();
-
-            // $img->crop(1216, 392);
-
-            // if ($width > $height) {
-            //     //dd('Horizontal');
-            //     //si es horizontal igualamos el alto de la imagen a alto que queremos
-            //     $img->resize(height: 808)->crop(1440, 808);
-            // } else {
-            //     //dd('Vertical');
-            //     //En caso sea vertical la imagen
-            //     //igualamos el ancho y cropeamos
-            //     $img->resize(width: 1440)->crop(1440, 808);
-            // }
-
-
+            $img->coverDown(1440, 808, 'center');
             $ruta = 'storage/images/slider/';
-
            
-
-            
             if (!file_exists($ruta)) {
                 mkdir($ruta, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
             }
@@ -148,26 +125,9 @@ class SliderController extends Controller
 
             $rutanueva = 'storage/images/slider/';
             $nombreImagen = Str::random(10) . '_' . $request->file('imagen')->getClientOriginalName();
-
             $img =  $manager->read($request->file('imagen'));
-
-            $width = $img->width();
-            $height = $img->height();
-
-
-            // $img->crop(1216, 392);
-
-            // if ($width > $height) {
-            //     //dd('Horizontal');
-            //     //si es horizontal igualamos el alto de la imagen a alto que queremos
-            //     $img->resize(height: 808)->crop(1440, 808);
-            // } else {
-            //     //dd('Vertical');
-            //     //En caso sea vertical la imagen
-            //     //igualamos el ancho y cropeamos
-            //     $img->resize(width: 1440)->crop(1440, 808);
-            // }
-            
+            $img->coverDown(1440, 808, 'center');
+           
             if (!file_exists($rutanueva)) {
                 mkdir($rutanueva, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
             }

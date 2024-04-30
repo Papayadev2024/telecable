@@ -11,7 +11,7 @@
 
 
         <!------Slider Header ------>
-        @if ($category->isEmpty())
+        @if ($slider->isEmpty())
             {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes sliders visibles</div>
             </div> --}}

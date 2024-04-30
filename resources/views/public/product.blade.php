@@ -211,15 +211,18 @@
                                             @endif
                                   @endforeach --}}
 
+
                                 <table class="border-collapse w-full">
                                     <tbody>
+                                        
                                         @foreach ($atributos as $atributo)
-                                            <tr>
-                                                <td class="w-1/5   px-4 py-2 font-bold text-gray-900">
-                                                    {{ $atributo->titulo }}:</td>
-                                                <td class="w-4/5   px-4 pt-2">
-                                                    <div class="flex flex-wrap">
-                                                        @foreach ($valorAtributo as $value)
+                                           
+                                                <tr>
+                                                    <td class="w-1/5   px-4 py-2 font-bold text-gray-900">
+                                                        {{ $atributo->titulo }}:</td>
+                                                    <td class="w-4/5   px-4 ">
+                                                        <div class="flex flex-wrap">
+                                                            {{-- @foreach ($valorAtributo as $value)
                                                             @if ($value->attribute_id == $atributo->id)
                                                                 @php
                                                                     $valor = strtolower($value->valor);
@@ -230,16 +233,53 @@
                                                                         <circle cx="10" cy="10" r="8"
                                                                             fill="{{ $color }}"></circle>
                                                                     </svg>
-                                                                    {{-- <label class="ml-2">{{ $valor }}</label> --}}
+                                                                    <label class="ml-2">{{ $valor }}</label>
                                                                 </div>
                                                             @endif
-                                                        @endforeach
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                        @endforeach --}}
+                                                           
+                                                                @foreach ($valorAtributo as $value)
+                                                                    @if ($value->attribute_id == $atributo->id)
+                                                                        @php
+                                                                            $atributesArray = json_decode(
+                                                                                $productos[0]->atributes,
+                                                                                true,
+                                                                            );
+                                                                            $titulo = strtolower($atributo->titulo);
+                                                                            $valor = strtolower($value->valor);
+                                                                            $color = strtolower($value->color);
+                                                                        @endphp
+                                                                        
+                                                                        @if (is_array($atributesArray) &&
+                                                                                isset($atributesArray[$titulo]) &&
+                                                                                in_array(strtolower($valor), $atributesArray[$titulo]))
+                                                                                
+                                                                            <div class="flex items-center mb-2">
+                                                                                <div disabled
+                                                                                    id="{{ $titulo }}:{{ $valor }}"
+                                                                                    name="{{ $titulo }}:{{ $valor }}"
+                                                                                    class="w-8 h-8 rounded-full"
+                                                                                    @if (is_array($atributesArray) &&
+                                                                                            isset($atributesArray[$titulo]) &&
+                                                                                            in_array(strtolower($valor), $atributesArray[$titulo])) style="background:{{ $color }}" @endif>
+                                                                                </div>
+                                                                                {{-- <label
+                                                                                    for="{{ $titulo }}:{{ $valor }}"
+                                                                                    class="ml-2">{{ $valor }}</label> --}}
+                                                                            </div>
+                                                                        @endif
+                                                                    @endif
+                                                                @endforeach
+                                                            
+                                                             
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            
                                         @endforeach
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                         {{-- <p class="font-normal text-[20px] text-black">Madera</p>

@@ -13,6 +13,7 @@ use Intervention\Image\ImageManager;
 use Illuminate\Support\Str;
 
 
+
 class CategoryController extends Controller
 {
     /**
@@ -44,7 +45,7 @@ class CategoryController extends Controller
 
         if ($request->hasFile("imagen")) {
 
-            $manager = new ImageManager(new Driver());
+            $manager = new ImageManager(Driver::class);
 
             $nombreImagen = Str::random(10) . '_' . $request->file('imagen')->getClientOriginalName();
 
@@ -52,21 +53,7 @@ class CategoryController extends Controller
 
         
             // Obtener las dimensiones de la imagen que se esta subiendo
-            $width = $img->width();
-            $height = $img->height();
-
-            // $img->crop(1216, 392);
-
-            // if ($width > $height) {
-            //     //dd('Horizontal');
-            //     //si es horizontal igualamos el alto de la imagen a alto que queremos
-            //     $img->resize(height: 808)->crop(1440, 808);
-            // } else {
-            //     //dd('Vertical');
-            //     //En caso sea vertical la imagen
-            //     //igualamos el ancho y cropeamos
-            //     $img->resize(width: 1440)->crop(1440, 808);
-            // }
+            $img->coverDown(640, 640, 'center');
 
             $ruta = 'storage/images/categories/';
 
@@ -130,7 +117,7 @@ class CategoryController extends Controller
 
 
             $ruta = storage_path() . '/app/public/images/categories/' . $category->name_image;
-
+            
             // dd($ruta);
             if (File::exists($ruta)) {
                 File::delete($ruta);
@@ -141,22 +128,7 @@ class CategoryController extends Controller
 
             $img =  $manager->read($request->file('imagen'));
 
-            $width = $img->width();
-            $height = $img->height();
-
-
-            // $img->crop(1216, 392);
-
-            // if ($width > $height) {
-            //     //dd('Horizontal');
-            //     //si es horizontal igualamos el alto de la imagen a alto que queremos
-            //     $img->resize(height: 808)->crop(1440, 808);
-            // } else {
-            //     //dd('Vertical');
-            //     //En caso sea vertical la imagen
-            //     //igualamos el ancho y cropeamos
-            //     $img->resize(width: 1440)->crop(1440, 808);
-            // }
+            $img->coverDown(640, 640, 'center');
             
             if (!file_exists($rutanueva)) {
                 mkdir($rutanueva, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
