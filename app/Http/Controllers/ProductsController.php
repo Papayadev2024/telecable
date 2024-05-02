@@ -7,11 +7,13 @@ use App\Models\AttributesValues;
 use App\Models\Category;
 use App\Models\Products;
 use App\Models\Specifications;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class ProductsController extends Controller
@@ -33,8 +35,9 @@ class ProductsController extends Controller
   {
     $atributos = Attributes::where("status", "=", true)->get();
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
+    $tags = Tag::where("status", "=", true)->get();
     $categoria = Category::all();
-    return view('pages.products.create', compact('atributos', 'valorAtributo', 'categoria'));
+    return view('pages.products.create', compact('atributos', 'valorAtributo', 'categoria','tags'));
   }
 
   public function saveImg($file, $route, $nombreImagen)
@@ -58,7 +61,7 @@ class ProductsController extends Controller
     $especificaciones = [];
     $data = $request->all();
     $atributos = null;
-    
+    $tagsSeleccionados = $request->input('tags_id');
     // $valorprecio = $request->input('precio') - 0.1;
     
     $request->validate([
@@ -117,8 +120,21 @@ class ProductsController extends Controller
 
     $producto = Products::create($cleanedData);
     $this->GuardarEspecificaciones($producto->id, $especificaciones);
+    if(!is_null($tagsSeleccionados)){
+      $this->TagsXProducts($producto->id, $tagsSeleccionados);
+    }
+    
     return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
   }
+
+  private function TagsXProducts($id, $nTags){
+    foreach ($nTags as $key => $value) {
+      DB::insert('insert into tags_xproducts (producto_id, tag_id) values (?, ?)', [$id, $value]);
+    }
+
+  }
+
+
   private function GuardarEspecificaciones($id, $especificaciones)
   {
 
@@ -158,12 +174,16 @@ class ProductsController extends Controller
    * Show the form for editing the specified resource.
    */
   public function edit(string $id)
-  {
-    $product = Products::find($id);
+  { 
+    
+    $product =  Products::with('tags')->find($id);
     $atributos = Attributes::where("status", "=", true)->get();
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
-
-    return view('pages.products.edit', compact('product', 'atributos', 'valorAtributo'));
+    $especificacion = Specifications::where("product_id", "=" , $id)->get();
+    $allTags = Tag::all();
+    $categoria = Category::all();
+    
+    return view('pages.products.edit', compact('product', 'atributos', 'valorAtributo', 'allTags', 'categoria','especificacion'));
   }
 
   /**
@@ -171,7 +191,9 @@ class ProductsController extends Controller
    */
   public function update(Request $request, string $id)
   {
+    $especificaciones = [];
     $product = Products::find($id);
+    $tagsSeleccionados = $request->input('tags_id');
     $data = $request->all();
     $atributos = null;
 
@@ -196,8 +218,25 @@ class ProductsController extends Controller
         // Separa el nombre del atributo y su valor
         $atributos = $this->stringToObject($key, $atributos);
         unset($request[$key]);
+      }elseif (strstr($key, '-')) {
+
+        //strpos primera ocurrencia que enuentre
+        if (strpos($key, 'tittle-') === 0 || strpos($key, 'title-') === 0) {
+          $num = substr($key, strrpos($key, '-') + 1); // Obtener el número de la especificación
+          $especificaciones[$num]['tittle'] = $value; // Agregar el título al array asociativo
+        } elseif (strpos($key, 'specifications-') === 0) {
+          $num = substr($key, strrpos($key, '-') + 1); // Obtener el número de la especificación
+          $especificaciones[$num]['specifications'] = $value; // Agregar las especificaciones al array asociativo
+        }
       }
     }
+
+  
+
+
+
+
+
 
     $jsonAtributos = json_encode($atributos);
 
@@ -215,9 +254,9 @@ class ProductsController extends Controller
       return !is_null($value);
     });
     $product->update($cleanedData);
-
-
-
+    DB::delete('delete from tags_xproducts where producto_id = ?', [$id]);
+    $this->TagsXProducts($id, $tagsSeleccionados);
+    $this->GuardarEspecificaciones($product->id, $especificaciones);
     return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
   }
 

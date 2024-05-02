@@ -392,6 +392,28 @@
 
                             </div>
                         </div>
+
+                        <div
+                            class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
+                            <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
+                                Tags</h4>
+                            <div class="md:col-span-5 flex justify-between gap-4">
+
+                                <div class="w-full">
+                                    <div class="relative mb-2  mt-2">
+                                            <select id="tags_id" name="tags_id[]" multiple class="mt-1">
+                                            <option value="">Seleccionar Tag </option>
+                                                @foreach ($tags as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
+                                            </select>
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                   </div> 
@@ -420,6 +442,9 @@
 
     </div>
     <script>
+        $('#tags_id').select2({
+        placeholder: 'Seleccionar Tag...',
+        });
         // Obtener los enlaces de pestaña
         const generalTab = document.getElementById('general-tab');
         const attributesTab = document.getElementById('attributes-tab');

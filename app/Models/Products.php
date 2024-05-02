@@ -35,4 +35,15 @@ class Products extends Model
   public function galeria(){
     return $this->hasMany(Galerie::class, 'product_id');
   }
+
+  public function tags()
+  {
+      return $this->belongsToMany(Tag::class, 'tags_xproducts', 'producto_id', 'tag_id');
+  }
+  
+  public function scopeActiveDestacado($query)
+  {
+      return $query->where('status', true)->where('destacar', true);
+  }
+  
 }

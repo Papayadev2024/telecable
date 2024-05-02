@@ -111,7 +111,7 @@
                         {{ $productos[0]->extract }}
                     </p>
                     @if ($productos[0]->descuento > 0)
-                        {{-- validamos si tiene descuento  --}}
+                        <!-- validamos si tiene descuento  -->
                         <p id='infodescuento' class="font-medium text-[28px] mb-5">
                             s/ {{ $productos[0]->descuento }}
                             <span id='infoPrecio'
@@ -127,11 +127,11 @@
                 </div>
                 <div class="border-b-[1px] border-gray-300 flex flex-col gap-5">
                     <div class="flex flex-col gap-5">
-                        {{-- @foreach ($especificaciones as $item)
+                        <!-- @foreach ($especificaciones as $item)
                             <p class="font-semibold text-[16px] text-[#6C7275]">{{ capitalizeFirstLetter($item->tittle) }}
                             </p>
                             <p class="font-normal text-[20px]">{{ capitalizeFirstLetter($item->specifications) }}</p>
-                        @endforeach --}}
+                        @endforeach -->
                         <table class="border-collapse w-full">
                             <tbody>
                                 @foreach ($especificaciones as $item)
@@ -160,14 +160,14 @@
                     </div>
 
                     <div class="flex flex-col gap-5 mt-3">
-                        {{-- <p class="font-semibold text-[16px] text-[#6C7275]">
+                        <!-- <p class="font-semibold text-[16px] text-[#6C7275]">
               Elige color >
-            </p> --}}
+            </p> -->
 
                         <div class="md:col-span-5">
-                            {{-- <p class="text-xl font-bold tracking-tight text-gray-900">Atributos</p> --}}
+                            <!-- <p class="text-xl font-bold tracking-tight text-gray-900">Atributos</p> -->
                             <div class="flex gap-2 mt-2 relative mb-2 ">
-                                {{-- @foreach ($atributos as $item)
+                                <!-- @foreach ($atributos as $item)
                                     <div href="#" class="w-full block px-0 py-3">
                                         <h5 class="text-xl font-bold tracking-tight text-gray-900">
                                             {{ $item->titulo }}
@@ -191,9 +191,9 @@
                                             @endif
                                         @endforeach
                                     </div>
-                                @endforeach --}}
-                                {{-- <p class="font-normal text-gray-700 dark:text-gray-400">{{ $item->descripcion }}</p> --}}
-                                {{-- @foreach ($valorAtributo as $value)
+                                @endforeach -->
+                                <!-- <p class="font-normal text-gray-700 dark:text-gray-400">{{ $item->descripcion }}</p> -->
+                                <!-- @foreach ($valorAtributo as $value)
                                             @if ($value->attribute_id == $item->id)
                                                 @php
                                                     $atributesArray = json_decode($productos[0]->atributes, true);
@@ -209,7 +209,7 @@
                                                         class="ml-2">{{ $valor }}</label>
                                                 </div>
                                             @endif
-                                  @endforeach --}}
+                                  @endforeach -->
 
 
                                 <table class="border-collapse w-full">
@@ -222,7 +222,7 @@
                                                         {{ $atributo->titulo }}:</td>
                                                     <td class="w-4/5   px-4 ">
                                                         <div class="flex flex-wrap">
-                                                            {{-- @foreach ($valorAtributo as $value)
+                                                            <!-- @foreach ($valorAtributo as $value)
                                                             @if ($value->attribute_id == $atributo->id)
                                                                 @php
                                                                     $valor = strtolower($value->valor);
@@ -236,7 +236,7 @@
                                                                     <label class="ml-2">{{ $valor }}</label>
                                                                 </div>
                                                             @endif
-                                                        @endforeach --}}
+                                                        @endforeach -->
                                                            
                                                                 @foreach ($valorAtributo as $value)
                                                                     @if ($value->attribute_id == $atributo->id)
@@ -263,9 +263,9 @@
                                                                                             isset($atributesArray[$titulo]) &&
                                                                                             in_array(strtolower($valor), $atributesArray[$titulo])) style="background:{{ $color }}" @endif>
                                                                                 </div>
-                                                                                {{-- <label
+                                                                                <!-- <label
                                                                                     for="{{ $titulo }}:{{ $valor }}"
-                                                                                    class="ml-2">{{ $valor }}</label> --}}
+                                                                                    class="ml-2">{{ $valor }}</label> -->
                                                                             </div>
                                                                         @endif
                                                                     @endif
@@ -282,7 +282,7 @@
 
                             </div>
                         </div>
-                        {{-- <p class="font-normal text-[20px] text-black">Madera</p>
+                        <!-- <p class="font-normal text-[20px] text-black">Madera</p>
 
              <div class="grid grid-cols-4 md:grid-cols-6">
               <div class="circle-container">
@@ -324,7 +324,7 @@
               <div class="circle-container">
                 <div class="circle bg-[#795B4B]"></div>
               </div>
-            </div> --}}
+            </div> -->
                     </div>
                 </div>
                 <div class="my-5 flex flex-col gap-5 border-b-[1px] border-gray-300 pb-5">
@@ -436,7 +436,7 @@
                                                 </div>
                                             </div>
                                             <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
-                                                {{-- <div class="flex items-center gap-2">
+                                                <!-- <div class="flex items-center gap-2">
                                                 <div class="flex gap-2 py-2">
                                                     <img src="./images/svg/start.svg" alt="estrella" />
                                                     <img src="./images/svg/start.svg" alt="estrella" />
@@ -447,7 +447,7 @@
                                                 <p class="font-semibold text-[14px] text-[#6C7275]">
                                                     (35)
                                                 </p>
-                                            </div> --}}
+                                            </div> -->
                                                 <h2 class="font-semibold text-[16px] text-[#141718]">
                                                     {{ $item->producto }}
                                                 </h2>
@@ -469,7 +469,7 @@
                                 @endforeach
 
                             </div>
-                            {{-- <div class="swiper-pagination-productos-destacados"></div>  --}}
+                            <!-- <div class="swiper-pagination-productos-destacados"></div>  -->
                         </div>
                     </div>
 

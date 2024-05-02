@@ -415,6 +415,8 @@
                                                 class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
                                                 Nuevo
                                             </a>
+
+                                           
                                         </div>
                                         <div>
                                             <div class="relative flex justify-center items-center">
@@ -476,12 +478,20 @@
                                             <div class="flex flex-col relative">
                                                 <div
                                                     class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
-                                                    <div class="px-4">
-                                                        <a
-                                                            class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
-                                                            Nuevo
-                                                        </a>
-                                                    </div>
+                                                    @foreach ($item->tags as $tags)
+                                                        <div class="px-4">
+                                                            <!-- <a
+                                                                class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                                                Nuevo
+                                                            </a> -->
+                                                            
+                                                                <span
+                                                                    class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
+                                                                    {{ $tags->name }}
+                                                                </span>
+                                                        
+                                                        </div>
+                                                    @endforeach
                                                     <div>
                                                         <div class="relative flex justify-center items-center">
                                                             @if ($item->imagen)

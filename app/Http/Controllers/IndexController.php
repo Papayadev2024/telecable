@@ -40,10 +40,13 @@ class IndexController extends Controller
    */
   public function index()
   {
-    $productos = Products::all();
+    // $productos = Products::all();
+    $productos =  Products::with('tags')->get();
     $categorias = Category::all();
-    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->get();
-    $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)->where('visible', '=', 1)->get();
+    $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)
+    ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
+    $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
+    ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
 
     $general = General::all();
     $benefit = Strength::where('status', '=', 1)->get();

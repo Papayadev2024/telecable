@@ -23,7 +23,7 @@
                                                 </div>
                                             </div>
 
-                                            {{-- <pre>@dd($categories)</pre> --}}
+                                            
 
                                             <div class="md:col-span-5">
                                                 <label for="category_id">Categoría de post</label>
