@@ -144,6 +144,24 @@ class ProductsController extends Controller
     }
   }
 
+  private function actualizarEspecificacion ($especificaciones){
+    foreach ($especificaciones as $key => $value) {
+      $espect = Specifications::find($key);
+      $espect->tittle = $value['tittle'];
+      $espect->specifications = $value['specifications'];
+
+      if($value['specifications'] == null ){
+        $espect->delete();
+      }else{
+        $espect->save();
+      }
+
+      
+
+    }
+
+  }
+
   private function stringToObject($key, $atributos)
   {
 
@@ -196,6 +214,12 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
     $data = $request->all();
     $atributos = null;
+    
+
+
+     
+    
+    
 
     $request->validate([
       'producto' => 'required',
@@ -213,25 +237,25 @@ class ProductsController extends Controller
     }
 
     foreach ($request->all() as $key => $value) {
-
+      
       if (strstr($key, ':')) {
         // Separa el nombre del atributo y su valor
         $atributos = $this->stringToObject($key, $atributos);
         unset($request[$key]);
       }elseif (strstr($key, '-')) {
-
         //strpos primera ocurrencia que enuentre
         if (strpos($key, 'tittle-') === 0 || strpos($key, 'title-') === 0) {
           $num = substr($key, strrpos($key, '-') + 1); // Obtener el número de la especificación
           $especificaciones[$num]['tittle'] = $value; // Agregar el título al array asociativo
         } elseif (strpos($key, 'specifications-') === 0) {
+          
           $num = substr($key, strrpos($key, '-') + 1); // Obtener el número de la especificación
           $especificaciones[$num]['specifications'] = $value; // Agregar las especificaciones al array asociativo
         }
       }
     }
 
-  
+    
 
 
 
@@ -256,8 +280,8 @@ class ProductsController extends Controller
     $product->update($cleanedData);
     DB::delete('delete from tags_xproducts where producto_id = ?', [$id]);
     $this->TagsXProducts($id, $tagsSeleccionados);
-    $this->GuardarEspecificaciones($product->id, $especificaciones);
-    return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
+    $this->actualizarEspecificacion($especificaciones);
+    // return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
   }
 
   /**
