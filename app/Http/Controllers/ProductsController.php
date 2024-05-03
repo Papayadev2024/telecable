@@ -279,9 +279,11 @@ class ProductsController extends Controller
     });
     $product->update($cleanedData);
     DB::delete('delete from tags_xproducts where producto_id = ?', [$id]);
-    $this->TagsXProducts($id, $tagsSeleccionados);
+    if(!is_null($tagsSeleccionados)){
+      $this->TagsXProducts($id, $tagsSeleccionados);
+    }
     $this->actualizarEspecificacion($especificaciones);
-    // return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
+     return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
   }
 
   /**

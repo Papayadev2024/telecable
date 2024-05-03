@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\EmailConfig;
 use App\Http\Requests\StoreIndexRequest;
 use App\Http\Requests\UpdateIndexRequest;
 use App\Models\Attributes;
@@ -229,10 +230,10 @@ class IndexController extends Controller
       
       if (count($existeUser) === 0) {
         UserDetails::create($request->all());
-        
+        $datos = $request->all();
         $codigoAleatorio = $this->codigoVentaAleatorio();
         $this->guardarOrden();
-
+        $this-> envioCorreoCompra($datos);
         return response()->json(['message' => 'Data procesada correctamente', 'codigoCompra' => $codigoAleatorio],);
       } else {
         $existeUsuario = User::where('email', $email)->get()->toArray();
@@ -255,13 +256,14 @@ class IndexController extends Controller
             // Aquí puedes manejar el error como desees, por ejemplo, devolver una respuesta con los errores
             return response()->json(['errors' => $validator->errors()], 422);
           } else {
-
+            $datos = $request->all();
             //Procesar Compra
             $userdetailU = UserDetails::where('email', $email)->first();
             $userdetailU->update($request->all());
 
             $codigoAleatorio = $this->codigoVentaAleatorio();
             $this->guardarOrden();
+            $this-> envioCorreoCompra($datos);
             return response()->json(['message' => 'Todos los datos estan correctos', 'codigoCompra' => $codigoAleatorio],);
           }
         } else {
@@ -494,7 +496,8 @@ class IndexController extends Controller
         ];
         $request->validate($reglasValidacion, $mensajes);
         $formlanding = Message::create($data);
-        // return redirect()->route('landingaplicativos', $formlanding)->with('mensaje','Mensaje enviado exitoso')->with('name', $request->nombre);
+        $this-> envioCorreo($formlanding);
+
         return response()->json(['message'=> 'Mensaje enviado con exito']);
        } catch (ValidationException $e) {
        
@@ -514,4 +517,37 @@ class IndexController extends Controller
     }
     $img->save($route . $nombreImagen);
   }
+
+
+  private function envioCorreo($data){
+        
+    $name = $data['full_name'];
+    $mail = EmailConfig::config();
+    try {
+        $mail->addAddress($data['email']);
+        $mail->Body = "Hola $name su mensaje fue enviado con exito. En breve un asesor se comunicara con usted.";
+        $mail->isHTML(true);
+        $mail->send();
+        
+    } catch (\Throwable $th) {
+        //throw $th;
+    }  
+  }
+
+  private function envioCorreoCompra($data){
+        
+    $name = $data['nombre'];
+    $mail = EmailConfig::config();
+    try {
+        $mail->addAddress($data['email']);
+        $mail->Body = "Hola $name su pedido fue realizado.";
+        $mail->isHTML(true);
+        $mail->send();
+        
+    } catch (\Throwable $th) {
+        //throw $th;
+    }  
+  }
+
+
 }

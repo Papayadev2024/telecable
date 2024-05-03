@@ -132,9 +132,9 @@
 
 
 
-                <div class="bg-[#EB5D2C] flex justify-center items-center rounded-full w-7 h-7">
+               <!-- <div class="bg-[#EB5D2C] flex justify-center items-center rounded-full w-7 h-7">
                     <span class="text-white">1</span>
-                </div>
+                </div> -->
 
                 <div class="flex justify-center items-center pl-2">
                     <label for="check" class="inline-block cursor-pointer">
