@@ -33,9 +33,9 @@
     <div class="basis-1/6 flex flex-col gap-5">
       <h3 class="font-medium text-[16px]">Page</h3>
 
-      <a href="index.html" class="font-normal text-[14px]">Home</a>
-      <a href="catalogo.html" class="font-normal text-[14px]">Catálogo</a>
-      <a href="contacto.html" class="font-normal text-[14px]">Contacto</a>
+      <a href="/" class="font-normal text-[14px]">Home</a>
+      <a href="{{ route('catalogo', 0) }}" class="font-normal text-[14px]">Catálogo</a>
+      <a href="{{ route('contacto') }}" class="font-normal text-[14px]">Contacto</a>
     </div>
 
     <div class="basis-1/6 flex flex-col gap-5">
