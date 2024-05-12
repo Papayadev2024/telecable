@@ -89,8 +89,8 @@
                     @foreach ($productos as $producto)
                         @foreach ($producto->attributes as $atributo)
 
-                            {{$atributo->pivot}}
-                            {{-- <div>
+                            {{-- {{$atributo->pivot}} --}}
+                            <div>
                                 @if ($atributo->typeAttribute->name === 'color')
                                     <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
                                         Seleccionar color
@@ -115,7 +115,7 @@
                                         @endforeach
                                     </div>
                                 @endif
-                            </div> --}}
+                            </div>
                         @endforeach 
                     @endforeach    
                     </div>
