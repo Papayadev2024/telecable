@@ -44,7 +44,7 @@ class ProductsController extends Controller
   {
     $manager = new ImageManager(new Driver());
     $img =  $manager->read($file);
-    $img->coverDown(340, 340, 'center');
+    // $img->coverDown(340, 340, 'center');
 
     if (!file_exists($route)) {
       mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
@@ -88,7 +88,9 @@ class ProductsController extends Controller
       if (strstr($key, ':')) {
         // Separa el nombre del atributo y su valor
         $atributos = $this->stringToObject($key, $atributos);
+         //$atributoName = Attributes::where('titulo', )
         unset($request[$key]);
+
       } elseif (strstr($key, '-')) {
 
         //strpos primera ocurrencia que enuentre
@@ -113,13 +115,32 @@ class ProductsController extends Controller
 
 
     $data['atributes'] = $jsonAtributos;
+    
 
     $cleanedData = Arr::where($data, function ($value, $key) {
       return !is_null($value);
     });
 
     $producto = Products::create($cleanedData);
+
+    foreach ($atributos as $atributo => $valores) {
+      $idAtributo = Attributes::where('titulo', $atributo)->first();
+  
+      foreach ($valores as $valor) {
+          $idValorAtributo = AttributesValues::where('valor', $valor)->first();
+  
+          if ($idAtributo && $idValorAtributo) {
+              DB::table('product_has_attribute')->insert([
+                  'product_id' => $producto->id,
+                  'attribute_id' => $idAtributo->id,
+                  'attribute_value_id' => $idValorAtributo->id,
+              ]);
+          }
+      }
+  }
+
     $this->GuardarEspecificaciones($producto->id, $especificaciones);
+    
     if(!is_null($tagsSeleccionados)){
       $this->TagsXProducts($producto->id, $tagsSeleccionados);
     }
@@ -214,12 +235,6 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
     $data = $request->all();
     $atributos = null;
-    
-
-
-     
-    
-    
 
     $request->validate([
       'producto' => 'required',
@@ -254,13 +269,6 @@ class ProductsController extends Controller
         }
       }
     }
-
-    
-
-
-
-
-
 
     $jsonAtributos = json_encode($atributos);
 

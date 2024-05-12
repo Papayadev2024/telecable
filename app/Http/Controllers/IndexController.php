@@ -16,7 +16,9 @@ use App\Models\Slider;
 use App\Models\Strength;
 use App\Models\Testimony;
 use App\Models\Category;
+use App\Models\Liquidacion;
 use App\Models\Specifications;
+use App\Models\TypeAttribute;
 use App\Models\User;
 use App\Models\UserDetails;
 use Illuminate\Http\Request;
@@ -46,8 +48,10 @@ class IndexController extends Controller
     $categorias = Category::all();
     $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)
     ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
-    $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
-    ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
+    // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
+    // ->where('visible', '=', 1)->with('tags')->get();
+    $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)
+    ->where('visible', '=', 1)->with('tags')->get();
 
     $general = General::all();
     $benefit = Strength::where('status', '=', 1)->get();
@@ -55,10 +59,10 @@ class IndexController extends Controller
     $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
     $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
     $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->get();
+    $liquidacion = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
 
 
-
-    return view('public.index', compact('productos', 'destacados', 'descuentos', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category'));
+    return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
   }
 
   public function catalogo($filtro, Request $request)
@@ -371,6 +375,10 @@ class IndexController extends Controller
     return view('public.dashboard', compact('user'));
   }
 
+  public function coleccion()
+  { 
+    return view('public.collection');
+  }
 
   public function pedidos()
   {
@@ -395,7 +403,7 @@ class IndexController extends Controller
 
   public function producto(string $id)
   {
-
+    $product = Products::findOrFail($id);
     $productos = Products::where('id', '=', $id)->get();
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)
@@ -417,7 +425,11 @@ class IndexController extends Controller
 
     $ProdComplementarios = Products::where('categoria_id', '=', $IdProductosComplementarios)->get();
     $atributos = Attributes::where("status", "=", true)->get();
+    // $atributos = $product->attributes()->get();
+    
+
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
+
     $url_env = $_ENV['APP_URL'];
 
 

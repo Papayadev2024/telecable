@@ -40,42 +40,72 @@ class SliderController extends Controller
         $request->validate([
             'title' => 'required',
         ]);
-
-       
         $slider = new Slider();
-
-
-        if ($request->hasFile("imagen")) {
-
-            $manager = new ImageManager(new Driver());
-
-            $nombreImagen = Str::random(10) . '_' . $request->file('imagen')->getClientOriginalName();
-            $img =  $manager->read($request->file('imagen'));
-            $img->coverDown(1440, 808, 'center');
-            $ruta = 'storage/images/slider/';
-           
-            if (!file_exists($ruta)) {
-                mkdir($ruta, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
-            }
-            
-            $img->save($ruta.$nombreImagen);
-
-            $slider ->url_image = $ruta;
-            $slider ->name_image = $nombreImagen;
-        }
-
-        $slider ->botontext1 = $request->botontext1;
-        $slider ->link1 = $request->link1;
-        $slider ->botontext2 = $request->botontext2;
-        $slider ->link2 = $request->link2;
-        $slider ->title = $request->title;
-        $slider ->description = $request->description;
+        $manager = new ImageManager(new Driver());
         
+        try {
+			
+			if ($request->hasFile("imagen")) {
+				$file = $request->file('imagen');
+				$routeImg = 'storage/images/slider/';
+				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+                // $img =  $manager->read($file);           Para leer el archivo 
+                // $img->coverDown(1440, 808, 'center');    Para modificar el archivo
+				$this->saveImg($file, $routeImg, $nombreImagen);
+
+                $slider ->url_image = $routeImg;
+                $slider ->name_image = $nombreImagen;
+			}else{
+                $routeImg = 'images/img';
+                $nombreImagen = 'noimagenslider.jpg';
+
+                $slider ->url_image = $routeImg;
+                $slider ->name_image = $nombreImagen;
+            }
 
 
-        $slider ->save();
+            if ($request->hasFile("imagen2")) {
+				$file = $request->file('imagen2');
+				$routeImg = 'storage/images/slider/';
+				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+                // $img =  $manager->read($file);           Para leer el archivo 
+                // $img->coverDown(1440, 808, 'center');    Para modificar el archivo
+				$this->saveImg($file, $routeImg, $nombreImagen);
 
-        return redirect()->route('slider.index')->with('success', 'Slider creado exitosamente.');
+                $slider ->url_image2 = $routeImg;
+                $slider ->name_image2 = $nombreImagen;
+			}else{
+                $routeImg = 'images/img';
+                $nombreImagen = 'noimagenslider.jpg';
+
+                $slider ->url_image2 = $routeImg;
+                $slider ->name_image2 = $nombreImagen;
+            }
+
+
+            $slider ->subtitle = $request->subtitle;
+            $slider ->title2 = $request->title2;
+            $slider ->botontext1 = $request->botontext1;
+            $slider ->link1 = $request->link1;
+            $slider ->botontext2 = $request->botontext2;
+            $slider ->link2 = $request->link2;
+            $slider ->title = $request->title;
+            $slider ->description = $request->description;
+            
+
+            
+            $slider ->save();
+    
+            return redirect()->route('slider.index')->with('success', 'Slider creado exitosamente.');
+
+
+		} catch (\Throwable $th) {
+			return response()->json(['messge' => 'Verifique sus datos '], 400); 
+		}
+
+
+
+           
     }
 
     /**
@@ -103,47 +133,60 @@ class SliderController extends Controller
     public function update(Request $request, $id)
     {
         $slider = Slider::findOrfail($id);
-        $slider->title = $request->title;
-        $slider->description = $request->description;
-        $slider ->botontext1 = $request->botontext1;
-        $slider ->link1 = $request->link1;
-        $slider ->botontext2 = $request->botontext2;
-        $slider ->link2 = $request->link2;
-       
+      
+        try {
+			
+			if ($request->hasFile("imagen")) {
+				$file = $request->file('imagen');
+				$routeImg = 'storage/images/slider/';
+				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
-        if ($request->hasFile("imagen")) {
+                if (File::exists($slider->url_image . $slider->name_image)) {
+                    File::delete( $slider->url_image . $slider->name_image);
+                  }
+                  
+                $this->saveImg($file, $routeImg, $nombreImagen);
+	
+                $slider->url_image = $routeImg;
+                $slider->name_image = $nombreImagen;
 
-            $manager = new ImageManager(new Driver());
+			}
 
+            if ($request->hasFile("imagen2")) {
+				$file = $request->file('imagen2');
+				$routeImg = 'storage/images/slider/';
+				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
-            $ruta = storage_path() . '/app/public/images/slider/' . $slider->name_image;
+                if (File::exists($slider->url_image2 . $slider->name_image2)) {
+                    File::delete( $slider->url_image2 . $slider->name_image2);
+                  }
+                  
+                $this->saveImg($file, $routeImg, $nombreImagen);
+	
+                $slider->url_image2 = $routeImg;
+                $slider->name_image2 = $nombreImagen;
 
-            // dd($ruta);
-            if (File::exists($ruta)) {
-                File::delete($ruta);
-            }
+			}
 
-            $rutanueva = 'storage/images/slider/';
-            $nombreImagen = Str::random(10) . '_' . $request->file('imagen')->getClientOriginalName();
-            $img =  $manager->read($request->file('imagen'));
-            $img->coverDown(1440, 808, 'center');
-           
-            if (!file_exists($rutanueva)) {
-                mkdir($rutanueva, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
-            }
+            $slider ->subtitle = $request->subtitle;
+            $slider ->title2 = $request->title2;
+            $slider->title = $request->title;
+            $slider->description = $request->description;
+            $slider ->botontext1 = $request->botontext1;
+            $slider ->link1 = $request->link1;
+            $slider ->botontext2 = $request->botontext2;
+            $slider ->link2 = $request->link2;
             
-            $img->save($rutanueva . $nombreImagen);
+
+            $slider->update();
+
+			return redirect()->route('slider.index')->with('success', 'Slider modificado exitosamente.');
 
 
-            $slider->url_image = $rutanueva;
-            $slider->name_image = $nombreImagen;
-        }
-
-
-
-        $slider->update();
-
-        return redirect()->route('slider.index')->with('success', 'Slider actualizado exitosamente.');
+		} catch (\Throwable $th) {
+			return response()->json(['messge' => 'Verifique sus datos '], 400); 
+		}
+    
     }
 
     /**
@@ -155,6 +198,14 @@ class SliderController extends Controller
     }
 
 
+    public function saveImg($file, $route, $nombreImagen){
+		$manager = new ImageManager(new Driver());
+		$img =  $manager->read($file);
+		if (!file_exists($route)) {
+			mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+	}
+		$img->save($route . $nombreImagen);
+	}
 
     
     public function deleteSlider(Request $request)
@@ -175,21 +226,29 @@ class SliderController extends Controller
 
 
     public function updateVisible(Request $request)
-    {
-        // Lógica para manejar la solicitud AJAX
-        //return response()->json(['mensaje' => 'Solicitud AJAX manejada con éxito']);
+    {    
+        $cantidad = $this->contarSliderVisible();
+
+        if($cantidad >= 1 && $request->status == 1){
+            return response()->json(['message' => 'Solo puedes hacer visible 1 slider'], 409 );
+        }
+
         $id = $request->id;
-
         $field = $request->field;
-
         $status = $request->status;
-
         $service = Slider::findOrFail($id);
-
         $service->$field = $status;
-
         $service->save();
 
-        return response()->json(['message' => 'Slider eliminado.']);
+        $cantidad = $this->contarSliderVisible();
+
+        return response()->json(['message' => 'Slider eliminado',  'cantidad' => $cantidad]);
+    }
+
+
+    public function contarSliderVisible(){
+
+        $cantidad = Slider::where('visible', '=', 1)->count();
+        return  $cantidad;
     }
 }

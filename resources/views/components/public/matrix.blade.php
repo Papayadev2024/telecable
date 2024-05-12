@@ -7,7 +7,9 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-  <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+  {{-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}" /> --}}
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+
 
   {{-- Aqui van los CSS --}}
   @yield('css_importados')
@@ -44,7 +46,9 @@
 
   @yield('scripts_importados')
   {{-- @vite(['resources/js/functions.js']) --}}
-  <script src="{{ asset('js/functions.js') }}"></script>
+  {{-- <script src="{{ asset('js/functions.js') }}"></script> --}}
+  <script src="{{ asset('js/function.js') }}"></script>
+
 
 </body>
 

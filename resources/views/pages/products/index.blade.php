@@ -34,7 +34,7 @@
                 <th>Peso</th>
                 <th>Imagen</th>
                 <th>Destacar</th>
-                <th>Recomendar</th>
+                <th>Novedad</th>
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>
@@ -139,7 +139,7 @@
                 <th>Peso</th>
                 <th>Imagen</th>
                 <th>Destacar</th>
-                <th>Recomendar</th>
+                <th>Novedad</th>
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>

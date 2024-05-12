@@ -7,135 +7,411 @@
 
 @section('content')
 
-    <div class="w-full md:w-11/12 md:mx-auto">
-        <div style="background-image: url('{{ asset('images/img/header_catalogo.png') }}')"
-            class="bg-cover bg-center bg-no-repeat min-h-[600px] flex flex-col justify-center items-center">
-            <div class="flex justify-start py-10 md:py-16 w-11/12 mx-auto">
-                <div class="text-white font-poppins flex flex-col gap-10 text-center">
-                    <h1 class="font-semibold text-[32px] md:text-[48px] leading-none md:leading-tight">
-                        Vestibulum molestie massa nec est hendrerit, nec commodo nulla
-                        catalago
-                    </h1>
-                    <p class="font-normal text-[16px] md:text-[18px]">
-                        Pellentesque convallis eu tortor id condimentum. Etiam cursus
-                        semper odio non consectetur. Pellentesque et molestie risus.
-                        Aliquam eu nibh pulvinar.
+    <main class="flex flex-col gap-12">
+
+        {{-- <section class="flex gap-2 items-center w-11/12 mx-auto">
+            <a href="#" class="font-regularDisplay text-text20 xl:text-text24 text-gray-500 leading-none">
+                Home
+            </a>
+            <div class="flex justify-center items-center">
+                <img src="{{asset('images/svg/flecha.svg')}}" alt="doomine" />
+            </div>
+            <a href="#" class="font-mediumDisplay text-text20 xl:text-text24 text-black leading-none">
+                Categorías
+            </a>
+        </section> --}}
+        <!--  -->
+
+        <div class="w-11/12 mx-auto mt-10">
+            <div class="grid grid-cols-2 row-span-2 md:grid-cols-4 lg:row-span-1 gap-2 md:gap-0">
+                <div class="order-3 md:order-1 flex justify-between md:pr-2 items-center">
+                    <p class="font-boldDisplay text-[20px] xl:text-text28 hidden md:block">
+                        Categorías
                     </p>
+                    <div class="flex justify-center items-center open">
+                        <img src="{{ asset('images/svg/catalogo_filtro_icon.svg') }}" alt="logo_filtros" />
+                    </div>
+                </div>
+
+                <div class="md:pl-9 order-1 md:order-2 flex items-center">
+                    <h3 class="font-boldItalicDisplay text-text20 md:text-text32 text-left w-full lg:w-auto">
+                        / Vestidos /
+                    </h3>
+                </div>
+
+                <div class="flex items-center gap-2 order-4 md:order-3 justify-end md:pr-5">
+                    <p class="text-[#CCCCCC] font-regularDisplay text-text14 md:text-text18">
+                        Mostrando <span>1</span>-<span>20</span> de
+                        <span>100</span> productos
+                    </p>
+                </div>
+
+                <div class="dropdown w-full order-2 md:order-4">
+                    <div
+                        class="input-box focus:outline-none font-mediumDisplay text-text16 md:text-text20 mr-20 shadow-md px-2 bg-[#F5F5F5]">
+                        Ordenar por
+                    </div>
+                    <div class="list z-[10]">
+                        <div class="w-full">
+                            <input type="radio" name="drop1" id="id11" class="radio" />
+
+                            <label for="id11"
+                                class="font-regularDisplay text-text20 hover:font-bold md:duration-100 hover:text-white ordenar">
+                                <span class="name inline-block w-full">Precio más alto</span>
+                            </label>
+                        </div>
+
+                        <div class="w-full">
+                            <input type="radio" name="drop1" id="id12" class="radio" />
+                            <label for="id12"
+                                class="font-regularDisplay text-text20 hover:font-bold md:duration-100 hover:text-white ordenar">
+                                <span class="name inline-block w-full">
+                                    Precio más bajo
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="w-full">
+                            <input type="radio" name="drop1" id="id13" class="radio" />
+                            <label for="id13"
+                                class="font-regularDisplay text-text20 hover:font-bold md:duration-100 hover:text-white comentar">
+                                <span class="name inline-block w-full"> Antiguo </span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <!--  -->
 
-    <main class="z-[70]">
-        <div class="flex flex-col md:flex-row md:gap-10 w-11/12 mx-auto mt-10 font-poppins">
-            <aside class="flex flex-col gap-5">
-                <div class="flex gap-3 open">
-                    <div>
-                        <img src="{{ asset('images/svg/catalogo_filtro_icon.svg') }}" alt="logo_filtros" />
-                    </div>
-                    <p class="font-semibold text-[20px]">Filtros</p>
-                </div>
+        <div class="flex flex-col md:flex-row md:gap-10 w-11/12 mx-auto font-poppins">
+            <aside class="flex flex-col gap-10 md:basis-3/12">
 
                 <div class="hidden-categoria-precio">
-                    <div class="hidden md:flex flex-col gap-5 show-categoria-precio">
-                        <div class="flex flex-col gap-5">
-                            <p class="font-semibold text-[16px]">Categorías</p>
-                            <a href="/catalogo/0"
-                                class="{{ $filtro == 0 ? 'font-semibold text-[14px] underline' : 'text-[#6C7275]' }}">Todas</a>
+                    <div class="hidden md:flex flex-col gap-10 show-categoria-precio">
+                        <div class="flex flex-col gap-2 text-text18 xl:text-text20">
 
-                            <div>
-                                <div
-                                    class="overflow-y-scroll flex flex-col h-[150px] scroll__categorias items-start font-semibol text-[14px] text-[#6C7275] gap-2">
-                                    <ul class="flex flex-col gap-2">
 
-                                        @foreach ($categorias as $item)
-                                            <a href="/catalogo/{{ $item->id }}">
-                                                <li
-                                                    class="w-full mr-44 cursor-pointer @if ($filtro == 0) @else
 
-                                             {{ $item->id == $categoria->id ? 'font-semibold text-[14px] underline text-black' : '' }} @endif ">
-                                                    {{ $item->name }}</li>
-                                            </a>
-                                        @endforeach
+                            <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                <a href="/catalogo/0"
+                                    class="{{ $filtro == 0 ? 'font-semibold underline' : 'text-black' }}">Todas</a>
+                            </div>
 
-                                    </ul>
+                            @foreach ($categorias as $item)
+                                <a href="/catalogo/{{ $item->id }}">
+                                    <div
+                                        class="font-boldDisplay flex justify-start gap-2 items-center w-full @if ($filtro == 0) @else
+
+                                        {{ $item->id == $categoria->id ? 'font-semibold underline text-black' : '' }} @endif ">
+                                        {{ $item->name }}
+                                    </div>
+                                </a>
+                            @endforeach
+
+
+                        </div>
+
+                        <div>
+                            <div class="relative">
+                                <div class="mx-auto">
+                                    <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
+                                        <details class="group">
+                                            <summary
+                                                class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
+                                                <span class="font-boldDisplay text-text20 text-[#151515]">
+                                                    Precio
+                                                </span>
+                                                <span class="transition group-open:rotate-180">
+                                                    <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                                            fill="black" />
+                                                        <path
+                                                            d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                                            fill="black" />
+                                                    </svg>
+                                                </span>
+                                            </summary>
+
+                                            <div class="group-open:animate-fadeIn mt-5">
+                                                <div class="flex flex-col gap-2 text-text18 xl:text-text20">
+                                                    <a href="/catalogo/{{ $filtro }}?rangefrom=0&rangeto=0"
+                                                        class="font-regularDisplay  @if ($rangefrom == 0 && $rangeto == 0) font-semibold underline
+                                                    @else
+                                                    font-normal @endif">Todos
+                                                        los precios</a>
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <a href="/catalogo/{{ $filtro }}?rangefrom=0&rangeto=50"
+                                                            class="cursor-pointer
+                                                        @if ($rangefrom == 0 && $rangeto == 50) font-semibold
+                                                        @else
+                                                        font-normal @endif
+                                                        ">
+                                                            S/0 - S/50
+                                                        </a>
+                                                    </div>
+
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <a href="/catalogo/{{ $filtro }}?rangefrom=51&rangeto=100"
+                                                            class="cursor-pointer
+                                                        @if ($rangefrom == 51 && $rangeto == 100) font-semibold
+                                                        @else
+                                                        font-normal @endif
+                                                        ">
+                                                            S/51 - S/100
+                                                        </a>
+                                                    </div>
+
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <a href="/catalogo/{{ $filtro }}?rangefrom=101&rangeto=150"
+                                                            class="cursor-pointer
+                                                        @if ($rangefrom == 101 && $rangeto == 150) font-semibold
+                                                        @else
+                                                        font-normal @endif
+                                                        ">
+                                                            S/101 - S/150
+                                                        </a>
+                                                    </div>
+
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <a href="/catalogo/{{ $filtro }}?rangefrom=151&rangeto=200"
+                                                            class="cursor-pointer
+                                                        @if ($rangefrom == 151 && $rangeto == 200) font-semibold
+                                                        @else
+                                                        font-normal @endif
+                                                        ">
+                                                            S/151 - S/200
+                                                        </a>
+                                                    </div>
+
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <a href="/catalogo/{{ $filtro }}?rangefrom=201&rangeto=10000"
+                                                            class="cursor-pointer
+                                                        @if ($rangefrom == 201 && $rangeto == 10000) font-semibold
+                                                        @else
+                                                        font-normal @endif
+                                                        ">
+                                                            S/201 a Más
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </details>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        {{--   --}}
-                        <div class="flex flex-col gap-5">
-                            <p class="font-semibold text-[16px]">Precio</p>
-                            <a href="#" class="font-semibold text-[14px] underline">Todos los precios</a>
-                            <div class="flex flex-col gap-2">
-                                <div class="flex justify-between items-center">
 
-                                    <a href="/catalogo/{{ $filtro }}?rangefrom=0&rangeto=99.99">
-                                        <li class=" text-[14px] list-none
-                                        
-                                        @if ($rangefrom == 0 && $rangeto == 99.99) font-semibold
-                                        @else
-                                            font-normal @endif
-                                        
-                                        "
-                                            for="precio_0">s/ 0.00 - s/99.99</li>
-                                    </a>
-                                    <!-- Agrega el siguiente código dentro de tu archivo HTML -->
-                                    {{-- <input id="precio_0" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
+                        <div>
+                            <div class="relative">
+                                <div class="mx-auto">
+                                    <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
+                                        <details class="group">
+                                            <summary
+                                                class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
+                                                <span class="font-boldDisplay text-text20 text-[#151515]">
+                                                    Colores
+                                                </span>
+                                                <span class="transition group-open:rotate-180">
+                                                    <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                                            fill="black" />
+                                                        <path
+                                                            d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                                            fill="black" />
+                                                    </svg>
+                                                </span>
+                                            </summary>
+
+                                            <div class="group-open:animate-fadeIn mt-5">
+                                                <div
+                                                    class="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 place-items-center">
+                                                    <div class="colors w-14 h-14 bg-[#F1EFEE] rounded-[50%] cursor-pointer">
+                                                    </div>
+                                                    <div
+                                                        class="colors w-14 h-14 bg-[#212020] rounded-[50%] cursor-pointer active:from-amber-100">
+                                                    </div>
+
+                                                    <div
+                                                        class="colors w-14 h-14 bg-[#6DA783] rounded-[50%] cursor-pointer active:from-amber-100">
+                                                    </div>
+
+                                                    <div
+                                                        class="colors w-14 h-14 bg-[#B8CDEE] rounded-[50%] cursor-pointer active:from-amber-100">
+                                                    </div>
+
+                                                    <div
+                                                        class="colors w-14 h-14 bg-[#424047] rounded-[50%] cursor-pointer active:from-amber-100">
+                                                    </div>
+
+                                                    <div
+                                                        class="colors w-14 h-14 bg-[#97A0A0] rounded-[50%] cursor-pointer active:from-amber-100">
+                                                    </div>
+
+                                                    <div
+                                                        class="colors w-14 h-14 bg-[#436956] rounded-[50%] cursor-pointer active:from-amber-100">
+                                                    </div>
+
+                                                    <div
+                                                        class="colors w-14 h-14 bg-[#5B7EBB] rounded-[50%] cursor-pointer active:from-amber-100">
+                                                    </div>
+
+                                                    <div
+                                                        class="colors w-14 h-14 bg-[#3A383C] rounded-[50%] cursor-pointer active:from-amber-100">
+                                                    </div>
+
+                                                    <div
+                                                        class="colors w-14 h-14 bg-[#D5D4D2] rounded-[50%] cursor-pointer active:from-amber-100">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </details>
+                                    </div>
                                 </div>
-                                <div class="flex justify-between items-center">
-                                    <a href="/catalogo/{{ $filtro }}/?rangefrom=100&rangeto=199.99">
-                                        <li class="text-[14px] list-none
-                                        @if ($rangefrom == 100 && $rangeto == 199.99) font-semibold
-                                        @else
-                                            font-normal @endif
-                                        "
-                                            for="precio_1">s/ 100.00 - s/199.99</li>
-                                    </a>
-                                    <!-- Agrega el siguiente código dentro de tu archivo HTML -->
-                                    {{-- <input id="precio_1" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="relative">
+                                <div class="mx-auto">
+                                    <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
+                                        <details class="group">
+                                            <summary
+                                                class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
+                                                <span class="font-boldDisplay text-text20 text-[#151515]">
+                                                    Tallas
+                                                </span>
+                                                <span class="transition group-open:rotate-180">
+                                                    <svg width="20" height="20" viewBox="0 0 12 13"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                                            fill="black" />
+                                                        <path
+                                                            d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                                            fill="black" />
+                                                    </svg>
+                                                </span>
+                                            </summary>
+
+                                            <div class="group-open:animate-fadeIn mt-5">
+                                                <div class="flex flex-col gap-2 text-text18 xl:text-text22">
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <input type="checkbox" id="x-small"
+                                                            class="w-4 h-4 accent-[#000000] cursor-pointer" />
+                                                        <label for="x-small" class="cursor-pointer">
+                                                            X-Small
+                                                        </label>
+                                                    </div>
+
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <input type="checkbox" id="small"
+                                                            class="w-4 h-4 accent-[#000000] cursor-pointer" />
+                                                        <label for="small" class="cursor-pointer">
+                                                            Small
+                                                        </label>
+                                                    </div>
+
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <input type="checkbox" id="medium"
+                                                            class="w-4 h-4 accent-[#000000] cursor-pointer" />
+                                                        <label for="medium" class="cursor-pointer">
+                                                            Medium
+                                                        </label>
+                                                    </div>
+
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <input type="checkbox" id="large"
+                                                            class="w-4 h-4 accent-[#000000] cursor-pointer" />
+                                                        <label for="large" class="cursor-pointer">
+                                                            Large
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </details>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="flex justify-between items-center">
-                                    <a href="/catalogo/{{ $filtro }}/?rangefrom=200&rangeto=299.99">
-                                        <li class="text-[14px] list-none
+                        <div>
+                            <div class="relative">
+                                <div class="mx-auto">
+                                    <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
+                                        <details class="group">
+                                            <summary
+                                                class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
+                                                <span class="font-boldDisplay text-text20 text-[#151515]">
+                                                    Colección
+                                                </span>
+                                                <span class="transition group-open:rotate-180">
+                                                    <svg width="20" height="20" viewBox="0 0 12 13"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                                            fill="black" />
+                                                        <path
+                                                            d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                                            fill="black" />
+                                                    </svg>
+                                                </span>
+                                            </summary>
 
-                                        @if ($rangefrom == 200 && $rangeto == 299.99) font-semibold
-                                        @else
-                                            font-normal @endif
+                                            <div class="group-open:animate-fadeIn mt-5">
+                                                <div class="flex flex-col gap-2 text-text18 xl:text-text22">
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <input type="checkbox" id="real-sensation"
+                                                            class="w-4 h-4 accent-[#000000] cursor-pointer" />
+                                                        <label for="real-sensation" class="cursor-pointer">
+                                                            Real Sensation
+                                                        </label>
+                                                    </div>
 
-                                        "
-                                            for="precio_2">s/ 200.00 - s/299.99</li>
-                                    </a>
-                                    <!-- Agrega el siguiente código dentro de tu archivo HTML -->
-                                    {{-- <input id="precio_2" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
-                                </div>
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <input type="checkbox" id="autumm-bBreezes"
+                                                            class="w-4 h-4 accent-[#000000] cursor-pointer" />
+                                                        <label for="autumm-bBreezes" class="cursor-pointer">
+                                                            Autumm Breezes
+                                                        </label>
+                                                    </div>
 
-                                <div class="flex justify-between items-center">
-                                    <a href="/catalogo/{{ $filtro }}/?rangefrom=300&rangeto=399.99">
-                                        <li class="text-[14px] list-none
-                                    
-                                    @if ($rangefrom == 300 && $rangeto == 399.99) font-semibold
-                                    @else
-                                        font-normal @endif
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <input type="checkbox" id="summer-dreams"
+                                                            class="w-4 h-4 accent-[#000000] cursor-pointer" />
+                                                        <label for="summer-dreams" class="cursor-pointer">
+                                                            Summer Dreams
+                                                        </label>
+                                                    </div>
 
-                                    "
-                                            for="precio_3">s/ 300.00 - s/399.99</li>
-                                    </a>
-                                    <!-- Agrega el siguiente código dentro de tu archivo HTML -->
-                                    {{-- <input id="precio_3" type="checkbox" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
-                                </div>
-
-                                <div class="flex justify-between items-center">
-                                    <a href="/catalogo/{{ $filtro }}/?rangefrom=400&rangeto=100000">
-                                        <li class="text-[14px] list-none
-                                     @if ($rangefrom == 400 && $rangeto == 100000) font-semibold
-                                    @else
-                                        font-normal @endif
-                                        "
-                                            for="precio_4">s/ 400.00 +</li>
-                                    </a>
-                                    <!-- Agrega el siguiente código dentro de tu archivo HTML -->
-                                    {{-- <input id="precio_4" type="checkbox" value="" class="w-5 h-5 accent-[#EB5D2C] cursor-pointer" /> --}}
+                                                    <div
+                                                        class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                                        <input type="checkbox" id="enjoy-collection"
+                                                            class="w-4 h-4 accent-[#000000] cursor-pointer" />
+                                                        <label for="enjoy-collection" class="cursor-pointer">
+                                                            Enjoy Collection
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </details>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -146,206 +422,149 @@
             <!-- <a class="mostrar-modal">Filtrossss</a> -->
             <div class="modal-filtros z-[100]">
                 <div class="modal__mostrar-filtro">
-                    <div class="flex justify-end">
+                    <div class="flex justify-between">
+                        <p class="font-boldDisplay text-[20px]">Categorías</p>
                         <a href="#" class="modal__close-filtro">
-                            <img src="{{ asset('/images/svg/close.svg') }}" alt="close" />
+                            <img src="{{ asset('images/svg/close.svg') }}" alt="close" />
                         </a>
                     </div>
-
-                    <div class="addCategoriaPrecio"></div>
+                    <div class="overflow-y-scroll h-[500px] scroll__categorias">
+                        <div class="addCategoriaPrecio flex flex-col gap-5"></div>
+                    </div>
                 </div>
             </div>
             <!-- --- -->
-            <section class="font-poppins my-10 w-full">
-                <div class="flex flex-col gap-2">
+            <section class="md:basis-9/12 flex flex-col gap-10">
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-5 z-[0]">
 
-                    @if ($filtro == 0)
-                        <h2 class="font-medium text-[40px]">Productos</h2>
-                    @else
-                        <h2 class="font-medium text-[40px]">Productos - {{ $categoria->name }}</h2>
-                    @endif
-
-
-                    <p class="font-normal text-[18px]">
-                        Etiam cursus semper odio non consectetur. Pellentesque et molestie
-                        risus. Aliquam eu nibh pulvinar, sollicitudin sapien vel, aliquam
-                        orci.
-                    </p>
-                </div>
-
-                <!-- GRILLA PRODUCTOS -->
-                <div>
-                    <div class="grid grid-cols-2 lg:grid-cols-3 my-5 gap-10">
-
-                        @foreach ($productos as $item)
-                            <div class="flex flex-col relative">
-
-                                <div
-                                    class="bg-colorBackgroundProducts rounded-2xl py-12 md:pb-8 px-5 product_container basis-4/5 flex flex-col justify-center relative">
-                                    <a
-                                        class=" font-semibold text-[8px] lg:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px]">
-                                        Nuevo
+                    @foreach ($productos as $item)
+                        <div class="flex flex-col gap-5 relative col-span-1 order-1 lg:order-1">
+                            <div class="product_container">
+                                <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}"
+                                    class="w-full h-full" />
+ 
+                                <div class="addProduct text-center flex justify-center">
+                                    <a href="{{ route('producto', $item->id) }}"
+                                        class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 2lg:px-5 flex-initial w-32 md:w-36 2lg:py-3 2lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
+                                        Ver producto
                                     </a>
-                                    <div>
-                                        <div class="relative">
-                                            {{-- <img src="{{ asset($item->imagen) }}" alt="cusco" class="w-full h-[100%]" /> --}}
-                                            @if ($item->imagen)
-                                                <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}"
-                                                    class="w-full h-30 object-contain py-10" />
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-2">
+                                <div
+                                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                    <p class="text-text14 md:text-text16 xl:text-text20">
+                                        {{ $item->producto }}
+                                    </p>
+                                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            @if ($item->descuento == 0)
+                                            <p class="text-text14 md:text-text16 xl:text-text20">
+                                                s/{{ $item->precio }}
+                                            </p>
                                             @else
-                                                <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                                                    class="w-full h-30 object-contain py-10" />
+        
+                                            <p class="text-text14 md:text-text16 xl:text-text20">
+                                                s/{{ $item->descuento }}
+                                            </p>
+                                            <p
+                                                class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay xl:text-text18">
+                                                s/{{ $item->precio }}
+                                            </p>
                                             @endif
                                         </div>
-
-                                        <!-- ------ -->
-                                        <div class="addProduct2 text-center flex justify-center">
-                                            <a href="{{ route('producto', $item->id) }}"
-                                                class="font-semibold text-[10px] xl:text-[16px] bg-[#74A68D] px-1 py-2 md:py-3 lg:px-5 flex-initial w-52 text-center text-white rounded-3xl">
-                                                Ver producto
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="my-2 flex flex-col items-start gap-2 basis-1/5 -mt-6">
-                                    <div class="flex items-center gap-2 ">
-                                        <div class="flex gap-2 py-6 ">
-                                            {{-- <img src="./images/svg/start.svg" alt="estrella" />
-                                            <img src="./images/svg/start.svg" alt="estrella" />
-                                            <img src="./images/svg/start.svg" alt="estrella" />
-                                            <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                            <img src="./images/svg/start_sin_color.svg" alt="estrella" /> --}}
-                                        </div>
-                                        {{-- <p class="font-semibold text-[14px] text-[#6C7275]">(35)</p> --}}
-                                    </div>
-                                    <h2 class="font-semibold text-[16px] text-[#141718]">
-                                        {{ $item->producto }}
-                                    </h2>
-                                    <p class="font-semibold text-[14px] text-[#121212] flex gap-5 ">
-                                        @if ($item->descuento == 0)
-                                            <span>{{ $item->precio }}</span>
-                                        @else
-                                            <span>{{ $item->descuento }}</span>
-                                            <span
-                                                class="font-normal text-[14px] text-[#6C7275] line-through">{{ $item->precio }}</span>
-                                        @endif
+                                <div class="order-1 lg:order-2">
+                                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                        {{ $item->categoria->name }}
                                     </p>
                                 </div>
-
                             </div>
-                        @endforeach
 
-                    </div>
+                            <div
+                                class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                    New Arrival
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
 
-                <div class="flex justify-center items-center mt-12">
+                <div class="hidden md:block">
+                    <nav class="mb-4 flex justify-between" aria-label="Pagination">
+                        <a class="px-4 py-2 flex gap-2 border-[1.5px] border-gray-300 rounded-lg group items-center hover:bg-black md:duration-500"
+                            href="/page/1">
+                            <div>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M15.8332 10.0013H4.1665M4.1665 10.0013L9.99984 15.8346M4.1665 10.0013L9.99984 4.16797"
+                                        stroke="black" stroke-width="1.67" stroke-linecap="round"
+                                        stroke-linejoin="round" class="group-hover:stroke-strokeWithe md:duration-500" />
+                                </svg>
+                            </div>
+                            <span
+                                class="font-mediumDisplay text-[16px] xl:text-text20 text-[#000000] group-hover:text-textWhite md:duration-500">Anterior</span>
+                        </a>
 
-                    {{ $productos->appends(['rangefrom' => $rangefrom, 'rangeto' => $rangeto])->links() }}
+                        <div class="flex text-[#000000] font-mediumDisplay items-end">
+                            <a class="rounded-lg px-4 py-2 hover:bg-[#F5F5F5] duration-300 active:bg-[#F5F5F5] text-text20"
+                                href="/page/2">1
+                            </a>
 
-                    {{-- <a href="catalogo.html"
-                        class="font-semibold text-[16px] bg-white md:duration-500 py-4 px-5 rounded-3xl border-[1px] border-colorBorder flex-initial text-center w-full md:w-56">
-                        Cargar más
-                    </a> --}}
+                            <a class="rounded-lg px-4 py-2 text-[#495560] hover:bg-[#F5F5F5] duration-300 text-text20"
+                                href="/page/2">2
+                            </a>
+
+                            <a class="rounded-lg px-4 py-2 text-[#495560] hover:bg-[#F5F5F5] duration-300 text-text20"
+                                href="/page/3">3
+                            </a>
+
+                            <p>.....</p>
+
+                            <a class="rounded-lg px-4 py-2 text-[#495560] hover:bg-[#F5F5F5] duration-300 text-text20"
+                                href="/page/3">4
+                            </a>
+                        </div>
+
+                        <a class="px-4 py-2 flex gap-2 border-[1.5px] border-gray-300 rounded-lg group items-center hover:bg-black md:duration-500"
+                            href="/page/1">
+                            <span
+                                class="font-mediumDisplay text-[16px] xl:text-text20 text-[#000000] group-hover:text-textWhite md:duration-500">
+                                Próxima
+                            </span>
+
+                            <div>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M4.1665 10.0013H15.8332M15.8332 10.0013L9.99984 4.16797M15.8332 10.0013L9.99984 15.8346"
+                                        stroke="black" stroke-width="1.67" stroke-linecap="round"
+                                        stroke-linejoin="round" class="group-hover:stroke-strokeWithe md:duration-500" />
+                                </svg>
+                            </div>
+                        </a>
+                    </nav>
+                </div>
+                <div class="flex justify-center items-center md:hidden">
+                    <a href="#"
+                        class="text-textBlack py-3 px-5 border-2 border-gray-700 rounded-3xl w-full text-center font-medium text-text16">
+                        Cargar más modelos
+                    </a>
                 </div>
             </section>
         </div>
 
-        <!-- FAQS -->
-
-        @if ($faqs->isEmpty())
-            {{-- <div class="w-full flex flex-row justify-center items-center">
-                <div class="p-5 text-xl font-bold">No tienes faqs visibles</div>
-            </div> --}}
-        @else
-            <section class="my-12">
-                <div class="bg-[#F5F5F5] font-poppins">
-                    <div
-                        class="relative bg-[#F5F5F5] px-6 pt-10 pb-8 mt-8 ring-gray-900/5 sm:mx-auto sm:rounded-lg sm:px-10">
-                        <div class="mx-auto px-5">
-                            <div class="flex flex-col items-center">
-                                <h2
-                                    class="font-semibold text-[40px] text-[#151515] text-center leading-none md:leading-tight">
-                                    Preguntas frecuentes
-                                </h2>
-                            </div>
-                            <div class="mx-auto mt-8 grid max-w-[900px] divide-y divide-neutral-200">
-
-                                @foreach ($faqs as $faq)
-                                    <div class="py-5">
-                                        <details class="group">
-                                            <summary
-                                                class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                                <span class="font-bold text-[20px] text-[#151515]">
-                                                    {!! $faq->pregunta !!}</span>
-                                                <span class="transition group-open:rotate-180">
-                                                    <svg width="18" height="20" viewBox="0 0 18 20"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M16.2923 11.3882L9.00065 18.3327M9.00065 18.3327L1.70898 11.3882M9.00065 18.3327L9.00065 1.66602"
-                                                            stroke="#EB5D2C" stroke-width="3.33333"
-                                                            stroke-linecap="round" stroke-linejoin="round" />
-                                                    </svg>
-                                                </span>
-                                            </summary>
-                                            <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
-                                                {{ $faq->respuesta }}
-                                            </p>
-                                        </details>
-                                    </div>
-                                @endforeach
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </section>
-        @endif
-
-
-        <!-- Testimonios -->
-
-        @if ($testimonie->isEmpty())
-            {{-- <div class="w-full flex flex-row justify-center items-center">
-                <div class="p-5 text-xl font-bold">No tienes testimonios visibles</div>
-            </div> --}}
-        @else
-            <section class="font-poppins text-[#151515] w-full testimoniosRelative">
-                <h2 class="w-11/12 mx-auto font-semibold text-[40px] text-center md:text-left">
-                    Testimonios
-                </h2>
-
-                <div class="swiper myTestimonios mt-5">
-                    <div class="swiper-pagination-testimonios"></div>
-                    <div class="swiper-wrapper mb-12 md:mt-[80px]">
-                        @foreach ($testimonie as $item)
-                            <div class="swiper-slide">
-                                <div class="carousel-cell bg-[#F5F5F5] p-10">
-                                    {{-- <div class="flex gap-2 py-2">
-                                <img src="./images/svg/start.svg" alt="estrella" />
-                                <img src="./images/svg/start.svg" alt="estrella" />
-                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                            </div> --}}
-                                    <div class="flex gap-5 items-center">
-                                        <p class="font-bold text-[20px]">{{ $item->name }}</p>
-                                        <img src="{{ asset('/images/svg/check.svg') }}" alt="check" />
-                                    </div>
-                                    <p class="font-normal text-[16px]">
-                                        {{ $item->testimonie }}
-                                    </p>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </section>
-
-        @endif
-
-
+        <section>
+            <div>
+                <img src="{{ asset('images/img/catalogo_1.png') }}" alt="doomine"
+                    class="w-full h-full hidden md:block" />
+            </div>
+        </section>
     </main>
 
 

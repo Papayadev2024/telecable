@@ -45,5 +45,13 @@ class Products extends Model
   {
       return $query->where('status', true)->where('destacar', true);
   }
+
+  public function attributes()
+    {
+        return $this->belongsToMany(Attributes::class, 'product_has_attribute', 'product_id', 'attribute_id')
+                    ->withPivot('attribute_value_id');
+    }
+
+   
   
 }

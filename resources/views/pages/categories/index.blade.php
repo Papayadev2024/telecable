@@ -151,7 +151,6 @@
 
             });
 
-            // $('.check_d:not(:checked)').prop('disabled', true);
 
             $( ".btn_swithc" ).on( "change", function() {
                 
@@ -163,7 +162,6 @@
                
                 if( $(this).is(':checked') ){
                     status = 1;
-                   
                 }else{
                     status = 0;
                  }
@@ -189,7 +187,7 @@
 
                         }); 
 
-                        if (response.cantidad >= 4) {
+                        if (response.cantidad >= 3) {
                             
 
                             Swal.fire({

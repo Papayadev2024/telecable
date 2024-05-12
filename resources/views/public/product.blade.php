@@ -1,484 +1,785 @@
 @extends('components.public.matrix')
-
 @section('css_importados')
-
 @stop
-
-
 @section('content')
     <?php
     // Definición de la función capitalizeFirstLetter()
-    function capitalizeFirstLetter($string)
-    {
-        return ucfirst($string);
-    }
-    
-    ?>
+    // function capitalizeFirstLetter($string)
+    // {
+    //     return ucfirst($string);
+    // }
+    // ?>
 
-    <main class="my-10 font-poppins" id="mainSection">
-        <section class="w-11/12 mx-auto flex flex-col md:flex-row gap-10">
-            @csrf
-            <div class="basis-1/2">
-                <!-- grilla de productos -->
-                <div class="hidden md:block">
-                    <div class="grid grid-cols-2 gap-10">
-                        <div class="flex flex-col items-start bg-[#F3F5F7]  rounded-2xl">
-                            <div class="bg-[#38CB89] rounded-md px-5 py-1 mt-[1%] ml-[1%] absolute">
-                                <p class="text-white font-semibold text-[12px]">-30%</p>
-                            </div>
-
-                            <div class="flex justify-center w-full">
-                                @if ($productos[0]->imagen)
-                                    <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}"
-                                        class="w-full  object-contain " />
-                                @else
-                                    <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                                        class="w-full  object-contain " />
-                                @endif
-                            </div>
-                        </div>
-                        @foreach ($productosConGalerias as $galeria)
-                            <div class="flex justify-center items-center rounded-2xl object-cover bg-cover" style="background-image: url('{{ asset($galeria->imagen) }}')">
-                                <img src="{{ asset($galeria->imagen) }}" alt="piso_flotante_laminado_2" class="w-full object-cover bg-cover rounded-2xl"/>
-                            </div>
-                        @endforeach
-
-
-                    </div>
-                </div>
-
-                <!-- carrusel de productos -->
-                <div class="block md:hidden">
-                    <div class="swiper producto-slider">
-                        <div class="swiper-wrapper swiper-wrapper-height">
-                            <div class="swiper-slide swiper-slide-flex rounded-2xl">
-                                <div class="flex flex-col items-start bg-[#F3F5F7] gap-12 relative">
-                                    <div class="bg-[#38CB89] rounded-md px-5 py-1 mt-10 ml-10 absolute">
-                                        <p class="text-white font-semibold text-[12px]">-30%</p>
-                                    </div>
-
-                                    <div class="flex justify-center w-full">
-                                        @if ($productos[0]->imagen)
-                                            <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}"
-                                                class="w-full  object-contain " />
-                                        @else
-                                            <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                                                class="w-full  object-contain " />
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="flex justify-center items-center">
-                                    <img src="./images/img/piso_flotante_laminado_2.png" alt="piso_flotante_laminado_2" />
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="flex justify-center items-center">
-                                    <img src="./images/img/piso_flotante_laminado_3.png" alt="piso_flotante_laminado_3" />
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="flex justify-center items-center">
-                                    <img src="./images/img/piso_flotante_laminado_4.png" alt="piso_flotante_laminado_4" />
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="flex justify-center items-center">
-                                    <img src="./images/img/piso_flotante_laminado_5.png" alt="piso_flotante_laminado_5" />
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="flex justify-center items-center">
-                                    <img src="./images/img/piso_flotante_laminado_6.png" alt="piso_flotante_laminado_6" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-pagination-productos mt-10"></div>
-                    </div>
-                </div>
+    <main class="flex flex-col gap-12 mt-12">
+        {{-- <section class="flex gap-2 items-center w-11/12 mx-auto">
+            <a href="#" class="font-regularDisplay text-text14 md:text-text24 text-gray-500">Home</a>
+            <div>
+                <img src="{{asset('images/svg/flecha.svg')}}" alt="doomine" />
             </div>
-            <div class="basis-1/2 font-poppins flex flex-col gap-5">
-                <div class="border-b-[1px] border-gray-300 flex flex-col gap-5">
-                    <h2 class="font-medium text-[40px] leading-none md:leading-tight">
-                        {{ $productos[0]->producto }}
-                    </h2>
-                    <p class="font-normal text-[16px]">
-                        {{ $productos[0]->extract }}
-                    </p>
-                    @if ($productos[0]->descuento > 0)
-                        <!-- validamos si tiene descuento  -->
-                        <p id='infodescuento' class="font-medium text-[28px] mb-5">
-                            s/ {{ $productos[0]->descuento }}
-                            <span id='infoPrecio'
-                                class="line-through font-medium text-[20px] text-[#6C7275]">{{ $productos[0]->precio }}</span>
-                        </p>
-                    @else
-                        <p id='nodescuento' class="font-medium text-[28px] mb-5">
-                            s/ {{ $productos[0]->precio }}
 
-                        </p>
-                    @endif
+            <a href="#" class="font-regularDisplay text-text14 md:text-text24 text-gray-500">Categorías</a>
+            <div>
+                <img src="{{asset('images/svg/flecha.svg')}}" alt="doomine" />
+            </div>
 
-                </div>
-                <div class="border-b-[1px] border-gray-300 flex flex-col gap-5">
-                    <div class="flex flex-col gap-5">
-                        <!-- @foreach ($especificaciones as $item)
-                            <p class="font-semibold text-[16px] text-[#6C7275]">{{ capitalizeFirstLetter($item->tittle) }}
+            <a href="#" class="font-regularDisplay text-text14 md:text-text24 text-gray-500">Vestidos</a>
+            <div>
+                <img src="{{asset('images/svg/flecha.svg')}}" alt="doomine" />
+            </div>
+            <a href="#" class="font-mediumDisplay text-text14 md:text-text24 text-black">Vestido Kim</a>
+        </section> --}}
+
+        <section class="w-11/12 mx-auto">
+            <div class="flex flex-col gap-12 lg:flex-row md:gap-32">
+                <div class="basis-3/6 grid grid-cols-2 gap-5">
+                    <div class="flex flex-col gap-5 relative">
+                        <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}" class="w-full h-full" />
+
+                        <div
+                            class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                            <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                New Arrival
                             </p>
-                            <p class="font-normal text-[20px]">{{ capitalizeFirstLetter($item->specifications) }}</p>
-                        @endforeach -->
-                        <table class="border-collapse w-full">
-                            <tbody>
-                                @foreach ($especificaciones as $item)
-                                    <tr>
-                                        <td
-                                            class="border w-1/5 border-gray-400 px-3 py-2 font-semibold text-[16px] text-gray-900">
-                                            {{ capitalizeFirstLetter($item->tittle) }}:</td>
-                                        <td class="border w-4/5 border-gray-400 px-3 py-2 font-normal text-[15px]">
-                                            {{ capitalizeFirstLetter($item->specifications) }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        </div>
+                    </div>
 
-                        <div class="flex">
-                            <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer">
-                                <button id=disminuir type="button"><span class="text-[30px]">-</span></button>
-                            </div>
-                            <div id=cantidadSpan class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
-                                <span class="text-[20px]">1</span>
-                            </div>
-                            <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer">
-                                <button id=aumentar type="button"><span class="text-[30px]">+</span></button>
+                    <div class="flex flex-col gap-5 relative">
+                        <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives" class="w-full h-full" />
+                    </div>
+
+                    <div class="flex flex-col gap-5 relative">
+                        <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives" class="w-full h-full" />
+                    </div>
+
+                    <div class="flex flex-col gap-5 relative">
+                        <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives" class="w-full h-full" />
+                    </div>
+
+                    <div class="flex flex-col gap-5 relative">
+                        <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives" class="w-full h-full" />
+                    </div>
+
+                    <div class="flex flex-col gap-5 relative">
+                        <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives" class="w-full h-full" />
+                    </div>
+                </div>
+
+                <div class="basis-3/6 text-textBlack flex flex-col gap-10">
+                    <div class="flex flex-col gap-1">
+                        <p class="font-mediumDisplay text-text16 md:text-text18">
+                            Categoría: Vestidos
+                        </p>
+                        <div class="flex justify-between">
+                            <h3 class="font-mediumDisplay text-text32 md:text-text36">
+                                Vestido Kim
+                            </h3>
+                            <div class="flex justify-between text-black items-center gap-2">
+                                <p class="text-text14 md:text-text20 font-boldDisplay">
+                                    s/60.00
+                                </p>
+                                <p class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay">
+                                    s/120.00
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-5 mt-3">
-                        <!-- <p class="font-semibold text-[16px] text-[#6C7275]">
-              Elige color >
-            </p> -->
+                    <div class="flex flex-col gap-3">
 
-                        <div class="md:col-span-5">
-                            <!-- <p class="text-xl font-bold tracking-tight text-gray-900">Atributos</p> -->
-                            <div class="flex gap-2 mt-2 relative mb-2 ">
-                                <!-- @foreach ($atributos as $item)
-                                    <div href="#" class="w-full block px-0 py-3">
-                                        <h5 class="text-xl font-bold tracking-tight text-gray-900">
-                                            {{ $item->titulo }}
-                                        </h5>
-                                       
+                    @foreach ($productos as $producto)
+                        @foreach ($producto->attributes as $atributo)
 
-                                        @foreach ($valorAtributo as $value)
-                                            @if ($value->attribute_id == $item->id)
-                                                @php
-                                                    $atributesArray = json_decode($productos[0]->atributes, true);
-                                                    $titulo = strtolower($item->titulo);
-                                                    $valor = strtolower($value->valor);
-                                                @endphp
-                                                <div class="flex items-center mb-2">
-                                                    <svg class="w-4 h-4" viewBox="0 0 20 20">
-                                                        <circle cx="10" cy="10" r="8"
-                                                            fill="{{ $valor }}"></circle>
-                                                    </svg>
-                                                    <label class="ml-2">{{ $valor }}</label>
-                                                </div>
-                                            @endif
+                            {{$atributo->pivot}}
+                            {{-- <div>
+                                @if ($atributo->typeAttribute->name === 'color')
+                                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
+                                        Seleccionar color
+                                    </p>
+                                    <!-- HTML específico para el tipo de atributo "color" -->
+                                    <div class="flex gap-5 justify-start items-center">
+                                        
+                                            @foreach ($atributo->values as $valor)
+                                                    <div style="background-color: {{ $valor->color }}" class="colors w-14 h-14 rounded-[50%] cursor-pointer"></div>     
+                                            @endforeach   
+                                    </div>
+                                @elseif($atributo->typeAttribute->name === 'text')
+                                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
+                                        Seleccionar el tamaño
+                                    </p>
+                                    <div
+                                        class="grid grid-cols-3 place-items-center font-regularDisplay text-text14 md:text-text20 gap-2">
+                                        @foreach ($atributo->values as $valor)
+                                            <div class="flex justify-center items-center border-2 w-full rounded-lg">
+                                                <p class="py-5 px-4 w-full text-center">{{ $valor->valor }}</p>
+                                            </div>    
                                         @endforeach
                                     </div>
-                                @endforeach -->
-                                <!-- <p class="font-normal text-gray-700 dark:text-gray-400">{{ $item->descripcion }}</p> -->
-                                <!-- @foreach ($valorAtributo as $value)
-                                            @if ($value->attribute_id == $item->id)
-                                                @php
-                                                    $atributesArray = json_decode($productos[0]->atributes, true);
-                                                    $titulo = strtolower($item->titulo);
-                                                    $valor = strtolower($value->valor);
-                                                @endphp
-                                                <div class="flex items-center mb-2">
-                                                    <input type="checkbox" id="{{ $titulo }}:{{ $valor }}"
-                                                        name="{{ $titulo }}:{{ $valor }}"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 "
-                                                        @if (is_array($atributesArray) && isset($atributesArray[$titulo]) && in_array(strtolower($valor), $atributesArray[$titulo])) checked @endif disabled>
-                                                    <label for="{{ $titulo }}:{{ $valor }}"
-                                                        class="ml-2">{{ $valor }}</label>
-                                                </div>
-                                            @endif
-                                  @endforeach -->
+                                @endif
+                            </div> --}}
+                        @endforeach 
+                    @endforeach    
+                    </div>
 
+                    <div class="flex flex-col gap-3">
+                       
+                        <div class="flex justify-between items-center">
+                            <!-- Corregir -->
+                            <div class="flex">
+                                <div
+                                    class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer rounded-l-3xl">
+                                    <span class="text-[30px]">-</span>
+                                </div>
+                                <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
+                                    <span class="text-[20px] font-mediumDisplay">2</span>
+                                </div>
+                                <div
+                                    class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer rounded-r-3xl">
+                                    <span class="text-[30px]">+</span>
+                                </div>
+                            </div>
 
-                                <table class="border-collapse w-full">
-                                    <tbody>
-                                        
-                                        @foreach ($atributos as $atributo)
-                                           
-                                                <tr>
-                                                    <td class="w-1/5   px-4 py-2 font-bold text-gray-900">
-                                                        {{ $atributo->titulo }}:</td>
-                                                    <td class="w-4/5   px-4 ">
-                                                        <div class="flex flex-wrap">
-                                                            <!-- @foreach ($valorAtributo as $value)
-                                                            @if ($value->attribute_id == $atributo->id)
-                                                                @php
-                                                                    $valor = strtolower($value->valor);
-                                                                    $color = strtolower($value->color)
-                                                                @endphp
-                                                                <div class="flex items-center mr-4 ">
-                                                                    <svg class="w-10 h-10" viewBox="0 0 20 20">
-                                                                        <circle cx="10" cy="10" r="8"
-                                                                            fill="{{ $color }}"></circle>
-                                                                    </svg>
-                                                                    <label class="ml-2">{{ $valor }}</label>
-                                                                </div>
-                                                            @endif
-                                                        @endforeach -->
-                                                           
-                                                                @foreach ($valorAtributo as $value)
-                                                                    @if ($value->attribute_id == $atributo->id)
-                                                                        @php
-                                                                            $atributesArray = json_decode(
-                                                                                $productos[0]->atributes,
-                                                                                true,
-                                                                            );
-                                                                            $titulo = strtolower($atributo->titulo);
-                                                                            $valor = strtolower($value->valor);
-                                                                            $color = strtolower($value->color);
-                                                                        @endphp
-                                                                        
-                                                                        @if (is_array($atributesArray) &&
-                                                                                isset($atributesArray[$titulo]) &&
-                                                                                in_array(strtolower($valor), $atributesArray[$titulo]))
-                                                                                
-                                                                            <div class="flex items-center mb-2">
-                                                                                <div disabled
-                                                                                    id="{{ $titulo }}:{{ $valor }}"
-                                                                                    name="{{ $titulo }}:{{ $valor }}"
-                                                                                    class="w-8 h-8 rounded-full"
-                                                                                    @if (is_array($atributesArray) &&
-                                                                                            isset($atributesArray[$titulo]) &&
-                                                                                            in_array(strtolower($valor), $atributesArray[$titulo])) style="background:{{ $color }}" @endif>
-                                                                                </div>
-                                                                                <!-- <label
-                                                                                    for="{{ $titulo }}:{{ $valor }}"
-                                                                                    class="ml-2">{{ $valor }}</label> -->
-                                                                            </div>
-                                                                        @endif
-                                                                    @endif
-                                                                @endforeach
-                                                            
-                                                             
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            
-                                        @endforeach
-                                    </tbody>
-                                </table>
-
+                            <div class="flex justify-center items-center">
+                                <a href="#"
+                                    class="text-white py-3 px-5 md:px-12 xl:px-16 border-2 border-gray-700 rounded-3xl w-full text-center font-mediumDisplay text-text16 h-full bg-black hover:bg-white hover:text-black md:duration-500">
+                                    Agregar al carrito
+                                </a>
                             </div>
                         </div>
-                        <!-- <p class="font-normal text-[20px] text-black">Madera</p>
-
-             <div class="grid grid-cols-4 md:grid-cols-6">
-              <div class="circle-container">
-                <div class="circle bg-[#F9CCA7]"></div>
-              </div>
-
-              <div class="circle-container">
-                <div class="circle bg-[#EEA752]"></div>
-              </div>
-
-              <div class="circle-container">
-                <div class="circle bg-[#9C6E43]"></div>
-              </div>
-
-              <div class="circle-container">
-                <div class="circle bg-[#9A5E37]"></div>
-              </div>
-
-              <div class="circle-container">
-                <div class="circle bg-[#71452F]"></div>
-              </div>
-
-              <div class="circle-container">
-                <div class="circle bg-[#D0834F]"></div>
-              </div>
-
-              <div class="circle-container">
-                <div class="circle bg-[#A47A5A]"></div>
-              </div>
-
-              <div class="circle-container">
-                <div class="circle bg-[#866A59]"></div>
-              </div>
-
-              <div class="circle-container">
-                <div class="circle bg-[#8B7665]"></div>
-              </div>
-
-              <div class="circle-container">
-                <div class="circle bg-[#795B4B]"></div>
-              </div>
-            </div> -->
-                    </div>
-                </div>
-                <div class="my-5 flex flex-col gap-5 border-b-[1px] border-gray-300 pb-5">
-                    <div class="py-2 w-full">
-
-
-                        <button type="button" id='btnAgregarCarrito'
-                            class="text-white bg-[#74A68D] w-full py-4 rounded-3xl cursor-pointer font-semibold text-[16px] inline-block text-center">
-                            Agregar al carrito
-                        </button>
-
                     </div>
 
-                    <div class="py-2 w-full">
-                        <a href="#"
-                            class="text-[#74A68D] bg-white w-full py-4 rounded-3xl cursor-pointer border-[1px] border-black font-semibold text-[16px] inline-block text-center">Comprar</a>
-                    </div>
-                </div>
-                <div class="flex flex-col">
-                    <div class="flex">
-                        <p class="font-normal text-[12px] text-[#6C7275] flex-initial w-44">
-                            Sku
-                        </p>
-                        <p class="font-normal text-[12px] text-[#141718]">MD232344009</p>
-                    </div>
-
-                    <div class="flex">
-                        <p class="font-normal text-[12px] text-[#6C7275] flex-initial w-44">
-                            Categoría
-                        </p>
-                        <p class="font-normal text-[12px] text-[#141718]">
-                            Preasenet et libero
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="font-poppins flex w-11/12 mx-auto my-10">
-            <div class="md:basis-1/2">
-                <h2 class="font-medium text-[28px] my-5 leading-none md:leading-tight">
-                    Información adicional
-                </h2>
-                <div class="flex flex-col gap-5">
-                    {!! $productos[0]->description !!}
-                </div>
-            </div>
-        </section>
-
-        <section class="font-poppins">
-            <div class="grid grid-cols-1 gap-12 md:gap-0 md:grid-cols-4 grid-rows-1 pt-12 w-11/12 mx-auto">
-                <div class="col-span-1 md:col-span-3 order-1 md:order-1 flex flex-col gap-2">
-                    <h2 class="font-medium text-[36px] md:text-[40px] mt-2 leading-none md:leading-tight">
-                        Productos complementarios
-                    </h2>
-
-                    <p class="font-normal text-lg basis-3/6">
-                        Etiam cursus semper odio non consectetur. Pellentesque et molestie
-                        risus. Aliquam eu nibh pulvinar, sollicitudin sapien vel, aliquam
-                        orci.
+                    <p class="italic font-mediumItalicDisplay text-text18">
+                        SKU: 254kim/black/white
                     </p>
-                </div>
 
-                <div class="col-span-1 md:col-span-1 order-3 md:order-2 flex justify-center items-center w-full">
-                    <a href="catalogo.html"
-                        class="font-semibold text-[16px] bg-transparent md:duration-500 py-4 px-5 rounded-3xl border-[1px] border-colorBorder flex-initial w-full md:w-56 text-center inline-block">
-                        Ver todo
-                    </a>
-                </div>
-
-                <div class="col-span-1 md:col-span-4 order-2 md:order-3">
-                    <!-- ---- CARRUSEL --- -->
                     <div>
-                        <div class="swiper productos-destacados my-5">
-                            <div class="swiper-pagination-productos-destacados mb-80 md:mb-32"></div>
-                            <div class="swiper-wrapper mt-[80px]">
+                        <div class="relative">
+                            <div class="mx-auto">
+                                <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
+                                    <div class="py-5">
+                                        <details class="group">
+                                            <summary
+                                                class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                                <span class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
+                                                    Detalles de producto
+                                                </span>
+                                                <span class="transition group-open:rotate-180">
+                                                    <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                                            fill="black" />
+                                                        <path
+                                                            d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                                            fill="black" />
+                                                    </svg>
+                                                </span>
+                                            </summary>
 
-                                @foreach ($ProdComplementarios as $item)
-                                    <div class="swiper-slide rounded-2xl">
-                                        <div class="flex flex-col relative">
-                                            <div
-                                                class="bg-colorBackgroundProducts rounded-2xl pt-12 pb-5 md:pb-8 product_container basis-4/5 flex flex-col justify-center relative">
-                                                <div class="px-4">
-                                                    <a
-                                                        class="font-semibold text-[8px] md:text-[12px] bg-[#EB5D2C] py-2 px-2 flex-initial w-24 text-center text-white rounded-[5px] absolute top-[18px] z-10">
-                                                        Nuevo
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <div class="relative flex justify-center items-center">
-                                                        @if ($item->imagen)
-                                                            <img src="{{ asset($item->imagen) }}"
-                                                                alt="{{ $item->name }}"
-                                                                class="w-full h-30 object-contain" />
-                                                        @else
-                                                            <img src="{{ asset('images/img/noimagen.jpg') }}"
-                                                                alt="imagen_alternativa"
-                                                                class="w-full h-30 object-contain" />
-                                                        @endif
+                                            <div class="group-open:animate-fadeIn mt-3 text-[#000000]">
+                                                <div class="flex flex-col gap-10">
+                                                    <div class="flex flex-col gap-5">
+                                                        <p class="font-mediumDisplay text-text16 md:text-text20">
+                                                            Detalle de producto
+                                                        </p>
+                                                        <p
+                                                            class="font-regularDisplay text-text16 md:text-text20 text-gray-600">
+                                                            Este polo Oversize para mujer con cuello redondo
+                                                            es imprescindible para todas las amantes de la
+                                                            diversión y el buen gusto. Las mangas cortas y
+                                                            la longitud extra larga, así como su confección
+                                                            en algodón súper suave y cómodo, harán que te
+                                                            sientas genial con este polo en cualquier
+                                                            momento. Está disponible en muchos colores y
+                                                            estampados para que puedas elegir el que más te
+                                                            guste.
+                                                        </p>
                                                     </div>
 
-                                                    <!-- ------ -->
-                                                    <div class="addProduct text-center flex justify-center">
-                                                        <a href="{{ route('producto', $item->id) }}"
-                                                            class="font-semibold text-[9px] md:text-[16px] bg-[#74A68D] py-3 px-5 flex-initial w-32 md:w-56 text-center text-white rounded-3xl">
-                                                            Ver producto
-                                                        </a>
+                                                    <div class="flex flex-col gap-5">
+                                                        <p class="font-mediumDisplay text-text20 md:text-text24">
+                                                            Información adicional
+                                                        </p>
+
+                                                        <div
+                                                            class="grid grid-cols-2 font-regularDisplay text-text16 md:text-text20">
+                                                            <div class="border-2 border-black">
+                                                                <p class="py-3 text-center">Peso</p>
+                                                            </div>
+                                                            <div class="border-2 border-black">
+                                                                <p class="py-3 text-center">1kg</p>
+                                                            </div>
+
+                                                            <div class="border-2 border-black">
+                                                                <p class="py-3 text-center">Dimensiones</p>
+                                                            </div>
+
+                                                            <div class="border-2 border-black">
+                                                                <p class="py-3 text-center">25 x 25 x 5 cm</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="my-2 flex flex-col items-start gap-2 basis-1/5 px-2">
-                                                <!-- <div class="flex items-center gap-2">
-                                                <div class="flex gap-2 py-2">
-                                                    <img src="./images/svg/start.svg" alt="estrella" />
-                                                    <img src="./images/svg/start.svg" alt="estrella" />
-                                                    <img src="./images/svg/start.svg" alt="estrella" />
-                                                    <img src="./images/svg/start_sin_color.svg" alt="estrella" />
-                                                    <img src="./images/svg/start_sin_color.svg" alt="estrella" />
+                                        </details>
+                                    </div>
+
+                                    <div class="py-5">
+                                        <details class="group">
+                                            <summary
+                                                class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                                <div class="flex gap-2 items-center">
+                                                    <span
+                                                        class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
+                                                        Comentarios
+                                                    </span>
+                                                    <div class="flex">
+                                                        <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
+                                                        <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
+                                                        <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
+                                                        <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
+                                                        <img src="{{ asset('images/svg/start_middle.svg') }}"
+                                                            alt="doomine" />
+                                                    </div>
+                                                    <span class="font-regularDisplay text-text14">
+                                                        4.5/5
+                                                    </span>
                                                 </div>
-                                                <p class="font-semibold text-[14px] text-[#6C7275]">
-                                                    (35)
-                                                </p>
-                                            </div> -->
-                                                <h2 class="font-semibold text-[16px] text-[#141718]">
-                                                    {{ $item->producto }}
-                                                </h2>
-                                                <p class="font-semibold text-[14px] text-[#121212] flex gap-5">
-                                                    @if ($item->descuento == 0)
-                                                        <span>{{ $item->precio }}</span>
-                                                    @else
-                                                        <span>{{ $item->descuento }}</span>
-                                                        <span
-                                                            class="font-normal text-[14px] text-[#6C7275] line-through">{{ $item->precio }}</span>
-                                                    @endif
 
+                                                <span class="transition group-open:rotate-180">
+                                                    <svg width="20" height="20" viewBox="0 0 12 13"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                                            fill="black" />
+                                                        <path
+                                                            d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                                            fill="black" />
+                                                    </svg>
+                                                </span>
+                                            </summary>
 
+                                            <p
+                                                class="group-open:animate-fadeIn mt-3 font-regularDisplay text-text16 md:text-text20 text-gray-600">
+                                                Este polo Oversize para mujer con cuello redondo es
+                                                imprescindible para todas las amantes de la diversión
+                                                y el buen gusto. Las mangas cortas y la longitud extra
+                                                larga, así como su confección en algodón súper suave y
+                                                cómodo, harán que te sientas genial con este polo en
+                                                cualquier momento. Está disponible en muchos colores y
+                                                estampados para que puedas elegir el que más te guste.
+                                            </p>
+                                        </details>
+                                    </div>
 
-                                                </p>
-                                            </div>
+                                    <div class="py-5">
+                                        <details class="group">
+                                            <summary
+                                                class="flex cursor-pointer list-none items-center justify-between font-mediumDisplay">
+                                                <span class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
+                                                    FAQs</span>
+                                                <span class="transition group-open:rotate-180">
+                                                    <svg width="20" height="20" viewBox="0 0 12 13"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                                            fill="black" />
+                                                        <path
+                                                            d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                                            fill="black" />
+                                                    </svg>
+                                                </span>
+                                            </summary>
+
+                                            <p
+                                                class="group-open:animate-fadeIn mt-3 font-regularDisplay text-text16 md:text-text20 text-gray-600">
+                                                Este polo Oversize para mujer con cuello redondo es
+                                                imprescindible para todas las amantes de la diversión
+                                                y el buen gusto. Las mangas cortas y la longitud extra
+                                                larga, así como su confección en algodón súper suave y
+                                                cómodo, harán que te sientas genial con este polo en
+                                                cualquier momento. Está disponible en muchos colores y
+                                                estampados para que puedas elegir el que más te guste.
+                                            </p>
+                                        </details>
+                                    </div>
+
+                                    <div class="py-5">
+                                        <details class="group">
+                                            <summary
+                                                class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                                <span class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
+                                                    Entrega y devoluciones</span>
+                                                <span class="transition group-open:rotate-180">
+                                                    <svg width="20" height="20" viewBox="0 0 12 13"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                                            fill="black" />
+                                                        <path
+                                                            d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                                            fill="black" />
+                                                    </svg>
+                                                </span>
+                                            </summary>
+
+                                            <p
+                                                class="group-open:animate-fadeIn mt-3 font-regularDisplay text-text16 md:text-text20 text-gray-600">
+                                                Este polo Oversize para mujer con cuello redondo es
+                                                imprescindible para todas las amantes de la diversión
+                                                y el buen gusto. Las mangas cortas y la longitud extra
+                                                larga, así como su confección en algodón súper suave y
+                                                cómodo, harán que te sientas genial con este polo en
+                                                cualquier momento. Está disponible en muchos colores y
+                                                estampados para que puedas elegir el que más te guste.
+                                            </p>
+                                        </details>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-11/12 mx-auto flex flex-col gap-5 pt-10">
+            <div>
+                <img src="{{ asset('images/img/producto_1.png') }}" alt="doomine"
+                    class="w-full h-full hidden md:block" />
+
+                <img src="{{ asset('images/img/mobile_foto.png') }}" alt="doomine"
+                    class="w-full h-full block md:hidden" />
+            </div>
+
+            <p class="font-regularDisplay text-text20 md:text-text24 text-textBlack text-center w-full md:w-2/3 mx-auto">
+                Suspendisse vitae leo porta sem vestibulum venenatis. Ut ut eleifend
+                tellus, vel dapibus lectus. Aenean faucibus nisi eget massa fringilla.
+            </p>
+        </section>
+
+        <section class="w-11/12 mx-auto flex flex-col gap-10 mb-24">
+            <div class="flex justify-between items-center gap-2">
+                <p class="uppercase font-boldItalicDisplay text-text20 md:text-text28 xl:text-text28">
+                    <span class="hidden md:inline-block">También</span> Podría Gustarte
+                </p>
+                <a href="#" class="font-boldItalicDisplay text-text20 md:text-text28 uppercase">/ Ver Todo /</a>
+            </div>
+
+            <div>
+                <div class="swiper slider-productos">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                            <p
+                                                class="text-text10 md:text-text12 line-through text-gray-400 font-boldDisplay">
+                                                s/120.00
+                                            </p>
                                         </div>
                                     </div>
-                                @endforeach
 
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        New Arrival
+                                    </p>
+                                </div>
                             </div>
-                            <!-- <div class="swiper-pagination-productos-destacados"></div>  -->
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        New Arrival
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                            <p
+                                                class="text-text10 md:text-text12 line-through text-gray-400 font-boldDisplay">
+                                                s/120.00
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        New Arrival
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                            <p
+                                                class="text-text10 md:text-text12 line-through text-gray-400 font-boldDisplay">
+                                                s/120.00
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        -20%
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        New Arrival
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        New Arrival
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        New Arrival
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        -20%
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        New Arrival
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        New Arrival
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        New Arrival
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="flex flex-col gap-5 relative">
+                                <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives"
+                                    class="w-full h-full" />
+
+                                <div class="flex flex-col gap-2">
+                                    <div
+                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                        <p class="text-text14 md:text-text16">
+                                            Oversize Verde Babygirls
+                                        </p>
+                                        <div class="flex font-boldDisplay text-black items-center gap-2">
+                                            <p class="text-text14 md:text-text16">s/60.00</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-1 lg:order-2">
+                                        <p
+                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                            Polos
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        -20%
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
     </main>
-
-
 
 
 @section('scripts_importados')

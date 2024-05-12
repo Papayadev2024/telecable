@@ -9,12 +9,45 @@
 @import 'tailwindcss/utilities';
 
 
-@layer components{
-
-    #tabladatos_wrapper .dt-length select{
-        @apply px-5;
-    }
+@font-face {
+    font-family: "font_MediumDisplay";
+    src: url("../Fonts/HelveticaNowDisplay-Medium.woff") format("woff");
+  }
   
-}
+  @font-face {
+    font-family: "font_MediumItalicDisplay";
+    src: url("../Fonts/HelveticaNowDisplay-MedIta.woff") format("woff");
+  }
+  
+  @font-face {
+    font-family: "font_BoldDisplay";
+    src: url("../Fonts/HelveticaNowDisplay-Bold.woff") format("woff");
+  }
+  
+  @font-face {
+    font-family: "font_BoldItalicDisplay";
+    src: url("../Fonts/HelveticaNowDisplay-BoldIta.woff") format("woff");
+  }
+  
+  @font-face {
+    font-family: "font_RegularDisplay";
+    src: url("../Fonts/HelveticaNowDisplay-Regular.woff") format("woff");
+  }
+  
+  @font-face {
+    font-family: "font_RegularItalicDisplay";
+    src: url("../Fonts/HelveticaNowDisplay-RegIta.woff") format("woff");
+  }
+  
+  @font-face {
+    font-family: "font_LightDisplay";
+    src: url("../Fonts/HelveticaNowDisplay-Light.woff") format("woff");
+  }
+  
+  @font-face {
+    font-family: "font_LightItalicDisplay";
+    src: url("../Fonts/HelveticaNowDisplay-LightIta.woff") format("woff");
+  }
+  
 
 

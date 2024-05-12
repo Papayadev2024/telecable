@@ -53,7 +53,7 @@ class CategoryController extends Controller
 
         
             // Obtener las dimensiones de la imagen que se esta subiendo
-            $img->coverDown(640, 640, 'center');
+            // $img->coverDown(640, 640, 'center');
 
             $ruta = 'storage/images/categories/';
 
@@ -128,7 +128,7 @@ class CategoryController extends Controller
 
             $img =  $manager->read($request->file('imagen'));
 
-            $img->coverDown(640, 640, 'center');
+            // $img->coverDown(640, 640, 'center');
             
             if (!file_exists($rutanueva)) {
                 mkdir($rutanueva, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
@@ -188,7 +188,7 @@ class CategoryController extends Controller
         $cantidad = $this->contarCategoriasDestacadas();
 
 
-        if($cantidad >= 4 && $request->status == 1){
+        if($cantidad >= 3 && $request->status == 1){
             return response()->json(['message' => 'Solo puedes destacar 4 categorias'], 409 );
         }
 

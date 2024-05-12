@@ -21,7 +21,8 @@
                         <thead>
                             <tr>
                                 <th>Titulo</th>
-                                <th>Foto</th>
+                                <th>Imagen (Izquierda)</th>
+                                <th>Imagen (Derecha)</th>
                                 <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
@@ -31,7 +32,8 @@
                             @foreach($slider as $item)
                                 <tr>
                                     <td>{{$item->title}}</td>
-                                    <td class="px-3 py-2"><img class="w-20" src="{{ asset('storage/images/slider/'.$item->name_image) }}" alt=""></td>
+                                    <td class="px-3 py-2"><img class="w-16" src="{{ asset('storage/images/slider/'.$item->name_image) }}" alt=""></td>
+                                    <td class="px-3 py-2"><img class="w-16" src="{{ asset('storage/images/slider/'.$item->name_image2) }}" alt=""></td>
                                     <td>
                                         <form method="POST" action="">
                                           @csrf
@@ -66,7 +68,8 @@
                         <tfoot>
                             <tr>
                                 <th>Titulo</th>
-                                <th>Foto</th>
+                                <th>Imagen (Izquierda)</th>
+                                <th>Imagen (Derecha)</th>
                                 <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
@@ -137,6 +140,7 @@
                 
                 var status = 0;
                 var id = $(this).attr('data-idSlider');
+                let contenedor = $(this);
                 var titleSlider = $(this).attr('data-titleSlider');
                 var field = $(this).attr('data-field');
                
@@ -156,23 +160,55 @@
                         status: status,
                         id: id,
                         field: field,
+                    },
+                    success: function(response) {
+                            Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: titleSlider +" a sido modificado",
+                            showConfirmButton: false,
+                            timer: 1500
+
+                        }); 
+
+                        if (response.cantidad >= 1) {
+                            
+
+                            Swal.fire({
+                            position: "top-center",
+                            icon: "success",
+                            title: "Ya no puedes hacer visible",
+                            showConfirmButton: false,
+                            timer: 2000
+
+                            }); 
+
+                            // Deshabilitar todos los checkboxes con la clase .check_d
+                            $('.check_d:not(:checked)').prop('disabled', true);
+
+                        } else {
+
+                            // Habilitar todos los checkboxes con la clase .check_d
+                            $('.check_d').prop('disabled', false);
+                        }
+
+                    },
+                    error: function(response) {
+
+                        Swal.close();
+                        Swal.fire({
+                        title: response.responseJSON.message,
+                        icon: "error",
+                        });
+                        
+                        contenedor[0].checked = !contenedor[0].checked;
+                       
                     }
-                }).done(function(res){
-                   
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: titleSlider +" a sido modificado",
-                        showConfirmButton: false,
-                        timer: 1500
-
-                    }); 
-
                 })     
+            
+
+
             });
-
-
-
         })
     </script>
 

@@ -27,6 +27,7 @@ use App\Http\Controllers\GalerieController;
 use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LiquidacionController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StaffController;
@@ -54,6 +55,8 @@ Route::get('/servicios', [IndexController::class, 'servicios'] )->name('servicio
 Route::get('/comentario', [IndexController::class, 'comentario'] )->name('comentario');
 Route::post('/comentario/nuevo', [IndexController::class, 'hacerComentario'] )->name('nuevocomentario');
 Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
+
+
 /* Proceso de pago */
 Route::get('/carrito', [IndexController::class, 'carrito'] )->name('carrito');
 Route::get('/pago', [IndexController::class, 'pago'] )->name('pago');
@@ -63,6 +66,7 @@ Route::get('/agradecimiento', [IndexController::class, 'agradecimiento'] )->name
 Route::get('/producto/{id}', [IndexController::class, 'producto'] )->name('producto');
 Route::get('/catalogo/{filtro}', [IndexController::class, 'catalogo'] )->name('catalogo');
 Route::post('carrito/buscarProducto', [CarritoController::class, 'buscarProducto'] )->name('carrito.buscarProducto');
+Route::get('/coleccion', [IndexController::class, 'coleccion'] )->name('coleccion');
 /* Página 404 */
 Route::get('/404', [IndexController::class, 'error'] )->name('error');
 /* Formulario de contacto */
@@ -156,6 +160,11 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::resource('/slider', SliderController::class);
         Route::post('/slider/updateVisible', [SliderController::class, 'updateVisible'])->name('slider.updateVisible');
         Route::post('/slider/deleteSlider', [SliderController::class, 'deleteSlider'])->name('slider.deleteSlider');
+
+        //Liquidacion   
+        Route::resource('/liquidacion', LiquidacionController::class);
+        Route::post('/liquidacion/updateVisible', [LiquidacionController::class, 'updateVisible'])->name('liquidacion.updateVisible');
+        Route::post('/liquidacion/deleteSlider', [LiquidacionController::class, 'deleteLiquidacion'])->name('liquidacion.deleteLiquidacion');
 
         //Galeria
         Route::resource('/galerie', GalerieController::class);
