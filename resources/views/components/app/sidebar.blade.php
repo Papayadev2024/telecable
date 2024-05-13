@@ -53,7 +53,7 @@
         <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
           <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
             aria-hidden="true">•••</span>
-          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Decotab - Backend</span>
+          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Dommine - Backend</span>
         </h3>
         <ul class="mt-3">
 
@@ -97,8 +97,10 @@
                 </div>
                 <!-- Badge -->
                 <div class="flex flex-shrink-0 ml-2">
-                  <span
-                    class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-indigo-500 px-2 rounded">4</span>
+                  @if ($mensajes !== 0)
+                    <span
+                      class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-indigo-500 px-2 rounded">{{ $mensajes }}</span>
+                  @endif
                 </div>
               </div>
             </a>
