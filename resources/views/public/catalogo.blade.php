@@ -486,7 +486,7 @@
                                         @if (!is_null($item->categoria) && !is_null($item->categoria->name))
                                              {{$item->categoria->name}}
                                         @else
-                                             Categoría
+                                            S/C
                                         @endif
                                     </p>
                                 </div>
