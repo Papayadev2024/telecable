@@ -110,7 +110,7 @@ class IndexController extends Controller
         $productos = Products::paginate(12);
         $categoria = Category::all();
       } else {
-        $productos = Products::where('categoria_id', '=', $filtro)->paginate(3);
+        $productos = Products::where('categoria_id', '=', $filtro)->paginate(12);
         $categoria = Category::findOrFail($filtro);
       }
 
