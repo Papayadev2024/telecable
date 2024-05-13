@@ -7,7 +7,7 @@
 
 @section('content')
 
-    <main class="flex flex-col gap-12">
+    <main class="flex flex-col gap-12 -mb-12">
 
         {{-- <section class="flex gap-2 items-center w-11/12 mx-auto">
             <a href="#" class="font-regularDisplay text-text20 xl:text-text24 text-gray-500 leading-none">
@@ -34,8 +34,12 @@
                 </div>
 
                 <div class="md:pl-9 order-1 md:order-2 flex items-center">
-                    <h3 class="font-boldItalicDisplay text-text20 md:text-text32 text-left w-full lg:w-auto">
-                        / Vestidos /
+                    <h3 class="font-boldItalicDisplay text-text20 md:text-text24 text-left w-full lg:w-auto">
+                        @if ($filtro == 0)
+                            / Productos /
+                        @else
+                           / Productos - {{ $categoria->name }} /
+                        @endif
                     </h3>
                 </div>
 
@@ -479,7 +483,11 @@
 
                                 <div class="order-1 lg:order-2">
                                     <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                        {{ $item->categoria->name }}
+                                        @if (!is_null($item->categoria) && !is_null($item->categoria->name))
+                                             {{$item->categoria->name}}
+                                        @else
+                                             Categoría
+                                        @endif
                                     </p>
                                 </div>
                             </div>
@@ -494,7 +502,7 @@
                     @endforeach
                 </div>
 
-                <div class="hidden md:block">
+                {{-- <div class="hidden md:block">
                     <nav class="mb-4 flex justify-between" aria-label="Pagination">
                         <a class="px-4 py-2 flex gap-2 border-[1.5px] border-gray-300 rounded-lg group items-center hover:bg-black md:duration-500"
                             href="/page/1">
@@ -549,12 +557,14 @@
                             </div>
                         </a>
                     </nav>
-                </div>
-                <div class="flex justify-center items-center md:hidden">
-                    <a href="#"
+                </div> --}}
+
+                <div class="flex justify-center items-center ">
+                    {{-- <a href="#"
                         class="text-textBlack py-3 px-5 border-2 border-gray-700 rounded-3xl w-full text-center font-medium text-text16">
                         Cargar más modelos
-                    </a>
+                    </a> --}}
+                    {{ $productos->appends(['rangefrom' => $rangefrom, 'rangeto' => $rangeto])->links() }}
                 </div>
             </section>
         </div>
