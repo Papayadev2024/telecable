@@ -274,7 +274,7 @@
 
                             <div class="flex flex-col md:flex-row gap-5 w-full">
                                 <input type="submit" value="Guardar cambios"
-                                    class="text-white bg-[#74A68D] py-3 rounded-2xl cursor-pointer border-2 font-semibold text-[16px] text-center border-none inline-block w-full" />
+                                    class="text-white bg-bgBlack py-3 rounded-2xl cursor-pointer border-2 font-semibold text-[16px] text-center border-none inline-block w-full" />
 
                                 <input type="submit" value="Cancelar"
                                     class="text-[#151515] py-3 rounded-2xl cursor-pointer font-semibold text-[16px] text-center inline-block border-[1px] border-[#151515] w-full" />
@@ -295,7 +295,7 @@
                                     <img class="w-full h-full rounded-full" src="{{ Auth::user()->profile_photo_url }}"
                                         width="32" height="32" alt="{{ Auth::user()->name }}" />
                                     <label for="upload_image"
-                                        class="bg-[#74A68D] rounded-full w-7 h-7 flex justify-center items-center absolute bottom-0 right-0 cursor-pointer">
+                                        class="bg-bgBlack rounded-full w-7 h-7 flex justify-center items-center absolute bottom-0 right-0 cursor-pointer">
                                         <img src="{{ asset('/images/svg/upload_photo.svg') }}" alt="upload photo" />
                                     </label>
                                     <form action="{{ route('cambiofoto') }}" id="avatarform" method="POST"
@@ -320,7 +320,7 @@
                             <div class="flex flex-col gap-4 ">
                                 <a class="group" href="{{ route('micuenta') }}">
                                     <div
-                                        class="text-white group-hover:bg-[#74A68D] py-2 px-4 rounded-2xl cursor-pointer text-[16px] border-none w-64 flex justify-between items-center">
+                                        class="text-white group-hover:bg-bgBlack py-2 px-4 rounded-2xl cursor-pointer text-[16px] border-none w-64 flex justify-between items-center">
                                         <p class="font-medium text-[16px] text-[#254678] group-hover:text-white">
                                             Mi cuenta
                                         </p>
@@ -336,7 +336,7 @@
                                 </a>
                                 <a class="group" href="{{ route('direccion') }}">
                                     <div
-                                        class="text-white bg-[#74A68D] py-2 px-4 rounded-2xl cursor-pointer text-[16px] border-none w-64 flex justify-between items-center group-hover:bg-[#74A68D]">
+                                        class="text-white bg-bgBlack py-2 px-4 rounded-2xl cursor-pointer text-[16px] border-none w-64 flex justify-between items-center group-hover:bg-bgBlack">
                                         <p class="font-medium text-[16px] text-white">
                                             Dirección
                                         </p>
@@ -352,7 +352,7 @@
                                 </a>
                                 <a class="group" href="{{ route('pedidos') }}">
                                     <div
-                                        class="text-white py-2 px-4 rounded-2xl cursor-pointer text-[16px] border-none w-64 flex justify-between items-center group-hover:bg-[#74A68D]">
+                                        class="text-white py-2 px-4 rounded-2xl cursor-pointer text-[16px] border-none w-64 flex justify-between items-center group-hover:bg-bgBlack">
                                         <p class="font-medium text-[16px] text-[#254678] group-hover:text-white">
                                             Historial de pedidos
                                         </p>
@@ -369,7 +369,7 @@
                                 <form method="POST" action="{{ route('logout') }}" x-data class="group">
                                     @csrf
                                     <button type="submit" href="{{ route('logout') }}"
-                                        class="rounded-2xl bg-[#F3F5F7] md:bg-[#FCFCFC] group-hover:bg-[#74A68D]  group-hover:text-white text-[#151515] font-medium text-[16px] py-3 px-4 flex justify-between items-center w-64 mt-0 md:mt-[200px]">
+                                        class="rounded-2xl bg-[#F3F5F7] md:bg-[#FCFCFC] group-hover:bg-bgBlack  group-hover:text-white text-[#151515] font-medium text-[16px] py-3 px-4 flex justify-between items-center w-64 mt-0 md:mt-[200px]">
                                         <span>Cerrar Sesión</span>
                                         <svg width="20" height="18" viewBox="0 0 14 13" fill="none">
                                             <path class="group-hover:stroke-white"

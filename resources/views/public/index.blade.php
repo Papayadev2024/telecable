@@ -113,13 +113,16 @@
                                     <h3 class="font-mediumItalicDisplay text-text16 xl:text-text20">
                                         Categoría
                                     </h3>
-                                    <p class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
-                                        {{ $item->name }}
-                                    </p>
+                                    <a href="{{route('catalogo', $item->id)}}">
+                                        <p class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
+                                            {{ $item->name }}
+                                        </p>
+                                   </a>
                                 </div>
                             </div>
                         @endforeach
                     </div>
+                   
                 @elseif(count($category->take(4)) == 2)
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         @foreach ($category->take(2) as $index => $item)
@@ -136,9 +139,11 @@
                                     <h3 class="font-mediumItalicDisplay text-text16 xl:text-text20">
                                         Categoría
                                     </h3>
-                                    <p class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
-                                        {{ $item->name }}
-                                    </p>
+                                    <a href="{{route('catalogo', $item->id)}}">
+                                        <p class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
+                                            {{ $item->name }}
+                                        </p>
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
@@ -160,9 +165,11 @@
                                     <h3 class="font-mediumItalicDisplay text-text16 xl:text-text20">
                                         Categoría
                                     </h3>
-                                    <p class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
-                                        {{ $item->name }}
-                                    </p>
+                                    <a href="{{route('catalogo', $item->id)}}">
+                                        <p class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
+                                            {{ $item->name }}
+                                        </p>
+                                    </a>
                                 </div>
                             </div>
                         @endforeach

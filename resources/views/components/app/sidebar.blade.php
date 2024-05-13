@@ -53,7 +53,7 @@
         <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
           <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
             aria-hidden="true">•••</span>
-          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Decotab - Backend</span>
+          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Dommine - Backend</span>
         </h3>
         <ul class="mt-3">
 
@@ -97,8 +97,10 @@
                 </div>
                 <!-- Badge -->
                 <div class="flex flex-shrink-0 ml-2">
-                  <span
-                    class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-indigo-500 px-2 rounded">4</span>
+                  @if ($mensajes !== 0)
+                    <span
+                      class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-indigo-500 px-2 rounded">{{ $mensajes }}</span>
+                  @endif
                 </div>
               </div>
             </a>
@@ -187,6 +189,25 @@
             </a>
           </li>
 
+          <!-- Colecciones -->
+          <li
+            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['colecciones'])) {{ 'bg-slate-900' }} @endif">
+            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['colecciones'])) {{ 'hover:text-slate-200' }} @endif"
+              href="{{ route('colecciones.index') }}">
+              <div class="flex items-center">
+                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                  <path
+                    class="fill-current @if (in_array(Request::segment(2), ['colecciones'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
+                    d="M1 3h22v20H1z" />
+                  <path
+                    class="fill-current @if (in_array(Request::segment(2), ['colecciones'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
+                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
+                </svg>
+                <span
+                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Colecciones</span>
+              </div>
+            </a>
+          </li>
 
           <!-- Blog -->
           <li

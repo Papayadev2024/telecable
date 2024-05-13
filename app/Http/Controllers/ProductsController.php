@@ -336,6 +336,8 @@ class ProductsController extends Controller
   public function borrar(Request $request)
   {
     //softdelete
+    DB::delete('delete from galeries where product_id = ?', [$request->id]);
+    
     $product = Products::find($request->id);
     $product->status = 0;
     $product->save();

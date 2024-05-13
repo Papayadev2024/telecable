@@ -23,15 +23,19 @@ return new class extends Migration
             $table->decimal('peso', 12, 2)->default(0);
             $table->string('imagen')->nullable();
             $table->json('atributes')->nullable();
+            $table->boolean('liquidacion')->default(false);
             $table->boolean('destacar')->default(false);
             $table->boolean('recomendar')->default(false);
             $table->unsignedBigInteger('categoria_id')->nullable();
+            $table->unsignedBigInteger('collection_id')->nullable();
 
             $table->boolean('visible')->default(true);
             $table->boolean('status')->default(true);
             $table->timestamps();
 
             $table->foreign('categoria_id')->references('id')->on('categories');
+            $table->foreign('collection_id')->references('id')->on('collections');
+            
             
         });
     }

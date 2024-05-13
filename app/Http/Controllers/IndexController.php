@@ -16,6 +16,7 @@ use App\Models\Slider;
 use App\Models\Strength;
 use App\Models\Testimony;
 use App\Models\Category;
+use App\Models\Collection;
 use App\Models\Liquidacion;
 use App\Models\Specifications;
 use App\Models\TypeAttribute;
@@ -65,6 +66,28 @@ class IndexController extends Controller
     return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
   }
 
+  public function coleccion($filtro)
+  {
+    try {
+      
+      $collections = Collection::where('status', '=', 1)->get();
+     
+      if ($filtro == 0) {
+        $productos = Products::where('status', '=', 1)->paginate(3);
+        $collection = Collection::where('status', '=', 1)->get();
+      } else {
+        $productos = Products::where('collection_id', '=', $filtro)->paginate(3);
+        $collection = Collection::findOrFail($filtro);
+      }
+
+
+      return view('public.collection', compact('filtro', 'productos', 'categoria', 'rangefrom', 'rangeto'));
+    } catch (\Throwable $th) {
+    }
+  }
+
+
+
   public function catalogo($filtro, Request $request)
   {
     $categorias = null;
@@ -72,8 +95,6 @@ class IndexController extends Controller
 
     $rangefrom = $request->query('rangefrom');
     $rangeto = $request->query('rangeto');
-
-
 
     try {
       $general = General::all();
@@ -86,10 +107,10 @@ class IndexController extends Controller
 
 
       if ($filtro == 0) {
-        $productos = Products::paginate(3);
+        $productos = Products::paginate(12);
         $categoria = Category::all();
       } else {
-        $productos = Products::where('categoria_id', '=', $filtro)->paginate(3);
+        $productos = Products::where('categoria_id', '=', $filtro)->paginate(12);
         $categoria = Category::findOrFail($filtro);
       }
 
@@ -122,9 +143,9 @@ class IndexController extends Controller
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $productos = new LengthAwarePaginator(
-          $cleanedData->forPage($currentPage, 3), // Obtener los productos por página
+          $cleanedData->forPage($currentPage, 12), // Obtener los productos por página
           $cleanedData->count(), // Contar todos los elementos
-          3, // Número de elementos por página
+          12, // Número de elementos por página
           $currentPage, // Página actual
           ['path' => request()->url()] // URL base para la paginación
         );
@@ -375,10 +396,7 @@ class IndexController extends Controller
     return view('public.dashboard', compact('user'));
   }
 
-  public function coleccion()
-  { 
-    return view('public.collection');
-  }
+  
 
   public function pedidos()
   {
