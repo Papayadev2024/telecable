@@ -3,7 +3,7 @@
 @stop
 @section('content')
     <?php
-    // Definición de la función capitalizeFirstLetter()
+    //Definición de la función capitalizeFirstLetter()
     function capitalizeFirstLetter($string)
     {
         return ucfirst($string);
@@ -81,11 +81,10 @@
                     </div>
 
                     <div class="flex flex-col gap-3">
-
-                    @foreach ($productos as $producto)
+                        <pre>{{$productos}}</pre>
+                    {{-- @foreach ($productos as $producto)
                         @foreach ($producto->attributes as $atributo)
-
-                            {{-- {{$atributo->pivot}} --}}
+                          {{  $atributo->pivot}}
                             <div>
                                 @if ($atributo->typeAttribute->name === 'color')
                                     <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
@@ -98,7 +97,7 @@
                                                     <div style="background-color: {{ $valor->color }}" class="colors w-14 h-14 rounded-[50%] cursor-pointer"></div>     
                                             @endforeach   
                                     </div>
-                                @else
+                                @elseif($atributo->typeAttribute->name === 'text')
                                     <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
                                         Seleccionar el tamaño
                                     </p>
@@ -113,7 +112,9 @@
                                 @endif
                             </div>
                         @endforeach 
-                    @endforeach    
+                    @endforeach     --}}
+
+                    
                     </div>
 
                     <div class="flex flex-col gap-3">

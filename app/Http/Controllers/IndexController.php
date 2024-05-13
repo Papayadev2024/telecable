@@ -422,6 +422,7 @@ class IndexController extends Controller
   public function producto(string $id)
   {
     $product = Products::findOrFail($id);
+    
     $productos = Products::where('id', '=', $id)->get();
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)
