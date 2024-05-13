@@ -63,12 +63,11 @@
                             </div>
 
                             <div class="dropdown-content font-regularDisplay text-text20 xl:text-text24 rounded-xl">
-                                <a href="colection.html" class="onAction" onclick="preventDefaultAction(event)">
-                                    Categoría 1
-                                </a>
-                                <a href="colection.html" onclick="preventDefaultAction(event)">
-                                    Categoría 2
-                                </a>
+                                @foreach ($submenucategorias as $item)
+                                    <a href="{{route('catalogo', $item->id)}}">
+                                        {{$item->name}}
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
 
@@ -92,12 +91,11 @@
                             </div>
 
                             <div class="dropdown-content font-regularDisplay text-text20 xl:text-text24 rounded-xl">
-                                <a href="colection.html" onclick="preventDefaultAction(event)">
-                                    Colección Summer
-                                </a>
-                                <a href="colection.html" onclick="preventDefaultAction(event)">
-                                    Real Sensation
-                                </a>
+                                @foreach ($submenucolecciones as $item)
+                                    <a href="{{route('coleccion', $item->id)}}">
+                                        {{$item->name}}
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                         <!-- Menu movil fin -->

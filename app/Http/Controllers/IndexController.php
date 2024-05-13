@@ -73,15 +73,15 @@ class IndexController extends Controller
       $collections = Collection::where('status', '=', 1)->get();
      
       if ($filtro == 0) {
-        $productos = Products::where('status', '=', 1)->paginate(3);
+        $productos = Products::where('status', '=', 1)->paginate(16);
         $collection = Collection::where('status', '=', 1)->get();
       } else {
-        $productos = Products::where('collection_id', '=', $filtro)->paginate(3);
+        $productos = Products::where('collection_id', '=', $filtro)->paginate(16);
         $collection = Collection::findOrFail($filtro);
       }
 
 
-      return view('public.collection', compact('filtro', 'productos', 'categoria', 'rangefrom', 'rangeto'));
+      return view('public.collection', compact('filtro', 'productos', 'collection','collections'));
     } catch (\Throwable $th) {
     }
   }

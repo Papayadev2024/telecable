@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\Collection;
 use App\Models\General;
 use App\Models\Message;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -29,6 +31,15 @@ class AppServiceProvider extends ServiceProvider
             $datosgenerales = General::all(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
             // Pasar los datos a la vista
             $view->with('datosgenerales', $datosgenerales);
+        });
+
+        View::composer('components.public.header', function ($view) {
+            // Obtener los datos del footer
+            $submenucategorias = Category::all(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
+            $submenucolecciones = Collection::all();
+            // Pasar los datos a la vista
+            $view->with('submenucategorias', $submenucategorias)
+                 ->with('submenucolecciones', $submenucolecciones);
         });
 
         View::composer('components.app.sidebar', function ($view) {
