@@ -35,7 +35,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
   <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
   <!-- Sweetalert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -45,7 +45,7 @@
   <script src="https://cdn.tiny.cloud/1/kj7rz3ruf2k1dwv5rrw0v3iekjqj1h0xy6wn1ago86ohjn3l/tinymce/7/tinymce.min.js"
     referrerpolicy="origin"></script>
 
- <!-- Select2 -->
+  <!-- Select2 -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <!-- Scripts -->
@@ -53,6 +53,9 @@
 
   <!-- Styles -->
   @livewireStyles
+  @yield('css')
+  @yield('js_vendor')
+  @yield('js_page')
 
   <script>
     if (localStorage.getItem('dark-mode') === 'false' || !('dark-mode' in localStorage)) {
@@ -98,6 +101,7 @@
   </div>
 
   @livewireScripts
+  @yield('scripts_importados')
 
 </body>
 

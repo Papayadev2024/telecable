@@ -37,7 +37,7 @@
 
               @foreach ($galerie as $item)
                 <tr>
-                  <td>{{ $item->product_id }}</td>
+                  <td>{{ $item->products->producto }}</td>
                   <td>{{ $item->valor }}</td>
                   <td>{{ $item->descripcion }}</td>
                   <td>{{ $item->color }}</td>

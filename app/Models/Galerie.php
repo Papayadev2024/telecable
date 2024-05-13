@@ -16,7 +16,7 @@ class Galerie extends Model
         'imagen'
     ];
 
-    public function galeria()
+    public function products()
     {
         return $this->belongsTo(Products::class, 'product_id');
     }
