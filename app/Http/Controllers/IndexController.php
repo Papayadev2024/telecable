@@ -76,50 +76,12 @@ class IndexController extends Controller
         $productos = Products::where('status', '=', 1)->paginate(3);
         $collection = Collection::where('status', '=', 1)->get();
       } else {
-        $productos = Products::where('categoria_id', '=', $filtro)->paginate(3);
+        $productos = Products::where('collection_id', '=', $filtro)->paginate(3);
         $collection = Collection::findOrFail($filtro);
       }
 
 
-
-      // if ($rangefrom !== null && $rangeto !== null) {
-
-      //   if ($filtro == 0) {
-      //     $productos = Products::all();
-      //     $categoria = Category::all();
-      //   } else {
-      //     $productos = Products::where('categoria_id', '=', $filtro)->get();
-      //     $categoria = Category::findOrFail($filtro);
-      //   }
-
-      //   $cleanedData = $productos->filter(function ($value) use ($rangefrom, $rangeto) {
-
-      //     if ($value['descuento'] == 0) {
-
-      //       if ($value['precio'] <= $rangeto && $value['precio'] >= $rangefrom) {
-      //         return $value;
-      //       }
-      //     } else {
-
-      //       if ($value['descuento'] <= $rangeto && $value['descuento'] >= $rangefrom) {
-      //         return $value;
-      //       }
-      //     }
-      //   });
-
-      //   $currentPage = LengthAwarePaginator::resolveCurrentPage();
-      //   $productos = new LengthAwarePaginator(
-      //     $cleanedData->forPage($currentPage, 3), // Obtener los productos por página
-      //     $cleanedData->count(), // Contar todos los elementos
-      //     3, // Número de elementos por página
-      //     $currentPage, // Página actual
-      //     ['path' => request()->url()] // URL base para la paginación
-      //   );
-      // }
-
-
-
-      return view('public.collection');
+      return view('public.collection', compact('filtro', 'productos', 'categoria', 'rangefrom', 'rangeto'));
     } catch (\Throwable $th) {
     }
   }
@@ -145,7 +107,7 @@ class IndexController extends Controller
 
 
       if ($filtro == 0) {
-        $productos = Products::paginate(3);
+        $productos = Products::paginate(12);
         $categoria = Category::all();
       } else {
         $productos = Products::where('categoria_id', '=', $filtro)->paginate(3);
@@ -181,9 +143,9 @@ class IndexController extends Controller
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $productos = new LengthAwarePaginator(
-          $cleanedData->forPage($currentPage, 3), // Obtener los productos por página
+          $cleanedData->forPage($currentPage, 12), // Obtener los productos por página
           $cleanedData->count(), // Contar todos los elementos
-          3, // Número de elementos por página
+          12, // Número de elementos por página
           $currentPage, // Página actual
           ['path' => request()->url()] // URL base para la paginación
         );
