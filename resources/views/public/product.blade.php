@@ -98,7 +98,7 @@
                                                     <div style="background-color: {{ $valor->color }}" class="colors w-14 h-14 rounded-[50%] cursor-pointer"></div>     
                                             @endforeach   
                                     </div>
-                                @elseif($atributo->typeAttribute->name === 'text')
+                                @else
                                     <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
                                         Seleccionar el tamaño
                                     </p>

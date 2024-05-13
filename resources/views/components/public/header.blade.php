@@ -134,7 +134,7 @@
                 <img src="{{asset('images/svg/lupa.svg')}}" alt="search" />
             </div>
             <input type="text" placeholder="Buscar"
-                class="w-full xl:max-w-sm outline-none bg-[#F5F5F5] font-medium text-text16" />
+                class="w-full xl:max-w-sm outline-none bg-[#F5F5F5] font-medium text-text16 border-x-0 border-y-0  border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[0px]" />
         </div>
 
         <div class="col-span-2 md:col-span-2 xl:col-span-1 order-2 xl:order-4 flex justify-end">
