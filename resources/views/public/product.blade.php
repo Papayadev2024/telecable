@@ -43,25 +43,11 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-5 relative">
-                        <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives" class="w-full h-full" />
+                    @foreach ($productosConGalerias as $galeria)
+                    <div class="flex justify-center items-center rounded-2xl object-cover bg-cover" style="background-image: url('{{ asset($galeria->imagen) }}')">
+                        <img src="{{ asset($galeria->imagen) }}" alt="{{$galeria->descripcion}}" class="w-full object-cover bg-cover rounded-2xl"/>
                     </div>
-
-                    <div class="flex flex-col gap-5 relative">
-                        <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives" class="w-full h-full" />
-                    </div>
-
-                    <div class="flex flex-col gap-5 relative">
-                        <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives" class="w-full h-full" />
-                    </div>
-
-                    <div class="flex flex-col gap-5 relative">
-                        <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives" class="w-full h-full" />
-                    </div>
-
-                    <div class="flex flex-col gap-5 relative">
-                        <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives" class="w-full h-full" />
-                    </div>
+                @endforeach
                 </div>
 
                 <div class="basis-3/6 text-textBlack flex flex-col gap-10">

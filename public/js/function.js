@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
  // dropdown,js--------------------------------------------------------
 
   var input = document.querySelector(".input-box");
-input.onclick = function () {
+input.onclick = function() {
   this.classList.toggle("open");
   let list = this.nextElementSibling;
   if (list.style.maxHeight) {
