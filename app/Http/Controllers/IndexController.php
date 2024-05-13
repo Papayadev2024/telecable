@@ -65,6 +65,70 @@ class IndexController extends Controller
     return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
   }
 
+  public function coleccion()
+  {
+    try {
+      $general = General::all();
+      $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
+      $categorias = Category::all();
+      $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
+
+
+
+      // if ($filtro == 0) {
+      //   $productos = Products::paginate(3);
+      //   $categoria = Category::all();
+      // } else {
+      //   $productos = Products::where('categoria_id', '=', $filtro)->paginate(3);
+      //   $categoria = Category::findOrFail($filtro);
+      // }
+
+
+
+      // if ($rangefrom !== null && $rangeto !== null) {
+
+      //   if ($filtro == 0) {
+      //     $productos = Products::all();
+      //     $categoria = Category::all();
+      //   } else {
+      //     $productos = Products::where('categoria_id', '=', $filtro)->get();
+      //     $categoria = Category::findOrFail($filtro);
+      //   }
+
+      //   $cleanedData = $productos->filter(function ($value) use ($rangefrom, $rangeto) {
+
+      //     if ($value['descuento'] == 0) {
+
+      //       if ($value['precio'] <= $rangeto && $value['precio'] >= $rangefrom) {
+      //         return $value;
+      //       }
+      //     } else {
+
+      //       if ($value['descuento'] <= $rangeto && $value['descuento'] >= $rangefrom) {
+      //         return $value;
+      //       }
+      //     }
+      //   });
+
+      //   $currentPage = LengthAwarePaginator::resolveCurrentPage();
+      //   $productos = new LengthAwarePaginator(
+      //     $cleanedData->forPage($currentPage, 3), // Obtener los productos por página
+      //     $cleanedData->count(), // Contar todos los elementos
+      //     3, // Número de elementos por página
+      //     $currentPage, // Página actual
+      //     ['path' => request()->url()] // URL base para la paginación
+      //   );
+      // }
+
+
+
+      return view('public.collection');
+    } catch (\Throwable $th) {
+    }
+  }
+
+
+
   public function catalogo($filtro, Request $request)
   {
     $categorias = null;
@@ -375,10 +439,7 @@ class IndexController extends Controller
     return view('public.dashboard', compact('user'));
   }
 
-  public function coleccion()
-  { 
-    return view('public.collection');
-  }
+  
 
   public function pedidos()
   {

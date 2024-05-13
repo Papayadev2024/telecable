@@ -21,6 +21,7 @@ use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\GalerieController;
@@ -172,7 +173,12 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::post('/galerie/updateVisible', [GalerieController::class, 'updateVisible'])->name('galerie.updateVisible');
         Route::post('/galerie/borrar', [GalerieController::class, 'borrar'])->name('galerie.borrar');
 
-        
+        //Colecciones
+        Route::resource('/colecciones', CollectionController::class);
+        Route::post('/colecciones/deleteCollection', [CollectionController::class, 'deleteCollection'] )->name('collection.deleteCollection');
+        Route::post('/colecciones/updateVisible', [CollectionController::class, 'updateVisible'] )->name('collection.updateVisible');
+
+
         Route::fallback(function() {
             return view('pages/utility/404');
         });
