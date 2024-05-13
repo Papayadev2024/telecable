@@ -17,7 +17,7 @@
   {{-- Swipper --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  
+
   {{-- Alpine --}}
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -47,7 +47,7 @@
   @yield('scripts_importados')
   {{-- @vite(['resources/js/functions.js']) --}}
   {{-- <script src="{{ asset('js/functions.js') }}"></script> --}}
-  <script src="{{ asset('js/function.js') }}"></script>
+  {{-- <script src="{{ asset('js/function.js') }}"></script> --}}
 
 
 </body>
