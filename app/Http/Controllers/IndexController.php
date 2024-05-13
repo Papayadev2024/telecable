@@ -16,6 +16,7 @@ use App\Models\Slider;
 use App\Models\Strength;
 use App\Models\Testimony;
 use App\Models\Category;
+use App\Models\Collection;
 use App\Models\Liquidacion;
 use App\Models\Specifications;
 use App\Models\TypeAttribute;
@@ -65,23 +66,19 @@ class IndexController extends Controller
     return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
   }
 
-  public function coleccion()
+  public function coleccion($filtro)
   {
     try {
-      $general = General::all();
-      $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
-      $categorias = Category::all();
-      $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
-
-
-
-      // if ($filtro == 0) {
-      //   $productos = Products::paginate(3);
-      //   $categoria = Category::all();
-      // } else {
-      //   $productos = Products::where('categoria_id', '=', $filtro)->paginate(3);
-      //   $categoria = Category::findOrFail($filtro);
-      // }
+      
+      $collections = Collection::where('status', '=', 1)->get();
+     
+      if ($filtro == 0) {
+        $productos = Products::where('status', '=', 1)->paginate(3);
+        $collection = Collection::where('status', '=', 1)->get();
+      } else {
+        $productos = Products::where('categoria_id', '=', $filtro)->paginate(3);
+        $collection = Collection::findOrFail($filtro);
+      }
 
 
 
@@ -136,8 +133,6 @@ class IndexController extends Controller
 
     $rangefrom = $request->query('rangefrom');
     $rangeto = $request->query('rangeto');
-
-
 
     try {
       $general = General::all();

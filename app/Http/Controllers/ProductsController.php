@@ -123,6 +123,7 @@ class ProductsController extends Controller
 
     $producto = Products::create($cleanedData);
 
+    if(!is_null($atributos)){
     foreach ($atributos as $atributo => $valores) {
       $idAtributo = Attributes::where('titulo', $atributo)->first();
   
@@ -135,9 +136,10 @@ class ProductsController extends Controller
                   'attribute_id' => $idAtributo->id,
                   'attribute_value_id' => $idValorAtributo->id,
               ]);
+              }
           }
       }
-  }
+    }
 
     $this->GuardarEspecificaciones($producto->id, $especificaciones);
     

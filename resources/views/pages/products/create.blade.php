@@ -104,7 +104,7 @@
 
                                 <div class="">
 
-                                    <label for="destacar">Destacar
+                                    <label for="destacar">Lo más pedido
                                     </label>
 
                                     <div class="relative mb-2  mt-2">
