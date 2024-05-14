@@ -81,7 +81,18 @@
                     </div>
 
                     <div class="flex flex-col gap-3">
-                        <pre>{{$productos}}</pre>
+                       
+                            
+                           
+                        
+                           
+                            @foreach ($product as $producto) {
+                                <pre>{{$producto}}</pre>
+                            }
+                            @endforeach
+                        
+                       
+                        <pre>{{$product}}</pre>
                     {{-- @foreach ($productos as $producto)
                         @foreach ($producto->attributes as $atributo)
                           {{  $atributo->pivot}}

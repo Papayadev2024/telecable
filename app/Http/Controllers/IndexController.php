@@ -421,7 +421,7 @@ class IndexController extends Controller
 
   public function producto(string $id)
   {
-    $product = Products::findOrFail($id);
+    $product = Products::where('id', '=', $id)->with('attributes')->get();
     
     $productos = Products::where('id', '=', $id)->get();
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
@@ -453,7 +453,7 @@ class IndexController extends Controller
 
 
 
-    return view('public.product', compact('productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env'));
+    return view('public.product', compact('product','productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env'));
   }
 
   //  --------------------------------------------
