@@ -35,17 +35,24 @@
                     <div class="flex flex-col gap-5 relative">
                         <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}" class="w-full" />
 
-                        <div
-                            class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                            <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                New Arrival
-                            </p>
+                        <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
+                            <div class="flex gap-3 flex-wrap">
+                                @foreach ($productos[0]->tags as $tag)
+                                    <div class="bg-white  rounded-md py-1 px-2">
+                                        <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack ">
+                                            {{ $tag->name }}
+                                        </p>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
+
                     </div>
 
                     @foreach ($productosConGalerias as $galeria)
-                        <div class="flex justify-center items-center rounded-2xl object-cover bg-cover" >
-                            <img src="{{ asset($galeria->imagen) }}" alt="{{$galeria->descripcion}}" class="w-full  object-cover bg-cover"/>
+                        <div class="flex justify-center items-center rounded-2xl object-cover bg-cover">
+                            <img src="{{ asset($galeria->imagen) }}" alt="{{ $galeria->descripcion }}"
+                                class="w-full  object-cover bg-cover" />
                         </div>
                     @endforeach
                 </div>
@@ -53,11 +60,11 @@
                 <div class="basis-3/6 text-textBlack flex flex-col gap-10">
                     <div class="flex flex-col gap-1">
                         <p class="font-mediumDisplay text-text16 md:text-text18">
-                            Categoría:  @if (!is_null($productos[0]->categoria) && !is_null($productos[0]->categoria->name))
-                                {{$productos[0]->categoria->name}}
-                        @else
+                            Categoría: @if (!is_null($productos[0]->categoria) && !is_null($productos[0]->categoria->name))
+                                {{ $productos[0]->categoria->name }}
+                            @else
                                 S/C
-                        @endif
+                            @endif
                         </p>
                         <div class="flex justify-between">
                             <h3 class="font-mediumDisplay text-text32 md:text-text36">
@@ -65,35 +72,35 @@
                             </h3>
                             <div class="flex justify-between text-black items-center gap-2">
                                 @if ($productos[0]->descuento == 0)
-                                <p class="text-text14 md:text-text20 font-boldDisplay">
-                                    s/{{ $productos[0]->precio }}
-                                </p>
+                                    <p class="text-text14 md:text-text20 font-boldDisplay">
+                                        s/{{ $productos[0]->precio }}
+                                    </p>
                                 @else
-                                <p class="text-text14 md:text-text20 font-boldDisplay">
-                                    s/{{ $productos[0]->descuento }}
-                                </p>
-                                <p class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay">
-                                    s/{{ $productos[0]->precio }}
-                                </p>
+                                    <p class="text-text14 md:text-text20 font-boldDisplay">
+                                        s/{{ $productos[0]->descuento }}
+                                    </p>
+                                    <p class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay">
+                                        s/{{ $productos[0]->precio }}
+                                    </p>
                                 @endif
                             </div>
                         </div>
                     </div>
 
                     <div class="flex flex-col gap-3">
-                       
-                            
-                           
-                        
-                           
-                            {{-- @foreach ($product as $producto) {
+
+
+
+
+
+                        {{-- @foreach ($product as $producto) {
                                 <pre>{{$producto}}</pre>
                             }
                             @endforeach --}}
-                        
-                       
-                       {{-- { <pre>{{$product}}</pre>} --}}
-                    {{-- @foreach ($productos as $producto)
+
+
+                        {{-- { <pre>{{$product}}</pre>} --}}
+                        {{-- @foreach ($productos as $producto)
                         @foreach ($producto->attributes as $atributo)
                           {{  $atributo->pivot}}
                             <div>
@@ -125,11 +132,11 @@
                         @endforeach 
                     @endforeach     --}}
 
-                    
+
                     </div>
 
                     <div class="flex flex-col gap-3">
-                       
+
                         <div class="flex justify-between items-center">
                             <!-- Corregir -->
                             <div class="flex">
@@ -185,41 +192,43 @@
 
                                             <div class="group-open:animate-fadeIn mt-3 text-[#000000]">
                                                 <div class="flex flex-col gap-5">
-                                                    @if(is_null($productos[0]->description))
+                                                    @if (is_null($productos[0]->description))
                                                     @else
-                                                    <div class="flex flex-col gap-2">
-                                                        <p class="font-mediumDisplay text-text16 md:text-text20">
-                                                            Descripción de producto
-                                                        </p>
-                                                        <p
-                                                            class="font-regularDisplay text-text16 md:text-text20 text-gray-600">
-                                                            {!! $productos[0]->description !!}
-                                                        </p>
-                                                    </div>
+                                                        <div class="flex flex-col gap-2">
+                                                            <p class="font-mediumDisplay text-text16 md:text-text20">
+                                                                Descripción de producto
+                                                            </p>
+                                                            <p
+                                                                class="font-regularDisplay text-text16 md:text-text20 text-gray-600">
+                                                                {!! $productos[0]->description !!}
+                                                            </p>
+                                                        </div>
                                                     @endif
-                                                    
-                                                    @if($especificaciones->isEmpty())
-                                                        
-                                                    @else
-                                                    <div class="flex flex-col gap-5">
-                                                        <p class="font-mediumDisplay text-text16 md:text-text20">
-                                                            Información adicional
-                                                        </p>
 
-                                                        <table class="border-collapse w-full">
-                                                            <tbody>
-                                                                @foreach ($especificaciones as $item)
-                                                                    <tr>
-                                                                        <td
-                                                                            class="border w-1/5 border-gray-400 px-3 py-2 font-semibold text-[16px] text-gray-900">
-                                                                            {{ capitalizeFirstLetter($item->tittle) }}:</td>
-                                                                        <td class="border w-4/5 border-gray-400 px-3 py-2 font-normal text-[15px]">
-                                                                            {{ capitalizeFirstLetter($item->specifications) }}</td>
-                                                                    </tr>
-                                                                @endforeach
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                    @if ($especificaciones->isEmpty())
+                                                    @else
+                                                        <div class="flex flex-col gap-5">
+                                                            <p class="font-mediumDisplay text-text16 md:text-text20">
+                                                                Información adicional
+                                                            </p>
+
+                                                            <table class="border-collapse w-full">
+                                                                <tbody>
+                                                                    @foreach ($especificaciones as $item)
+                                                                        <tr>
+                                                                            <td
+                                                                                class="border w-1/5 border-gray-400 px-3 py-2 font-semibold text-[16px] text-gray-900">
+                                                                                {{ capitalizeFirstLetter($item->tittle) }}:
+                                                                            </td>
+                                                                            <td
+                                                                                class="border w-4/5 border-gray-400 px-3 py-2 font-normal text-[15px]">
+                                                                                {{ capitalizeFirstLetter($item->specifications) }}
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     @endif
                                                 </div>
                                             </div>
@@ -273,14 +282,14 @@
                                         </details>
                                     </div> --}}
                                     <div class="py-5">
-                                        <details class="group" >
+                                        <details class="group">
                                             <summary
                                                 class="flex cursor-pointer list-none items-center justify-between font-mediumDisplay">
                                                 <span class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
                                                     FAQs</span>
                                                 <span class="transition group-open:rotate-180">
-                                                    <svg width="20" height="20" viewBox="0 0 12 13"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
                                                         <path
                                                             d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
                                                             fill="black" />
@@ -311,8 +320,8 @@
                                                 <span class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
                                                     Entrega y devoluciones</span>
                                                 <span class="transition group-open:rotate-180">
-                                                    <svg width="20" height="20" viewBox="0 0 12 13"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
                                                         <path
                                                             d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
                                                             fill="black" />
@@ -345,8 +354,7 @@
 
         <section class="w-11/12 mx-auto flex flex-col gap-5 pt-10">
             <div>
-                <img src="{{ asset('images/img/producto_1.png') }}" alt="doomine"
-                    class="w-full h-full hidden md:block" />
+                <img src="{{ asset('images/img/producto_1.png') }}" alt="doomine" class="w-full h-full hidden md:block" />
 
                 <img src="{{ asset('images/img/mobile_foto.png') }}" alt="doomine"
                     class="w-full h-full block md:hidden" />

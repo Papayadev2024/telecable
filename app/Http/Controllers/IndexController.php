@@ -421,9 +421,9 @@ class IndexController extends Controller
 
   public function producto(string $id)
   {
-    $product = Products::where('id', '=', $id)->with('attributes')->get();
+    $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
     
-    $productos = Products::where('id', '=', $id)->get();
+    $productos = Products::where('id', '=', $id)->with('tags')->get();
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)
     ->where(function ($query) {
