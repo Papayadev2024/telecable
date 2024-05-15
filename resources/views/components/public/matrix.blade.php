@@ -29,7 +29,7 @@
 </head>
 
 <body class="body">
-  <div class="overlay"></div>
+  {{-- <div class="overlay"></div> --}}
   @include('components.public.header')
 
   <div class="main">
@@ -47,7 +47,8 @@
   @yield('scripts_importados')
   {{-- @vite(['resources/js/functions.js']) --}}
   {{-- <script src="{{ asset('js/functions.js') }}"></script> --}}
-  {{-- <script src="{{ asset('js/function.js') }}"></script> --}}
+  <script src="{{ asset('js/function.js') }}"></script>
+  <script src="{{ asset('js/carrito.js') }}"></script>
 
 
 </body>

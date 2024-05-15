@@ -160,95 +160,19 @@
 
               <div class="overflow-y-scroll h-auto scroll__carrito">
                 <div class="flex flex-col gap-10" id="itemsCarrito">
-                  <!-- Para funcionalidad de agregar carrito -->
-                  <div class="flex justify-between border-b-[1px] pb-5">
-                    <div class="flex justify-center items-center gap-5">
-                      <div class="rounded-md p-4">
-                        <img src="./images/img/arrives_1.png" alt="producto" class="w-24" />
-                      </div>
-                      <div class="flex flex-col gap-3 py-2">
-                        <h3 class="font-boldDisplay text-text14 xl:text-text18 text-[#151515]">
-                          Producto 1
-                        </h3>
-                        <p class="font-regularDisplay text-[12px] xl:text-text16 text-[#6C7275]">
-                          Color: Black
-                        </p>
-                        <div class="flex justify-center text-[#151515] border-[1px] border-[#6C7275] rounded-md">
-                          <div class="w-8 h-8 flex justify-center items-center cursor-pointer">
-                            <span class="text-[20px]">-</span>
-                          </div>
-                          <div class="w-8 h-8 flex justify-center items-center">
-                            <span class="font-boldDisplay text-[12px] xl:text-text14">2</span>
-                          </div>
-                          <div class="w-8 h-8 flex justify-center items-center cursor-pointer">
-                            <span class="text-[20px]">+</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex flex-col justify-start py-2 gap-5 items-center pr-2">
-                      <p class="font-boldDisplay text-[14px] xl:text-text18 text-[#151515]">
-                        s/ 19.19
-                      </p>
-                      <div>
-                        <a href="#">
-                          <img src="./images/svg/close_bag.svg" alt="close" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Para funcionalidad de agregar carrito -->
 
-                  <!-- Para item en el carrito -->
-                  <div class="flex justify-between border-b-[1px] pb-5">
-                    <div class="flex justify-center items-center gap-5">
-                      <div class="rounded-md p-4">
-                        <img src="./images/img/arrives_1.png" alt="producto" class="w-24" />
-                      </div>
-                      <div class="flex flex-col gap-3 py-2">
-                        <h3 class="font-boldDisplay text-text14 xl:text-text18 text-[#151515]">
-                          Producto 1
-                        </h3>
-                        <p class="font-regularDisplay text-[12px] xl:text-text16 text-[#6C7275]">
-                          Color: Black
-                        </p>
-                        <div class="flex justify-center text-[#151515] border-[1px] border-[#6C7275] rounded-md">
-                          <div class="w-8 h-8 flex justify-center items-center cursor-pointer">
-                            <span class="text-[20px]">-</span>
-                          </div>
-                          <div class="w-8 h-8 flex justify-center items-center">
-                            <span class="font-boldDisplay text-[12px] xl:text-text14">2</span>
-                          </div>
-                          <div class="w-8 h-8 flex justify-center items-center cursor-pointer">
-                            <span class="text-[20px]">+</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex flex-col justify-start py-2 gap-5 items-center pr-2">
-                      <p class="font-boldDisplay text-[14px] xl:text-text18 text-[#151515]">
-                        s/ 19.19
-                      </p>
-                      <div>
-                        <a href="#">
-                          <img src="./images/svg/close_bag.svg" alt="close" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Para item en el carrito -->
                 </div>
               </div>
 
               <div class="font-poppins flex flex-col gap-2 pt-36">
-                <div class="text-[#141718] flex justify-between items-center">
+                {{-- <div class="text-[#141718] flex justify-between items-center">
                   <p class="font-regularDisplay text-[16px]">Subtotal</p>
                   <p class="font-boldDisplay text-[16px]">s/ 00.00</p>
-                </div>
+                </div> --}}
 
                 <div class="text-[#141718] font-mediumDisplay text-[20px] flex justify-between items-center">
                   <p>Total</p>
-                  <p>s/ 00.00</p>
+                  <p id="itemsTotal"></p>
                 </div>
                 <div>
                   <a href="carrito.html"

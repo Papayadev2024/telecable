@@ -3,12 +3,12 @@
 @stop
 @section('content')
   <?php
-  // Definición de la función capitalizeFirstLetter()
-  // function capitalizeFirstLetter($string)
-  // {
-  //     return ucfirst($string);
-  // }
-  //
+  //   Definición de la función capitalizeFirstLetter()
+  function capitalizeFirstLetter($string)
+  {
+      return ucfirst($string);
+  }
+  
   ?>
 
   <main class="flex flex-col gap-12 mt-12">
@@ -43,43 +43,40 @@
             </div>
           </div>
 
-          <div class="flex flex-col gap-5 relative">
-            <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives" class="w-full h-full" />
-          </div>
-
-          <div class="flex flex-col gap-5 relative">
-            <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives" class="w-full h-full" />
-          </div>
-
-          <div class="flex flex-col gap-5 relative">
-            <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives" class="w-full h-full" />
-          </div>
-
-          <div class="flex flex-col gap-5 relative">
-            <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives" class="w-full h-full" />
-          </div>
-
-          <div class="flex flex-col gap-5 relative">
-            <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives" class="w-full h-full" />
-          </div>
+          @foreach ($productosConGalerias as $galeria)
+            <div class="flex justify-center items-center rounded-2xl object-cover bg-cover">
+              <img src="{{ asset($galeria->imagen) }}" alt="{{ $galeria->descripcion }}"
+                class="w-full  object-cover bg-cover" />
+            </div>
+          @endforeach
         </div>
 
         <div class="basis-3/6 text-textBlack flex flex-col gap-10">
           <div class="flex flex-col gap-1">
             <p class="font-mediumDisplay text-text16 md:text-text18">
-              Categoría: Vestidos
+              Categoría: @if (!is_null($productos[0]->categoria) && !is_null($productos[0]->categoria->name))
+                {{ $productos[0]->categoria->name }}
+              @else
+                S/C
+              @endif
             </p>
             <div class="flex justify-between">
               <h3 class="font-mediumDisplay text-text32 md:text-text36">
-                Vestido Kim
+                {{ $productos[0]->producto }}
               </h3>
               <div class="flex justify-between text-black items-center gap-2">
-                <p class="text-text14 md:text-text20 font-boldDisplay">
-                  s/60.00
-                </p>
-                <p class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay">
-                  s/120.00
-                </p>
+                @if ($productos[0]->descuento == 0)
+                  <p class="text-text14 md:text-text20 font-boldDisplay">
+                    s/{{ $productos[0]->precio }}
+                  </p>
+                @else
+                  <p class="text-text14 md:text-text20 font-boldDisplay">
+                    s/{{ $productos[0]->descuento }}
+                  </p>
+                  <p class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay">
+                    s/{{ $productos[0]->precio }}
+                  </p>
+                @endif
               </div>
             </div>
           </div>
@@ -172,45 +169,34 @@
                       </summary>
 
                       <div class="group-open:animate-fadeIn mt-3 text-[#000000]">
-                        <div class="flex flex-col gap-10">
-                          <div class="flex flex-col gap-5">
+                        <div class="flex flex-col gap-5">
+                          <div class="flex flex-col gap-2">
                             <p class="font-mediumDisplay text-text16 md:text-text20">
-                              Detalle de producto
+                              Descripción de producto
                             </p>
                             <p class="font-regularDisplay text-text16 md:text-text20 text-gray-600">
-                              Este polo Oversize para mujer con cuello redondo
-                              es imprescindible para todas las amantes de la
-                              diversión y el buen gusto. Las mangas cortas y
-                              la longitud extra larga, así como su confección
-                              en algodón súper suave y cómodo, harán que te
-                              sientas genial con este polo en cualquier
-                              momento. Está disponible en muchos colores y
-                              estampados para que puedas elegir el que más te
-                              guste.
+                              {!! $productos[0]->description !!}
                             </p>
                           </div>
 
                           <div class="flex flex-col gap-5">
-                            <p class="font-mediumDisplay text-text20 md:text-text24">
+                            <p class="font-mediumDisplay text-text16 md:text-text20">
                               Información adicional
                             </p>
 
-                            <div class="grid grid-cols-2 font-regularDisplay text-text16 md:text-text20">
-                              <div class="border-2 border-black">
-                                <p class="py-3 text-center">Peso</p>
-                              </div>
-                              <div class="border-2 border-black">
-                                <p class="py-3 text-center">1kg</p>
-                              </div>
-
-                              <div class="border-2 border-black">
-                                <p class="py-3 text-center">Dimensiones</p>
-                              </div>
-
-                              <div class="border-2 border-black">
-                                <p class="py-3 text-center">25 x 25 x 5 cm</p>
-                              </div>
-                            </div>
+                            <table class="border-collapse w-full">
+                              <tbody>
+                                @foreach ($especificaciones as $item)
+                                  <tr>
+                                    <td
+                                      class="border w-1/5 border-gray-400 px-3 py-2 font-semibold text-[16px] text-gray-900">
+                                      {{ capitalizeFirstLetter($item->tittle) }}:</td>
+                                    <td class="border w-4/5 border-gray-400 px-3 py-2 font-normal text-[15px]">
+                                      {{ capitalizeFirstLetter($item->specifications) }}</td>
+                                  </tr>
+                                @endforeach
+                              </tbody>
+                            </table>
                           </div>
                         </div>
                       </div>
@@ -344,13 +330,13 @@
       </p>
     </section>
 
-    <section class="w-11/12 mx-auto flex flex-col gap-10 mb-24">
-      <div class="flex justify-between items-center gap-2">
-        <p class="uppercase font-boldItalicDisplay text-text20 md:text-text28 xl:text-text28">
-          <span class="hidden md:inline-block">También</span> Podría Gustarte
-        </p>
-        <a href="#" class="font-boldItalicDisplay text-text20 md:text-text28 uppercase">/ Ver Todo /</a>
-      </div>
+    {{-- <section class="w-11/12 mx-auto flex flex-col gap-10 mb-24">
+            <div class="flex justify-between items-center gap-2">
+                <p class="uppercase font-boldItalicDisplay text-text20 md:text-text28 xl:text-text28">
+                    <span class="hidden md:inline-block">También</span> Podría Gustarte
+                </p>
+                <a href="#" class="font-boldItalicDisplay text-text20 md:text-text28 uppercase">/ Ver Todo /</a>
+            </div>
 
       <div>
         <div class="swiper slider-productos">
@@ -716,17 +702,18 @@
                   </div>
                 </div>
 
-                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                    -20%
-                  </p>
+                                <div
+                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                                        -20%
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section> --}}
   </main>
 
 
@@ -735,6 +722,9 @@
 
   <script>
     $(document).ready(function() {
+
+      PintarCarrito()
+
 
 
       function capitalizeFirstLetter(string) {
@@ -762,245 +752,6 @@
     })
   </script>
   <script>
-    let articulosCarrito = [];
-
-    function mostrarTotalItems() {
-      let articulos = Local.get('carrito')
-      let contarArticulos = articulos.reduce((total, articulo) => {
-        return total + articulo.cantidad;
-      }, 0);
-
-      $('#itemsCount').text(contarArticulos)
-    }
-    $(document).ready(function() {
-      mostrarTotalItems()
-    })
-
-
-    function deleteOnCarBtn(id, operacion) {
-      const prodRepetido = articulosCarrito.map(item => {
-        if (item.id === id && item.cantidad > 0) {
-          item.cantidad -= Number(1);
-          return item; // retorna el objeto actualizado 
-        } else {
-          return item; // retorna los objetos que no son duplicados 
-        }
-
-      });
-      Local.set('carrito', articulosCarrito)
-      limpiarHTML()
-      PintarCarrito()
-
-
-    }
-
-    function calcularTotal() {
-      let articulos = Local.get('carrito')
-      let total = articulos.map(item => {
-        let monto
-        if (Number(item.descuento) !== 0) {
-          monto = item.cantidad * Number(item.descuento)
-        } else {
-          monto = item.cantidad * Number(item.precio)
-
-        }
-        return monto
-
-      })
-      const suma = total.reduce((total, elemento) => total + elemento, 0);
-
-      $('#itemsTotal').text(`S/. ${suma} `)
-
-    }
-
-    function addOnCarBtn(id, operacion) {
-
-      const prodRepetido = articulosCarrito.map(item => {
-        if (item.id === id) {
-          item.cantidad += Number(1);
-          return item; // retorna el objeto actualizado 
-        } else {
-          return item; // retorna los objetos que no son duplicados 
-        }
-
-      });
-      Local.set('carrito', articulosCarrito)
-      // localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
-      limpiarHTML()
-      PintarCarrito()
-
-
-    }
-
-    function deleteItem(id) {
-      articulosCarrito = articulosCarrito.filter(objeto => objeto.id !== id);
-
-      Local.set('carrito', articulosCarrito)
-      limpiarHTML()
-      PintarCarrito()
-    }
-
-    var appUrl = <?php echo json_encode($url_env); ?>;
-    $(document).ready(function() {
-      articulosCarrito = Local.get('carrito') || [];
-
-      PintarCarrito();
-    });
-
-    function limpiarHTML() {
-      //forma lenta 
-      /* contenedorCarrito.innerHTML=''; */
-      $('#itemsCarrito').html('')
-
-
-    }
-
-
-
-    function PintarCarrito() {
-
-      let itemsCarrito = $('#itemsCarrito')
-
-      articulosCarrito.forEach(element => {
-        let plantilla = `<div class="flex justify-between bg-white font-poppins border-b-[1px] border-[#E8ECEF] pb-5">
-              <div class="flex justify-center items-center gap-5">
-                <div class="bg-[#F3F5F7] rounded-md p-4">
-                  <img src="${appUrl}/${element.imagen}" alt="producto" class="w-24" />
-                </div>
-                <div class="flex flex-col gap-3 py-2">
-                  <h3 class="font-semibold text-[14px] text-[#151515]">
-                    ${element.producto}
-                  </h3>
-                  <p class="font-normal text-[12px] text-[#6C7275]">
-                    
-                  </p>
-                  <div class="flex w-20 justify-center text-[#151515] border-[1px] border-[#6C7275] rounded-md">
-                    <button type="button" onClick="(deleteOnCarBtn(${element.id}, '-'))" class="  w-8 h-8 flex justify-center items-center ">
-                      <span  class="text-[20px]">-</span>
-                    </button>
-                    <div class="w-8 h-8 flex justify-center items-center">
-                      <span  class="font-semibold text-[12px]">${element.cantidad }</span>
-                    </div>
-                    <button type="button" onClick="(addOnCarBtn(${element.id}, '+'))" class="  w-8 h-8 flex justify-center items-center ">
-                      <span class="text-[20px]">+</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="flex flex-col justify-start py-2 gap-5 items-center pr-2">
-                <p class="font-semibold text-[14px] text-[#151515]">
-                  S/ ${Number(element.descuento) !== 0 ? element.descuento : element.precio}
-                </p>
-                <div class="flex items-center">
-                  <button type="button" onClick="(deleteItem(${element.id}))" class="  w-8 h-8 flex justify-center items-center ">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                  </svg>
-                  </button>
-  
-                </div>
-              </div>
-            </div>`
-
-        itemsCarrito.append(plantilla)
-
-      });
-
-      calcularTotal()
-      mostrarTotalItems()
-    }
-
-
-
-
-
-
-    $('#btnAgregarCarrito').on('click', function() {
-      let url = window.location.href;
-      let partesURl = url.split('/')
-      let item = partesURl[partesURl.length - 1]
-      let cantidad = Number($('#cantidadSpan span').text())
-      item = item.replace('#', '')
-
-      console.log('agregando al carrito ')
-
-      // id='nodescuento'
-
-
-      $.ajax({
-
-        url: `{{ route('carrito.buscarProducto') }}`,
-        method: 'POST',
-        data: {
-          _token: $('input[name="_token"]').val(),
-          id: item,
-          cantidad
-
-        },
-        success: function(success) {
-          let {
-            producto,
-            id,
-            descuento,
-            precio,
-            imagen,
-            color
-          } = success.data
-          let cantidad = Number(success.cantidad)
-          let detalleProducto = {
-            id,
-            producto,
-            descuento,
-            precio,
-            imagen,
-            cantidad,
-            color
-
-          }
-          let existeArticulo = articulosCarrito.some(item => item.id === detalleProducto.id)
-          if (existeArticulo) {
-            //sumar al articulo actual 
-            const prodRepetido = articulosCarrito.map(item => {
-              if (item.id === detalleProducto.id) {
-                item.cantidad += Number(detalleProducto.cantidad);
-                return item; // retorna el objeto actualizado 
-              } else {
-                return item; // retorna los objetos que no son duplicados 
-              }
-
-            });
-          } else {
-            articulosCarrito = [...articulosCarrito, detalleProducto]
-
-          }
-
-          Local.set('carrito', articulosCarrito)
-          let itemsCarrito = $('#itemsCarrito')
-          let ItemssubTotal = $('#ItemssubTotal')
-          let itemsTotal = $('#itemsTotal')
-          limpiarHTML()
-          PintarCarrito()
-          mostrarTotalItems()
-
-          Swal.fire({
-
-            icon: "success",
-            title: `Producto agregado correctamente`,
-            showConfirmButton: true
-
-
-          });
-        },
-        error: function(error) {
-          console.log(error)
-        }
-
-      })
-
-
-
-      // articulosCarrito = {...articulosCarrito , detalleProducto }
-    })
     $('#openCarrito').on('click', function() {
       $('.main').addClass('blur')
     })

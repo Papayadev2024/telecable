@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attributes;
 use App\Models\AttributesValues;
 use App\Models\Category;
+use App\Models\Collection;
 use App\Models\Galerie;
 use App\Models\Products;
 use App\Models\Specifications;
@@ -39,7 +40,8 @@ class ProductsController extends Controller
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
     $tags = Tag::where("status", "=", true)->get();
     $categoria = Category::all();
-    return view('pages.products.create', compact('atributos', 'valorAtributo', 'categoria', 'tags'));
+    $collection = Collection::all();
+    return view('pages.products.create', compact('atributos', 'valorAtributo', 'categoria', 'tags', 'collection'));
   }
 
   public function saveImg($file, $route, $nombreImagen)
@@ -65,7 +67,7 @@ class ProductsController extends Controller
     $atributos = null;
     $tagsSeleccionados = $request->input('tags_id');
     // $valorprecio = $request->input('precio') - 0.1;
-
+    
     try {
       $request->validate([
         'producto' => 'required',
@@ -113,6 +115,10 @@ class ProductsController extends Controller
       }
       if (array_key_exists('recomendar', $data)) {
         if (strtolower($data['recomendar']) == 'on') $data['recomendar'] = 1;
+      }
+
+      if (isset($request->categoria_id)) {
+        $data['categoria_id'] = $request->categoria_id;
       }
 
 
@@ -257,8 +263,9 @@ class ProductsController extends Controller
     $especificacion = Specifications::where("product_id", "=", $id)->get();
     $allTags = Tag::all();
     $categoria = Category::all();
+    $collection = Collection::all();
 
-    return view('pages.products.edit', compact('product', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion'));
+    return view('pages.products.edit', compact('product', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
   }
 
   /**

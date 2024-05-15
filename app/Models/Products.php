@@ -23,7 +23,8 @@ class Products extends Model
     'description',
     'costo_x_art',
     'peso',
-    'categoria_id'
+    'categoria_id',
+    'collection_id'
   ];
 
 
