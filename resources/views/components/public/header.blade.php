@@ -310,7 +310,7 @@
                                     <p>s/ 00.00</p>
                                 </div>
                                 <div>
-                                    <a href="carrito.html"
+                                    <a href="/carrito"
                                         class="font-boldDisplay text-base bg-bgBlack py-3 px-5 rounded-2xl text-white cursor-pointer w-full inline-block text-center">
                                         Checkout
                                     </a>
