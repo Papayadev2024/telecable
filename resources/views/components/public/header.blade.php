@@ -335,9 +335,9 @@
     <!-- search -->
     <div id="myOverlay" class="overlay">
         <span class="closebtn" onclick="closeSearch()">×</span>
-        <div class="overlay-content ">
+        <div class="overlay-content w-3/4 md:w-1/3">
             <form >
-                <input type="text" placeholder="Buscar.." name="search" id="buscarproducto">
+                <input type="text" placeholder="Buscar.." name="search" id="buscarproducto" class="rounded-2xl">
             </form>
             <div id="resultados"></div>
         </div>
@@ -368,8 +368,8 @@
                             var resultsHtml = '';
 
                             data.forEach(function(result) {
-                                resultsHtml += '<p>' + result.producto +
-                                '</p>'; 
+                                resultsHtml += '<div> <div class="">' + result.producto +
+                                '</div>'; 
                             });
 
                             $('#resultados').html(resultsHtml);
@@ -397,8 +397,7 @@
 
         .overlay-content {
             position: relative;
-            top: 46%;
-            width: 80%;
+            top: 25%;
             text-align: center;
             margin-top: 30px;
             margin: auto;

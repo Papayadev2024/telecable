@@ -80,6 +80,12 @@
             @endforeach
         @endif
 
+
+        <div class="w-full flex flex-row">
+            <div><img class="w-14" src='{{ asset('images/img/arrives_1.png') }}'/></div>
+            <div></div>
+        </div>
+
         @if ($category->isEmpty())
             {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes categorías visibles</div>
