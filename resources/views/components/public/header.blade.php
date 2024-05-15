@@ -367,14 +367,16 @@
                         },
                         success: function(data) {
                             var resultsHtml = '';
-
+                            var url = '{{ asset('') }}';
                             data.forEach(function(result) {
                                 resultsHtml +=
-                                    '<a href="/producto/'+ result.id +'"> <div class="w-full flex flex-row py-3 px-5  hover:bg-slate-200"> ' +
+                                    '<a href="/producto/' + result.id +
+                                    '"> <div class="w-full flex flex-row py-3 px-5  hover:bg-slate-200"> ' +
                                     ' <div class="w-[10%]"><img class="w-14 rounded-md" src="' +
-                                    result.imagen + '" /></div>' +
+                                    url + result.imagen + '" /></div>' +
                                     ' <div class="flex flex-col justify-center w-[70%]"> ' +
-                                    ' <h2 class="text-left">' + result.producto + '</h2> ' +
+                                    ' <h2 class="text-left">' + result.producto +
+                                    '</h2> ' +
                                     '<p class="text-text12 text-left">Categoría</p></div> ' +
                                     ' <div class="flex flex-col justify-center w-[10%]"> ' +
                                     '<p class="text-right">S/' + result.precio +
