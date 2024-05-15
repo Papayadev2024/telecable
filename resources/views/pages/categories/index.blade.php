@@ -107,8 +107,10 @@
             new DataTable('#tabladatos',{
                 responsive: true
             });
-
-            $( ".btn_delete" ).on( "click", function(e) {
+            // $( ".btn_delete" ).on( "click", function(e) {
+            // $('#tabladatos').on('click', '.btn_delete', function(e) {
+            
+                $('#tabladatos').on('click', '.btn_delete', function(e) {
                 
                 var id = $(this).attr('data-idService');
 
@@ -152,8 +154,10 @@
             });
 
 
-            $( ".btn_swithc" ).on( "change", function() {
+            // $( ".btn_swithc" ).on( "change", function() {
                 
+            $('#tabladatos').on('change', '.btn_swithc', function() {    
+
                 var status = 0;
                 var id = $(this).attr('data-idService');
                 let contenedor = $(this);
