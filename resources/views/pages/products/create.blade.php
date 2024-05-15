@@ -491,7 +491,7 @@
 
                                     <div class="">
 
-                                        <label for="destacar">Destacar
+                                        <label for="destacar">Lo más pedido
                                         </label>
 
                                         <div class="relative mb-2  mt-2">
@@ -515,6 +515,20 @@
 
                                             </div>
                                             <input type="checkbox" id="recomendar" name="recomendar"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        </div>
+                                    </div>
+
+                                    <div class="">
+
+                                        <label for="liquidacion">En liquidación</label>
+
+                                        <div class="relative mb-2  mt-2">
+                                            <div
+                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+
+                                            </div>
+                                            <input type="checkbox" id="liquidacion" name="liquidacion"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                         </div>
                                     </div>
@@ -766,13 +780,13 @@
                                             </div>
                                             <input type="number" id="stock" name="stock" value=""
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Product">
+                                                placeholder="# de existencias">
 
 
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <label for="peso">Peso
+                                        <label for="sku">SKU
 
                                         </label>
 
@@ -793,9 +807,9 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <input type="number" id="peso" name="peso" value=""
+                                            <input type="text" id="sku" name="sku" value=""
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Peso">
+                                                placeholder="# de sku">
 
 
                                         </div>

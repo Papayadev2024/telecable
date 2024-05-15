@@ -98,6 +98,8 @@ class ValoresAtributosController extends Controller
         $query->where('attributes_values.id', $id);
       })
       ->get();
+
+    // $attributesValues = AttributesValues::where("attribute_id", "=", $id)->get();
     $attributes = Attributes::where("status", "=", true)->get(); // actualizar a where status = 1 
     $attributesValues = $attributesValues[0];
 

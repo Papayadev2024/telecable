@@ -19,14 +19,12 @@ return new class extends Migration
         });
 
         DB::table('type_atributtes')->insert([
-            ['name' => 'select'],
-            ['name' => 'text'],
-            ['name' => 'color'],
-            ['name' => 'image'],
+            ['name' => 'Selector'],
+            ['name' => 'Texto'],
+            ['name' => 'Color'],
+            ['name' => 'Imagen'],
         ]);
     
-        DB::statement("ALTER TABLE type_atributtes ADD CONSTRAINT check_name_type CHECK (name IN ('select', 'text', 'color', 'image'))");
-
     }
     
     /**

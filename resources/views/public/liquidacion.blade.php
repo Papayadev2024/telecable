@@ -15,28 +15,16 @@
                 <div class="flex justify-center items-center relative">
                     <img src="{{ asset('images/img/anio_24.png') }}" alt="doomine" />
 
-                    <div class="absolute flex flex-col justify-center items-center">
+                    <div class="absolute flex flex-col justify-center items-center ">
                         <h2 class="font-boldItalicDisplay text-text40 md:text-text64 xl:text-text68">
-                            @if ($filtro == 0)
-                                 Colecciones
-                            @else
-                                 {{$collection->name}}
-                            @endif
+                            Liquidación
                         </h2>
-                        <p class="font-regularItalicDisplay text-text16 md:text-text28">
-                            @if ($filtro == 0)
-                             Todas las colecciones
-                            @else
-                             {{$collection->description}}
-                            @endif
-                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section>
-            @if ($filtro == 0)
             <div class="hidden md:block">
                 <img src="{{ asset('images/img/colection_1.png') }}" alt="colection" class="w-full h-full" />
             </div>
@@ -44,32 +32,21 @@
             <div class="block md:hidden">
                 <img src="{{ asset('images/img/colection_2.png') }}" alt="colection" class="w-full h-full" />
             </div>
-            @else
-            <div class="hidden md:block">
-                <img src="{{ asset($collection->url_image . $collection->name_image) }}" alt="colection" class="w-full h-full" />
-            </div>
-
-            <div class="block md:hidden">
-                <img src="{{ asset($collection->url_image2 . $collection->name_image2) }}" alt="colection" class="w-full h-full" />
-            </div>
-            
-            @endif
-           
         </section>
 
         <section class="w-11/12 mx-auto flex flex-col gap-10 py-12">
             <div class="flex justify-between items-center uppercase">
-                <h3 class="font-boldItalicDisplay text-text24 xl:text-text28 text-textWhite uppercase">
+                {{-- <h3 class="font-boldItalicDisplay text-text24 xl:text-text28 text-textWhite uppercase">
                     @if ($filtro == 0)
                              Todas las colecciones
                     @else
                              {{$collection->description}}
                     @endif
-                </h3>
+                </h3> --}}
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-5 text-white pb-5">
 
-                @foreach ($productos as $item)
+                @foreach ($liquidacion as $item)
                     <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
                         <div class="product_container">
                             <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}" class="w-full h-full" />
@@ -109,7 +86,7 @@
                             <div class="order-1 lg:order-2">
                                 <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textWhite">
                                     @if (!is_null($item->categoria) && !is_null($item->categoria->name))
-                                            {{$item->categoria->name}}
+                                    {{$item->categoria->name}}
                                     @else
                                         S/C
                                     @endif
@@ -138,7 +115,7 @@
                 {{-- <a href="#"
                     class="border-[1.5px] border-white rounded-full py-4 px-16 text-white font-mediumDisplay text-text14">Cargar
                     más modelos</a> --}}
-                {{ $productos->links() }}
+                {{ $liquidacion->links() }}
             </div>
         </section>
     </main>

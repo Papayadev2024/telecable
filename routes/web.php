@@ -68,6 +68,10 @@ Route::get('/producto/{id}', [IndexController::class, 'producto'] )->name('produ
 Route::get('/catalogo/{filtro}', [IndexController::class, 'catalogo'] )->name('catalogo');
 Route::post('carrito/buscarProducto', [CarritoController::class, 'buscarProducto'] )->name('carrito.buscarProducto');
 Route::get('/coleccion/{filtro}', [IndexController::class, 'coleccion'] )->name('coleccion');
+Route::get('/liquidacion', [IndexController::class, 'liquidacion'] )->name('liquidacion');
+Route::get('/novedades', [IndexController::class, 'novedades'] )->name('novedades');
+Route::get('/buscar', [IndexController::class, 'searchProduct'])->name('buscar');
+
 /* Página 404 */
 Route::get('/404', [IndexController::class, 'error'] )->name('error');
 /* Formulario de contacto */

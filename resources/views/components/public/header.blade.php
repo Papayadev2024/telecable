@@ -2,7 +2,7 @@
     <div class="bg-bgBlack font-medium text-text14 xl:text-text18 italic">
         <p class="text-textWhite py-5 text-center">
             Regístrate y obtén un 20% de descuento en tu primer pedido.
-            <a href="login_user.html" class="underline font-bold">
+            <a href="{{route('register')}}" class="underline font-bold">
                 Regístrate ahora
             </a>
         </p>
@@ -11,21 +11,19 @@
         class="grid grid-cols-8 md:grid-cols-12 grid-rows-2 xl:grid-cols-12 xl:grid-rows-1 w-11/12 mx-auto my-10 gap-5 xl:gap-0">
         <div class="col-span-5 md:col-span-9 xl:col-span-2 order-1 xl:order-1 flex items-center">
             <a href="{{ route('index') }}">
-                <img src="{{asset('images/img/logo.png')}}" alt="doomine" />
+                <img src="{{ asset('images/img/logo.png') }}" alt="doomine" />
             </a>
         </div>
 
-        <nav
-            class="nav col-span-1 xl:col-span-7 order-3 xl:order-2 flex justify-end xl:justify-center xl:items-center">
+        <nav class="nav col-span-1 xl:col-span-7 order-3 xl:order-2 flex justify-end xl:justify-center xl:items-center">
             <label for="menu" class="nav__label">
                 <div>
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.5 18H20M4 12H20M4 6H20" stroke="black" stroke-width="2"
-                            stroke-linecap="round" />
+                        <path d="M10.5 18H20M4 12H20M4 6H20" stroke="black" stroke-width="2" stroke-linecap="round" />
                     </svg>
                 </div>
-              
+
             </label>
 
             <input type="checkbox" id="menu" class="nav__input" />
@@ -33,7 +31,7 @@
             <div class="nav__menu text-textBlack w-full z-[100]">
                 <div class="flex justify-end w-full pr-10">
                     <label for="menu" class="nav__label">
-                        <img src="{{asset('images/svg/close.svg')}}" class="nav__img" />
+                        <img src="{{ asset('images/svg/close.svg') }}" class="nav__img" />
                     </label>
                 </div>
 
@@ -64,8 +62,8 @@
 
                             <div class="dropdown-content font-regularDisplay text-text20 xl:text-text24 rounded-xl">
                                 @foreach ($submenucategorias as $item)
-                                    <a href="{{route('catalogo', $item->id)}}">
-                                        {{$item->name}}
+                                    <a href="{{ route('catalogo', $item->id) }}">
+                                        {{ $item->name }}
                                     </a>
                                 @endforeach
                             </div>
@@ -92,8 +90,8 @@
 
                             <div class="dropdown-content font-regularDisplay text-text20 xl:text-text24 rounded-xl">
                                 @foreach ($submenucolecciones as $item)
-                                    <a href="{{route('coleccion', $item->id)}}">
-                                        {{$item->name}}
+                                    <a href="{{ route('coleccion', $item->id) }}">
+                                        {{ $item->name }}
                                     </a>
                                 @endforeach
                             </div>
@@ -101,7 +99,7 @@
                         <!-- Menu movil fin -->
 
                         <!--  -->
-                        <a href="#new_arrivals"
+                        <a href="{{ route('novedades') }}"
                             class="nav__item font-mediumDisplay text-text20 lg:text-text24 py-5 xl:py-0 leading-none">
                             New Arrivals
                         </a>
@@ -114,34 +112,89 @@
 
                 <div class="flex flex-row gap-10 justify-center items-center xl:hidden">
                     <a href="#">
-                        <img src="{{asset('images/svg/twitter.svg')}}" alt="twitter" />
+                        <img src="{{ asset('images/svg/twitter.svg') }}" alt="twitter" />
                     </a>
 
                     <a href="#">
-                        <img src="{{asset('images/svg/facebook.svg')}}" alt="facebook" />
+                        <img src="{{ asset('images/svg/facebook.svg') }}" alt="facebook" />
                     </a>
 
                     <a href="#">
-                        <img src="{{asset('images/svg/instagram.svg')}}" alt="instagram" />
+                        <img src="{{ asset('images/svg/instagram.svg') }}" alt="instagram" />
                     </a>
                 </div>
             </div>
         </nav>
 
         <div
-            class="col-span-8 md:col-span-12 xl:col-span-2 order-4 xl:order-3 flex justify-end bg-[#F5F5F5] items-center rounded-3xl px-2 gap-2">
+            class="col-span-8 md:col-span-12 xl:hidden order-4 xl:order-3 flex justify-end bg-[#F5F5F5] items-center rounded-3xl px-2 gap-2">
             <div>
-                <img src="{{asset('images/svg/lupa.svg')}}" alt="search" />
+                <img src="{{ asset('images/svg/lupa.svg') }}" alt="search" />
             </div>
             <input type="text" placeholder="Buscar"
                 class="w-full xl:max-w-sm outline-none bg-[#F5F5F5] font-medium text-text16 border-x-0 border-y-0  border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[0px]" />
         </div>
 
-        <div class="col-span-2 md:col-span-2 xl:col-span-1 order-2 xl:order-4 flex justify-end">
+        <div class="col-span-2 md:col-span-2 xl:col-span-3 order-2 xl:order-4 flex justify-end">
             <div class="flex gap-2 justify-end items-center w-full">
+                <button class="hidden md:block openBtn" onclick="openSearch()">
+                    <img src="{{ asset('images/svg/lupa.svg') }}" alt="search" class="w-10" />
+                </button>
+
+                <div>
+                    @if (Auth::user() == null)
+                        <a href="{{ route('login') }}"><img src="{{ asset('images/svg/perfil.svg') }}"
+                                alt="user" /></a>
+                    @else
+                        <div class="relative inline-flex" x-data="{ open: false }">
+                            <button class="inline-flex justify-center items-center group" aria-haspopup="true"
+                                @click.prevent="open = !open" :aria-expanded="open">
+                                <div class="flex items-center truncate">
+                                    <span
+                                        class="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-slate-200">{{ Auth::user()->name }}</span>
+                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
+                                        <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+                                    </svg>
+                                </div>
+                            </button>
+                            <div class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1"
+                                @click.outside="open = false" @keydown.escape.window="open = false" x-show="open">
+                                <ul>
+                                    <li class="hover:bg-gray-100">
+                                        <a class="font-medium text-sm text-black flex items-center py-1 px-3"
+                                            href="{{ route('pedidos') }}" @click="open = false" @focus="open = true"
+                                            @focusout="open = false">Mis pedidos</a>
+                                    </li>
+                                    <li class="hover:bg-gray-100">
+                                        <a class="font-medium text-sm text-black flex items-center py-1 px-3"
+                                            href="{{ route('direccion') }}" @click="open = false"
+                                            @focus="open = true" @focusout="open = false">Dirección</a>
+                                    </li>
+                                    <li class="hover:bg-gray-100">
+                                        <a class="font-medium text-sm text-black flex items-center py-1 px-3"
+                                            href="{{ route('micuenta') }}" @click="open = false"
+                                            @focus="open = true" @focusout="open = false">Ajustes</a>
+                                    </li>
+                                    <li class="hover:bg-gray-100">
+                                        <form method="POST" action="{{ route('logout') }}" x-data>
+                                            @csrf
+                                            <button type="submit"
+                                                class="font-medium text-sm text-black flex items-center py-1 px-3"
+                                                href="{{ route('logout') }}"
+                                                @click.prevent="$root.submit(); open = false">
+                                                {{ __('Cerrar sesión') }}
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+
                 <div>
                     <label for="check">
-                        <img src="{{ asset('images/svg/bag.svg') }}"  alt="doomine" class="cursor-pointer" />
+                        <img src="{{ asset('images/svg/bag.svg') }}" alt="doomine" class="cursor-pointer" />
                     </label>
                     <input type="checkbox" class="bag__modal" id="check" />
 
@@ -266,58 +319,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div>
-                    @if (Auth::user() == null)
-                        <a href="{{ route('login') }}"><img src="{{ asset('images/svg/perfil.svg') }}"
-                                alt="user" /></a>
-                    @else
-                        <div class="relative inline-flex" x-data="{ open: false }">
-                            <button class="inline-flex justify-center items-center group" aria-haspopup="true"
-                                @click.prevent="open = !open" :aria-expanded="open">
-                                <div class="flex items-center truncate">
-                                    <span
-                                        class="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-slate-200">{{ Auth::user()->name }}</span>
-                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400"
-                                        viewBox="0 0 12 12">
-                                        <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-                                    </svg>
-                                </div>
-                            </button>
-                            <div class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1"
-                                @click.outside="open = false" @keydown.escape.window="open = false" x-show="open">
-                                <ul>
-                                    <li class="hover:bg-gray-100">
-                                        <a class="font-medium text-sm text-black flex items-center py-1 px-3"
-                                            href="{{ route('pedidos') }}" @click="open = false" @focus="open = true"
-                                            @focusout="open = false">Mis pedidos</a>
-                                    </li>
-                                    <li class="hover:bg-gray-100">
-                                        <a class="font-medium text-sm text-black flex items-center py-1 px-3"
-                                            href="{{ route('direccion') }}" @click="open = false"
-                                            @focus="open = true" @focusout="open = false">Dirección</a>
-                                    </li>
-                                    <li class="hover:bg-gray-100">
-                                        <a class="font-medium text-sm text-black flex items-center py-1 px-3"
-                                            href="{{ route('micuenta') }}" @click="open = false"
-                                            @focus="open = true" @focusout="open = false">Ajustes</a>
-                                    </li>
-                                    <li class="hover:bg-gray-100">
-                                        <form method="POST" action="{{ route('logout') }}" x-data>
-                                            @csrf
-                                            <button type="submit"
-                                                class="font-medium text-sm text-black flex items-center py-1 px-3"
-                                                href="{{ route('logout') }}"
-                                                @click.prevent="$root.submit(); open = false">
-                                                {{ __('Cerrar sesión') }}
-                                            </button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
-                </div>
             </div>
         </div>
     </div>
@@ -326,8 +327,115 @@
     <div class="flex justify-end relative">
         <div class="fixed bottom-[36px] z-[10] right-[15px] md:right-[25px]">
             <a href="#" class="">
-                <img src="{{asset('images/img/WhatsApp.png')}}" alt="whatsapp" class="w-20" />
+                <img src="{{ asset('images/img/WhatsApp.png') }}" alt="whatsapp" class="w-20" />
             </a>
         </div>
     </div>
+
+    <!-- search -->
+    <div id="myOverlay" class="overlay">
+        <span class="closebtn" onclick="closeSearch()">×</span>
+        <div class="overlay-content">
+            <form>
+                <input type="text" placeholder="Buscar.." name="search" id="buscarproducto">
+                <button type="submit">Buscar<i class="fa fa-search"></i></button>
+            </form>
+            <div id="resultados"></div>
+        </div>
+    </div>
+
+    <script>
+        function openSearch() {
+            document.getElementById("myOverlay").style.display = "block";
+        }
+
+        function closeSearch() {
+            document.getElementById("myOverlay").style.display = "none";
+        }
+
+        document.getElementById('buscarproducto').addEventListener('input', function() {
+            let query = this.value.trim();
+
+            if (query.length === 0) {
+                document.getElementById('resultados').innerHTML = '';
+                return;
+            }
+
+            fetch(`/buscar?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    let resultadosHtml = '';
+
+                    data.forEach(resultado => {
+                        resultadosHtml +=
+                        `<p>${resultado.nombre}</p>`; // Modifica "nombre" con el nombre del campo que quieres mostrar en los resultados
+                    });
+
+                    document.getElementById('resultados').innerHTML = resultadosHtml;
+                });
+        });
+    </script>
+
+    <style>
+        .overlay {
+            height: 100%;
+            width: 100%;
+            display: none;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 46%;
+            width: 80%;
+            text-align: center;
+            margin-top: 30px;
+            margin: auto;
+        }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .overlay .closebtn:hover {
+            color: #ccc;
+        }
+
+        .overlay input[type=text] {
+            padding: 15px;
+            font-size: 17px;
+            border: none;
+            float: left;
+            width: 80%;
+            background: white;
+        }
+
+        .overlay input[type=text]:hover {
+            background: #f1f1f1;
+        }
+
+        .overlay button {
+            float: left;
+            width: 20%;
+            padding: 14.5px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .overlay button:hover {
+            background: #bbb;
+        }
+    </style>
 </header>

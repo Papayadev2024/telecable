@@ -49,22 +49,20 @@ class LiquidacionController extends Controller
 				$file = $request->file('imagen');
 				$routeImg = 'storage/images/liquidacion/';
 				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
-                // $img =  $manager->read($file);           Para leer el archivo 
-                // $img->coverDown(1440, 808, 'center');    Para modificar el archivo
 				$this->saveImg($file, $routeImg, $nombreImagen);
 
                 $liquidacion ->url_image = $routeImg;
                 $liquidacion ->name_image = $nombreImagen;
 			}else{
-                $routeImg = 'images/img';
-                $nombreImagen = 'noimagenslider.jpg';
+                $routeImg = 'images/img/';
+                $nombreImagen = 'noimagenliquidacion.jpg';
 
                 $liquidacion ->url_image = $routeImg;
                 $liquidacion ->name_image = $nombreImagen;
             }
 
             $liquidacion ->botontext1 = $request->botontext1;
-            $liquidacion ->link1 = $request->link1;
+            $liquidacion ->link1 = '/liquidacion';
             $liquidacion ->title = $request->title;
             $liquidacion ->description = $request->description;
             $liquidacion ->save();
@@ -109,9 +107,9 @@ class LiquidacionController extends Controller
 				$routeImg = 'storage/images/liquidacion/';
 				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
-                if (File::exists($liquidacion->url_image . $liquidacion->name_image)) {
-                    File::delete( $liquidacion->url_image . $liquidacion->name_image);
-                  }
+                if ($liquidacion->url_image !== 'images/img/') {
+                    File::delete($liquidacion->url_image . $liquidacion->name_image);
+                }
                   
                 $this->saveImg($file, $routeImg, $nombreImagen);
 	
@@ -145,7 +143,8 @@ class LiquidacionController extends Controller
 
     public function saveImg($file, $route, $nombreImagen){
 		$manager = new ImageManager(new Driver());
-		$img =  $manager->read($file);
+		$img =  $manager->read($file);        
+        $img->coverDown(1344, 700, 'center'); 
 		if (!file_exists($route)) {
 			mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
 	}

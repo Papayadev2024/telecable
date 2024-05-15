@@ -45,7 +45,7 @@ class IndexController extends Controller
   public function index()
   {
     // $productos = Products::all();
-    $productos =  Products::with('tags')->get();
+    $productos =  Products::where('status', '=', 1)->with('tags')->get();
     $categorias = Category::all();
     $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)
     ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
@@ -70,14 +70,14 @@ class IndexController extends Controller
   {
     try {
       
-      $collections = Collection::where('status', '=', 1)->get();
+      $collections = Collection::where('status', '=', 1)->where('visible', '=', 1)->get();
      
       if ($filtro == 0) {
-        $productos = Products::where('status', '=', 1)->paginate(16);
-        $collection = Collection::where('status', '=', 1)->get();
+        $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->paginate(16);
+        $collection = Collection::where('status', '=', 1)->where('visible', '=', 1)->get();
       } else {
-        $productos = Products::where('collection_id', '=', $filtro)->paginate(16);
-        $collection = Collection::findOrFail($filtro);
+        $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('collection_id', '=', $filtro)->paginate(16);
+        $collection = Collection::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $filtro)->first();
       }
 
 
@@ -107,10 +107,10 @@ class IndexController extends Controller
 
 
       if ($filtro == 0) {
-        $productos = Products::paginate(12);
+        $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
         $categoria = Category::all();
       } else {
-        $productos = Products::where('categoria_id', '=', $filtro)->paginate(12);
+        $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
         $categoria = Category::findOrFail($filtro);
       }
 
@@ -119,10 +119,10 @@ class IndexController extends Controller
       if ($rangefrom !== null && $rangeto !== null) {
 
         if ($filtro == 0) {
-          $productos = Products::all();
+          $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
           $categoria = Category::all();
         } else {
-          $productos = Products::where('categoria_id', '=', $filtro)->get();
+          $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
           $categoria = Category::findOrFail($filtro);
         }
 
@@ -456,6 +456,34 @@ class IndexController extends Controller
     return view('public.product', compact('product','productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env'));
   }
 
+
+  public function liquidacion(){
+    try {
+      
+      $liquidacion = Products::where('status', '=', 1)->where('visible', '=', 1)->where('liquidacion', '=', 1)->paginate(16);
+     
+      return view('public.liquidacion', compact('liquidacion'));
+    } catch (\Throwable $th) {
+    }
+  }
+
+  public function novedades(){
+    try {
+      
+      $novedades = Products::where('status', '=', 1)->where('visible', '=', 1)->where('recomendar', '=', 1)->paginate(16);
+     
+      return view('public.novedades', compact('novedades'));
+    } catch (\Throwable $th) {
+    }
+  }
+
+  public function searchProduct(Request $request)
+  {
+      $query = $request->input('query');
+      $resultados = Products::where('producto', 'like', "%$query%")->get(); 
+      
+      return response()->json($resultados);
+  }
   //  --------------------------------------------
   /**
    * Show the form for creating a new resource.

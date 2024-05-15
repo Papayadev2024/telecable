@@ -33,9 +33,9 @@
                                             </div>
 
                                             <div class="md:col-span-5">
-                                                <label for="categoria">Imagen de colección</label>
+                                                <label for="categoria">Imagen de colección (Vista de escritorio)</label>
                                                 <div class="relative mb-2 mt-2">
-                                                  <img src="{{ asset('storage/images/collection/' . $collection->name_image) }}"
+                                                  <img src="{{ asset($collection->url_image . $collection->name_image) }}"
                                                     class="max-w-xs max-h-48 object-cover  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 </div>
                                               </div>
@@ -43,9 +43,28 @@
                                 
                                 
                                               <div class="md:col-span-5">
-                                                <label for="imagen">Subir una foto</label>
+                                                <label for="imagen">Subir una imagen (Vista de escritorio: 1344x487 px)</label>
                                                 <div class="relative mb-2  mt-2">
                                                   <input name="imagen"
+                                                    class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                                    aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                                                </div>
+                                              </div>
+
+
+                                              <div class="md:col-span-5">
+                                                <label for="categoria">Imagen de colección (Vista de celular)</label>
+                                                <div class="relative mb-2 mt-2">
+                                                  <img src="{{ asset($collection->url_image2 . $collection->name_image2) }}"
+                                                    class="max-w-xs max-h-48 object-cover  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                </div>
+                                              </div>
+                                
+                                
+                                              <div class="md:col-span-5">
+                                                <label for="imagen">Subir una imagen (Vista de celular: 343x495 px)</label>
+                                                <div class="relative mb-2  mt-2">
+                                                  <input name="imagen2"
                                                     class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                                     aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                                 </div>

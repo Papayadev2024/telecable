@@ -15,6 +15,7 @@ class Products extends Model
     'stock',
     'imagen',
     'destacar',
+    'liquidacion',
     'recomendar',
     'atributes',
     'visible',

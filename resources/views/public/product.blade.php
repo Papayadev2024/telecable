@@ -86,13 +86,13 @@
                            
                         
                            
-                            @foreach ($product as $producto) {
+                            {{-- @foreach ($product as $producto) {
                                 <pre>{{$producto}}</pre>
                             }
-                            @endforeach
+                            @endforeach --}}
                         
                        
-                        <pre>{{$product}}</pre>
+                       {{-- { <pre>{{$product}}</pre>} --}}
                     {{-- @foreach ($productos as $producto)
                         @foreach ($producto->attributes as $atributo)
                           {{  $atributo->pivot}}
@@ -156,7 +156,7 @@
                     </div>
 
                     <p class="italic font-mediumItalicDisplay text-text18">
-                        SKU: 254kim/black/white
+                        SKU: {{ $productos[0]->sku }}
                     </p>
 
                     <div>
@@ -164,7 +164,7 @@
                             <div class="mx-auto">
                                 <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
                                     <div class="py-5">
-                                        <details class="group">
+                                        <details class="group" open>
                                             <summary
                                                 class="flex cursor-pointer list-none items-center justify-between font-medium">
                                                 <span class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
@@ -185,6 +185,8 @@
 
                                             <div class="group-open:animate-fadeIn mt-3 text-[#000000]">
                                                 <div class="flex flex-col gap-5">
+                                                    @if(is_null($productos[0]->description))
+                                                    @else
                                                     <div class="flex flex-col gap-2">
                                                         <p class="font-mediumDisplay text-text16 md:text-text20">
                                                             Descripción de producto
@@ -194,7 +196,11 @@
                                                             {!! $productos[0]->description !!}
                                                         </p>
                                                     </div>
-
+                                                    @endif
+                                                    
+                                                    @if($especificaciones->isEmpty())
+                                                        
+                                                    @else
                                                     <div class="flex flex-col gap-5">
                                                         <p class="font-mediumDisplay text-text16 md:text-text20">
                                                             Información adicional
@@ -214,12 +220,12 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </details>
                                     </div>
-
-                                    <div class="py-5">
+                                    {{-- <div class="py-5">
                                         <details class="group">
                                             <summary
                                                 class="flex cursor-pointer list-none items-center justify-between font-medium">
@@ -265,10 +271,9 @@
                                                 estampados para que puedas elegir el que más te guste.
                                             </p>
                                         </details>
-                                    </div>
-
+                                    </div> --}}
                                     <div class="py-5">
-                                        <details class="group">
+                                        <details class="group" >
                                             <summary
                                                 class="flex cursor-pointer list-none items-center justify-between font-mediumDisplay">
                                                 <span class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">

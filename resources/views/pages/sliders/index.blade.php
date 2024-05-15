@@ -32,8 +32,8 @@
                             @foreach($slider as $item)
                                 <tr>
                                     <td>{{$item->title}}</td>
-                                    <td class="px-3 py-2"><img class="w-16" src="{{ asset('storage/images/slider/'.$item->name_image) }}" alt=""></td>
-                                    <td class="px-3 py-2"><img class="w-16" src="{{ asset('storage/images/slider/'.$item->name_image2) }}" alt=""></td>
+                                    <td class="px-3 py-2"><img class="w-16" src="{{ asset($item->url_image.$item->name_image) }}" alt=""></td>
+                                    <td class="px-3 py-2"><img class="w-16" src="{{ asset($item->url_image2.$item->name_image2) }}" alt=""></td>
                                     <td>
                                         <form method="POST" action="">
                                           @csrf

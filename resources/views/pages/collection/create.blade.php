@@ -32,9 +32,16 @@
                                             </div>
 
                                             <div class="md:col-span-5">
-                                                <label for="address">Subir una Foto</label>
+                                                <label for="imagen">Subir imagen (Vista de escritorio: 1344x487 px)</label>
                                                 <div class="relative mb-2  mt-2">
-                                                    <input name="imagen" class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                                                    <input name="imagen" class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help"  type="file">
+                                                </div>
+                                            </div>
+
+                                            <div class="md:col-span-5">
+                                                <label for="imagen2">Subir imagen (Vista de celular: 343x495 px)</label>
+                                                <div class="relative mb-2  mt-2">
+                                                    <input name="imagen2" class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help"  type="file">
                                                 </div>
                                             </div>
 
