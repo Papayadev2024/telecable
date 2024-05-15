@@ -48,7 +48,7 @@ class ProductsController extends Controller
   {
     $manager = new ImageManager(new Driver());
     $img =  $manager->read($file);
-    $img->coverDown(325, 450, 'center');
+    $img->coverDown(1000, 1500, 'center');
 
     if (!file_exists($route)) {
       mkdir($route, 0777, true); 
@@ -172,7 +172,7 @@ class ProductsController extends Controller
 
           $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
 
-
+          
 
           $nombreImagen = Str::random(10) . '.' . $ext;
 
