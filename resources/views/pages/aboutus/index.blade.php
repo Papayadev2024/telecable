@@ -103,7 +103,7 @@
       responsive: true
     });
 
-    $(".btn_swithc").on("change", function() {
+    $('#tabladatos').on('change', '.btn_swithc', function() {
 
       console.log('swithc')
 

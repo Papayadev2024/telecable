@@ -15,6 +15,7 @@ class Products extends Model
     'stock',
     'imagen',
     'destacar',
+    'liquidacion',
     'recomendar',
     'atributes',
     'visible',
@@ -58,6 +59,10 @@ class Products extends Model
                     ->withPivot('attribute_value_id');
     }
 
+  // public function atributos() 
+  //   {
+  //       return $this->belongsToMany(Attributes::class, 'product_has_attribute', 'product_id',);
+  //   } 
    
   
 }

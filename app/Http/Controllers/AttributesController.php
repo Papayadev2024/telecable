@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attributes;
+use App\Models\TypeAttribute;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -17,7 +18,7 @@ class AttributesController extends Controller
    */
   public function index()
   {
-    $attributes = Attributes::all();
+    $attributes = Attributes::where('status', true)->get();
     return view('pages.attributes.index', compact('attributes'));
   }
 
@@ -26,7 +27,8 @@ class AttributesController extends Controller
    */
   public function create()
   {
-    return view('pages.attributes.create');
+    $typeatributo = TypeAttribute::all();
+    return view('pages.attributes.create', compact('typeatributo'));
   }
 
   /**
@@ -39,24 +41,25 @@ class AttributesController extends Controller
       'titulo' => 'required',
     ]);
 
-    $AboutUs = new Attributes();
+    $atributo = new Attributes();
     try {
 
       if ($request->hasFile("imagen")) {
         $file = $request->file('imagen');
-        $routeImg = 'storage/images/imagen/';
+        $routeImg = 'storage/images/atributos/';
         $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
         $this->saveImg($file, $routeImg, $nombreImagen);
 
-        $AboutUs->imagen = $routeImg . $nombreImagen;
+        $atributo->imagen = $routeImg . $nombreImagen;
         // $AboutUs->name_image = $nombreImagen;
       }
 
-      $AboutUs->titulo = $request->titulo;
-      $AboutUs->descripcion = $request->descripcion;
-      $AboutUs->color = $request->color;
-      $AboutUs->save();
+      $atributo->titulo = $request->titulo;
+      $atributo->descripcion = $request->descripcion;
+      $atributo->color = $request->color;
+      $atributo->type_atributte_id = $request->typeattribute_id;
+      $atributo->save();
 
       return redirect()->route('attributes.index')->with('success', 'Publicación creado exitosamente.');
     } catch (\Throwable $th) {
@@ -89,9 +92,10 @@ class AttributesController extends Controller
    */
   public function edit(string $id)
   {
+    $typeatributo = TypeAttribute::all();
     $attributes = Attributes::find($id);
-
-    return view('pages.attributes.edit', compact('attributes'));
+   
+    return view('pages.attributes.edit', compact('typeatributo', 'attributes'));
   }
 
   /**
@@ -99,28 +103,30 @@ class AttributesController extends Controller
    */
   public function update(Request $request, string $id)
   {
-
+    
     $request->validate([
       'titulo' => 'required',
     ]);
-		$aboutUs = Attributes::find($id);
+		$atributo = Attributes::find($id);
 		try {
 			
 			if ($request->hasFile("imagen")) {
 				$file = $request->file('imagen');
-				$routeImg = 'storage/images/imagen/';
+				$routeImg = 'storage/images/atributos/';
 				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
 				$this->saveImg($file, $routeImg, $nombreImagen);
 	
-				$aboutUs->imagen = $routeImg.$nombreImagen;
+				$atributo->imagen = $routeImg.$nombreImagen;
 				// $aboutUs->name_image = $nombreImagen;
 			}
 	
-			$aboutUs->titulo = $request->titulo;
-			$aboutUs->descripcion = $request->descripcion;
-			$aboutUs->color = $request->color;
-			$aboutUs->save();
+			$atributo->titulo = $request->titulo;
+			$atributo->descripcion = $request->descripcion;
+			$atributo->color = $request->color;
+      $atributo->type_atributte_id = $request->typeattribute_id;
+
+			$atributo->save();
 
 			return redirect()->route('attributes.index')->with('success', 'Publicación creado exitosamente.');
  
@@ -142,9 +148,9 @@ class AttributesController extends Controller
   {
     
     $id = $request->id;
-    $stauts = $request->status;
+    $status = $request->status;
     $Attributes = Attributes::find($id);
-    $Attributes->status = $stauts;
+    $Attributes->visible = $status;
 
     $Attributes->save();
     return response()->json(['message' => 'registro actualizado']);
@@ -154,12 +160,12 @@ class AttributesController extends Controller
   {
     $Attributes = Attributes::find($request->id);
 
-		
 		if ($Attributes->imagen && file_exists($Attributes->imagen)) {
 			unlink($Attributes->imagen);
 		}
 
 		$Attributes->delete();
+
 		return response()->json(['message'=>'Atributo eliminado']);
   }
 }

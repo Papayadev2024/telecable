@@ -91,7 +91,7 @@
                         Categorías
                     </h3>
                     <div>
-                        <a href="{{route('catalogo', 0)}}"
+                        <a href="{{ route('catalogo', 0) }}"
                             class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">/ Ver Todo
                             /</a>
                     </div>
@@ -100,8 +100,7 @@
                 @if (count($category->take(4)) == 1)
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         @foreach ($category->take(1) as $index => $item)
-                            <div
-                                class="col-span-1 md:col-span-2 row-span-1  flex flex-col justify-between">
+                            <div class="col-span-1 md:col-span-2 row-span-1  flex flex-col justify-between">
                                 @if ($item->name_image)
                                     <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
                                         class="w-full h-[270px] md:h-[500px] object-cover" />
@@ -113,21 +112,20 @@
                                     <h3 class="font-mediumItalicDisplay text-text16 xl:text-text20">
                                         Categoría
                                     </h3>
-                                    <a href="{{route('catalogo', $item->id)}}">
-                                        <p class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
+                                    <a href="{{ route('catalogo', $item->id) }}">
+                                        <p
+                                            class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
                                             {{ $item->name }}
                                         </p>
-                                   </a>
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                   
                 @elseif(count($category->take(4)) == 2)
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         @foreach ($category->take(2) as $index => $item)
-                            <div
-                                class="col-span-1 row-span-1  flex flex-col justify-between">
+                            <div class="col-span-1 row-span-1  flex flex-col justify-between">
                                 @if ($item->name_image)
                                     <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
                                         class="w-full h-[270px] md:h-[500px] object-cover" />
@@ -139,8 +137,9 @@
                                     <h3 class="font-mediumItalicDisplay text-text16 xl:text-text20">
                                         Categoría
                                     </h3>
-                                    <a href="{{route('catalogo', $item->id)}}">
-                                        <p class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
+                                    <a href="{{ route('catalogo', $item->id) }}">
+                                        <p
+                                            class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
                                             {{ $item->name }}
                                         </p>
                                     </a>
@@ -149,24 +148,24 @@
                         @endforeach
                     </div>
                 @elseif(count($category->take(4)) == 3)
-
                     <div class="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-5">
                         @foreach ($category->take(3) as $index => $item)
                             <div
-                                class="col-span-1 @if($loop->iteration == 2) row-span-2 @else row-span-1 @endif flex flex-col justify-between">
+                                class="col-span-1 @if ($loop->iteration == 2) row-span-2 @else row-span-1 @endif flex flex-col justify-between">
                                 @if ($item->name_image)
                                     <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name }}"
-                                        class="w-full h-[270px]  @if($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
+                                        class="w-full h-[270px]  @if ($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
                                 @else
                                     <img src="{{ asset('images/img/noimagen.jpg') }}" alt="imagen_alternativa"
-                                        class="w-full h-[270px]  @if($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
+                                        class="w-full h-[270px]  @if ($loop->iteration == 2) md:h-full @else md:h-[500px] @endif object-cover object-top" />
                                 @endif
                                 <div class="flex flex-col justify-center text-black italic">
                                     <h3 class="font-mediumItalicDisplay text-text16 xl:text-text20">
                                         Categoría
                                     </h3>
-                                    <a href="{{route('catalogo', $item->id)}}">
-                                        <p class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
+                                    <a href="{{ route('catalogo', $item->id) }}">
+                                        <p
+                                            class="font-boldItalicDisplay text-text24 md:text-text28 uppercase xl:text-text32">
                                             {{ $item->name }}
                                         </p>
                                     </a>
@@ -179,112 +178,125 @@
             </section>
         @endif
 
-        @if ($newarrival->isEmpty())    
-         {{-- <div class="w-full flex flex-row justify-center items-center">
+        @if ($newarrival->isEmpty())
+            {{-- <div class="w-full flex flex-row justify-center items-center">
                 <div class="p-5 text-xl font-bold">No tienes productos visibles</div>
             </div> --}}
         @else
-        <section class="w-11/12 mx-auto flex flex-col gap-10" id="new_arrivals">
-            <div class="flex justify-between items-center uppercase">
-                <h3 class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">
-                    New Arrivals
-                </h3>
-                <div>
-                    <a href="{{route('catalogo', 0)}}"
-                        class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">/ Ver Todo
-                        /</a>
+            <section class="w-11/12 mx-auto flex flex-col gap-10" id="new_arrivals">
+                <div class="flex justify-between items-center uppercase">
+                    <h3 class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">
+                        New Arrivals
+                    </h3>
+                    <div>
+                        <a href="{{ route('catalogo', 0) }}"
+                            class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">/ Ver Todo
+                            /</a>
+                    </div>
                 </div>
-            </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
                     @foreach ($newarrival as $item)
-                    <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
-                        <div class="product_container">
-                            <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}" class="w-full h-full" />
+                        <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
+                            <div class="product_container">
+                                <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}" class="w-full h-full" />
 
-                            <div class="addProduct text-center flex justify-center">
-                                <a href="{{ route('producto', $item->id) }}"
-                                    class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 lg:px-5 flex-initial w-32 md:w-36 lg:py-3 lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
-                                    Ver producto
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col gap-2">
-                            <div
-                                class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                <a href="{{ route('producto', $item->id) }}" class="text-text14 md:text-text16 xl:text-text20">
-                                    {{ $item->producto }}
-                                </a>
-                                <div class="flex font-boldDisplay text-black items-center gap-2">
-                                    @if ($item->descuento == 0)
-                                    <p class="text-text14 md:text-text16 xl:text-text20">
-                                        s/{{ $item->precio }}
-                                    </p>
-                                    @else
-
-                                    <p class="text-text14 md:text-text16 xl:text-text20">
-                                        s/{{ $item->descuento }}
-                                    </p>
-                                    <p
-                                        class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay xl:text-text18">
-                                        s/{{ $item->precio }}
-                                    </p>
-                                    @endif
+                                <div class="addProduct text-center flex justify-center">
+                                    <a href="{{ route('producto', $item->id) }}"
+                                        class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 lg:px-5 flex-initial w-32 md:w-36 lg:py-3 lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
+                                        Ver producto
+                                    </a>
                                 </div>
                             </div>
 
-                            <div class="order-1 lg:order-2">
-                                <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                    {{ $item->categoria->name }}
-                                </p>
+                            <div class="flex flex-col gap-2">
+                                <div
+                                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                    <a href="{{ route('producto', $item->id) }}"
+                                        class="text-text14 md:text-text16 xl:text-text20">
+                                        {{ $item->producto }}
+                                    </a>
+                                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                                        @if ($item->descuento == 0)
+                                            <p class="text-text14 md:text-text16 xl:text-text20">
+                                                s/{{ $item->precio }}
+                                            </p>
+                                        @else
+                                            <p class="text-text14 md:text-text16 xl:text-text20">
+                                                s/{{ $item->descuento }}
+                                            </p>
+                                            <p
+                                                class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay xl:text-text18">
+                                                s/{{ $item->precio }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="order-1 lg:order-2">
+                                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                        @if (!is_null($item->categoria) && !is_null($item->categoria->name))
+                                            {{ $item->categoria->name }}
+                                        @else
+                                            S/C
+                                        @endif
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
+                                <div class="flex gap-3 flex-wrap">
+                                    @foreach ($item->tags as $tag)
+                                    <div class="bg-white  rounded-md py-1 px-2">
+                                        <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack ">
+                                            {{$tag->name}}
+                                        </p>
+                                    </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-
-                        <div
-                            class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                            <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                New Arrival
-                            </p>
-                        </div>
-                    </div>
                     @endforeach
                 </div>
-        </section>
+            </section>
         @endif
-        @if ($liquidacion->isEmpty())    
+        @if ($liquidacion->isEmpty())
         @else
-        @foreach ($liquidacion as $item)
-            <section class="w-11/12 mx-auto flex flex-col gap-10">
-                <div class="relative">
-                    <img src="{{asset($item->url_image.$item->name_image)}}" alt="{{$item->name_image}}" class="w-full h-full hidden md:block" />
+            @foreach ($liquidacion as $item)
+                <section class="w-11/12 mx-auto flex flex-col gap-10">
+                    <div class="relative">
+                        <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name_image }}"
+                            class="w-full h-full hidden md:block" />
 
-                    <img src="{{asset($item->url_image.$item->name_image)}}" alt="{{$item->name_image}}" class="w-full h-full block md:hidden" />
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-textWhite w-[80%]">
-                        <div class="w-11/12 mx-auto">
-                            <h3
-                                class="font-boldItalicDisplay text-text32 md:text-text64 uppercase xl:text-text68 leading-none md:leading-tight text-center">
-                                {{ $item->title}}
-                            </h3>
-                            <p class="font-regularDisplay text-text14 xl:text-text20 text-center w-full md:w-2/3 mx-auto">
-                               {{ $item->description}}
-                            </p>
+                        <img src="{{ asset($item->url_image . $item->name_image) }}" alt="{{ $item->name_image }}"
+                            class="w-full h-full block md:hidden" />
+                        <div
+                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-textWhite w-[80%]">
+                            <div class="w-11/12 mx-auto">
+                                <h3
+                                    class="font-boldItalicDisplay text-text32 md:text-text64 uppercase xl:text-text68 leading-none md:leading-tight text-center">
+                                    {{ $item->title }}
+                                </h3>
+                                <p
+                                    class="font-regularDisplay text-text14 xl:text-text20 text-center w-full md:w-2/3 mx-auto">
+                                    {{ $item->description }}
+                                </p>
 
-                            <div class="flex justify-center items-center pt-10">
-                                <a href="catalogo.html"
-                                    class="font-boldItalicDisplay text-text16 md:text-text24 xl:text-text32 uppercase">/
-                                    {{ $item->botontext1}} /</a>
+                                <div class="flex justify-center items-center pt-10">
+                                    <a href="{{ $item->link1 }}"
+                                        class="font-boldItalicDisplay text-text16 md:text-text24 xl:text-text32 uppercase">/
+                                        {{ $item->botontext1 }} /</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        @endforeach
-        @endif  
+                </section>
+            @endforeach
+        @endif
 
 
-        @if ($destacados->isEmpty())    
-        {{-- <div class="w-full flex flex-row justify-center items-center">
+        @if ($destacados->isEmpty())
+            {{-- <div class="w-full flex flex-row justify-center items-center">
                <div class="p-5 text-xl font-bold">No tienes productos visibles</div>
            </div> --}}
         @else
@@ -294,7 +306,7 @@
                         Lo más pedido
                     </h3>
                     <div>
-                        <a href="{{route('catalogo', 0)}}"
+                        <a href="{{ route('catalogo', 0) }}"
                             class="font-boldItalicDisplay text-text18 md:text-text24 xl:text-text28 uppercase">/ Ver Todo
                             /</a>
                     </div>
@@ -302,60 +314,70 @@
 
                 <div class="grid grid-cols-2 md:grid-cols-4  gap-5">
                     @foreach ($destacados as $item)
-                    <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
-                        <div class="product_container">
-                            <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}" class="w-full h-full" />
+                        <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
+                            <div class="product_container">
+                                <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}"
+                                    class="w-full h-full" />
 
-                            <div class="addProduct text-center flex justify-center">
-                                <a href="{{ route('producto', $item->id) }}"
-                                    class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 lg:px-5 flex-initial w-32 md:w-36 lg:py-3 lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
-                                    Ver producto
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col gap-2">
-                            <div
-                                class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                <a href="{{ route('producto', $item->id) }}" class="text-text14 md:text-text16 xl:text-text20">
-                                    {{ $item->producto }}
-                                </a>
-                                <div class="flex font-boldDisplay text-black items-center gap-2">
-                                    @if ($item->descuento == 0)
-                                    <p class="text-text14 md:text-text16 xl:text-text20">
-                                        s/{{ $item->precio }}
-                                    </p>
-                                    @else
-
-                                    <p class="text-text14 md:text-text16 xl:text-text20">
-                                        s/{{ $item->descuento }}
-                                    </p>
-                                    <p
-                                        class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay xl:text-text18">
-                                        s/{{ $item->precio }}
-                                    </p>
-                                    @endif
+                                <div class="addProduct text-center flex justify-center">
+                                    <a href="{{ route('producto', $item->id) }}"
+                                        class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 lg:px-5 flex-initial w-32 md:w-36 lg:py-3 lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
+                                        Ver producto
+                                    </a>
                                 </div>
                             </div>
 
-                            <div class="order-1 lg:order-2">
-                                <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                    {{ $item->categoria->name }}
-                                </p>
+                            <div class="flex flex-col gap-2">
+                                <div
+                                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                                    <a href="{{ route('producto', $item->id) }}"
+                                        class="text-text14 md:text-text16 xl:text-text20">
+                                        {{ $item->producto }}
+                                    </a>
+                                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                                        @if ($item->descuento == 0)
+                                            <p class="text-text14 md:text-text16 xl:text-text20">
+                                                s/{{ $item->precio }}
+                                            </p>
+                                        @else
+                                            <p class="text-text14 md:text-text16 xl:text-text20">
+                                                s/{{ $item->descuento }}
+                                            </p>
+                                            <p
+                                                class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay xl:text-text18">
+                                                s/{{ $item->precio }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="order-1 lg:order-2">
+                                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                                        @if (!is_null($item->categoria) && !is_null($item->categoria->name))
+                                            {{ $item->categoria->name }}
+                                        @else
+                                            S/C
+                                        @endif
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
+                                <div class="flex gap-3 flex-wrap">
+                                    @foreach ($item->tags as $tag)
+                                    <div class="bg-white  rounded-md py-1 px-2">
+                                        <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack ">
+                                            {{$tag->name}}
+                                        </p>
+                                    </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-
-                        <div
-                            class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                            <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                New Arrival
-                            </p>
-                        </div>
-                    </div>
                     @endforeach
                 </div>
             </section>
-        @endif  
+        @endif
     </main>
 
 @section('scripts_importados')

@@ -12,8 +12,6 @@ use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Str;
 
-
-
 class CategoryController extends Controller
 {
     /**
@@ -21,11 +19,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::where("status", "=", true)->get();
-       
-        return view('pages.categories.index', compact('category'));
+        $category = Category::where('status', '=', true)->get();
 
-        
+        return view('pages.categories.index', compact('category'));
     }
 
     /**
@@ -36,53 +32,53 @@ class CategoryController extends Controller
         return view('pages.categories.create');
     }
 
+    public function saveImg($file, $route, $nombreImagen)
+    {
+        $manager = new ImageManager(new Driver());
+        $img = $manager->read($file);
+        // $img->coverDown(672, 700, 'center');
+        if (!file_exists($route)) {
+            mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+        }
+        $img->save($route . $nombreImagen);
+    }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $category = new Category(); 
+        $category = new Category();
 
-        if ($request->hasFile("imagen")) {
+        if ($request->hasFile('imagen')) {
+            $file = $request->file('imagen');
+            $routeImg = 'storage/images/categories/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
-            $manager = new ImageManager(Driver::class);
+            $this->saveImg($file, $routeImg, $nombreImagen);
 
-            $nombreImagen = Str::random(10) . '_' . $request->file('imagen')->getClientOriginalName();
+            $category->url_image = $routeImg;
+            $category->name_image = $nombreImagen;
+        } else {
+            $routeImg = 'images/img/';
+            $nombreImagen = 'noimagenslider.jpg';
 
-            $img =  $manager->read($request->file('imagen'));
-
-        
-            // Obtener las dimensiones de la imagen que se esta subiendo
-            // $img->coverDown(640, 640, 'center');
-
-            $ruta = 'storage/images/categories/';
-
-            if (!file_exists($ruta)) {
-                mkdir($ruta, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
-            }
-            
-            $img->save($ruta.$nombreImagen);
-
-            $category ->url_image = $ruta;
-            $category ->name_image = $nombreImagen;
+            $category->url_image = $routeImg;
+            $category->name_image = $nombreImagen;
         }
 
         $slug = strtolower(str_replace(' ', '-', $request->name));
 
         if (Category::where('slug', $slug)->exists()) {
-            // Si el slug existe, agregar un número aleatorio al final
-            $slug .= '-' . rand(1, 1000); // Puedes ajustar el rango según tu necesidad
+            $slug .= '-' . rand(1, 1000);
         }
 
-        
         $category->name = $request->name;
         $category->description = $request->description;
         $category->slug = $slug;
         $category->status = 1;
         $category->visible = 1;
-
         $category->save();
-       
+
         return redirect()->route('categorias.index')->with('success', 'Categoria creada');
     }
 
@@ -109,50 +105,32 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::findOrfail($id); 
+        $category = Category::findOrfail($id);
 
-        if ($request->hasFile("imagen")) {
+        if ($request->hasFile('imagen')) {
+            $file = $request->file('imagen');
+            $routeImg = 'storage/images/categories/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
-            $manager = new ImageManager(new Driver());
-
-
-            $ruta = storage_path() . '/app/public/images/categories/' . $category->name_image;
-            
-            // dd($ruta);
-            if (File::exists($ruta)) {
-                File::delete($ruta);
+            if ($category->url_image !== 'images/img/') {
+                File::delete($category->url_image . $category->name_image);
             }
 
-            $rutanueva = 'storage/images/categories/';
-            $nombreImagen = Str::random(10) . '_' . $request->file('imagen')->getClientOriginalName();
+            $this->saveImg($file, $routeImg, $nombreImagen);
 
-            $img =  $manager->read($request->file('imagen'));
-
-            // $img->coverDown(640, 640, 'center');
-            
-            if (!file_exists($rutanueva)) {
-                mkdir($rutanueva, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
-            }
-            
-            $img->save($rutanueva . $nombreImagen);
-
-
-            $category->url_image = $rutanueva;
+            $category->url_image = $routeImg;
             $category->name_image = $nombreImagen;
         }
 
         $slug = strtolower(str_replace(' ', '-', $request->name));
 
         if (Category::where('slug', $slug)->exists()) {
-            // Si el slug existe, agregar un número aleatorio al final
-            $slug .= '-' . rand(1, 1000); // Puedes ajustar el rango según tu necesidad
+            $slug .= '-' . rand(1, 1000);
         }
-
 
         $category->name = $request->name;
         $category->description = $request->description;
         $category->slug = $slug;
-        
         $category->save();
 
         return redirect()->route('categorias.index')->with('success', 'Categoria modificada');
@@ -166,60 +144,50 @@ class CategoryController extends Controller
         //
     }
 
-
     public function deleteCategory(Request $request)
     {
         $id = $request->id;
-       
-        $category = Category::findOrfail($id); 
-       
+
+        $category = Category::findOrfail($id);
+
         $category->status = false;
-       
+
         $category->save();
 
         return response()->json(['message' => 'Categoría eliminada']);
     }
 
-
-    
     public function updateVisible(Request $request)
     {
-        // Lógica para manejar la solicitud AJAX
-        $cantidad = $this->contarCategoriasDestacadas();
-
-
-        if($cantidad >= 3 && $request->status == 1){
-            return response()->json(['message' => 'Solo puedes destacar 4 categorias'], 409 );
-        }
-
-
         $id = $request->id;
 
         $field = $request->field;
 
         $status = $request->status;
 
-        // Actualizar el estado de la categoría
+        $cantidad = $this->contarCategoriasDestacadas();
+
+        if ($field == 'destacar') {
+            if ($cantidad >= 3 && $request->status == 1) {
+                return response()->json(['message' => 'Solo puedes destacar 3 categorias'], 409);
+            }
+        }
+
         $category = Category::findOrFail($id);
 
         $category->$field = $status;
 
         $category->save();
-    
+
         $cantidad = $this->contarCategoriasDestacadas();
 
-        
-        return response()->json(['message' => 'Categoría modificada',  'cantidad' => $cantidad]);
-    
+        return response()->json(['message' => 'Categoría modificada', 'cantidad' => $cantidad]);
     }
 
-
-    public function contarCategoriasDestacadas(){
-
+    public function contarCategoriasDestacadas()
+    {
         $cantidad = Category::where('destacar', '=', 1)->count();
-   
-        return  $cantidad;
+
+        return $cantidad;
     }
-
-
 }

@@ -34,37 +34,75 @@ class CollectionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    public function saveImg($file, $route, $nombreImagen)
+     {
+         $manager = new ImageManager(new Driver());
+         $img = $manager->read($file);
+         $img->coverDown(1344, 487, 'center');
+         if (!file_exists($route)) {
+             mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+         }
+         $img->save($route . $nombreImagen);
+     }
+
+
+     public function saveImg2($file, $route, $nombreImagen)
+     {
+         $manager = new ImageManager(new Driver());
+         $img = $manager->read($file);
+         $img->coverDown(343, 495, 'center');
+         if (!file_exists($route)) {
+             mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+         }
+         $img->save($route . $nombreImagen);
+     }
+
+
     public function store(Request $request)
     {
         $collection = new Collection();
 
         if ($request->hasFile('imagen')) {
-            $manager = new ImageManager(Driver::class);
+           
+            $file = $request->file('imagen');
+            $routeImg = 'storage/images/collection/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
-            $nombreImagen = Str::random(10) . '_' . $request->file('imagen')->getClientOriginalName();
+            $this->saveImg($file, $routeImg, $nombreImagen);
 
-            $img = $manager->read($request->file('imagen'));
-
-            // Obtener las dimensiones de la imagen que se esta subiendo
-            // $img->coverDown(640, 640, 'center');
-
-            $ruta = 'storage/images/collection/';
-
-            if (!file_exists($ruta)) {
-                mkdir($ruta, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
-            }
-
-            $img->save($ruta . $nombreImagen);
-
-            $collection->url_image = $ruta;
+            $collection->url_image = $routeImg;
             $collection->name_image = $nombreImagen;
+        }else {
+            $routeImg = 'images/img/';
+            $nombreImagen = 'noimagencoleccion.jpg';
+
+            $collection->url_image = $routeImg;
+            $collection->name_image = $nombreImagen;
+        }
+
+        if ($request->hasFile('imagen2')) {
+           
+            $file = $request->file('imagen2');
+            $routeImg = 'storage/images/collection/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+            $this->saveImg2($file, $routeImg, $nombreImagen);
+
+            $collection->url_image2 = $routeImg;
+            $collection->name_image2 = $nombreImagen;
+        }else {
+            $routeImg = 'images/img/';
+            $nombreImagen = 'noimagencoleccion.jpg';
+
+            $collection->url_image2 = $routeImg;
+            $collection->name_image2 = $nombreImagen;
         }
 
         $slug = strtolower(str_replace(' ', '-', $request->name));
 
         if (Collection::where('slug', $slug)->exists()) {
-            // Si el slug existe, agregar un número aleatorio al final
-            $slug .= '-' . rand(1, 1000); // Puedes ajustar el rango según tu necesidad
+            $slug .= '-' . rand(1, 1000);
         }
 
         $collection->name = $request->name;
@@ -104,37 +142,42 @@ class CollectionController extends Controller
         $collection = Collection::findOrfail($id);
 
         if ($request->hasFile('imagen')) {
-            $manager = new ImageManager(new Driver());
+           
+            $file = $request->file('imagen');
+            $routeImg = 'storage/images/categories/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
-            $ruta = storage_path() . '/app/public/images/collection/' . $collection->name_image;
+            if ($collection->url_image !== 'images/img/') {
+                File::delete($collection->url_image . $collection->name_image);
+            }    
+          
+            $this->saveImg($file, $routeImg, $nombreImagen);
 
-            // dd($ruta);
-            if (File::exists($ruta)) {
-                File::delete($ruta);
-            }
-
-            $rutanueva = 'storage/images/collection/';
-            $nombreImagen = Str::random(10) . '_' . $request->file('imagen')->getClientOriginalName();
-
-            $img = $manager->read($request->file('imagen'));
-
-            // $img->coverDown(640, 640, 'center');
-
-            if (!file_exists($rutanueva)) {
-                mkdir($rutanueva, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
-            }
-
-            $img->save($rutanueva . $nombreImagen);
-
-            $collection->url_image = $rutanueva;
+            $collection->url_image = $routeImg;
             $collection->name_image = $nombreImagen;
+        }
+
+
+        if ($request->hasFile('imagen2')) {
+           
+            $file = $request->file('imagen2');
+            $routeImg = 'storage/images/categories/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+            if ($collection->url_image !== 'images/img/') {
+                File::delete($collection->url_image2 . $collection->name_image2);
+            }    
+          
+            $this->saveImg2($file, $routeImg, $nombreImagen);
+
+            $collection->url_image2 = $routeImg;
+            $collection->name_image2 = $nombreImagen;
         }
 
         $slug = strtolower(str_replace(' ', '-', $request->name));
 
         if (Collection::where('slug', $slug)->exists()) {
-            // Si el slug existe, agregar un número aleatorio al final
-            $slug .= '-' . rand(1, 1000); // Puedes ajustar el rango según tu necesidad
+            $slug .= '-' . rand(1, 1000); 
         }
 
         $collection->name = $request->name;

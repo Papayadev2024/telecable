@@ -48,10 +48,10 @@ class ProductsController extends Controller
   {
     $manager = new ImageManager(new Driver());
     $img =  $manager->read($file);
-    // $img->coverDown(340, 340, 'center');
+    $img->coverDown(1000, 1500, 'center');
 
     if (!file_exists($route)) {
-      mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+      mkdir($route, 0777, true); 
     }
 
     $img->save($route . $nombreImagen);
@@ -77,14 +77,19 @@ class ProductsController extends Controller
 
       if ($request->hasFile("imagen")) {
         $file = $request->file('imagen');
-        $routeImg = 'storage/images/imagen/';
+        $routeImg = 'storage/images/productos/';
         $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
         $this->saveImg($file, $routeImg, $nombreImagen);
 
         $data['imagen'] = $routeImg . $nombreImagen;
         // $AboutUs->name_image = $nombreImagen;
-      }
+      }else{
+        $routeImg = 'images/img/';
+        $nombreImagen = 'noimagen.jpg';
+
+        $data['imagen'] = $routeImg . $nombreImagen;
+    }
 
 
 
@@ -116,9 +121,8 @@ class ProductsController extends Controller
       if (array_key_exists('recomendar', $data)) {
         if (strtolower($data['recomendar']) == 'on') $data['recomendar'] = 1;
       }
-
-      if (isset($request->categoria_id)) {
-        $data['categoria_id'] = $request->categoria_id;
+      if (array_key_exists('liquidacion', $data)) {
+        if (strtolower($data['liquidacion']) == 'on') $data['liquidacion'] = 1;
       }
 
 
@@ -168,7 +172,7 @@ class ProductsController extends Controller
 
           $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
 
-
+          
 
           $nombreImagen = Str::random(10) . '.' . $ext;
 
@@ -278,7 +282,7 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
     $data = $request->all();
     $atributos = null;
-
+    
     $request->validate([
       'producto' => 'required',
     ]);
@@ -315,11 +319,15 @@ class ProductsController extends Controller
 
     $jsonAtributos = json_encode($atributos);
 
+
     if (array_key_exists('destacar', $data)) {
       if (strtolower($data['destacar']) == 'on') $data['destacar'] = 1;
     }
     if (array_key_exists('recomendar', $data)) {
       if (strtolower($data['recomendar']) == 'on') $data['recomendar'] = 1;
+    }
+    if (array_key_exists('liquidacion', $data)) {
+      if (strtolower($data['liquidacion']) == 'on') $data['liquidacion'] = 1;
     }
 
 
@@ -328,6 +336,7 @@ class ProductsController extends Controller
     $cleanedData = Arr::where($data, function ($value, $key) {
       return !is_null($value);
     });
+    $cleanedData['description'] = $data['description'];
     $product->update($cleanedData);
     DB::delete('delete from tags_xproducts where producto_id = ?', [$id]);
     if (!is_null($tagsSeleccionados)) {

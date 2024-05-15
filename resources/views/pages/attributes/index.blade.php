@@ -24,10 +24,7 @@
               <tr>
                 <th>Titulo </th>
                 <th>Descripción</th>
-                <th>Imagen</th>
-                <th>Color</th>
-                <th>Valores</th>
-                <th>Status</th>
+                <th>Visible</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -37,11 +34,8 @@
                 <tr>
                   <td>{{ $item->titulo }}</td>
                   <td>{{ $item->descripcion }}</td>
-
-                  <td class="px-3 py-2"><img class="w-20" src="{{ asset($item->imagen) }}" alt=""></td>
-                  <td class="px-1 py-1 rounded-full w-2 h-2" style="background-color: {{ $item->color }}"></td>
-                  <td class="px-3 py-2"></td>
-
+                  {{-- <td class="px-3 py-2"><img class="w-20" src="{{ asset($item->imagen) }}" alt=""></td>
+                  <td class="px-1 py-1 rounded-full w-2 h-2" style="background-color: {{ $item->color }}"></td> --}}
                   <td>
                     <form method="POST" action="">
                       @csrf
@@ -56,9 +50,6 @@
                         data-titleService='{{ $item->titulo }}' {{ $item->status == 1 ? 'checked' : '' }}>
                       <label for="{{ 'v_' . $item->id }}"></label>
                     </form>
-
-
-
                   </td>
 
                   <td class="flex flex-row justify-end items-center gap-5">
@@ -83,10 +74,7 @@
               <tr>
                 <th>Titulo </th>
                 <th>Descripción</th>
-                <th>Imagen</th>
-                <th>Color</th>
-                <th>Valores</th>
-                <th>Status</th>
+                <th>Visible</th>
                 <th>Acciones</th>
               </tr>
             </tfoot>

@@ -3,12 +3,11 @@
 @stop
 @section('content')
   <?php
-  //   Definición de la función capitalizeFirstLetter()
+  //Definición de la función capitalizeFirstLetter()
   function capitalizeFirstLetter($string)
   {
       return ucfirst($string);
   }
-  
   ?>
 
   <main class="flex flex-col gap-12 mt-12">
@@ -36,11 +35,18 @@
           <div class="flex flex-col gap-5 relative">
             <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}" class="w-full h-full" />
 
-            <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-              <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                New Arrival
-              </p>
+            <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
+              <div class="flex gap-3 flex-wrap">
+                @foreach ($productos[0]->tags as $tag)
+                  <div class="bg-white  rounded-md py-1 px-2">
+                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack ">
+                      {{ $tag->name }}
+                    </p>
+                  </div>
+                @endforeach
+              </div>
             </div>
+
           </div>
 
           @foreach ($productosConGalerias as $galeria)
@@ -83,37 +89,50 @@
 
           <div class="flex flex-col gap-3">
 
-            @foreach ($productos as $producto)
-              @foreach ($producto->attributes as $atributo)
-                {{-- {{$atributo->pivot}} --}}
-                <div>
-                  @if ($atributo->typeAttribute->name === 'color')
-                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
-                      Seleccionar color
-                    </p>
-                    <!-- HTML específico para el tipo de atributo "color" -->
-                    <div class="flex gap-5 justify-start items-center">
 
-                      @foreach ($atributo->values as $valor)
-                        <div style="background-color: {{ $valor->color }}"
-                          class="colors w-14 h-14 rounded-[50%] cursor-pointer"></div>
-                      @endforeach
-                    </div>
-                  @elseif($atributo->typeAttribute->name === 'text')
-                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
-                      Seleccionar el tamaño
-                    </p>
-                    <div class="grid grid-cols-3 place-items-center font-regularDisplay text-text14 md:text-text20 gap-2">
-                      @foreach ($atributo->values as $valor)
-                        <div class="flex justify-center items-center border-2 w-full rounded-lg">
-                          <p class="py-5 px-4 w-full text-center">{{ $valor->valor }}</p>
-                        </div>
-                      @endforeach
-                    </div>
-                  @endif
-                </div>
-              @endforeach
-            @endforeach
+
+
+
+            {{-- @foreach ($product as $producto) {
+                                <pre>{{$producto}}</pre>
+                            }
+                            @endforeach --}}
+
+
+            {{-- { <pre>{{$product}}</pre>} --}}
+            {{-- @foreach ($productos as $producto)
+                        @foreach ($producto->attributes as $atributo)
+                          {{  $atributo->pivot}}
+                            <div>
+                                @if ($atributo->typeAttribute->name === 'color')
+                                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
+                                        Seleccionar color
+                                    </p>
+                                    <!-- HTML específico para el tipo de atributo "color" -->
+                                    <div class="flex gap-5 justify-start items-center">
+                                        
+                                            @foreach ($atributo->values as $valor)
+                                                    <div style="background-color: {{ $valor->color }}" class="colors w-14 h-14 rounded-[50%] cursor-pointer"></div>     
+                                            @endforeach   
+                                    </div>
+                                @elseif($atributo->typeAttribute->name === 'text')
+                                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
+                                        Seleccionar el tamaño
+                                    </p>
+                                    <div
+                                        class="grid grid-cols-3 place-items-center font-regularDisplay text-text14 md:text-text20 gap-2">
+                                        @foreach ($atributo->values as $valor)
+                                            <div class="flex justify-center items-center border-2 w-full rounded-lg">
+                                                <p class="py-5 px-4 w-full text-center">{{ $valor->valor }}</p>
+                                            </div>    
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                        @endforeach 
+                    @endforeach     --}}
+
+
           </div>
 
           <div class="flex flex-col gap-3">
@@ -122,13 +141,13 @@
               <!-- Corregir -->
               <div class="flex">
                 <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer rounded-l-3xl">
-                  <button id="disminuir" type="button"><span class="text-[30px]">-</span></button>
+                  <span class="text-[30px]">-</span>
                 </div>
-                <div id="cantidadSpan" class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
+                <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
                   <span class="text-[20px] font-mediumDisplay">2</span>
                 </div>
                 <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer rounded-r-3xl">
-                  <button id="aumentar" type="button"><span class="text-[30px]">+</span></button>
+                  <span class="text-[30px]">+</span>
                 </div>
               </div>
 
@@ -142,7 +161,7 @@
           </div>
 
           <p class="italic font-mediumItalicDisplay text-text18">
-            SKU: 254kim/black/white
+            SKU: {{ $productos[0]->sku }}
           </p>
 
           <div>
@@ -150,7 +169,7 @@
               <div class="mx-auto">
                 <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
                   <div class="py-5">
-                    <details class="group">
+                    <details class="group" open>
                       <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
                         <span class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
                           Detalles de producto
@@ -170,57 +189,67 @@
 
                       <div class="group-open:animate-fadeIn mt-3 text-[#000000]">
                         <div class="flex flex-col gap-5">
-                          <div class="flex flex-col gap-2">
-                            <p class="font-mediumDisplay text-text16 md:text-text20">
-                              Descripción de producto
-                            </p>
-                            <p class="font-regularDisplay text-text16 md:text-text20 text-gray-600">
-                              {!! $productos[0]->description !!}
-                            </p>
-                          </div>
+                          @if (is_null($productos[0]->description))
+                          @else
+                            <div class="flex flex-col gap-2">
+                              <p class="font-mediumDisplay text-text16 md:text-text20">
+                                Descripción de producto
+                              </p>
+                              <p class="font-regularDisplay text-text16 md:text-text20 text-gray-600">
+                                {!! $productos[0]->description !!}
+                              </p>
+                            </div>
+                          @endif
 
-                          <div class="flex flex-col gap-5">
-                            <p class="font-mediumDisplay text-text16 md:text-text20">
-                              Información adicional
-                            </p>
+                          @if ($especificaciones->isEmpty())
+                          @else
+                            <div class="flex flex-col gap-5">
+                              <p class="font-mediumDisplay text-text16 md:text-text20">
+                                Información adicional
+                              </p>
 
-                            <table class="border-collapse w-full">
-                              <tbody>
-                                @foreach ($especificaciones as $item)
-                                  <tr>
-                                    <td
-                                      class="border w-1/5 border-gray-400 px-3 py-2 font-semibold text-[16px] text-gray-900">
-                                      {{ capitalizeFirstLetter($item->tittle) }}:</td>
-                                    <td class="border w-4/5 border-gray-400 px-3 py-2 font-normal text-[15px]">
-                                      {{ capitalizeFirstLetter($item->specifications) }}</td>
-                                  </tr>
-                                @endforeach
-                              </tbody>
-                            </table>
-                          </div>
+                              <table class="border-collapse w-full">
+                                <tbody>
+                                  @foreach ($especificaciones as $item)
+                                    <tr>
+                                      <td
+                                        class="border w-1/5 border-gray-400 px-3 py-2 font-semibold text-[16px] text-gray-900">
+                                        {{ capitalizeFirstLetter($item->tittle) }}:
+                                      </td>
+                                      <td class="border w-4/5 border-gray-400 px-3 py-2 font-normal text-[15px]">
+                                        {{ capitalizeFirstLetter($item->specifications) }}
+                                      </td>
+                                    </tr>
+                                  @endforeach
+                                </tbody>
+                              </table>
+                            </div>
+                          @endif
                         </div>
                       </div>
                     </details>
                   </div>
-
-                  <div class="py-5">
-                    <details class="group">
-                      <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                        <div class="flex gap-2 items-center">
-                          <span class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
-                            Comentarios
-                          </span>
-                          <div class="flex">
-                            <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
-                            <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
-                            <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
-                            <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
-                            <img src="{{ asset('images/svg/start_middle.svg') }}" alt="doomine" />
-                          </div>
-                          <span class="font-regularDisplay text-text14">
-                            4.5/5
-                          </span>
-                        </div>
+                  {{-- <div class="py-5">
+                                        <details class="group">
+                                            <summary
+                                                class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                                <div class="flex gap-2 items-center">
+                                                    <span
+                                                        class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
+                                                        Comentarios
+                                                    </span>
+                                                    <div class="flex">
+                                                        <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
+                                                        <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
+                                                        <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
+                                                        <img src="{{ asset('images/svg/start.svg') }}" alt="doomine" />
+                                                        <img src="{{ asset('images/svg/start_middle.svg') }}"
+                                                            alt="doomine" />
+                                                    </div>
+                                                    <span class="font-regularDisplay text-text14">
+                                                        4.5/5
+                                                    </span>
+                                                </div>
 
                         <span class="transition group-open:rotate-180">
                           <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
@@ -235,19 +264,18 @@
                         </span>
                       </summary>
 
-                      <p
-                        class="group-open:animate-fadeIn mt-3 font-regularDisplay text-text16 md:text-text20 text-gray-600">
-                        Este polo Oversize para mujer con cuello redondo es
-                        imprescindible para todas las amantes de la diversión
-                        y el buen gusto. Las mangas cortas y la longitud extra
-                        larga, así como su confección en algodón súper suave y
-                        cómodo, harán que te sientas genial con este polo en
-                        cualquier momento. Está disponible en muchos colores y
-                        estampados para que puedas elegir el que más te guste.
-                      </p>
-                    </details>
-                  </div>
-
+                                            <p
+                                                class="group-open:animate-fadeIn mt-3 font-regularDisplay text-text16 md:text-text20 text-gray-600">
+                                                Este polo Oversize para mujer con cuello redondo es
+                                                imprescindible para todas las amantes de la diversión
+                                                y el buen gusto. Las mangas cortas y la longitud extra
+                                                larga, así como su confección en algodón súper suave y
+                                                cómodo, harán que te sientas genial con este polo en
+                                                cualquier momento. Está disponible en muchos colores y
+                                                estampados para que puedas elegir el que más te guste.
+                                            </p>
+                                        </details>
+                                    </div> --}}
                   <div class="py-5">
                     <details class="group">
                       <summary class="flex cursor-pointer list-none items-center justify-between font-mediumDisplay">

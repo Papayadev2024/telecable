@@ -492,11 +492,16 @@
                                 </div>
                             </div>
 
-                            <div
-                                class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                    New Arrival
-                                </p>
+                            <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
+                                <div class="flex gap-3 flex-wrap">
+                                    @foreach ($item->tags as $tag)
+                                    <div class="bg-white  rounded-md py-1 px-2">
+                                        <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack ">
+                                            {{$tag->name}}
+                                        </p>
+                                    </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     @endforeach
