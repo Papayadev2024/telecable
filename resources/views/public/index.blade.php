@@ -81,11 +81,11 @@
         @endif
 
 
-        <div class="w-full flex flex-row gap-3 px-5">
+        {{-- <div class="w-full flex flex-row gap-3 px-5">
             <div class="w-[10%]"><img class="w-14 rounded-md" src='{{ asset('images/img/arrives_1.png') }}'/></div>
             <div class="flex flex-col justify-center w-[70%]"><h2>Vestido de noche</h2><p class="text-text12">Categoría</p></div>
             <div class="flex flex-col justify-center w-[10%]"><p class="text-right">S/120.00</p><p class="text-text12 text-right line-through text-slate-500">S/100.00</p></div>
-        </div>
+        </div> --}}
 
         @if ($category->isEmpty())
             {{-- <div class="w-full flex flex-row justify-center items-center">

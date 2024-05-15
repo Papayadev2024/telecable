@@ -335,11 +335,12 @@
     <!-- search -->
     <div id="myOverlay" class="overlay">
         <span class="closebtn" onclick="closeSearch()">×</span>
-        <div class="overlay-content w-3/4 md:w-1/3">
-            <form >
-                <input type="text" placeholder="Buscar.." name="search" id="buscarproducto" class="rounded-2xl">
+        <div class="overlay-content w-3/4 md:w-1/2">
+            <form>
+                <input type="text" placeholder="Buscar.." name="search" id="buscarproducto"
+                    class="rounded-2xl">
             </form>
-            <div id="resultados"></div>
+            <div id="resultados" class="bg-white p-[1px] rounded-xl  overflow-y-auto max-h-[300px]"></div>
         </div>
     </div>
 
@@ -354,9 +355,9 @@
 
         $(document).ready(function() {
             $('#buscarproducto').keyup(function() {
-                
+
                 var query = $(this).val().trim();
-                
+
                 if (query !== '') {
                     $.ajax({
                         url: '{{ route('buscar') }}',
@@ -368,8 +369,19 @@
                             var resultsHtml = '';
 
                             data.forEach(function(result) {
-                                resultsHtml += '<div> <div class="">' + result.producto +
-                                '</div>'; 
+                                resultsHtml +=
+                                    '<a href="/producto/'+ result.id +'"> <div class="w-full flex flex-row py-3 px-5  hover:bg-slate-200"> ' +
+                                    ' <div class="w-[10%]"><img class="w-14 rounded-md" src="' +
+                                    result.imagen + '" /></div>' +
+                                    ' <div class="flex flex-col justify-center w-[70%]"> ' +
+                                    ' <h2 class="text-left">' + result.producto + '</h2> ' +
+                                    '<p class="text-text12 text-left">Categoría</p></div> ' +
+                                    ' <div class="flex flex-col justify-center w-[10%]"> ' +
+                                    '<p class="text-right">S/' + result.precio +
+                                    '</p> ' +
+                                    '<p class="text-text12 text-right line-through text-slate-500">S/' +
+                                    result.descuento + '</p></div>' +
+                                    '</div></a>';
                             });
 
                             $('#resultados').html(resultsHtml);
