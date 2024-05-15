@@ -2,7 +2,7 @@
     <div class="bg-bgBlack font-medium text-text14 xl:text-text18 italic">
         <p class="text-textWhite py-5 text-center">
             Regístrate y obtén un 20% de descuento en tu primer pedido.
-            <a href="{{route('register')}}" class="underline font-bold">
+            <a href="{{ route('register') }}" class="underline font-bold">
                 Regístrate ahora
             </a>
         </p>
@@ -335,10 +335,9 @@
     <!-- search -->
     <div id="myOverlay" class="overlay">
         <span class="closebtn" onclick="closeSearch()">×</span>
-        <div class="overlay-content">
-            <form>
+        <div class="overlay-content ">
+            <form >
                 <input type="text" placeholder="Buscar.." name="search" id="buscarproducto">
-                <button type="submit">Buscar<i class="fa fa-search"></i></button>
             </form>
             <div id="resultados"></div>
         </div>
@@ -353,26 +352,33 @@
             document.getElementById("myOverlay").style.display = "none";
         }
 
-        document.getElementById('buscarproducto').addEventListener('input', function() {
-            let query = this.value.trim();
+        $(document).ready(function() {
+            $('#buscarproducto').keyup(function() {
+                
+                var query = $(this).val().trim();
+                
+                if (query !== '') {
+                    $.ajax({
+                        url: '{{ route('buscar') }}',
+                        method: 'GET',
+                        data: {
+                            query: query
+                        },
+                        success: function(data) {
+                            var resultsHtml = '';
 
-            if (query.length === 0) {
-                document.getElementById('resultados').innerHTML = '';
-                return;
-            }
+                            data.forEach(function(result) {
+                                resultsHtml += '<p>' + result.producto +
+                                '</p>'; 
+                            });
 
-            fetch(`/buscar?query=${query}`)
-                .then(response => response.json())
-                .then(data => {
-                    let resultadosHtml = '';
-
-                    data.forEach(resultado => {
-                        resultadosHtml +=
-                        `<p>${resultado.nombre}</p>`; // Modifica "nombre" con el nombre del campo que quieres mostrar en los resultados
+                            $('#resultados').html(resultsHtml);
+                        }
                     });
-
-                    document.getElementById('resultados').innerHTML = resultadosHtml;
-                });
+                } else {
+                    $('#resultados').empty();
+                }
+            });
         });
     </script>
 
@@ -416,7 +422,7 @@
             font-size: 17px;
             border: none;
             float: left;
-            width: 80%;
+            width: 100%;
             background: white;
         }
 

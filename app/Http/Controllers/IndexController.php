@@ -478,7 +478,7 @@ class IndexController extends Controller
   }
 
   public function searchProduct(Request $request)
-  {
+  {   
       $query = $request->input('query');
       $resultados = Products::where('producto', 'like', "%$query%")->get(); 
       
