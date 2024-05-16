@@ -237,55 +237,6 @@
             </div>
           </div>
         </div>
-
-        <div>
-          @if (Auth::user() == null)
-            <a href="{{ route('login') }}"><img src="{{ asset('images/svg/perfil.svg') }}" alt="user" /></a>
-          @else
-            <div class="relative inline-flex" x-data="{ open: false }">
-              <button class="inline-flex justify-center items-center group" aria-haspopup="true"
-                @click.prevent="open = !open" :aria-expanded="open">
-                <div class="flex items-center truncate">
-                  <span
-                    class="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-slate-200">{{ Auth::user()->name }}</span>
-                  <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
-                    <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-                  </svg>
-                </div>
-              </button>
-              <div
-                class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1"
-                @click.outside="open = false" @keydown.escape.window="open = false" x-show="open">
-                <ul>
-                  <li class="hover:bg-gray-100">
-                    <a class="font-medium text-sm text-black flex items-center py-1 px-3"
-                      href="{{ route('pedidos') }}" @click="open = false" @focus="open = true"
-                      @focusout="open = false">Mis pedidos</a>
-                  </li>
-                  <li class="hover:bg-gray-100">
-                    <a class="font-medium text-sm text-black flex items-center py-1 px-3"
-                      href="{{ route('direccion') }}" @click="open = false" @focus="open = true"
-                      @focusout="open = false">Dirección</a>
-                  </li>
-                  <li class="hover:bg-gray-100">
-                    <a class="font-medium text-sm text-black flex items-center py-1 px-3"
-                      href="{{ route('micuenta') }}" @click="open = false" @focus="open = true"
-                      @focusout="open = false">Ajustes</a>
-                  </li>
-                  <li class="hover:bg-gray-100">
-                    <form method="POST" action="{{ route('logout') }}" x-data>
-                      @csrf
-                      <button type="submit" class="font-medium text-sm text-black flex items-center py-1 px-3"
-                        href="{{ route('logout') }}" @click.prevent="$root.submit(); open = false">
-                        {{ __('Cerrar sesión') }}
-                      </button>
-                    </form>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          @endif
-        </div>
       </div>
     </div>
   </div>
