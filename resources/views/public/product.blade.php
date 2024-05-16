@@ -88,34 +88,54 @@
                     </div>
 
                     <div class="flex flex-col gap-3">
+                        {{$product}}
+                        @foreach($product->attributes as $atributo)
+                            <h4>{{ $atributo->nombre }}</h4>
+                            @foreach($atributo->values as $valor)
+                                <p>{{ $valor->valor }}</p>
+                            @endforeach
+                        @endforeach
+                        {{-- @if ($product->atributos)
+                            @foreach ($product->atributos as $atributo)
+                                @if ($atributo->tipo === 'color')
+                                    <div class="color-options">
+                                        <h4>Selecciona tu color:</h4>
+                                        @foreach ($atributo->valores as $valor)
+                                            <div class="color-option" style="background-color: {{ $valor->valor }}"></div>
+                                        @endforeach
+                                    </div>
+                                @endif
 
-
-
-
-
-                        {{-- @foreach ($product as $producto) {
-                                <pre>{{$producto}}</pre>
-                            }
-                            @endforeach --}}
+                                @if ($atributo->tipo === 'texto')
+                                    <div class="text-options">
+                                        <h4>Selecciona tu talla:</h4>
+                                        @foreach ($atributo->valores as $valor)
+                                            <div class="text-option">{{ $valor->valor }}</div>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endif --}}
 
 
                         {{-- { <pre>{{$product}}</pre>} --}}
                         {{-- @foreach ($productos as $producto)
-                        @foreach ($producto->attributes as $atributo)
-                          {{  $atributo->pivot}}
-                            <div>
-                                @if ($atributo->typeAttribute->name === 'color')
-                                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
-                                        Seleccionar color
-                                    </p>
-                                    <!-- HTML específico para el tipo de atributo "color" -->
-                                    <div class="flex gap-5 justify-start items-center">
-                                        
+                            @foreach ($producto->attributes as $atributo)
+                                {{ $atributo->pivot }}
+                                <div>
+                                    @if ($atributo->typeAttribute->name === 'Color')
+                                        <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
+                                            Seleccionar color
+                                        </p>
+                                        <!-- HTML específico para el tipo de atributo "color" -->
+                                        <div class="flex gap-5 justify-start items-center">
+
                                             @foreach ($atributo->values as $valor)
-                                                    <div style="background-color: {{ $valor->color }}" class="colors w-14 h-14 rounded-[50%] cursor-pointer"></div>     
-                                            @endforeach   
-                                    </div>
-                                @elseif($atributo->typeAttribute->name === 'text')
+                                                <div style="background-color: {{ $valor->color }}"
+                                                    class="colors w-14 h-14 rounded-[50%] cursor-pointer"></div>
+                                            @endforeach
+                                        </div>
+                                        @elseif($atributo->typeAttribute->name === 'Text')
                                     <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
                                         Seleccionar el tamaño
                                     </p>
@@ -127,10 +147,10 @@
                                             </div>    
                                         @endforeach
                                     </div>
-                                @endif
-                            </div>
-                        @endforeach 
-                    @endforeach     --}}
+                                    @endif
+                                </div>
+                            @endforeach
+                        @endforeach --}}
 
 
                     </div>
@@ -354,7 +374,8 @@
 
         <section class="w-11/12 mx-auto flex flex-col gap-5 pt-10">
             <div>
-                <img src="{{ asset('images/img/producto_1.png') }}" alt="doomine" class="w-full h-full hidden md:block" />
+                <img src="{{ asset('images/img/producto_1.png') }}" alt="doomine"
+                    class="w-full h-full hidden md:block" />
 
                 <img src="{{ asset('images/img/mobile_foto.png') }}" alt="doomine"
                     class="w-full h-full block md:hidden" />
