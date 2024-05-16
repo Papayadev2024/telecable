@@ -48,11 +48,11 @@ class IndexController extends Controller
     $productos =  Products::where('status', '=', 1)->with('tags')->get();
     $categorias = Category::all();
     $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)
-    ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
+      ->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
     // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
     // ->where('visible', '=', 1)->with('tags')->get();
     $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)
-    ->where('visible', '=', 1)->with('tags')->get();
+      ->where('visible', '=', 1)->with('tags')->get();
 
     $general = General::all();
     $benefit = Strength::where('status', '=', 1)->get();
@@ -69,9 +69,9 @@ class IndexController extends Controller
   public function coleccion($filtro)
   {
     try {
-      
+
       $collections = Collection::where('status', '=', 1)->where('visible', '=', 1)->get();
-     
+
       if ($filtro == 0) {
         $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->paginate(16);
         $collection = Collection::where('status', '=', 1)->where('visible', '=', 1)->get();
@@ -81,7 +81,7 @@ class IndexController extends Controller
       }
 
 
-      return view('public.collection', compact('filtro', 'productos', 'collection','collections'));
+      return view('public.collection', compact('filtro', 'productos', 'collection', 'collections'));
     } catch (\Throwable $th) {
     }
   }
@@ -160,36 +160,36 @@ class IndexController extends Controller
 
   public function comentario()
   {
-    $comentarios = Testimony::where('status', '=' ,1)->where('visible', '=' ,1)->paginate(15);
+    $comentarios = Testimony::where('status', '=', 1)->where('visible', '=', 1)->paginate(15);
     $contarcomentarios = count($comentarios);
     return view('public.comentario', compact('comentarios', 'contarcomentarios'));
   }
 
-  public function hacerComentario(Request $request){
+  public function hacerComentario(Request $request)
+  {
     $user = auth()->user();
-    
+
     $newComentario = new Testimony();
     if (isset($user)) {
       $alert = null;
       $request->validate([
         'testimonie' => 'required',
-    ], [
+      ], [
         'testimonie.required' => 'Ingresa tu comentario',
-    ]);
+      ]);
 
-        $newComentario->name = $user->name;
-        $newComentario->testimonie = $request->testimonie;
-        $newComentario->visible = 0;
-        $newComentario->status = 1;
-        $newComentario->email = $user->email;
-        $newComentario->save();
+      $newComentario->name = $user->name;
+      $newComentario->testimonie = $request->testimonie;
+      $newComentario->visible = 0;
+      $newComentario->status = 1;
+      $newComentario->email = $user->email;
+      $newComentario->save();
 
-        $mensaje = "Gracias. Tu comentario pasará por una validación y será publicado.";
-        $alert = 1;
-
-    }else{  
-        $alert = 2;
-        $mensaje = "Inicia sesión para hacer un comentario";
+      $mensaje = "Gracias. Tu comentario pasará por una validación y será publicado.";
+      $alert = 1;
+    } else {
+      $alert = 2;
+      $mensaje = "Inicia sesión para hacer un comentario";
     }
 
     return redirect()->route('comentario')->with(['mensaje' => $mensaje, 'alerta' => $alert]);
@@ -252,17 +252,17 @@ class IndexController extends Controller
 
       $email = $request->email;
       $existeUser = UserDetails::where('email', $email)->get()->toArray();
-      
+
       if (count($existeUser) === 0) {
         UserDetails::create($request->all());
         $datos = $request->all();
         $codigoAleatorio = $this->codigoVentaAleatorio();
         $this->guardarOrden();
-        $this-> envioCorreoCompra($datos);
+        $this->envioCorreoCompra($datos);
         return response()->json(['message' => 'Data procesada correctamente', 'codigoCompra' => $codigoAleatorio],);
       } else {
         $existeUsuario = User::where('email', $email)->get()->toArray();
-       
+
         if ($existeUsuario) {
           $validator = Validator::make($request->all(), [
             'email' => 'required',
@@ -288,7 +288,41 @@ class IndexController extends Controller
 
             $codigoAleatorio = $this->codigoVentaAleatorio();
             $this->guardarOrden();
-            $this-> envioCorreoCompra($datos);
+            $this->envioCorreoCompra($datos);
+            $curl = curl_init();
+
+            curl_setopt_array($curl, [
+              CURLOPT_URL => "https://sandbox-api-pw.izipay.pe/gateway/api/v1/proxy-cors/https://sandbox-api-pw.izipay.pe/security/v1/Token/Generate",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => json_encode([
+                'requestSource' => 'ECOMMERCE',
+                'merchantCode' => '4007701',
+                'orderNumber' => 'R202211101518',
+                'publicKey' => 'VErethUtraQuxas57wuMuquprADrAHAb',
+                'amount' => '15.00'
+              ]),
+              CURLOPT_HTTPHEADER => [
+                "Accept: application/json",
+                "Content-Type: application/json",
+                "transactionId: 16868479028040"
+              ],
+            ]);
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+            if ($err) {
+              dump ("cURL Error #:" . $err);
+            } else {
+              dump($response) ;
+            }
             return response()->json(['message' => 'Todos los datos estan correctos', 'codigoCompra' => $codigoAleatorio],);
           }
         } else {
@@ -356,38 +390,37 @@ class IndexController extends Controller
   public function actualizarPerfil(Request $request)
   {
 
-    $name= $request->name;
+    $name = $request->name;
     $lastname = $request->lastname;
     $email = $request->email;
     $user = User::findOrFail($request->id);
-    
 
-    if($request->password !== null || $request->newpassword !== null || $request->confirmnewpassword !== null){ 
-        if (!Hash::check($request->password, $user->password)) {
-            $imprimir = "La contraseña actual no es correcta";
-            $alert = "error";
-        }else{
-            $user->password = Hash::make($request->newpassword);
-            $imprimir = "Cambio de contraseña exitosa";
-            $alert = "success";
-        }
-    }
-    
 
-      if($user->name == $name &&  $user->lastname == $lastname ){
-        $imprimir = "Sin datos que actualizar";
-        $alert = "question";  
-      }else{
-        $user->name = $name;
-        $user->lastname = $lastname;
+    if ($request->password !== null || $request->newpassword !== null || $request->confirmnewpassword !== null) {
+      if (!Hash::check($request->password, $user->password)) {
+        $imprimir = "La contraseña actual no es correcta";
+        $alert = "error";
+      } else {
+        $user->password = Hash::make($request->newpassword);
+        $imprimir = "Cambio de contraseña exitosa";
         $alert = "success";
-        $imprimir = "Datos actualizados";  
       }
-    
+    }
+
+
+    if ($user->name == $name &&  $user->lastname == $lastname) {
+      $imprimir = "Sin datos que actualizar";
+      $alert = "question";
+    } else {
+      $user->name = $name;
+      $user->lastname = $lastname;
+      $alert = "success";
+      $imprimir = "Datos actualizados";
+    }
+
 
     $user->save();
-    return response()->json(['message'=> $imprimir,'alert' => $alert]);
-
+    return response()->json(['message' => $imprimir, 'alert' => $alert]);
   }
 
   public function micuenta()
@@ -396,7 +429,7 @@ class IndexController extends Controller
     return view('public.dashboard', compact('user'));
   }
 
-  
+
 
   public function pedidos()
   {
@@ -409,7 +442,7 @@ class IndexController extends Controller
   {
     $user = Auth::user();
     $direcciones = UserDetails::where('email', $user->email)->get();
-    
+
     return view('public.dashboard_direccion', compact('user', 'direcciones'));
   }
 
@@ -428,11 +461,11 @@ class IndexController extends Controller
     
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)
-    ->where(function ($query) {
+      ->where(function ($query) {
         $query->whereNotNull('tittle')
-            ->orWhereNotNull('specifications');
-    })
-    ->get();
+          ->orWhereNotNull('specifications');
+      })
+      ->get();
     $productosConGalerias = DB::select("
             SELECT products.*, galeries.*
             FROM products
@@ -447,7 +480,7 @@ class IndexController extends Controller
     $ProdComplementarios = Products::where('categoria_id', '=', $IdProductosComplementarios)->get();
     $atributos = Attributes::where("status", "=", true)->get();
     // $atributos = $product->attributes()->get();
-    
+
 
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
 
@@ -457,32 +490,34 @@ class IndexController extends Controller
   }
 
 
-  public function liquidacion(){
+  public function liquidacion()
+  {
     try {
-      
+
       $liquidacion = Products::where('status', '=', 1)->where('visible', '=', 1)->where('liquidacion', '=', 1)->paginate(16);
-     
+
       return view('public.liquidacion', compact('liquidacion'));
     } catch (\Throwable $th) {
     }
   }
 
-  public function novedades(){
+  public function novedades()
+  {
     try {
-      
+
       $novedades = Products::where('status', '=', 1)->where('visible', '=', 1)->where('recomendar', '=', 1)->paginate(16);
-     
+
       return view('public.novedades', compact('novedades'));
     } catch (\Throwable $th) {
     }
   }
 
   public function searchProduct(Request $request)
-  {   
-      $query = $request->input('query');
-      $resultados = Products::where('producto', 'like', "%$query%")->get(); 
-      
-      return response()->json($resultados);
+  {
+    $query = $request->input('query');
+    $resultados = Products::where('producto', 'like', "%$query%")->get();
+
+    return response()->json($resultados);
   }
   //  --------------------------------------------
   /**
@@ -537,32 +572,32 @@ class IndexController extends Controller
    * Save contact from blade
    */
   public function guardarContacto(Request $request)
-    {
-        
-        $data = $request->all();
-        $data['full_name'] = $request->name. ' ' . $request->last_name;
-    
-       try {
-        $reglasValidacion = [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-        ];
-        $mensajes = [
-            'name.required' => 'El campo nombre es obligatorio.',
-            'email.required' => 'El campo correo electrónico es obligatorio.',
-            'email.email' => 'El formato del correo electrónico no es válido.',
-            'email.max' => 'El campo correo electrónico no puede tener más de :max caracteres.',
-        ];
-        $request->validate($reglasValidacion, $mensajes);
-        $formlanding = Message::create($data);
-        $this-> envioCorreo($formlanding);
+  {
 
-        return response()->json(['message'=> 'Mensaje enviado con exito']);
-       } catch (ValidationException $e) {
-       
-        return response()->json(['message'=> $e->validator->errors()], 400);
-       }
+    $data = $request->all();
+    $data['full_name'] = $request->name . ' ' . $request->last_name;
+
+    try {
+      $reglasValidacion = [
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+      ];
+      $mensajes = [
+        'name.required' => 'El campo nombre es obligatorio.',
+        'email.required' => 'El campo correo electrónico es obligatorio.',
+        'email.email' => 'El formato del correo electrónico no es válido.',
+        'email.max' => 'El campo correo electrónico no puede tener más de :max caracteres.',
+      ];
+      $request->validate($reglasValidacion, $mensajes);
+      $formlanding = Message::create($data);
+      $this->envioCorreo($formlanding);
+
+      return response()->json(['message' => 'Mensaje enviado con exito']);
+    } catch (ValidationException $e) {
+
+      return response()->json(['message' => $e->validator->errors()], 400);
     }
+  }
 
 
 
@@ -578,35 +613,33 @@ class IndexController extends Controller
   }
 
 
-  private function envioCorreo($data){
-        
+  private function envioCorreo($data)
+  {
+
     $name = $data['full_name'];
     $mail = EmailConfig::config();
     try {
-        $mail->addAddress($data['email']);
-        $mail->Body = "Hola $name su mensaje fue enviado con exito. En breve un asesor se comunicara con usted.";
-        $mail->isHTML(true);
-        $mail->send();
-        
+      $mail->addAddress($data['email']);
+      $mail->Body = "Hola $name su mensaje fue enviado con exito. En breve un asesor se comunicara con usted.";
+      $mail->isHTML(true);
+      $mail->send();
     } catch (\Throwable $th) {
-        //throw $th;
-    }  
+      //throw $th;
+    }
   }
 
-  private function envioCorreoCompra($data){
-        
+  private function envioCorreoCompra($data)
+  {
+
     $name = $data['nombre'];
     $mail = EmailConfig::config();
     try {
-        $mail->addAddress($data['email']);
-        $mail->Body = "Hola $name su pedido fue realizado.";
-        $mail->isHTML(true);
-        $mail->send();
-        
+      $mail->addAddress($data['email']);
+      $mail->Body = "Hola $name su pedido fue realizado.";
+      $mail->isHTML(true);
+      $mail->send();
     } catch (\Throwable $th) {
-        //throw $th;
-    }  
+      //throw $th;
+    }
   }
-
-
 }

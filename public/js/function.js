@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
  // dropdown,js--------------------------------------------------------
 
   var input = document.querySelector(".input-box");
-input.onclick = function() {
+input.onclick = function () {
   this.classList.toggle("open");
   let list = this.nextElementSibling;
   if (list.style.maxHeight) {
@@ -335,13 +335,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   
     // Función para cerrar el modal
-    function closeModa(event) {
+    /* function closeModa(event) {
       console.log(event.target);
       if (event.target === modal) {
         modal.classList.remove("modal--show");
         body.classList.remove("overflow-hidden");
       }
-    }
+    } */
   
     window.addEventListener("click", closeModa);
   });

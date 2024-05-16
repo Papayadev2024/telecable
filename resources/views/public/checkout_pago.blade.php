@@ -3,6 +3,7 @@
 @section('css_importados')
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://sandbox-checkout.izipay.pe/payments/v1/js/index.js"></script>
 
 @stop
 
@@ -303,10 +304,10 @@
                       <a href="/agradecimiento" id="pagarProductos"
                         class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none">Pagar</a>
                       <!-- <input
-                                                                                                                                                  type="submit"
-                                                                                                                                                  value="Checkout"
-                                                                                                                                                  class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
-                                                                                                                                                /> -->
+                                                                                                                                                                                            type="submit"
+                                                                                                                                                                                            value="Checkout"
+                                                                                                                                                                                            class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
+                                                                                                                                                                                          /> -->
                     </div>
 
                   </div>
@@ -335,7 +336,7 @@
           <div class="font-poppins flex flex-col gap-5 mt-10">
             <div class="text-[#141718] flex justify-between items-center border-b-[1px] border-[#E8ECEF] pb-5">
               <p class="font-normal text-[16px]">Envío</p>
-              <p class="font-semibold text-[16px]">Gratis</p>
+              <p id="tipoEnvioDesc" class="font-semibold text-[16px]"></p>
             </div>
 
             <div class="text-[#141718] flex justify-between items-center border-b-[1px] border-[#E8ECEF] pb-5">
@@ -359,6 +360,55 @@
 
 @section('scripts_importados')
   <script>
+    const iziConfig = {
+      config: {
+        transactionId: '{TRANSACTIfsdfON_ID}',
+        action: 'pay',
+        merchantCode: '{MERCHANT_CODE}',
+        order: {
+          orderNumber: '{ORDER_NUMBER}',
+          currency: 'PEN',
+          amount: '1.50',
+          processType: 'AT',
+          merchantBuyerId: '{MERCHANT_CODE}',
+          dateTimeTransaction: '1670258741603000',
+        },
+        billing: {
+          firstName: 'Juan',
+          lastName: 'Wick Quispe',
+          email: 'jwickq@izi.com',
+          phoneNumber: '958745896',
+          street: 'Av. Jorge Chávez 275',
+          city: 'Lima',
+          state: 'Lima',
+          country: 'PE',
+          postalCode: '15038',
+          documentType: 'DNI',
+          document: '21458796',
+        }
+      },
+    };
+
+    try {
+
+      const checkout = new Izipay({
+        config: iziConfig
+      });
+
+    } catch ({
+      Errors,
+      message,
+      date
+    }) {
+
+      console.log({
+        Errors,
+        message,
+        date
+      });
+
+    }
+
     $('#pagarProductos').on('click', function(e) {
       console.log('pagando servicio');
       e.preventDefault()
@@ -378,14 +428,26 @@
             icon: "success",
           });
           //limpiar carrito de compra
+          Local.delete('carrito')
           setTimeout(function() {
 
             window.location.href = `/agradecimiento?codigoCompra=${response.codigoCompra}`
           }, 3000);
         },
         error: function(response) {
+
+          const customMessages = response.responseJSON.message?.validator?.customMessages;
           console.log(response)
-          const customMessages = response.responseJSON.message.validator.customMessages;
+
+          if (!customMessages) {
+            Swal.close();
+            Swal.fire({
+              title: `Opps!!`,
+              text: response.responseJSON.errors,
+              icon: "error",
+            });
+          }
+          return
           const messages = Object.keys(customMessages).map(key => customMessages[key]);
           Swal.close();
           Swal.fire({
@@ -397,6 +459,7 @@
       });
     })
   </script>
+
   <script>
     let articulosCarrito = [];
     let checkedRadio = false
@@ -423,6 +486,7 @@
 
     function calcularTotal() {
       let articulos = Local.get('carrito')
+      console.log(articulos)
       let total = articulos.map(item => {
         let monto
         if (Number(item.descuento) !== 0) {
@@ -461,7 +525,10 @@
       // carrito = [...carrito, carrito.total]
       Local.set("carrito", carrito)
       total += tipoEnvio
-      console.log(tipoEnvio)
+      let textEnvio = tipoEnvio == 15 ? 'Envío express' : "Recoger"
+      console.log(textEnvio)
+
+      $('#tipoEnvioDesc').text(textEnvio)
 
       $('#itemTotal').text(`S/. ${total} `)
 
@@ -703,6 +770,8 @@
   </script>
 
   <script src="{{ asset('js/storage.extend.js') }}"></script>
+
+
 @stop
 
 @stop

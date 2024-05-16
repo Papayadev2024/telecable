@@ -33,7 +33,7 @@
             <div class="flex flex-col gap-12 lg:flex-row md:gap-32">
                 <div class="basis-3/6 grid grid-cols-2 gap-5">
                     <div class="flex flex-col gap-5 relative">
-                        <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}" class="w-full" />
+                        <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}" class="w-full h-full" />
 
                         <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
                             <div class="flex gap-3 flex-wrap">
@@ -88,10 +88,10 @@
                     </div>
 
                     <div class="flex flex-col gap-3">
-                        {{$product}}
-                        @foreach($product->attributes as $atributo)
+                        {{ $product }}
+                        @foreach ($product->attributes as $atributo)
                             <h4>{{ $atributo->nombre }}</h4>
-                            @foreach($atributo->values as $valor)
+                            @foreach ($atributo->values as $valor)
                                 <p>{{ $valor->valor }}</p>
                             @endforeach
                         @endforeach
@@ -160,24 +160,24 @@
                         <div class="flex justify-between items-center">
                             <!-- Corregir -->
                             <div class="flex">
-                                <div
+                                <div id=disminuir
                                     class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer rounded-l-3xl">
                                     <span class="text-[30px]">-</span>
                                 </div>
-                                <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
+                                <div id=cantidadSpan class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
                                     <span class="text-[20px] font-mediumDisplay">2</span>
                                 </div>
-                                <div
+                                <div id=aumentar
                                     class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer rounded-r-3xl">
                                     <span class="text-[30px]">+</span>
                                 </div>
                             </div>
 
                             <div class="flex justify-center items-center">
-                                <a href="#"
+                                <button href="#" id='btnAgregarCarrito'
                                     class="text-white py-3 px-5 md:px-12 xl:px-16 border-2 border-gray-700 rounded-3xl w-full text-center font-mediumDisplay text-text16 h-full bg-black hover:bg-white hover:text-black md:duration-500">
                                     Agregar al carrito
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -276,18 +276,18 @@
                                                     </span>
                                                 </div>
 
-                                                <span class="transition group-open:rotate-180">
-                                                    <svg width="20" height="20" viewBox="0 0 12 13"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
-                                                            fill="black" />
-                                                        <path
-                                                            d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
-                                                            fill="black" />
-                                                    </svg>
-                                                </span>
-                                            </summary>
+                        <span class="transition group-open:rotate-180">
+                          <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                              fill="black" />
+                            <path
+                              d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                              fill="black" />
+                          </svg>
+                        </span>
+                      </summary>
 
                                             <p
                                                 class="group-open:animate-fadeIn mt-3 font-regularDisplay text-text16 md:text-text20 text-gray-600">
@@ -374,8 +374,7 @@
 
         <section class="w-11/12 mx-auto flex flex-col gap-5 pt-10">
             <div>
-                <img src="{{ asset('images/img/producto_1.png') }}" alt="doomine"
-                    class="w-full h-full hidden md:block" />
+                <img src="{{ asset('images/img/producto_1.png') }}" alt="doomine" class="w-full h-full hidden md:block" />
 
                 <img src="{{ asset('images/img/mobile_foto.png') }}" alt="doomine"
                     class="w-full h-full block md:hidden" />
@@ -395,407 +394,369 @@
                 <a href="#" class="font-boldItalicDisplay text-text20 md:text-text28 uppercase">/ Ver Todo /</a>
             </div>
 
-            <div>
-                <div class="swiper slider-productos">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+      <div>
+        <div class="swiper slider-productos">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                            <p
-                                                class="text-text10 md:text-text12 line-through text-gray-400 font-boldDisplay">
-                                                s/120.00
-                                            </p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                      <p class="text-text10 md:text-text12 line-through text-gray-400 font-boldDisplay">
+                        s/120.00
+                      </p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
-                                <div
-                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                        New Arrival
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                    New Arrival
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
-                                <div
-                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                        New Arrival
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                    New Arrival
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                            <p
-                                                class="text-text10 md:text-text12 line-through text-gray-400 font-boldDisplay">
-                                                s/120.00
-                                            </p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                      <p class="text-text10 md:text-text12 line-through text-gray-400 font-boldDisplay">
+                        s/120.00
+                      </p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
-                                <div
-                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                        New Arrival
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                    New Arrival
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                            <p
-                                                class="text-text10 md:text-text12 line-through text-gray-400 font-boldDisplay">
-                                                s/120.00
-                                            </p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                      <p class="text-text10 md:text-text12 line-through text-gray-400 font-boldDisplay">
+                        s/120.00
+                      </p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
-                                <div
-                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                        -20%
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                    -20%
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
-                                <div
-                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                        New Arrival
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                    New Arrival
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
-                                <div
-                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                        New Arrival
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                    New Arrival
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
-                                <div
-                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                        New Arrival
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                    New Arrival
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
-                                <div
-                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                        -20%
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                    -20%
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_1.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
-                                <div
-                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                        New Arrival
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                    New Arrival
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_2.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
-                                <div
-                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                        New Arrival
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                    New Arrival
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_3.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
-                                <div
-                                    class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
-                                    <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
-                                        New Arrival
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
+                  <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack">
+                    New Arrival
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                        <div class="swiper-slide">
-                            <div class="flex flex-col gap-5 relative">
-                                <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives"
-                                    class="w-full h-full" />
+            <div class="swiper-slide">
+              <div class="flex flex-col gap-5 relative">
+                <img src="{{ asset('images/img/arrives_4.png') }}" alt="arrives" class="w-full h-full" />
 
-                                <div class="flex flex-col gap-2">
-                                    <div
-                                        class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                                        <p class="text-text14 md:text-text16">
-                                            Oversize Verde Babygirls
-                                        </p>
-                                        <div class="flex font-boldDisplay text-black items-center gap-2">
-                                            <p class="text-text14 md:text-text16">s/60.00</p>
-                                        </div>
-                                    </div>
+                <div class="flex flex-col gap-2">
+                  <div
+                    class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+                    <p class="text-text14 md:text-text16">
+                      Oversize Verde Babygirls
+                    </p>
+                    <div class="flex font-boldDisplay text-black items-center gap-2">
+                      <p class="text-text14 md:text-text16">s/60.00</p>
+                    </div>
+                  </div>
 
-                                    <div class="order-1 lg:order-2">
-                                        <p
-                                            class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                                            Polos
-                                        </p>
-                                    </div>
-                                </div>
+                  <div class="order-1 lg:order-2">
+                    <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
+                      Polos
+                    </p>
+                  </div>
+                </div>
 
                                 <div
                                     class="bg-white absolute top-[10px] left-[10px] md:top-[25px] md:left-[25px] rounded-md py-1 px-2">
@@ -814,8 +775,12 @@
 
 @section('scripts_importados')
 
+
     <script>
         $(document).ready(function() {
+
+            PintarCarrito()
+
 
 
             function capitalizeFirstLetter(string) {
@@ -843,247 +808,28 @@
         })
     </script>
     <script>
-        let articulosCarrito = [];
-
-
-        function deleteOnCarBtn(id, operacion) {
-            console.log('Elimino un elemento del carrito');
-            console.log(id, operacion)
-            const prodRepetido = articulosCarrito.map(item => {
-                if (item.id === id && item.cantidad > 0) {
-                    item.cantidad -= Number(1);
-                    return item; // retorna el objeto actualizado 
-                } else {
-                    return item; // retorna los objetos que no son duplicados 
-                }
-
-            });
-            Local.set('carrito', articulosCarrito)
-            limpiarHTML()
-            PintarCarrito()
-
-
-        }
-
-        function calcularTotal() {
-            let articulos = Local.get('carrito')
-            console.log(articulos)
-            let total = articulos.map(item => {
-                let monto
-                if (Number(item.descuento) !== 0) {
-                    monto = item.cantidad * Number(item.descuento)
-                } else {
-                    monto = item.cantidad * Number(item.precio)
-
-                }
-                return monto
-
-            })
-            const suma = total.reduce((total, elemento) => total + elemento, 0);
-
-            $('#itemsTotal').text(`S/. ${suma} `)
-
-        }
-
-        function addOnCarBtn(id, operacion) {
-            console.log('agrego un elemento del cvarrio');
-            console.log(id, operacion)
-
-            const prodRepetido = articulosCarrito.map(item => {
-                if (item.id === id) {
-                    item.cantidad += Number(1);
-                    return item; // retorna el objeto actualizado 
-                } else {
-                    return item; // retorna los objetos que no son duplicados 
-                }
-
-            });
-            console.log(articulosCarrito)
-            Local.set('carrito', articulosCarrito)
-            // localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
-            limpiarHTML()
-            PintarCarrito()
-
-
-        }
-
-        function deleteItem(id) {
-            console.log('borrando elemento')
-            articulosCarrito = articulosCarrito.filter(objeto => objeto.id !== id);
-
-            Local.set('carrito', articulosCarrito)
-            limpiarHTML()
-            PintarCarrito()
-        }
-
-        var appUrl = <?php echo json_encode($url_env); ?>;
-        console.log(appUrl);
-        $(document).ready(function() {
-            articulosCarrito = Local.get('carrito') || [];
-
-            PintarCarrito();
-        });
-
-        function limpiarHTML() {
-            //forma lenta 
-            /* contenedorCarrito.innerHTML=''; */
-            $('#itemsCarrito').html('')
-
-
-        }
-
-
-
-        function PintarCarrito() {
-            console.log('pintando carrito ')
-
-            let itemsCarrito = $('#itemsCarrito')
-
-            articulosCarrito.forEach(element => {
-                let plantilla = `<div class="flex justify-between bg-white font-poppins border-b-[1px] border-[#E8ECEF] pb-5">
-            <div class="flex justify-center items-center gap-5">
-              <div class="bg-[#F3F5F7] rounded-md p-4">
-                <img src="${appUrl}/${element.imagen}" alt="producto" class="w-24" />
-              </div>
-              <div class="flex flex-col gap-3 py-2">
-                <h3 class="font-semibold text-[14px] text-[#151515]">
-                  ${element.producto}
-                </h3>
-                <p class="font-normal text-[12px] text-[#6C7275]">
-                  
-                </p>
-                <div class="flex w-20 justify-center text-[#151515] border-[1px] border-[#6C7275] rounded-md">
-                  <button type="button" onClick="(deleteOnCarBtn(${element.id}, '-'))" class="  w-8 h-8 flex justify-center items-center ">
-                    <span  class="text-[20px]">-</span>
-                  </button>
-                  <div class="w-8 h-8 flex justify-center items-center">
-                    <span  class="font-semibold text-[12px]">${element.cantidad }</span>
-                  </div>
-                  <button type="button" onClick="(addOnCarBtn(${element.id}, '+'))" class="  w-8 h-8 flex justify-center items-center ">
-                    <span class="text-[20px]">+</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-col justify-start py-2 gap-5 items-center pr-2">
-              <p class="font-semibold text-[14px] text-[#151515]">
-                S/ ${Number(element.descuento) !== 0 ? element.descuento : element.precio}
-              </p>
-              <div class="flex items-center">
-                <button type="button" onClick="(deleteItem(${element.id}))" class="  w-8 h-8 flex justify-center items-center ">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                </svg>
-                </button>
-
-              </div>
-            </div>
-          </div>`
-
-                itemsCarrito.append(plantilla)
-
-            });
-
-            calcularTotal()
-        }
-
-
-
-
-
-
-        $('#btnAgregarCarrito').on('click', function() {
-            let url = window.location.href;
-            let partesURl = url.split('/')
-            let item = partesURl[partesURl.length - 1]
-            let cantidad = Number($('#cantidadSpan span').text())
-            item = item.replace('#', '')
-
-
-
-            // id='nodescuento'
-
-
-            $.ajax({
-
-                url: `{{ route('carrito.buscarProducto') }}`,
-                method: 'POST',
-                data: {
-                    _token: $('input[name="_token"]').val(),
-                    id: item,
-                    cantidad
-
-                },
-                success: function(success) {
-                    console.log(success)
-                    let {
-                        producto,
-                        id,
-                        descuento,
-                        precio,
-                        imagen,
-                        color
-                    } = success.data
-                    let cantidad = Number(success.cantidad)
-                    let detalleProducto = {
-                        id,
-                        producto,
-                        descuento,
-                        precio,
-                        imagen,
-                        cantidad,
-                        color
-
-                    }
-                    let existeArticulo = articulosCarrito.some(item => item.id === detalleProducto.id)
-                    if (existeArticulo) {
-                        //sumar al articulo actual 
-                        const prodRepetido = articulosCarrito.map(item => {
-                            if (item.id === detalleProducto.id) {
-                                item.cantidad += Number(detalleProducto.cantidad);
-                                return item; // retorna el objeto actualizado 
-                            } else {
-                                return item; // retorna los objetos que no son duplicados 
-                            }
-
-                        });
-                    } else {
-                        articulosCarrito = [...articulosCarrito, detalleProducto]
-
-                    }
-
-                    Local.set('carrito', articulosCarrito)
-                    let itemsCarrito = $('#itemsCarrito')
-                    let ItemssubTotal = $('#ItemssubTotal')
-                    let itemsTotal = $('#itemsTotal')
-                    limpiarHTML()
-                    PintarCarrito()
-
-                },
-                error: function(error) {
-                    console.log(error)
-                }
-
-            })
-
-
-
-            // articulosCarrito = {...articulosCarrito , detalleProducto }
-        })
         $('#openCarrito').on('click', function() {
-            console.log('abriendo carrito ');
             $('.main').addClass('blur')
         })
         $('#closeCarrito').on('click', function() {
-            console.log('abriendo carrito ');
-            $('.main').removeClass('blur')
+
             $('.cartContainer').addClass('hidden')
             $('#check').prop('checked', false);
+            $('.main').removeClass('blur')
 
-        })
+
+        });
+    </script>
+    <script>
+        var appUrl = '{{ env('APP_URL') }}';
+
+        // Agrega más variables de entorno aquí según sea necesario
     </script>
 
-    <script src="{{ asset('js/storage.extend.js') }}"></script>
+
+    <script src="{{ asset('js/carrito.js') }}"></script>
+
 @stop
+
 
 @stop

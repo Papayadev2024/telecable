@@ -69,7 +69,7 @@
 
       <div class="flex flex-col gap-5">
         <div>
-          <a href="{{route('pedidos')}}"
+          <a href="{{ route('pedidos') }}"
             class="text-white bg-[#74A68D] w-full py-3 rounded-2xl cursor-pointer font-semibold text-[16px] inline-block text-center">Seguir
             comprando</a>
         </div>
@@ -152,6 +152,16 @@
       // calcularTotal()
     }
   </script>
+
+  <script>
+    var appUrl = '{{ env('APP_URL') }}';
+
+    // Agrega más variables de entorno aquí según sea necesario
+  </script>
+
+
+  <script src="{{ asset('js/carrito.js') }}"></script>
+
   <script src="{{ asset('js/storage.extend.js') }}"></script>
 
 @stop
