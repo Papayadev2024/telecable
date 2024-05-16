@@ -228,7 +228,7 @@
                   <p id="itemsTotal"></p>
                 </div>
                 <div>
-                  <a href="carrito"
+                  <a href="/carrito"
                     class="font-boldDisplay text-base bg-bgBlack py-3 px-5 rounded-2xl text-white cursor-pointer w-full inline-block text-center">
                     Checkout
                   </a>
@@ -426,7 +426,7 @@
 </header>
 
 <script>
-  $('#openCarrito').on('click', function() {
+  $('.bag__modal').on('click', function() {
     console.log('abriendo carrito ');
     $('.main').addClass('blur')
     $('footer').addClass('blur');

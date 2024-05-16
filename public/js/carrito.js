@@ -1,3 +1,4 @@
+ console.log(appUrl)
 let articulosCarrito = [];
 
     function mostrarTotalItems() {
@@ -76,10 +77,10 @@ let articulosCarrito = [];
       PintarCarrito()
     }
 
-    // var appUrl = <?php echo json_encode($url_env); ?>;
+  
     let url = window.location.href;
     console.log(url.split('/'))
-    let appUrl = '127.0.0.1'
+    
     $(document).ready(function() {
       articulosCarrito = Local.get('carrito') || [];
 
@@ -168,7 +169,7 @@ let articulosCarrito = [];
 
       $.ajax({
 
-        url: `{{ route('carrito.buscarProducto') }}`,
+        url: "/carrito/buscarProducto",
         method: 'POST',
         data: {
           _token: $('input[name="_token"]').val(),

@@ -140,13 +140,15 @@
             <div class="flex justify-between items-center">
               <!-- Corregir -->
               <div class="flex">
-                <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer rounded-l-3xl">
+                <div id=disminuir
+                  class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer rounded-l-3xl">
                   <span class="text-[30px]">-</span>
                 </div>
-                <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
+                <div id=cantidadSpan class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
                   <span class="text-[20px] font-mediumDisplay">2</span>
                 </div>
-                <div class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer rounded-r-3xl">
+                <div id=aumentar
+                  class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer rounded-r-3xl">
                   <span class="text-[30px]">+</span>
                 </div>
               </div>
@@ -792,6 +794,14 @@
 
     });
   </script>
+  <script>
+    var appUrl = '{{ env('APP_URL') }}';
+
+    // Agrega más variables de entorno aquí según sea necesario
+  </script>
+
+
+  <script src="{{ asset('js/carrito.js') }}"></script>
 
 @stop
 
