@@ -88,13 +88,13 @@
                     </div>
 
                     <div class="flex flex-col gap-3">
-                        {{ $product }}
+                        {{-- {{ $product }}
                         @foreach ($product->attributes as $atributo)
                             <h4>{{ $atributo->nombre }}</h4>
                             @foreach ($atributo->values as $valor)
                                 <p>{{ $valor->valor }}</p>
                             @endforeach
-                        @endforeach
+                        @endforeach --}}
                         {{-- @if ($product->atributos)
                             @foreach ($product->atributos as $atributo)
                                 @if ($atributo->tipo === 'color')
