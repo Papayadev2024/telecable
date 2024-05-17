@@ -18,7 +18,7 @@ class ValoresAtributosController extends Controller
   public function index()
   {
     // $attributes = Attributes::where("status", "=", true)->get(); // actualizar a where status = 1 
-    $valoresAttr =  AttributesValues::where("status", "=", true)->with('attribute')->get();
+    $valoresAttr =  AttributesValues::where("status", "=", true)->with('productAttribute')->get();
     return view('pages.attrValues.index', compact('valoresAttr'));
   }
 
@@ -93,8 +93,8 @@ class ValoresAtributosController extends Controller
   public function edit(Request $request, string $id)
   {
 
-    $attributesValues = AttributesValues::with('attribute')
-      ->whereHas('attribute', function ($query) use ($id) {
+    $attributesValues = AttributesValues::with('productAttribute')
+      ->whereHas('productAttribute', function ($query) use ($id) {
         $query->where('attributes_values.id', $id);
       })
       ->get();

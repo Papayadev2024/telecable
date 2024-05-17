@@ -11,7 +11,7 @@
         class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
         <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
           <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">
-            Editar valor del atributo {{$attributesValues->attribute->titulo}}
+            Editar valor del atributo {{$attributesValues->productAttribute->titulo}}
           </h2>
         </header>
 
@@ -37,7 +37,7 @@
                   </div>
                   <select name="attribute_id"
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="{{ $attributesValues->attribute->id }}">{{ $attributesValues->attribute->titulo }}
+                    <option value="{{ $attributesValues->productAttribute->id }}">{{ $attributesValues->productAttribute->titulo }}
                     </option>
                     @foreach ($attributes as $item)
                       <option value="{{ $item->id }}">{{ $item->titulo }}</option>

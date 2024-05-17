@@ -24,7 +24,6 @@
               <tr>
                 <th>Atributo Principal</th>
                 <th>Valor</th>
-                <th>Descripcion</th>
                 <th>Color</th>
                 <th>Imagen</th>
                 <th>Visible</th>
@@ -35,11 +34,9 @@
 
               @foreach ($valoresAttr as $item)
                 <tr>
-                  <td>{{ $item->attribute->titulo }}</td>
+                  <td>{{ $item->productAttribute->titulo }}</td>
                   <td>{{ $item->valor }}</td>
-                  <td>{{ $item->descripcion }}</td>
-
-                  <td class="px-1 py-1 rounded-full w-2 h-2" style="background-color: {{ $item->color }}"></td>
+                  <td class="px-1 py-1 flex flex-row  justify-center items-center"> <div class=" rounded-full w-12 h-12" style="background-color: {{ $item->color }}"></div></td>
                   <td class="px-3 py-2"><img class="w-20" src="{{ asset($item->imagen) }}" alt=""></td>
 
                   <td>
@@ -83,7 +80,7 @@
               <tr>
                 <th>Atributo Principal</th>
                 <th>Valor</th>
-                <th>Descripcion</th>
+               
                 <th>Color</th>
                 <th>Imagen</th>
                 <th>Visible</th>

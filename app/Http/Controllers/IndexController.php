@@ -454,10 +454,10 @@ class IndexController extends Controller
 
   public function producto(string $id)
   {
-    $product = Products::with('attributes.values', 'attributes.typeAttribute')->find($id);
-    
+    // $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
+    $product = Products::findOrFail($id);
     $productos = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
-    
+    // $attributeValues = $product->attributes()->with('attributeValues')->get();
     
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)

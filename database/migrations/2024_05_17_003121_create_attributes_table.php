@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('slug')->nullable();
-            $table->string('type')->nullable();
             $table->unsignedBigInteger('type_atributte_id')->nullable();
             $table->string('imagen')->nullable();
             $table->text('descripcion')->nullable();

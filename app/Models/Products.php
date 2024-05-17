@@ -53,11 +53,31 @@ class Products extends Model
       return $query->where('status', true)->where('destacar', true);
   }
 
-  public function attributes()
+  public function attributeValues()
     {
-        return $this->belongsToMany(Attributes::class, 'product_has_attribute', 'product_id', 'attribute_id')
-                    ->withPivot('attribute_value_id');
+        return $this->hasMany(AttributesValues::class, 'product_id');
+                  
     }
+
+  
+  public function attributes()
+  {
+      return $this->belongsToMany(Attributes::class, 'attribute_product_values', 'product_id', 'attribute_id')
+          ->withPivot('attribute_value_id');
+          
+  }
+
+    // public function attributeValues()
+    // {
+    //     return $this->hasMany(AttributesValues::class, 'attribute_id', 'id');
+    // }
+
+    // public function attributes()
+    // {
+    //     return $this->belongsToMany(Attributes::class, 'attribute_product_values', 'product_id', 'attribute_id')
+    //         ->withPivot('attribute_value_id')
+    //         ->with('attributeValues');
+    // }
 
 
 }
