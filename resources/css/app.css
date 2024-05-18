@@ -5,9 +5,14 @@
 /* Additional styles */
 @import 'additional-styles/utility-patterns.css';
 @import 'additional-styles/flatpickr.css';
-
 @import 'tailwindcss/utilities';
 
+
+@layer components {
+    .active-color {
+      @apply cursor-pointer border-3 transition border-black;
+    }
+}
 
 @font-face {
     font-family: "font_MediumDisplay";

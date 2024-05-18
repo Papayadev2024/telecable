@@ -130,7 +130,7 @@
                                                 class="colors w-14 h-14 rounded-[50%] cursor-pointer"></div>
                                         @endforeach
                                     </div>
-                                @elseif($atributo->typeAttribute->name === 'Texto')
+                                @elseif($atributo->typeAttribute->name === 'Talla')
                                     <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
                                       Selecciona {{strtolower($atributo->titulo)}}:
                                     </p>

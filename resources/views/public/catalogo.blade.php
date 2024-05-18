@@ -32,7 +32,14 @@
             <img src="{{ asset('images/svg/catalogo_filtro_icon.svg') }}" alt="logo_filtros" />
           </div>
         </div>
-
+        <form id="FilterForm" method="post" action="" class="hidden">
+          @csrf
+          <input type="hidden" name="categories_id" id="get_categories">
+          <input type="hidden" name="precio_id" id="get_precios">
+          <input type="hidden" name="talla_id" id="get_tallas">
+          <input type="hidden" name="color_id" id="get_colores">
+          <input type="hidden" name="coleccion_id" id="get_colecciones">
+        </form>
         <div class="md:pl-9 order-1 md:order-2 flex items-center">
           <h3 class="font-boldItalicDisplay text-text20 md:text-text24 text-left w-full lg:w-auto">
             @if ($filtro == 0)
@@ -94,26 +101,138 @@
         <div class="hidden-categoria-precio">
           <div class="hidden md:flex flex-col gap-10 show-categoria-precio">
             <div class="flex flex-col gap-2 text-text18 xl:text-text20">
-
-
-
               <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
                 <a href="/catalogo/0" class="{{ $filtro == 0 ? 'font-semibold underline' : 'text-black' }}">Todas</a>
               </div>
 
               @foreach ($categorias as $item)
-                <a href="/catalogo/{{ $item->id }}">
+                {{-- <a href="/catalogo/{{ $item->id }}">
                   <div
-                    class="font-boldDisplay flex justify-start gap-2 items-center w-full @if ($filtro == 0) @else
-
-                                        {{ $item->id == $categoria->id ? 'font-semibold underline text-black' : '' }} @endif ">
+                    class="font-boldDisplay flex justify-start gap-2 items-center w-full @if ($filtro == 0) @else {{ $item->id == $categoria->id ? 'font-semibold underline text-black' : '' }} @endif ">
                     {{ $item->name }}
                   </div>
-                </a>
+                </a> --}}
+                <div class="flex justify-start gap-2 items-center w-full">
+                  <input type="checkbox"  value="{{ $item->id }}" class="changeCategory"
+                         id="categoria_{{ $item->id }}">
+                  <label for="categoria_{{ $item->id }}" 
+                         class="font-boldDisplay flex justify-start gap-2 items-center w-full">
+                      {{ $item->name }}
+                  </label>
+              </div>
               @endforeach
-
-
+              
             </div>
+
+            <script>
+              $(document).ready(function() {
+                function updateCategoriesField() {
+                    var selectedCategories = [];
+                    $('.changeCategory:checked').each(function() {
+                        selectedCategories.push($(this).val());
+                    });
+                    $('#get_categories').val(selectedCategories.join(','));
+                }
+                updateCategoriesField();
+                $('.changeCategory').on('change', function() {
+                    updateCategoriesField();
+                    FilterForm();
+                });
+             
+                function updatePriceField() {
+                    var selectedPrice = [];
+                    $('.changePrice:checked').each(function() {
+                        selectedPrice.push($(this).val());
+                    });
+                    $('#get_precios').val(selectedPrice.join(','));
+                }
+                updatePriceField();
+                $('.changePrice').on('change', function() {
+                   updatePriceField();
+                   FilterForm();
+                });
+
+                function updateTallaField() {
+                    var selectedTallas = [];
+                    $('.changeTallas:checked').each(function() {
+                        selectedTallas.push($(this).val());
+                    });
+                    $('#get_tallas').val(selectedTallas.join(','));
+                }
+                updateTallaField();
+                $('.changeTallas').on('change', function() {
+                  updateTallaField();
+                  FilterForm();
+                });
+
+                function updateCollectionField() {
+                    var selectedCollection = [];
+                    $('.changeCollection:checked').each(function() {
+                      selectedCollection.push($(this).val());
+                    });
+                    $('#get_colecciones').val(selectedCollection.join(','));
+                }
+                updateCollectionField();
+                $('.changeCollection').on('change', function() {
+                  updateCollectionField();
+                  FilterForm();
+                });
+
+                
+                $('.colores').on('change', function() {
+                    if ($(this).is(':checked')) {
+                        $('.labelcolor').addClass('border-black');
+                    } else {
+                        $('.labelcolor').removeClass('border-black');
+                    }
+                });
+
+                $('.colores:checked').each(function() {
+                    $(this).next('labelcolor').addClass('border-black');
+                });
+
+
+                $('.changeColor').click(function(){
+                  var id = $(this).attr('id');
+                  var status = $(this).attr('data-val');
+                  if(status  == 0){
+                    $(this).attr('data-val', 1);
+                    $(this).addClass('active-color');
+                  }else{
+                    $(this).attr('data-val', 0);
+                    $(this).removeClass('active-color');
+                  }
+
+                  var ids = '';
+                  $('.changeColor').each(function(){
+                    var status = $(this).attr('data-val');
+                    if(status == 1){
+                      var id = $(this).attr('id');
+                      ids += id+',';
+                    }
+                  });
+                  $('#get_colores').val(ids);
+                  FilterForm();
+                });
+
+                function FilterForm(){
+                  $.ajax({
+                          url: '{{ route('catalogo_filtro_ajax') }}',
+                          method: 'POST',
+                          data: $('#FilterForm').serialize(),
+                          dataType: "json",
+                          success: function(response) {
+                           
+                            $('#getProductAjax').html(response.success)
+
+                          },
+                          error: function(error) {
+                          }
+                  });
+                }
+                
+              });
+            </script>
 
             <div>
               <div class="relative">
@@ -139,64 +258,49 @@
 
                       <div class="group-open:animate-fadeIn mt-5">
                         <div class="flex flex-col gap-2 text-text18 xl:text-text20">
-                          <a href="/catalogo/{{ $filtro }}?rangefrom=0&rangeto=0"
+                          {{-- <a href="/catalogo/{{ $filtro }}?rangefrom=0&rangeto=0"
                             class="font-regularDisplay  @if ($rangefrom == 0 && $rangeto == 0) font-semibold underline
                                                     @else
                                                     font-normal @endif">Todos
-                            los precios</a>
+                            los precios</a> --}}
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <a href="/catalogo/{{ $filtro }}?rangefrom=0&rangeto=50"
-                              class="cursor-pointer
-                                                        @if ($rangefrom == 0 && $rangeto == 50) font-semibold
-                                                        @else
-                                                        font-normal @endif
-                                                        ">
+                            <input type="checkbox"  value="1" class="changePrice"
+                              id="price_0_50">  
+                            <label for="price_0_50" class="cursor-pointer">
                               S/0 - S/50
-                            </a>
+                            </label>
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <a href="/catalogo/{{ $filtro }}?rangefrom=51&rangeto=100"
-                              class="cursor-pointer
-                                                        @if ($rangefrom == 51 && $rangeto == 100) font-semibold
-                                                        @else
-                                                        font-normal @endif
-                                                        ">
-                              S/51 - S/100
-                            </a>
+                            <input type="checkbox"  value="2" class="changePrice"
+                              id="price_51_100">  
+                            <label for="price_51_100" class="cursor-pointer">
+                              S/50 - S/100
+                            </label>
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <a href="/catalogo/{{ $filtro }}?rangefrom=101&rangeto=150"
-                              class="cursor-pointer
-                                                        @if ($rangefrom == 101 && $rangeto == 150) font-semibold
-                                                        @else
-                                                        font-normal @endif
-                                                        ">
-                              S/101 - S/150
-                            </a>
+                            <input type="checkbox"  value="3" class="changePrice"
+                              id="price_101_150">  
+                            <label for="price_101_150" class="cursor-pointer">
+                              S/100 - S/150
+                            </label>
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <a href="/catalogo/{{ $filtro }}?rangefrom=151&rangeto=200"
-                              class="cursor-pointer
-                                                        @if ($rangefrom == 151 && $rangeto == 200) font-semibold
-                                                        @else
-                                                        font-normal @endif
-                                                        ">
-                              S/151 - S/200
-                            </a>
+                            <input type="checkbox"  value="4" class="changePrice"
+                            id="price_151_200">  
+                            <label for="price_151_200" class="cursor-pointer">
+                              S/150 - S/200
+                            </label>
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <a href="/catalogo/{{ $filtro }}?rangefrom=201&rangeto=10000"
-                              class="cursor-pointer
-                                                        @if ($rangefrom == 201 && $rangeto == 10000) font-semibold
-                                                        @else
-                                                        font-normal @endif
-                                                        ">
-                              S/201 a Más
-                            </a>
+                            <input type="checkbox"  value="5" class="changePrice"
+                            id="price_200_more">  
+                            <label for="price_200_more" class="cursor-pointer">
+                              S/200 - Más
+                            </label>
                           </div>
                         </div>
                       </div>
@@ -205,6 +309,115 @@
                 </div>
               </div>
             </div>
+            @foreach ($atributos as $item)
+              @php
+                   $nametypeatributo = $item->typeAttribute->name
+              @endphp
+              @if ($nametypeatributo === "Color")
+                 
+              <div>
+                <div class="relative">
+                  <div class="mx-auto">
+                    <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
+                      <details class="group">
+                        <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
+                          <span class="font-boldDisplay text-text20 text-[#151515]">
+                            {{ $item->titulo  }}
+                          </span>
+                          <span class="transition group-open:rotate-180">
+                            <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                fill="black" />
+                              <path
+                                d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                fill="black" />
+                            </svg>
+                          </span>
+                        </summary>
+  
+                        <div class="group-open:animate-fadeIn mt-5">
+                          <div
+                            class="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 place-items-center">
+                            @foreach ($item->attributeValues as $valores)
+                            
+                            <a href="javascript:;" id="{{ $valores->id }}" class="changeColor rounded-full" data-val="0"
+                              style="background-color:{{ $valores->color }};">
+                              <span class="block w-12 h-12 rounded-full"><span class="hidden">{{ $valores->valor }}</span></span>
+                            </a>
+                            
+                            {{-- <div class="relative">
+                              <input type="checkbox" name="{{ $item->titulo }}[]" value="{{ $valores->valor }}" 
+                                     id="color_{{ $valores->id }}" class="hidden colores">
+                              <label for="color_{{ $valores->id }}" 
+                                     style="background-color: {{ $valores->color }};" 
+                                     class="block w-12 h-12 rounded-full cursor-pointer border-2 transition labelcolor"></label>
+                            </div> --}}
+                            @endforeach
+                          </div>
+                        </div>
+                      </details>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                 
+              @else 
+
+              <div>
+                <div class="relative">
+                  <div class="mx-auto">
+                    <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
+                      <details class="group">
+                        <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
+                          <span class="font-boldDisplay text-text20 text-[#151515]">
+                            {{ $item->titulo  }}
+                          </span>
+                          <span class="transition group-open:rotate-180">
+                            <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
+                                fill="black" />
+                              <path
+                                d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
+                                fill="black" />
+                            </svg>
+                          </span>
+                        </summary>
+  
+                        <div class="group-open:animate-fadeIn mt-5">
+                          <div class="flex flex-col gap-2 text-text18 xl:text-text20">
+                            @foreach ($item->attributeValues as $valores)
+                                <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
+                                  {{-- <a href="?{{$item->titulo}}={{$valores->valor}}"
+                                    class="cursor-pointer">
+                                    {{$valores->valor}}
+                                  </a> --}}
+                                    <input type="checkbox"  value="{{ $valores->id }}" class="changeTallas"
+                                           id="talla_{{ $valores->id }}">
+                                    <label for="talla_{{ $valores->id }}" 
+                                           class="font-boldDisplay flex justify-start gap-2 items-center w-full">
+                                          {{ $valores->valor }}
+                                    </label>
+                                </div>
+
+                               
+                            @endforeach  
+                          </div>
+                        </div>
+                      </details>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              @endif
+            @endforeach
+            
+
+           
 
             <div>
               <div class="relative">
@@ -213,7 +426,7 @@
                     <details class="group">
                       <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
                         <span class="font-boldDisplay text-text20 text-[#151515]">
-                          Colores
+                          Colecciones
                         </span>
                         <span class="transition group-open:rotate-180">
                           <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
@@ -227,160 +440,20 @@
                           </svg>
                         </span>
                       </summary>
-
-                      <div class="group-open:animate-fadeIn mt-5">
-                        <div
-                          class="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 place-items-center">
-                          <div class="colors w-14 h-14 bg-[#F1EFEE] rounded-[50%] cursor-pointer">
-                          </div>
-                          <div class="colors w-14 h-14 bg-[#212020] rounded-[50%] cursor-pointer active:from-amber-100">
-                          </div>
-
-                          <div class="colors w-14 h-14 bg-[#6DA783] rounded-[50%] cursor-pointer active:from-amber-100">
-                          </div>
-
-                          <div class="colors w-14 h-14 bg-[#B8CDEE] rounded-[50%] cursor-pointer active:from-amber-100">
-                          </div>
-
-                          <div class="colors w-14 h-14 bg-[#424047] rounded-[50%] cursor-pointer active:from-amber-100">
-                          </div>
-
-                          <div class="colors w-14 h-14 bg-[#97A0A0] rounded-[50%] cursor-pointer active:from-amber-100">
-                          </div>
-
-                          <div class="colors w-14 h-14 bg-[#436956] rounded-[50%] cursor-pointer active:from-amber-100">
-                          </div>
-
-                          <div class="colors w-14 h-14 bg-[#5B7EBB] rounded-[50%] cursor-pointer active:from-amber-100">
-                          </div>
-
-                          <div class="colors w-14 h-14 bg-[#3A383C] rounded-[50%] cursor-pointer active:from-amber-100">
-                          </div>
-
-                          <div class="colors w-14 h-14 bg-[#D5D4D2] rounded-[50%] cursor-pointer active:from-amber-100">
-                          </div>
-                        </div>
-                      </div>
-                    </details>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div class="relative">
-                <div class="mx-auto">
-                  <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
-                    <details class="group">
-                      <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
-                        <span class="font-boldDisplay text-text20 text-[#151515]">
-                          Tallas
-                        </span>
-                        <span class="transition group-open:rotate-180">
-                          <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
-                              fill="black" />
-                            <path
-                              d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
-                              fill="black" />
-                          </svg>
-                        </span>
-                      </summary>
-
-                      <div class="group-open:animate-fadeIn mt-5">
-                        <div class="flex flex-col gap-2 text-text18 xl:text-text22">
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox" id="x-small" class="w-4 h-4 accent-[#000000] cursor-pointer" />
-                            <label for="x-small" class="cursor-pointer">
-                              X-Small
-                            </label>
-                          </div>
-
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox" id="small" class="w-4 h-4 accent-[#000000] cursor-pointer" />
-                            <label for="small" class="cursor-pointer">
-                              Small
-                            </label>
-                          </div>
-
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox" id="medium" class="w-4 h-4 accent-[#000000] cursor-pointer" />
-                            <label for="medium" class="cursor-pointer">
-                              Medium
-                            </label>
-                          </div>
-
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox" id="large" class="w-4 h-4 accent-[#000000] cursor-pointer" />
-                            <label for="large" class="cursor-pointer">
-                              Large
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </details>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div class="relative">
-                <div class="mx-auto">
-                  <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
-                    <details class="group">
-                      <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
-                        <span class="font-boldDisplay text-text20 text-[#151515]">
-                          Colección
-                        </span>
-                        <span class="transition group-open:rotate-180">
-                          <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
-                              fill="black" />
-                            <path
-                              d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
-                              fill="black" />
-                          </svg>
-                        </span>
-                      </summary>
-
+                     
                       <div class="group-open:animate-fadeIn mt-5">
                         <div class="flex flex-col gap-2 text-text18 xl:text-text22">
+                         
+                          @foreach ($colecciones as $item)
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox" id="real-sensation"
-                              class="w-4 h-4 accent-[#000000] cursor-pointer" />
-                            <label for="real-sensation" class="cursor-pointer">
-                              Real Sensation
+                            <input type="checkbox" id="collection_{{ $item->id }}" value="{{ $item->id }}"
+                              class="w-4 h-4 accent-[#000000] cursor-pointer changeCollection" />
+                            <label for="collection_{{ $item->id }}" class="cursor-pointer">
+                              {{$item->name}}
                             </label>
                           </div>
+                          @endforeach
 
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox" id="autumm-bBreezes"
-                              class="w-4 h-4 accent-[#000000] cursor-pointer" />
-                            <label for="autumm-bBreezes" class="cursor-pointer">
-                              Autumm Breezes
-                            </label>
-                          </div>
-
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox" id="summer-dreams"
-                              class="w-4 h-4 accent-[#000000] cursor-pointer" />
-                            <label for="summer-dreams" class="cursor-pointer">
-                              Summer Dreams
-                            </label>
-                          </div>
-
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox" id="enjoy-collection"
-                              class="w-4 h-4 accent-[#000000] cursor-pointer" />
-                            <label for="enjoy-collection" class="cursor-pointer">
-                              Enjoy Collection
-                            </label>
-                          </div>
                         </div>
                       </div>
                     </details>
@@ -406,139 +479,10 @@
           </div>
         </div>
       </div>
-      <!-- --- -->
-      <section class="md:basis-9/12 flex flex-col gap-10">
-        <div class="grid grid-cols-2 lg:grid-cols-3 gap-5 z-[0]">
-
-          @foreach ($productos as $item)
-            <div class="flex flex-col gap-5 relative col-span-1 order-1 lg:order-1">
-              <div class="product_container">
-                <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}" class="w-full h-full" />
-
-                <div class="addProduct text-center flex justify-center">
-                  <a href="{{ route('producto', $item->id) }}"
-                    class="leading-none font-mediumDisplay text-text12 md:text-text14 bg-[#000000] px-1 py-2 md:py-2 2lg:px-5 flex-initial w-32 md:w-36 2lg:py-3 2lg:w-52 text-center text-white rounded-3xl xl:text-text20 xl:w-60">
-                    Ver producto
-                  </a>
-                </div>
-              </div>
-
-              <div class="flex flex-col gap-2">
-                <div
-                  class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
-                  <p class="text-text14 md:text-text16 xl:text-text20">
-                    {{ $item->producto }}
-                  </p>
-                  <div class="flex font-boldDisplay text-black items-center gap-2">
-                    <div class="flex font-boldDisplay text-black items-center gap-2">
-                      @if ($item->descuento == 0)
-                        <p class="text-text14 md:text-text16 xl:text-text20">
-                          s/{{ $item->precio }}
-                        </p>
-                      @else
-                        <p class="text-text14 md:text-text16 xl:text-text20">
-                          s/{{ $item->descuento }}
-                        </p>
-                        <p
-                          class="text-text10 md:text-text16 line-through text-gray-400 font-mediumDisplay xl:text-text18">
-                          s/{{ $item->precio }}
-                        </p>
-                      @endif
-                    </div>
-                  </div>
-                </div>
-
-                <div class="order-1 lg:order-2">
-                  <p class="font-boldDisplay text-text12 md:text-text14 xl:text-text16 text-textGray">
-                    @if (!is_null($item->categoria) && !is_null($item->categoria->name))
-                      {{ $item->categoria->name }}
-                    @else
-                      S/C
-                    @endif
-                  </p>
-                </div>
-              </div>
-
-              <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
-                <div class="flex gap-3 flex-wrap">
-                  @foreach ($item->tags as $tag)
-                    <div class="bg-white  rounded-md py-1 px-2">
-                      <p class="font-regularDisplay text-[8px] md:text-text16 text-textBlack ">
-                        {{ $tag->name }}
-                      </p>
-                    </div>
-                  @endforeach
-                </div>
-              </div>
-            </div>
-          @endforeach
-        </div>
-
-        {{-- <div class="hidden md:block">
-                    <nav class="mb-4 flex justify-between" aria-label="Pagination">
-                        <a class="px-4 py-2 flex gap-2 border-[1.5px] border-gray-300 rounded-lg group items-center hover:bg-black md:duration-500"
-                            href="/page/1">
-                            <div>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M15.8332 10.0013H4.1665M4.1665 10.0013L9.99984 15.8346M4.1665 10.0013L9.99984 4.16797"
-                                        stroke="black" stroke-width="1.67" stroke-linecap="round"
-                                        stroke-linejoin="round" class="group-hover:stroke-strokeWithe md:duration-500" />
-                                </svg>
-                            </div>
-                            <span
-                                class="font-mediumDisplay text-[16px] xl:text-text20 text-[#000000] group-hover:text-textWhite md:duration-500">Anterior</span>
-                        </a>
-
-                        <div class="flex text-[#000000] font-mediumDisplay items-end">
-                            <a class="rounded-lg px-4 py-2 hover:bg-[#F5F5F5] duration-300 active:bg-[#F5F5F5] text-text20"
-                                href="/page/2">1
-                            </a>
-
-                            <a class="rounded-lg px-4 py-2 text-[#495560] hover:bg-[#F5F5F5] duration-300 text-text20"
-                                href="/page/2">2
-                            </a>
-
-                            <a class="rounded-lg px-4 py-2 text-[#495560] hover:bg-[#F5F5F5] duration-300 text-text20"
-                                href="/page/3">3
-                            </a>
-
-                            <p>.....</p>
-
-                            <a class="rounded-lg px-4 py-2 text-[#495560] hover:bg-[#F5F5F5] duration-300 text-text20"
-                                href="/page/3">4
-                            </a>
-                        </div>
-
-                        <a class="px-4 py-2 flex gap-2 border-[1.5px] border-gray-300 rounded-lg group items-center hover:bg-black md:duration-500"
-                            href="/page/1">
-                            <span
-                                class="font-mediumDisplay text-[16px] xl:text-text20 text-[#000000] group-hover:text-textWhite md:duration-500">
-                                Próxima
-                            </span>
-
-                            <div>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M4.1665 10.0013H15.8332M15.8332 10.0013L9.99984 4.16797M15.8332 10.0013L9.99984 15.8346"
-                                        stroke="black" stroke-width="1.67" stroke-linecap="round"
-                                        stroke-linejoin="round" class="group-hover:stroke-strokeWithe md:duration-500" />
-                                </svg>
-                            </div>
-                        </a>
-                    </nav>
-                </div> --}}
-
-        <div class="flex justify-center items-center ">
-          {{-- <a href="#"
-                        class="text-textBlack py-3 px-5 border-2 border-gray-700 rounded-3xl w-full text-center font-medium text-text16">
-                        Cargar más modelos
-                    </a> --}}
-          {{ $productos->appends(['rangefrom' => $rangefrom, 'rangeto' => $rangeto])->links() }}
-        </div>
-      </section>
+      <!-- Listado de productos- -->
+      <div id="getProductAjax">
+        @include('public._listproduct')
+      </div>
     </div>
 
     <section>

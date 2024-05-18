@@ -19,10 +19,8 @@ return new class extends Migration
         });
 
         DB::table('type_atributtes')->insert([
-            ['name' => 'Selector'],
-            ['name' => 'Texto'],
-            ['name' => 'Color'],
-            ['name' => 'Imagen'],
+            ['name' => 'Talla'],
+            ['name' => 'Color']
         ]);
     
     }

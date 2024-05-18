@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
+            $table->string('titulo')->unique();
             $table->string('slug')->nullable();
             $table->unsignedBigInteger('type_atributte_id')->nullable();
             $table->string('imagen')->nullable();

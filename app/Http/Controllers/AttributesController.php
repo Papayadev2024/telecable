@@ -63,7 +63,8 @@ class AttributesController extends Controller
 
       return redirect()->route('attributes.index')->with('success', 'Publicación creado exitosamente.');
     } catch (\Throwable $th) {
-      return response()->json(['messge' => $th], 400);
+      return redirect()->route('attributes.create')->with('success', 'Error al crear.');
+      // return response()->json(['messge' => $th], 400);
     }
   }
 

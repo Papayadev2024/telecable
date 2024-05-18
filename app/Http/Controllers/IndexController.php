@@ -22,6 +22,7 @@ use App\Models\Specifications;
 use App\Models\TypeAttribute;
 use App\Models\User;
 use App\Models\UserDetails;
+use Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
@@ -86,7 +87,17 @@ class IndexController extends Controller
     }
   }
 
-
+  
+  public function catalogoFiltroAjax(Request $request){
+      $productos = Products::obtenerProductos();
+      // dd($productos);
+      return response()->json([
+        "status" => true,
+        "success" => view("public._listproduct", [
+            "productos" => $productos,
+        ])->render(),
+        ],200);
+  }
 
   public function catalogo($filtro, Request $request)
   {
@@ -95,14 +106,17 @@ class IndexController extends Controller
 
     $rangefrom = $request->query('rangefrom');
     $rangeto = $request->query('rangeto');
-
+    // $tituloAtributo = $request->query('rangeto');
+    // $valorAtributo = $request->query('rangeto');
+    // dd($request);
     try {
       $general = General::all();
       $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
-
       $categorias = Category::all();
-
       $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
+      $atributos = Attributes::where('status', '=', 1)->where('visible', '=', 1)->get();
+      $colecciones = Collection::where('status', '=', 1)->where('visible', '=', 1)->get();
+
 
 
 
@@ -153,7 +167,7 @@ class IndexController extends Controller
 
 
 
-      return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'rangefrom', 'rangeto'));
+      return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'rangefrom', 'rangeto', 'atributos', 'colecciones'));
     } catch (\Throwable $th) {
     }
   }

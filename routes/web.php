@@ -71,6 +71,7 @@ Route::get('/coleccion/{filtro}', [IndexController::class, 'coleccion'] )->name(
 Route::get('/liquidacion', [IndexController::class, 'liquidacion'] )->name('liquidacion');
 Route::get('/novedades', [IndexController::class, 'novedades'] )->name('novedades');
 Route::get('/buscar', [IndexController::class, 'searchProduct'])->name('buscar');
+Route::post('catalogo_filtro_ajax', [IndexController::class, 'catalogoFiltroAjax'])->name('catalogo_filtro_ajax');
 
 /* Página 404 */
 Route::get('/404', [IndexController::class, 'error'] )->name('error');
