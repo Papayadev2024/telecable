@@ -124,116 +124,6 @@
               
             </div>
 
-            <script>
-              $(document).ready(function() {
-                function updateCategoriesField() {
-                    var selectedCategories = [];
-                    $('.changeCategory:checked').each(function() {
-                        selectedCategories.push($(this).val());
-                    });
-                    $('#get_categories').val(selectedCategories.join(','));
-                }
-                updateCategoriesField();
-                $('.changeCategory').on('change', function() {
-                    updateCategoriesField();
-                    FilterForm();
-                });
-             
-                function updatePriceField() {
-                    var selectedPrice = [];
-                    $('.changePrice:checked').each(function() {
-                        selectedPrice.push($(this).val());
-                    });
-                    $('#get_precios').val(selectedPrice.join(','));
-                }
-                updatePriceField();
-                $('.changePrice').on('change', function() {
-                   updatePriceField();
-                   FilterForm();
-                });
-
-                function updateTallaField() {
-                    var selectedTallas = [];
-                    $('.changeTallas:checked').each(function() {
-                        selectedTallas.push($(this).val());
-                    });
-                    $('#get_tallas').val(selectedTallas.join(','));
-                }
-                updateTallaField();
-                $('.changeTallas').on('change', function() {
-                  updateTallaField();
-                  FilterForm();
-                });
-
-                function updateCollectionField() {
-                    var selectedCollection = [];
-                    $('.changeCollection:checked').each(function() {
-                      selectedCollection.push($(this).val());
-                    });
-                    $('#get_colecciones').val(selectedCollection.join(','));
-                }
-                updateCollectionField();
-                $('.changeCollection').on('change', function() {
-                  updateCollectionField();
-                  FilterForm();
-                });
-
-                
-                $('.colores').on('change', function() {
-                    if ($(this).is(':checked')) {
-                        $('.labelcolor').addClass('border-black');
-                    } else {
-                        $('.labelcolor').removeClass('border-black');
-                    }
-                });
-
-                $('.colores:checked').each(function() {
-                    $(this).next('labelcolor').addClass('border-black');
-                });
-
-
-                $('.changeColor').click(function(){
-                  var id = $(this).attr('id');
-                  var status = $(this).attr('data-val');
-                  if(status  == 0){
-                    $(this).attr('data-val', 1);
-                    $(this).addClass('active-color');
-                  }else{
-                    $(this).attr('data-val', 0);
-                    $(this).removeClass('active-color');
-                  }
-
-                  var ids = '';
-                  $('.changeColor').each(function(){
-                    var status = $(this).attr('data-val');
-                    if(status == 1){
-                      var id = $(this).attr('id');
-                      ids += id+',';
-                    }
-                  });
-                  $('#get_colores').val(ids);
-                  FilterForm();
-                });
-
-                function FilterForm(){
-                  $.ajax({
-                          url: '{{ route('catalogo_filtro_ajax') }}',
-                          method: 'POST',
-                          data: $('#FilterForm').serialize(),
-                          dataType: "json",
-                          success: function(response) {
-                           
-                            $('#getProductAjax').html(response.success)
-
-                          },
-                          error: function(error) {
-                          }
-                  });
-                }
-                
-              });
-            </script>
-
             <div>
               <div class="relative">
                 <div class="mx-auto">
@@ -494,6 +384,7 @@
 
 
 @section('scripts_importados')
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       // Captura el click de abrir
@@ -555,12 +446,10 @@
         body.classList.remove("overflow-hidden");
       });
 
-      // Función para cerrar el modal
       function closeModa(event) {
         if (event.target === modal) {
           modal.classList.remove("modal--show-filtro");
           body.classList.remove("overflow-hidden");
-
           /* hiddenCategoriaPrecio.innerHTML = addCategoriaPrecio.innerHTML; */
         }
       }
@@ -568,14 +457,123 @@
       window.addEventListener("click", closeModa);
     });
   </script>
+
   <script>
     var appUrl = '{{ env('APP_URL') }}';
-
-    // Agrega más variables de entorno aquí según sea necesario
   </script>
 
 
   <script src="{{ asset('js/carrito.js') }}"></script>
+
+  <script>
+    $(document).ready(function() {
+      function updateCategoriesField() {
+          var selectedCategories = [];
+          $('.changeCategory:checked').each(function() {
+              selectedCategories.push($(this).val());
+          });
+          $('#get_categories').val(selectedCategories.join(','));
+      }
+      updateCategoriesField();
+      $('.changeCategory').on('change', function() {
+          updateCategoriesField();
+          FilterForm();
+      });
+   
+      function updatePriceField() {
+          var selectedPrice = [];
+          $('.changePrice:checked').each(function() {
+              selectedPrice.push($(this).val());
+          });
+          $('#get_precios').val(selectedPrice.join(','));
+      }
+      updatePriceField();
+      $('.changePrice').on('change', function() {
+         updatePriceField();
+         FilterForm();
+      });
+
+      function updateTallaField() {
+          var selectedTallas = [];
+          $('.changeTallas:checked').each(function() {
+              selectedTallas.push($(this).val());
+          });
+          $('#get_tallas').val(selectedTallas.join(','));
+      }
+      updateTallaField();
+      $('.changeTallas').on('change', function() {
+        updateTallaField();
+        FilterForm();
+      });
+
+      function updateCollectionField() {
+          var selectedCollection = [];
+          $('.changeCollection:checked').each(function() {
+            selectedCollection.push($(this).val());
+          });
+          $('#get_colecciones').val(selectedCollection.join(','));
+      }
+      updateCollectionField();
+      $('.changeCollection').on('change', function() {
+        updateCollectionField();
+        FilterForm();
+      });
+
+      
+      $('.colores').on('change', function() {
+          if ($(this).is(':checked')) {
+              $('.labelcolor').addClass('border-black');
+          } else {
+              $('.labelcolor').removeClass('border-black');
+          }
+      });
+
+      $('.colores:checked').each(function() {
+          $(this).next('labelcolor').addClass('border-black');
+      });
+
+
+      $('.changeColor').click(function(){
+        var id = $(this).attr('id');
+        var status = $(this).attr('data-val');
+        if(status  == 0){
+          $(this).attr('data-val', 1);
+          $(this).addClass('active-color');
+        }else{
+          $(this).attr('data-val', 0);
+          $(this).removeClass('active-color');
+        }
+
+        var ids = '';
+        $('.changeColor').each(function(){
+          var status = $(this).attr('data-val');
+          if(status == 1){
+            var id = $(this).attr('id');
+            ids += id+',';
+          }
+        });
+        $('#get_colores').val(ids);
+        FilterForm();
+      });
+
+      function FilterForm(){
+        $.ajax({
+                url: '{{ route('catalogo_filtro_ajax') }}',
+                method: 'POST',
+                data: $('#FilterForm').serialize(),
+                dataType: "json",
+                success: function(response) {
+                 
+                  $('#getProductAjax').html(response.success)
+
+                },
+                error: function(error) {
+                }
+        });
+      }
+      
+    });
+  </script>
 @stop
 
 @stop
