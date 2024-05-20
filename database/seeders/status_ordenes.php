@@ -6,7 +6,7 @@ use App\Models\StatusOrden;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class status_ordenes extends Seeder
+class Status_ordenesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
