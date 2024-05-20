@@ -14,13 +14,15 @@ class AttributesValues extends Model
         'descripcion',
         'color',
         'imagen',
+        'product_id',
         'visible',
         'status'
     ];
 
-    public function attribute()
+    public function productAttribute()
     {
         return $this->belongsTo(Attributes::class, 'attribute_id');
     }
 
+  
 }

@@ -24,6 +24,7 @@ use App\Models\Specifications;
 use App\Models\TypeAttribute;
 use App\Models\User;
 use App\Models\UserDetails;
+use Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
@@ -89,7 +90,17 @@ class IndexController extends Controller
     }
   }
 
-
+  
+  public function catalogoFiltroAjax(Request $request){
+      $productos = Products::obtenerProductos();
+      // dd($productos);
+      return response()->json([
+        "status" => true,
+        "success" => view("public._listproduct", [
+            "productos" => $productos,
+        ])->render(),
+        ],200);
+  }
 
   public function catalogo($filtro, Request $request)
   {
@@ -98,14 +109,17 @@ class IndexController extends Controller
 
     $rangefrom = $request->query('rangefrom');
     $rangeto = $request->query('rangeto');
-
+    // $tituloAtributo = $request->query('rangeto');
+    // $valorAtributo = $request->query('rangeto');
+    // dd($request);
     try {
       $general = General::all();
       $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
-
       $categorias = Category::all();
-
       $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
+      $atributos = Attributes::where('status', '=', 1)->where('visible', '=', 1)->get();
+      $colecciones = Collection::where('status', '=', 1)->where('visible', '=', 1)->get();
+
 
 
 
@@ -156,7 +170,7 @@ class IndexController extends Controller
 
 
 
-      return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'rangefrom', 'rangeto'));
+      return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'rangefrom', 'rangeto', 'atributos', 'colecciones'));
     } catch (\Throwable $th) {
     }
   }
@@ -426,9 +440,11 @@ class IndexController extends Controller
 
   public function producto(string $id)
   {
-    $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
-
-    $productos = Products::where('id', '=', $id)->with('tags')->get();
+    // $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
+    $product = Products::findOrFail($id);
+    $productos = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
+    // $attributeValues = $product->attributes()->with('attributeValues')->get();
+    
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)
       ->where(function ($query) {
@@ -456,9 +472,7 @@ class IndexController extends Controller
 
     $url_env = $_ENV['APP_URL'];
 
-
-
-    return view('public.product', compact('product', 'productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env'));
+    return view('public.product', compact('product','productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env'));
   }
 
 

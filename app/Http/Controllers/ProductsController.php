@@ -31,6 +31,7 @@ class ProductsController extends Controller
     return view('pages.products.index', compact('products'));
   }
 
+
   /**
    * Show the form for creating a new resource.
    */
@@ -143,7 +144,7 @@ class ProductsController extends Controller
             $idValorAtributo = AttributesValues::where('valor', $valor)->first();
   
             if ($idAtributo && $idValorAtributo) {
-              DB::table('product_has_attribute')->insert([
+              DB::table('attribute_product_values')->insert([
                 'product_id' => $producto->id,
                 'attribute_id' => $idAtributo->id,
                 'attribute_value_id' => $idValorAtributo->id,
@@ -163,24 +164,18 @@ class ProductsController extends Controller
       if (isset($data['filesGallery'])) {
 
         foreach ($data['filesGallery'] as $file) {
-          # code...
-
-          // data:image/png; base64,code
+        
           [$first, $code] = explode(';base64,', $file);
           $imageData = base64_decode($code);
           $routeImg = 'storage/images/gallery/';
 
           $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
-
-          
-
           $nombreImagen = Str::random(10) . '.' . $ext;
 
           // Verificar si la ruta no existe y crearla si es necesario
           if (!file_exists($routeImg)) {
-            mkdir($routeImg, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+            mkdir($routeImg, 0777, true); 
           }
-
           // Guardar los datos binarios en un archivo
           file_put_contents($routeImg . $nombreImagen, $imageData);
           $dataGalerie['imagen'] = $routeImg . $nombreImagen;
@@ -338,6 +333,27 @@ class ProductsController extends Controller
     });
     $cleanedData['description'] = $data['description'];
     $product->update($cleanedData);
+
+    DB::delete('delete from attribute_product_values where product_id = ?', [$product->id]);
+
+    if(isset($atributos)){
+      foreach ($atributos as $atributo => $valores) {
+        $idAtributo = Attributes::where('titulo', $atributo)->first();
+
+        foreach ($valores as $valor) {
+          $idValorAtributo = AttributesValues::where('valor', $valor)->first();
+
+          if ($idAtributo && $idValorAtributo) {
+            DB::table('attribute_product_values')->insert([
+              'product_id' => $product->id,
+              'attribute_id' => $idAtributo->id,
+              'attribute_value_id' => $idValorAtributo->id,
+            ]);
+          }
+        }
+      }
+    }
+
     DB::delete('delete from tags_xproducts where producto_id = ?', [$id]);
     if (!is_null($tagsSeleccionados)) {
       $this->TagsXProducts($id, $tagsSeleccionados);

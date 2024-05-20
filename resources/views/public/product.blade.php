@@ -3,11 +3,11 @@
 @stop
 @section('content')
   <?php
-  //Definición de la función capitalizeFirstLetter()
-  function capitalizeFirstLetter($string)
-  {
-      return ucfirst($string);
-  }
+  // Definición de la función capitalizeFirstLetter()
+  // function capitalizeFirstLetter($string)
+  // {
+  //     return ucfirst($string);
+  // }
   ?>
 
   <main class="flex flex-col gap-12 mt-12">
@@ -91,47 +91,67 @@
           <div class="flex flex-col gap-3">
 
 
-
-
-
-            {{-- @foreach ($product as $producto) {
-                                <pre>{{$producto}}</pre>
-                            }
-                            @endforeach --}}
-
-
-            {{-- { <pre>{{$product}}</pre>} --}}
-            {{-- @foreach ($productos as $producto)
-                        @foreach ($producto->attributes as $atributo)
-                          {{  $atributo->pivot}}
-                            <div>
-                                @if ($atributo->typeAttribute->name === 'color')
-                                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
-                                        Seleccionar color
-                                    </p>
-                                    <!-- HTML específico para el tipo de atributo "color" -->
-                                    <div class="flex gap-5 justify-start items-center">
-                                        
-                                            @foreach ($atributo->values as $valor)
-                                                    <div style="background-color: {{ $valor->color }}" class="colors w-14 h-14 rounded-[50%] cursor-pointer"></div>     
-                                            @endforeach   
-                                    </div>
-                                @elseif($atributo->typeAttribute->name === 'text')
-                                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
-                                        Seleccionar el tamaño
-                                    </p>
-                                    <div
-                                        class="grid grid-cols-3 place-items-center font-regularDisplay text-text14 md:text-text20 gap-2">
-                                        @foreach ($atributo->values as $valor)
-                                            <div class="flex justify-center items-center border-2 w-full rounded-lg">
-                                                <p class="py-5 px-4 w-full text-center">{{ $valor->valor }}</p>
-                                            </div>    
+            {{-- @if ($product->attributes->isNotEmpty())
+                            <h2>Atributos:</h2>
+                            <ul>
+                                @foreach ($product->attributes->unique() as $attribute)
+                                    <li>{{ $attribute->titulo }}:
+                                        @php
+                                            $attributeValues = $attribute->attributeValues->whereIn(
+                                                'id',
+                                                $product->attributes->pluck('pivot.attribute_value_id'),
+                                            );
+                                        @endphp
+                                        @foreach ($attributeValues as $value)
+                                            {{ $value->valor }}
                                         @endforeach
-                                    </div>
-                                @endif
-                            </div>
-                        @endforeach 
-                    @endforeach     --}}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif --}}
+
+
+            @if ($product->attributes->isNotEmpty())
+              @foreach ($product->attributes->unique() as $atributo)
+                <div>
+                  @if ($atributo->typeAttribute->name === 'Color')
+                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
+                      Selecciona {{ strtolower($atributo->titulo) }}:
+                    </p>
+
+                    <div class="flex gap-5 justify-start items-center">
+                      @php
+                        $attributeValues = $atributo->attributeValues->whereIn(
+                            'id',
+                            $product->attributes->pluck('pivot.attribute_value_id'),
+                        );
+                      @endphp
+                      @foreach ($attributeValues as $valor)
+                        <div style="background-color: {{ $valor->color }}"
+                          class="colors w-14 h-14 rounded-[50%] cursor-pointer"></div>
+                      @endforeach
+                    </div>
+                  @elseif($atributo->typeAttribute->name === 'Talla')
+                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
+                      Selecciona {{ strtolower($atributo->titulo) }}:
+                    </p>
+                    <div class="grid grid-cols-3 place-items-center font-regularDisplay text-text14 md:text-text20 gap-2">
+                      @php
+                        $attributeValues = $atributo->attributeValues->whereIn(
+                            'id',
+                            $product->attributes->pluck('pivot.attribute_value_id'),
+                        );
+                      @endphp
+                      @foreach ($attributeValues as $valor)
+                        <div class="flex justify-center items-center border-2 w-full rounded-lg">
+                          <p class="py-5 px-4 w-full text-center">{{ $valor->valor }}</p>
+                        </div>
+                      @endforeach
+                    </div>
+                  @endif
+                </div>
+              @endforeach
+            @endif
 
 
           </div>

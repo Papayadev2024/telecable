@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Http\Request;
 class Products extends Model
 {
   use HasFactory;
@@ -53,16 +53,84 @@ class Products extends Model
       return $query->where('status', true)->where('destacar', true);
   }
 
-  public function attributes()
+  public function attributeValues()
     {
-        return $this->belongsToMany(Attributes::class, 'product_has_attribute', 'product_id', 'attribute_id')
-                    ->withPivot('attribute_value_id');
+        return $this->hasMany(AttributesValues::class, 'product_id');
+                  
     }
 
-  // public function atributos() 
-  //   {
-  //       return $this->belongsToMany(Attributes::class, 'product_has_attribute', 'product_id',);
-  //   } 
-   
   
+  public function attributes()
+  {
+      return $this->belongsToMany(Attributes::class, 'attribute_product_values', 'product_id', 'attribute_id')
+          ->withPivot('attribute_value_id');
+          
+  }
+
+
+  public static function obtenerProductos($categoria_id = ''){
+    $return = Products::select('products.*','categories.name as category_name')->join('categories', 'categories.id', '=', 'products.categoria_id');
+
+    if(!empty($categoria_id)){
+        $return = $return->where('categoria_id', '=', $categoria_id);
+    }
+
+    $categoriesId = request()->get('categories_id');
+    if(!empty($categoriesId)){
+        $category_id = rtrim($categoriesId, ',');
+        $category_id_array = explode(",", $category_id);
+        $return = $return->whereIn('products.categoria_id', $category_id_array);
+    }
+
+
+    $collectionId = request()->get('coleccion_id');
+    if(!empty($collectionId)){
+        $collection_id = rtrim($collectionId, ',');
+        $collection_id_array = explode(",", $collection_id);
+        $return = $return->whereIn('products.collection_id', $collection_id_array);
+    }
+    
+
+    $coloresId = request()->get('color_id');
+    if(!empty($coloresId)){
+        $colores_id = rtrim($coloresId, ',');
+        $coloresId_array = explode(",", $colores_id);
+        $return = $return->join('attribute_product_values', "attribute_product_values.product_id", '=', 'products.id');
+        $return = $return->whereIn('attribute_product_values.attribute_value_id', $coloresId_array);
+    }
+
+
+    $tallasId = request()->get('talla_id');
+    if(!empty($tallasId)){
+        $tallas_id = rtrim($tallasId, ',');
+        $tallas_id_array = explode(",", $tallas_id);
+        $return = $return->join('attribute_product_values', "attribute_product_values.product_id", '=', 'products.id');
+        $return = $return->whereIn('attribute_product_values.attribute_value_id', $tallas_id_array);
+    }
+
+
+    $return = $return->where('products.status', '=', 1)
+          ->where('products.visible', '=', 1)
+          ->groupBy('products.id')
+          ->orderBy('products.id', 'desc')
+          ->paginate(16);
+
+    return $return;
+
+  }
+
+
+    // public function attributeValues()
+    // {
+    //     return $this->hasMany(AttributesValues::class, 'attribute_id', 'id');
+    // }
+
+    // public function attributes()
+    // {
+    //     return $this->belongsToMany(Attributes::class, 'attribute_product_values', 'product_id', 'attribute_id')
+    //         ->withPivot('attribute_value_id')
+    //         ->with('attributeValues');
+    // }
+
+
 }

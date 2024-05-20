@@ -9,13 +9,16 @@ class Attributes extends Model
 {
     use HasFactory;
     protected $filiable =  ['titulo',
+    'slug',
+    'type_atributte_id',
     'imagen',
     'descripcion',
     'valores',
     'color',
+    'visible',
     'status'];
 
-    public function values()
+    public function attributeValues() 
     {
         return $this->hasMany(AttributesValues::class, 'attribute_id');
     }
@@ -27,9 +30,10 @@ class Attributes extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Products::class, 'product_has_attribute', 'attribute_id', 'product_id')
-                    ->withPivot('attribute_value_id');
+        return $this->belongsToMany(Products::class, 'attribute_product_values', 'attribute_id', 'product_id')
+            ->withPivot('attribute_value_id');
+            
     }
-
+   
     
 }
