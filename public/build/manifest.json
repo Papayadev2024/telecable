@@ -1,8 +1,40 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-OERJ8y-f.css",
+    "file": "assets/app-gEcpD8yU.css",
     "isEntry": true,
     "src": "resources/css/app.css"
+  },
+  "resources/fonts/HelveticaNowDisplay-Bold.woff": {
+    "file": "assets/HelveticaNowDisplay-Bold-TMoALiWo.woff",
+    "src": "resources/fonts/HelveticaNowDisplay-Bold.woff"
+  },
+  "resources/fonts/HelveticaNowDisplay-BoldIta.woff": {
+    "file": "assets/HelveticaNowDisplay-BoldIta-tXw-BeTW.woff",
+    "src": "resources/fonts/HelveticaNowDisplay-BoldIta.woff"
+  },
+  "resources/fonts/HelveticaNowDisplay-Light.woff": {
+    "file": "assets/HelveticaNowDisplay-Light-lecUEnUf.woff",
+    "src": "resources/fonts/HelveticaNowDisplay-Light.woff"
+  },
+  "resources/fonts/HelveticaNowDisplay-LightIta.woff": {
+    "file": "assets/HelveticaNowDisplay-LightIta-FgO0m5IX.woff",
+    "src": "resources/fonts/HelveticaNowDisplay-LightIta.woff"
+  },
+  "resources/fonts/HelveticaNowDisplay-MedIta.woff": {
+    "file": "assets/HelveticaNowDisplay-MedIta-7rfufySk.woff",
+    "src": "resources/fonts/HelveticaNowDisplay-MedIta.woff"
+  },
+  "resources/fonts/HelveticaNowDisplay-Medium.woff": {
+    "file": "assets/HelveticaNowDisplay-Medium-YpfsZEGg.woff",
+    "src": "resources/fonts/HelveticaNowDisplay-Medium.woff"
+  },
+  "resources/fonts/HelveticaNowDisplay-RegIta.woff": {
+    "file": "assets/HelveticaNowDisplay-RegIta-5YSNMvE-.woff",
+    "src": "resources/fonts/HelveticaNowDisplay-RegIta.woff"
+  },
+  "resources/fonts/HelveticaNowDisplay-Regular.woff": {
+    "file": "assets/HelveticaNowDisplay-Regular-2_Rzm5P8.woff",
+    "src": "resources/fonts/HelveticaNowDisplay-Regular.woff"
   },
   "resources/js/app.js": {
     "css": [
