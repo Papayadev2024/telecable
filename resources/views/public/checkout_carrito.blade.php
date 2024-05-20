@@ -13,10 +13,19 @@
 
   <main>
     <section class="font-poppins w-11/12 mx-auto my-12 flex flex-col gap-10">
+      @csrf
       <div>
         <a href="index.html" class="font-normal text-[14px] text-[#6C7275]">Home</a>
         <span>/</span>
         <a href="carrito.html" class="font-semibold text-[14px] text-[#141718]">Carrito</a>
+      </div>
+      <div class="flex flex-col">
+        <label for="email" class="font-medium text-[12px] text-[#6C7275]">E-mail</label>
+
+        <input id="email" type="email" placeholder="Correo electrónico" required name="email" value=""
+          class=" py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl text-[#6C7275]" />
+
+
       </div>
       <div class="flex md:gap-20">
         <div class="flex justify-between items-center md:basis-7/12 w-full md:w-auto">
@@ -79,7 +88,7 @@
 
               <div class="text-[#151515] flex justify-between items-center">
                 <p class="font-normal text-[14px]">SubTotal</p>
-                <span id="itemSubtotal" class="font-semibold text-[14px]">s/ 114.00</span>
+                <span id="itemSubtotal" class="font-semibold text-[14px]">s/ 0.00</span>
               </div>
 
               <div class="text-[#151515] flex justify-between items-center">
@@ -87,14 +96,11 @@
                 <span id="itemsTotalCheck" class="font-semibold text-[20px]">s/ 0.00</span>
               </div>
 
-              <a id="btnSiguiente" href="/pago"
-                class="text-white bg-[#74A68D] w-full py-4 rounded-3xl cursor-pointer font-semibold text-[16px] inline-block text-center">Siguiente</a>
+              <button id="btnSiguiente" type="button"
+                class="text-white bg-[#74A68D] w-full py-4 rounded-3xl cursor-pointer font-semibold text-[16px] inline-block text-center">
+                Siguiente
+              </button>
 
-              <!-- <input
-                                                                                                          type="submit"
-                                                                                                          value="Siguiente"
-                                                                                                          class="text-white bg-[#74A68D] w-full py-4 rounded-3xl cursor-pointer font-semibold text-[16px] inline-block text-center"
-                                                                                                        /> -->
             </div>
           </div>
         </div>
@@ -107,12 +113,114 @@
 
 @section('scripts_importados')
   <script>
+    let carritot = Local.get('carrito')
+    if (carritot == undefined || carritot === '') {
+
+
+
+      window.location.href = `/`
+
+
+
+    }
+
+    $("#btnSiguiente").on('click', function(e) {
+
+
+
+      let email = $('#email').val()
+      if (email == '' || email == null) {
+        e.preventDefault()
+        Swal.fire({
+          icon: "warning",
+          title: "Opss ",
+          text: 'Recuerde ingresar un correo'
+        });
+        return
+      }
+      if (!checkedRadio) {
+        e.preventDefault()
+        Swal.fire({
+          icon: "warning",
+          title: "Opss ",
+          text: 'Recuerde elegir un metodo de envio'
+        });
+        return
+      }
+      $(this).addClass('opacity-50 cursor-not-allowed').prop('disabled', true);
+      let totalCarrito = calcularTotal()
+
+      $.ajax({
+        url: '{{ route('procesar.carrito') }}',
+        method: 'POST',
+        data: {
+          _token: $('input[name="_token"]').val(),
+          carrito: Local.get('carrito'),
+          email,
+          total: JSON.stringify(totalCarrito)
+        },
+        success: function(response) {
+          Swal.close();
+          Swal.fire({
+            title: `Exito!!`,
+            text: `Informacion procesada correctamente`,
+            icon: "success",
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading();
+              const timer = Swal.getPopup().querySelector("b");
+              timerInterval = setInterval(() => {
+                timer.textContent = `${Swal.getTimerLeft()}`;
+              }, 100);
+            },
+            willClose: () => {
+              clearInterval(timerInterval);
+            }
+          });
+          //limpiar carrito de compra
+          // Local.delete('carrito')
+
+          setTimeout(function() {
+
+            window.location.href =
+              `/pago?codigoCompra=${response.codigoOrden}&token=${response.formToken}&first=${response.primeraVez}`
+          }, 2000);
+        },
+        error: function(response) {
+
+          $("#btnSiguiente").removeClass('opacity-50 cursor-not-allowed').prop('disabled', false);
+          const customMessages = response.responseJSON.message?.validator?.customMessages;
+
+          if (!customMessages) {
+            Swal.close();
+            Swal.fire({
+              title: `Opps!!`,
+              text: response.responseJSON.errors,
+              icon: "error",
+            });
+          }
+          return
+          const messages = Object.keys(customMessages).map(key => customMessages[key]);
+          Swal.close();
+          Swal.fire({
+            title: `Opps!!`,
+            text: messages,
+            icon: "error",
+          });
+        }
+      });
+
+
+    })
+  </script>
+
+  <script>
     let articulosCarrito = [];
     let checkedRadio = false
 
 
     function deleteOnCarBtn(id, operacion) {
-      console.log('Elimino un elemento del cvarrio');
       const prodRepetido = articulosCarrito.map(item => {
         if (item.id === id && item.cantidad > 0) {
           item.cantidad -= Number(1);
@@ -166,6 +274,10 @@
       Local.set("carrito", carrito)
 
       $('#itemsTotalCheck').text(`S/. ${total} `)
+      return {
+        total,
+        suma
+      }
 
     }
 
@@ -378,7 +490,6 @@
         return obj
       })
 
-      console.log(carritoCheck)
       Local.set("carrito", carritoCheck)
       checkedRadio = true
 
@@ -386,23 +497,9 @@
       limpiarHTML()
       PintarCarrito()
     });
-    $("#btnSiguiente").on('click', function(e) {
-
-      console.log(checkedRadio)
-      if (!checkedRadio) {
-        e.preventDefault()
-        Swal.fire({
-
-          icon: "warning",
-          title: "Opss ",
-          text: 'Recuerde elegir un metodo de envio'
-
-
-        });
-
-      }
-    })
   </script>
+
+
   <script src="{{ asset('js/storage.extend.js') }}"></script>
 @stop
 

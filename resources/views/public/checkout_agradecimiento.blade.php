@@ -49,7 +49,7 @@
           <p class="font-medium text-[16px] text-[#6C7275]">
             Código de pedido
           </p>
-          <p id="codigoPedido" class="font-semibold text-[16px] text-[#141718]">#0123_45678</p>
+          <p id="codigoPedido" class="font-semibold text-[16px] text-[#141718]">#{{ $codigoCompra }}</p>
         </div>
 
         <div class="font-poppins">
@@ -87,70 +87,14 @@
 
 @section('scripts_importados')
   <script>
-    let articulosCarrito
-    let appUrl = localStorage.getItem('appUrl')
-    appUrl = appUrl.replace(/^"(.*)"$/, '$1'); // Elimina las comillas dobles al principio y al final de la cadena
+    // Elimina las comillas dobles al principio y al final de la cadena
 
 
     $(document).ready(function() {
-      articulosCarrito = Local.get('carrito');
-      let urlActual = window.location.href;
+      Local.delete('carrito')
+      Local.delete('token')
 
-      // Crear un objeto URLSearchParams con la URL actual
-      const parametrosURL = new URLSearchParams(window.location.search)
-
-      // Obtener el valor del parámetro 'codigoCompra'
-      let codigoCompra = parametrosURL.get('codigoCompra');
-      console.log(articulosCarrito)
-      PintarCarrito()
-      $('#codigoPedido').text(`#${codigoCompra}`)
     });
-
-    function PintarCarrito() {
-
-      let itemsCarrito = $('#itemsCarritoAgradecimientos')
-
-
-      articulosCarrito.forEach(element => {
-        let plantilla = `<div class="flex justify-between bg-white font-poppins border-b-[1px] border-[#E8ECEF] pb-5">
-            <div class="flex justify-center items-center gap-5">
-              <div class="bg-[#F3F5F7] rounded-md p-4">
-                <img src="${appUrl}/${element.imagen}" alt="producto" class="w-24" />
-              </div>
-              <div class="flex flex-col gap-3 py-2">
-                <h3 class="font-semibold text-[14px] text-[#151515]">
-                  ${element.producto}
-                </h3>
-                <p class="font-normal text-[12px] text-[#6C7275]">
-                  
-                </p>
-                <div class="flex w-20 justify-center text-[#151515] border-[1px] border-[#6C7275] rounded-md">
-                  
-                  <div class="w-8 h-8 flex justify-center items-center">
-                    <span  class="font-semibold text-[12px]">${element.cantidad }</span>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-col justify-start py-2 gap-5 items-center pr-2">
-              <p class="font-semibold text-[14px] text-[#151515]">
-                S/ ${Number(element.descuento) !== 0 ? element.descuento : element.precio}
-              </p>
-              <div class="flex items-center">
-                
-
-              </div>
-            </div>
-          </div>`
-
-        itemsCarrito.append(plantilla)
-
-      });
-      console.log(itemsCarrito)
-      Local.destroy('carrito')
-      // calcularTotal()
-    }
   </script>
 
   <script>

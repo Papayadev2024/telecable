@@ -62,7 +62,7 @@ Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto')
 Route::get('/carrito', [IndexController::class, 'carrito'] )->name('carrito');
 Route::get('/pago', [IndexController::class, 'pago'] )->name('pago');
 Route::post('/procesar/pago',[IndexController::class, 'procesarPago'])->name('procesar.pago');
-Route::get('/agradecimiento', [IndexController::class, 'agradecimiento'] )->name('agradecimiento');
+Route::post('/agradecimiento', [IndexController::class, 'agradecimiento'] )->name('agradecimiento');
 /* Catálogo y producto */
 Route::get('/producto/{id}', [IndexController::class, 'producto'] )->name('producto');
 Route::get('/catalogo/{filtro}', [IndexController::class, 'catalogo'] )->name('catalogo');
@@ -71,6 +71,7 @@ Route::get('/coleccion/{filtro}', [IndexController::class, 'coleccion'] )->name(
 Route::get('/liquidacion', [IndexController::class, 'liquidacion'] )->name('liquidacion');
 Route::get('/novedades', [IndexController::class, 'novedades'] )->name('novedades');
 Route::get('/buscar', [IndexController::class, 'searchProduct'])->name('buscar');
+Route::post('/procesarcarrito', [IndexController::class, 'procesarCarrito'])->name('procesar.carrito');
 
 /* Página 404 */
 Route::get('/404', [IndexController::class, 'error'] )->name('error');

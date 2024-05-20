@@ -33,7 +33,8 @@
       <div class="flex flex-col gap-12 lg:flex-row md:gap-32">
         <div class="basis-3/6 grid grid-cols-2 gap-5">
           <div class="flex flex-col gap-5 relative">
-            <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}" class="w-full h-full" />
+            <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}"
+              class="w-full h-full object-cover" />
 
             <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
               <div class="flex gap-3 flex-wrap">
@@ -145,7 +146,7 @@
                   <span class="text-[30px]">-</span>
                 </div>
                 <div id=cantidadSpan class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5]">
-                  <span class="text-[20px] font-mediumDisplay">2</span>
+                  <span class="text-[20px] font-mediumDisplay">1</span>
                 </div>
                 <div id=aumentar
                   class="w-14 h-14 flex justify-center items-center bg-[#F5F5F5] cursor-pointer rounded-r-3xl">
