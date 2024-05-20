@@ -16,4 +16,11 @@ class Ordenes extends Model
         'status_id',
         'usuario_id',
     ];
+
+    public function DetalleOrden(){
+        return $this->hasMany(DetalleOrden::class, 'orden_id');
+      } 
+    public function statusOrdenes(){
+        return $this->belongsTo(StatusOrden::class, 'status_id');
+    }
 }

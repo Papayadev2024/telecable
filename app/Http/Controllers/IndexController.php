@@ -420,7 +420,12 @@ class IndexController extends Controller
   public function pedidos()
   {
     $user = Auth::user();
-    return view('public.dashboard_order',  compact('user'));
+
+    $detalleUsuario = UserDetails::where('email', $user->email)->get()->toArray(); 
+    $ordenes = Ordenes::where('usuario_id',$detalleUsuario[0]['id'] )->with('DetalleOrden')->with('statusOrdenes')->get();
+    dump($ordenes);
+
+    return view('public.dashboard_order',  compact('user', 'ordenes'));
   }
 
 

@@ -14,4 +14,7 @@ class StatusOrden extends Model
     ];
     
 
+    public function status_orden(){
+        return $this->hasMany(Ordenes::class, "status_id");
+    }
 }

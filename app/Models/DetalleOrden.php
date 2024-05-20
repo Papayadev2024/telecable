@@ -14,4 +14,9 @@ class DetalleOrden extends Model
         'orden_id',
         'precio'
     ];
+
+    public function ordenes()
+    {
+        return $this->belongsTo(Ordenes::class, 'orden_id');
+    }
 }
