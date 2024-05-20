@@ -34,7 +34,7 @@
         <div class="basis-3/6 grid grid-cols-2 gap-5">
           <div class="flex flex-col gap-5 relative">
             <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}"
-              class="w-full h-full object-cover" />
+              class="w-full object-cover" />
 
             <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
               <div class="flex gap-3 flex-wrap">
