@@ -10,6 +10,7 @@ class Status_ordenesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * 
      */
     public function run(): void
     {
