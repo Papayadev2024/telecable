@@ -72,9 +72,9 @@ class Products extends Model
   public static function obtenerProductos($categoria_id = ''){
     $return = Products::select('products.*','categories.name as category_name')->join('categories', 'categories.id', '=', 'products.categoria_id');
 
-    // if(!empty($categoria_id)){
-    //     $return = $return->where('categoria_id', '=', $categoria_id);
-    // }
+    if(!empty($categoria_id)){
+        $return = $return->where('categoria_id', '=', $categoria_id);
+    }
 
     $categoriesId = request()->get('categories_id');
     if(!empty($categoriesId)){
@@ -137,9 +137,10 @@ class Products extends Model
 
     $return = $return->where('products.status', '=', 1)
           ->where('products.visible', '=', 1)
+          ->with('tags')
           ->groupBy('products.id')
           ->orderBy('products.id', 'desc')
-          ->paginate(16);
+          ->paginate(3);
 
     return $return;
 

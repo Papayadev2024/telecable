@@ -368,19 +368,17 @@
       </div>
       
       <!-- Listado de productos- -->
-      <div id="getProductAjax">
-        @include('public._listproduct')
-
-        <div class="flex justify-center items-center">
-          <a href="javascript:;"
-              class="text-textBlack py-3 px-5 border-2 border-gray-700 rounded-3xl w-60 text-center font-medium text-text16">
-              Cargar más modelos
-          </a>
-        </div>
+      <div id="getProductAjax" class="grid gap-10">
+        @include('public._listproduct') 
       </div>
-
     </div>
-
+    <div class="flex justify-center items-center">
+      <a href="javascript:;" 
+          @if(empty($page)) style="display:none;" @endif data-page={{$page}}
+          class="text-textBlack py-3 px-5 border-2 border-gray-700 rounded-3xl w-60 text-center font-medium text-text16 cargarMas">
+          Cargar más modelos
+      </a>
+  </div>
     <section>
       <div>
         <img src="{{ asset('images/img/catalogo_1.png') }}" alt="doomine" class="w-full h-full hidden md:block" />
@@ -570,7 +568,14 @@
                 dataType: "json",
                 success: function(response) {
                  
-                  $('#getProductAjax').html(response.success)
+                  $('#getProductAjax').html(response.success);
+                  $('.cargarMas').attr('data-page',response.page);
+                  
+                  if (response.page == 0) {
+                    $('.cargarMas').hide();
+                  } else {
+                    $('.cargarMas').show();
+                  }
                   // $('.pagination').html(response.pagination)
                 },
                 error: function(error) {
@@ -578,6 +583,30 @@
         });
       }
       
+
+      $('body').delegate('.cargarMas', 'click', function() {
+          var page = $(this).attr('data-page');
+          $('.cargarMas').html('Cargando...');
+          $.ajax({
+                url: "{{ route('catalogo_filtro_ajax') }}?page="+page,
+                method: 'POST',
+                data: $('#FilterForm').serialize(),
+                dataType: "json",
+                success: function(response) {
+                 
+                  $('#getProductAjax').append(response.success);
+                  $('.cargarMas').attr('data-page',response.page);
+                  $('.cargarMas').html('Cargar más modelos');
+                  if (response.page == 0) {
+                    $('.cargarMas').hide();
+                  } else {
+                    $('.cargarMas').show();
+                  }
+                },
+                error: function(error) {
+                }
+        });
+      })
     });
   </script>
 @stop
