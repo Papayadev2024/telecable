@@ -17,7 +17,9 @@ use App\Models\Strength;
 use App\Models\Testimony;
 use App\Models\Category;
 use App\Models\Collection;
+use App\Models\DetalleOrden;
 use App\Models\Liquidacion;
+use App\Models\Ordenes;
 use App\Models\Specifications;
 use App\Models\TypeAttribute;
 use App\Models\User;
@@ -30,6 +32,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -222,37 +225,74 @@ class IndexController extends Controller
     return view('public.checkout_carrito', compact('url_env'));
   }
 
-  public function pago()
+  public function pago(Request $request)
   {
     //
+    $formToken =  $request->input('token');
+    $codigoCompra =  $request->input('codigoCompra');
+
+
     $detalleUsuario = [];
     $user = auth()->user();
-    if (!isNull($user)) {
+    $N_orden = Ordenes::where('codigo_orden', '=', $codigoCompra)->get()->toArray();
+    /* if (!isNull($user)) {
       $detalleUsuario = UserDetails::where('email', $user->email)->get();
-    }
+    } */
+    $detalleUsuario = UserDetails::where('id', $N_orden[0]['usuario_id'])->get();
+
     $distritos  = DB::select('select * from districts where active = ? order by 3', [1]);
     $provincias = DB::select('select * from provinces where active = ? order by 3', [1]);
     $departamento = DB::select('select * from departments where active = ? order by 2', [1]);
 
 
+    //consultar n orden 
+    // traer los datos necesarios para armar el token 
+    // $formToken =  $this->generateFormTokenIzipay();
+
     $url_env = $_ENV['APP_URL'];
-    return view('public.checkout_pago', compact('url_env', 'distritos', 'provincias', 'departamento', 'detalleUsuario'));
+    return view('public.checkout_pago', compact('url_env', 'distritos', 'provincias', 'departamento', 'detalleUsuario', 'formToken', 'codigoCompra'));
+  }
+
+  private function generateFormTokenIzipay($amount, $orderId, $email)
+  {
+    $clientId = config('services.izipay.client_id');
+    $clientSecret = config('services.izipay.client_secret');
+    $auth = base64_encode($clientId . ':' . $clientSecret);
+
+    $url = config('services.izipay.url');
+    $response = Http::withHeaders([
+      'Authorization' => "Basic $auth",
+      'Content-Type' => 'application/json'
+    ])
+      ->post($url, [
+        'amount' => $amount * 100,
+        'currency' => 'PEN',
+        'orderId' => $orderId,
+        'customer' => [
+          'email' => $email
+        ]
+      ])->json();
+
+    $token = $response['answer']['formToken'];
+    return $token;
   }
 
   public function procesarPago(Request $request)
   {
 
+
+    $codigoCompra= $request->codigoCompra;
+    $dataArray = $request->data;
+    $result = [];
+
     $codigoAleatorio = '';
-    $mensajes2compra = [
-      'email.required' => 'El campo Email es obligatorio.',
-      'nombre.required' => 'El campo Nombre es obligatorio.',
-      'apellidos.required' => 'El campo Email es obligatorio.',
-      'departamento_id.required ' => 'Seleccione un Departamento es obligatorio.',
-      'provincia_id.required' => 'Seleccione una Provincia es obligatorio.',
-      'distrito_id.required' => 'Seleccione un Distrito obligatorio.',
-      'dir_av_calle.required' => 'El campo Avenida/Calle obligatorio.',
-      'dir_numero.required' => 'El campo Numero es obligatorio.'
-    ];
+      foreach ($dataArray as $item) {
+        $result[$item['name']] = $item['value'];
+  }
+    $tipoTarjeta = $result['tipo_tarjeta'];
+    
+    
+   
 
     try {
       $reglasPrimeraCompra = [
@@ -262,87 +302,13 @@ class IndexController extends Controller
         'email.required' => 'El campo Email es obligatorio.',
 
       ];
-      $request->validate($reglasPrimeraCompra, $mensajes);
+      // $request->validate($reglasPrimeraCompra, $mensajes);
 
-      $email = $request->email;
-      $existeUser = UserDetails::where('email', $email)->get()->toArray();
+      Ordenes::where('codigo_orden', '=', $codigoCompra)->update(['tipo_tarjeta' => $tipoTarjeta]);
+      UserDetails::where('email', '=', $request->email)->update($result);
 
-      if (count($existeUser) === 0) {
-        UserDetails::create($request->all());
-        $datos = $request->all();
-        $codigoAleatorio = $this->codigoVentaAleatorio();
-        $this->guardarOrden();
-        $this->envioCorreoCompra($datos);
-        return response()->json(['message' => 'Data procesada correctamente', 'codigoCompra' => $codigoAleatorio],);
-      } else {
-        $existeUsuario = User::where('email', $email)->get()->toArray();
 
-        if ($existeUsuario) {
-          $validator = Validator::make($request->all(), [
-            'email' => 'required',
-            'nombre' => 'required',
-            'apellidos' => 'required',
-            'departamento_id' => 'required',
-            'provincia_id' => 'required',
-            'distrito_id' => 'required',
-            'dir_av_calle' => 'required',
-            'dir_numero' => 'required',
-            'dir_bloq_lote' => 'required',
-            // Otras reglas de validación
-          ]);
-
-          if ($validator->fails()) {
-            // Aquí puedes manejar el error como desees, por ejemplo, devolver una respuesta con los errores
-            return response()->json(['errors' => $validator->errors()], 422);
-          } else {
-            $datos = $request->all();
-            //Procesar Compra
-            $userdetailU = UserDetails::where('email', $email)->first();
-            $userdetailU->update($request->all());
-
-            $codigoAleatorio = $this->codigoVentaAleatorio();
-            $this->guardarOrden();
-            $this->envioCorreoCompra($datos);
-            $curl = curl_init();
-
-            curl_setopt_array($curl, [
-              CURLOPT_URL => "https://sandbox-api-pw.izipay.pe/gateway/api/v1/proxy-cors/https://sandbox-api-pw.izipay.pe/security/v1/Token/Generate",
-              CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_ENCODING => "",
-              CURLOPT_MAXREDIRS => 10,
-              CURLOPT_TIMEOUT => 30,
-              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-              CURLOPT_CUSTOMREQUEST => "POST",
-              CURLOPT_POSTFIELDS => json_encode([
-                'requestSource' => 'ECOMMERCE',
-                'merchantCode' => '4007701',
-                'orderNumber' => 'R202211101518',
-                'publicKey' => 'VErethUtraQuxas57wuMuquprADrAHAb',
-                'amount' => '15.00'
-              ]),
-              CURLOPT_HTTPHEADER => [
-                "Accept: application/json",
-                "Content-Type: application/json",
-                "transactionId: 16868479028040"
-              ],
-            ]);
-
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-
-            curl_close($curl);
-
-            if ($err) {
-              dump ("cURL Error #:" . $err);
-            } else {
-              dump($response) ;
-            }
-            return response()->json(['message' => 'Todos los datos estan correctos', 'codigoCompra' => $codigoAleatorio],);
-          }
-        } else {
-          return response()->json(['errors' => 'Por favor registrese e inicie session '], 422);
-        }
-      }
+      return response()->json(['message' => 'Todos los datos estan correctos', 'codigoCompra' => $codigoAleatorio],);
     } catch (\Throwable $th) {
       //throw $th;
       return response()->json(['message' => $th], 400);
@@ -368,10 +334,16 @@ class IndexController extends Controller
     return $codigoAleatorio;
   }
 
-  public function agradecimiento()
+  public function agradecimiento(Request $request)
   {
     //
-    return view('public.checkout_agradecimiento');
+    $codigoCompra =  $request->input('codigoCompra');
+
+    $ordenes = Ordenes::where('codigo_orden', '=', $codigoCompra)->update(['status_id' => 2]);
+
+
+
+    return view('public.checkout_agradecimiento', compact('codigoCompra'));
   }
 
   public function cambiofoto(Request $request)
@@ -448,7 +420,12 @@ class IndexController extends Controller
   public function pedidos()
   {
     $user = Auth::user();
-    return view('public.dashboard_order',  compact('user'));
+
+    $detalleUsuario = UserDetails::where('email', $user->email)->get()->toArray(); 
+    $ordenes = Ordenes::where('usuario_id',$detalleUsuario[0]['id'] )->with('DetalleOrden')->with('statusOrdenes')->get();
+   
+
+    return view('public.dashboard_order',  compact('user', 'ordenes'));
   }
 
 
@@ -654,6 +631,69 @@ class IndexController extends Controller
       $mail->send();
     } catch (\Throwable $th) {
       //throw $th;
+    }
+  }
+
+  public function procesarCarrito(Request $request)
+  {
+
+    $primeraVez = false;
+
+    try {
+      $codigoOrden = $this->codigoVentaAleatorio();
+      $jsonMonto = json_decode($request->total, true);
+      $montoT = $jsonMonto['total'];
+      $subMonto = $jsonMonto['suma'];
+
+      $precioEnvio = $montoT - $subMonto;
+      $email = $request->email;
+
+
+      $usuario = UserDetails::where('email', '=', $email)->get(); // obtenemos usuario para validarlo si no agregarlo
+
+      //si tiene usuario registrad 
+
+      if (!$usuario->isNotEmpty()) {
+
+        $usuario = UserDetails::create(['email' => $email]);
+        $primeraVez = true;
+      }
+
+      $this->GuardarOrdenAndDetalleOrden($codigoOrden, $montoT, $precioEnvio, $usuario, $request->carrito);
+
+      $formToken = $this->generateFormTokenIzipay($montoT, $codigoOrden, $email);
+
+
+
+      // 
+      return response()->json(['mensaje' => 'Orden generada correctamente', 'formToken' => $formToken, 'codigoOrden' => $codigoOrden, 'primeraVez' => $primeraVez]);
+    } catch (\Throwable $th) {
+      //throw $th;
+      return response()->json(['mensaje' => "Intente de nuevo mas tarde , estamos trabajando en una solucion , $th"], 400);
+    }
+  }
+  private function   GuardarOrdenAndDetalleOrden($codigoOrden,  $montoT,  $precioEnvio,  $usuario, $carrito)
+  {
+
+    $data['codigo_orden'] = $codigoOrden;
+    $data['monto'] = $montoT;
+    $data['precio_envio'] = $precioEnvio;
+    $data['status_id'] = '1';
+    $data['usuario_id'] = $usuario[0]['id'];
+
+
+
+    $orden = Ordenes::create($data);
+
+    //creamos detalle de orden 
+    foreach ($carrito as $key => $value) {
+      DetalleOrden::create([
+        'producto_id' => $value['id'],
+        'cantidad' => $value['cantidad'],
+        'orden_id' => $orden->id,
+        'precio' => $value['precio']
+
+      ]);
     }
   }
 }

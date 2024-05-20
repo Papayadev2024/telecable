@@ -1,11 +1,60 @@
 @extends('components.public.matrix')
 
+@push('head')
+  <script src="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
+    kr-public-key="{{ config('services.izipay.public_key') }}"
+    kr-post-url-success="{{ route('agradecimiento', ['codigoCompra' => $codigoCompra]) }}"></script>
+
+  <link rel="stylesheet" href="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic-reset.min.css">
+  <script src="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic.js"></script>
+@endpush
+
 @section('css_importados')
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <script src="https://sandbox-checkout.izipay.pe/payments/v1/js/index.js"></script>
 
 @stop
+<style type="text/css">
+  /* to choice the embedded size */
+  .kr-embedded {
+    width: 33% !important;
+  }
+
+  /* to use the CSS Flexbox (Flexible Box) */
+  .kr-embedded .flex-container {
+    flex-direction: row !important;
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
+    gap: 5px;
+  }
+
+  /* to have the email field  the same width as the KR fields */
+  .kr-embedded .flex-container .kr-email {
+    width: 100%;
+  }
+
+  /* to center the button with the class kr-payment-button */
+  .kr-embedded .kr-payment-button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100%;
+    border-color: rgb(42, 210, 201) !important;
+    color: rgb(116 166 141 / var(--tw-bg-opacity));
+    border-radius: 92px;
+    padding: 10px;
+    margin: 17px;
+  }
+
+  .kr-popin-button {
+    color: #ffffff !important;
+    background-color: #74A68D !important;
+    border-color: #74A68D;
+    border-radius: 92px;
+  }
+</style>
 
 
 @section('content')
@@ -61,7 +110,7 @@
                             class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl text-[#6C7275]" />
                         @else
                           <input id="email" type="email" placeholder="Correo electrónico" required name="email"
-                            value=""
+                            value="{{ $detalleUsuario[0]->email }}"
                             class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl text-[#6C7275]" />
                         @endif
 
@@ -235,80 +284,69 @@
 
                   <div class="flex flex-col gap-5 pb-10">
                     <h2 class="font-semibold text-[20px] text-[#151515]">
-                      Dirección de envío
+                      Metodo de pago
                     </h2>
                     <div class="w-full flex flex-col gap-5 border-dashed pb-10 border-b-2 border-[#E8ECEF]">
                       <div class="flex items-center ps-4 border border-[#F3F5F7] rounded-xl">
-                        <input type="radio" id="bordered-radio-tarjeta" name="bordered-radio-tarjetas"
-                          value="tar_credito" class="background-radius w-5 h-5 cursor-pointer text-[#6C7275]" />
+                        <input type="radio" id="bordered-radio-tarjeta" name="tipo_tarjeta" value="tar_credito"
+                          class="background-radius w-5 h-5 cursor-pointer text-[#6C7275]" />
                         <label for="bordered-radio-tarjeta"
                           class="w-full py-4 ms-2 text-[16px] font-normal text-[#6C7275] flex justify-between items-center px-4">
                           <span>Tarjeta de crédito</span>
                         </label>
                       </div>
                       <div class="flex items-center ps-4 border border-[#F3F5F7] rounded-xl">
-                        <input type="radio" id="bordered-radio-debito" name="bordered-radio-tarjetas"
-                          value="tar_debito" class="background-radius w-5 h-5 cursor-pointer text-[#6C7275]" />
+                        <input type="radio" id="bordered-radio-debito" name="tipo_tarjeta" value="tar_debito"
+                          class="background-radius w-5 h-5 cursor-pointer text-[#6C7275]" />
                         <label for="bordered-radio-debito"
                           class="w-full py-4 ms-2 text-[16px] font-normal text-[#6C7275] flex justify-between items-center px-4">
                           <span>Tarjeta de Débito</span>
                         </label>
                       </div>
 
-                      <div class="flex items-center ps-4 border border-[#F3F5F7] rounded-xl">
+                      {{-- <div class="flex items-center ps-4 border border-[#F3F5F7] rounded-xl">
                         <input type="radio" id="bordered-radio-cuenta" name="bordered-radio-tarjetas"
                           value="depo_cuenta" class="background-radius w-5 h-5 cursor-pointer text-[#6C7275]" />
                         <label for="bordered-radio-cuenta"
                           class="w-full py-4 ms-2 text-[16px] font-normal text-[#6C7275] flex justify-between items-center px-4">
                           <span>Depósito a cuenta</span>
                         </label>
-                      </div>
-                    </div>
-
-                    <div class="pt-5">
-                      <div class="flex flex-col gap-5">
-                        <div class="flex flex-col gap-2">
-                          <label for="nombre_tarjeta" class="font-medium text-[12px] text-[#6C7275]">Nombre de la
-                            tarjeta</label>
-                          <input id="nombre_tarjeta" type="text" name="nombre_tarjeta" placeholder="Nombre"
-                            class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl" />
-                        </div>
-
-                        <div class="flex flex-col gap-2">
-                          <label for="numero_tarjeta" class="font-medium text-[12px] text-[#6C7275]">Número de
-                            tarjeta</label>
-                          <input id="numero_tarjeta" name="numero_tarjeta" type="text"
-                            placeholder="1234 12345 1234"
-                            class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl" />
-                        </div>
-
-                        <div class="flex flex-col md:flex-row gap-5">
-                          <div class="basis-1/2 flex flex-col gap-2">
-                            <label for="fecha_caducidad" class="font-medium text-[12px] text-[#6C7275]">Fecha de
-                              caducidad</label>
-                            <input id="fecha_caducidad" name="fecha_caducidad" type="text" placeholder="MM/AA"
-                              class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl" />
-                          </div>
-
-                          <div class="basis-1/2 flex flex-col gap-2">
-                            <label for="CVC" class="font-medium text-[12px] text-[#6C7275]">CVC</label>
-                            <input id="CVC" name="CVC" type="text" placeholder="Código CVC"
-                              class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl" />
-                          </div>
-                        </div>
-                      </div>
+                      </div> --}}
                     </div>
 
 
                     <div class="pt-10">
-                      <a href="/agradecimiento" id="pagarProductos"
+                      <a id="pagarProductos"
                         class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none">Pagar</a>
                       <!-- <input
-                                                                                                                                                                                            type="submit"
-                                                                                                                                                                                            value="Checkout"
-                                                                                                                                                                                            class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
-                                                                                                                                                                                          /> -->
+                                                                                                                                                                                                                                                              type="submit"
+                                                                                                                                                                                                                                                              value="Checkout"
+                                                                                                                                                                                                                                                              class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
+                                                                                                                                                                                                                                                            /> -->
                     </div>
+
+                    <div class="pt-10" id="contenedorIzypay" hidden>
+                      <div class="flex justify-center content-center ">
+                        <div
+                          class="kr-embedded text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
+                          kr-popin kr-form-token="{{ $formToken }}">
+                          <div class="flex-container">
+                            <div class="kr-pan"> </div>
+                            <div class="kr-expiry"></div>
+                            <div class="kr-security-code"></div>
+                          </div>
+
+
+
+                          <button class="kr-payment-button"></button>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="flex">
+
+                    </div>
+
 
                   </div>
               </form>
@@ -347,8 +385,9 @@
             <div
               class="text-[#141718] font-medium text-[20px] flex justify-between items-center border-b-[1px] border-[#E8ECEF] pb-5">
               <p>Total</p>
-              <p id="itemTotal">s/ 234.00</p>
+              <p id="itemTotal">s/ 00.00</p>
             </div>
+
           </div>
         </div>
       </div>
@@ -359,104 +398,159 @@
 
 
 @section('scripts_importados')
+
   <script>
-    const iziConfig = {
-      config: {
-        transactionId: '{TRANSACTIfsdfON_ID}',
-        action: 'pay',
-        merchantCode: '{MERCHANT_CODE}',
-        order: {
-          orderNumber: '{ORDER_NUMBER}',
-          currency: 'PEN',
-          amount: '1.50',
-          processType: 'AT',
-          merchantBuyerId: '{MERCHANT_CODE}',
-          dateTimeTransaction: '1670258741603000',
-        },
-        billing: {
-          firstName: 'Juan',
-          lastName: 'Wick Quispe',
-          email: 'jwickq@izi.com',
-          phoneNumber: '958745896',
-          street: 'Av. Jorge Chávez 275',
-          city: 'Lima',
-          state: 'Lima',
-          country: 'PE',
-          postalCode: '15038',
-          documentType: 'DNI',
-          document: '21458796',
-        }
-      },
-    };
+    $(document).ready(function() {
+      $(document).on('click', '.kr-popin-button', function(e) {
 
-    try {
 
-      const checkout = new Izipay({
-        config: iziConfig
-      });
+      })
 
-    } catch ({
-      Errors,
-      message,
-      date
-    }) {
+    })
+  </script>
 
-      console.log({
-        Errors,
-        message,
-        date
-      });
-
-    }
-
+  <script>
     $('#pagarProductos').on('click', function(e) {
       console.log('pagando servicio');
       e.preventDefault()
+
+      let url = window.location.href;
+      const urlObj = new URL(url);
+      const params = urlObj.searchParams
+
+      let firstPurchase = params.get('first')
       let formDataArray = $('#formHome').serializeArray();
       console.log(formDataArray)
+      let mensaje = 'El campo'
+      let mensajeFinal = ' No pueden estar vacios'
+      let hasEmptyFields = false
+
+      console.log(firstPurchase)
+
+      if (firstPurchase == 'false') {
+        console.log('no es primera compra debe llenar todos los datos ');
+        formDataArray.forEach(function(item) {
+          if (item.value.trim() === '') {
+            switch (item.name) {
+              case 'nombre':
+                mensaje += ' Nombre,';
+                hasEmptyFields = true;
+                break
+              case 'apellidos':
+                mensaje += ' Apellido,';
+                hasEmptyFields = true;
+                break
+              case 'email':
+                mensaje += ' Email,';
+                hasEmptyFields = true;
+                break
+              case 'phone':
+                mensaje += ' Celular,';
+                hasEmptyFields = true;
+                break
+              case 'departamento_id':
+                mensaje += ' Departamento,';
+                hasEmptyFields = true;
+                break
+              case 'provincia_id':
+                mensaje += ' Provincia,';
+                hasEmptyFields = true;
+                break
+              case 'distrito_id':
+                mensaje += ' Distrito,';
+                hasEmptyFields = true;
+                break
+              case 'dir_av_calle':
+                mensaje += ' Avenida/Calle,';
+                hasEmptyFields = true;
+                break
+              case 'dir_numero':
+                mensaje += ' Numero,';
+                hasEmptyFields = true;
+                break
+            }
+
+
+          }
+        })
+
+        if (!hasEmptyFields) {
+          $('#contenedorIzypay').show();
+        } else {
+          Swal.fire({
+
+            icon: "warning",
+            title: "Opss ",
+            text: `${mensaje}${mensajeFinal}`
+
+
+          });
+          hasEmptyFields = false
+        }
+      } else {
+        formDataArray.forEach(function(item) {
+          if (item.value.trim() === '') {
+
+            switch (item.name) {
+
+              case 'departamento_id':
+                mensaje += ' Departamento,';
+                hasEmptyFields = true;
+                break;
+              case 'provincia_id':
+                mensaje += ' Provincia,';
+                hasEmptyFields = true;
+                break;
+              case 'distrito_id':
+                mensaje += ' Distrito,';
+                hasEmptyFields = true;
+                break;
+              case 'dir_av_calle':
+                mensaje += ' Avenida/Calle,';
+                hasEmptyFields = true;
+                break;
+              case 'dir_numero':
+                mensaje += ' Numero,';
+                hasEmptyFields = true;
+                break;
+            }
+
+
+          }
+        })
+        if (!hasEmptyFields) {
+          $('#contenedorIzypay').show();
+        } else {
+          Swal.fire({
+
+            icon: "warning",
+            title: "Opss ",
+            text: `${mensaje}${mensajeFinal}`
+
+
+          });
+          hasEmptyFields = false
+        }
+
+      }
 
       $.ajax({
         url: '{{ route('procesar.pago') }}',
         method: 'POST',
-        data: $('#formHome').serialize(),
+        data: {
+          data: $('#formHome').serializeArray(),
+          codigoCompra: {{ $codigoCompra }}
+        },
         success: function(response) {
           console.log(response)
-          Swal.close();
-          Swal.fire({
-            title: `Exito!!`,
-            text: `Informacion procesada correctamente`,
-            icon: "success",
-          });
+
           //limpiar carrito de compra
-          Local.delete('carrito')
-          setTimeout(function() {
 
-            window.location.href = `/agradecimiento?codigoCompra=${response.codigoCompra}`
-          }, 3000);
         },
-        error: function(response) {
-
-          const customMessages = response.responseJSON.message?.validator?.customMessages;
-          console.log(response)
-
-          if (!customMessages) {
-            Swal.close();
-            Swal.fire({
-              title: `Opps!!`,
-              text: response.responseJSON.errors,
-              icon: "error",
-            });
-          }
-          return
-          const messages = Object.keys(customMessages).map(key => customMessages[key]);
-          Swal.close();
-          Swal.fire({
-            title: `Opps!!`,
-            text: messages,
-            icon: "error",
-          });
+        error: function(error) {
+          console.log(error)
         }
-      });
+      })
     })
   </script>
 
@@ -486,7 +580,7 @@
 
     function calcularTotal() {
       let articulos = Local.get('carrito')
-      console.log(articulos)
+
       let total = articulos.map(item => {
         let monto
         if (Number(item.descuento) !== 0) {
@@ -526,7 +620,7 @@
       Local.set("carrito", carrito)
       total += tipoEnvio
       let textEnvio = tipoEnvio == 15 ? 'Envío express' : "Recoger"
-      console.log(textEnvio)
+
 
       $('#tipoEnvioDesc').text(textEnvio)
 
@@ -598,15 +692,11 @@
               
             </p>
             <div class="flex w-20 justify-center text-[#151515] border-[1px] border-[#6C7275] rounded-md">
-              <button type="button" onClick="(deleteOnCarBtn(${element.id}, '-'))" class="  w-8 h-8 flex justify-center items-center ">
-                <span  class="text-[20px]">-</span>
-              </button>
+              
               <div class="w-8 h-8 flex justify-center items-center">
                 <span  class="font-semibold text-[12px]">${element.cantidad }</span>
               </div>
-              <button type="button" onClick="(addOnCarBtn(${element.id}, '+'))" class="  w-8 h-8 flex justify-center items-center ">
-                <span class="text-[20px]">+</span>
-              </button>
+              
             </div>
           </div>
         </div>
@@ -615,11 +705,7 @@
             S/ ${Number(element.descuento) !== 0 ? element.descuento : element.precio}
           </p>
           <div class="flex items-center">
-            <button type="button" onClick="(deleteItem(${element.id}))" class="  w-8 h-8 flex justify-center items-center ">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-            </svg>
-            </button>
+            
 
           </div>
         </div>

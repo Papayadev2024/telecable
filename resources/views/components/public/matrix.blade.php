@@ -10,6 +10,7 @@
   {{-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}" /> --}}
   <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 
+  @stack('head')
 
   {{-- Aqui van los CSS --}}
   @yield('css_importados')
