@@ -387,8 +387,15 @@
             transform: translateX(-50%);
         }
     </style>
-
+   
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+        <div>
+            @if(Session::has('error'))
+            <div class="p-4 bg-red-400 text-lg text-white border-l-8 border-red-600 mb-4"><i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="ml-3">{{ Session::get('error')}}</span>
+            </div>
+            @endif
+        </div>
         <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -412,8 +419,8 @@
 
                                     <div class="md:col-span-5 mt-2">
 
-                                        <label for="producto">Producto</label>
-
+                                        <label for="producto">Producto<span class="text-red-500"> (Obligatorio) </span></label>
+                                        
                                         <div class="relative mb-2  mt-2">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -545,7 +552,7 @@
                                 class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
                                 <div class="md:col-span-5 flex justify-between gap-4">
                                     <div class="w-full">
-                                        <label for="precio">Precio</label>
+                                        <label for="precio">Precio <span class="text-red-500"> (Obligatorio) </span></label>
                                         <div class="relative mb-2  mt-2">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -577,7 +584,7 @@
                                                         d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                                 </svg>
                                             </div>
-                                            <input type="number" id="descuento" name="descuento" value=""
+                                            <input type="number" id="descuento" name="descuento" value="0"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="descuento">
                                         </div>

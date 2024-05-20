@@ -90,7 +90,7 @@ class IndexController extends Controller
   
   public function catalogoFiltroAjax(Request $request){
       $productos = Products::obtenerProductos();
-      // dd($productos);
+     
       return response()->json([
         "status" => true,
         "success" => view("public._listproduct", [

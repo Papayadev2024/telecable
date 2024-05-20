@@ -127,7 +127,7 @@
                                         @endphp
                                         @foreach ($attributeValues as $valor)
                                             <div style="background-color: {{ $valor->color }}"
-                                                class="colors w-14 h-14 rounded-[50%] cursor-pointer"></div>
+                                                class="colors w-14 h-14 rounded-[50%] cursor-pointer transition"></div>
                                         @endforeach
                                     </div>
                                 @elseif($atributo->typeAttribute->name === 'Talla')
@@ -144,7 +144,7 @@
                                         @endphp
                                         @foreach ($attributeValues as $valor)
                                             <div class="flex justify-center items-center border-2 w-full rounded-lg">
-                                                <p class="py-5 px-4 w-full text-center">{{ $valor->valor }}</p>
+                                                <p class="tallas py-5 px-4 w-full text-center transition">{{ $valor->valor }}</p>
                                             </div>
                                         @endforeach
                                     </div>
@@ -155,7 +155,6 @@
 
 
                     </div>
-
                     <div class="flex flex-col gap-3">
 
                         <div class="flex justify-between items-center">

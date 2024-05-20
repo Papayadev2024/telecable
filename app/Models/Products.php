@@ -12,6 +12,7 @@ class Products extends Model
     'producto',
     'precio',
     'descuento',
+    'preciofiltro',
     'stock',
     'imagen',
     'destacar',
@@ -71,9 +72,9 @@ class Products extends Model
   public static function obtenerProductos($categoria_id = ''){
     $return = Products::select('products.*','categories.name as category_name')->join('categories', 'categories.id', '=', 'products.categoria_id');
 
-    if(!empty($categoria_id)){
-        $return = $return->where('categoria_id', '=', $categoria_id);
-    }
+    // if(!empty($categoria_id)){
+    //     $return = $return->where('categoria_id', '=', $categoria_id);
+    // }
 
     $categoriesId = request()->get('categories_id');
     if(!empty($categoriesId)){
@@ -106,6 +107,31 @@ class Products extends Model
         $tallas_id_array = explode(",", $tallas_id);
         $return = $return->join('attribute_product_values', "attribute_product_values.product_id", '=', 'products.id');
         $return = $return->whereIn('attribute_product_values.attribute_value_id', $tallas_id_array);
+    }
+
+    $preciosId = request()->get('precio_id');
+    if(!empty($preciosId)){
+        $precios_id = rtrim($preciosId, ',');
+        $precios_id_array = explode(",", $precios_id);
+
+        $rangos = []; 
+
+        foreach ($precios_id_array as $rango) {
+            if (strpos($rango, '_') !== false) {
+                list($min, $max) = explode("_", $rango);
+                $rangos[] = ['min' => (float)$min, 'max' => (float)$max];
+            }
+        }
+        
+
+        $return = $return->where(function ($query) use ($rangos) {
+            foreach ($rangos as $rango) {
+                $query->orWhere(function ($query) use ($rango) {
+                    $query->whereBetween('products.preciofiltro', [$rango['min'], $rango['max']]);
+                });
+            }
+        });
+       
     }
 
 

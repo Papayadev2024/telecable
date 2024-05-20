@@ -68,13 +68,18 @@ class ProductsController extends Controller
     $atributos = null;
     $tagsSeleccionados = $request->input('tags_id');
     // $valorprecio = $request->input('precio') - 0.1;
-    
+
     try {
       $request->validate([
         'producto' => 'required',
         'precio' => 'min:0|required|numeric',
         'descuento' => 'lt:' . $request->input('precio'),
       ]);
+
+      $messages = [
+        'producto.required'  => 'Harap bagian :attribute di isi.',
+        'unique'    => ':attribute sudah digunakan',
+      ];
 
       if ($request->hasFile("imagen")) {
         $file = $request->file('imagen');
@@ -135,7 +140,14 @@ class ProductsController extends Controller
       });
 
       $producto = Products::create($cleanedData);
- 
+
+      if($producto['descuento'] == 0 || is_null($producto['descuento'])){
+        $precioFiltro = $producto['precio']; 
+      }else{
+        $precioFiltro = $producto['descuento'];
+      }
+      $producto->update(['preciofiltro' => $precioFiltro]);
+
       if(isset($atributos)){
         foreach ($atributos as $atributo => $valores) {
           $idAtributo = Attributes::where('titulo', $atributo)->first();
@@ -166,12 +178,15 @@ class ProductsController extends Controller
         foreach ($data['filesGallery'] as $file) {
         
           [$first, $code] = explode(';base64,', $file);
-          $imageData = base64_decode($code);
-          $routeImg = 'storage/images/gallery/';
 
+        
+
+          $imageData = base64_decode($code);
+
+          
+          $routeImg = 'storage/images/gallery/';
           $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
           $nombreImagen = Str::random(10) . '.' . $ext;
-
           // Verificar si la ruta no existe y crearla si es necesario
           if (!file_exists($routeImg)) {
             mkdir($routeImg, 0777, true); 
@@ -188,7 +203,7 @@ class ProductsController extends Controller
       return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
     } catch (\Throwable $th) {
       //throw $th;
-      dump($th);
+      return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
     }
   }
 
@@ -332,6 +347,14 @@ class ProductsController extends Controller
       return !is_null($value);
     });
     $cleanedData['description'] = $data['description'];
+    $cleanedData['sku'] = $data['sku'];
+
+    if($data['descuento'] == 0 || is_null($data['descuento'])){
+      $cleanedData['preciofiltro'] = $data['precio']; 
+    }else{
+      $cleanedData['preciofiltro'] = $data['descuento']; 
+    }
+
     $product->update($cleanedData);
 
     DB::delete('delete from attribute_product_values where product_id = ?', [$product->id]);

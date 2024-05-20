@@ -120,13 +120,5 @@
                         </div>
                     </a>
                 </nav>
-            </div> --}}
-
-    <div class="flex justify-center items-center ">
-      {{-- <a href="#"
-                    class="text-textBlack py-3 px-5 border-2 border-gray-700 rounded-3xl w-full text-center font-medium text-text16">
-                    Cargar más modelos
-                </a> --}}
-      {{-- {{ $productos->appends(['rangefrom' => $rangefrom, 'rangeto' => $rangeto])->links() }} --}}
-    </div>
+    </div> --}}
   </section>

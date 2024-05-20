@@ -154,7 +154,7 @@
                                                     font-normal @endif">Todos
                             los precios</a> --}}
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="1" class="changePrice"
+                            <input type="checkbox"  value="0_50" class="changePrice"
                               id="price_0_50">  
                             <label for="price_0_50" class="cursor-pointer">
                               S/0 - S/50
@@ -162,7 +162,7 @@
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="2" class="changePrice"
+                            <input type="checkbox"  value="50.01_100" class="changePrice"
                               id="price_51_100">  
                             <label for="price_51_100" class="cursor-pointer">
                               S/50 - S/100
@@ -170,7 +170,7 @@
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="3" class="changePrice"
+                            <input type="checkbox"  value="100.01_150" class="changePrice"
                               id="price_101_150">  
                             <label for="price_101_150" class="cursor-pointer">
                               S/100 - S/150
@@ -178,7 +178,7 @@
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="4" class="changePrice"
+                            <input type="checkbox"  value="150.01_200" class="changePrice"
                             id="price_151_200">  
                             <label for="price_151_200" class="cursor-pointer">
                               S/150 - S/200
@@ -186,7 +186,7 @@
                           </div>
 
                           <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="5" class="changePrice"
+                            <input type="checkbox"  value="200.01_100000" class="changePrice"
                             id="price_200_more">  
                             <label for="price_200_more" class="cursor-pointer">
                               S/200 - Más
@@ -234,7 +234,7 @@
                             
                             <a href="javascript:;" id="{{ $valores->id }}" class="changeColor rounded-full" data-val="0"
                               style="background-color:{{ $valores->color }};">
-                              <span class="block w-12 h-12 rounded-full"><span class="hidden">{{ $valores->valor }}</span></span>
+                              <span class="block w-12 h-12 rounded-full transition"><span class="hidden">{{ $valores->valor }}</span></span>
                             </a>
                             
                             {{-- <div class="relative">
@@ -305,10 +305,7 @@
 
               @endif
             @endforeach
-            
-
-           
-
+          
             <div>
               <div class="relative">
                 <div class="mx-auto">
@@ -369,10 +366,19 @@
           </div>
         </div>
       </div>
+      
       <!-- Listado de productos- -->
       <div id="getProductAjax">
         @include('public._listproduct')
+
+        <div class="flex justify-center items-center">
+          <a href="javascript:;"
+              class="text-textBlack py-3 px-5 border-2 border-gray-700 rounded-3xl w-60 text-center font-medium text-text16">
+              Cargar más modelos
+          </a>
+        </div>
       </div>
+
     </div>
 
     <section>
@@ -565,7 +571,7 @@
                 success: function(response) {
                  
                   $('#getProductAjax').html(response.success)
-
+                  // $('.pagination').html(response.pagination)
                 },
                 error: function(error) {
                 }

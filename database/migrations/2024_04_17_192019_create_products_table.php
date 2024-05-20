@@ -16,11 +16,12 @@ return new class extends Migration
             $table->string('producto');
             $table->string('extract')->nullable();
             $table->text('description')->nullable();
-            $table->decimal('precio', 12, 2)->default(0);
-            $table->decimal('descuento', 12, 2)->default(0);
-            $table->decimal('stock', 12, 2)->default(0);
-            $table->decimal('costo_x_art', 12, 2)->default(0);
-            $table->decimal('peso', 12, 2)->default(0);
+            $table->decimal('precio', 12, 2)->default(0)->nullable();
+            $table->decimal('descuento', 12, 2)->default(0)->nullable();
+            $table->decimal('preciofiltro', 12, 2)->default(0)->nullable();
+            $table->decimal('stock', 12, 2)->default(0)->nullable();
+            $table->decimal('costo_x_art', 12, 2)->default(0)->nullable();
+            $table->decimal('peso', 12, 2)->default(0)->nullable();
             $table->string('sku')->nullable();
             $table->string('imagen')->nullable();
             $table->json('atributes')->nullable();

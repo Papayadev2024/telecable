@@ -1,6 +1,7 @@
  // app,js--------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
     onSelectColor();
+    onSelectTalla();
   
     const checks = document.querySelectorAll(".onCheck");
   
@@ -33,6 +34,21 @@ document.addEventListener("DOMContentLoaded", function () {
           });
   
           e.target.classList.add("color");
+        }
+      });
+    });
+  }
+
+  function onSelectTalla() {
+    const tallas = document.querySelectorAll(".tallas");
+    tallas.forEach((talla) => {
+      talla.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("talla")) {
+          tallas.forEach((c) => {
+            c.classList.remove("talla");
+          });
+  
+          e.target.classList.add("talla");
         }
       });
     });
