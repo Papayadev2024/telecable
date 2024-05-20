@@ -93,9 +93,20 @@ class IndexController extends Controller
   
   public function catalogoFiltroAjax(Request $request){
       $productos = Products::obtenerProductos();
-     
+      $page = 0;
+      if (!empty( $productos->nextPageUrl())) {
+          
+          $parse_url=parse_url($productos->nextPageUrl());
+          
+          if (!empty($parse_url['query'])) {
+            parse_str($parse_url['query'], $get_array);
+            $page = !empty($get_array['page']) ? $get_array['page'] : 0;
+          }
+      }
+
       return response()->json([
         "status" => true,
+        "page" => $page,
         "success" => view("public._listproduct", [
             "productos" => $productos,
         ])->render(),
@@ -107,8 +118,8 @@ class IndexController extends Controller
     $categorias = null;
     $productos = null;
 
-    $rangefrom = $request->query('rangefrom');
-    $rangeto = $request->query('rangeto');
+    // $rangefrom = $request->query('rangefrom');
+    // $rangeto = $request->query('rangeto');
     // $tituloAtributo = $request->query('rangeto');
     // $valorAtributo = $request->query('rangeto');
     // dd($request);
@@ -120,57 +131,69 @@ class IndexController extends Controller
       $atributos = Attributes::where('status', '=', 1)->where('visible', '=', 1)->get();
       $colecciones = Collection::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-
-
-
       if ($filtro == 0) {
-        $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
+        //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
+        $productos =  Products::obtenerProductos();
+
+        
         $categoria = Category::all();
       } else {
-        $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
+        //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
+        $productos =  Products::obtenerProductos($filtro);
+       
         $categoria = Category::findOrFail($filtro);
       }
-
-
-
-      if ($rangefrom !== null && $rangeto !== null) {
-
-        if ($filtro == 0) {
-          $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
-          $categoria = Category::all();
-        } else {
-          $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
-          $categoria = Category::findOrFail($filtro);
-        }
-
-        $cleanedData = $productos->filter(function ($value) use ($rangefrom, $rangeto) {
-
-          if ($value['descuento'] == 0) {
-
-            if ($value['precio'] <= $rangeto && $value['precio'] >= $rangefrom) {
-              return $value;
-            }
-          } else {
-
-            if ($value['descuento'] <= $rangeto && $value['descuento'] >= $rangefrom) {
-              return $value;
-            }
+      
+      $page = 0;
+      if (!empty( $productos->nextPageUrl())) {
+          
+          $parse_url=parse_url($productos->nextPageUrl());
+          
+          if (!empty($parse_url['query'])) {
+            parse_str($parse_url['query'], $get_array);
+            $page = !empty($get_array['page']) ? $get_array['page'] : 0;
           }
-        });
-
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $productos = new LengthAwarePaginator(
-          $cleanedData->forPage($currentPage, 12), // Obtener los productos por página
-          $cleanedData->count(), // Contar todos los elementos
-          12, // Número de elementos por página
-          $currentPage, // Página actual
-          ['path' => request()->url()] // URL base para la paginación
-        );
       }
+      
+
+      // if ($rangefrom !== null && $rangeto !== null) {
+
+      //   if ($filtro == 0) {
+      //     $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
+      //     $categoria = Category::all();
+      //   } else {
+      //     $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
+      //     $categoria = Category::findOrFail($filtro);
+      //   }
+
+      //   $cleanedData = $productos->filter(function ($value) use ($rangefrom, $rangeto) {
+
+      //     if ($value['descuento'] == 0) {
+
+      //       if ($value['precio'] <= $rangeto && $value['precio'] >= $rangefrom) {
+      //         return $value;
+      //       }
+      //     } else {
+
+      //       if ($value['descuento'] <= $rangeto && $value['descuento'] >= $rangefrom) {
+      //         return $value;
+      //       }
+      //     }
+      //   });
+
+      //   $currentPage = LengthAwarePaginator::resolveCurrentPage();
+      //   $productos = new LengthAwarePaginator(
+      //     $cleanedData->forPage($currentPage, 12), // Obtener los productos por página
+      //     $cleanedData->count(), // Contar todos los elementos
+      //     12, // Número de elementos por página
+      //     $currentPage, // Página actual
+      //     ['path' => request()->url()] // URL base para la paginación
+      //   );
+      // }
+      
 
 
-
-      return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'rangefrom', 'rangeto', 'atributos', 'colecciones'));
+      return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'atributos', 'colecciones', 'page'));
     } catch (\Throwable $th) {
     }
   }

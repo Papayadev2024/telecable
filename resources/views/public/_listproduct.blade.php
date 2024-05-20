@@ -14,14 +14,14 @@
             </div>
           </div>
 
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col gap-1">
             <div
-              class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-2 order-2 lg:order-1">
+              class="flex flex-col 2xl:flex-row md:justify-between font-boldDisplay text-black gap-1 order-2 lg:order-1">
               <p class="text-text14 md:text-text16 xl:text-text20">
                 {{ $item->producto }}
               </p>
-              <div class="flex font-boldDisplay text-black items-center gap-2">
-                <div class="flex font-boldDisplay text-black items-center gap-2">
+              <div class="flex font-boldDisplay text-black items-center gap-1">
+                
                   @if ($item->descuento == 0)
                     <p class="text-text14 md:text-text16 xl:text-text20">
                       s/{{ $item->precio }}
@@ -35,7 +35,7 @@
                       s/{{ $item->precio }}
                     </p>
                   @endif
-                </div>
+                
               </div>
             </div>
 
