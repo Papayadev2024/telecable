@@ -4,10 +4,10 @@
 @section('content')
   <?php
   // Definición de la función capitalizeFirstLetter()
-  // function capitalizeFirstLetter($string)
-  // {
-  //     return ucfirst($string);
-  // }
+  function capitalizeFirstLetter($string)
+  {
+      return ucfirst($string);
+  }
   ?>
 
   <main class="flex flex-col gap-12 mt-12">

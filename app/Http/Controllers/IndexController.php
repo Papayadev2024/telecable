@@ -281,7 +281,7 @@ class IndexController extends Controller
     $clientId = config('services.izipay.client_id');
     $clientSecret = config('services.izipay.client_secret');
     $auth = base64_encode($clientId . ':' . $clientSecret);
-
+    
     $url = config('services.izipay.url');
     $response = Http::withHeaders([
       'Authorization' => "Basic $auth",
