@@ -13,13 +13,13 @@ class ImagenProducto extends Model
         'product_id', 'type_imagen', 'caratula', 'color_id', 'name_imagen'
     ];
 
-    // public function product()
-    // {
-    //     return $this->belongsTo(Products::class, 'product_id');
-    // }
+    public function product()
+    {
+        return $this->belongsTo(Products::class, 'product_id');
+    }
 
-    // public function color()
-    // {
-    //     return $this->belongsTo(AttributesValues::class, 'color_id');
-    // }
+    public function color()
+    {
+        return $this->belongsTo(AttributesValues::class, 'color_id');
+    }
 }

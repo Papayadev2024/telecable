@@ -118,8 +118,8 @@
                                 @endforeach
                             </ul>
                         @endif --}}
-
-                        {{-- <pre>@dd($colors)</pre>      --}}
+                            
+                        
                         @if ($product->attributes->isNotEmpty())    
                         @foreach ($product->attributes->unique() as $atributo)
                             <div>

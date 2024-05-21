@@ -17,6 +17,7 @@ use App\Models\Strength;
 use App\Models\Testimony;
 use App\Models\Category;
 use App\Models\Collection;
+use App\Models\Combinacion;
 use App\Models\DetalleOrden;
 use App\Models\Liquidacion;
 use App\Models\Ordenes;
@@ -470,9 +471,18 @@ class IndexController extends Controller
   {
     // $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
     $product = Products::findOrFail($id);
-    $colors = Products::findOrFail($id)
-              ->with('images')
+    // $colors = Products::findOrFail($id)
+    //           ->with('images')
+    //           ->get();
+
+    $colors = DB::table('imagen_productos')
+              ->where('product_id', $id)
+              ->groupBy('color_id')
+              ->join('attributes_values', 'color_id', 'attributes_values.id')
               ->get();
+       
+
+     dd($colors);
     $productos = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
     
     
