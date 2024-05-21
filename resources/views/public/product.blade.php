@@ -114,7 +114,7 @@
                                 function llenarImagenes(images) {
                                     let html = ''; // Inicializar la variable html fuera del bucle
                                     images.forEach(element => {
-                                        if (element.type_imagen == 'pri') {
+                                        if (element.type_imagen == 'primary') {
                                             html += `
                                                 <div class="flex flex-col gap-5 relative">
                                                   <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}" class="w-full object-cover" />
@@ -122,7 +122,7 @@
                                             `;
                                         }
 
-                                        if(element.type_imagen == 'sec'){
+                                        if(element.type_imagen == 'secondary'){
                                             html += `
                                             <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}"
                                                   class="w-full object-cover " />`;
