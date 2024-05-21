@@ -35,7 +35,8 @@ class DatabaseSeeder extends Seeder
             MessageSeeder::class,
             GeneralSeeder::class,
             CategorySeeder::class,
-            StatusOrdensSeeder::class
+            StatusOrdensSeeder::class,
+            AtributosSeeder::class
             //ServiceSeeder::class,
         ]);
     }
