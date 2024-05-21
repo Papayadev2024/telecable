@@ -7,6 +7,7 @@ use App\Models\AttributesValues;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Galerie;
+use App\Models\ImagenProducto;
 use App\Models\Products;
 use App\Models\Specifications;
 use App\Models\Tag;
@@ -68,6 +69,7 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
 
 
+    dump($data);
 
 
     // $valorprecio = $request->input('precio') - 0.1;
@@ -171,22 +173,35 @@ class ProductsController extends Controller
         $this->TagsXProducts($producto->id, $tagsSeleccionados);
       }
 
-      if (isset($data['filesGallery'])) {
-
-        foreach ($data['filesGallery'] as $file) {
-
-          $this->GuardarGaleria($file, $producto->id);
-        }
-      }
-
       foreach ($data as $key => $value) {
 
         if (strpos($key, 'attrid-') === 0) {
           
+          $colorId = substr($key, strrpos($key, '-') + 1);
           foreach ($value as $file) {
-            $this->GuardarGaleria($file, $producto->id);
+            $this->GuardarGaleria($file, $producto->id, $colorId);
 
           }
+        }elseif(strpos($key, 'imagenP-')=== 0 ){
+          $colorId = substr($key, strrpos($key, '-') + 1);
+          $isCaratula = 0 ; 
+          if($colorId == $data['caratula']){
+            $isCaratula =1 ;
+          }
+          $file = $request->file($key);
+          $routeImg = 'storage/images/productos/';
+          $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+          $this->saveImg($file, $routeImg, $nombreImagen);
+
+          $dataGalerie['name_imagen'] = $routeImg . $nombreImagen;
+          $dataGalerie['product_id'] = $producto->id;
+          $dataGalerie['type_imagen'] = 'primary';
+          $dataGalerie['caratula'] = $isCaratula ;
+          $dataGalerie['color_id'] = $colorId;
+          // $dataGalerie['type_img'] = 'gall';
+          ImagenProducto::create($dataGalerie);
+
         }
       }
 
@@ -199,7 +214,7 @@ class ProductsController extends Controller
       return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
     }
   }
-  private function GuardarGaleria($file, $producto_id)
+  private function GuardarGaleria($file, $producto_id, $colorId)
   {
     
     try {
@@ -220,10 +235,13 @@ class ProductsController extends Controller
       }
       // Guardar los datos binarios en un archivo
       file_put_contents($routeImg . $nombreImagen, $imageData);
-      $dataGalerie['imagen'] = $routeImg . $nombreImagen;
+      $dataGalerie['name_imagen'] = $routeImg . $nombreImagen;
       $dataGalerie['product_id'] = $producto_id;
+      $dataGalerie['type_imagen'] = 'secondary';
+      $dataGalerie['caratula'] = 0;
+      $dataGalerie['color_id'] = $colorId;
       // $dataGalerie['type_img'] = 'gall';
-      Galerie::create($dataGalerie);
+      ImagenProducto::create($dataGalerie);
     } catch (\Throwable $th) {
       //throw $th;
       dump($th);
