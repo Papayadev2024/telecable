@@ -73,6 +73,7 @@ Route::get('/novedades', [IndexController::class, 'novedades'] )->name('novedade
 Route::get('/buscar', [IndexController::class, 'searchProduct'])->name('buscar');
 Route::post('/procesarcarrito', [IndexController::class, 'procesarCarrito'])->name('procesar.carrito');
 Route::post('catalogo_filtro_ajax', [IndexController::class, 'catalogoFiltroAjax'])->name('catalogo_filtro_ajax');
+Route::post('cambiogaleria', [IndexController::class, 'cambioGaleria'])->name('cambioGaleria');
 
 /* Página 404 */
 Route::get('/404', [IndexController::class, 'error'] )->name('error');

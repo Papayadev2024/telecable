@@ -15,6 +15,7 @@ class VerifyCsrfToken extends Middleware
         //
         'carrito/buscarProducto',
         'agradecimiento',
-        '/procesar/pago'
+        '/procesar/pago',
+        'cambiogaleria'
     ];
 }
