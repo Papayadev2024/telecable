@@ -764,7 +764,7 @@
                         rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none 
                         checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 dark:bg-gray-800 dark:border-gray-700 
                         dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
-                        before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
+                        before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow        
                         before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
                         id='{{ 'v_' . $item->id }}' data-field='destacar' data-idService='{{ $item->id }}'
                         data-titleService='{{ $item->producto }}' {{ $item->destacar == 1 ? 'checked' : '' }}>
@@ -807,30 +807,32 @@
                 <label for="producto">Atributos</label>
                 <div class="flex gap-2 mt-2 relative mb-2 ">
                   @foreach ($atributos as $item)
-                    <div href="#"
-                      class="w-[300px] !important block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    @if ($item->id !== 2)
+                      <div href="#"
+                        class="w-[300px] !important block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
 
-                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        {{ $item->titulo }}
-                      </h5>
-                      @foreach ($valorAtributo as $value)
-                        @if ($value->attribute_id == $item->id)
-                          <div class="flex items-center mb-2 ">
-                            <input id_attr="{{ $value->id }}" type="checkbox"
-                              id="{{ $item->titulo }}:{{ $value->valor }} "
-                              name="{{ $item->titulo }}:{{ $value->valor }}"
-                              class="atributo_per w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for=" {{ $item->titulo }}:{{ $value->valor }} "
-                              class="ml-2">{{ $value->valor }}</label>
-                          </div>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                          {{ $item->titulo }}
+                        </h5>
+                        @foreach ($valorAtributo as $value)
+                          @if ($value->attribute_id == $item->id)
+                            <div class="flex items-center mb-2 ">
+                              <input id_attr="{{ $value->id }}" type="checkbox"
+                                id="{{ $item->titulo }}:{{ $value->valor }} "
+                                name="{{ $item->titulo }}:{{ $value->valor }}"
+                                class="atributo_per w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                              <label for=" {{ $item->titulo }}:{{ $value->valor }} "
+                                class="ml-2">{{ $value->valor }}</label>
+                            </div>
+                          @endif
+                        @endforeach
+                        @if ($item->imagen)
+                          <img src="{{ asset($item->imagen) }}" class="rounded-lg mb-2 w-1/2" alt="Imagen actual">
                         @endif
-                      @endforeach
-                      @if ($item->imagen)
-                        <img src="{{ asset($item->imagen) }}" class="rounded-lg mb-2 w-1/2" alt="Imagen actual">
-                      @endif
 
-                    </div>
+                      </div>
+                    @endif
                   @endforeach
                 </div>
               </div>
@@ -1187,29 +1189,6 @@
           $(`#imagenesOcultas-${idService}`).removeAttr('hidden');
         } else {
           $(`#imagenesOcultas-${idService}`).attr('hidden', true);
-        }
-      });
-      $('.atributo_per').on('change', function() {
-        const checkbox = $(this);
-        const isChecked = checkbox.is(':checked');
-        const id = checkbox.attr('id');
-        const valorAttr = checkbox.attr('id_attr')
-
-        const inputName = `attrValue-${valorAttr}`;
-
-        // Aquí puedes manejar la lógica según el estado del checkbox
-        if (isChecked) {
-          console.log(`Checkbox con ID "${id}" ha sido marcado.`);
-          // Crear el input solo si no existe
-          if (!$(`#${inputName}`).length) {
-            const inputElement =
-              `<input id="${inputName}" name="${inputName}" type="text" class="dynamic-input">`;
-            $(inputElement).insertAfter(checkbox);
-          }
-        } else {
-          console.log(`Checkbox con ID "${id}" ha sido desmarcado.`);
-          // Eliminar el input si existe
-          $(`#${inputName}`).remove();
         }
       });
     });
