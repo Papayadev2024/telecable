@@ -2,13 +2,13 @@
 @section('css_importados')
 @stop
 @section('content')
-    <?php
-    // Definición de la función capitalizeFirstLetter()
-    // function capitalizeFirstLetter($string)
-    // {
-    //     return ucfirst($string);
-    // }
-    ?>
+  <?php
+  
+  function capitalizeFirstLetter($string)
+  {
+      return ucfirst($string);
+  }
+  ?>
 
     <main class="flex flex-col gap-12 mt-12">
         {{-- <section class="flex gap-2 items-center w-11/12 mx-auto">
@@ -120,6 +120,12 @@
                                                   <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}" class="w-full object-cover" />
                                                 </div>
                                             `;
+                                        }
+
+                                        if(element.type_imagen == 'sec'){
+                                            html += `
+                                            <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}"
+                                                  class="w-full object-cover " />`;
                                         }
                                     });
                                     return html; // Devolver el HTML acumulado

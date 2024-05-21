@@ -210,6 +210,7 @@ class DropzoneControls {
         },
       });
     }
+    
     if (document.querySelector('#dropzoneServerFilesGallery')) {
       new Dropzone('#dropzoneServerFilesGallery', {
         url: 'https://httpbin.org/post',
