@@ -1216,7 +1216,7 @@
             let container = 0
             this.on('addedfile', async (file) => {
               console.log('addedfile', file)
-              if (container < 4) {
+              if (container < 5) {
                 container++
                 console.log(container)
                 const input = document.createElement('input')
