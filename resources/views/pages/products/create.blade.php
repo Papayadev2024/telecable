@@ -788,7 +788,7 @@
                   @endif
                 @endforeach
               </div>
-              <div class="md:col-span-5 mt-2">
+              <div class="md:col-span-5 mt-2 ">
                 <div class=" flex items-end justify-between gap-2 ">
                   <label for="AddCombinacion">Combinaciones </label>
                   <button type="button" id="AddCombinacion"
@@ -1082,6 +1082,13 @@
 
       })
 
+      $(document).on('click', '.eliminarConvinacion', function(e) {
+        console.log(e.target.value)
+
+        $(`#${e.target.value}`).remove()
+
+      })
+
       $("#AddCombinacion").on('click', function(e) {
         e.preventDefault()
         valorInput++
@@ -1092,7 +1099,9 @@
         const dRelative2 = document.createElement("div");
         const dRelative3 = document.createElement("div");
 
-        divFlex.classList.add('flex', 'gap-2')
+        divFlex.id = `combination-${valorInput}`;
+
+        divFlex.classList.add('flex', 'gap-2', 'items-center', 'justify-center')
         dRelative.classList.add('relative', 'mb-2', 'mt-2')
         dRelative2.classList.add('relative', 'mb-2', 'mt-2')
         dRelative3.classList.add('relative', 'mb-2', 'mt-2')
@@ -1117,6 +1126,15 @@
 
 
 
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Eliminar";
+        deleteButton.className =
+          "ml-2 bg-red-500 justi text-white px-4 h-10 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full  eliminarConvinacion";
+        deleteButton.setAttribute('value', `combination-${valorInput}`)
+        deleteButton.onclick = function(e) {
+          e.preventDefault()
+
+        };
         const inputTittle = document.createElement("select");
         const inputValue = document.createElement("select");
         const inputStock = document.createElement("input")
@@ -1143,6 +1161,7 @@
         divFlex.appendChild(dRelative);
         divFlex.appendChild(dRelative2);
         divFlex.appendChild(dRelative3);
+        divFlex.appendChild(deleteButton);
 
         const parentContainer = addButton.parentElement
           .parentElement; // Obtener el contenedor padre
