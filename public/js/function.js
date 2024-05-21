@@ -40,11 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function onSelectTalla() {
-    const tallas = document.querySelectorAll(".tallas");
-    tallas.forEach((talla) => {
+    const tallasombra = document.querySelectorAll(".tallasombreado");
+    
+    tallasombra.forEach((talla) => {
       talla.addEventListener("click", (e) => {
         if (!e.target.classList.contains("talla")) {
-          tallas.forEach((c) => {
+          tallasombra.forEach((c) => {
             c.classList.remove("talla");
           });
   

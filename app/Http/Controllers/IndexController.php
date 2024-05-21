@@ -457,15 +457,13 @@ class IndexController extends Controller
         $images =  ImagenProducto::where('color_id', $colorId)->where('product_id', $productId)->get();
         // return response()->json(['images' => $images]);
         // $productos = Products::where('id', '=', $productId)->with('attributes')->with('tags')->get();
+        $tallas = Combinacion::where('color_id', $colorId)->where('product_id', $productId)->with('talla')->get();
         
         return response()->json(
           [
               'status' => true,
               'images' => $images,
-              'success' => view('public._imageproduct', [
-                  // 'images' => $images,
-                  // 'productos' => $productos
-              ])->render(),
+              'tallas' => $tallas
           ],
           200,
       );

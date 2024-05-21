@@ -4,10 +4,10 @@
 @section('content')
   <?php
   
-  function capitalizeFirstLetter($string)
-  {
-      return ucfirst($string);
-  }
+  // function capitalizeFirstLetter($string)
+  // {
+  //     return ucfirst($string);
+  // }
   ?>
 
     <main class="flex flex-col gap-12 mt-12">
@@ -107,116 +107,16 @@
                                 @endforeach
                             </div>
                         @endif
-
-                        <script>
-                            $(document).ready(function() {
-
-                                function llenarImagenes(images) {
-                                    let html = ''; // Inicializar la variable html fuera del bucle
-                                    images.forEach(element => {
-                                        if (element.type_imagen == 'primary') {
-                                            html += `
-                                                <div class="flex flex-col gap-5 relative">
-                                                  <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}" class="w-full object-cover" />
-                                                </div>
-                                            `;
-                                        }
-
-                                        if(element.type_imagen == 'secondary'){
-                                            html += `
-                                            <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}"
-                                                  class="w-full object-cover " />`;
-                                        }
-                                    });
-                                    return html; // Devolver el HTML acumulado
-                                }
-
-                                function enviarColorSeleccionado() {
-                                    var selectedColorDiv = $('.colors.color');
-                                    var colorId = selectedColorDiv.data('id');
-                                    var productId = selectedColorDiv.data('productid');
-
-                                    $.ajax({
-                                        url: '{{ route('cambioGaleria') }}', // Cambia esta URL a la ruta de tu controlador
-                                        method: 'POST', // O 'POST' según corresponda
-                                        data: {
-                                            id: colorId,
-                                            idproduct: productId
-                                        },
-                                        success: function(response) {
-                                            console.log(response);
-                                            let llenadoimg = llenarImagenes(response.images);
-                                            //$('#imageContainer').html('');
-                                            // Limpia el contenedor de imágenes actual
-                                            // $.each(response.images, function(index, imageUrl) {
-                                            //     $('#imageContainer').append('<img src="' + imageUrl +
-                                            //         '" alt="Color Image">');
-                                            // });
-                                            $('#imageContainer').html(llenadoimg);
-                                        },
-                                        error: function(xhr) {
-                                            // Maneja el error
-                                            console.log(xhr.responseText);
-                                        }
-                                    });
-                                    // $('.colors').on('click', function() {
-                                    //     var colorId = $(this).data('id');
-                                    //     var productId = $(this).data('productid');
-                                    // });
-                                }
-                                enviarColorSeleccionado();
-
-                                $('.colors').on('click', function() {
-                                    $('.colors').removeClass('color');
-                                    $(this).addClass('color');
-                                    enviarColorSeleccionado();
-                                });
-
-                            });
-                        </script>
-                        @if ($product->attributes->isNotEmpty())
-                            @foreach ($product->attributes->unique() as $atributo)
-                                <div>
-                                    {{-- @if ($atributo->typeAttribute->name === 'Color')
+                     
+                              <div>
                                     <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
-                                       Selecciona {{strtolower($atributo->titulo)}}:
-                                    </p>
+                                      Selecciona talla:
+                                    </p>   
                                     
-                                    <div class="flex gap-5 justify-start items-center">
-                                        @php
-                                            $attributeValues = $atributo->attributeValues->whereIn(
-                                                'id',
-                                                $product->attributes->pluck('pivot.attribute_value_id'),
-                                            );
-                                        @endphp
-                                        @foreach ($attributeValues as $valor)
-                                            <div style="background-color: {{ $valor->color }}"
-                                                class="colors w-14 h-14 rounded-[50%] cursor-pointer transition"></div>
-                                        @endforeach
-                                    </div> --}}
-                                    @if ($atributo->typeAttribute->name === 'Talla')
-                                        <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
-                                            Selecciona {{ strtolower($atributo->titulo) }}:
-                                        </p>
-                                        <div
-                                            class="grid grid-cols-3 place-items-center font-regularDisplay text-text14 md:text-text20 gap-2">
-                                            @php
-                                                $attributeValues = $atributo->attributeValues->whereIn(
-                                                    'id',
-                                                    $product->attributes->pluck('pivot.attribute_value_id'),
-                                                );
-                                            @endphp
-                                            @foreach ($attributeValues as $valor)
-                                                <div class="flex justify-center items-center border-2 w-full rounded-lg">
-                                                    <p class="tallas py-5 px-4 w-full text-center transition">
-                                                        {{ $valor->valor }}</p>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    @endif
-                                </div>
-                            @endforeach
-                        @endif
+                                    <div class="grid grid-cols-3 place-items-center font-regularDisplay text-text14 md:text-text20 gap-2" id="llenadoTallas">
+                                           
+                                    </div>
+                              </div>
                     </div>
 
 
@@ -846,8 +746,6 @@
 
             PintarCarrito()
 
-
-
             function capitalizeFirstLetter(string) {
                 string = string.toLowerCase()
                 return string.charAt(0).toUpperCase() + string.slice(1);
@@ -887,12 +785,86 @@
     </script>
     <script>
         var appUrl = '{{ env('APP_URL') }}';
-
-        // Agrega más variables de entorno aquí según sea necesario
     </script>
 
 
     <script src="{{ asset('js/carrito.js') }}"></script>
+
+    <script>
+      $(document).ready(function() {
+
+          function llenarImagenes(images) {
+              let html = ''; // Inicializar la variable html fuera del bucle
+              images.forEach(element => {
+                  if (element.type_imagen == 'primary') {
+                      html += `
+                          <div class="flex flex-col gap-5 relative ">
+                            <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}" class="w-full object-cover" />
+                          </div>
+                      `;
+                  }
+
+                  if(element.type_imagen == 'secondary'){
+                      html += `
+                      <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}"
+                            class="w-full object-cover " />`;
+                  }
+              });
+              return html; 
+          }
+
+          function llenadoTallas(tallas){
+              let html = '';
+
+              tallas.forEach(element => {
+                  if (element) {
+                      html += `
+                          <div class="flex justify-center items-center border-2 w-full rounded-lg">
+                              <p class="tallasombreado py-5 px-4 w-full text-center transition">
+                                ${element.talla.valor}
+                              </p>
+                          </div>
+                      `;
+                  }
+              });
+              return html;
+          }
+
+
+          function enviarColorSeleccionado() {
+              var selectedColorDiv = $('.colors.color');
+              var colorId = selectedColorDiv.data('id');
+              var productId = selectedColorDiv.data('productid');
+
+              $.ajax({
+                  url: '{{ route('cambioGaleria') }}', // Cambia esta URL a la ruta de tu controlador
+                  method: 'POST', // O 'POST' según corresponda
+                  data: {
+                      id: colorId,
+                      idproduct: productId
+                  },
+                  success: function(response) {
+                      
+                      let llenadoimg = llenarImagenes(response.images);
+                      let llenadotallas = llenadoTallas(response.tallas);
+                      $('#imageContainer').html(llenadoimg);
+                      $('#llenadoTallas').html(llenadotallas);
+                  },
+                  error: function(xhr) {
+                      console.log(xhr.responseText);
+                  }
+              });
+          }
+          enviarColorSeleccionado();
+
+          $('.colors').on('click', function() {
+              $('.colors').removeClass('color');
+              $(this).addClass('color');
+              enviarColorSeleccionado();
+          });
+
+      });
+  </script>
 
 @stop
 

@@ -25,8 +25,8 @@ class Combinacion extends Model
     //     return $this->belongsTo(AttributesValues::class, 'color_id');
     // }
 
-    // public function talla()
-    // {
-    //     return $this->belongsTo(AttributesValues::class, 'talla_id');
-    // }
+    public function talla()
+    {
+        return $this->belongsTo(AttributesValues::class, 'talla_id');
+    }
 }
