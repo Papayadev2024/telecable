@@ -3,7 +3,8 @@
 
     <section class="py-4 border-b border-slate-100 dark:border-slate-700">
       <a href="{{ route('valoresattributes.create') }}"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm">Agregar valores a atributo</a>
+        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm">Agregar valores a
+        atributo</a>
     </section>
 
 
@@ -34,9 +35,11 @@
 
               @foreach ($valoresAttr as $item)
                 <tr>
-                  <td>{{ $item->productAttribute->titulo }}</td>
+                  <td>{{ $item->productAttribute->titulo ?? '' }}</td>
                   <td>{{ $item->valor }}</td>
-                  <td class="px-1 py-1 flex flex-row  justify-center items-center"> <div class=" rounded-full w-12 h-12" style="background-color: {{ $item->color }}"></div></td>
+                  <td class="px-1 py-1 flex flex-row  justify-center items-center">
+                    <div class=" rounded-full w-12 h-12" style="background-color: {{ $item->color }}"></div>
+                  </td>
                   <td class="px-3 py-2"><img class="w-20" src="{{ asset($item->imagen) }}" alt=""></td>
 
                   <td>
@@ -80,7 +83,7 @@
               <tr>
                 <th>Atributo Principal</th>
                 <th>Valor</th>
-               
+
                 <th>Color</th>
                 <th>Imagen</th>
                 <th>Visible</th>

@@ -52,7 +52,7 @@ class ProductsController extends Controller
     $img->coverDown(1000, 1500, 'center');
 
     if (!file_exists($route)) {
-      mkdir($route, 0777, true); 
+      mkdir($route, 0777, true);
     }
 
     $img->save($route . $nombreImagen);
@@ -67,6 +67,10 @@ class ProductsController extends Controller
     $data = $request->all();
     $atributos = null;
     $tagsSeleccionados = $request->input('tags_id');
+
+
+
+
     // $valorprecio = $request->input('precio') - 0.1;
 
     try {
@@ -90,12 +94,12 @@ class ProductsController extends Controller
 
         $data['imagen'] = $routeImg . $nombreImagen;
         // $AboutUs->name_image = $nombreImagen;
-      }else{
+      } else {
         $routeImg = 'images/img/';
         $nombreImagen = 'noimagen.jpg';
 
         $data['imagen'] = $routeImg . $nombreImagen;
-    }
+      }
 
 
 
@@ -118,7 +122,7 @@ class ProductsController extends Controller
           }
         }
       }
-
+      
       $jsonAtributos = json_encode($atributos);
 
       if (array_key_exists('destacar', $data)) {
@@ -141,20 +145,20 @@ class ProductsController extends Controller
 
       $producto = Products::create($cleanedData);
 
-      if($producto['descuento'] == 0 || is_null($producto['descuento'])){
-        $precioFiltro = $producto['precio']; 
-      }else{
+      if ($producto['descuento'] == 0 || is_null($producto['descuento'])) {
+        $precioFiltro = $producto['precio'];
+      } else {
         $precioFiltro = $producto['descuento'];
       }
       $producto->update(['preciofiltro' => $precioFiltro]);
 
-      if(isset($atributos)){
+      if (isset($atributos)) {
         foreach ($atributos as $atributo => $valores) {
           $idAtributo = Attributes::where('titulo', $atributo)->first();
-  
+
           foreach ($valores as $valor) {
             $idValorAtributo = AttributesValues::where('valor', $valor)->first();
-  
+
             if ($idAtributo && $idValorAtributo) {
               DB::table('attribute_product_values')->insert([
                 'product_id' => $producto->id,
@@ -165,7 +169,7 @@ class ProductsController extends Controller
           }
         }
       }
-      
+
 
       $this->GuardarEspecificaciones($producto->id, $especificaciones);
 
@@ -176,34 +180,59 @@ class ProductsController extends Controller
       if (isset($data['filesGallery'])) {
 
         foreach ($data['filesGallery'] as $file) {
-        
-          [$first, $code] = explode(';base64,', $file);
 
-        
-
-          $imageData = base64_decode($code);
-
-          
-          $routeImg = 'storage/images/gallery/';
-          $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
-          $nombreImagen = Str::random(10) . '.' . $ext;
-          // Verificar si la ruta no existe y crearla si es necesario
-          if (!file_exists($routeImg)) {
-            mkdir($routeImg, 0777, true); 
-          }
-          // Guardar los datos binarios en un archivo
-          file_put_contents($routeImg . $nombreImagen, $imageData);
-          $dataGalerie['imagen'] = $routeImg . $nombreImagen;
-          $dataGalerie['product_id'] = $producto->id;
-          // $dataGalerie['type_img'] = 'gall';
-          Galerie::create($dataGalerie);
+          $this->GuardarGaleria($file, $producto->id);
         }
       }
 
-      return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
+      foreach ($data as $key => $value) {
+
+        if (strpos($key, 'attrid-') === 0) {
+          
+          foreach ($value as $file) {
+            $this->GuardarGaleria($file, $producto->id);
+
+          }
+        }
+      }
+
+
+
+
+      // return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
     } catch (\Throwable $th) {
       //throw $th;
       return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
+    }
+  }
+  private function GuardarGaleria($file, $producto_id)
+  {
+    
+    try {
+      //code...
+      [$first, $code] = explode(';base64,', $file);
+
+
+
+      $imageData = base64_decode($code);
+
+
+      $routeImg = 'storage/images/gallery/';
+      $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
+      $nombreImagen = Str::random(10) . '.' . $ext;
+      // Verificar si la ruta no existe y crearla si es necesario
+      if (!file_exists($routeImg)) {
+        mkdir($routeImg, 0777, true);
+      }
+      // Guardar los datos binarios en un archivo
+      file_put_contents($routeImg . $nombreImagen, $imageData);
+      $dataGalerie['imagen'] = $routeImg . $nombreImagen;
+      $dataGalerie['product_id'] = $producto_id;
+      // $dataGalerie['type_img'] = 'gall';
+      Galerie::create($dataGalerie);
+    } catch (\Throwable $th) {
+      //throw $th;
+      dump($th);
     }
   }
 
@@ -292,7 +321,7 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
     $data = $request->all();
     $atributos = null;
-    
+
     $request->validate([
       'producto' => 'required',
     ]);
@@ -349,17 +378,17 @@ class ProductsController extends Controller
     $cleanedData['description'] = $data['description'];
     $cleanedData['sku'] = $data['sku'];
 
-    if($data['descuento'] == 0 || is_null($data['descuento'])){
-      $cleanedData['preciofiltro'] = $data['precio']; 
-    }else{
-      $cleanedData['preciofiltro'] = $data['descuento']; 
+    if ($data['descuento'] == 0 || is_null($data['descuento'])) {
+      $cleanedData['preciofiltro'] = $data['precio'];
+    } else {
+      $cleanedData['preciofiltro'] = $data['descuento'];
     }
 
     $product->update($cleanedData);
 
     DB::delete('delete from attribute_product_values where product_id = ?', [$product->id]);
 
-    if(isset($atributos)){
+    if (isset($atributos)) {
       foreach ($atributos as $atributo => $valores) {
         $idAtributo = Attributes::where('titulo', $atributo)->first();
 
@@ -392,7 +421,7 @@ class ProductsController extends Controller
   {
     //softdelete
     DB::delete('delete from galeries where product_id = ?', [$request->id]);
-    
+
     $product = Products::find($request->id);
     $product->status = 0;
     $product->save();
