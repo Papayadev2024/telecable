@@ -906,7 +906,7 @@
 
     function agregarCombinacion(elemento, valorInput, name) {
       elemento.setAttribute("type", "text");
-      elemento.setAttribute("name", `${name}-${valorInput}`);
+      elemento.setAttribute("name", `conbinacion-${valorInput}[${name}]`);
       elemento.setAttribute("placeholder", `${capitalizeFirstLetter(name)}`);
       elemento.setAttribute("id", `${name}-${valorInput}`);
 
@@ -952,7 +952,7 @@
 
     function agregarinputStock(elemento, valorInput, name) {
       elemento.setAttribute("type", "text");
-      elemento.setAttribute("name", `${name}-${valorInput}`);
+      elemento.setAttribute("name", `conbinacion-${valorInput}[stock]`);
       elemento.setAttribute("placeholder", `${capitalizeFirstLetter(name)}`);
       elemento.setAttribute("id", `${name}-${valorInput}`);
 
