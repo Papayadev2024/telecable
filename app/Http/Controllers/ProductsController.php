@@ -188,7 +188,7 @@ class ProductsController extends Controller
         }elseif(strpos($key, 'imagenP-')=== 0 ){
           $colorId = substr($key, strrpos($key, '-') + 1);
           $isCaratula = 0 ; 
-          if($colorId == $data['caratula']){
+          if($colorId == isset($data['caratula'])){
             $isCaratula =1 ;
           }
           $file = $request->file($key);
