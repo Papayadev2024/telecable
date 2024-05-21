@@ -56,7 +56,7 @@ class IndexController extends Controller
     // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
     // ->where('visible', '=', 1)->with('tags')->get();
     $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)
-      ->where('visible', '=', 1)->with('tags')->get();
+      ->where('visible', '=', 1)->with('tags')->with('images')->get();
 
     $general = General::all();
     $benefit = Strength::where('status', '=', 1)->get();
@@ -470,8 +470,11 @@ class IndexController extends Controller
   {
     // $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
     $product = Products::findOrFail($id);
+    $colors = Products::findOrFail($id)
+              ->with('images')
+              ->get();
     $productos = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
-    // $attributeValues = $product->attributes()->with('attributeValues')->get();
+    
     
     // $especificaciones = Specifications::where('product_id', '=', $id)->get();
     $especificaciones = Specifications::where('product_id', '=', $id)
@@ -500,7 +503,7 @@ class IndexController extends Controller
 
     $url_env = $_ENV['APP_URL'];
 
-    return view('public.product', compact('product','productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env'));
+    return view('public.product', compact('product','productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env', 'colors'));
   }
 
 

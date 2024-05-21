@@ -33,7 +33,13 @@
       <div class="flex flex-col gap-12 lg:flex-row md:gap-32">
         <div class="basis-3/6 grid grid-cols-2 gap-5">
           <div class="flex flex-col gap-5 relative">
-            <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}" class="w-full object-cover" />
+            {{-- <img src="{{ asset($productos[0]->imagen) }}" alt="{{ $productos[0]->name }}"
+              class="w-full object-cover" /> --}}
+            @foreach ($productos[0]->images as $image)
+              @if ($image->caratula == 1)
+                <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full object-cover " />
+              @endif
+            @endforeach
 
             <div class="absolute top-[10px] left-[10px] md:top-[20px] md:left-[20px]">
               <div class="flex gap-3 flex-wrap">
@@ -48,13 +54,17 @@
             </div>
 
           </div>
-
-          @foreach ($productosConGalerias as $galeria)
+          @foreach ($productos[0]->images as $image)
+            @if ($image->caratula == 0 && $image->color_id == 1)
+              <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full object-cover " />
+            @endif
+          @endforeach
+          {{-- @foreach ($productosConGalerias as $galeria)
             <div class="flex justify-center items-center rounded-2xl object-cover bg-cover">
               <img src="{{ asset($galeria->imagen) }}" alt="{{ $galeria->descripcion }}"
                 class="w-full  object-cover bg-cover" />
             </div>
-          @endforeach
+          @endforeach --}}
         </div>
 
         <div class="basis-3/6 text-textBlack flex flex-col gap-10">
@@ -109,7 +119,7 @@
                             </ul>
                         @endif --}}
 
-
+            {{-- <pre>@dd($colors)</pre>      --}}
             @if ($product->attributes->isNotEmpty())
               @foreach ($product->attributes->unique() as $atributo)
                 <div>
@@ -130,7 +140,50 @@
                           class="colors w-14 h-14 rounded-[50%] cursor-pointer transition"></div>
                       @endforeach
                     </div>
-                  @elseif($atributo->typeAttribute->name === 'Talla')
+                    {{-- @elseif($atributo->typeAttribute->name === 'Talla')
+                                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
+                                      Selecciona {{strtolower($atributo->titulo)}}:
+                                    </p>
+                                    <div
+                                        class="grid grid-cols-3 place-items-center font-regularDisplay text-text14 md:text-text20 gap-2">
+                                        @php
+                                        $attributeValues = $atributo->attributeValues->whereIn(
+                                            'id',
+                                            $product->attributes->pluck('pivot.attribute_value_id'),
+                                        );
+                                        @endphp
+                                        @foreach ($attributeValues as $valor)
+                                            <div class="flex justify-center items-center border-2 w-full rounded-lg">
+                                                <p class="tallas py-5 px-4 w-full text-center transition">{{ $valor->valor }}</p>
+                                            </div>
+                                        @endforeach
+                                    </div> --}}
+                  @endif
+                </div>
+              @endforeach
+            @endif
+
+            @if ($product->attributes->isNotEmpty())
+              @foreach ($product->attributes->unique() as $atributo)
+                <div>
+                  {{-- @if ($atributo->typeAttribute->name === 'Color')
+                                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
+                                       Selecciona {{strtolower($atributo->titulo)}}:
+                                    </p>
+                                    
+                                    <div class="flex gap-5 justify-start items-center">
+                                        @php
+                                            $attributeValues = $atributo->attributeValues->whereIn(
+                                                'id',
+                                                $product->attributes->pluck('pivot.attribute_value_id'),
+                                            );
+                                        @endphp
+                                        @foreach ($attributeValues as $valor)
+                                            <div style="background-color: {{ $valor->color }}"
+                                                class="colors w-14 h-14 rounded-[50%] cursor-pointer transition"></div>
+                                        @endforeach
+                                    </div> --}}
+                  @if ($atributo->typeAttribute->name === 'Talla')
                     <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
                       Selecciona {{ strtolower($atributo->titulo) }}:
                     </p>
@@ -151,8 +204,6 @@
                 </div>
               @endforeach
             @endif
-
-
           </div>
           <div class="flex flex-col gap-3">
 
