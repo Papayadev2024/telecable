@@ -756,7 +756,7 @@
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-1 rounded shadow-lg p-4 px-4">
                 @foreach ($valorAtributo as $item)
                   @if ($item->attribute_id == 2)
-                    <div class="flex gap-6">
+                    <div class="grid grid-cols-3">
                       <label class="inline">{{ $item->valor }} </label>
 
                       <input type="checkbox" id="hs-basic-usage"
@@ -788,7 +788,7 @@
                   @endif
                 @endforeach
               </div>
-              <div class="md:col-span-5 mt-2">
+              <div class="md:col-span-5 mt-2 ">
                 <div class=" flex items-end justify-between gap-2 ">
                   <label for="AddCombinacion">Combinaciones </label>
                   <button type="button" id="AddCombinacion"
@@ -804,37 +804,41 @@
 
               </div>
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
-                <label for="producto">Atributos</label>
-                <div class="flex gap-2 mt-2 relative mb-2 ">
-                  @foreach ($atributos as $item)
-                    @if ($item->id !== 2)
-                      <div href="#"
-                        class="w-[300px] !important block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <div>
+                  <label for="producto">Atributos</label>
+                  <div class="flex gap-2 mt-2 relative mb-2 ">
+                    @foreach ($atributos as $item)
+                      @if ($item->id !== 2)
+                        <div href="#"
+                          class="w-[300px] !important block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
 
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                          {{ $item->titulo }}
-                        </h5>
-                        @foreach ($valorAtributo as $value)
-                          @if ($value->attribute_id == $item->id)
-                            <div class="flex items-center mb-2 ">
-                              <input id_attr="{{ $value->id }}" type="checkbox"
-                                id="{{ $item->titulo }}:{{ $value->valor }} "
-                                name="{{ $item->titulo }}:{{ $value->valor }}"
-                                class="atributo_per w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                              <label for=" {{ $item->titulo }}:{{ $value->valor }} "
-                                class="ml-2">{{ $value->valor }}</label>
-                            </div>
+                          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            {{ $item->titulo }}
+                          </h5>
+                          @foreach ($valorAtributo as $value)
+                            @if ($value->attribute_id == $item->id)
+                              <div class="flex items-center mb-2 ">
+                                <input id_attr="{{ $value->id }}" type="checkbox"
+                                  id="{{ $item->titulo }}:{{ $value->valor }} "
+                                  name="{{ $item->titulo }}:{{ $value->valor }}"
+                                  class="atributo_per w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for=" {{ $item->titulo }}:{{ $value->valor }} "
+                                  class="ml-2">{{ $value->valor }}</label>
+                              </div>
+                            @endif
+                          @endforeach
+                          @if ($item->imagen)
+                            <img src="{{ asset($item->imagen) }}" class="rounded-lg mb-2 w-1/2" alt="Imagen actual">
                           @endif
-                        @endforeach
-                        @if ($item->imagen)
-                          <img src="{{ asset($item->imagen) }}" class="rounded-lg mb-2 w-1/2" alt="Imagen actual">
-                        @endif
 
-                      </div>
-                    @endif
-                  @endforeach
+                        </div>
+                      @endif
+                    @endforeach
+                  </div>
+
                 </div>
+
               </div>
 
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
@@ -1078,6 +1082,13 @@
 
       })
 
+      $(document).on('click', '.eliminarConvinacion', function(e) {
+        console.log(e.target.value)
+
+        $(`#${e.target.value}`).remove()
+
+      })
+
       $("#AddCombinacion").on('click', function(e) {
         e.preventDefault()
         valorInput++
@@ -1088,7 +1099,9 @@
         const dRelative2 = document.createElement("div");
         const dRelative3 = document.createElement("div");
 
-        divFlex.classList.add('flex', 'gap-2')
+        divFlex.id = `combination-${valorInput}`;
+
+        divFlex.classList.add('flex', 'gap-2', 'items-center', 'justify-center')
         dRelative.classList.add('relative', 'mb-2', 'mt-2')
         dRelative2.classList.add('relative', 'mb-2', 'mt-2')
         dRelative3.classList.add('relative', 'mb-2', 'mt-2')
@@ -1113,6 +1126,15 @@
 
 
 
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Eliminar";
+        deleteButton.className =
+          "ml-2 bg-red-500 justi text-white px-4 h-10 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full  eliminarConvinacion";
+        deleteButton.setAttribute('value', `combination-${valorInput}`)
+        deleteButton.onclick = function(e) {
+          e.preventDefault()
+
+        };
         const inputTittle = document.createElement("select");
         const inputValue = document.createElement("select");
         const inputStock = document.createElement("input")
@@ -1139,6 +1161,7 @@
         divFlex.appendChild(dRelative);
         divFlex.appendChild(dRelative2);
         divFlex.appendChild(dRelative3);
+        divFlex.appendChild(deleteButton);
 
         const parentContainer = addButton.parentElement
           .parentElement; // Obtener el contenedor padre
@@ -1212,7 +1235,7 @@
             let container = 0
             this.on('addedfile', async (file) => {
               console.log('addedfile', file)
-              if (container < 4) {
+              if (container < 5) {
                 container++
                 console.log(container)
                 const input = document.createElement('input')
