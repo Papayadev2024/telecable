@@ -27,7 +27,6 @@ class ProductsController extends Controller
   public function index()
   {
     $products =  Products::where("status", "=", true)->get();
-
     return view('pages.products.index', compact('products'));
   }
 
@@ -75,11 +74,6 @@ class ProductsController extends Controller
         'precio' => 'min:0|required|numeric',
         'descuento' => 'lt:' . $request->input('precio'),
       ]);
-
-      $messages = [
-        'producto.required'  => 'Harap bagian :attribute di isi.',
-        'unique'    => ':attribute sudah digunakan',
-      ];
 
       if ($request->hasFile("imagen")) {
         $file = $request->file('imagen');
@@ -299,7 +293,7 @@ class ProductsController extends Controller
 
     if ($request->hasFile("imagen")) {
       $file = $request->file('imagen');
-      $routeImg = 'storage/images/imagen/';
+      $routeImg = 'storage/images/productos/';
       $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
       $this->saveImg($file, $routeImg, $nombreImagen);

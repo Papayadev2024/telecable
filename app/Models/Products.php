@@ -68,6 +68,16 @@ class Products extends Model
           
   }
 
+  public function images()
+    {
+        return $this->hasMany(ImagenProducto::class, 'product_id');
+    }
+
+  public function combinations()
+    {
+        return $this->hasMany(Combinacion::class, 'product_id');
+    }
+
 
   public static function obtenerProductos($categoria_id = ''){
     $return = Products::select('products.*','categories.name as category_name')->join('categories', 'categories.id', '=', 'products.categoria_id');
