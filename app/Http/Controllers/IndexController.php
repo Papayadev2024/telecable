@@ -482,7 +482,7 @@ class IndexController extends Controller
               ->get();
        
 
-     dd($colors);
+   
     $productos = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
     
     

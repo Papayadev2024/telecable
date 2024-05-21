@@ -118,7 +118,10 @@
                                 @endforeach
                             </ul>
                         @endif --}}
-                            
+                         @foreach ($colors as $item)
+                            <div style="background-color: {{ $item->color }}"
+                              class="colors w-14 h-14 rounded-[50%] cursor-pointer transition"></div>
+                         @endforeach   
                         
                         @if ($product->attributes->isNotEmpty())    
                         @foreach ($product->attributes->unique() as $atributo)
