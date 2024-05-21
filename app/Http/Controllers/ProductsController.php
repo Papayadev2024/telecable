@@ -6,6 +6,7 @@ use App\Models\Attributes;
 use App\Models\AttributesValues;
 use App\Models\Category;
 use App\Models\Collection;
+use App\Models\Combinacion;
 use App\Models\Galerie;
 use App\Models\ImagenProducto;
 use App\Models\Products;
@@ -69,7 +70,7 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
 
 
-    dump($data);
+   
 
 
     // $valorprecio = $request->input('precio') - 0.1;
@@ -173,7 +174,9 @@ class ProductsController extends Controller
         $this->TagsXProducts($producto->id, $tagsSeleccionados);
       }
 
+      
       foreach ($data as $key => $value) {
+        
 
         if (strpos($key, 'attrid-') === 0) {
           
@@ -202,17 +205,30 @@ class ProductsController extends Controller
           // $dataGalerie['type_img'] = 'gall';
           ImagenProducto::create($dataGalerie);
 
+        }elseif(strpos($key, 'conbinacion-') === 0 ){
+          
+          $this->GuardarCombinacion($producto->id, $value );
+
         }
       }
 
 
 
 
-      // return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
+      return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
     } catch (\Throwable $th) {
       //throw $th;
       return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
     }
+  }
+  private function GuardarCombinacion($producto_id, $combinacion){
+    Combinacion::create([
+  
+      'product_id'=> $producto_id,
+      'color_id'=> $combinacion['color'],
+      'talla_id'=> $combinacion['talla'],
+      'stock'=> $combinacion['stock'],
+    ]);
   }
   private function GuardarGaleria($file, $producto_id, $colorId)
   {
@@ -244,7 +260,7 @@ class ProductsController extends Controller
       ImagenProducto::create($dataGalerie);
     } catch (\Throwable $th) {
       //throw $th;
-      dump($th);
+     
     }
   }
 
