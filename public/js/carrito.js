@@ -105,7 +105,9 @@ let articulosCarrito = [];
         let plantilla = `<div class="flex justify-between bg-white font-poppins border-b-[1px] border-[#E8ECEF] pb-5">
               <div class="flex justify-center items-center gap-5">
                 <div class="bg-[#F3F5F7] rounded-md p-4">
-                  <img src="${appUrl}/${element.imagen}" alt="producto" class="w-24" />
+                  
+                  <img src="${appUrl}/${element.caratula}" alt="producto" class="w-24" />
+
                 </div>
                 <div class="flex flex-col gap-3 py-2">
                   <h3 class="font-semibold text-[14px] text-[#151515]">
@@ -178,6 +180,7 @@ let articulosCarrito = [];
 
         },
         success: function(success) {
+          console.log(success);
           let {
             producto,
             id,
@@ -186,6 +189,7 @@ let articulosCarrito = [];
             imagen,
             color
           } = success.data
+
           let cantidad = Number(success.cantidad)
           let detalleProducto = {
             id,
@@ -194,8 +198,8 @@ let articulosCarrito = [];
             precio,
             imagen,
             cantidad,
-            color
-
+            color,
+            caratula: success.caratula
           }
           let existeArticulo = articulosCarrito.some(item => item.id === detalleProducto.id)
           if (existeArticulo) {

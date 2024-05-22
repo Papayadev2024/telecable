@@ -335,7 +335,7 @@
         let plantilla = `<div class="flex justify-between bg-white font-poppins border-b-[1px] border-[#E8ECEF] pb-5">
           <div class="flex justify-center items-center gap-5">
             <div class="bg-[#F3F5F7] rounded-md p-4">
-              <img src="${appUrl}/${element.imagen}" alt="producto" class="w-24" />
+              <img src="${appUrl}/${element.caratula}" alt="producto" class="w-24" />
             </div>
             <div class="flex flex-col gap-3 py-2">
               <h3 class="font-semibold text-[14px] text-[#151515]">
@@ -425,8 +425,8 @@
             imagen,
             cantidad,
             color,
-            tipo_envio: 0
-
+            tipo_envio: 0,
+            caratula: success.caratula
           }
           let existeArticulo = articulosCarrito.some(item => item.id === detalleProducto.id)
           if (existeArticulo) {

@@ -1,7 +1,7 @@
 <footer class="bg-bgRosa mt-12 flex flex-col gap-10">
   <div class="w-11/12 mx-auto flex flex-col gap-10">
     <div class="flex justify-start mt-10">
-      <div class="flex flex-col gap-4 w-full md:w-4/12">
+      <div class="flex flex-col gap-4 w-full md:w-6/12">
         <p
           class="font-regularDisplay text-text18 xl:text-text24 text-textBlack"
         >
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="flex md:justify-end items-center text-textBlack uppercase">
+    {{-- <div class="flex md:justify-end items-center text-textBlack uppercase">
       <div
         class="flex items-center justify-between md:justify-end gap-10 border-b-2 border-black w-full md:w-auto"
       >
@@ -56,23 +56,21 @@
           </div>
         </a>
       </div>
-    </div>
+    </div> --}}
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
       <div class="flex flex-col gap-5">
-        <p
-          class="font-boldItalicDisplay text-text16 uppercase xl:text-text24"
-        >
+        <p class="font-boldItalicDisplay text-text16 uppercase xl:text-text24">
           Navegar
         </p>
-
         <div
           class="flex flex-col gap-5 text-gray-400 font-regularDisplay text-text16 xl:text-text20"
         >
-          <a href="catalogo.html">Categorías</a>
-          <a href="colection.html">Colecciones</a>
-          <a href="#new_arrivals">New Arrivals</a>
-          <a href="#">Visítanos</a>
+
+          <a href="{{route('catalogo', 0)}}">Categorías</a>
+          <a href="{{route('coleccion', 0)}}">Colecciones</a>
+          <a href="{{route('novedades')}}">New Arrivals</a>
+          <a href="{{route('contacto')}}">Visítanos</a>
         </div>
       </div>
 
@@ -86,31 +84,14 @@
         <div
           class="flex flex-col gap-5 text-gray-400 font-regularDisplay text-text16 xl:text-text20"
         >
-          <a href="#">Atención al cliente</a>
-          <a href="#">Detalles de la entrega</a>
+          
           <a href="#">Términos y condiciones</a>
           <a href="#">Política de privacidad</a>
         </div>
       </div>
 
-      <div class="flex flex-col gap-5">
-        <p
-          class="font-boldItalicDisplay text-text16 uppercase xl:text-text24"
-        >
-          FAQ
-        </p>
 
-        <div
-          class="flex flex-col gap-5 text-gray-400 font-regularDisplay text-text16 xl:text-text20"
-        >
-          <a href="miCuenta.html">Mi cuenta</a>
-          <a href="#">Gestionar entregas</a>
-          <a href="#">Pedidos</a>
-          <a href="#">Pagos</a>
-        </div>
-      </div>
-
-      <div class="flex flex-row md:flex-col md:items-end gap-2">
+      <div class="flex flex-row md:flex-col md:items-end lg:col-span-2 gap-2">
         <a href="#">
           <img src="{{asset('images/svg/twitter.svg')}}" alt="twitter" />
         </a>

@@ -71,6 +71,14 @@ class CarritoController extends Controller
 
         $producto = Products::find($id);
 
-        return response()->json(['message' => 'Producto encontrado ', 'data' => $producto , 'cantidad'=> $cantidad] );
+        $caratula = Products::select('products.id', 'imagen_productos.name_imagen')
+                  ->join('imagen_productos', 'products.id' , '=', 'imagen_productos.product_id')
+                  ->where('imagen_productos.caratula', '=', 1)
+                  ->first();
+        // dd($caratula->name_imagen);
+        return response()->json(['message' => 'Producto encontrado ', 'data' => $producto , 'cantidad'=> $cantidad , 'caratula' => $caratula->name_imagen] );
     }
 }
+
+
+// ->join('imagen_productos', 'products.id' , '=', 'imagen_productos.product_id')
