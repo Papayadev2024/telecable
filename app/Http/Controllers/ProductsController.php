@@ -28,7 +28,7 @@ class ProductsController extends Controller
    */
   public function index()
   {
-    $products =  Products::where("status", "=", true)->get();
+    $products =  Products::where("status", "=", true)->with('images')->get();
     return view('pages.products.index', compact('products'));
   }
 
@@ -68,6 +68,7 @@ class ProductsController extends Controller
     $data = $request->all();
     $atributos = null;
     $tagsSeleccionados = $request->input('tags_id');
+    $onlyOneCaratula = false;
 
 
    
@@ -188,8 +189,9 @@ class ProductsController extends Controller
         }elseif(strpos($key, 'imagenP-')=== 0 ){
           $colorId = substr($key, strrpos($key, '-') + 1);
           $isCaratula = 0 ; 
-          if($colorId == isset($data['caratula'])){
+          if($colorId == isset($data['caratula']) && $onlyOneCaratula == false){
             $isCaratula =1 ;
+            $onlyOneCaratula = true;
           }
           $file = $request->file($key);
           $routeImg = 'storage/images/productos/';

@@ -52,7 +52,15 @@
                   {{-- <td>{{ $item->costo_x_art }}</td> --}}
                   <td>{{ $item->stock }}</td>
                   {{-- <td>{{ $item->peso }}</td> --}}
-                  <td class="px-3 py-2"><img class="w-20" src="{{ asset($item->imagen) }}" alt=""></td>
+                  <td class="px-3 py-2">
+                    @foreach ($item->images as $imagen)
+                      @if ($imagen->caratula == 1)
+                        <img class="w-20" src="{{ asset($imagen->name_imagen) }}" alt="">
+                      @endif
+                    @endforeach
+
+
+                  </td>
                   <td>
                     <form method="POST" action="">
                       @csrf

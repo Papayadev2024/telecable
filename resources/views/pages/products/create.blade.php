@@ -788,58 +788,26 @@
                   @endif
                 @endforeach
               </div>
-              <div class="md:col-span-5 mt-2 ">
-                <div class=" flex items-end justify-between gap-2 ">
-                  <label for="AddCombinacion">Combinaciones </label>
-                  <button type="button" id="AddCombinacion"
-                    class="text-blue-500 hover:underline focus:outline-none font-medium">
-                    Agregar Combinacion
-                  </button>
-                </div>
-
-                <div class="flex gap-2">
-
-                </div>
-
-
-              </div>
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
-                <div>
-                  <label for="producto">Atributos</label>
-                  <div class="flex gap-2 mt-2 relative mb-2 ">
-                    @foreach ($atributos as $item)
-                      @if ($item->id !== 2)
-                        <div href="#"
-                          class="w-[300px] !important block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-
-                          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            {{ $item->titulo }}
-                          </h5>
-                          @foreach ($valorAtributo as $value)
-                            @if ($value->attribute_id == $item->id)
-                              <div class="flex items-center mb-2 ">
-                                <input id_attr="{{ $value->id }}" type="checkbox"
-                                  id="{{ $item->titulo }}:{{ $value->valor }} "
-                                  name="{{ $item->titulo }}:{{ $value->valor }}"
-                                  class="atributo_per w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for=" {{ $item->titulo }}:{{ $value->valor }} "
-                                  class="ml-2">{{ $value->valor }}</label>
-                              </div>
-                            @endif
-                          @endforeach
-                          @if ($item->imagen)
-                            <img src="{{ asset($item->imagen) }}" class="rounded-lg mb-2 w-1/2" alt="Imagen actual">
-                          @endif
-
-                        </div>
-                      @endif
-                    @endforeach
+                <div class="md:col-span-5 mt-2 ">
+                  <div class=" flex items-end justify-between gap-2 ">
+                    <label for="AddCombinacion">Combinaciones </label>
+                    <button type="button" id="AddCombinacion"
+                      class="text-blue-500 hover:underline focus:outline-none font-medium">
+                      Agregar Combinacion
+                    </button>
                   </div>
 
+                  <div class="flex gap-2">
+
+                  </div>
+
+
                 </div>
 
               </div>
+
+
 
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
                 <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
@@ -918,10 +886,16 @@
 
       let valorAtributo = @json($valorAtributo);
 
+      const optionElement = document.createElement("option");
+      optionElement.setAttribute("value", "0");
+      optionElement.textContent = "Selecciones una opcion";
+      elemento.appendChild(optionElement);
+
       if (name == 'color') {
         valorAtributo.forEach(optionText => {
           if (optionText.attribute_id == 2) {
             const optionElement = document.createElement("option");
+
             optionElement.setAttribute("value", optionText.id);
             optionElement.textContent = optionText.valor;
             elemento.appendChild(optionElement);
@@ -947,7 +921,7 @@
 
       elemento.classList.add("mt-1", "bg-gray-50", "border", "border-gray-300", "text-gray-900", "text-sm",
         "rounded-lg",
-        "focus:ring-blue-500", "focus:border-blue-500", "block", "w-full", "pl-10", "p-2.5",
+        "focus:ring-blue-500", "focus:border-blue-500", "block", "w-full", "p-2.5",
         "dark:bg-gray-700",
         "dark:border-gray-600", "dark:placeholder-gray-400", "dark:text-white",
         "dark:focus:ring-blue-500",
@@ -1102,9 +1076,9 @@
         divFlex.id = `combination-${valorInput}`;
 
         divFlex.classList.add('flex', 'gap-2', 'items-center', 'justify-center')
-        dRelative.classList.add('relative', 'mb-2', 'mt-2')
-        dRelative2.classList.add('relative', 'mb-2', 'mt-2')
-        dRelative3.classList.add('relative', 'mb-2', 'mt-2')
+        dRelative.classList.add('mb-2', 'mt-2')
+        dRelative2.classList.add('mb-2', 'mt-2')
+        dRelative3.classList.add('mb-2', 'mt-2')
 
         const iconContainer = document.createElement("div");
         const icon = `<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -1150,12 +1124,12 @@
 
 
         // Agregar el icono como primer hijo de dRelative
-        dRelative.insertBefore(iconNode, inputT);
+        // dRelative.insertBefore(iconNode, inputT);
 
         // Clonar el nodo del icono para agregarlo como primer hijo de dRelative2
-        const iconNodeCloned = iconNode.cloneNode(true);
-        dRelative2.insertBefore(iconNodeCloned, inputV);
-        dRelative3.insertBefore(iconNodeCloned, inputS);
+        // const iconNodeCloned = iconNode.cloneNode(true);
+        // dRelative2.insertBefore(iconNodeCloned, inputV);
+        // dRelative3.insertBefore(iconNodeCloned, inputS);
 
 
         divFlex.appendChild(dRelative);
