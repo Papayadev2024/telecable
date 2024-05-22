@@ -36,9 +36,9 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2">
           <div>
-            <img src="{{ asset('images/img/contacto_1.png') }}" alt="doomine" class="w-full h-full" />
+            <img src="{{ asset('images/img/contacto_1.png') }}" alt="doomine" class="w-full h-full cover bg-cover" />
           </div>
-          <div class="bg-[#F3F5F7] p-4 md:p-24">
+          <div class="bg-[#F3F5F7] p-4 md:p-10">
             <div class="flex flex-col justify-center items-start h-full gap-8">
               <h2 class="font-mediumDisplay text-text40 xl:text-text44 leading-none md:leading-tight">
                 Sobre nosotros

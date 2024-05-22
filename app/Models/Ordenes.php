@@ -23,4 +23,10 @@ class Ordenes extends Model
     public function statusOrdenes(){
         return $this->belongsTo(StatusOrden::class, 'status_id');
     }
+
+    public function usuarioPedido(){
+        return $this->belongsTo(UserDetails::class, 'usuario_id');
+    }
+
+    
 }

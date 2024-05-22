@@ -5,10 +5,7 @@
         <p
           class="font-regularDisplay text-text18 xl:text-text24 text-textBlack"
         >
-          Praesent aliquam pharetra libero, sed pellentesque odio placerat
-          non. Cras eget rhoncus lectus. Aenean et viverra mi, sed tristique
-          felis. Curabitur eget urna velit. Vivamus placerat porttitor
-          tortor et condimentum.
+        ¡Compra segura y rápida! Aceptamos tarjetas Visa, MasterCard y American Express para tu comodidad y tranquilidad. Compra fácil y sin preocupaciones.
         </p>
 
         <div class="flex gap-1">
@@ -92,17 +89,37 @@
 
 
       <div class="flex flex-row md:flex-col md:items-end lg:col-span-2 gap-2">
-        <a href="#">
-          <img src="{{asset('images/svg/twitter.svg')}}" alt="twitter" />
-        </a>
-
-        <a href="#">
-          <img src="{{asset('images/svg/facebook.svg')}}" alt="facebook" />
-        </a>
-
-        <a href="#">
+       
+        @if ($datosgenerales[0]->youtube)
+          <a target="_blank" href="{{$datosgenerales[0]->youtube}}">
+            <img src="{{asset('images/svg/youtube.svg')}}" alt="facebook" />
+          </a> 
+        @endif        
+        
+        @if ($datosgenerales[0]->facebook)
+          <a target="_blank" href="{{$datosgenerales[0]->facebook}}">
+            <img src="{{asset('images/svg/facebook.svg')}}" alt="facebook" />
+          </a> 
+        @endif  
+        
+        @if ($datosgenerales[0]->instagram)
+        <a target="_blank" href="{{$datosgenerales[0]->instagram}}">
           <img src="{{asset('images/svg/instagram.svg')}}"  alt="instagram" />
         </a>
+        @endif 
+        
+
+        @if ($datosgenerales[0]->tiktok)
+        <a target="_blank" href="{{$datosgenerales[0]->tiktok}}">
+          <img src="{{asset('images/svg/tiktok.svg')}}"  alt="instagram" />
+        </a>
+        @endif 
+
+        @if ($datosgenerales[0]->twitter)
+        <a target="_blank" href="{{$datosgenerales[0]->twitter}}">
+          <img src="{{asset('images/svg/twitter.svg')}}"  alt="instagram" />
+        </a>
+        @endif 
       </div>
     </div>
   </div>

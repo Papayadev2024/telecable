@@ -25,13 +25,14 @@ class GeneralSeeder extends Seeder
             'email' => 'usuario@mundoweb.pe',
             'facebook' => 'https://www.facebook.com/Doomineoficial/',
             'instagram' => 'https://www.instagram.com/doomineoficial',
-            'youtube' => 'www.youtube.com',
-            'twitter' => 'www.twitter.com',
+            // 'youtube' => 'www.youtube.com',
+            // 'twitter' => 'www.twitter.com',
             'tiktok' => 'https://www.tiktok.com/@doomineoficial',
             'whatsapp' => '555-555-123' ,
             'form_email' => 'usuario@mundoweb.pe',
             'business_hours' => 'horas',
-            'mensaje_whatsapp' => 'Hola estamos atentos a lo que ud desee'
+            'mensaje_whatsapp' => 'Hola estamos atentos a lo que ud desee',
+            'aboutus' => 'Dommine se encuentra interesado en ti. Si deseas tener más información sobre nuestros productos y promociones, entonces completa el siguiente formulario para contactarte o ten en cuenta nuestra ubicación, número telefónico y dirección de correo electrónico.'
 
         ]);
     }

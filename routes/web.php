@@ -29,6 +29,7 @@ use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LiquidacionController;
+use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StaffController;
@@ -185,6 +186,9 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::post('/colecciones/deleteCollection', [CollectionController::class, 'deleteCollection'] )->name('collection.deleteCollection');
         Route::post('/colecciones/updateVisible', [CollectionController::class, 'updateVisible'] )->name('collection.updateVisible');
 
+        //Pedidos
+        Route::get('/orders', [PedidosController::class, 'listadoPedidos'])->name('orders');
+        Route::get('/orders/{id}', [PedidosController::class, 'verPedido'])->name('verPedido');
 
         Route::fallback(function() {
             return view('pages/utility/404');

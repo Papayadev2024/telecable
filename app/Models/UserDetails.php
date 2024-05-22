@@ -29,4 +29,8 @@ public function user()
     return $this->belongsTo(User::class);
 }
 
+public function usuarioPedido(){
+    return $this->hasMany(Ordenes::class, 'usuario_id');
+  } 
+
 }
