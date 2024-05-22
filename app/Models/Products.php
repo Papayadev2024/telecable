@@ -106,8 +106,8 @@ class Products extends Model
     if(!empty($coloresId)){
         $colores_id = rtrim($coloresId, ',');
         $coloresId_array = explode(",", $colores_id);
-        $return = $return->join('attribute_product_values', "attribute_product_values.product_id", '=', 'products.id');
-        $return = $return->whereIn('attribute_product_values.attribute_value_id', $coloresId_array);
+        $return = $return->join('imagen_productos', "imagen_productos.product_id", '=', 'products.id');
+        $return = $return->whereIn('imagen_productos.color_id', $coloresId_array);
     }
 
 
@@ -115,8 +115,8 @@ class Products extends Model
     if(!empty($tallasId)){
         $tallas_id = rtrim($tallasId, ',');
         $tallas_id_array = explode(",", $tallas_id);
-        $return = $return->join('attribute_product_values', "attribute_product_values.product_id", '=', 'products.id');
-        $return = $return->whereIn('attribute_product_values.attribute_value_id', $tallas_id_array);
+        $return = $return->join('combinaciones', "combinaciones.product_id", '=', 'products.id');
+        $return = $return->whereIn('combinaciones.talla_id', $tallas_id_array);
     }
 
     $preciosId = request()->get('precio_id');
