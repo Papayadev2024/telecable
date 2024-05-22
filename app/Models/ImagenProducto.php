@@ -18,6 +18,10 @@ class ImagenProducto extends Model
         return $this->belongsTo(Products::class, 'product_id');
     }
 
+    public function imagenProducto(){
+        return $this->belongsTo(Products::class, 'product_id');
+    }
+
     public function color()
     {
         return $this->belongsTo(AttributesValues::class, 'color_id');

@@ -313,7 +313,11 @@
           @foreach ($destacados as $item)
             <div class="md:col-span-1 md:row-span-1 flex flex-col gap-5 relative">
               <div class="product_container">
-                <img src="{{ asset($item->imagen) }}" alt="{{ $item->name }}" class="w-full h-full" />
+                @foreach ($item->images as $image)
+                  @if($image->caratula == 1)
+                    <img src="{{ asset($image->name_imagen) }}" alt="{{ $image->name_imagen }}" class="w-full h-full" />
+                  @endif
+                @endforeach
 
                 <div class="addProduct text-center flex justify-center">
                   <a href="{{ route('producto', $item->id) }}"

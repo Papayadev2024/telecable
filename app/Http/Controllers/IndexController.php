@@ -53,7 +53,7 @@ class IndexController extends Controller
         // $productos = Products::all();
         $productos = Products::where('status', '=', 1)->with('tags')->get();
         $categorias = Category::all();
-        $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->activeDestacado()->get();
+        $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
         // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
         // ->where('visible', '=', 1)->with('tags')->get();
         $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();

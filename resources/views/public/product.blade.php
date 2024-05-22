@@ -2,13 +2,13 @@
 @section('css_importados')
 @stop
 @section('content')
-  <?php
-  
-  // function capitalizeFirstLetter($string)
-  // {
-  //     return ucfirst($string);
-  // }
-  ?>
+    <?php
+    
+    // function capitalizeFirstLetter($string)
+    // {
+    //     return ucfirst($string);
+    // }
+    ?>
 
     <main class="flex flex-col gap-12 mt-12">
         {{-- <section class="flex gap-2 items-center w-11/12 mx-auto">
@@ -107,16 +107,24 @@
                                 @endforeach
                             </div>
                         @endif
-                     
-                              <div>
-                                    <p class="font-mediumDisplay text-text16 md:text-text20 pb-4">
-                                      Selecciona talla:
-                                    </p>   
-                                    
-                                    <div class="grid grid-cols-3 place-items-center font-regularDisplay text-text14 md:text-text20 gap-2" id="llenadoTallas">
-                                           
-                                    </div>
-                              </div>
+
+
+
+                        <div>
+
+
+                            <p class="font-mediumDisplay text-text16 md:text-text20 pb-4" id="textoseleccionartalla">
+                                Selecciona talla:
+                            </p>
+
+                            <div class="grid grid-cols-3 place-items-center font-regularDisplay text-text14 md:text-text20 gap-2"
+                                id="llenadoTallas">
+
+                            </div>
+                        </div>
+
+
+
                     </div>
 
 
@@ -791,80 +799,80 @@
     <script src="{{ asset('js/carrito.js') }}"></script>
 
     <script>
-      $(document).ready(function() {
+        $(document).ready(function() {
 
-          function llenarImagenes(images) {
-              let html = ''; // Inicializar la variable html fuera del bucle
-              images.forEach(element => {
-                  if (element.type_imagen == 'primary') {
-                      html += `
+            function llenarImagenes(images) {
+                let html = ''; // Inicializar la variable html fuera del bucle
+                images.forEach(element => {
+                    if (element.type_imagen == 'primary') {
+                        html += `
                           <div class="flex flex-col gap-5 relative ">
                             <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}" class="w-full object-cover" />
                           </div>
                       `;
-                  }
+                    }
 
-                  if(element.type_imagen == 'secondary'){
-                      html += `
+                    if (element.type_imagen == 'secondary') {
+                        html += `
                       <img src="{{ asset('${element.name_imagen}') }}" alt="${element.name_imagen}"
                             class="w-full object-cover " />`;
-                  }
-              });
-              return html; 
-          }
+                    }
+                });
+                return html;
+            }
 
-          function llenadoTallas(tallas){
-              let html = '';
+            function llenadoTallas(tallas) {
+                let html = '';
 
-              tallas.forEach(element => {
-                  if (element) {
-                      html += `
+                tallas.forEach(element => {
+                    if (element) {
+                        html += `
                           <div class="flex justify-center items-center border-2 w-full rounded-lg">
                               <p class="tallasombreado py-5 px-4 w-full text-center transition">
                                 ${element.talla.valor}
                               </p>
                           </div>
                       `;
-                  }
-              });
-              return html;
-          }
+                    }
+                });
+                return html;
+            }
 
 
-          function enviarColorSeleccionado() {
-              var selectedColorDiv = $('.colors.color');
-              var colorId = selectedColorDiv.data('id');
-              var productId = selectedColorDiv.data('productid');
+            function enviarColorSeleccionado() {
+                var selectedColorDiv = $('.colors.color');
+                var colorId = selectedColorDiv.data('id');
+                var productId = selectedColorDiv.data('productid');
 
-              $.ajax({
-                  url: '{{ route('cambioGaleria') }}', // Cambia esta URL a la ruta de tu controlador
-                  method: 'POST', // O 'POST' según corresponda
-                  data: {
-                      id: colorId,
-                      idproduct: productId
-                  },
-                  success: function(response) {
-                      
-                      let llenadoimg = llenarImagenes(response.images);
-                      let llenadotallas = llenadoTallas(response.tallas);
-                      $('#imageContainer').html(llenadoimg);
-                      $('#llenadoTallas').html(llenadotallas);
-                  },
-                  error: function(xhr) {
-                      console.log(xhr.responseText);
-                  }
-              });
-          }
-          enviarColorSeleccionado();
+                $.ajax({
+                    url: '{{ route('cambioGaleria') }}', // Cambia esta URL a la ruta de tu controlador
+                    method: 'POST', // O 'POST' según corresponda
+                    data: {
+                        id: colorId,
+                        idproduct: productId
+                    },
+                    success: function(response) {
 
-          $('.colors').on('click', function() {
-              $('.colors').removeClass('color');
-              $(this).addClass('color');
-              enviarColorSeleccionado();
-          });
+                        let llenadoimg = llenarImagenes(response.images);
+                        let llenadotallas = llenadoTallas(response.tallas);
+                        $('#imageContainer').html(llenadoimg);
+                        $('#llenadoTallas').html(llenadotallas);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+            enviarColorSeleccionado();
 
-      });
-  </script>
+            $('.colors').on('click', function() {
+                $('.colors').removeClass('color');
+                $(this).addClass('color');
+                enviarColorSeleccionado();
+            });
+
+        });
+    </script>
 
 @stop
 
