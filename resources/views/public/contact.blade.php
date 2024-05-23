@@ -175,9 +175,7 @@
     }
 
     $('#formContactos').submit(function(event) {
-      // Evita que se envíe el formulario automáticamente
-      //console.log('evcnto')
-
+    
       event.preventDefault();
       let formDataArray = $(this).serializeArray();
 
