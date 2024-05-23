@@ -581,6 +581,7 @@
                 <div class="md:col-span-5">
 
                 </div>
+                {{--
                 <div class="md:col-span-5">
                   <label for="costo_x_art">Costo por articulo</label>
                   <div class="relative mb-2  mt-2">
@@ -597,6 +598,8 @@
                       placeholder="Costo por articulo">
                   </div>
                 </div>
+                --}}
+
                 <div class="md:col-span-5">
                   <label for="costo_x_art">Categoria</label>
                   <div class="relative mb-2  mt-2">
@@ -699,9 +702,10 @@
                   Inventario</h4>
                 <div class="md:col-span-5 flex justify-between gap-4">
 
+                  {{--
                   <div class="w-full">
-                    <label for="stock">Existencias
-
+                    <label for="stock">
+                      Existencias
                     </label>
 
                     <div class="relative mb-2  mt-2">
@@ -724,6 +728,9 @@
 
                     </div>
                   </div>
+                  --}}
+
+
                   <div class="w-full">
                     <label for="sku">SKU
 
@@ -753,6 +760,8 @@
 
                 </div>
               </div>
+              
+              
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-1 rounded shadow-lg p-4 px-4">
                 @foreach ($valorAtributo as $item)
                   @if ($item->attribute_id == 2)

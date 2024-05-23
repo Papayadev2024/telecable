@@ -12,6 +12,8 @@ use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Str;
 
+
+
 class SliderController extends Controller
 {
     /**
@@ -36,10 +38,13 @@ class SliderController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
+
         $request->validate([
-            'title' => 'required',
+            'imagen' => 'required',
+            'imagen2' => 'required',
         ]);
+    
 
         $slider = new Slider();
 
@@ -86,6 +91,7 @@ class SliderController extends Controller
             $slider->link2 = $request->link2;
             $slider->title = $request->title;
             $slider->description = $request->description;
+            $slider->visible = true;
 
             $slider->save();
 
