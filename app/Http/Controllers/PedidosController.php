@@ -7,6 +7,7 @@ use App\Models\DetalleOrden;
 use App\Models\Ordenes;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PedidosController extends Controller
 {
@@ -24,6 +25,9 @@ class PedidosController extends Controller
         $orders = Ordenes::where('id',  $id)->with('usuarioPedido')->with('statusOrdenes')->with('DetalleOrden')->first();
         
         $direccion = AddressUser::where('id', '=', $orders->address_id)->first();
+
+       
+
         $producto = Products::select('products.*', 'imagen_productos.name_imagen')
                         ->join('detalle_ordens' , 'products.id', '=', 'detalle_ordens.producto_id')
                         ->join('imagen_productos', 'products.id' , '=', 'imagen_productos.product_id')

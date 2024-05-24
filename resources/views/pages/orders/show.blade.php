@@ -67,8 +67,9 @@
                             <div class="rounded shadow-lg p-4">
 
                               <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-md ml-1">Direccion de envio:</h2>
-                              <p class="ml-1 text-slate-800 dark:text-slate-100 text-sm">{{$direccion->dir_av_calle}}</p>
-                              <p class="ml-1 text-slate-800 dark:text-slate-100 text-sm">{{$direccion->dir_av_calle}}</p>
+                              <p class="ml-1 text-slate-800 dark:text-slate-100 text-sm">{{$direccion->dir_av_calle}} - {{$direccion->dir_numero}}</p>
+                              <p class="ml-1 text-slate-800 dark:text-slate-100 text-sm">{{$direccion->dir_bloq_lote}}</p>
+                            
                             </div>
                         </div>
 
