@@ -31,7 +31,10 @@
 
         <section class="w-11/12 mx-auto">
             <div class="flex flex-col gap-12 lg:flex-row md:gap-32">
-                <div class="basis-3/6 grid grid-cols-2 gap-5" id="imageContainer">
+              <div class="basis-3/6 grid grid-cols-1 gap-5 " id="imageContainer_uno" >
+
+              </div>
+                <div class="basis-3/6 grid grid-cols-2 gap-5 " id="imageContainer" >
                     {{-- <div class="flex flex-col gap-5 relative">
                      
                         @foreach ($productos[0]->images as $image)
@@ -802,7 +805,8 @@
         $(document).ready(function() {
 
             function llenarImagenes(images) {
-                let html = ''; // Inicializar la variable html fuera del bucle
+
+                let html = ''; 
                 images.forEach(element => {
                     if (element.type_imagen == 'primary') {
                         html += `
@@ -852,11 +856,24 @@
                         idproduct: productId
                     },
                     success: function(response) {
-
+                        let conteoImagenes = response.images.length;  
                         let llenadoimg = llenarImagenes(response.images);
                         let llenadotallas = llenadoTallas(response.tallas);
-                        $('#imageContainer').html(llenadoimg);
+
+                        if(conteoImagenes == 1){
+                          $('#imageContainer_uno').html(llenadoimg);
+                          $('#imageContainer').addClass('hidden');
+                          $('#imageContainer_uno').removeClass('hidden');
+
+                        }else{
+                          $('#imageContainer').html(llenadoimg);
+                          $('#imageContainer').removeClass('hidden');
+                          $('#imageContainer_uno').addClass('hidden');
+                        }
+
                         $('#llenadoTallas').html(llenadotallas);
+
+                          
                     },
                     error: function(xhr) {
                         console.log(xhr.responseText);
