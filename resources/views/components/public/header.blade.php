@@ -217,7 +217,7 @@
                 </div>
               </div>
 
-              <div class="font-poppins flex flex-col gap-2 pt-36">
+              <div class="font-poppins flex flex-col gap-2 ">
                 {{-- <div class="text-[#141718] flex justify-between items-center">
                   <p class="font-regularDisplay text-[16px]">Subtotal</p>
                   <p class="font-boldDisplay text-[16px]">s/ 00.00</p>
