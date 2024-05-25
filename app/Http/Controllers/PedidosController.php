@@ -26,7 +26,11 @@ class PedidosController extends Controller
         
         $direccion = AddressUser::where('id', '=', $orders->address_id)->first();
 
-       
+        $subtotal = 0;
+
+        foreach ($orders->DetalleOrden as $item) {
+            $subtotal += $item->precio * $item->cantidad;
+        } 
 
         $producto = Products::select('products.*', 'imagen_productos.name_imagen')
                         ->join('detalle_ordens' , 'products.id', '=', 'detalle_ordens.producto_id')
@@ -35,7 +39,7 @@ class PedidosController extends Controller
                         ->where('imagen_productos.caratula', '=', 1)
                         ->get();
         
-        return view('pages.orders.show', compact('orders','direccion','producto'));
+        return view('pages.orders.show', compact('orders','direccion','producto', 'subtotal'));
 
     }
 }
