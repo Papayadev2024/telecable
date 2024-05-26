@@ -389,14 +389,14 @@
   </style>
 
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-    <div>
+    {{-- <div>
       @if (Session::has('error'))
         <div class="p-4 bg-red-400 text-lg text-white border-l-8 border-red-600 mb-4"><i
             class="fa-solid fa-triangle-exclamation"></i>
           <span class="ml-3">{{ Session::get('error') }}</span>
         </div>
       @endif
-    </div>
+    </div> --}}
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
 
@@ -436,8 +436,11 @@
                         </svg>
                       </div>
                       <input type="text" id="producto" name="producto" value=""
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('producto') is-invalid @enderror"
                         placeholder="Producto">
+                      @error('producto')
+                        <div style="color: red;">{{ $message }}</div>
+                      @enderror
 
 
                     </div>
@@ -461,9 +464,11 @@
                         </svg>
                       </div>
                       <input type="text" id="extract" name="extract" value=""
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('extract') is-invalid @enderror"
                         placeholder="Extracto">
-
+                      @error('extract')
+                        <div style="color: red;">{{ $message }}</div>
+                      @enderror
 
                     </div>
                   </div>
@@ -501,7 +506,7 @@
 
                     </div>
                   </div>
-                  
+
                   <div class="">
 
                     <label for="recomendar">Novedad</label>
@@ -534,9 +539,9 @@
 
             <div class="basis-0 md:basis-2/5">
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
-               
+
                 <div class="md:col-span-5 flex justify-between gap-4">
-                  
+
                   <div class="w-full">
                     <label for="precio">Precio <span class="text-red-500"> (Obligatorio) </span></label>
                     <div class="relative mb-2  mt-2">
@@ -550,8 +555,11 @@
 
                       </div>
                       <input type="number" id="precio" name="precio" value=""
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('precio') is-invalid @enderror"
                         placeholder="precio">
+                      @error('precio')
+                        <div style="color: red;">{{ $message }}</div>
+                      @enderror
                     </div>
 
                   </div>
@@ -568,14 +576,17 @@
                         </svg>
                       </div>
                       <input type="number" id="descuento" name="descuento" value="0"
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('descuento') is-invalid @enderror"
                         placeholder="descuento">
+                      @error('descuento')
+                        <div style="color: red;">{{ $message }}</div>
+                      @enderror
                     </div>
 
                   </div>
 
                 </div>
-               
+
                 <div class="md:col-span-5">
 
                 </div>
@@ -609,13 +620,16 @@
                       </svg>
                     </div>
                     <select name="categoria_id"
-                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
                       <option value="">Seleccionar Categoria </option>
                       @foreach ($categoria as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                       @endforeach
 
                     </select>
+                    @error('categoria_id')
+                      <div style="color: red;">{{ $message }}</div>
+                    @enderror
                   </div>
                 </div>
 
@@ -696,154 +710,118 @@
 
               </div>
 
-                <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
-                  <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
-                    Inventario</h4>
-                  <div class="md:col-span-5 flex justify-between gap-4">
-
-                    <div class="w-full">
-                      <label for="stock">Existencias
-
-                      </label>
-
-                      <div class="relative mb-2  mt-2">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                            version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512"
-                            x="0" y="0" viewBox="0 0 469.336 469.336" style="enable-background:new 0 0 512 512"
-                            xml:space="preserve" class="">
-                            <g>
-                              <path
-                                d="m456.836 76.168-64-64.054c-16.125-16.139-44.177-16.17-60.365.031L45.763 301.682a10.733 10.733 0 0 0-2.688 4.587L.409 455.73a10.682 10.682 0 0 0 10.261 13.606c.979 0 1.969-.136 2.927-.407l149.333-42.703a10.714 10.714 0 0 0 4.583-2.69l289.323-286.983c8.063-8.069 12.5-18.787 12.5-30.192s-4.437-22.124-12.5-30.193zM285.989 89.737l39.264 39.264-204.996 204.997-14.712-29.434a10.671 10.671 0 0 0-9.542-5.896H78.921L285.989 89.737zm-259.788 353.4L40.095 394.5l34.742 34.742-48.636 13.895zm123.135-35.177-51.035 14.579-51.503-51.503 14.579-51.035h28.031l18.385 36.771a10.671 10.671 0 0 0 4.771 4.771l36.771 18.385v28.032zm21.334-17.543v-17.082c0-4.042-2.281-7.729-5.896-9.542l-29.434-14.712 204.996-204.996 39.264 39.264-208.93 207.068zM441.784 121.72l-47.033 46.613-93.747-93.747 46.582-47.001c8.063-8.063 22.104-8.063 30.167 0l64 64c4.031 4.031 6.25 9.385 6.25 15.083s-2.219 11.052-6.219 15.052z"
-                                fill="#9F9F9F" opacity="1" data-original="#000000" class=""></path>
-                            </g>
-                          </svg>
-                        </div>
-                        <input type="number" id="stock" name="stock" value=""
-                          class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="# de existencias">
+              <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
+                <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
+                  Inventario</h4>
+                <div class="md:col-span-5 flex justify-between gap-4">
 
 
+                  <div class="w-full">
+                    <label for="sku">SKU
+
+                    </label>
+
+                    <div class="relative mb-2  mt-2">
+                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                          version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512"
+                          x="0" y="0" viewBox="0 0 469.336 469.336" style="enable-background:new 0 0 512 512"
+                          xml:space="preserve" class="">
+                          <g>
+                            <path
+                              d="m456.836 76.168-64-64.054c-16.125-16.139-44.177-16.17-60.365.031L45.763 301.682a10.733 10.733 0 0 0-2.688 4.587L.409 455.73a10.682 10.682 0 0 0 10.261 13.606c.979 0 1.969-.136 2.927-.407l149.333-42.703a10.714 10.714 0 0 0 4.583-2.69l289.323-286.983c8.063-8.069 12.5-18.787 12.5-30.192s-4.437-22.124-12.5-30.193zM285.989 89.737l39.264 39.264-204.996 204.997-14.712-29.434a10.671 10.671 0 0 0-9.542-5.896H78.921L285.989 89.737zm-259.788 353.4L40.095 394.5l34.742 34.742-48.636 13.895zm123.135-35.177-51.035 14.579-51.503-51.503 14.579-51.035h28.031l18.385 36.771a10.671 10.671 0 0 0 4.771 4.771l36.771 18.385v28.032zm21.334-17.543v-17.082c0-4.042-2.281-7.729-5.896-9.542l-29.434-14.712 204.996-204.996 39.264 39.264-208.93 207.068zM441.784 121.72l-47.033 46.613-93.747-93.747 46.582-47.001c8.063-8.063 22.104-8.063 30.167 0l64 64c4.031 4.031 6.25 9.385 6.25 15.083s-2.219 11.052-6.219 15.052z"
+                              fill="#9F9F9F" opacity="1" data-original="#000000" class=""></path>
+                          </g>
+                        </svg>
                       </div>
+                      <input type="text" id="sku" name="sku" value=""
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="# de sku">
+
+
                     </div>
-                    <div class="w-full">
-                      <label for="sku">SKU
-
-                      </label>
-
-                      <div class="relative mb-2  mt-2">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                            version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512"
-                            x="0" y="0" viewBox="0 0 469.336 469.336" style="enable-background:new 0 0 512 512"
-                            xml:space="preserve" class="">
-                            <g>
-                              <path
-                                d="m456.836 76.168-64-64.054c-16.125-16.139-44.177-16.17-60.365.031L45.763 301.682a10.733 10.733 0 0 0-2.688 4.587L.409 455.73a10.682 10.682 0 0 0 10.261 13.606c.979 0 1.969-.136 2.927-.407l149.333-42.703a10.714 10.714 0 0 0 4.583-2.69l289.323-286.983c8.063-8.069 12.5-18.787 12.5-30.192s-4.437-22.124-12.5-30.193zM285.989 89.737l39.264 39.264-204.996 204.997-14.712-29.434a10.671 10.671 0 0 0-9.542-5.896H78.921L285.989 89.737zm-259.788 353.4L40.095 394.5l34.742 34.742-48.636 13.895zm123.135-35.177-51.035 14.579-51.503-51.503 14.579-51.035h28.031l18.385 36.771a10.671 10.671 0 0 0 4.771 4.771l36.771 18.385v28.032zm21.334-17.543v-17.082c0-4.042-2.281-7.729-5.896-9.542l-29.434-14.712 204.996-204.996 39.264 39.264-208.93 207.068zM441.784 121.72l-47.033 46.613-93.747-93.747 46.582-47.001c8.063-8.063 22.104-8.063 30.167 0l64 64c4.031 4.031 6.25 9.385 6.25 15.083s-2.219 11.052-6.219 15.052z"
-                                fill="#9F9F9F" opacity="1" data-original="#000000" class=""></path>
-                            </g>
-                          </svg>
-                        </div>
-                        <input type="text" id="sku" name="sku" value=""
-                          class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="# de sku">
-
-
-                      </div>
-                    </div>
-
-
                   </div>
+
+
                 </div>
+              </div>
 
-                <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-1 rounded shadow-lg p-4 px-4">
-                  @foreach ($valorAtributo as $item)
-                    @if ($item->attribute_id == 2)
-                      <div class="grid grid-cols-3">
-                        <label class="inline">{{ $item->valor }} </label>
+              <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-1 rounded shadow-lg p-4 px-4">
+                @foreach ($valorAtributo as $item)
+                  @if ($item->attribute_id == 2)
+                    <div class="grid grid-cols-3">
+                      <label class="inline">{{ $item->valor }} </label>
 
-                        <input type="checkbox" id="hs-basic-usage"
-                          class="inline check_v btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
+                      <input type="checkbox" id="hs-basic-usage"
+                        class="inline check_v btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
                           rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none 
                           checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 dark:bg-gray-800 dark:border-gray-700 
                           dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
                           before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow        
                           before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
-                          id='{{ 'v_' . $item->id }}' data-field='destacar' data-idService='{{ $item->id }}'
-                          data-titleService='{{ $item->producto }}' {{ $item->destacar == 1 ? 'checked' : '' }}>
+                        id='{{ 'v_' . $item->id }}' data-field='destacar' data-idService='{{ $item->id }}'
+                        data-titleService='{{ $item->producto }}' {{ $item->destacar == 1 ? 'checked' : '' }}>
 
 
 
+                    </div>
+                    <div hidden id="imagenesOcultas-{{ $item->id }}">
+                      <div class="flex gap-4 p-2">
+                        <label for="caratula">caratula</label>
+                        <input type="radio" name="caratula" value="{{ $item->id }}">
                       </div>
-                      <div hidden id="imagenesOcultas-{{ $item->id }}">
-                        <div class="flex gap-4 p-2">
-                          <label for="caratula">caratula</label>
-                          <input type="radio" name="caratula" value="{{ $item->id }}">
-                        </div>
 
-                        <input id="imagen" name="imagenP-{{ $item->id }}"
-                          class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                          aria-describedby="user_avatar_help" id="user_avatar" type="file">
-                        <div class="dropzone border-gray-300 dropzoneSecond " id="dropzoneServerFilesGallery"
-                          name="attrid-{{ $item->id }}">
-                        </div>
+                      <input id="imagen" name="imagenP-{{ $item->id }}"
+                        class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                      <div class="dropzone border-gray-300 dropzoneSecond " id="dropzoneServerFilesGallery"
+                        name="attrid-{{ $item->id }}">
                       </div>
-                    @endif
-                  @endforeach
+                    </div>
+                  @endif
+                @endforeach
+              </div>
+
+              <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
+                <div class="md:col-span-5 mt-2 ">
+                  <div class=" flex items-end justify-between gap-2 ">
+                    <label for="AddCombinacion">Combinaciones </label>
+                    <button type="button" id="AddCombinacion"
+                      class="text-blue-500 hover:underline focus:outline-none font-medium">
+                      Agregar Combinacion
+                    </button>
+                  </div>
+
+                  <div class="flex gap-2">
+
+                  </div>
+
+
                 </div>
 
-                <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
-                  <div class="md:col-span-5 mt-2 ">
-                    <div class=" flex items-end justify-between gap-2 ">
-                      <label for="AddCombinacion">Combinaciones </label>
-                      <button type="button" id="AddCombinacion"
-                        class="text-blue-500 hover:underline focus:outline-none font-medium">
-                        Agregar Combinacion
-                      </button>
-                    </div>
+              </div>
 
-                    <div class="flex gap-2">
+              <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
+                <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
+                  Tags</h4>
+                <div class="md:col-span-5 flex justify-between gap-4">
 
+                  <div class="w-full">
+                    <div class="relative mb-2  mt-2">
+                      <select id="tags_id" name="tags_id[]" multiple class="mt-1">
+                        <option value="">Seleccionar Tag </option>
+                        @foreach ($tags as $item)
+                          <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                      </select>
                     </div>
 
 
                   </div>
-
                 </div>
-
-                <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
-                  <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
-                    Tags</h4>
-                  <div class="md:col-span-5 flex justify-between gap-4">
-
-                    <div class="w-full">
-                      <div class="relative mb-2  mt-2">
-                        <select id="tags_id" name="tags_id[]" multiple class="mt-1">
-                          <option value="">Seleccionar Tag </option>
-                          @foreach ($tags as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                          @endforeach
-                        </select>
-                      </div>
+              </div>
 
 
-                    </div>
-                  </div>
-                </div>
-
-                <div class="md:col-span-5 mt-2">
-                  <section class="scroll-section overflow-y-auto" id="uploadedFilesGallery">
-                    <h2 class="small-title">Subir fotos para Galeria</h2>
-                    <div class="card mb-5">
-                      <div class="card-body">
-
-                        <div class="dropzone border-gray-300  " id="dropzoneServerFilesGallery">
-                        </div>
-
-                      </div>
-                    </div>
-                  </section>
-                </div>
 
             </div>
 
@@ -887,6 +865,8 @@
       elemento.setAttribute("id", `${name}-${valorInput}`);
 
       let valorAtributo = @json($valorAtributo);
+      let switchColor = $('.btn_swithc:checked')
+      const noSwitchActive = switchColor.length === 0;
 
       const optionElement = document.createElement("option");
       optionElement.setAttribute("value", "0");
@@ -899,11 +879,34 @@
             const optionElement = document.createElement("option");
 
             optionElement.setAttribute("value", optionText.id);
+
+            optionElement.setAttribute('hidden', true);
+
+
+            const serviceId = optionText.id; // Assuming id in optionsData matches data-idService
+            // const correspondingSwitch = $(`.btn_switch[data-idService=${serviceId}]`);
+
+            switchColor.each(function() {
+              const idService = $(this).data('idservice');
+              console.log(idService, serviceId)
+              if (idService === serviceId) {
+                optionElement.removeAttribute('hidden');
+              }
+            })
+
+
+
+
             optionElement.textContent = optionText.valor;
             elemento.appendChild(optionElement);
           }
 
+
+
         });
+
+
+
 
       } else {
 

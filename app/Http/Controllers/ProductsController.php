@@ -20,6 +20,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use SoDe\Extend\File as ExtendFile;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class ProductsController extends Controller
 {
@@ -70,8 +72,14 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
     $onlyOneCaratula = false;
 
+    if(is_null($request->input('descuento'))){
+      dump('entra here');
+      $request->merge(['descuento' => 0]);
+      $data['descuento'];
+    }
+    // dump($data);
 
-   
+
 
 
     // $valorprecio = $request->input('precio') - 0.1;
@@ -79,6 +87,7 @@ class ProductsController extends Controller
     try {
       $request->validate([
         'producto' => 'required',
+        'categoria_id' => 'required', 
         'precio' => 'min:0|required|numeric',
         'descuento' => 'lt:' . $request->input('precio'),
       ]);
@@ -120,7 +129,7 @@ class ProductsController extends Controller
           }
         }
       }
-      
+
       $jsonAtributos = json_encode($atributos);
 
       if (array_key_exists('destacar', $data)) {
@@ -175,22 +184,21 @@ class ProductsController extends Controller
         $this->TagsXProducts($producto->id, $tagsSeleccionados);
       }
 
-      
+
       foreach ($data as $key => $value) {
-        
+
 
         if (strpos($key, 'attrid-') === 0) {
-          
+
           $colorId = substr($key, strrpos($key, '-') + 1);
           foreach ($value as $file) {
             $this->GuardarGaleria($file, $producto->id, $colorId);
-
           }
-        }elseif(strpos($key, 'imagenP-')=== 0 ){
+        } elseif (strpos($key, 'imagenP-') === 0) {
           $colorId = substr($key, strrpos($key, '-') + 1);
-          $isCaratula = 0 ; 
-          if($colorId == isset($data['caratula']) && $onlyOneCaratula == false){
-            $isCaratula =1 ;
+          $isCaratula = 0;
+          if ($colorId == isset($data['caratula']) && $onlyOneCaratula == false) {
+            $isCaratula = 1;
             $onlyOneCaratula = true;
           }
           $file = $request->file($key);
@@ -202,15 +210,13 @@ class ProductsController extends Controller
           $dataGalerie['name_imagen'] = $routeImg . $nombreImagen;
           $dataGalerie['product_id'] = $producto->id;
           $dataGalerie['type_imagen'] = 'primary';
-          $dataGalerie['caratula'] = $isCaratula ;
+          $dataGalerie['caratula'] = $isCaratula;
           $dataGalerie['color_id'] = $colorId;
           // $dataGalerie['type_img'] = 'gall';
           ImagenProducto::create($dataGalerie);
+        } elseif (strpos($key, 'conbinacion-') === 0) {
 
-        }elseif(strpos($key, 'conbinacion-') === 0 ){
-          
-          $this->GuardarCombinacion($producto->id, $value );
-
+          $this->GuardarCombinacion($producto->id, $value);
         }
       }
 
@@ -218,23 +224,29 @@ class ProductsController extends Controller
 
 
       return redirect()->route('products.index')->with('success', 'Publicación creado exitosamente.');
+    } catch (ValidationException $e) {
+      // Redirigir con los errores de validación y los datos de entrada
+      return redirect()->back()
+        ->withErrors($e->validator)
+        ->withInput();
     } catch (\Throwable $th) {
       //throw $th;
       return redirect()->route('products.create')->with('error', 'Llenar campos obligatorios');
     }
   }
-  private function GuardarCombinacion($producto_id, $combinacion){
+  private function GuardarCombinacion($producto_id, $combinacion)
+  {
     Combinacion::create([
-  
-      'product_id'=> $producto_id,
-      'color_id'=> $combinacion['color'],
-      'talla_id'=> $combinacion['talla'],
-      'stock'=> $combinacion['stock'],
+
+      'product_id' => $producto_id,
+      'color_id' => $combinacion['color'],
+      'talla_id' => $combinacion['talla'],
+      'stock' => $combinacion['stock'],
     ]);
   }
   private function GuardarGaleria($file, $producto_id, $colorId)
   {
-    
+
     try {
       //code...
       [$first, $code] = explode(';base64,', $file);
@@ -262,7 +274,7 @@ class ProductsController extends Controller
       ImagenProducto::create($dataGalerie);
     } catch (\Throwable $th) {
       //throw $th;
-     
+
     }
   }
 
