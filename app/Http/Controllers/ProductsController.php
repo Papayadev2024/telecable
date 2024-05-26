@@ -179,9 +179,11 @@ class ProductsController extends Controller
 
       $this->GuardarEspecificaciones($producto->id, $especificaciones);
 
-      if (!is_null($tagsSeleccionados)) {
+     /*  if (!is_null($tagsSeleccionados)) {
         $this->TagsXProducts($producto->id, $tagsSeleccionados);
-      }
+      } */
+
+      $producto->tags()->sync($tagsSeleccionados);
 
 
       foreach ($data as $key => $value) {

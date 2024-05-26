@@ -124,6 +124,14 @@
                 id="llenadoTallas">
 
               </div>
+
+            </div>
+
+            <div>
+              <p class="font-mediumDisplay text-text16 md:text-text20 pb-4 font-bold" id="textoStock">
+
+              </p>
+
             </div>
 
 
@@ -830,6 +838,7 @@
                                 ${element.talla.valor}
                               </p>
                           </div>
+                         
                       `;
           }
         });
@@ -850,9 +859,11 @@
             idproduct: productId
           },
           success: function(response) {
+            console.log(response)
             let conteoImagenes = response.images.length;
             let llenadoimg = llenarImagenes(response.images);
             let llenadotallas = llenadoTallas(response.tallas);
+
 
             if (conteoImagenes == 1) {
               $('#imageContainer_uno').html(llenadoimg);
@@ -866,6 +877,11 @@
             }
 
             $('#llenadoTallas').html(llenadotallas);
+            console.log(response.tallas[0].stock)
+
+            $('#textoStock').text(response.tallas[0].stock !== null ? "Con Stock" : '')
+
+
 
 
           },

@@ -599,7 +599,12 @@ class IndexController extends Controller
     public function searchProduct(Request $request)
     {
         $query = $request->input('query');
-        $resultados = Products::where('producto', 'like', "%$query%")->get();
+        $resultados = Products::where('producto', 'like', "%$query%")
+        ->with([ 'images' => function($query){
+            $query->where('caratula', 1);
+        }
+
+        ])->get();
 
         return response()->json($resultados);
     }
