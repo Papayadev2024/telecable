@@ -73,7 +73,6 @@ class ProductsController extends Controller
     $onlyOneCaratula = false;
 
     if(is_null($request->input('descuento'))){
-      dump('entra here');
       $request->merge(['descuento' => 0]);
       $data['descuento'];
     }
