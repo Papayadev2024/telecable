@@ -181,11 +181,11 @@
           //limpiar carrito de compra
           // Local.delete('carrito')
 
-          setTimeout(function() {
+          /*  setTimeout(function() {
 
-            window.location.href =
-              `/pago?codigoCompra=${response.codigoOrden}&token=${response.formToken}&first=${response.primeraVez}`
-          }, 2000);
+             window.location.href =
+               `/pago?codigoCompra=${response.codigoOrden}&token=${response.formToken}&first=${response.primeraVez}`
+           }, 2000); */
         },
         error: function(response) {
 

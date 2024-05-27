@@ -728,6 +728,7 @@ class IndexController extends Controller
     public function procesarCarrito(Request $request)
     {
         $primeraVez = false;
+        dump($request->all()); 
 
         try {
             $codigoOrden = $this->codigoVentaAleatorio();
@@ -775,6 +776,8 @@ class IndexController extends Controller
                 'cantidad' => $value['cantidad'],
                 'orden_id' => $orden->id,
                 'precio' => $value['precio'],
+                'talla' => $value['talla'],
+                'color' => $value['color']['valor']
             ]);
         }
     }

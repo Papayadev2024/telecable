@@ -12,7 +12,9 @@ class DetalleOrden extends Model
         'producto_id',
         'cantidad',
         'orden_id',
-        'precio'
+        'precio',
+        'talla',
+        'color'
     ];
 
     public function ordenes()
