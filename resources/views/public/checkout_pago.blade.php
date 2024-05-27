@@ -319,10 +319,10 @@
                       <a id="pagarProductos"
                         class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none">Pagar</a>
                       <!-- <input
-                                                                                                                                                                                                                                                              type="submit"
-                                                                                                                                                                                                                                                              value="Checkout"
-                                                                                                                                                                                                                                                              class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
-                                                                                                                                                                                                                                                            /> -->
+                                                                                                                                                                                                                                                                type="submit"
+                                                                                                                                                                                                                                                                value="Checkout"
+                                                                                                                                                                                                                                                                class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
+                                                                                                                                                                                                                                                              /> -->
                     </div>
 
                     <div class="pt-10" id="contenedorIzypay" hidden>
@@ -678,7 +678,7 @@
       let itemsCarritoPago = $('#itemsCarritoPago')
 
       articulosCarrito.forEach(element => {
-        
+
         let plantilla = `<div class="flex justify-between bg-white font-poppins border-b-[1px] border-[#E8ECEF] pb-5">
         <div class="flex justify-center items-center gap-5">
           <div class="bg-[#F3F5F7] rounded-md p-4">
@@ -747,7 +747,7 @@
 
         },
         success: function(success) {
-          console.log(success);  
+          console.log(success);
           let {
             producto,
             id,

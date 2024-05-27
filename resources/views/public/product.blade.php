@@ -194,7 +194,7 @@
                       </summary>
 
                       <div class="group-open:animate-fadeIn mt-3 text-[#000000]">
-                        <div class="flex flex-col gap-5">
+                        <div class="flex flex-col gap-5 ">
                           @if (is_null($productos[0]->description))
                           @else
                             <div class="flex flex-col gap-2">
@@ -282,7 +282,7 @@
                                             </p>
                                         </details>
                                     </div> --}}
-                  <div class="py-5">
+                  {{-- <div class="py-5">
                     <details class="group">
                       <summary class="flex cursor-pointer list-none items-center justify-between font-mediumDisplay">
                         <span class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
@@ -311,9 +311,9 @@
                         estampados para que puedas elegir el que más te guste.
                       </p>
                     </details>
-                  </div>
+                  </div> --}}
 
-                  <div class="py-5">
+                  {{--  <div class="py-5">
                     <details class="group">
                       <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
                         <span class="font-boldDisplay text-text20 md:text-text24 text-[#151515]">
@@ -342,7 +342,7 @@
                         estampados para que puedas elegir el que más te guste.
                       </p>
                     </details>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>
@@ -833,7 +833,7 @@
         tallas.forEach(element => {
           if (element) {
             html += `
-                          <div class="flex justify-center items-center border-2 w-full rounded-lg">
+                          <div class="tallas flex justify-center items-center border-2 w-full rounded-lg cursor-pointer">
                               <p class="tallasombreado py-5 px-4 w-full text-center transition">
                                 ${element.talla.valor}
                               </p>
@@ -897,6 +897,15 @@
         $(this).addClass('color');
         enviarColorSeleccionado();
       });
+
+      $(document).on('click', '.tallas', function() {
+        $('.tallas').removeClass('tallaSelected');
+        $('.tallas').removeClass('bg-slate-400');
+
+        $(this).addClass('tallaSelected');
+        $(this).addClass('bg-slate-400');
+      });
+
 
     });
   </script>

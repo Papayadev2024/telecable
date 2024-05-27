@@ -427,6 +427,7 @@ class ProductsController extends Controller
       $cleanedData['preciofiltro'] = $data['descuento'];
     }
 
+    dump($cleanedData);
     $product->update($cleanedData);
 
     DB::delete('delete from attribute_product_values where product_id = ?', [$product->id]);
