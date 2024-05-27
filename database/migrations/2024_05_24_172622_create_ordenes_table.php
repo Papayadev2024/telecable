@@ -20,10 +20,13 @@ return new class extends Migration
 
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('usuario_id')->nullable();
+            $table->unsignedBigInteger('address_id')->nullable();
+
             $table->timestamps();
 
             $table->foreign('status_id')->references('id')->on('status_ordens');
-            $table->foreign('usuario_id')->references('id')->on('user_details');
+            $table->foreign('usuario_id')->references('id')->on('users');
+            
         });
     }
 

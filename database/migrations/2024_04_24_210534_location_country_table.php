@@ -270,31 +270,31 @@ return new class extends Migration
         });
 
         DB::table('departments')->insert([
-            ['id' => '01', 'description' => 'AMAZONAS'],
-            ['id' => '02', 'description' => 'ÁNCASH'],
-            ['id' => '03', 'description' => 'APURIMAC'],
-            ['id' => '04', 'description' => 'AREQUIPA'],
-            ['id' => '05', 'description' => 'AYACUCHO'],
-            ['id' => '06', 'description' => 'CAJAMARCA'],
-            ['id' => '07', 'description' => 'CALLAO'],
-            ['id' => '08', 'description' => 'CUSCO'],
-            ['id' => '09', 'description' => 'HUANCAVELICA'],
-            ['id' => '10', 'description' => 'HUÁNUCO'],
-            ['id' => '11', 'description' => 'ICA'],
-            ['id' => '12', 'description' => 'JUNÍN'],
-            ['id' => '13', 'description' => 'LA LIBERTAD'],
-            ['id' => '14', 'description' => 'LAMBAYEQUE'],
-            ['id' => '15', 'description' => 'LIMA'],
-            ['id' => '16', 'description' => 'LORETO'],
-            ['id' => '17', 'description' => 'MADRE DE DIOS'],
-            ['id' => '18', 'description' => 'MOQUEGUA'],
-            ['id' => '19', 'description' => 'PASCO'],
-            ['id' => '20', 'description' => 'PIURA'],
-            ['id' => '21', 'description' => 'PUNO'],
-            ['id' => '22', 'description' => 'SAN MARTIN'],
-            ['id' => '23', 'description' => 'TACNA'],
-            ['id' => '24', 'description' => 'TUMBES'],
-            ['id' => '25', 'description' => 'UCAYALI'],
+            ['id' => '01', 'description' => 'Amazonas'],
+            ['id' => '02', 'description' => 'Áncash'],
+            ['id' => '03', 'description' => 'Apurimac'],
+            ['id' => '04', 'description' => 'Arequipa'],
+            ['id' => '05', 'description' => 'Ayacucho'],
+            ['id' => '06', 'description' => 'Cajamarca'],
+            ['id' => '07', 'description' => 'Callao'],
+            ['id' => '08', 'description' => 'Cusco'],
+            ['id' => '09', 'description' => 'Huancavelica'],
+            ['id' => '10', 'description' => 'Huanuco'],
+            ['id' => '11', 'description' => 'Ica'],
+            ['id' => '12', 'description' => 'Junin'],
+            ['id' => '13', 'description' => 'La Libertad'],
+            ['id' => '14', 'description' => 'Lambayeque'],
+            ['id' => '15', 'description' => 'Lima'],
+            ['id' => '16', 'description' => 'Loreto'],
+            ['id' => '17', 'description' => 'Madre de Dios'],
+            ['id' => '18', 'description' => 'Moquegua'],
+            ['id' => '19', 'description' => 'Pasco'],
+            ['id' => '20', 'description' => 'Piura'],
+            ['id' => '21', 'description' => 'Puno'],
+            ['id' => '22', 'description' => 'San Martin'],
+            ['id' => '23', 'description' => 'Tacna'],
+            ['id' => '24', 'description' => 'Tumbes'],
+            ['id' => '25', 'description' => 'Ucayali'],
         ]);
 
         Schema::create('provinces', function (Blueprint $table) {
@@ -444,6 +444,7 @@ return new class extends Migration
             ['id' => '1508', 'description' => 'Huaura', 'department_id' => '15'],
             ['id' => '1509', 'description' => 'Oyón', 'department_id' => '15'],
             ['id' => '1510', 'description' => 'Yauyos', 'department_id' => '15'],
+            ['id' => '1511', 'description' => 'Callao', 'department_id' => '15'],
             ['id' => '1601', 'description' => 'Maynas', 'department_id' => '16'],
             ['id' => '1602', 'description' => 'Alto Amazonas', 'department_id' => '16'],
             ['id' => '1603', 'description' => 'Loreto', 'department_id' => '16'],
@@ -503,6 +504,7 @@ return new class extends Migration
             ['id' => '2502', 'description' => 'Atalaya', 'department_id' => '25'],
             ['id' => '2503', 'description' => 'Padre Abad', 'department_id' => '25'],
             ['id' => '2504', 'description' => 'Purús', 'department_id' => '25'],
+            
         ]);
 
         Schema::create('districts', function (Blueprint $table) {
@@ -2383,6 +2385,16 @@ return new class extends Migration
             ['id' => '250304', 'description' => 'Neshuya', 'province_id' => '2503'],
             ['id' => '250305', 'description' => 'Alexander Von Humboldt', 'province_id' => '2503'],
             ['id' => '250401', 'description' => 'Purus', 'province_id' => '2504'],
+            ['id' => '260101', 'description' => 'Callao', 'province_id' => '1511'],
+            ['id' => '260102', 'description' => 'Ventanilla', 'province_id' => '1511'],
+            ['id' => '260103', 'description' => 'Carmen de la Legua Reynoso', 'province_id' => '1511'],
+            ['id' => '260104', 'description' => 'Bellavista', 'province_id' => '1511'],
+            ['id' => '260105', 'description' => 'La Perla', 'province_id' => '1511'],
+            ['id' => '260106', 'description' => 'Mi Perú', 'province_id' => '1511'],
+            ['id' => '260107', 'description' => 'La Punta', 'province_id' => '1511'],
+
+
+            
         ]);
     }
 

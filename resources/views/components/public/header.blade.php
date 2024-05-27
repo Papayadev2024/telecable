@@ -217,7 +217,7 @@
                 </div>
               </div>
 
-              <div class="font-poppins flex flex-col gap-2 pt-36">
+              <div class="font-poppins flex flex-col gap-2 ">
                 {{-- <div class="text-[#141718] flex justify-between items-center">
                   <p class="font-regularDisplay text-[16px]">Subtotal</p>
                   <p class="font-boldDisplay text-[16px]">s/ 00.00</p>
@@ -285,22 +285,26 @@
             success: function(data) {
               var resultsHtml = '';
               var url = '{{ asset('') }}';
+              console.log(data)
               data.forEach(function(result) {
                 resultsHtml +=
-                  '<a href="/producto/' + result.id +
-                  '"> <div class="w-full flex flex-row py-3 px-5  hover:bg-slate-200"> ' +
-                  ' <div class="w-[10%]"><img class="w-14 rounded-md" src="' +
-                  url + result.imagen + '" /></div>' +
-                  ' <div class="flex flex-col justify-center w-[70%]"> ' +
-                  ' <h2 class="text-left">' + result.producto +
-                  '</h2> ' +
-                  '<p class="text-text12 text-left">Categoría</p></div> ' +
-                  ' <div class="flex flex-col justify-center w-[10%]"> ' +
-                  '<p class="text-right">S/' + result.precio +
-                  '</p> ' +
-                  '<p class="text-text12 text-right line-through text-slate-500">S/' +
-                  result.descuento + '</p></div>' +
-                  '</div></a>';
+                  `
+                  <a href="/producto/${result.id}">
+                      <div class="w-full flex flex-row py-3 px-5 hover:bg-slate-200">
+                          <div class="w-[10%]">
+                              <img class="w-14 rounded-md" src="${url}${result?.images[0]?.name_imagen ?? result.imagen}" />
+                          </div>
+                          <div class="flex flex-col justify-center w-[70%]">
+                              <h2 class="text-left">${result.producto}</h2>
+                              <p class="text-text12 text-left">Categoría</p>
+                          </div>
+                          <div class="flex flex-col justify-center w-[10%]">
+                              <p class="text-right">S/${result.precio}</p>
+                              <p class="text-text12 text-right line-through text-slate-500">S/${result.descuento}</p>
+                          </div>
+                      </div>
+                  </a>
+              `;
               });
 
               $('#resultados').html(resultsHtml);

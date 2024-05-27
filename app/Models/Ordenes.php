@@ -25,7 +25,7 @@ class Ordenes extends Model
     }
 
     public function usuarioPedido(){
-        return $this->belongsTo(UserDetails::class, 'usuario_id');
+        return $this->belongsTo(User::class, 'usuario_id');
     }
 
     

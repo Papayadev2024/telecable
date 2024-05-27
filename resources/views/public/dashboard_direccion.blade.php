@@ -34,7 +34,7 @@
                             </h2>
 
                             <a href="#" class="modal__close-mostrar mr-5">
-                                <img src="{{asset('images/svg/close.svg')}}" alt="close" />
+                                <img src="{{ asset('images/svg/close.svg') }}" alt="close" />
                             </a>
                         </div>
 
@@ -285,8 +285,13 @@
             </div>
         </div>
         <!--  -->
-        <section class="font-poppins my-8 md:my-16">
-            <div class="flex flex-col gap-12 md:flex-row md:gap-24 w-full md:w-11/12 mx-auto">
+
+
+
+
+        <section class="font-poppins my-8">
+            <div class="flex flex-col gap-12 md:flex-row md:gap-4 w-full md:w-11/12 mx-auto">
+                <!-- Sidebar -->
                 <div class="bg-[#F3F5F7] md:bg-white py-5 md:py-0">
                     <div class="w-11/12 md:w-full mx-auto">
                         <div class="basis-5/12 flex flex-col gap-5">
@@ -383,46 +388,222 @@
                         </div>
                     </div>
                 </div>
-               
-                <div class="basis-7/12 font-poppins w-11/12 md:w-full mx-auto">
-                    <h2 class="text-[#151515] font-semibold text-[20px] mb-5">
-                        Detalles de la cuenta
-                    </h2>
-                    <div class="flex flex-col gap-5 lg:flex-row lg:gap-10">
-                    @foreach ($direcciones as $item)
-                      <div class="basis-1/2 border-2 border-[#6C7275] rounded-lg p-2 flex flex-col gap-1">
-                            <div class="flex justify-between items-center">
-                                <p class="font-semibold text-[16px] text-[#000000]">
-                                    Dirección de Envío
-                                </p>
-                                <p class="flex justify-between items-center cursor-pointer gap-1 mostrar-mas">
-                                    <img src="{{ asset('/images/svg/edit.svg') }}" alt="editar" />
-                                    <span class="font-semibold text-[16px] text-[#EB5D2C]">
-                                        Editar
-                                    </span>
-                                </p>
+                <!-- Sidebar -->
+
+                <!-- Address -->
+                <div class="basis-9/12 font-poppins w-11/12 md:w-full mx-auto">
+                    <form method="POST" id="direccionForm">
+                        @csrf
+                        <div class="w-full flex flex-col justify-center">
+                            <div class="flex flex-col gap-5 w-1/2">
+                                <div class="flex justify-between items-center w-full">
+                                    <h2 class="font-semibold text-[20px] text-[#151515]">
+                                        Agregar dirección de envío
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="flex flex-col lg:flex-row  gap-5 mt-6">
+                                <div class="flex flex-col gap-5 w-full lg:w-1/2">
+
+                                    <div class="flex flex-col gap-5">
+                                        <div class="flex flex-col gap-2 z-[45]">
+                                            <label class="font-medium text-[12px] text-[#6C7275]">Departamento</label>
+                                            <div>
+                                                <!-- combo -->
+                                                <div class="dropdown w-full">
+                                                    <select name="departamento_id" id="selectDepartamento"
+                                                        class="w-full focus:outline-none font-normal text-[16px] mr-20 text-[#6C7275] border-[1.5px] border-gray-200 rounded-xl py-3 px-4">
+                                                        <option value="">Seleccionar un Departamento </option>
+                                                        @foreach ($departamentofiltro as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->description }}
+                                                            </option>
+                                                        @endforeach
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-col gap-2 z-[40]">
+                                            <label class="font-medium text-[12px] text-[#6C7275]">Provincia</label>
+                                            <div>
+                                                <!-- combo -->
+                                                <div class="dropdown-provincia w-full">
+                                                    <select name="provincia_id" id="selectProvincia"
+                                                        class="w-full focus:outline-none font-normal text-[16px] mr-20 text-[#6C7275] border-[1.5px] border-gray-200 rounded-xl py-3 px-4">
+                                                        <option value="">Seleccionar provincias </option>
+                                                        {{-- @foreach ($provincias as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->description }}
+                                                            </option>
+                                                        @endforeach --}}
+
+                                                    </select>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-col gap-2 z-[30]">
+                                            <label class="font-medium text-[12px] text-[#6C7275]">Distrito</label>
+
+                                            <div>
+                                                <!-- combo -->
+                                                <div class="dropdown-distrito w-full">
+                                                    <select name="distrito_id" id="selectDistrito"
+                                                        class="w-full focus:outline-none font-normal text-[16px] mr-20 text-[#6C7275] border-[1.5px] border-gray-200 rounded-xl py-3 px-4">
+                                                        <option value="">Seleccionar distritos </option>
+                                                        {{-- @foreach ($distritos as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->description }}
+                                                            </option>
+                                                        @endforeach --}}
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col gap-5 w-full lg:w-1/2">
+
+                                    <div class="flex flex-col gap-5">
+
+                                        <div class="basis-1/2 flex flex-col gap-2">
+                                            <label for="nombre_calle"
+                                                class="font-medium text-[12px] text-[#6C7275]">Avenida
+                                                / Calle / Jirón</label>
+                                            <input id="nombre_calle" type="text" name="nombre_calle"
+                                                placeholder="Ingresa el nombre de la calle"
+                                                class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl" />
+                                        </div>
+
+                                        <div class="basis-1/2 flex flex-col gap-2">
+                                            <label for="numero_calle"
+                                                class="font-medium text-[12px] text-[#6C7275]">Número</label>
+                                            <input id="numero_calle" type="text" name="numero_calle"
+                                                placeholder="Ingresa el número de la callle"
+                                                class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl" />
+                                        </div>
+
+
+                                        <div class="basis-1/2 flex flex-col gap-2">
+                                            <label for="direccion" class="font-medium text-[12px] text-[#6C7275]">Dpto./
+                                                Interior/ Piso/ Lote/ Bloque
+                                                (opcional)</label>
+                                            <input id="direccion" type="text" name="direccion"
+                                                placeholder="Ejem. Casa 3, Dpto 101"
+                                                class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl" />
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
-                            <p class="font-normal text-[14px] text-[#000000]">
-                                {{$item->dir_av_calle}}
-                            </p>
-                            <p class="font-normal text-[14px] text-[#000000]">
-                                {{$item->distrito_id}}
-                            </p>
-                            <p class="font-normal text-[14px] text-[#000000]">
-                              {{$item->provincia_id}} - {{$item->departamento_id}}, Perú
-                            </p>
                         </div>
-                     </div>
-                    @endforeach      
+
+
+                        <div class="flex flex-col md:flex-row gap-5 w-full mt-6">
+                            <input type="submit" value="Guardar cambios"
+                                class="text-white bg-bgBlack py-3 rounded-2xl cursor-pointer border-2 font-semibold text-[16px] text-center border-none inline-block w-full" />
+                        </div>
+                    </form>
+
+                    <h2 class="text-[#151515] font-semibold text-[20px] mb-5 mt-6">
+                        Mis direcciones
+                    </h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
+                        @foreach ($direcciones as $item)
+                            <div class="basis-1/2 border-[1px] border-slate-400 rounded-lg p-4 flex flex-col gap-1">
+                                <div class="flex justify-between items-center">
+                                    <p class="font-semibold text-[16px] text-[#000000]">
+                                        Dirección de Envío
+                                    </p>
+                                    <p class="flex justify-between items-center cursor-pointer gap-1 mostrar-mas">
+                                        <img src="{{ asset('/images/svg/edit.svg') }}" alt="editar" />
+                                        <span class="font-semibold text-[16px] text-[#EB5D2C]">
+                                            Editar
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="flex justify-between items-center relative">
+                                    <div>
+                                        <p class="font-normal text-[14px] text-[#000000]">
+                                            {{ $item->dir_av_calle }}
+                                        </p>
+                                        <p class="font-normal text-[14px] text-[#000000]">
+                                            {{ $item->distrito_id }}
+                                        </p>
+                                        <p class="font-normal text-[14px] text-[#000000]">
+                                            {{ $item->provincia_id }} - {{ $item->departamento_id }}, Perú
+                                        </p>
+                                    </div>
+                                    <div class="absolute bottom-0 right-0" id="favorite">
+                                        @if ($item->favorite == 1)
+                                            <a data-id="{{$item->id}}" data-favorite="{{ $item->favorite }}">
+                                                <img src="{{ asset('images/svg/estrellaamarilla.svg') }}" />
+                                            </a>
+                                        @else
+                                           
+                                            <a class="favorite-star cursor-pointer" data-id="{{$item->id}}" data-favorite="{{ $item->favorite }}">
+                                                <img src="{{ asset('images/svg/estrellablanca.svg') }}" />
+                                            </a>
+                                         
+                                        @endif
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
                 </div>
+                <!-- Address -->
             </div>
         </section>
+
+
     </main>
 
 
 @section('scripts_importados')
+    <script>
+        $(document).ready(function() {
+            $('.favorite-star').on('click', function(e) {
+                e.preventDefault(); 
 
+                var favoriteStatus = $(this).data('favorite'); 
+                var itemId = $(this).data('id'); 
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('direccionFavorita') }}',
+                    data: {
+                        '_token': '{{ csrf_token() }}',
+                        'id': itemId,
+                        'favorite': favoriteStatus
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        Swal.fire({
+                            title: response.message,
+                            icon: "success",
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload(); 
+                        }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         const checkbox = document.getElementById("check");
         const bag = document.querySelector(".bag");
@@ -528,7 +709,7 @@
 
         // Función para cerrar el modal
         function closeModa(event) {
-            console.log(event.target);
+            // console.log(event.target);
             if (event.target === modal) {
                 modal.classList.remove("modal--show");
                 body.classList.remove("overflow-hidden");
@@ -536,6 +717,104 @@
         }
 
         window.addEventListener("click", closeModa);
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#selectDepartamento').change(function() {
+                var departmentId = $(this).val();
+                if (departmentId) {
+                    $.ajax({
+                        url: '/obtenerProvincia/' + departmentId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#selectProvincia').prop('disabled', false).empty().append(
+                                '<option value="">Selecciona una provincia</option>');
+                            $.each(data, function(key, value) {
+                                $('#selectProvincia').append('<option value="' + value
+                                    .id +
+                                    '">' + value.description + '</option>');
+                            });
+                            $('#selectDistrito').prop('disabled', true).empty().append(
+                                '<option value="">Selecciona un distrito</option>');
+                        }
+                    });
+                } else {
+                    $('#selectProvincia').prop('disabled', true).empty().append(
+                        '<option value="">Selecciona una provincia</option>');
+                    $('#selectDistrito').prop('disabled', true).empty().append(
+                        '<option value="">Selecciona un distrito</option>');
+                }
+            });
+
+            $('#selectProvincia').change(function() {
+                var provinceId = $(this).val();
+                if (provinceId) {
+                    $.ajax({
+                        url: '/obtenerDistritos/' + provinceId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#selectDistrito').prop('disabled', false).empty().append(
+                                '<option value="">Selecciona un distrito</option>');
+                            $.each(data, function(key, value) {
+                                $('#selectDistrito').append('<option value="' + value
+                                    .id +
+                                    '">' + value.description + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#selectDistrito').prop('disabled', true).empty().append(
+                        '<option value="">Selecciona un distrito</option>');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('#direccionForm').submit(function(event) {
+
+                event.preventDefault();
+
+                $.ajax({
+                    url: '{{ route('guardar.direccion') }}',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#direccionForm')[0].reset();
+                        Swal.fire({
+                            title: response.message,
+                            icon: "success",
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload(); 
+                        }
+                        });
+                    },
+                    error: function(error) {
+                        const obj = error.responseJSON.message;
+                        const keys = Object.keys(error.responseJSON.message);
+                        let flag = false;
+                        keys.forEach(key => {
+                            if (!flag) {
+                                const e = obj[key][0];
+                                Swal.fire({
+                                    title: error.message,
+                                    text: e,
+                                    icon: "error",
+                                });
+                                flag = true; // Marcar como mostrado
+                            }
+                        });
+                    }
+                });
+            })
+
+        });
     </script>
 @stop
 

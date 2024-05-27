@@ -389,14 +389,14 @@
   </style>
 
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-    <div>
+    {{-- <div>
       @if (Session::has('error'))
         <div class="p-4 bg-red-400 text-lg text-white border-l-8 border-red-600 mb-4"><i
             class="fa-solid fa-triangle-exclamation"></i>
           <span class="ml-3">{{ Session::get('error') }}</span>
         </div>
       @endif
-    </div>
+    </div> --}}
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
 
@@ -436,12 +436,16 @@
                         </svg>
                       </div>
                       <input type="text" id="producto" name="producto" value=""
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('producto') is-invalid @enderror"
                         placeholder="Producto">
+                      @error('producto')
+                        <div style="color: red;">{{ $message }}</div>
+                      @enderror
 
 
                     </div>
                   </div>
+
                   <div class="md:col-span-5 mt-2">
 
                     <label for="extract">Extracto</label>
@@ -460,12 +464,15 @@
                         </svg>
                       </div>
                       <input type="text" id="extract" name="extract" value=""
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('extract') is-invalid @enderror"
                         placeholder="Extracto">
-
+                      @error('extract')
+                        <div style="color: red;">{{ $message }}</div>
+                      @enderror
 
                     </div>
                   </div>
+
                   <div class="md:col-span-5">
                     <label for="description">Descripcion</label>
                     <div class="relative mb-2 mt-2">
@@ -475,9 +482,6 @@
                     </div>
                   </div>
 
-
-
-
                   {{-- <div class="md:col-span-5">
                     <label for="imagen">Impagen Principal</label>
                     <div class="relative mb-2  mt-2">
@@ -486,8 +490,6 @@
                         aria-describedby="user_avatar_help" id="user_avatar" type="file">
                     </div>
                   </div> --}}
-
-
 
                   <div class="">
 
@@ -504,6 +506,7 @@
 
                     </div>
                   </div>
+
                   <div class="">
 
                     <label for="recomendar">Novedad</label>
@@ -530,16 +533,15 @@
                     </div>
                   </div>
 
-
                 </div>
-
-
               </div>
             </div>
 
             <div class="basis-0 md:basis-2/5">
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
+
                 <div class="md:col-span-5 flex justify-between gap-4">
+
                   <div class="w-full">
                     <label for="precio">Precio <span class="text-red-500"> (Obligatorio) </span></label>
                     <div class="relative mb-2  mt-2">
@@ -553,11 +555,15 @@
 
                       </div>
                       <input type="number" id="precio" name="precio" value=""
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('precio') is-invalid @enderror"
                         placeholder="precio">
+                      @error('precio')
+                        <div style="color: red;">{{ $message }}</div>
+                      @enderror
                     </div>
 
                   </div>
+
                   <div class="w-full">
                     <label for="descuento">Descuento</label>
                     <div class="relative mb-2  mt-2">
@@ -570,14 +576,17 @@
                         </svg>
                       </div>
                       <input type="number" id="descuento" name="descuento" value="0"
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('descuento') is-invalid @enderror"
                         placeholder="descuento">
+                      @error('descuento')
+                        <div style="color: red;">{{ $message }}</div>
+                      @enderror
                     </div>
 
                   </div>
 
-
                 </div>
+
                 <div class="md:col-span-5">
 
                 </div>
@@ -612,15 +621,20 @@
                       </svg>
                     </div>
                     <select name="categoria_id"
-                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
                       <option value="">Seleccionar Categoria </option>
                       @foreach ($categoria as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                       @endforeach
 
                     </select>
+                    @error('categoria_id')
+                      <div style="color: red;">{{ $message }}</div>
+                    @enderror
                   </div>
                 </div>
+
+
                 <div class="md:col-span-5">
                   <label for="costo_x_art">Colección</label>
                   <div class="relative mb-2  mt-2">
@@ -642,6 +656,8 @@
                     </select>
                   </div>
                 </div>
+
+
                 <div class="md:col-span-5 mt-2">
                   <div class=" flex items-end justify-between gap-2 ">
                     <label for="especificacion">Especificacion </label>
@@ -693,10 +709,8 @@
 
                 </div>
 
-
-
-
               </div>
+
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
                 <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
                   Inventario</h4>
@@ -770,11 +784,11 @@
 
                       <input type="checkbox" id="hs-basic-usage"
                         class="inline check_v btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
-                        rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none 
-                        checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 dark:bg-gray-800 dark:border-gray-700 
-                        dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
-                        before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow        
-                        before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
+                          rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none 
+                          checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 dark:bg-gray-800 dark:border-gray-700 
+                          dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
+                          before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow        
+                          before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
                         id='{{ 'v_' . $item->id }}' data-field='destacar' data-idService='{{ $item->id }}'
                         data-titleService='{{ $item->producto }}' {{ $item->destacar == 1 ? 'checked' : '' }}>
 
@@ -797,6 +811,7 @@
                   @endif
                 @endforeach
               </div>
+
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
                 <div class="md:col-span-5 mt-2 ">
                   <div class=" flex items-end justify-between gap-2 ">
@@ -815,8 +830,6 @@
                 </div>
 
               </div>
-
-
 
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
                 <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
@@ -838,19 +851,7 @@
                 </div>
               </div>
 
-              <div class="md:col-span-5 mt-2">
-                <section class="scroll-section overflow-y-auto" id="uploadedFilesGallery">
-                  <h2 class="small-title">Subir fotos para Galeria</h2>
-                  <div class="card mb-5">
-                    <div class="card-body">
 
-                      <div class="dropzone border-gray-300  " id="dropzoneServerFilesGallery">
-                      </div>
-
-                    </div>
-                  </div>
-                </section>
-              </div>
 
             </div>
 
@@ -894,10 +895,12 @@
       elemento.setAttribute("id", `${name}-${valorInput}`);
 
       let valorAtributo = @json($valorAtributo);
+      let switchColor = $('.btn_swithc:checked')
+      const noSwitchActive = switchColor.length === 0;
 
       const optionElement = document.createElement("option");
       optionElement.setAttribute("value", "0");
-      optionElement.textContent = "Selecciones una opcion";
+      optionElement.textContent = name == 'color' ? 'Color' : "Talla";
       elemento.appendChild(optionElement);
 
       if (name == 'color') {
@@ -906,11 +909,34 @@
             const optionElement = document.createElement("option");
 
             optionElement.setAttribute("value", optionText.id);
+
+            optionElement.setAttribute('hidden', true);
+
+
+            const serviceId = optionText.id; // Assuming id in optionsData matches data-idService
+            // const correspondingSwitch = $(`.btn_switch[data-idService=${serviceId}]`);
+
+            switchColor.each(function() {
+              const idService = $(this).data('idservice');
+              console.log(idService, serviceId)
+              if (idService === serviceId) {
+                optionElement.removeAttribute('hidden');
+              }
+            })
+
+
+
+
             optionElement.textContent = optionText.valor;
             elemento.appendChild(optionElement);
           }
 
+
+
         });
+
+
+
 
       } else {
 
@@ -948,7 +974,7 @@
 
       elemento.classList.add("mt-1", "bg-gray-50", "border", "border-gray-300", "text-gray-900", "text-sm",
         "rounded-lg",
-        "focus:ring-blue-500", "focus:border-blue-500", "block", "w-full", "pl-10", "p-2.5",
+        "focus:ring-blue-500", "focus:border-blue-500", "block", "w-full", "p-2.5",
         "dark:bg-gray-700",
         "dark:border-gray-600", "dark:placeholder-gray-400", "dark:text-white",
         "dark:focus:ring-blue-500",
@@ -1084,7 +1110,7 @@
 
         divFlex.id = `combination-${valorInput}`;
 
-        divFlex.classList.add('flex', 'gap-2', 'items-center', 'justify-center')
+        divFlex.classList.add('grid', 'grid-cols-4', 'gap-2', 'items-center', 'justify-center')
         dRelative.classList.add('mb-2', 'mt-2')
         dRelative2.classList.add('mb-2', 'mt-2')
         dRelative3.classList.add('mb-2', 'mt-2')
@@ -1110,9 +1136,13 @@
 
 
         const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Eliminar";
+        deleteButton.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                </svg>
+            `;
         deleteButton.className =
-          "ml-2 bg-red-500 justi text-white px-4 h-10 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full  eliminarConvinacion";
+          "ml-2 bg-red-500 justify-self-center text-white px-4 h-10 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full  eliminarConvinacion";
         deleteButton.setAttribute('value', `combination-${valorInput}`)
         deleteButton.onclick = function(e) {
           e.preventDefault()

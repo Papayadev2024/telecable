@@ -319,10 +319,10 @@
                       <a id="pagarProductos"
                         class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none">Pagar</a>
                       <!-- <input
-                                                                                                                                                                                                                                                              type="submit"
-                                                                                                                                                                                                                                                              value="Checkout"
-                                                                                                                                                                                                                                                              class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
-                                                                                                                                                                                                                                                            /> -->
+                                                                                                                                                                                                                                                                          type="submit"
+                                                                                                                                                                                                                                                                          value="Checkout"
+                                                                                                                                                                                                                                                                          class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
+                                                                                                                                                                                                                                                                        /> -->
                     </div>
 
                     <div class="pt-10" id="contenedorIzypay" hidden>
@@ -676,9 +676,10 @@
 
       let itemsCarrito = $('#itemsCarrito')
       let itemsCarritoPago = $('#itemsCarritoPago')
+      console.log(articulosCarrito)
 
       articulosCarrito.forEach(element => {
-        
+
         let plantilla = `<div class="flex justify-between bg-white font-poppins border-b-[1px] border-[#E8ECEF] pb-5">
         <div class="flex justify-center items-center gap-5">
           <div class="bg-[#F3F5F7] rounded-md p-4">
@@ -686,10 +687,10 @@
           </div>
           <div class="flex flex-col gap-3 py-2">
             <h3 class="font-semibold text-[14px] text-[#151515]">
-              ${element.producto}
+              ${element.producto} 
             </h3>
             <p class="font-normal text-[12px] text-[#6C7275]">
-              
+              ${element.color.valor} ${element.talla}
             </p>
             <div class="flex w-20 justify-center text-[#151515] border-[1px] border-[#6C7275] rounded-md">
               
@@ -747,7 +748,7 @@
 
         },
         success: function(success) {
-          console.log(success);  
+          console.log(success);
           let {
             producto,
             id,
@@ -766,7 +767,8 @@
             cantidad,
             color,
             tipo_envio: 0,
-            caratula: success.caratula
+            caratula: success.caratula.images[0].name_imagen,
+            talla: talla.trim()
 
           }
           let existeArticulo = articulosCarrito.some(item => item.id === detalleProducto.id)
@@ -786,7 +788,7 @@
 
           }
 
-          localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+          // localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
 
           limpiarHTML()
           PintarCarrito()

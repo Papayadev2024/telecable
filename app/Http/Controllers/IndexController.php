@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\EmailConfig;
 use App\Http\Requests\StoreIndexRequest;
 use App\Http\Requests\UpdateIndexRequest;
+use App\Models\AddressUser;
 use App\Models\Attributes;
 use App\Models\AttributesValues;
 use App\Models\Faqs;
@@ -424,9 +425,10 @@ class IndexController extends Controller
     {
         $user = Auth::user();
 
-        $detalleUsuario = UserDetails::where('email', $user->email)
+        $detalleUsuario = User::where('email', $user->email)
             ->get()
             ->toArray();
+
         $ordenes = Ordenes::where('usuario_id', $detalleUsuario[0]['id'])
             ->with('DetalleOrden')
             ->with('statusOrdenes')
@@ -435,13 +437,74 @@ class IndexController extends Controller
         return view('public.dashboard_order', compact('user', 'ordenes'));
     }
 
+
+    public function direccionFavorita(Request $request){
+        $item = AddressUser::find($request->id);
+        if ($item) {
+            
+            AddressUser::where('user_id', $item->user_id)->update(['favorite' => 0]);
+            $item->favorite = 1;
+            $item->save();
+    
+            return response()->json(['message' => 'Dirección favorita modificada']);
+        }
+    
+        return response()->json(['error' => 'Item no encontrado'], 404);
+    }
+
     public function direccion()
     {
         $user = Auth::user();
-        $direcciones = UserDetails::where('email', $user->email)->get();
+        $direcciones = AddressUser::where('user_id', $user->id)->get();
+        $departamentofiltro = DB::select('select * from departments where active = ? order by 2', [1]);
+        $departamento = DB::select('select * from departments where active = ? order by 2', [1]);
+        
+        foreach ($direcciones as $direccion) {
+            $distrito = DB::table('districts')->where('id', $direccion->distrito_id)->first();
+            $provincia = DB::table('provinces')->where('id', $direccion->provincia_id)->first();
+            $departamento = DB::table('departments')->where('id', $direccion->departamento_id)->first();
 
-        return view('public.dashboard_direccion', compact('user', 'direcciones'));
+           
+           
+             $direccion->distrito_id = $distrito ? $distrito->description : '';
+             $direccion->provincia_id = $provincia ? $provincia->description : '';
+             $direccion->departamento_id = $departamento ? $departamento->description : '';
+        }
+
+        
+        return view('public.dashboard_direccion', compact('user', 'direcciones', 'departamento', 'departamentofiltro'));
     }
+
+    public function obtenerProvincia($departmentId)
+    {
+        $provinces = DB::select('select * from provinces where active = ? and department_id = ? order by description', [1, $departmentId]);
+        return response()->json($provinces);
+    }
+
+    public function obtenerDistritos($provinceId)
+    {
+        $distritos = DB::select('select * from districts where active = ? and province_id = ? order by description', [1, $provinceId]);
+        return response()->json($distritos);
+    }
+    
+    public function guardarDireccion(Request $request)
+    {   
+       
+        $user = Auth::user();
+        $direccion = new AddressUser();
+       
+        $direccion->departamento_id = $request->departamento_id;
+        $direccion->provincia_id = $request->provincia_id;
+        $direccion->distrito_id = $request->distrito_id;
+        $direccion->dir_av_calle = $request->nombre_calle;
+        $direccion->dir_numero = $request->numero_calle;
+        $direccion->dir_bloq_lote = $request->direccion;
+        $direccion->user_id = $user->id;
+        $direccion->save();
+
+         return response()->json(['message' => 'Dirección guardada exitosamente']);
+    }
+    
 
     public function error()
     {
@@ -455,6 +518,7 @@ class IndexController extends Controller
         $productId = $request->idproduct;
         
         $images =  ImagenProducto::where('color_id', $colorId)->where('product_id', $productId)->get();
+        
         // return response()->json(['images' => $images]);
         // $productos = Products::where('id', '=', $productId)->with('attributes')->with('tags')->get();
         $tallas = Combinacion::where('color_id', $colorId)->where('product_id', $productId)->with('talla')->get();
@@ -535,7 +599,12 @@ class IndexController extends Controller
     public function searchProduct(Request $request)
     {
         $query = $request->input('query');
-        $resultados = Products::where('producto', 'like', "%$query%")->get();
+        $resultados = Products::where('producto', 'like', "%$query%")
+        ->with([ 'images' => function($query){
+            $query->where('caratula', 1);
+        }
+
+        ])->get();
 
         return response()->json($resultados);
     }
@@ -659,6 +728,7 @@ class IndexController extends Controller
     public function procesarCarrito(Request $request)
     {
         $primeraVez = false;
+        
 
         try {
             $codigoOrden = $this->codigoVentaAleatorio();
@@ -706,6 +776,8 @@ class IndexController extends Controller
                 'cantidad' => $value['cantidad'],
                 'orden_id' => $orden->id,
                 'precio' => $value['precio'],
+                'talla' => $value['talla'],
+                'color' => $value['color']['valor']
             ]);
         }
     }

@@ -196,6 +196,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         //Pedidos
         Route::get('/orders', [PedidosController::class, 'listadoPedidos'])->name('orders');
         Route::get('/orders/{id}', [PedidosController::class, 'verPedido'])->name('verPedido');
+        
+        
 
         Route::fallback(function() {
             return view('pages/utility/404');
@@ -212,11 +214,15 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Customer'])->group(function 
  Route::get('/micuenta', [IndexController::class, 'micuenta'] )->name('micuenta');
  Route::get('/micuenta/pedidos', [IndexController::class, 'pedidos'] )->name('pedidos');
  Route::get('/micuenta/direccion', [IndexController::class, 'direccion'] )->name('direccion');
+ Route::post('/micuenta/direccion/direccionFavorita', [IndexController::class, 'direccionFavorita'])->name('direccionFavorita');
 
  Route::post('/micuenta/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
  Route::post('/micuenta/direccion/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
  Route::post('/micuenta/pedidos/cambiofoto', [IndexController::class, 'cambiofoto'] )->name('cambiofoto');
 
+ Route::get('/obtenerProvincia/{departmentId}', [IndexController::class, 'obtenerProvincia'])->name('obtenerProvincia');
+ Route::get('/obtenerDistritos/{provinceId}', [IndexController::class, 'obtenerDistritos'])->name('obtenerDistritos');
+ Route::post('/guardarDireccion', [IndexController::class, 'guardarDireccion'])->name('guardar.direccion');
 
  Route::post('/micuenta/actualizarPerfil', [IndexController::class, 'actualizarPerfil'] )->name('actualizarPerfil');
 

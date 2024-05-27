@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('addres_orders', function (Blueprint $table) {
+        Schema::create('address_users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('departamento_id')->nullable();
             $table->unsignedBigInteger('provincia_id')->nullable();
@@ -20,11 +20,13 @@ return new class extends Migration
             $table->string('dir_numero')->nullable();
             $table->string('dir_bloq_lote')->nullable();
             $table->string('imagen')->nullable();
-            
+
             $table->unsignedBigInteger('user_id')->nullable();
             $table->boolean('favorite')->default(false)->nullable();
 
-            $table->foreign('user_id')->references('id')->on('user_details')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
+
 
             $table->timestamps();
         });
@@ -35,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('addres_orders');
+        Schema::dropIfExists('address_users');
     }
 };
