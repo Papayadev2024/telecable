@@ -30,6 +30,7 @@ use App\Http\Controllers\LogosClientController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LiquidacionController;
 use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StaffController;
@@ -38,6 +39,7 @@ use App\Http\Controllers\ValoresAtributosController;
 
 use App\Http\Controllers\TagController;
 use App\Models\AboutUs;
+use App\Models\Price;
 
 /*
 |--------------------------------------------------------------------------
@@ -155,6 +157,11 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         //Etiquetas
         Route::resource('/tags', TagController::class);
         Route::post('/tags/deleteTags', [TagController::class, 'deleteTags'])->name('tags.deleteTags');
+
+        //Precios
+        Route::resource('/prices', PriceController::class);
+        Route::post('/getProvincia', [PriceController::class, 'getProvincias'])->name('prices.getProvincias');
+        Route::post('/getDistrito', [PriceController::class, 'getDistrito'])->name('prices.getDistrito');
 
         //Productos
         Route::resource('/products', ProductsController::class);
