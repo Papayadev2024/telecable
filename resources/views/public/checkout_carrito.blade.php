@@ -485,6 +485,7 @@
 
 
       articulosCarrito = Local.get('carrito')
+      console.log(articulosCarrito)
       let carritoCheck = articulosCarrito.map(item => {
         let obj = {
           id: item.id,
@@ -494,7 +495,9 @@
           imagen: item.imagen,
           cantidad: item.cantidad,
           color: item.color,
-          tipo_envio: Number(valorSeleccionado)
+          tipo_envio: Number(valorSeleccionado),
+          talla: item.talla,
+          caratula: item.caratula
         };
         return obj
       })
