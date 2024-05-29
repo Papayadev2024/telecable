@@ -271,11 +271,11 @@ class ProductsController extends Controller
       $dataGalerie['type_imagen'] = 'secondary';
       $dataGalerie['caratula'] = 0;
       $dataGalerie['color_id'] = $colorId;
+      
       // $dataGalerie['type_img'] = 'gall';
       ImagenProducto::create($dataGalerie);
     } catch (\Throwable $th) {
       //throw $th;
-
     }
   }
 
@@ -359,26 +359,21 @@ class ProductsController extends Controller
    */
   public function update(Request $request, string $id)
   {
+    $onlyOneCaratula= false;
+    $cleanGaleria = true;
     $especificaciones = [];
     $product = Products::find($id);
     $tagsSeleccionados = $request->input('tags_id');
     $data = $request->all();
     $atributos = null;
 
+    
+
     $request->validate([
       'producto' => 'required',
     ]);
 
-    if ($request->hasFile("imagen")) {
-      $file = $request->file('imagen');
-      $routeImg = 'storage/images/productos/';
-      $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
-
-      $this->saveImg($file, $routeImg, $nombreImagen);
-
-      $data['imagen'] = $routeImg . $nombreImagen;
-      // $AboutUs->name_image = $nombreImagen;
-    }
+    
 
     foreach ($request->all() as $key => $value) {
 
@@ -395,10 +390,57 @@ class ProductsController extends Controller
 
           $num = substr($key, strrpos($key, '-') + 1); // Obtener el número de la especificación
           $especificaciones[$num]['specifications'] = $value; // Agregar las especificaciones al array asociativo
+        }elseif(strpos($key, 'conbinacion-') === 0 ){
+           $num = substr($key, strrpos($key, '-') + 1);
+           $combinacion = Combinacion::find($num)->update([ 'color_id' => $value["color"] ,
+           'talla_id' => $value["talla"] ,
+           'stock' => $value["stock"] ,]);
+
+ 
+        }elseif(strpos($key, 'updateComb-') === 0 ){
+          Combinacion::create([
+            "product_id" =>$id,
+            "color_id" =>$value["color"],
+            "talla_id" =>$value["talla"],
+            "stock" =>$value["stock"],
+          ]);
+        }elseif (strpos($key, 'imagenP-') === 0) {
+          $colorId = substr($key, strrpos($key, '-') + 1);
+          $isCaratula = 0;
+          if ($colorId == isset($data['caratula']) && $onlyOneCaratula == false) {
+            $isCaratula = 1;
+            $onlyOneCaratula = true;
+          }
+          $file = $request->file($key);
+          $routeImg = 'storage/images/productos/';
+          $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+          $this->saveImg($file, $routeImg, $nombreImagen);
+
+          $dataGalerie['name_imagen'] = $routeImg . $nombreImagen;
+          $dataGalerie['product_id'] = $id;
+          $dataGalerie['type_imagen'] = 'primary';
+          $dataGalerie['caratula'] = $isCaratula;
+          $dataGalerie['color_id'] = $colorId;
+          // $dataGalerie['type_img'] = 'gall';
+
+          /* if($cleanGaleria){
+            $cleanGaleria = false ; 
+            DB::delete('delete from imagen_productos where product_id = ?', [$id]);
+          } */
+         
+          ImagenProducto::create($dataGalerie);
+        }elseif(strpos($key, 'attrid-') === 0) {
+          $colorId = substr($key, strrpos($key, '-') + 1);
+          foreach ($value as $file) {
+            $this->GuardarGaleria($file, $id, $colorId);
+          }
         }
+        
       }
     }
 
+    
     $jsonAtributos = json_encode($atributos);
 
 
@@ -489,5 +531,26 @@ class ProductsController extends Controller
       $field => $status
     ]);
     return response()->json(['message' => 'registro actualizado']);
+  }
+
+  public function borrarimg(Request $request){
+    try {
+      //code...
+      $imagenGaleria = ImagenProducto::find($request->id);
+      $rutaCompleta  = $imagenGaleria->name_imagen;
+      if (file_exists($rutaCompleta)) {
+        // Intentar eliminar el archivo
+        if (unlink($rutaCompleta)) {
+            // Archivo eliminado con éxito
+           
+        } 
+      }
+      $imagenGaleria->delete();
+      return response()->json(['message'=>'imagen eliminada con exito ']);
+    } catch (\Throwable $th) {
+      //throw $th;
+      return response()->json(['message'=>'no se ha podido eliminar la imagen '], 400);
+
+    }
   }
 }

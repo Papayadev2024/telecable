@@ -245,7 +245,8 @@ class IndexController extends Controller
     {
         //
         $url_env = $_ENV['APP_URL'];
-        return view('public.checkout_carrito', compact('url_env'));
+        $departamentos = DB::table('departments')->get();
+        return view('public.checkout_carrito', compact('url_env','departamentos'));
     }
 
     public function pago(Request $request)

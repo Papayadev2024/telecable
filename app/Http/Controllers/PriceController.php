@@ -59,6 +59,11 @@ class PriceController extends Controller
 
         return response()->json($distritos);
     }
+    public function calculeEnvio(Request $request){
+        
+       $LocalidadParaEnvio = Price::where('distrito_id',$request->id)->get();
+        return response()->json(['message'=> 'LLegando Correctamente', 'LocalidadParaEnvio'=> $LocalidadParaEnvio]);
+    }
 
     
 

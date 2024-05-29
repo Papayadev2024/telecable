@@ -162,11 +162,13 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::resource('/prices', PriceController::class);
         Route::post('/getProvincia', [PriceController::class, 'getProvincias'])->name('prices.getProvincias');
         Route::post('/getDistrito', [PriceController::class, 'getDistrito'])->name('prices.getDistrito');
+        Route::post('/calculeEnvio', [PriceController::class, 'calculeEnvio'])->name('prices.calculeEnvio');
 
         //Productos
         Route::resource('/products', ProductsController::class);
         Route::post('/products/updateVisible', [ProductsController::class, 'updateVisible'])->name('products.updateVisible');
         Route::post('/products/borrar', [ProductsController::class, 'borrar'])->name('products.borrar');
+        Route::post('/products/borrarimg', [ProductsController::class, 'borrarimg'])->name('activity.borrarimg');
 
         //Preguntas frecuentes
         Route::resource('/faqs', FaqsController::class);
