@@ -83,6 +83,10 @@ Route::get('/404', [IndexController::class, 'error'] )->name('error');
 /* Formulario de contacto */
 Route::post('guardarContactos', [IndexController::class, 'guardarContacto'] )->name('guardarContactos');
 
+Route::post('/getProvincia', [PriceController::class, 'getProvincias'])->name('prices.getProvincias');
+Route::post('/getDistrito', [PriceController::class, 'getDistrito'])->name('prices.getDistrito');
+Route::post('/calculeEnvio', [PriceController::class, 'calculeEnvio'])->name('prices.calculeEnvio');
+
 
 
 
@@ -160,9 +164,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         //Precios
         Route::resource('/prices', PriceController::class);
-        Route::post('/getProvincia', [PriceController::class, 'getProvincias'])->name('prices.getProvincias');
-        Route::post('/getDistrito', [PriceController::class, 'getDistrito'])->name('prices.getDistrito');
-        Route::post('/calculeEnvio', [PriceController::class, 'calculeEnvio'])->name('prices.calculeEnvio');
+       
 
         //Productos
         Route::resource('/products', ProductsController::class);

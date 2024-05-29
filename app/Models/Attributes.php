@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attributes extends Model
 {
     use HasFactory;
-    protected $filiable =  ['titulo',
+    protected $fillable =  ['titulo',
     'slug',
     'type_atributte_id',
     'imagen',

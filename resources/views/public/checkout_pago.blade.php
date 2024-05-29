@@ -134,6 +134,7 @@
 
                         <div class="basis-1/2 flex flex-col gap-2">
                           <label for="apellidos" class="font-medium text-[12px] text-[#6C7275]">Apellido</label>
+
                           @if (isset($detalleUsuario) && count($detalleUsuario) > 0)
                             <input id="apellidos" type="text" placeholder="Apellido" name="apellidos"
                               class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-normal text-[16px] border-[1.5px] border-gray-200 rounded-xl text-[#6C7275]"
@@ -169,65 +170,7 @@
                     </h2>
                     <div class="flex flex-col gap-5">
                       <div class="flex flex-col gap-5">
-                        <div class="flex flex-col gap-2 z-[45]">
-                          <label class="font-medium text-[12px] text-[#6C7275]">Departamento</label>
 
-                          <div>
-                            <!-- combo -->
-                            <div class="dropdown w-full">
-                              <select name="departamento_id" name="departamento" id="selectDepartamento"
-                                class=" mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">Seleccionar un Departamento </option>
-                                @foreach ($departamento as $item)
-                                  <option value="{{ $item->id }}">{{ $item->description }}</option>
-                                @endforeach
-
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="flex flex-col gap-2 z-[40]">
-                          <label class="font-medium text-[12px] text-[#6C7275]">
-                            Provincia
-                          </label>
-
-                          <div>
-                            <!-- combo -->
-                            <div class="dropdown-provincia w-full">
-                              <select name="provincia_id"
-                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">Seleccionar provincias </option>
-                                @foreach ($provincias as $item)
-                                  <option value="{{ $item->id }}">{{ $item->description }}</option>
-                                @endforeach
-
-                              </select>
-
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="flex flex-col gap-2 z-[30]">
-                          <label class="font-medium text-[12px] text-[#6C7275]">
-                            Distrito
-                          </label>
-
-                          <div>
-                            <!-- combo -->
-                            <div class="dropdown-distrito w-full">
-                              <select name="distrito_id"
-                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">Seleccionar distritos </option>
-                                @foreach ($distritos as $item)
-                                  <option value="{{ $item->id }}">{{ $item->description }}</option>
-                                @endforeach
-
-                              </select>
-
-                            </div>
-                          </div>
-                        </div>
 
                         <div class="flex flex-col gap-2">
                           <label for="nombre_calle" class="font-medium text-[12px] text-[#6C7275]">Avenida / Calle /
@@ -317,12 +260,9 @@
 
                     <div class="pt-10">
                       <a id="pagarProductos"
-                        class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none">Pagar</a>
-                      <!-- <input
-                                                                                                                                                                                                                                                                          type="submit"
-                                                                                                                                                                                                                                                                          value="Checkout"
-                                                                                                                                                                                                                                                                          class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] inline-block text-center border-none"
-                                                                                                                                                                                                                                                                        /> -->
+                        class="text-white bg-[#74A68D] w-full py-3 rounded-3xl cursor-pointer border-2 font-semibold text-[16px] 
+                        inline-block text-center border-none">Pagar</a>
+
                     </div>
 
                     <div class="pt-10" id="contenedorIzypay" hidden>
@@ -448,18 +388,7 @@
                 mensaje += ' Celular,';
                 hasEmptyFields = true;
                 break
-              case 'departamento_id':
-                mensaje += ' Departamento,';
-                hasEmptyFields = true;
-                break
-              case 'provincia_id':
-                mensaje += ' Provincia,';
-                hasEmptyFields = true;
-                break
-              case 'distrito_id':
-                mensaje += ' Distrito,';
-                hasEmptyFields = true;
-                break
+
               case 'dir_av_calle':
                 mensaje += ' Avenida/Calle,';
                 hasEmptyFields = true;
@@ -493,18 +422,7 @@
 
             switch (item.name) {
 
-              case 'departamento_id':
-                mensaje += ' Departamento,';
-                hasEmptyFields = true;
-                break;
-              case 'provincia_id':
-                mensaje += ' Provincia,';
-                hasEmptyFields = true;
-                break;
-              case 'distrito_id':
-                mensaje += ' Distrito,';
-                hasEmptyFields = true;
-                break;
+
               case 'dir_av_calle':
                 mensaje += ' Avenida/Calle,';
                 hasEmptyFields = true;

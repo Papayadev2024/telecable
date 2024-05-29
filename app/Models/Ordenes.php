@@ -15,6 +15,7 @@ class Ordenes extends Model
         'precio_envio',
         'status_id',
         'usuario_id',
+        'address_id'
     ];
 
     public function DetalleOrden(){
