@@ -1,134 +1,148 @@
-<footer class="bg-bgRosa mt-12 flex flex-col gap-10">
-  <div class="w-11/12 mx-auto flex flex-col gap-10">
-    <div class="flex justify-start mt-10">
-      <div class="flex flex-col gap-4 w-full md:w-6/12">
-        <p
-          class="font-regularDisplay text-text18 xl:text-text24 text-textBlack"
-        >
-        ¡Compra segura y rápida! Aceptamos tarjetas Visa, MasterCard y American Express para tu comodidad y tranquilidad. Compra fácil y sin preocupaciones.
+<footer class="bg-[#082252]">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 w-11/12 mx-auto py-10 gap-10 md:gap-5"
+    >
+      <div class="w-full md:max-w-[500px] flex flex-col gap-5" data-aos="fade-up"
+      data-aos-offset="150">
+        <a href="{{route('index')}}">
+          <img src="{{asset('images/svg/image_1.svg')}}" alt="HPI" />
+        </a>
+        <p class="text-white font-roboto font-normal text-text16">
+            Únase a nuestro boletín para mantenerse actualizado sobre funciones y lanzamientos.
         </p>
 
-        <div class="flex gap-1">
-          <img src="{{asset('images/img/pago_1.png')}}" alt="visa" />
-          <img src="{{asset('images/img/pago_2.png')}}"  alt="mastercad" />
-          <img src="{{asset('images/img/pago_3.png')}}"  alt="PayPal" />
-          <img src="{{asset('images/img/pago_4.png')}}"  alt="apple Pay" />
-          <img src="{{asset('images/img/pago_5.png')}}" alt="google Pay" />
+        <div class="flex flex-col gap-2" data-aos="fade-up"
+        data-aos-offset="150">
+          <form
+            action=""
+            id="footerFormulario"
+            class="flex flex-col md:flex-row md:justify-start md:items-center gap-5"
+          >
+            <div class="w-full">
+              <input
+                type="text"
+                class="bg-white px-5 py-3 rounded-xl w-full"
+              />
+            </div>
+
+            <div class="flex justify-center items-center w-full md:w-auto">
+              <a
+                href="#"
+                class="font-roboto font-semibold text-text16 text-white border border-white py-3 px-6 rounded-xl w-full md:w-auto text-center"
+                >Suscribe
+              </a>
+            </div>
+          </form>
+          <p class="font-roboto font-normal text-text12 text-white">
+            Al suscribirse, acepta nuestra Política de privacidad y brinda su consentimiento para recibir actualizaciones de nuestra empresa.
+          </p>
         </div>
       </div>
-    </div>
 
-    {{-- <div class="flex md:justify-end items-center text-textBlack uppercase">
-      <div
-        class="flex items-center justify-between md:justify-end gap-10 border-b-2 border-black w-full md:w-auto"
-      >
-        <p
-          class="font-lightDisplay text-text44 md:text-text80 xl:text-text90 italic"
-        >
-          Suscríbete
-        </p>
-        <a href="#">
-          <div>
-            <svg
-              viewBox="0 0 80 81"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-[60px] h-[60px] md:w-[100px] md:h-[100px]"
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0">
+        <div class="flex flex-col gap-5"  data-aos="fade-up"
+        data-aos-offset="150">
+          <p class="font-roboto font-semibold text-text16 text-white">Síganos</p>
+
+          <div class="flex flex-col gap-5">
+            <a
+              href="#"
+              target="_blank"
+              class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14"
             >
-              <circle
-                cx="40.4017"
-                cy="40.5312"
-                r="28"
-                transform="rotate(-45 40.4017 40.5312)"
-                fill="black"
-              />
-              <path
-                d="M42.332 29.7198L51.0046 29.9313M51.0046 29.9313L51.2161 38.604M51.0046 29.9313L29.8024 51.1335"
-                stroke="white"
-                stroke-width="2.8718"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+              <img src="{{asset('images/svg/image_2.svg')}}" alt="facebook" />
+              <span>Facebook</span>
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14"
+            >
+              <img src="{{asset('images/svg/image_3.svg')}}" alt="instagram" />
+              <span>Instagram</span>
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14"
+            >
+              <img src="{{asset('images/svg/image_4.svg')}}" alt="twitter" />
+              <span>Twitter</span>
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14"
+            >
+              <img src="{{asset('images/svg/image_5.svg')}}" alt="linkedin" />
+              <span>Linkedin</span>
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14"
+            >
+              <img src="{{asset('images/svg/image_6.svg')}}" alt="youtube" />
+              <span>YouTube</span>
+            </a>
           </div>
-        </a>
-      </div>
-    </div> --}}
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-      <div class="flex flex-col gap-5">
-        <p class="font-boldItalicDisplay text-text16 uppercase xl:text-text24">
-          Navegar
-        </p>
-        <div
-          class="flex flex-col gap-5 text-gray-400 font-regularDisplay text-text16 xl:text-text20"
-        >
-
-          <a href="{{route('catalogo', 0)}}">Categorías</a>
-          <a href="{{route('coleccion', 0)}}">Colecciones</a>
-          <a href="{{route('novedades')}}">New Arrivals</a>
-          <a href="{{route('contacto')}}">Visítanos</a>
         </div>
-      </div>
 
-      <div class="flex flex-col gap-5">
-        <p
-          class="font-boldItalicDisplay text-text16 uppercase xl:text-text24"
-        >
-          Ayuda
-        </p>
+        <div class="flex flex-col gap-10" data-aos="fade-up"
+        data-aos-offset="150">
+          <div class="flex flex-col gap-5">
+            <p class="font-roboto font-semibold text-text24 text-white leading-none">
+                Empresa certificada por:
+              </p>
+              <div class="flex justify-start items-center">
+                <img src="{{asset('images/img/image_1.png')}}" alt="Hodelpe">
+              </div>
+          </div>
 
-        <div
-          class="flex flex-col gap-5 text-gray-400 font-regularDisplay text-text16 xl:text-text20"
-        >
-          
-          <a href="#">Términos y condiciones</a>
-          <a href="#">Política de privacidad</a>
+          <div class="flex flex-col gap-5">
+            <p class="font-roboto font-semibold text-text24 text-white leading-none">
+                Empresa certificada por:
+              </p>
+              <div class="flex justify-start items-center">
+                <img src="{{asset('images/img/image_2.png')}}" alt="Cámara nacional de comercio del perú">
+              </div>
+          </div>
+
+          <div class="flex flex-col gap-5">
+            <p class="font-roboto font-semibold text-text24 text-white leading-none">
+                Política SIG
+              </p>
+              <div class="flex justify-start items-center">
+                <img src="{{asset('images/img/image_3.png')}}" alt="Política SIG">
+              </div>
+          </div>
+
         </div>
-      </div>
-
-
-      <div class="flex flex-row md:flex-col md:items-end lg:col-span-2 gap-2">
-       
-        @if ($datosgenerales[0]->youtube)
-          <a target="_blank" href="{{$datosgenerales[0]->youtube}}">
-            <img src="{{asset('images/svg/youtube.svg')}}" alt="facebook" />
-          </a> 
-        @endif        
-        
-        @if ($datosgenerales[0]->facebook)
-          <a target="_blank" href="{{$datosgenerales[0]->facebook}}">
-            <img src="{{asset('images/svg/facebook.svg')}}" alt="facebook" />
-          </a> 
-        @endif  
-        
-        @if ($datosgenerales[0]->instagram)
-        <a target="_blank" href="{{$datosgenerales[0]->instagram}}">
-          <img src="{{asset('images/svg/instagram.svg')}}"  alt="instagram" />
-        </a>
-        @endif 
-        
-
-        @if ($datosgenerales[0]->tiktok)
-        <a target="_blank" href="{{$datosgenerales[0]->tiktok}}">
-          <img src="{{asset('images/svg/tiktok.svg')}}"  alt="instagram" />
-        </a>
-        @endif 
-
-        @if ($datosgenerales[0]->twitter)
-        <a target="_blank" href="{{$datosgenerales[0]->twitter}}">
-          <img src="{{asset('images/svg/twitter.svg')}}"  alt="instagram" />
-        </a>
-        @endif 
       </div>
     </div>
-  </div>
 
-  <div>
-    <img
-      src="{{asset('images/img/footer_1.png')}}"
-      alt="doomine"
-      class="w-full h-full"
-    />
-  </div>
-</footer>
+    <div
+      class="flex flex-col items-start gap-3 md:flex-row md:justify-between md:items-center w-11/12 mx-auto py-10 border-t border-white"
+    >
+      <a
+        href="#"
+        target="_blank"
+        class="text-white font-roboto font-normal text-text14"
+        >&copy; 2024 Mundo Web. Reservados todos los derechos</a
+      >
+      <div class="flex justify-start items-center gap-5">
+        <a
+          href="#"
+          target="_blank"
+          class="underline text-white font-roboto font-normal text-text14"
+          >Política de privacidad</a
+        >
+        <a
+          href="#"
+          target="_blank"
+          class="underline text-white font-roboto font-normal text-text14"
+          >Terminos de servicio</a
+        >
+      </div>
+    </div>
+  </footer>

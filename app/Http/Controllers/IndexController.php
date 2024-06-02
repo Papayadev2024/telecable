@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateIndexRequest;
 use App\Models\AddressUser;
 use App\Models\Attributes;
 use App\Models\AttributesValues;
+use App\Models\Blog;
 use App\Models\Faqs;
 use App\Models\General;
 use App\Models\Index;
@@ -19,11 +20,15 @@ use App\Models\Testimony;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Combinacion;
+use App\Models\Descargables;
 use App\Models\DetalleOrden;
 use App\Models\ImagenProducto;
 use App\Models\Liquidacion;
+use App\Models\Microcategory;
 use App\Models\Ordenes;
 use App\Models\Specifications;
+use App\Models\Staff;
+use App\Models\Subcategory;
 use App\Models\TypeAttribute;
 use App\Models\User;
 use App\Models\UserDetails;
@@ -65,9 +70,9 @@ class IndexController extends Controller
     $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
     $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
     $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->get();
-    $liquidacion = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
+    $logos = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-    return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'liquidacion'));
+    return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos'));
   }
 
   public function coleccion($filtro)
@@ -118,15 +123,12 @@ class IndexController extends Controller
     $categorias = null;
     $productos = null;
 
-    // $rangefrom = $request->query('rangefrom');
-    // $rangeto = $request->query('rangeto');
-    // $tituloAtributo = $request->query('rangeto');
-    // $valorAtributo = $request->query('rangeto');
-    // dd($request);
     try {
       $general = General::all();
       $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
       $categorias = Category::all();
+      $subcategorias = Subcategory::all();
+      $microcategorias = Microcategory::all();
       $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
       $atributos = Attributes::where('status', '=', 1)->where('visible', '=', 1)->get();
       $colecciones = Collection::where('status', '=', 1)->where('visible', '=', 1)->get();
@@ -188,7 +190,7 @@ class IndexController extends Controller
       //   );
       // }
 
-      return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'atributos', 'colecciones', 'page'));
+      return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'atributos', 'colecciones', 'page', 'subcategorias', 'microcategorias'));
     } catch (\Throwable $th) {
     }
   }
@@ -238,7 +240,7 @@ class IndexController extends Controller
   public function contacto()
   {
     $general = General::all();
-    return view('public.contact', compact('general'));
+    return view('public.contacto', compact('general'));
   }
 
   public function carrito()
@@ -549,7 +551,7 @@ class IndexController extends Controller
   public function producto(string $id)
   {
     // $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
-    $product = Products::findOrFail($id);
+    $producto = Products::where('id', '=', $id)->first();
     // $colors = Products::findOrFail($id)
     //           ->with('images')
     //           ->get();
@@ -585,7 +587,7 @@ class IndexController extends Controller
 
     $url_env = $_ENV['APP_URL'];
 
-    return view('public.product', compact('product', 'productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env', 'colors'));
+    return view('public.product', compact('producto', 'productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env', 'colors'));
   }
 
   public function liquidacion()
@@ -598,12 +600,81 @@ class IndexController extends Controller
     }
   }
 
+  public function nosotros()
+  {
+    try {
+      $general = General::first();
+      $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
+      $staff = Staff::where('status', '=', 1)->get();
+      return view('public.nosotros', compact('general','testimonie', 'staff'));
+    } catch (\Throwable $th) {
+
+    }
+  }
+
   public function novedades()
   {
     try {
       $novedades = Products::where('status', '=', 1)->where('visible', '=', 1)->where('recomendar', '=', 1)->paginate(16);
 
       return view('public.novedades', compact('novedades'));
+    } catch (\Throwable $th) {
+    }
+  }
+
+  public function blog($filtro)
+  {
+    try {
+
+      $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
+
+      if ($filtro == 0) {
+        //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
+        $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
+
+        $categoria = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
+        //$categoria = Category::all();
+      } else {
+        //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
+        
+        $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->where('category_id', '=', $filtro)->get();
+       
+        $categoria = Category::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $filtro)->get();
+        //$categorias = Category::findOrFail($filtro);
+      }
+
+      
+
+      return view('public.blog',compact('posts','categoria','categorias', 'filtro'));
+
+    } catch (\Throwable $th) {
+    }
+  }
+
+  public function catalogosDescargables($filtro)
+  {
+    
+    try {
+      
+      $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
+
+      if ($filtro == 0) {
+        //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
+        $descargables = Descargables::where('status', '=', 1)->where('visible', '=', 1)->paginate(16);
+
+        $categoria = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
+        //$categoria = Category::all();
+      } else {
+        //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
+        $descargables = Descargables::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->paginate(16);
+
+        $categoria = Category::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $filtro)->get();
+        //$categorias = Category::findOrFail($filtro);
+      }
+
+
+
+      return view('public.descargables', compact('descargables', 'categorias', 'filtro', 'categoria'));
     } catch (\Throwable $th) {
     }
   }

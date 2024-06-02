@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Staff;
 use Illuminate\Http\Request;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class StaffController extends Controller
 {
@@ -29,15 +33,50 @@ class StaffController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $data = $request->all();
-        Staff::create($request->all());
+    {   
+        $staff = new Staff();
 
-        return redirect()->route('staff.index')->with('success', 'Publicación creado exitosamente.');
+        if ($request->hasFile("imagen")) {
+            $file = $request->file('imagen');
+            $routeImg = 'storage/images/staff/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+            $this->saveImg($file, $routeImg, $nombreImagen);
+
+            $staff ->url_image = $routeImg;
+            $staff ->name_image = $nombreImagen;
+        }else{
+            $routeImg = 'images/img/';
+            $nombreImagen = 'noimagenliquidacion.jpg';
+
+            $staff ->url_image = $routeImg;
+            $staff ->name_image = $nombreImagen;
+        }
+
+            $staff ->nombre = $request->nombre;
+            $staff ->cargo = $request->cargo;
+            $staff ->facebook = $request->facebook;
+            $staff ->instagram = $request->instagram;
+            $staff ->youtube = $request->youtube;
+            $staff ->twitter = $request->twitter;
+            $staff ->save();
+
+
+        return redirect()->route('staff.index')->with('success', 'Personal creado exitosamente.');
 
         
         
     }
+
+
+    public function saveImg($file, $route, $nombreImagen){
+		$manager = new ImageManager(new Driver());
+		$img =  $manager->read($file);        
+        $img->coverDown(406, 535, 'center'); 
+		if (!file_exists($route)) {
+			mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+	}
+		$img->save($route . $nombreImagen);
+	}
 
     /**
      * Display the specified resource.
@@ -62,12 +101,33 @@ class StaffController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
-        Staff::updateOrCreate(
-            ['id' => $id], // Condiciones para buscar el registro existente
-            $request->all() // Datos para actualizar o crear el registro
-        );
-        return redirect()->route('staff.index')->with('success', 'Publicación Actualizada exitosamente.');
+        $staff = Staff::findOrfail($id);
+
+        if ($request->hasFile("imagen")) {
+            $file = $request->file('imagen');
+            $routeImg = 'storage/images/liquidacion/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+            if ($staff->url_image !== 'images/img/') {
+                File::delete($staff->url_image . $staff->name_image);
+            }
+              
+            $this->saveImg($file, $routeImg, $nombreImagen);
+            $staff->url_image = $routeImg;
+            $staff->name_image = $nombreImagen;
+        }
+
+         
+            
+            $staff ->nombre = $request->nombre;
+            $staff ->cargo = $request->cargo;
+            $staff ->facebook = $request->facebook;
+            $staff ->instagram = $request->instagram;
+            $staff ->youtube = $request->youtube;
+            $staff ->twitter = $request->twitter;
+            $staff->update();
+
+        return redirect()->route('staff.index')->with('success', 'Personal Actualizado exitosamente.');
 
     }
 

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('instagram')->nullable();
             $table->string('youtube')->nullable();
             $table->string('twitter')->nullable();
+            $table->string('url_image')->nullable();
+            $table->string('name_image')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

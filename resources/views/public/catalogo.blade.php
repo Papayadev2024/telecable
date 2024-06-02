@@ -7,608 +7,335 @@
 
 @section('content')
 
-  <main class="flex flex-col gap-12 -mb-12">
+    <main>
+        <section class="pt-[155px]">
 
-    {{-- <section class="flex gap-2 items-center w-11/12 mx-auto">
-            <a href="#" class="font-regularDisplay text-text20 xl:text-text24 text-gray-500 leading-none">
-                Home
-            </a>
-            <div class="flex justify-center items-center">
-                <img src="{{asset('images/svg/flecha.svg')}}" alt="doomine" />
-            </div>
-            <a href="#" class="font-mediumDisplay text-text20 xl:text-text24 text-black leading-none">
-                Categorías
-            </a>
-        </section> --}}
-    <!--  -->
+            <div class="bg-[#F7F8F8] pb-20">
+                <div class="w-11/12 md:w-10/12 mx-auto">
+                    <div class="flex flex-col items-center text-center pt-20 pb-20 gap-5">
+                        <div class="flex flex-col gap-2 w-full md:max-w-[850px]" data-aos="fade-up" data-aos-offset="150">
+                            <h3
+                                class="text-[#082252] font-roboto font-bold text-text48 md:text-text56 leading-tight text-center">
+                                Descubre Nuestra Gama de Soluciones</h3>
+                            <p class="font-roboto font-normal text-text18 text-[#082252] text-center">
+                                Explora nuestra selección de productos innovadores y eficientes para el tratamiento de agua,
+                                diseñados para satisfacer tus necesidades industriales y residenciales
+                            </p>
+                        </div>
 
-    <div class="w-11/12 mx-auto mt-10">
-      <div class="grid grid-cols-2 row-span-2 md:grid-cols-4 lg:row-span-1 gap-2 md:gap-0">
-        <div class="order-3 md:order-1 flex justify-between md:pr-2 items-center">
-          <p class="font-boldDisplay text-[20px] xl:text-text28 hidden md:block">
-            Categorías
-          </p>
-          <div class="flex justify-center items-center open">
-            <img src="{{ asset('images/svg/catalogo_filtro_icon.svg') }}" alt="logo_filtros" />
-          </div>
-        </div>
-        <form id="FilterForm" method="post" action="" class="hidden">
-          @csrf
-          <input type="hidden" name="categories_id" id="get_categories">
-          <input type="hidden" name="precio_id" id="get_precios">
-          <input type="hidden" name="talla_id" id="get_tallas">
-          <input type="hidden" name="color_id" id="get_colores">
-          <input type="hidden" name="coleccion_id" id="get_colecciones">
-        </form>
-        <div class="md:pl-9 order-1 md:order-2 flex items-center">
-          <h3 class="font-boldItalicDisplay text-text20 md:text-text24 text-left w-full lg:w-auto">
-            @if ($filtro == 0)
-              / Productos /
-            @else
-              / Productos - {{ $categoria->name }} /
-            @endif
-          </h3>
-        </div>
+                        <div class="relative w-full md:max-w-[450px] pb-8 lg:py-0">
+                            <input type="text" placeholder="Buscar"
+                                class="w-full md:max-w-[450px] pl-8 pr-10 py-2 border border-[#E6E4E5] rounded-lg focus:outline-none focus:ring-0 text-[#082252] placeholder:text-[#E6E4E5] lg:placeholder:text-[#E6E4E5] focus:border-[#E6E4E5]">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-start lg:items-center px-2 pb-2 pt-[9px] lg:p-2">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14.6851 13.6011C14.3544 13.2811 13.8268 13.2898 13.5068 13.6206C13.1868 13.9514 13.1955 14.4789 13.5263 14.7989L14.6851 13.6011ZM16.4206 17.5989C16.7514 17.9189 17.2789 17.9102 17.5989 17.5794C17.9189 17.2486 17.9102 16.7211 17.5794 16.4011L16.4206 17.5989ZM15.2333 9.53333C15.2333 12.6814 12.6814 15.2333 9.53333 15.2333V16.9C13.6018 16.9 16.9 13.6018 16.9 9.53333H15.2333ZM9.53333 15.2333C6.38531 15.2333 3.83333 12.6814 3.83333 9.53333H2.16667C2.16667 13.6018 5.46484 16.9 9.53333 16.9V15.2333ZM3.83333 9.53333C3.83333 6.38531 6.38531 3.83333 9.53333 3.83333V2.16667C5.46484 2.16667 2.16667 5.46484 2.16667 9.53333H3.83333ZM9.53333 3.83333C12.6814 3.83333 15.2333 6.38531 15.2333 9.53333H16.9C16.9 5.46484 13.6018 2.16667 9.53333 2.16667V3.83333ZM13.5263 14.7989L16.4206 17.5989L17.5794 16.4011L14.6851 13.6011L13.5263 14.7989Z"
+                                        fill="#E6E4E5" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
 
-        <div class="flex items-center gap-2 order-4 md:order-3 justify-end md:pr-5">
-          <p class="text-[#CCCCCC] font-regularDisplay text-text14 md:text-text18">
-            Mostrando <span>1</span>-<span>20</span> de
-            <span>100</span> productos
-          </p>
-        </div>
-
-        <div class="dropdown w-full order-2 md:order-4">
-          <div
-            class="input-box focus:outline-none font-mediumDisplay text-text16 md:text-text20 mr-20 shadow-md px-2 bg-[#F5F5F5]">
-            Ordenar por
-          </div>
-          <div class="list z-[10]">
-            <div class="w-full">
-              <input type="radio" name="drop1" id="id11" class="radio" />
-
-              <label for="id11"
-                class="font-regularDisplay text-text20 hover:font-bold md:duration-100 hover:text-white ordenar">
-                <span class="name inline-block w-full">Precio más alto</span>
-              </label>
+                    <div>
+                        <div class="swiper logos">
+                            <div class="swiper-wrapper">
+                                @foreach ($categorias as $item)
+                                    <div class="swiper-slide !flex justify-center">
+                                        {{-- <a href="{{route('catalogo', $item->id)}}"> --}}
+                                        <a id="{{ $item->id }}" class="categoryselect">
+                                            <div class="inline-flex flex-col gap-3 w-[142px] h-[202px]">
+                                                <div
+                                                    class="rounded-full bg-white hover:bg-[#245BC8] md:duration-300 w-[142px] h-[142px] flex justify-center items-center">
+                                                    <div>
+                                                        <img src="{{ asset('images/img/image_24.png') }}"
+                                                            alt="tratamiento de agua"
+                                                            class="w-[96px] h-[64px] object-cover">
+                                                    </div>
+                                                </div>
+                                                <h2 class="text-[#082252] font-roboto font-bold text-text18 text-center">
+                                                    {{ $item->name }}</h2>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="w-full">
-              <input type="radio" name="drop1" id="id12" class="radio" />
-              <label for="id12"
-                class="font-regularDisplay text-text20 hover:font-bold md:duration-100 hover:text-white ordenar">
-                <span class="name inline-block w-full">
-                  Precio más bajo
-                </span>
-              </label>
-            </div>
+        </section>
 
-            <div class="w-full">
-              <input type="radio" name="drop1" id="id13" class="radio" />
-              <label for="id13"
-                class="font-regularDisplay text-text20 hover:font-bold md:duration-100 hover:text-white comentar">
-                <span class="name inline-block w-full"> Antiguo </span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--  -->
+        <section>
+            <div class="flex flex-col gap-5 md:gap-10 w-11/12 mx-auto py-10">
+                <div class="flex flex-col gap-5">
+                    <div class="flex flex-col gap-2">
+                        <h2 class="text-[#082252] font-roboto font-bold text-text32">Soluciones Efectivas para Tratamiento
+                            de
+                            Agua</h2>
+                        <p class="text-[#082252] font-roboto font-normal text-text18">Descubre nuestra variedad de productos
+                            químicos diseñados para el tratamiento de agua, garantizando resultados eficientes y de calidad.
+                        </p>
+                    </div>
 
-    <div class="flex flex-col md:flex-row md:gap-10 w-11/12 mx-auto font-poppins">
-      <aside class="flex flex-col gap-10 md:basis-3/12">
-
-        <div class="hidden-categoria-precio">
-          <div class="hidden md:flex flex-col gap-10 show-categoria-precio">
-            <div class="flex flex-col gap-2 text-text18 xl:text-text20">
-              <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                <a href="/catalogo/0" class="{{ $filtro == 0 ? 'font-semibold underline' : 'text-black' }}">Todas</a>
-              </div>
-
-              @foreach ($categorias as $item)
-                {{-- <a href="/catalogo/{{ $item->id }}">
-                  <div
-                    class="font-boldDisplay flex justify-start gap-2 items-center w-full @if ($filtro == 0) @else {{ $item->id == $categoria->id ? 'font-semibold underline text-black' : '' }} @endif ">
-                    {{ $item->name }}
-                  </div>
-                </a> --}}
-                <div class="flex justify-start gap-2 items-center w-full">
-                  <input type="checkbox"  value="{{ $item->id }}" class="changeCategory"
-                         id="categoria_{{ $item->id }}">
-                  <label for="categoria_{{ $item->id }}" 
-                         class="font-boldDisplay flex justify-start gap-2 items-center w-full">
-                      {{ $item->name }}
-                  </label>
-              </div>
-              @endforeach
-              
+                    <div>
+                        <div class="flex flex-col md:flex-row md:justify-start gap-3">
+                            <div class="relative inline-block text-left min-w-64 w-auto">
+                                <select id="selectSubcategory"
+                                    class="bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
+                                    <option>Selecciona subcategoria</option>
+                                </select>
+                            </div>
+                            <div class="relative inline-block text-left min-w-64 w-auto">
+                                <select id="selectMicrocategory"
+                                    class="bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
+                                    <option>Selecciona microcategoria</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div>
-              <div class="relative">
-                <div class="mx-auto">
-                  <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
-                    <details class="group">
-                      <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
-                        <span class="font-boldDisplay text-text20 text-[#151515]">
-                          Precio
-                        </span>
-                        <span class="transition group-open:rotate-180">
-                          <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
-                              fill="black" />
-                            <path
-                              d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
-                              fill="black" />
-                          </svg>
-                        </span>
-                      </summary>
+                <div id="getProductAjax"
+                    class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-x-5 gap-y-10 pb-10 md:pb-20">
 
-                      <div class="group-open:animate-fadeIn mt-5">
-                        <div class="flex flex-col gap-2 text-text18 xl:text-text20">
-                          {{-- <a href="/catalogo/{{ $filtro }}?rangefrom=0&rangeto=0"
-                            class="font-regularDisplay  @if ($rangefrom == 0 && $rangeto == 0) font-semibold underline
-                                                    @else
-                                                    font-normal @endif">Todos
-                            los precios</a> --}}
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="0_50" class="changePrice"
-                              id="price_0_50">  
-                            <label for="price_0_50" class="cursor-pointer">
-                              S/0 - S/50
-                            </label>
-                          </div>
-
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="50.01_100" class="changePrice"
-                              id="price_51_100">  
-                            <label for="price_51_100" class="cursor-pointer">
-                              S/50 - S/100
-                            </label>
-                          </div>
-
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="100.01_150" class="changePrice"
-                              id="price_101_150">  
-                            <label for="price_101_150" class="cursor-pointer">
-                              S/100 - S/150
-                            </label>
-                          </div>
-
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="150.01_200" class="changePrice"
-                            id="price_151_200">  
-                            <label for="price_151_200" class="cursor-pointer">
-                              S/150 - S/200
-                            </label>
-                          </div>
-
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox"  value="200.01_100000" class="changePrice"
-                            id="price_200_more">  
-                            <label for="price_200_more" class="cursor-pointer">
-                              S/200 - Más
-                            </label>
-                          </div>
+                    @foreach ($productos as $item)
+                        <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
+                            <div class="flex justify-center items-center">
+                                <a href="{{route('producto', $item->id)}}" class="w-full"><img src="{{ asset($item->imagen) }}"
+                                        alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">{{$item->categoria->name}}
+                                </h3>
+                                <a href="{{route('producto', $item->id)}}">
+                                    <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">
+                                        {{$item->producto}}</h2>
+                                </a>
+                                <p class="font-roboto font-normal text-text16 text-[#082252]">
+                                    {{$item->extract}}
+                                </p>
+                            </div>
                         </div>
-                      </div>
-                    </details>
-                  </div>
+                    @endforeach
+
                 </div>
-              </div>
             </div>
-            @foreach ($atributos as $item)
-              @php
-                   $nametypeatributo = $item->typeAttribute->name
-              @endphp
-              @if ($nametypeatributo === "Color")
-                 
-              <div>
-                <div class="relative">
-                  <div class="mx-auto">
-                    <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
-                      <details class="group">
-                        <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
-                          <span class="font-boldDisplay text-text20 text-[#151515]">
-                            {{ $item->titulo  }}
-                          </span>
-                          <span class="transition group-open:rotate-180">
-                            <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
-                                fill="black" />
-                              <path
-                                d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
-                                fill="black" />
-                            </svg>
-                          </span>
-                        </summary>
-  
-                        <div class="group-open:animate-fadeIn mt-5">
-                          <div
-                            class="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 place-items-center">
-                            @foreach ($item->attributeValues as $valores)
-                            
-                            <a href="javascript:;" id="{{ $valores->id }}" class="changeColor rounded-full" data-val="0"
-                              style="background-color:{{ $valores->color }};">
-                              <span class="block w-12 h-12 rounded-full transition"><span class="hidden">{{ $valores->valor }}</span></span>
-                            </a>
-                            
-                            {{-- <div class="relative">
-                              <input type="checkbox" name="{{ $item->titulo }}[]" value="{{ $valores->valor }}" 
-                                     id="color_{{ $valores->id }}" class="hidden colores">
-                              <label for="color_{{ $valores->id }}" 
-                                     style="background-color: {{ $valores->color }};" 
-                                     class="block w-12 h-12 rounded-full cursor-pointer border-2 transition labelcolor"></label>
-                            </div> --}}
-                            @endforeach
-                          </div>
-                        </div>
-                      </details>
-                    </div>
-                  </div>
-                </div>
-              </div>
-                 
-              @else 
-
-              <div>
-                <div class="relative">
-                  <div class="mx-auto">
-                    <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
-                      <details class="group">
-                        <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
-                          <span class="font-boldDisplay text-text20 text-[#151515]">
-                            {{ $item->titulo  }}
-                          </span>
-                          <span class="transition group-open:rotate-180">
-                            <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
-                                fill="black" />
-                              <path
-                                d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
-                                fill="black" />
-                            </svg>
-                          </span>
-                        </summary>
-  
-                        <div class="group-open:animate-fadeIn mt-5">
-                          <div class="flex flex-col gap-2 text-text18 xl:text-text20">
-                            @foreach ($item->attributeValues as $valores)
-                                <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                                  {{-- <a href="?{{$item->titulo}}={{$valores->valor}}"
-                                    class="cursor-pointer">
-                                    {{$valores->valor}}
-                                  </a> --}}
-                                    <input type="checkbox"  value="{{ $valores->id }}" class="changeTallas"
-                                           id="talla_{{ $valores->id }}">
-                                    <label for="talla_{{ $valores->id }}" 
-                                           class="font-boldDisplay flex justify-start gap-2 items-center w-full">
-                                          {{ $valores->valor }}
-                                    </label>
-                                </div>
-
-                               
-                            @endforeach  
-                          </div>
-                        </div>
-                      </details>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              @endif
-            @endforeach
-          
-            <div>
-              <div class="relative">
-                <div class="mx-auto">
-                  <div class="mx-auto grid max-w-[900px] divide-y divide-neutral-200">
-                    <details class="group">
-                      <summary class="flex cursor-pointer list-none items-center justify-between font-medium pr-1">
-                        <span class="font-boldDisplay text-text20 text-[#151515]">
-                          Colecciones
-                        </span>
-                        <span class="transition group-open:rotate-180">
-                          <svg width="20" height="20" viewBox="0 0 12 13" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M1.17736 3.72824C1.51789 3.3994 2.06052 3.40886 2.38937 3.74939L7.15275 8.68202L5.91958 9.87288L1.1562 4.94025C0.827356 4.59972 0.836834 4.05708 1.17736 3.72824Z"
-                              fill="black" />
-                            <path
-                              d="M4.84668 8.67969L9.61006 3.74706C9.9389 3.40653 10.4815 3.39707 10.8221 3.72591C11.1626 4.05475 11.1721 4.59739 10.8432 4.93791L6.07985 9.87054L4.84668 8.67969Z"
-                              fill="black" />
-                          </svg>
-                        </span>
-                      </summary>
-                     
-                      <div class="group-open:animate-fadeIn mt-5">
-                        <div class="flex flex-col gap-2 text-text18 xl:text-text22">
-                         
-                          @foreach ($colecciones as $item)
-                          <div class="font-regularDisplay flex justify-start gap-2 items-center w-full">
-                            <input type="checkbox" id="collection_{{ $item->id }}" value="{{ $item->id }}"
-                              class="w-4 h-4 accent-[#000000] cursor-pointer changeCollection" />
-                            <label for="collection_{{ $item->id }}" class="cursor-pointer">
-                              {{$item->name}}
-                            </label>
-                          </div>
-                          @endforeach
-
-                        </div>
-                      </div>
-                    </details>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </aside>
-      <!-- modal filtros -->
-      <!-- <a class="mostrar-modal">Filtrossss</a> -->
-      <div class="modal-filtros z-[100]">
-        <div class="modal__mostrar-filtro">
-          <div class="flex justify-between">
-            <p class="font-boldDisplay text-[20px]">Categorías</p>
-            <a href="#" class="modal__close-filtro">
-              <img src="{{ asset('images/svg/close.svg') }}" alt="close" />
-            </a>
-          </div>
-          <div class="overflow-y-scroll h-[500px] scroll__categorias">
-            <div class="addCategoriaPrecio flex flex-col gap-5"></div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Listado de productos- -->
-      <div id="getProductAjax" class="grid gap-10">
-        @include('public._listproduct') 
-      </div>
-    </div>
-    <div class="flex justify-center items-center">
-      <a href="javascript:;" 
-          @if(empty($page)) style="display:none;" @endif data-page={{$page}}
-          class="text-textBlack py-3 px-5 border-2 border-gray-700 rounded-3xl w-60 text-center font-medium text-text16 cargarMas">
-          Cargar más modelos
-      </a>
-  </div>
-    <section>
-      <div>
-        <img src="{{ asset('images/img/catalogo_1.png') }}" alt="doomine" class="w-full h-full hidden md:block" />
-      </div>
-    </section>
-  </main>
+        </section>
+    </main>
 
 
 @section('scripts_importados')
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Captura el click de abrir
-      /*  const openModal = document.querySelector(".mostrar-modal"); */
-      // Captura al modal que se quiere mostrar
-      const modal = document.querySelector(".modal-filtros");
-      //Captura el evento de cierre
-      const closeModal = document.querySelector(".modal__close-filtro");
-      // Captura el body para bloqueo
-      const body = document.querySelector(".body");
-
-      const hiddenCategoriaPrecio = document.querySelector(
-        ".hidden-categoria-precio"
-      );
-
-      const open = document.querySelector(".open");
-      const showCategoriaPrecio = document.querySelector(".show-categoria-precio");
-      const addCategoriaPrecio = document.querySelector(".addCategoriaPrecio");
-      let openModal = null;
-
-      function getWidth() {
-        // Corregir el modal !importante
-        let width = window.innerWidth;
-        if (width < 768) {
-          //Habilita el click para modal
-          open.classList.add("mostrar-modal", "cursor-pointer");
-          openModal = document.querySelector(".mostrar-modal");
-          openModal.addEventListener("click", showModal);
-          hiddenCategoriaPrecio.innerHTML = "";
-        } else {
-          // Quita la opcion de click
-          open.classList.remove("mostrar-modal", "cursor-pointer");
-          if (openModal) {
-            openModal.removeEventListener("click", showModal);
-            showCategoriaPrecio.classList.remove("hidden");
-            hiddenCategoriaPrecio.innerHTML = showCategoriaPrecio.innerHTML;
-          }
-        }
-      }
-
-      function showModal(e) {
-        e.preventDefault();
-
-        addCategoriaPrecio.innerHTML = showCategoriaPrecio.innerHTML;
-        hiddenCategoriaPrecio.innerHTML = "";
-
-        modal.classList.add("modal--show-filtro");
-        body.classList.add("overflow-hidden");
-
-        modal.style.display = "flex";
-      }
-
-      getWidth(); // Se ejecuta por primera vez
-      window.addEventListener("resize", getWidth);
-
-      closeModal.addEventListener("click", (e) => {
-        e.preventDefault();
-        modal.classList.remove("modal--show-filtro");
-        body.classList.remove("overflow-hidden");
-      });
-
-      function closeModa(event) {
-        if (event.target === modal) {
-          modal.classList.remove("modal--show-filtro");
-          body.classList.remove("overflow-hidden");
-          /* hiddenCategoriaPrecio.innerHTML = addCategoriaPrecio.innerHTML; */
-        }
-      }
-
-      window.addEventListener("click", closeModa);
-    });
-  </script>
-
-  <script>
-    var appUrl = '{{ env('APP_URL') }}';
-  </script>
-
-
-  <script src="{{ asset('js/carrito.js') }}"></script>
-
-  <script>
-    $(document).ready(function() {
-      function updateCategoriesField() {
-          var selectedCategories = [];
-          $('.changeCategory:checked').each(function() {
-              selectedCategories.push($(this).val());
-          });
-          $('#get_categories').val(selectedCategories.join(','));
-      }
-      updateCategoriesField();
-      $('.changeCategory').on('change', function() {
-          updateCategoriesField();
-          FilterForm();
-      });
-   
-      function updatePriceField() {
-          var selectedPrice = [];
-          $('.changePrice:checked').each(function() {
-              selectedPrice.push($(this).val());
-          });
-          $('#get_precios').val(selectedPrice.join(','));
-      }
-      updatePriceField();
-      $('.changePrice').on('change', function() {
-         updatePriceField();
-         FilterForm();
-      });
-
-      function updateTallaField() {
-          var selectedTallas = [];
-          $('.changeTallas:checked').each(function() {
-              selectedTallas.push($(this).val());
-          });
-          $('#get_tallas').val(selectedTallas.join(','));
-      }
-      updateTallaField();
-      $('.changeTallas').on('change', function() {
-        updateTallaField();
-        FilterForm();
-      });
-
-      function updateCollectionField() {
-          var selectedCollection = [];
-          $('.changeCollection:checked').each(function() {
-            selectedCollection.push($(this).val());
-          });
-          $('#get_colecciones').val(selectedCollection.join(','));
-      }
-      updateCollectionField();
-      $('.changeCollection').on('change', function() {
-        updateCollectionField();
-        FilterForm();
-      });
-
-      
-      $('.colores').on('change', function() {
-          if ($(this).is(':checked')) {
-              $('.labelcolor').addClass('border-black');
-          } else {
-              $('.labelcolor').removeClass('border-black');
-          }
-      });
-
-      $('.colores:checked').each(function() {
-          $(this).next('labelcolor').addClass('border-black');
-      });
-
-
-      $('.changeColor').click(function(){
-        var id = $(this).attr('id');
-        var status = $(this).attr('data-val');
-        if(status  == 0){
-          $(this).attr('data-val', 1);
-          $(this).addClass('active-color');
-        }else{
-          $(this).attr('data-val', 0);
-          $(this).removeClass('active-color');
-        }
-
-        var ids = '';
-        $('.changeColor').each(function(){
-          var status = $(this).attr('data-val');
-          if(status == 1){
-            var id = $(this).attr('id');
-            ids += id+',';
-          }
-        });
-        $('#get_colores').val(ids);
-        FilterForm();
-      });
-
-      function FilterForm(){
-        $.ajax({
-                url: '{{ route('catalogo_filtro_ajax') }}',
-                method: 'POST',
-                data: $('#FilterForm').serialize(),
-                dataType: "json",
-                success: function(response) {
-                 
-                  $('#getProductAjax').html(response.success);
-                  $('.cargarMas').attr('data-page',response.page);
-                  
-                  if (response.page == 0) {
-                    $('.cargarMas').hide();
-                  } else {
-                    $('.cargarMas').show();
-                  }
-                  // $('.pagination').html(response.pagination)
+    <script>
+        var swiper = new Swiper(".logos", {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            centeredSlides: false,
+            initialSlide: 0,
+            loop: true,
+            autoplay: {
+                delay: 1500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 2,
                 },
-                error: function(error) {
-                }
-        });
-      }
-      
-
-      $('body').delegate('.cargarMas', 'click', function() {
-          var page = $(this).attr('data-page');
-          $('.cargarMas').html('Cargando...');
-          $.ajax({
-                url: "{{ route('catalogo_filtro_ajax') }}?page="+page,
-                method: 'POST',
-                data: $('#FilterForm').serialize(),
-                dataType: "json",
-                success: function(response) {
-                 
-                  $('#getProductAjax').append(response.success);
-                  $('.cargarMas').attr('data-page',response.page);
-                  $('.cargarMas').html('Cargar más modelos');
-                  if (response.page == 0) {
-                    $('.cargarMas').hide();
-                  } else {
-                    $('.cargarMas').show();
-                  }
+                768: {
+                    slidesPerView: 4,
                 },
-                error: function(error) {
-                }
+            },
         });
-      })
-    });
-  </script>
+    </script>
+
+    <script>
+        $('document').ready(function() {
+
+            $('#selectMicrocategory').change(function() {
+
+                var id = $('#selectMicrocategory').val();
+                $.ajax({
+                    url: '{{ route('getProductMicrocategoria') }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+
+                        $('#getProductAjax').empty();
+                        $.each(response.productos, function(key, value) {
+
+                            $('#getProductAjax').append(
+                                `<div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
+                                    <div class="flex justify-center items-center">
+                                        <a href=" " class="w-full"><img src="{{ asset('${value.imagen}') }}"
+                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>
+                                        <a href=" ">
+                                            <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
+                                        </a>
+                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
+                                            ${value.extract}
+                                        </p>
+                                    </div>
+                                </div>`
+                            );
+                        });
+
+
+                    },
+                    error: function(error) {
+
+                    }
+                });
+
+
+            });
+
+
+
+            $('#selectSubcategory').change(function() {
+
+                var id = $('#selectSubcategory').val();
+                $.ajax({
+                    url: '{{ route('getMicrocategoria') }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        //    console.log(response);
+                        $('#selectMicrocategory').empty();
+                        $.each(response.microcategorias, function(key, value) {
+
+                            console.log(value);
+                            $('#selectMicrocategory').append(
+                                '<option value="' + value['id'] + '">' + value[
+                                    'name'] +
+                                '</option>'
+                            );
+                        });
+
+
+                        $('#getProductAjax').empty();
+                        $.each(response.productos, function(key, value) {
+
+                            $('#getProductAjax').append(
+                                `<a href="producto/${value.id}" ><div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
+                                    <div class="flex justify-center items-center">
+                                        <a href=" " class="w-full"><img src="{{ asset('${value.imagen}') }}"
+                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>
+                                        <a href=" ">
+                                            <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
+                                        </a>
+                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
+                                            ${value.extract}
+                                        </p>
+                                    </div>
+                                </div></a>`
+                            );
+                        });
+
+
+                    },
+                    error: function(error) {
+
+                    }
+                });
+
+
+            });
+
+
+
+
+            $('.categoryselect').click(function() {
+
+                var id = $(this).attr('id');
+                // var status = $(this).attr('data-val');
+
+
+                $.ajax({
+                    url: '{{ route('getSubcategoria') }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response);
+                        $('#selectSubcategory').empty();
+                        $('#selectMicrocategory').empty();
+                        $('#selectMicrocategory').append(
+                            '<option value="">Selecciona microcategoria</option>');
+                        $('#selectSubcategory').append(
+                            '<option value="">Selecciona subcategoria</option>');
+
+
+                        $.each(response.subcategorias, function(key, value) {
+
+
+                            $('#selectSubcategory').append(
+                                '<option value="' + value['id'] + '">' + value[
+                                    'name'] +
+                                '</option>'
+                            );
+
+                        });
+
+                        $('#getProductAjax').empty();
+                        $.each(response.productos, function(key, value) {
+
+                            var productoUrl = `{{ route('producto', ':id') }}`.replace(
+                                ':id', value.id);
+
+                            $('#getProductAjax').append(
+                                `<div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
+                                    
+                                    <div class="flex justify-center items-center">
+                                        <a href='${productoUrl}' class="w-full"><img src="{{ asset('${value.imagen}') }}"
+                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>
+                                        <a href='${productoUrl}'>
+                                            <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
+                                        </a>
+                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
+                                            ${value.extract}
+                                        </p>
+                                    </div>
+                                    
+                                </div>`
+                            );
+                        });
+
+
+                    },
+                    error: function(error) {
+
+                    }
+                });
+
+            });
+
+        });
+    </script>
+
 @stop
 
 @stop

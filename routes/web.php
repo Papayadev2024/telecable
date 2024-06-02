@@ -22,6 +22,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\DescargablesController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\GalerieController;
@@ -29,16 +30,19 @@ use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LiquidacionController;
+use App\Http\Controllers\MicrocategoryController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StrengthController;
+use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ValoresAtributosController;
 
 use App\Http\Controllers\TagController;
 use App\Models\AboutUs;
+use App\Models\Microcategory;
 use App\Models\Price;
 
 /*
@@ -59,6 +63,8 @@ Route::get('/servicios', [IndexController::class, 'servicios'] )->name('servicio
 Route::get('/comentario', [IndexController::class, 'comentario'] )->name('comentario');
 Route::post('/comentario/nuevo', [IndexController::class, 'hacerComentario'] )->name('nuevocomentario');
 Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
+Route::get('/descargables/{filtro}', [IndexController::class, 'catalogosDescargables'] )->name('descargables');
+Route::get('/blog/{filtro}', [IndexController::class, 'blog'] )->name('blog');
 
 
 /* Proceso de pago */
@@ -87,6 +93,11 @@ Route::post('/getProvincia', [PriceController::class, 'getProvincias'])->name('p
 Route::post('/getDistrito', [PriceController::class, 'getDistrito'])->name('prices.getDistrito');
 Route::post('/calculeEnvio', [PriceController::class, 'calculeEnvio'])->name('prices.calculeEnvio');
 
+Route::post('/getSubcategoria', [CategoryController::class, 'getSubcategoria'])->name('getSubcategoria');
+Route::post('/getMicrocategoria', [CategoryController::class, 'getMicrocategoria'])->name('getMicrocategoria');
+Route::post('/getProductMicrocategoria', [CategoryController::class, 'getProductMicrocategoria'])->name('getProductMicrocategoria');
+
+
 
 
 
@@ -114,9 +125,26 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::resource('/categorias', CategoryController::class);
         Route::post('/categorias/deleteCategory', [CategoryController::class, 'deleteCategory'] )->name('categorias.deleteCategory');
         Route::post('/categorias/updateVisible', [CategoryController::class, 'updateVisible'] )->name('categorias.updateVisible');
-        Route::get('/categorias/contarCategorias', [CategoryController::class, 'contarCategoriasDestacadas'] )->name('categorias.contarCategoriasDestacadas');
+        // Route::get('/categorias/contarCategorias', [CategoryController::class, 'contarCategoriasDestacadas'] )->name('categorias.contarCategoriasDestacadas');
 
 
+        //Subcategorías
+        Route::resource('/subcategorias', SubcategoryController::class);
+        Route::post('/subcategorias/deleteSubcategory', [SubcategoryController::class, 'deleteSubcategory'] )->name('subcategorias.deleteSubcategory');
+        Route::post('/subcategorias/updateVisible', [SubcategoryController::class, 'updateVisible'] )->name('subcategorias.updateVisible');
+        // Route::get('/subcategorias/contarSubCategoriasDestacadas', [SubcategoryController::class, 'contarSubCategoriasDestacadas'] )->name('subcategorias.contarSubCategoriasDestacadas');
+
+
+        //Microcategorias
+        Route::resource('/microcategorias', MicrocategoryController::class);
+        Route::post('/microcategorias/deleteMicrocategory', [MicrocategoryController::class, 'deleteMicrocategory'] )->name('microcategorias.deleteMicrocategory');
+        Route::post('/microcategorias/updateVisible', [MicrocategoryController::class, 'updateVisible'] )->name('microcategorias.updateVisible');
+        
+         //Descargables
+         Route::resource('/descargables', DescargablesController::class);
+         Route::post('/descargables/deleteDownload', [DescargablesController::class, 'deleteDownload'] )->name('descargables.deleteDownload');
+         Route::post('/descargables/updateVisible', [DescargablesController::class, 'updateVisible'] )->name('descargables.updateVisible');
+         
 
         //Servicios
         Route::resource('/servicios', ServiceController::class);
@@ -136,6 +164,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         //Equipo
         Route::resource('/staff', StaffController::class);
         Route::post('/staff/updateVisible', [StaffController::class, 'updateVisible'])->name('staff.updateVisible');
+        Route::post('/staff/deleteStaff', [StaffController::class, 'deleteStaff'])->name('staff.deleteStaff');
 
         //Beneficios    
         Route::resource('/strength', StrengthController::class);

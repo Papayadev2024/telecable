@@ -29,6 +29,8 @@ return new class extends Migration
             $table->boolean('destacar')->default(false);
             $table->boolean('recomendar')->default(false);
             $table->unsignedBigInteger('categoria_id')->nullable();
+            $table->unsignedBigInteger('subcategoria_id')->nullable();
+            $table->unsignedBigInteger('microcategoria_id')->nullable();
             $table->unsignedBigInteger('collection_id')->nullable();
 
             $table->boolean('visible')->default(true);

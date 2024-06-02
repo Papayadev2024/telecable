@@ -13,11 +13,18 @@ return new class extends Migration
     {
         Schema::create('subcategories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable();
 
             $table->string('name');
+            $table->string('slug')->nullable();
             $table->string('description')->nullable();
-            $table->boolean('state')->default(false);
+            $table->string('url_image')->nullable();
+            $table->string('name_image')->nullable();
+
+            $table->boolean('destacar')->default(false);
+            $table->boolean('visible')->default(true);
+            $table->boolean('status')->default(true);
+
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');

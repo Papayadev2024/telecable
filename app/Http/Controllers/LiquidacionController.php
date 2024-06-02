@@ -41,8 +41,7 @@ class LiquidacionController extends Controller
             'title' => 'required',
         ]);
         $liquidacion = new Liquidacion();
-        $manager = new ImageManager(new Driver());
-
+       
         try {
 			
 			if ($request->hasFile("imagen")) {
@@ -144,7 +143,7 @@ class LiquidacionController extends Controller
     public function saveImg($file, $route, $nombreImagen){
 		$manager = new ImageManager(new Driver());
 		$img =  $manager->read($file);        
-        $img->coverDown(1344, 700, 'center'); 
+        $img->coverDown(198, 72, 'center'); 
 		if (!file_exists($route)) {
 			mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
 	}
@@ -174,7 +173,7 @@ class LiquidacionController extends Controller
     {    
         $cantidad = $this->contarLiquidacionVisible();
 
-        if($cantidad >= 1 && $request->status == 1){
+        if($cantidad >= 1000 && $request->status == 1){
             return response()->json(['message' => 'Solo puedes hacer visible 1 banner de liquidacion'], 409 );
         }
 

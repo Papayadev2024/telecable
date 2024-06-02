@@ -21,7 +21,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
+                              
                                 <th>Destacar</th>
                                 <th>Visible</th>
                                
@@ -33,7 +33,7 @@
                             @foreach($category as $item)
                                 <tr>
                                     <td>{{$item->name}}</td>
-                                    <td>{{$item->description}}</td>
+                                    
                                     <td>
                                         <form method="POST" action="">
                                           @csrf
@@ -84,7 +84,7 @@
                         <tfoot>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
+                                
                                 <th>Destacar</th>
                                 <th>Visible</th>
                                 <th>Acciones</th>
@@ -183,7 +183,7 @@
                     },
                     success: function(response) {
                            
-                        if (response.cantidad >= 3) {
+                        if (response.cantidad >= 1000) {
                             Swal.fire({
                             position: "top-center",
                             icon: "success",

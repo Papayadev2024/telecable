@@ -66,6 +66,7 @@ class ProductsController extends Controller
    */
   public function store(Request $request)
   {
+   
     $especificaciones = [];
     $data = $request->all();
     $atributos = null;
@@ -77,10 +78,6 @@ class ProductsController extends Controller
       $data['descuento'];
     }
     
-
-
-
-
     // $valorprecio = $request->input('precio') - 0.1;
 
     try {
@@ -186,38 +183,30 @@ class ProductsController extends Controller
       $producto->tags()->sync($tagsSeleccionados);
 
 
-      foreach ($data as $key => $value) {
+      if (isset($data['filesGallery'])) {
 
+        foreach ($data['filesGallery'] as $file) {
+        
+          [$first, $code] = explode(';base64,', $file);
 
-        if (strpos($key, 'attrid-') === 0) {
+        
 
-          $colorId = substr($key, strrpos($key, '-') + 1);
-          foreach ($value as $file) {
-            $this->GuardarGaleria($file, $producto->id, $colorId);
+          $imageData = base64_decode($code);
+
+          
+          $routeImg = 'storage/images/gallery/';
+          $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
+          $nombreImagen = Str::random(10) . '.' . $ext;
+          // Verificar si la ruta no existe y crearla si es necesario
+          if (!file_exists($routeImg)) {
+            mkdir($routeImg, 0777, true); 
           }
-        } elseif (strpos($key, 'imagenP-') === 0) {
-          $colorId = substr($key, strrpos($key, '-') + 1);
-          $isCaratula = 0;
-          if ($colorId == isset($data['caratula']) && $onlyOneCaratula == false) {
-            $isCaratula = 1;
-            $onlyOneCaratula = true;
-          }
-          $file = $request->file($key);
-          $routeImg = 'storage/images/productos/';
-          $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
-
-          $this->saveImg($file, $routeImg, $nombreImagen);
-
-          $dataGalerie['name_imagen'] = $routeImg . $nombreImagen;
+          // Guardar los datos binarios en un archivo
+          file_put_contents($routeImg . $nombreImagen, $imageData);
+          $dataGalerie['imagen'] = $routeImg . $nombreImagen;
           $dataGalerie['product_id'] = $producto->id;
-          $dataGalerie['type_imagen'] = 'primary';
-          $dataGalerie['caratula'] = $isCaratula;
-          $dataGalerie['color_id'] = $colorId;
           // $dataGalerie['type_img'] = 'gall';
-          ImagenProducto::create($dataGalerie);
-        } elseif (strpos($key, 'conbinacion-') === 0) {
-
-          $this->GuardarCombinacion($producto->id, $value);
+          Galerie::create($dataGalerie);
         }
       }
 

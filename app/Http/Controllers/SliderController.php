@@ -151,7 +151,7 @@ class SliderController extends Controller
                     File::delete($slider->url_image2 . $slider->name_image2);
                 }
 
-                $this->saveImg($file, $routeImg, $nombreImagen);
+                $this->saveImg2($file, $routeImg, $nombreImagen);
 
                 $slider->url_image2 = $routeImg;
                 $slider->name_image2 = $nombreImagen;
@@ -186,7 +186,18 @@ class SliderController extends Controller
     {
         $manager = new ImageManager(new Driver());
         $img = $manager->read($file);
-        $img->coverDown(672, 700, 'center');
+        $img->coverDown(1440, 735, 'center');
+        if (!file_exists($route)) {
+            mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+        }
+        $img->save($route . $nombreImagen);
+    }
+
+    public function saveImg2($file, $route, $nombreImagen)
+    {
+        $manager = new ImageManager(new Driver());
+        $img = $manager->read($file);
+        $img->coverDown(375, 192, 'center');
         if (!file_exists($route)) {
             mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
         }
@@ -212,7 +223,7 @@ class SliderController extends Controller
     {
         $cantidad = $this->contarSliderVisible();
 
-        if ($cantidad >= 1 && $request->status == 1) {
+        if ($cantidad >= 100 && $request->status == 1) {
             return response()->json(['message' => 'Solo puedes hacer visible 1 slider'], 409);
         }
 
@@ -230,7 +241,7 @@ class SliderController extends Controller
 
     public function contarSliderVisible()
     {
-        $cantidad = Slider::where('visible', '=', 1)->count();
+        $cantidad = Slider::where('visible', '=', 1)->where('status', '=', 1)->count();
         return $cantidad;
     }
 }

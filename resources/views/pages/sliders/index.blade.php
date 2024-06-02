@@ -21,8 +21,8 @@
                         <thead>
                             <tr>
                                 <th>Titulo</th>
-                                <th>Imagen (Izquierda)</th>
-                                <th>Imagen (Derecha)</th>
+                                <th>Imagen (Escritorio)</th>
+                                <th>Imagen (Movil)</th>
                                 <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
@@ -68,8 +68,8 @@
                         <tfoot>
                             <tr>
                                 <th>Titulo</th>
-                                <th>Imagen (Izquierda)</th>
-                                <th>Imagen (Derecha)</th>
+                                <th>Imagen (Escritorio)</th>
+                                <th>Imagen (Movil)</th>
                                 <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
@@ -171,7 +171,7 @@
 
                         }); 
 
-                        if (response.cantidad >= 1) {
+                        if (response.cantidad >= 100) {
                             
 
                             Swal.fire({

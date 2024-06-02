@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Microcategory;
+use App\Models\Products;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -168,8 +172,8 @@ class CategoryController extends Controller
         $cantidad = $this->contarCategoriasDestacadas();
 
         if ($field == 'destacar') {
-            if ($cantidad >= 3 && $request->status == 1) {
-                return response()->json(['message' => 'Solo puedes destacar 3 categorias'], 409);
+            if ($cantidad >= 1000 && $request->status == 1) {
+                return response()->json(['message' => 'Solo puedes destacar 1000 categorias'], 409);
             }
         }
 
@@ -190,4 +194,48 @@ class CategoryController extends Controller
 
         return $cantidad;
     }
+
+    public function getSubcategoria(Request $request){
+       
+            $subcategorias = Subcategory::where('category_id', '=', $request->id)->get();
+            $productos = DB::table('products')
+            ->join('categories', 'products.categoria_id', '=', 'categories.id')
+            ->where('products.status', '=', 1)
+            ->where('products.visible', '=', 1)
+            ->where('products.categoria_id', '=', $request->id)
+            ->select('products.*', 'categories.name as category_name')
+            ->get();
+    
+            
+           
+            return response()->json(['message' => 'Subcategorias', 'subcategorias' => $subcategorias, 'productos' => $productos]);
+    }
+
+
+    public function getMicrocategoria(Request $request){
+            $microcategorias = Microcategory::where('subcategory_id', '=', $request->id)->get();
+            $productos = DB::table('products')
+            ->join('categories', 'products.categoria_id', '=', 'categories.id')
+            ->where('products.status', '=', 1)
+            ->where('products.visible', '=', 1)
+            ->where('products.subcategoria_id', '=', $request->id)
+            ->select('products.*', 'categories.name as category_name')
+            ->get();
+
+            return response()->json(['message' => 'Microcategoria', 'microcategorias' => $microcategorias,'productos' => $productos]);
+    }
+
+    public function getProductMicrocategoria(Request $request){
+            
+        $productos = DB::table('products')
+        ->join('categories', 'products.categoria_id', '=', 'categories.id')
+        ->where('products.status', '=', 1)
+        ->where('products.visible', '=', 1)
+        ->where('products.microcategoria_id', '=', $request->id)
+        ->select('products.*', 'categories.name as category_name')
+        ->get();
+
+            return response()->json(['message' => 'Microcategoria', 'productos' => $productos]);
+    }
+
 }
