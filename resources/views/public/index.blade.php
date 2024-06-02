@@ -257,7 +257,9 @@
         @endif
        
   
-
+        @if ($posts->isEmpty())
+            
+        @else
         <section class="hidden md:block">
             <div class="flex flex-col gap-8 w-11/12 mx-auto pb-20">
                 <div class="flex justify-between items-center">
@@ -270,7 +272,7 @@
                     </div>
 
                     <div class="flex justify-center items-center">
-                        <a href="#"
+                        <a href="{{route('blog', 0)}}"
                             class="text-white py-4 px-6 bg-[#FF5E14] rounded-xl font-roboto font-semibold text-center">Ver
                             más publicaciones</a>
                     </div>
@@ -278,85 +280,34 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-
+                    @foreach ($posts as $post)
                     <div class="flex flex-col gap-5">
-
                         <div class="flex flex-col gap-2">
                             <div class="flex justify-center items-center">
-                                <a href="" class="w-full"><img src="{{ asset('images/img/image_13.png') }}"
+                                <a href="{{route('detalleBlog', $post->id)}}" class="w-full"><img src="{{ asset($post->url_image.$post->name_image) }}"
                                         class="w-full object-cover rounded-xl" alt="blog"></a>
                             </div>
-                            <h3 class="uppercase text-[#FF5E14] font-roboto font-bold text-text12">Productos Químicos</h3>
-                            <a href="">
-                                <h2 class="text-[#082252] font-roboto font-bold text-text24 leading-tight">Errores al
-                                    limpiar tu piscina (Parte 3)</h2>
+                            <h3 class="uppercase text-[#FF5E14] font-roboto font-bold text-text12">{{$post->categories->name}}</h3>
+                            <a href="{{route('detalleBlog', $post->id)}}">
+                                <h2 class="text-[#082252] font-roboto font-bold text-text24 leading-tight">{{$post->title}}</h2>
                             </a>
-                            <p class="text-[#082252] font-roboto font-normal text-text16">Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
+                            <p class="text-[#082252] font-roboto font-normal text-text16">{!! Str::limit($post->description, 150) !!}</p>
                         </div>
 
                         <div class="flex justify-start items-center gap-2">
-                            <p class="text-[#0C4AC3] font-roboto font-normal text-text14">29 de julio de 2023</p>
+                            <p class="text-[#0C4AC3] font-roboto font-normal text-text14">Publicado {{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</p>
                             <div class="flex justify-center items-center">
                                 <img src="{{ asset('images/svg/image_10.svg') }}" alt="point">
                             </div>
-                            <p class="text-[#0C4AC3] font-roboto font-normal text-text14">Leido hace 5 min</p>
+                           
                         </div>
                     </div>
-
-                    <div class="flex flex-col gap-5">
-
-                        <div class="flex flex-col gap-2">
-                            <div class="flex justify-center items-center">
-                                <a href="" class="w-full"><img src="{{ asset('images/img/image_14.png') }}"
-                                        class="w-full object-cover rounded-xl" alt="blog"></a>
-                            </div>
-                            <h3 class="uppercase text-[#FF5E14] font-roboto font-bold text-text12">Productos Químicos</h3>
-                            <a href="">
-                                <h2 class="text-[#082252] font-roboto font-bold text-text24 leading-tight">Errores al
-                                    limpiar tu piscina (Parte 2)</h2>
-                            </a>
-                            <p class="text-[#082252] font-roboto font-normal text-text16">Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
-                        </div>
-
-                        <div class="flex justify-start items-center gap-2">
-                            <p class="text-[#0C4AC3] font-roboto font-normal text-text14">29 de julio de 2023</p>
-                            <div class="flex justify-center items-center">
-                                <img src="{{ asset('images/svg/image_10.svg') }}" alt="point">
-                            </div>
-                            <p class="text-[#0C4AC3] font-roboto font-normal text-text14">Leido hace 5 min</p>
-                        </div>
-                    </div>
-
-
-                    <div class="flex flex-col gap-5">
-
-                        <div class="flex flex-col gap-2">
-                            <div class="flex justify-center items-center">
-                                <a href="" class="w-full"><img src="{{ asset('images/img/image_15.png') }}"
-                                        class="w-full object-cover rounded-xl" alt="blog"></a>
-                            </div>
-                            <h3 class="uppercase text-[#FF5E14] font-roboto font-bold text-text12">Productos Químicos</h3>
-                            <a href="">
-                                <h2 class="text-[#082252] font-roboto font-bold text-text24 leading-tight">Errores al
-                                    limpiar tu piscina (Parte 1)</h2>
-                            </a>
-                            <p class="text-[#082252] font-roboto font-normal text-text16">Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
-                        </div>
-
-                        <div class="flex justify-start items-center gap-2">
-                            <p class="text-[#0C4AC3] font-roboto font-normal text-text14">29 de julio de 2023</p>
-                            <div class="flex justify-center items-center">
-                                <img src="{{ asset('images/svg/image_10.svg') }}" alt="point">
-                            </div>
-                            <p class="text-[#0C4AC3] font-roboto font-normal text-text14">Leido hace 5 min</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
+        @endif
+        
 
         <section class="bg-[#0C4AC3]">
             <div class="grid grid-cols-1 md:grid-cols-2  relative overflow-hidden">

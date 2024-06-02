@@ -65,6 +65,7 @@ Route::post('/comentario/nuevo', [IndexController::class, 'hacerComentario'] )->
 Route::get('/contacto', [IndexController::class, 'contacto'] )->name('contacto');
 Route::get('/descargables/{filtro}', [IndexController::class, 'catalogosDescargables'] )->name('descargables');
 Route::get('/blog/{filtro}', [IndexController::class, 'blog'] )->name('blog');
+Route::get('/post/{id}', [IndexController::class, 'detalleBlog'] )->name('detalleBlog');
 
 
 /* Proceso de pago */

@@ -20,42 +20,37 @@
                 <div class="md:basis-1/6 flex flex-col gap-5" data-aos="fade-up" data-aos-duration="150">
                     <h3 class="text-[#082252] font-bold font-roboto text-text18">Blog categorias</h3>
                     <div class="flex flex-col gap-3">
-                        <a href="#"
-                            class="text-text18 py-3 px-4 rounded-lg font-semibold text-white bg-[#FF5E14]">Todas</a>
-                        <a href="#" class="text-[#082252] font-normal text-text16 py-3 px-4 rounded-lg">Tratamiento de
-                            Agua</a>
-                        <a href="#" class="text-[#082252] font-normal text-text16 py-3 px-4 rounded-lg">Productos
-                            Químicos</a>
-                        <a href="#" class="text-[#082252] font-normal text-text16 py-3 px-4 rounded-lg">Medición e
-                            Instrumentación</a>
-                        <a href="#" class="text-[#082252] font-normal text-text16 py-3 px-4 rounded-lg">Piscinas &
-                            Spa</a>
+                        <a href="{{route('blog', 0)}}"
+                            class="text-text18 py-3 px-4 rounded-lg font-semibold  {{$filtro == 0 ?  'bg-[#FF5E14] text-white' : 'text-[#082252] bg-[#E6E4E5] bg-opacity-40 ' }} ">Todas</a>
+                        @foreach ($categorias as $item)
+                            <a href="{{route('blog', $item->id)}}" class="text-[#082252] font-normal text-text16 py-3 px-4 rounded-lg bg-[#E6E4E5] 
+                                @if ($filtro == 0) @else {{ $item->id == $filtro ? 'bg-[#FF5E14] font-semibold text-white' : 'bg-[#E6E4E5] bg-opacity-40 text-[#082252] font-normal ' }} @endif">{{ $item->name}}</a>
+                        @endforeach
                     </div>
                 </div>
 
                 <div class="md:basis-5/6 flex flex-col gap-10">
                     <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-duration="150">
                         <div class="flex justify-center items-center">
-                            <img src="{{ asset('images/img/image_44.png') }}" alt="blog"
+                            <img src="{{ asset($lastpost->url_image.$lastpost->name_image) }}" alt="blog"
                                 class="w-full h-[450px] object-cover rounded-xl hidden md:block">
-                            <img src="{{ asset('images/img/image_45.png') }}" alt="blog"
+                            <img src="{{ asset($lastpost->url_image.$lastpost->name_image) }}" alt="blog"
                                 class="w-full h-[450px] object-cover rounded-xl block md:hidden">
                         </div>
                         <div class="flex justify-start items-center gap-5">
                             <p class="text-white font-roboto font-semibold text-text14 bg-[#0C4AC3] py-2 px-4 rounded-lg">
-                                Categoría</p>
-                            <p class="text-[#0C4AC3] font-roboto font-semibold text-text14">Publicado 5 min</p>
+                                {{$lastpost->categories->name}}</p>
+                            <p class="text-[#0C4AC3] font-roboto font-semibold text-text14">Publicado {{ \Carbon\Carbon::parse($lastpost->created_at)->diffForHumans() }}</p>
                         </div>
                         <div class="flex flex-col gap-1">
-                            <h2 class="text-[#082252] font-roboto font-bold text-text32 leading-tight">Nunc faucibus, augue
-                                at bibendum</h2>
+                            <h2 class="text-[#082252] font-roboto font-bold text-text32 leading-tight"> {{$lastpost->title}}</h2>
                             <p class="text-[#082252] text-text16 font-normal font-roboto">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.
+                                {!! Str::limit($lastpost->description, 250) !!}
                             </p>
                         </div>
 
                         <div>
-                            <a href="  "
+                            <a href="{{route('detalleBlog', $lastpost->id)}}"
                                 class="text-[#FF5E14] font-roboto font-normal text-text16 flex justify-start items-center gap-3">
                                 <span>Leer más</span>
                                 <div>
@@ -69,9 +64,9 @@
                        @foreach ($posts as $post)
                             <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-duration="150">
                                 <div class="flex justify-center items-center">
-                                    <img src="{{ asset('images/img/image_46.png') }}" alt="blog"
+                                    <img src="{{ asset($post->url_image.$post->name_image) }}" alt="blog"
                                         class="w-full h-[300px] object-cover rounded-xl hidden md:block">
-                                    <img src="{{ asset('images/img/image_52.png') }}" alt="blog"
+                                    <img src="{{ asset($post->url_image.$post->name_image) }}" alt="blog"
                                         class="w-full h-[220px] object-cover rounded-xl block md:hidden">
                                 </div>
 
@@ -79,7 +74,7 @@
                                     <p
                                         class="text-white font-roboto font-semibold text-text14 bg-[#0C4AC3] py-2 px-4 rounded-lg text-center">
                                         {{$post->categories->name}}</p>
-                                    <p class="text-[#0C4AC3] font-roboto font-semibold text-text14">Publicado 5 min</p>
+                                    <p class="text-[#0C4AC3] font-roboto font-semibold text-text14">Publicado {{ \Carbon\Carbon::parse($lastpost->created_at)->diffForHumans() }}</p>
                                 </div>
 
                                 <div class="flex flex-col gap-1">
@@ -90,7 +85,7 @@
                                 </div>
 
                                 <div>
-                                    <a href=""
+                                    <a href="{{route('detalleBlog', $post->id)}}"
                                         class="text-[#FF5E14] font-roboto font-normal text-text16 flex justify-start items-center gap-3">
                                         <span>Leer más</span>
                                         <div>

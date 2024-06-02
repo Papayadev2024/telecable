@@ -17,12 +17,12 @@
                 <div class="flex flex-col md:flex-row justify-center items-center gap-5 md:gap-0">
                     <div
                         class="flex flex-row justify-between md:flex-col md:justify-start md:items-center h-full md:gap-10 md:basis-1/4 order-2 md:order-1 w-full">
-                        
-                         @foreach ($productosConGalerias as $galeria)
+
+                        @foreach ($productosConGalerias as $galeria)
                             <img src="{{ asset($galeria->imagen) }}" alt="{{ $galeria->descripcion }}"
-                            class="w-[70px] h-[90px] active rounded-xl cursor-pointer secundario" data-aos="fade-up"
-                            data-aos-offset="150">
-                        @endforeach 
+                                class="w-[70px] h-[90px] active rounded-xl cursor-pointer secundario" data-aos="fade-up"
+                                data-aos-offset="150">
+                        @endforeach
                     </div>
 
                     <div class="md:basis-3/4 flex justify-center items-center order-1 md:order-2 w-full h-full">
@@ -35,16 +35,16 @@
                 <div class="flex flex-col gap-5">
                     <div class="flex flex-col gap-5 pb-10 border-b-2 border-[#DDDDDD]" data-aos="fade-up"
                         data-aos-offset="150">
-                        <h2 class="font-roboto font-bold text-text40 text-[#082252]">{{$producto->producto}}</h2>
+                        <h2 id="nombreproducto" class="font-roboto font-bold text-text40 text-[#082252]">{{ $producto->producto }}</h2>
                         <p class="font-moderat_Bold text-text24 md:text-text28 text-[#111111]">S/ 1999.99</p>
 
-                        <p class="text-[#082252] text-text16 font-roboto font-normal">{{$producto->extract}}</p>
+                        <p class="text-[#082252] text-text16 font-roboto font-normal">{{ $producto->extract }}</p>
 
-                
+
                         <div class="flex justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
                             data-aos="fade-up" data-aos-offset="150">
-                            <a href="#" target="_blank"
-                                class="bg-[#FF5E14] flex justify-center items-center w-full py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
+                            <div target="_blank" id="chatonline"
+                                class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-full py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
                                 <span>Cotizar aquí</span>
                                 <div>
                                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
@@ -54,17 +54,18 @@
                                             fill="white" />
                                     </svg>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="pt-5" data-aos="fade-up" data-aos-offset="150">
                         <p class="font-roboto font-medium text-text14 text-[#082252]">
-                            Categoría: <span class="text-[#565656] font-normal text-text14">{{$producto->categoria->name}}</span>
+                            Categoría: <span
+                                class="text-[#565656] font-normal text-text14">{{ $producto->categoria->name }}</span>
                         </p>
                         <p class="font-roboto font-medium text-text14 text-[#082252]">
-                            SKU: <span class="text-[#565656] font-normal text-text14">{{$producto->sku}}</span>
+                            SKU: <span class="text-[#565656] font-normal text-text14">{{ $producto->sku }}</span>
                         </p>
                     </div>
                 </div>
@@ -75,7 +76,7 @@
                 <h3 class="font-roboto font-bold text-text28 text-[#082252]">Descripción</h3>
                 <div class="text-[#082252] text-text16 font-normal font-roboto flex flex-col gap-5">
                     <p>
-                        {!!$producto->description!!}
+                        {!! $producto->description !!}
                     </p>
                 </div>
             </div>
@@ -135,9 +136,8 @@
 
                 <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
                     <div class="flex justify-center items-center">
-                        <a href="#" class="w-full"><img
-                                src="{{ asset('images/img/image_32.png') }}" alt="planta de tratmiento de agua"
-                                class="w-full object-cover rounded-lg"></a>
+                        <a href="#" class="w-full"><img src="{{ asset('images/img/image_32.png') }}"
+                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
                     </div>
                     <div class="flex flex-col gap-2">
                         <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">Equipos de filtración</h3>
@@ -169,6 +169,43 @@
                 principal.src = this.src;
             })
         });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#chatonline').click(function() {
+
+                function isMobile() {
+                    if (sessionStorage.desktop)
+                        return false;
+                    else if (localStorage.mobile)
+                        return true;
+                    var mobile = ['iphone', 'ipad', 'android', 'blackberry', 'nokia', 'opera mini',
+                        'windows mobile', 'windows phone', 'iemobile'
+                    ];
+                    for (var i in mobile)
+                        if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0)
+                        return true;
+                    return false;
+                }
+
+                setTimeout(function() {
+
+                    telefono2 = '51992262598';
+                    nombre2 = $('#nombreproducto').text();
+                    mensaje2 = 'send?phone=' + telefono2 +
+                        '&text=Hola, quiero comunicarme con un asesor.%0AEstoy interesad@ en el producto *' +
+                        nombre2 + '*.';
+
+                    if (isMobile()) {
+                        window.open('https://api.whatsapp.com/' + mensaje2, '_blank');
+                    } else {
+                        window.open('https://web.whatsapp.com/' + mensaje2, '_blank');
+                    }
+                }, 200);
+            });
+        });
+        
     </script>
 
 @stop

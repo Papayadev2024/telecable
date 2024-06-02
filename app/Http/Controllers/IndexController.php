@@ -71,8 +71,9 @@ class IndexController extends Controller
     $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
     $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->get();
     $logos = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
+    $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-    return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos'));
+    return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos','posts'));
   }
 
   public function coleccion($filtro)
@@ -629,27 +630,42 @@ class IndexController extends Controller
       $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
 
       if ($filtro == 0) {
-        //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
+       
         $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
 
         $categoria = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
-        //$categoria = Category::all();
+        
+        $lastpost = Blog::where('status', '=', 1)->where('visible', '=', 1)
+                    ->orderBy('created_at', 'desc')
+                    ->first();
       } else {
-        //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
+        
         
         $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->where('category_id', '=', $filtro)->get();
        
         $categoria = Category::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $filtro)->get();
-        //$categorias = Category::findOrFail($filtro);
+
+        $lastpost = Blog::where('status', '=', 1)->where('visible', '=', 1)
+                    ->orderBy('created_at', 'desc')
+                    ->first();
+        
       }
 
       
 
-      return view('public.blog',compact('posts','categoria','categorias', 'filtro'));
+      return view('public.blog',compact('posts','categoria','categorias', 'filtro', 'lastpost'));
 
     } catch (\Throwable $th) {
     }
   }
+
+
+  public function detalleBlog($id){
+
+    $post = Blog::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $id)->first();
+    return view('public.post', compact('post'));
+  }
+
 
   public function catalogosDescargables($filtro)
   {
