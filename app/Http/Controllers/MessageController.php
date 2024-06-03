@@ -41,11 +41,11 @@ class MessageController extends Controller
     {
         $mensaje = new Message();
 
-        $mensaje->full_name = $request-> nombre; 
-        $mensaje->email = $request-> email; 
-        $mensaje->phone = $request-> telefono; 
-        $mensaje->source = $request-> textoSeleccionado; 
-        $mensaje->service_product = $request-> textoMeet; 
+        $mensaje->full_name = $request->full_name; 
+        $mensaje->email = $request->email; 
+        $mensaje->phone = $request->phone; 
+        $mensaje->source = $request->tipo_message; 
+        $mensaje->message = $request->mensaje; 
 
         $mensaje->save();
 
@@ -101,5 +101,22 @@ class MessageController extends Controller
 
         return response()->json(['success' => true]);
 
+    }
+
+
+    public function deleteMensajes(Request $request) {
+        //Recupero el id mandado mediante ajax
+        
+        $id = $request->id;
+        //Busco el servicio con id como parametro
+        $message = Message::findOrfail($id);
+        //Modifico el status a false
+        $message->status = false;
+        //Guardo 
+        $message->save();
+
+        // Devuelvo una respuesta JSON u otra respuesta según necesites
+        return response()->json(['message' => 'Mensaje eliminado.']);
+    
     }
 }

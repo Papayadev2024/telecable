@@ -7,22 +7,48 @@
                         <div class="flex justify-center items-center">
                             <img src="{{ asset('images/svg/image_18.svg') }}" alt="telefono">
                         </div>
-                        <p class="font-roboto font-normal text-text16 text-white">01-6556920 / 01-6556922</p>
+                        @if (!is_null($general[0]->cellphone) && !is_null($general[0]->office_phone))
+                            <p class="font-roboto font-normal text-text16 text-white">{{$general[0]->cellphone}} / {{$general[0]->office_phone}}</p>
+                        @elseif(!is_null($general[0]->cellphone))
+                        <p class="font-roboto font-normal text-text16 text-white">{{$general[0]->cellphone}}</p>
+                        @elseif(!is_null($general[0]->office_phone))
+                        <p class="font-roboto font-normal text-text16 text-white">{{$general[0]->office_phone}}</p>
+                        @else
+
+                        @endif
+                        
                     </div>
-    
-                    <div class="flex justify-start items-center gap-2">
-                        <div class="flex justify-center items-center">
-                            <img src="{{ asset('images/svg/image_19.svg') }}" alt="telefono">
+                    @if (is_null($general[0]->email))
+                        
+                    @else
+                        <div class="flex justify-start items-center gap-2">
+                            <div class="flex justify-center items-center">
+                                <img src="{{ asset('images/svg/image_19.svg') }}" alt="telefono">
+                            </div>
+                            <p class="font-roboto font-normal text-text16 text-white">{{$general[0]->email}}</p>
                         </div>
-                        <p class="font-roboto font-normal text-text16 text-white">ventas@hpi.com.pe</p>
-                    </div>
+                    @endif
+                   
                 </div>
                 <div class="flex justify-center items-center gap-3">
-                    <a href="#" target="_blank"><img src="{{ asset('images/svg/image_20.svg') }}" alt="facebook"></a>
-                    <a href="#" target="_blank"><img src="{{ asset('images/svg/image_21.svg') }}" alt="instagram"></a>
-                    <a href="#" target="_blank"><img src="{{ asset('images/svg/image_22.svg') }}" alt="twitter"></a>
-                    <a href="#" target="_blank"><img src="{{ asset('images/svg/image_23.svg') }}" alt="linkedin"></a>
-                    <a href="#" target="_blank"><img src="{{ asset('images/svg/image_24.svg') }}" alt="youtube"></a>
+                    @if ($general[0]->facebook)
+                    <a href="{{$general[0]->facebook}}" target="_blank"><img src="{{ asset('images/svg/image_20.svg') }}" alt="facebook"></a>
+                    @endif
+                    @if ($general[0]->instagram)
+                    <a href="{{$general[0]->instagram}}" target="_blank"><img src="{{ asset('images/svg/image_21.svg') }}" alt="instagram"></a>
+                    @endif
+                    @if ($general[0]->twitter)
+                    <a href="{{$general[0]->twitter}}" target="_blank"><img src="{{ asset('images/svg/image_22.svg') }}" alt="twitter"></a>
+                    @endif
+                    @if ($general[0]->linkedin)
+                    <a href="{{$general[0]->linkedin}}" target="_blank"><img src="{{ asset('images/svg/image_23.svg') }}" alt="linkedin"></a>
+                    @endif
+                    @if ($general[0]->youtube)
+                    <a href="{{$general[0]->youtube}}" target="_blank"><img src="{{ asset('images/svg/image_24.svg') }}" alt="youtube"></a>
+                    @endif
+                    @if ($general[0]->tiktok)
+                    <a href="{{$general[0]->tiktok}}" target="_blank"><img src="{{ asset('images/svg/image_tiktok.svg') }}" alt="tiktok"></a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -50,28 +76,40 @@
     
                     <div class="flex flex-col lg:flex-row order-2 lg:order-1 lg:w-[80%] lg:justify-center gap-5 lg:gap-10">
                         <li class="flex flex-col">
-                            <a href="{{route('index')}}">Inicio</a>
-                        </li>
-                        <li class="flex flex-col">
-                            <a href="{{route('nosotros')}}" class="text-[#FF5E14] font-semibold">Nosotros</a>
+                            <a href="{{route('index')}}" class="{{$pagina == 'index' ? 'text-[#FF5E14] font-semibold' : ''}}">Inicio</a>
+                            @if ($pagina == 'index')
                             <p class="hidden lg:block lg:after:content-[''] lg:after:w-full lg:after:h-[2px] lg:after:bg-[#FF5E14] lg:after:block"></p>
+                            @endif
                         </li>
                         <li class="flex flex-col">
-                            <a href="{{route('catalogo', 0)}}">Productos</a>
-                            {{-- <a href="{{route('productos')}}">Productos</a> --}}
+                            <a href="{{route('nosotros')}}" class="{{$pagina == 'nosotros' ? 'text-[#FF5E14] font-semibold' : ''}}">Nosotros</a>
+                            @if ($pagina == 'nosotros')
+                            <p class="hidden lg:block lg:after:content-[''] lg:after:w-full lg:after:h-[2px] lg:after:bg-[#FF5E14] lg:after:block"></p>
+                            @endif
                         </li>
                         <li class="flex flex-col">
-                            <a href="{{route('descargables', 0)}}">Catálogo</a>
-                            {{-- <a href="{{route('catalogo')}}">Catálogo</a> --}}
+                            <a href="{{route('catalogo', 0)}}" class="{{$pagina == 'catalogo' ? 'text-[#FF5E14] font-semibold' : ''}}">Productos</a>
+                            @if ($pagina == 'catalogo')
+                            <p class="hidden lg:block lg:after:content-[''] lg:after:w-full lg:after:h-[2px] lg:after:bg-[#FF5E14] lg:after:block"></p>
+                            @endif
                         </li>
                         <li class="flex flex-col">
-                            <a href="{{route('blog', 0)}}">Blog</a>
-                            {{-- <a href="{{route('blog')}}">Blog</a> --}}
-
+                            <a href="{{route('descargables', 0)}}" class="{{$pagina == 'descargables' ? 'text-[#FF5E14] font-semibold' : ''}}">Catálogo</a>
+                            @if ($pagina == 'descargables')
+                            <p class="hidden lg:block lg:after:content-[''] lg:after:w-full lg:after:h-[2px] lg:after:bg-[#FF5E14] lg:after:block"></p>
+                            @endif
                         </li>
                         <li class="flex flex-col">
-                            <a href="{{route('contacto')}}">Contacto</a>
-                            {{-- <a href="{{route('contacto')}}">Contacto</a> --}}
+                            <a href="{{route('blog', 0)}}" class="{{$pagina == 'blog' ? 'text-[#FF5E14] font-semibold' : ''}}">Blog</a>
+                            @if ($pagina == 'blog')
+                            <p class="hidden lg:block lg:after:content-[''] lg:after:w-full lg:after:h-[2px] lg:after:bg-[#FF5E14] lg:after:block"></p>
+                            @endif
+                        </li>
+                        <li class="flex flex-col">
+                            <a href="{{route('contacto')}}" class="{{$pagina == 'contacto' ? 'text-[#FF5E14] font-semibold' : ''}}">Contacto</a>
+                            @if ($pagina == 'contacto')
+                            <p class="hidden lg:block lg:after:content-[''] lg:after:w-full lg:after:h-[2px] lg:after:bg-[#FF5E14] lg:after:block"></p>
+                            @endif
 
                         </li>
                     </div>
@@ -97,7 +135,7 @@
     {{-- whatssapp --}}
     <div class="flex justify-end w-11/12 mx-auto z-[100] relative">
         <div class="fixed bottom-6 sm:bottom-[2rem] lg:bottom-[4rem] z-20">
-            <a target="_blank" href="#">
+            <a target="_blank" href="https://api.whatsapp.com/send?phone={{$general[0]->whatsapp}}&text={{$general[0]->mensaje_whatsapp}}" rel="noopener">
                 <img src="{{ asset('images/svg/image_31.svg') }}" alt="whatsapp" class="w-20 h-20 md:w-full md:h-full">
             </a>
         </div>

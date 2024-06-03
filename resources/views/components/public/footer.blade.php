@@ -14,23 +14,25 @@
         <div class="flex flex-col gap-2" data-aos="fade-up"
         data-aos-offset="150">
           <form
-            action=""
             id="footerFormulario"
             class="flex flex-col md:flex-row md:justify-start md:items-center gap-5"
           >
+          @csrf
             <div class="w-full">
-              <input
-                type="text"
+              <input required name="email" id="emailFooter" placeholder="Dejanos tu email"
+                type="email"
                 class="bg-white px-5 py-3 rounded-xl w-full"
               />
+              <input type="hidden" id="nameFooter" required name="full_name" value="Usuario suscrito" />
+              <input type="hidden" id="tipo" placeholder="tipo" name="tipo_message" value="Inscripción" />
             </div>
 
             <div class="flex justify-center items-center w-full md:w-auto">
-              <a
-                href="#"
+              <button
+                type="submit"
                 class="font-roboto font-semibold text-text16 text-white border border-white py-3 px-6 rounded-xl w-full md:w-auto text-center"
                 >Suscribe
-              </a>
+              </button>
             </div>
           </form>
           <p class="font-roboto font-normal text-text12 text-white">
@@ -45,46 +47,66 @@
           <p class="font-roboto font-semibold text-text16 text-white">Síganos</p>
 
           <div class="flex flex-col gap-5">
+            @if($general[0]->facebook)
             <a
-              href="#"
+              href="{{$general[0]->facebook}}"
               target="_blank"
               class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14"
             >
               <img src="{{asset('images/svg/image_2.svg')}}" alt="facebook" />
               <span>Facebook</span>
             </a>
+            @endif
+            @if ($general[0]->instagram)
             <a
-              href="#"
+              href="{{$general[0]->instagram}}"
               target="_blank"
               class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14"
             >
               <img src="{{asset('images/svg/image_3.svg')}}" alt="instagram" />
               <span>Instagram</span>
             </a>
+            @endif
+            @if ($general[0]->twitter)
             <a
-              href="#"
+              href="{{$general[0]->twitter}}"
               target="_blank"
               class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14"
             >
               <img src="{{asset('images/svg/image_4.svg')}}" alt="twitter" />
               <span>Twitter</span>
             </a>
+            @endif
+            @if ($general[0]->linkedin)
             <a
-              href="#"
+              href="{{$general[0]->linkedin}}"
               target="_blank"
               class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14"
             >
               <img src="{{asset('images/svg/image_5.svg')}}" alt="linkedin" />
               <span>Linkedin</span>
             </a>
+            @endif
+            @if ($general[0]->youtube)
             <a
-              href="#"
+              href="{{$general[0]->youtube}}"
               target="_blank"
               class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14"
             >
               <img src="{{asset('images/svg/image_6.svg')}}" alt="youtube" />
               <span>YouTube</span>
             </a>
+            @endif
+            @if ($general[0]->tiktok)
+            <a
+              href="{{$general[0]->tiktok}}"
+              target="_blank"
+              class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14"
+            >
+              <img src="{{asset('images/svg/image_tiktok.svg')}}" alt="tiktok" />
+              <span>Tik Tok</span>
+            </a>
+            @endif
           </div>
         </div>
 

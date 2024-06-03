@@ -1,5 +1,5 @@
-@extends('components.public.matrix')
-
+@extends('components.public.matrix', ['pagina'=>'catalogo'])
+@section('titulo', 'Productos')
 @section('css_importados')
 
 @stop

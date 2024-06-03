@@ -1,5 +1,5 @@
-@extends('components.public.matrix')
-
+@extends('components.public.matrix', ['pagina'=>'nosotros'])
+@section('titulo', 'Nosotros')
 @section('css_importados')
     <style>
         .swiper-button-next {

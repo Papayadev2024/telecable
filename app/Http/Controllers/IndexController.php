@@ -762,16 +762,17 @@ class IndexController extends Controller
    */
   public function guardarContacto(Request $request)
   {
+    
     $data = $request->all();
-    $data['full_name'] = $request->name . ' ' . $request->last_name;
+    $data['full_name'] = $request->full_name;
 
     try {
       $reglasValidacion = [
-        'name' => 'required|string|max:255',
+        'full_name' => 'required|string|max:255',
         'email' => 'required|email|max:255',
       ];
       $mensajes = [
-        'name.required' => 'El campo nombre es obligatorio.',
+        'full_name.required' => 'El campo nombre es obligatorio.',
         'email.required' => 'El campo correo electrónico es obligatorio.',
         'email.email' => 'El formato del correo electrónico no es válido.',
         'email.max' => 'El campo correo electrónico no puede tener más de :max caracteres.',

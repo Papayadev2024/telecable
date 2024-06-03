@@ -1,5 +1,5 @@
-@extends('components.public.matrix')
-
+@extends('components.public.matrix', ['pagina'=>'blog'])
+@section('titulo', 'Post')
 @section('css_importados')
 
 @stop
@@ -19,8 +19,8 @@
 
 
                 <div class="w-full" data-aos="fade-up" data-aos-offset="150">
-                    <img src="{{asset('images/img/image_58.png')}}" alt="catedral" class="w-full h-[563px] object-cover hidden md:block rounded-xl" />
-                    <img src="{{asset('images/img/image_59.png')}}" alt="catedral" class="w-full h-[563px] object-cover block md:hidden rounded-xl" />
+                    <img src="{{asset($post->url_image . $post->name_image)}}" alt="catedral" class="w-full h-[563px] object-cover hidden md:block rounded-xl" />
+                    <img src="{{asset($post->url_image . $post->name_image)}}" alt="catedral" class="w-full h-[563px] object-cover block md:hidden rounded-xl" />
                 </div>
 
 

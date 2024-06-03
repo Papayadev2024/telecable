@@ -1,5 +1,5 @@
-@extends('components.public.matrix')
-
+@extends('components.public.matrix', ['pagina'=>'contacto'])
+@section('titulo', 'Contacto')
 @section('css_importados')
 
 @stop
@@ -18,18 +18,25 @@
                     </div>
 
                     <div>
-                        <form action="" class="flex flex-col gap-5">
+                        <form id="formContactos" class="flex flex-col gap-5">
+                            @csrf
                             <div class="flex flex-col justify-start gap-1" data-aos="fade-up" data-aos-duration="150">
                                 <label for="full_name" class="text-[#082252] font-roboto font-normal text-text14">Nombre
                                     Completo</label>
-                                <input required type="text" name="full_name" id="full_name" placeholder="Nombre Completo"
+                                <input required type="text" name="full_name" id="fullNameContacto" placeholder="Nombre Completo"
                                     class="font-roboto font-normal text-text16 placeholder:text-[#082252] placeholder:font-medium py-3 px-5 w-full bg-white border border-[#E6E4E5] focus:outline-0 focus:ring-0 transition-all text-[#082252] placeholder:text-opacity-40 focus:border-[#E6E4E5] rounded-xl">
                             </div>
 
                             <div class="flex flex-col justify-start gap-1" data-aos="fade-up" data-aos-duration="150">
                                 <label for="email" class="text-[#082252] font-roboto font-normal text-text14">Correo
                                     Electrónico</label>
-                                <input required type="text" name="email" id="email" placeholder="hola@gmail.com"
+                                <input required type="email" name="email" id="emailContacto" placeholder="hola@gmail.com"
+                                    class="font-roboto font-normal text-text16 placeholder:text-[#082252] placeholder:font-medium py-3 px-5 w-full bg-white border border-[#E6E4E5] focus:outline-0 focus:ring-0 transition-all text-[#082252] placeholder:text-opacity-40 focus:border-[#E6E4E5] rounded-xl">
+                            </div>
+
+                            <div class="flex flex-col justify-start gap-1" data-aos="fade-up" data-aos-duration="150">
+                                <label for="telf" class="text-[#082252] font-roboto font-normal text-text14">Teléfono</label>
+                                <input type="tel" name="phone" id="telefonoContacto" placeholder="Teléfono" maxlength="12" required
                                     class="font-roboto font-normal text-text16 placeholder:text-[#082252] placeholder:font-medium py-3 px-5 w-full bg-white border border-[#E6E4E5] focus:outline-0 focus:ring-0 transition-all text-[#082252] placeholder:text-opacity-40 focus:border-[#E6E4E5] rounded-xl">
                             </div>
 
@@ -39,11 +46,13 @@
                                     class="font-roboto font-normal text-text16 placeholder:text-[#082252] placeholder:font-medium py-3 px-5 w-full bg-white border border-[#E6E4E5] focus:outline-0 focus:ring-0 transition-all text-[#082252] placeholder:text-opacity-40 focus:border-[#E6E4E5] rounded-xl"></textarea>
                             </div>
 
+                            <input type="hidden" id="tipo" placeholder="tipo" name="source" value="Contacto" />
+
                             <div class="flex justify-start items-center pt-5" data-aos="fade-up" data-aos-duration="150">
-                                <a href="#" type="submit"
+                                <button type="submit"
                                     class="bg-[#FF5E14] text-white font-roboto font-bold text-text16 py-3 px-5 rounded-xl">
                                     Enviar mensaje
-                                </a>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -66,7 +75,7 @@
                     <div class="flex flex-col gap-2">
                         <p class="text-[#082252] font-roboto font-bold text-text32">Email</p>
                         <p class="text-[#082252] font-roboto font-normal text-text16">Escríbenos para recibir atención personalizada y resolver tus dudas.</p>
-                        <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">hello@relume.io</p>
+                        <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->email}}</p>
                     </div>
                 </div>
 
@@ -78,7 +87,15 @@
                     <div class="flex flex-col gap-2">
                         <p class="text-[#082252] font-roboto font-bold text-text32">Teléfono</p>
                         <p class="text-[#082252] font-roboto font-normal text-text16">Llámanos para obtener soporte inmediato y asistencia profesional.</p>
-                        <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">+1 (555) 000-0000</p>
+                        @if (!is_null($general[0]->cellphone) && !is_null($general[0]->office_phone))
+                             <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->cellphone}} / {{$general[0]->office_phone}}</p>
+                        @elseif(!is_null($general[0]->cellphone))
+                             <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->cellphone}}</p>
+                        @elseif(!is_null($general[0]->office_phone))
+                             <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->office_phone}}</p>
+                        @else
+
+                        @endif
                     </div>
                 </div>
 
@@ -90,7 +107,7 @@
                     <div class="flex flex-col gap-2">
                         <p class="text-[#082252] font-roboto font-bold text-text32">Oficina</p>
                         <p class="text-[#082252] font-roboto font-normal text-text16">Visítanos en nuestra oficina para conocer nuestras soluciones de tratamiento de agua en persona.</p>
-                        <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">Pasaje 47 Mz. D Lt. 2 N.120 Urb. Retablo Etapa 2 Comas - Lima</p>
+                        <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->address}}, {{$general[0]->inside}}, {{$general[0]->district}} - {{$general[0]->city}}</p>
                     </div>
                 </div>
             </div>

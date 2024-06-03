@@ -28,18 +28,20 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('components.public.footer', function ($view) {
             // Obtener los datos del footer
-            $datosgenerales = General::all(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
+            $general = General::all(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
             // Pasar los datos a la vista
-            $view->with('datosgenerales', $datosgenerales);
+            $view->with('general', $general);
         });
 
         View::composer('components.public.header', function ($view) {
             // Obtener los datos del footer
             $submenucategorias = Category::all(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
             $submenucolecciones = Collection::all();
+            $general = General::all();
             // Pasar los datos a la vista
             $view->with('submenucategorias', $submenucategorias)
-                 ->with('submenucolecciones', $submenucolecciones);
+                 ->with('submenucolecciones', $submenucolecciones)
+                 ->with('general', $general);
         });
 
         View::composer('components.app.sidebar', function ($view) {

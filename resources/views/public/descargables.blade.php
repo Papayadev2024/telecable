@@ -1,5 +1,5 @@
-@extends('components.public.matrix')
-
+@extends('components.public.matrix', ['pagina'=>'descargables'])
+@section('titulo', 'Catálogo')
 @section('css_importados')
 
 @stop
@@ -200,19 +200,23 @@
 
                         <div class="flex flex-col gap-2 justify-center">
 
-                            <form action="" id="footerFormulario"
+                            <form   id="footerFormulario"
                                 class="flex flex-col md:flex-row md:justify-start md:items-center gap-5">
+                                @csrf
                                 <div class="w-full">
-                                    <input type="text"
+                                    <input type="email"
+                                        required name="email" id="emailFooter"
                                         class="bg-white px-5 py-3 rounded-xl w-full placeholder:text-opacity-40 text-[#082252] transition-all focus:border-transparent border-0 focus:font-semibold"
                                         placeholder="Introduce tu correo electrónico" />
+                                    <input type="hidden" id="nameFooter" required name="full_name" value="Usuario suscrito" />
+                                    <input type="hidden" id="tipo" placeholder="tipo" name="tipo_message" value="Inscripción" />
                                 </div>
 
                                 <div class="flex justify-center items-center w-full md:w-auto">
-                                    <a href="#"
+                                    <button type="submit"
                                         class="font-roboto font-normal text-text16 text-white py-3 px-6 rounded-xl w-full md:w-auto text-center bg-[#FF5E14]">
                                         Suscribe
-                                    </a>
+                                    </button>
                                 </div>
                             </form>
 

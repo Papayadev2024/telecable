@@ -31,6 +31,7 @@ use App\Http\Controllers\LogosClientController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LiquidacionController;
 use App\Http\Controllers\MicrocategoryController;
+use App\Http\Controllers\NewsletterSubscriberController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductsController;
@@ -43,6 +44,7 @@ use App\Http\Controllers\ValoresAtributosController;
 use App\Http\Controllers\TagController;
 use App\Models\AboutUs;
 use App\Models\Microcategory;
+use App\Models\NewsletterSubscriber;
 use App\Models\Price;
 
 /*
@@ -84,7 +86,7 @@ Route::get('/buscar', [IndexController::class, 'searchProduct'])->name('buscar')
 Route::post('/procesarcarrito', [IndexController::class, 'procesarCarrito'])->name('procesar.carrito');
 Route::post('catalogo_filtro_ajax', [IndexController::class, 'catalogoFiltroAjax'])->name('catalogo_filtro_ajax');
 Route::post('cambiogaleria', [IndexController::class, 'cambioGaleria'])->name('cambioGaleria');
-
+Route::post('/subscripciones/guardar', [NewsletterSubscriberController::class, 'saveSubscripciones'])->name('subscripciones.guardar') ;
 /* Página 404 */
 Route::get('/404', [IndexController::class, 'error'] )->name('error');
 /* Formulario de contacto */
@@ -231,6 +233,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::get('/orders', [PedidosController::class, 'listadoPedidos'])->name('orders');
         Route::get('/orders/{id}', [PedidosController::class, 'verPedido'])->name('verPedido');
         
+        //Suscripciones
+        Route::get('/subscripciones', [NewsletterSubscriberController::class, 'showSubscripciones'])->name('subscripciones') ;
         
 
         Route::fallback(function() {
