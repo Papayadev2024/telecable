@@ -266,3 +266,5 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Customer'])->group(function 
 
 
 });
+
+Route::fallback(fn () => response()->view('public.404', [], 404));
