@@ -86,8 +86,9 @@
   </x-modal.content>
 
   <x-modal.button id="btn-modal-preview" ref="preview-modal" is-hidden></x-modal.button>
-  <x-modal.content id="preview-modal" title="Previsualizar plantilla" btn-submit-text="Aceptar" size="xxl" no-padding >
-    <iframe src="/" style="width: 100%; height: calc(100vh - 175px); border: none"></iframe>
+  <x-modal.content id="preview-modal" title="Previsualizar plantilla" btn-submit-text="Aceptar" size="xxl"
+    no-padding>
+    <iframe id="previewer" src="/" style="width: 100%; height: calc(100vh - 175px); border: none"></iframe>
   </x-modal.content>
 </x-app-layout>
 
@@ -254,15 +255,23 @@
   })
 
   // TODO: logica para la previsualizacion
-  $(document).on('click', '#btn-preview', function() {
-    $('#btn-modal-preview').trigger('click');
-
+  $(document).on('click', '#btn-preview', async function() {
     const button = $(this)
     const data = button.data('template')
 
-    console.log(data)
+    // DONE: Logica para obtener la plantilla
+    const res = await fetch(`/api/admin/templates/${data.id}`, {
+      headers: {
+        'X-Xsrf-Token': token
+      }
+    })
+    const blob = await res.blob()
+    const url = File.toURL(blob)
+    $('#previewer').attr('src', url)
 
-    $('#preview-modal [data-title]').text(data.name)
+    $('#btn-modal-preview').trigger('click');
+
+    $('#preview-modal [data-title]').html(`${data.name} <span class="text-gray-500">${data.description}</span>`)
   })
 
   // DONE

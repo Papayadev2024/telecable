@@ -23,6 +23,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
     Route::prefix('admin')->group(function () {
 
         // Template routes
+        Route::get('/templates/{id}', [TemplateController::class, 'get'])->name('templates.get');
         Route::get('/templates', [TemplateController::class, 'list'])->name('templates.list');
         Route::post('/templates', [TemplateController::class, 'save'])->name('templates.save');
         Route::put('/templates', [TemplateController::class, 'upload'])->name('templates.upload');

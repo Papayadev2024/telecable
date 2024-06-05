@@ -15,10 +15,18 @@ class TemplateController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function get(Request $request, $id)
     {
-        $templates = Template::where('status', true)->get();
-        return view('pages.templates.index', compact('templates'));
+        $template = Template::find($id);
+        if ($template) {
+            return response($template->content ?? '', 200, [
+                'Content-Type' => 'text/html'
+            ]);
+        } else {
+            return response('404 Not Found', 404, [
+                'Content-Type' => 'text/html'
+            ]);
+        }
     }
 
     public function list(Request $request)
