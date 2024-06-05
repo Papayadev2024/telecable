@@ -80,10 +80,14 @@
   </x-modal.content>
 
   <x-modal.button id="btn-modal-content" ref="content-modal" is-hidden></x-modal.button>
-
   <x-modal.content id="content-modal" title="Cargar contenido" btn-submit-text="Guardar">
     <x-form.input id="txt-id2" type="hidden" />
     <x-form.input id="file" label="Contenido HTML" type="file" required />
+  </x-modal.content>
+
+  <x-modal.button id="btn-modal-preview" ref="preview-modal" is-hidden></x-modal.button>
+  <x-modal.content id="preview-modal" title="Previsualizar plantilla" btn-submit-text="Aceptar" size="xxl" no-padding >
+    <iframe src="/" style="width: 100%; height: calc(100vh - 175px); border: none"></iframe>
   </x-modal.content>
 </x-app-layout>
 
@@ -93,7 +97,7 @@
 <script type="text/javascript">
   const token = decodeURIComponent(Cookies.get('XSRF-TOKEN'))
 
-  // FIXME: Si la plantilla no esta visible debe marcarse como no visible
+  // DONE: Si la plantilla no esta visible debe marcarse como no visible
   const dataTable = new DataTable('#tabladatos', {
     responsive: true,
     language: {
@@ -235,17 +239,6 @@
   });
 
   // DONE
-  $(document).on('click', '#btn-upload', function() {
-    $('#btn-modal-content').trigger('click');
-
-    const button = $(this)
-    const data = button.data('template')
-
-    $('#content-modal [data-title]').text(`Cargar contenido de ${data.name}`)
-    $('#txt-id2').val(data.id)
-  })
-
-  // DONE
   $(document).on('click', '#btn-edit', function() {
     $('#btn-modal').trigger('click');
 
@@ -257,6 +250,40 @@
     $('#txt-id').val(data.id)
     $('#txt-name').val(data.name)
     $('#txt-description').val(data.description)
+  })
+
+  // DONE
+  $(document).on('click', '#btn-upload', function() {
+    $('#btn-modal-content').trigger('click');
+
+    const button = $(this)
+    const data = button.data('template')
+
+    $('#content-modal [data-title]').text(`Cargar contenido de ${data.name}`)
+    $('#txt-id2').val(data.id)
+  })
+
+  // TODO: logica para la previsualizacion
+  $(document).on('click', '#btn-preview', function() {
+    $('#btn-modal-preview').trigger('click');
+
+    const button = $(this)
+    const data = button.data('template')
+
+    console.log(data)
+
+    $('#preview-modal [data-title]').text(data.name)
+  })
+
+  // DONE
+  $(document).on('click', '#btn-upload', function() {
+    $('#btn-modal-content').trigger('click');
+
+    const button = $(this)
+    const data = button.data('template')
+
+    $('#content-modal [data-title]').text(`Cargar contenido de ${data.name}`)
+    $('#txt-id2').val(data.id)
   })
 
   // DONE:
