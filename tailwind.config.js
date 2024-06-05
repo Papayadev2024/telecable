@@ -1,6 +1,7 @@
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 const plugin = require('tailwindcss/plugin');
+const flowbite = require('flowbite/plugin')
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -10,6 +11,7 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.js',
+        "./node_modules/flowbite/**/*.js"
     ],
     darkMode: 'class',
     theme: {
@@ -17,18 +19,18 @@ export default {
             stroke: (theme) => ({
                 custom: theme("colors.black"),
                 strokeWithe: "#ffffff",
-              }),
+            }),
             fill: (theme) => ({
                 bgAzul: "#254F9A",
                 bgAzul: "#0071BE",
                 bgWhite: "#ffffff",
                 bgBlack: "#000000",
-              }),
+            }),
             fontWeight: {
                 medium: "500",
                 regular: "400",
                 semibold: "600",
-              },
+            },
             boxShadow: {
                 DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.02)',
                 md: '0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
@@ -106,8 +108,8 @@ export default {
                 bgWhite: "#FFFFFF",
                 bgButtonBaseGreen: "#BFDE8E",
                 bgRosa: "#F5F5F5",
-              },
-              textColor: {
+            },
+            textColor: {
                 colorSubtitle: "#113E55",
                 colorSubtitleLittle: "#173525",
                 colorAdd: "#2D694B",
@@ -117,16 +119,16 @@ export default {
                 textAzul: "#00395F",
                 textBlack: "#111111",
                 textGray: "#A6A6A6",
-              },
-              borderColor: {
+            },
+            borderColor: {
                 selectCheck: "#173525",
                 colorBorder: "#151515",
-              },
+            },
 
-              backgroundImage: {
+            backgroundImage: {
                 "close-menu": "url(../images/prueba/icon-close.svg)",
                 "open-menu": "url(../images/prueba/icon-hamburger.svg)",
-              },
+            },
 
             screens: {
                 xs: '320px',
@@ -169,6 +171,6 @@ export default {
                 modifySelectors(({ className }) => `.sidebar-expanded .${e(`sidebar-expanded${separator}${className}`)}`);
             });
         }),
-      
+        flowbite
     ],
 };

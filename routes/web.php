@@ -42,10 +42,12 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ValoresAtributosController;
 
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\TemplateController;
 use App\Models\AboutUs;
 use App\Models\Microcategory;
 use App\Models\NewsletterSubscriber;
 use App\Models\Price;
+use App\Models\Template;
 
 /*
 |--------------------------------------------------------------------------
@@ -235,6 +237,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         
         //Suscripciones
         Route::get('/subscripciones', [NewsletterSubscriberController::class, 'showSubscripciones'])->name('subscripciones') ;
+
+        Route::get('/templates', fn() => view('pages.templates.index'))->name('templates.index');
         
 
         Route::fallback(function() {
