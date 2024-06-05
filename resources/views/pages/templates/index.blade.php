@@ -204,6 +204,7 @@
   // DONE
   $('#btn-modal-content').on('click', () => {
     document.getElementById('content-modal').reset()
+    console.log('hola')
   })
 
   // DONE: Agregar logica de cambio de estado de visibilidad
@@ -250,17 +251,6 @@
     $('#txt-id').val(data.id)
     $('#txt-name').val(data.name)
     $('#txt-description').val(data.description)
-  })
-
-  // DONE
-  $(document).on('click', '#btn-upload', function() {
-    $('#btn-modal-content').trigger('click');
-
-    const button = $(this)
-    const data = button.data('template')
-
-    $('#content-modal [data-title]').text(`Cargar contenido de ${data.name}`)
-    $('#txt-id2').val(data.id)
   })
 
   // TODO: logica para la previsualizacion
