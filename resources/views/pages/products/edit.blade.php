@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Editar Producto">
   @section('css')
     <link rel="stylesheet" href="{{ asset('/css/vendor/dropzone.min.css') }}" />
   @endsection

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Crear FAQ">
 
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
     <form action="{{ route('faqs.store') }}" method="POST" enctype="multipart/form-data">

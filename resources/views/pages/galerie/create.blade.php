@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Crear Galeria">
 
   @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"
