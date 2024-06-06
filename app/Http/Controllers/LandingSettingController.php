@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Landing;
+use App\Models\LandingSetting;
 use Illuminate\Http\Request;
 use SoDe\Extend\Response;
 
@@ -10,13 +10,13 @@ class LandingSettingController extends Controller
 {
     public function massive(Request $request)
     {
+        dump($request->all());
         $response = new Response();
         try {
-
             $settings = $request->all();
 
             foreach ($settings as $setting) {
-                Landing::updateOrCreate(['id' => $setting['id']], $setting);
+                LandingSetting::updateOrCreate(['id' => $setting['id']], $setting);
             }
             $response->status = 200;
             $response->message = 'Operacion correcta';

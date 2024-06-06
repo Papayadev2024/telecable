@@ -86,16 +86,17 @@
     const request = [...$('#variables-container input')].map(e => {
       const input = $(e)
       return {
-        landing_id: {{$landing->id}},
-        id: input.attr('data-id'),
+        landing_id: {{ $landing->id }},
+        id: Number(input.attr('data-id')) || null,
         name: input.attr('data-name'),
         value: input.val()
       }
     })
 
-    const res = await fetch("{{route('landingSettings.massive')}}", {
+    const res = await fetch("{{ route('landingSettings.massive') }}", {
       method: 'POST',
       headers: {
+        'Content-Type': 'application/json',
         'X-Xsrf-Token': token
       },
       body: JSON.stringify(request),
