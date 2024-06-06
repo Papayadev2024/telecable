@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Template;
-use App\Http\Requests\StoreTemplateRequest;
-use App\Http\Requests\UpdateTemplateRequest;
 use Exception;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
 use SoDe\Extend\Response;
 
 class TemplateController extends Controller

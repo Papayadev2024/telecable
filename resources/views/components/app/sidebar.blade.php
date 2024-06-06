@@ -483,88 +483,11 @@
       </div>
 
       <!-- Generador de Landing -->
-      <div>
-        <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
-          <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
-            aria-hidden="true">•••</span>
-          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Generador de Landing</span>
-        </h3>
-        <ul class="mt-3">
-
-          <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['templates'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['templates'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('templates.index') }}">
-              <div class="flex items-center">
-                <i class="fas fa-window-restore"></i>
-                <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Plantillas</span>
-              </div>
-            </a>
-          </li>
-          <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['valoresattributes'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['valoresattributes'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('valoresattributes.index') }}">
-              <div class="flex items-center">
-                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['valoresattributes'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                    d="M1 3h22v20H1z" />
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['valoresattributes'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
-                </svg>
-                <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  Valor de atributo</span>
-              </div>
-            </a>
-          </li>
-
-          <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['tags'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['tags'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('tags.index') }}">
-              <div class="flex items-center">
-                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['tags'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                    d="M1 3h22v20H1z" />
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['tags'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
-                </svg>
-                <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Etiquetas</span>
-              </div>
-            </a>
-          </li>
-
-          <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['tags'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['tags'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('prices.index') }}">
-              <div class="flex items-center">
-                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['tags'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                    d="M1 3h22v20H1z" />
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['tags'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
-                </svg>
-                <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Costos
-                  de Envio</span>
-              </div>
-            </a>
-          </li>
-
-
-        </ul>
-      </div>
-
+      <x-menu.group title="Generador de Landing">
+        <x-menu.item id="templates" href="{{ route('templates.index') }}"
+          icon=" fas fa-window-maximize">Plantillas</x-menu.item>
+        <x-menu.item id="landings" href="{{ route('landings.index') }}" icon="fas fa-pager">Landings</x-menu.item>
+      </x-menu.group>
     </div>
 
     <!-- Expand / collapse button -->

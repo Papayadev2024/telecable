@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\LandingSettingController;
 use App\Http\Controllers\TemplateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +31,15 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::put('/templates', [TemplateController::class, 'upload'])->name('templates.upload');
         Route::patch('/templates', [TemplateController::class, 'visible'])->name('templates.visible');
         Route::delete('/templates/{id}', [TemplateController::class, 'delete'])->name('templates.delete');
+
+        // Template routes
+        Route::get('/landings/{id}', [LandingController::class, 'get'])->name('landings.get');
+        Route::get('/landings', [LandingController::class, 'list'])->name('landings.list');
+        Route::post('/landings', [LandingController::class, 'save'])->name('landings.save');
+        Route::put('/landings', [LandingController::class, 'upload'])->name('landings.upload');
+        Route::patch('/landings', [LandingController::class, 'visible'])->name('landings.visible');
+        Route::delete('/landings/{id}', [LandingController::class, 'delete'])->name('landings.delete');
+
+        Route::post('/landing-settings/massive', [LandingSettingController::class, 'massive'])->name('landingSettings.massive');
     });
 });

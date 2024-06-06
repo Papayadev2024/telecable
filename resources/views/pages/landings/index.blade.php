@@ -1,31 +1,35 @@
-<x-app-layout title="Plantillas">
+<x-app-layout title="Landings">
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
     <section class="py-4 border-b border-slate-100 dark:border-slate-700">
-      <x-modal.button id="btn-modal" ref="templates-modal" id-hidden>
-        Agregar plantilla
+      <x-modal.button id="btn-modal" ref="landings-modal" id-hidden>
+        Agregar landing
       </x-modal.button>
     </section>
 
     <x-card>
       <x-card.header>
-        Lista de plantillas
+        Lista de Landings
       </x-card.header>
       <x-card.body>
         <table id="tabladatos" class="display text-lg" style="width:100%">
           <thead>
             <tr>
-              <th>Nombre</th>
+              <th>Plantilla base</th>
+              <th>Landing</th>
               <th>Descripción</th>
-              <th>Visible</th>
+              <th>Pagina</th>
+              <th>Publico</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody></tbody>
           <tfoot>
             <tr>
-              <th>Nombre</th>
+              <th>Plantilla base</th>
+              <th>Landing</th>
               <th>Descripción</th>
-              <th>Visible</th>
+              <th>Pagina</th>
+              <th>Publico</th>
               <th>Acciones</th>
             </tr>
           </tfoot>
@@ -34,28 +38,28 @@
     </x-card>
   </div>
 
-  <x-modal.content id="templates-modal" title="Nueva plantilla" btn-submit-text="Guardar">
+  <x-modal.content id="landings-modal" title="Nueva landing" btn-submit-text="Guardar">
     <x-form.input id="txt-id" type="hidden" />
-    <x-form.input id="txt-name" label="Nombre de plantilla" required />
-    <x-form.textarea id="txt-description" label="Descripcion de la plantilla" />
-  </x-modal.content>
-
-  <x-modal.button id="btn-modal-content" ref="content-modal" is-hidden></x-modal.button>
-  <x-modal.content id="content-modal" title="Cargar contenido" btn-submit-text="Guardar">
-    <x-form.input id="txt-id2" type="hidden" />
-    <x-form.input id="file" label="Contenido HTML" type="file" required />
+    <x-form.select id="cbo-template" label="Plantilla base" required>
+      @foreach ($templates as $template)
+        <option value="{{ $template->id }}">{{ $template->name }}</option>
+      @endforeach
+    </x-form.select>
+    <x-form.input id="txt-name" label="Nombre de la landing" required />
+    <x-form.input id="txt-page" label="Path de la landing" required />
+    <x-form.textarea id="txt-description" label="Descripcion de la landing" />
   </x-modal.content>
 
   <x-modal.button id="btn-modal-preview" ref="preview-modal" is-hidden></x-modal.button>
-  <x-modal.content id="preview-modal" title="Previsualizar plantilla" btn-submit-text="Aceptar" size="xxl"
-    no-padding>
+  <x-modal.content id="preview-modal" title="Previsualizar landing" btn-submit-text="Aceptar" size="xxl" no-padding>
     <iframe id="previewer" src="/" style="width: 100%; height: calc(100vh - 175px); border: none"></iframe>
   </x-modal.content>
 </x-app-layout>
 
-
 <script src="{{ asset('js/cookies.extend.js') }}"></script>
 <script src="{{ asset('js/file.extend.js') }}"></script>
+<script src="{{ asset('js/clipboard.extend.js') }}"></script>
+
 <script type="text/javascript">
   const token = decodeURIComponent(Cookies.get('XSRF-TOKEN'))
 
@@ -66,13 +70,31 @@
       url: "/libs/datatables/es-ES.json"
     },
     ajax: {
-      url: "{{ route('templates.list') }}",
+      url: "{{ route('landings.list') }}",
       headers: {
         'Content-Type': 'application/json',
         'X-Xsrf-Token': token
       }
     },
     columns: [{
+        data: 'template.name',
+        render: (value, type, data, params) => {
+          const div = $('<div>')
+
+          const btnPreview = $('<span>', {
+            id: 'btn-preview',
+            class: 'text-blue-500 cursor-pointer',
+            'data-template': JSON.stringify(data.template),
+            title: 'Previsualizar plantilla base',
+            tippy: ''
+          }).html(data.template.name)
+
+          div.append(btnPreview)
+
+          return div.html()
+        }
+      },
+      {
         data: 'name'
       },
       {
@@ -83,7 +105,20 @@
         }
       },
       {
-        data: 'visible',
+        data: 'page',
+        render: (value, type, data, params) => {
+          const a = $('<a>', {
+            class: 'text-blue-500 hover:underline',
+            href: `//${location.host}/landing/${data.page}`,
+            target: '_blank',
+            title: `Ver ${data.name} en una nueva ventana`,
+            tippy: ''
+          }).text(data.page)
+          return a.prop('outerHTML')
+        }
+      },
+      {
+        data: 'publico',
         render: (value, type, data, params) => {
           const div = $('<div>')
           const input = $('<input>', {
@@ -111,37 +146,37 @@
             id: 'btn-edit',
             class: 'bg-yellow-400 px-3 py-2 rounded text-white cursor-pointer me-1',
             'data-template': JSON.stringify(data),
-            title: 'Editar plantilla',
+            title: 'Editar landing',
             tippy: ''
           }).html('<i class="fa-regular fa-pen-to-square"></i>')
 
-          const btnLoad = $('<button>', {
-            id: 'btn-upload',
+          const btnConfig = $('<a>', {
+            href: `/admin/landings/config/${data.id}`,
             class: 'bg-blue-400 px-3 py-2 rounded text-white cursor-pointer me-1',
             'data-template': JSON.stringify(data),
-            title: 'Cargar contenido',
+            title: 'Configurar landing',
             tippy: ''
-          }).html('<i class="fa fa-upload"></i>')
+          }).html('<i class="fa fa-cog"></i>')
 
-          const btnPreview = $('<button>', {
-            id: 'btn-preview',
-            class: 'bg-green-400 px-3 py-2 rounded text-white cursor-pointer me-1',
-            'data-template': JSON.stringify(data),
-            title: 'Previsualizar contenido',
+          const btnCopy = $('<button>', {
+            id: 'btn-copy',
+            class: 'bg-green-600 px-3 py-2 rounded text-white cursor-pointer me-1',
+            'data-landing': JSON.stringify(data),
+            'title': 'Copiar URL',
             tippy: ''
-          }).html('<i class="fa fa-eye"></i>')
+          }).html('<i class="fa-regular fa-copy"></i>')
 
           const btnDelete = $('<button>', {
             id: 'btn-delete',
             class: 'bg-red-600 px-3 py-2 rounded text-white cursor-pointer',
             'data-id': data.id,
-            'title': 'Eliminar plantilla',
+            'title': 'Eliminar landing',
             tippy: ''
           }).html('<i class="fa-regular fa-trash-can"></i>')
 
           div.append(btnEdit)
-          div.append(btnLoad)
-          div.append(btnPreview)
+          div.append(btnConfig)
+          div.append(btnCopy)
           div.append(btnDelete)
 
           return div.html()
@@ -157,16 +192,17 @@
     }
   })
 
-  // DONE
-  $('#btn-modal').on('click', () => {
-    document.getElementById('templates-modal').reset()
-    $('#templates-modal [data-title]').text('Nueva plantila')
+  $('#txt-name').on('keyup', () => {
+    const name = $('#txt-name').val()
+    const page = String(name).toLowerCase().split(' ').filter(Boolean).join('-')
+    $('#txt-page').val(page)
   })
 
   // DONE
-  $('#btn-modal-content').on('click', () => {
-    document.getElementById('content-modal').reset()
-    console.log('hola')
+  $('#btn-modal').on('click', () => {
+    document.getElementById('landings-modal').reset()
+    $('#cbo-template').val(null)
+    $('#landings-modal [data-title]').text('Nueva plantila')
   })
 
   // DONE: Agregar logica de cambio de estado de visibilidad
@@ -177,7 +213,7 @@
     const id = input.data('id')
     const visible = input.prop('checked')
 
-    const res = await fetch("{{ route('templates.visible') }}", {
+    const res = await fetch("{{ route('landings.visible') }}", {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -192,7 +228,7 @@
     if (!res.ok) {
       Swal.fire({
         icon: "error",
-        title: `Ocurrio un error al actualizar la visibilidad de la plantilla: ${data?.message ?? 'Error inesperado'}`,
+        title: `Ocurrio un error al actualizar la visibilidad de la landing: ${data?.message ?? 'Error inesperado'}`,
         showConfirmButton: true
       });
       return
@@ -208,10 +244,12 @@
     const button = $(this)
     const data = button.data('template')
 
-    $('#templates-modal [data-title]').text('Modificar plantila')
+    $('#landings-modal [data-title]').text('Modificar plantila')
 
     $('#txt-id').val(data.id)
+    $('#cbo-template').val(data.template_id)
     $('#txt-name').val(data.name)
+    $('#txt-page').val(data.page)
     $('#txt-description').val(data.description)
   })
 
@@ -246,6 +284,14 @@
     $('#txt-id2').val(data.id)
   })
 
+  $(document).on('click', '#btn-copy', function() {
+    const data = JSON.parse($(this).attr('data-landing'))
+    const url = `${location.host}/landing/${data.page}`
+    Clipboard.copy(url, () => {
+      console.log('Se ha copiado')
+    })
+  })
+
   // DONE:
   $(document).on("click", '#btn-delete', async function(e) {
     e.preventDefault()
@@ -257,7 +303,7 @@
     const {
       isConfirmed
     } = await Swal.fire({
-      title: "Seguro que deseas eliminar la plantilla?",
+      title: "Seguro que deseas eliminar la landing?",
       text: "Esta accion es irreversible",
       icon: "warning",
       showCancelButton: true,
@@ -268,7 +314,7 @@
     })
 
     if (isConfirmed) {
-      const res = await fetch(`/api/admin/templates/${id}`, {
+      const res = await fetch(`/api/admin/landings/${id}`, {
         method: 'DELETE',
         headers: {
           'X-Xsrf-Token': token
@@ -279,7 +325,7 @@
       if (!res.ok) {
         Swal.fire({
           icon: "error",
-          title: `Ocurrio un error al eliminar la plantilla: ${data?.message ?? 'Error inesperado'}`,
+          title: `Ocurrio un error al eliminar la landing: ${data?.message ?? 'Error inesperado'}`,
           showConfirmButton: true
         });
         return
@@ -296,16 +342,18 @@
   });
 
   // DONE
-  $('#templates-modal').on('submit', async (e) => {
+  $('#landings-modal').on('submit', async (e) => {
     e.preventDefault()
 
     const request = {
       id: $('#txt-id').val() || undefined,
+      template_id: $('#cbo-template').val(),
       name: $('#txt-name').val(),
+      page: $('#txt-page').val(),
       description: $('#txt-description').val(),
     }
 
-    const res = await fetch("{{ route('templates.save') }}", {
+    const res = await fetch("{{ route('landings.save') }}", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -318,7 +366,7 @@
     if (!res.ok) {
       Swal.fire({
         icon: "error",
-        title: `Ocurrio un error al actualizar la plantilla: ${data?.message ?? 'Error inesperado'}`,
+        title: `Ocurrio un error al actualizar la landing: ${data?.message ?? 'Error inesperado'}`,
         showConfirmButton: true
       });
       return
@@ -331,52 +379,7 @@
       timer: 2000
     });
 
-    $('#templates-modal .btn-close').trigger('click');
-    dataTable.ajax.reload();
-  })
-
-  // DONE: Evento submit de upload
-  $('#content-modal').on('submit', async (e) => {
-    e.preventDefault()
-
-    const file = $('#file').prop('files')[0]
-    const url = await File.toURL(file)
-
-    const fileRes = await fetch(url)
-    const html = await fileRes.text()
-
-    const request = {
-      id: $('#txt-id2').val(),
-      content: html
-    }
-
-    const res = await fetch("{{ route('templates.upload') }}", {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Xsrf-Token': token
-      },
-      body: JSON.stringify(request)
-    })
-
-    const data = await res.json()
-    if (!res.ok) {
-      Swal.fire({
-        icon: "error",
-        title: `Ocurrio un error al cargar el contenido de la plantilla: ${data?.message ?? 'Error inesperado'}`,
-        showConfirmButton: true
-      });
-      return
-    }
-
-    Swal.fire({
-      icon: "success",
-      title: "Contenido guardado correctamente",
-      showConfirmButton: false,
-      timer: 2000
-    });
-
-    $('#content-modal .btn-close').trigger('click');
+    $('#landings-modal .btn-close').trigger('click');
     dataTable.ajax.reload();
   })
 </script>
