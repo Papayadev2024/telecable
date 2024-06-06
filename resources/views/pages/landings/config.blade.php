@@ -13,7 +13,7 @@
           </div>
 
           <p class="font-normal text-gray-700 dark:text-gray-400">
-            Variables de <a class="text-blue-500" href="/landing/{{ $landing->page }}"
+            Variables de <a class="text-blue-500" href="/landing/{{ $landing->page }}" target="_blank"
               title="Ver {{ $landing->name }} en una nueva ventana" tippy>
               <i class="fa fa-link"></i>
               {{ $landing->name }}
