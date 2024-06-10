@@ -899,7 +899,7 @@ class IndexController extends Controller
           <tr style="margin-top: 300px">
             <td>
               <a
-                href="https://' .
+                href="' .
                 htmlspecialchars($generales->facebook, ENT_QUOTES, 'UTF-8') .
                 '"
                 target="_blank"
@@ -909,7 +909,7 @@ class IndexController extends Controller
               /></a>
 
               <a
-                href="https://' .
+                href="' .
                 htmlspecialchars($generales->instagram, ENT_QUOTES, 'UTF-8') .
                 '"
                 target="_blank"
@@ -919,7 +919,7 @@ class IndexController extends Controller
               /></a>
 
               <a
-                href="https://' .
+                href="' .
                 htmlspecialchars($generales->twitter, ENT_QUOTES, 'UTF-8') .
                 '"
                 target="_blank"
@@ -929,7 +929,7 @@ class IndexController extends Controller
               /></a>
 
               <a
-                href="https://' .
+                href="' .
                 htmlspecialchars($generales->linkedin, ENT_QUOTES, 'UTF-8') .
                 '"
                 target="_blank"
@@ -939,7 +939,7 @@ class IndexController extends Controller
               /></a>
 
               <a
-                href="https://' .
+                href="' .
                 htmlspecialchars($generales->youtube, ENT_QUOTES, 'UTF-8') .
                 '"
                 target="_blank"
@@ -1131,7 +1131,7 @@ class IndexController extends Controller
           <tr>
             <td>
               <a
-                href="https://' .
+                href="' .
                 htmlspecialchars($generales->facebook, ENT_QUOTES, 'UTF-8') .
                 '"
                 target="_blank"
@@ -1141,7 +1141,7 @@ class IndexController extends Controller
               /></a>
 
               <a
-                href="https://' .
+                href="' .
                 htmlspecialchars($generales->instagram, ENT_QUOTES, 'UTF-8') .
                 '"
                 target="_blank"
@@ -1151,7 +1151,7 @@ class IndexController extends Controller
               /></a>
 
               <a
-                href="https://' .
+                href="' .
                 htmlspecialchars($generales->twitter, ENT_QUOTES, 'UTF-8') .
                 '"
                 target="_blank"
@@ -1161,7 +1161,7 @@ class IndexController extends Controller
               /></a>
 
               <a
-                href="https://' .
+                href="' .
                 htmlspecialchars($generales->linkedin, ENT_QUOTES, 'UTF-8') .
                 '"
                 target="_blank"
@@ -1171,7 +1171,7 @@ class IndexController extends Controller
               /></a>
 
               <a
-                href="https://' .
+                href="' .
                 htmlspecialchars($generales->youtube, ENT_QUOTES, 'UTF-8') .
                 '"
                 target="_blank"
