@@ -21,10 +21,22 @@
           </p>
           <hr class="my-2">
           <div id="variables-container" style="height: calc(100vh - 225px); overflow-y: auto">
-            @foreach ($finalVariables as $i => $variable)
-              <x-form.input-icon id="variable-{{ $i }}" data-id="{{ $variable->id }}"
-                data-name="{{ $variable->name }}" label="{{ $variable->name }}" icon="fas fa-hashtag"
-                value="{{ $variable->value }}" />
+            @foreach ($variables as $i => $variable)
+              @switch($variable->type)
+                @case('longtext')
+                  <x-form.textarea id="variable-{{ $i }}" data-id="{{ $variable->id }}"
+                    data-name="{{ $variable->name }}" data-type="{{ $variable->type }}" label="{{ $variable->name }}"
+                    rows="3">{{ $variable->value }}</x-form.textarea>
+                @break
+
+                @case(2)
+                @break
+
+                @default
+                  <x-form.input id="variable-{{ $i }}" data-id="{{ $variable->id }}"
+                    data-name="{{ $variable->name }}" data-type="{{ $variable->type }}" label="{{ $variable->name }}"
+                    icon="fas fa-hashtag" value="{{ $variable->value }}" />
+              @endswitch
             @endforeach
           </div>
         </div>
@@ -46,7 +58,7 @@
 
   const drawReplacing = async () => {
     const data = {};
-    $('#variables-container input').each(function() {
+    $('#variables-container [id^="variable"]').each(function() {
       const input = $(this)
       const key = input.attr('data-name')
       const value = input.val()
@@ -83,25 +95,43 @@
   })
 
   $('#btn-save').on('click', async () => {
-    const request = [...$('#variables-container input')].map(e => {
-      const input = $(e)
-      return {
-        landing_id: {{ $landing->id }},
-        id: Number(input.attr('data-id')) || null,
-        name: input.attr('data-name'),
-        value: input.val()
-      }
-    })
+    try {
+      const request = [...$('#variables-container [id^="variable"]')].map(e => {
+        const input = $(e)
+        return {
+          landing_id: {{ $landing->id }},
+          id: Number(input.attr('data-id')) || null,
+          name: input.attr('data-name'),
+          value: input.val(),
+          type: input.attr('data-type') || 'text'
+        }
+      })
 
-    const res = await fetch("{{ route('landingSettings.massive') }}", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Xsrf-Token': token
-      },
-      body: JSON.stringify(request),
-    })
+      const res = await fetch("{{ route('landingSettings.massive') }}", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Xsrf-Token': token
+        },
+        body: JSON.stringify(request),
+      })
 
-    const data = await res.json()
+      const data = await res.json()
+
+      if (!res.ok) throw new Error(data.message ?? 'Error inesperado')
+
+      Swal.fire({
+        icon: "success",
+        title: "Las variables se han guardado correctamente",
+        showConfirmButton: false,
+        timer: 2000
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: `Ocurrio un error al guardar las variables de la landing: ${error.message}`,
+        showConfirmButton: true
+      });
+    }
   })
 </script>

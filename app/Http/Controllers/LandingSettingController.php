@@ -10,7 +10,6 @@ class LandingSettingController extends Controller
 {
     public function massive(Request $request)
     {
-        dump($request->all());
         $response = new Response();
         try {
             $settings = $request->all();

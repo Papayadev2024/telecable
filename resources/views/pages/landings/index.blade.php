@@ -38,16 +38,26 @@
     </x-card>
   </div>
 
-  <x-modal.content id="landings-modal" title="Nueva landing" btn-submit-text="Guardar">
-    <x-form.input id="txt-id" type="hidden" />
-    <x-form.select id="cbo-template" label="Plantilla base" required>
-      @foreach ($templates as $template)
-        <option value="{{ $template->id }}">{{ $template->name }}</option>
-      @endforeach
-    </x-form.select>
-    <x-form.input id="txt-name" label="Nombre de la landing" required />
-    <x-form.input id="txt-page" label="Path de la landing" required />
-    <x-form.textarea id="txt-description" label="Descripcion de la landing" />
+  <x-modal.content id="landings-modal" title="Nueva landing" btn-submit-text="Guardar" size="xl">
+    <div class="grid gap-4 grid-cols-2">
+      <div>
+        <x-form.input id="txt-id" type="hidden" />
+        <x-form.select id="cbo-template" label="Plantilla base" required>
+          @foreach ($templates as $template)
+            <option value="{{ $template->id }}">{{ $template->name }}</option>
+          @endforeach
+        </x-form.select>
+        <x-form.input id="txt-name" label="Nombre de la landing" required />
+        <x-form.input id="txt-page" label="Path de la landing" required />
+        <x-form.textarea id="txt-description" label="Descripcion de la landing" />
+      </div>
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Previsualizacion
+        </label>
+        <iframe class="shadow rounded-md" id="modal-previewer" src="" style="width: 100%; height: 330px; border: none;"></iframe>
+      </div>
+    </div>
   </x-modal.content>
 
   <x-modal.button id="btn-modal-preview" ref="preview-modal" is-hidden></x-modal.button>
@@ -203,6 +213,7 @@
     document.getElementById('landings-modal').reset()
     $('#cbo-template').val(null)
     $('#landings-modal [data-title]').text('Nueva plantila')
+    $('#modal-previewer').attr('src', null)
   })
 
   // DONE: Agregar logica de cambio de estado de visibilidad
@@ -236,6 +247,19 @@
 
     dataTable.ajax.reload();
   });
+
+  $('#cbo-template').on('change', async () => {
+    const template = $('#cbo-template').val()
+    // DONE: Logica para obtener la plantilla
+    const res = await fetch(`/api/admin/templates/${template}`, {
+      headers: {
+        'X-Xsrf-Token': token
+      }
+    })
+    const blob = await res.blob()
+    const url = File.toURL(blob)
+    $('#modal-previewer').attr('src', url)
+  })
 
   // DONE
   $(document).on('click', '#btn-edit', function() {
@@ -288,7 +312,12 @@
     const data = JSON.parse($(this).attr('data-landing'))
     const url = `${location.host}/landing/${data.page}`
     Clipboard.copy(url, () => {
-      console.log('Se ha copiado')
+      Swal.fire({
+        icon: "success",
+        title: "La URl se ha copiado en el portapapeles",
+        showConfirmButton: false,
+        timer: 2000
+      });
     })
   })
 

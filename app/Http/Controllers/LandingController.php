@@ -27,16 +27,17 @@ class LandingController extends Controller
     public function config(Request $request, $id)
     {
         // Obtener la información de la landing y la plantilla asociada
-        $landing = Landing::select([
+        $landingJpa = Landing::select([
             'landings.*',
-            'templates.content'
+            'templates.content',
+            'templates.data_type'
         ])
             ->join('templates', 'templates.id', 'landings.template_id')
             ->where('landings.id', $id)
             ->first();
 
         // Extraer las variables de la plantilla
-        preg_match_all('/\{\{(\w+)\}\}/', $landing->content, $coincidences);
+        preg_match_all('/\{\{(\w+)\}\}/', $landingJpa->content, $coincidences);
         $variables = [];
         foreach ($coincidences[1] as $variable) {
             // Verificar si la variable ya existe en la lista final
@@ -52,7 +53,8 @@ class LandingController extends Controller
                 $variables[] = (object)[
                     'id' => 0,
                     'name' => $variable,
-                    'value' => ''
+                    'value' => '',
+                    'type' => 'text'
                 ];
             }
         }
@@ -66,12 +68,17 @@ class LandingController extends Controller
             $settingsMap[$setting->name] = $setting;
         }
 
+        $data_types = JSON::parse($landingJpa->data_type ?? '{}');
+
         // Combinar variables con settings guardados
-        $finalVariables = array_map(function ($variable) use ($settingsMap) {
+        $finalVariables = array_map(function ($variable) use ($settingsMap, $data_types) {
             if (isset($settingsMap[$variable->name])) {
                 // Si el setting ya existe en la BD, actualizamos id y value
                 $variable->id = $settingsMap[$variable->name]->id;
                 $variable->value = $settingsMap[$variable->name]->value;
+            }
+            if (isset($data_types[$variable->name])) {
+                $variable->type = $data_types[$variable->name];
             }
             return $variable;
         }, $variables);
@@ -85,7 +92,10 @@ class LandingController extends Controller
 
         $regex = '{{s*${key}s*}}';
         // Devolver la vista con las variables finales y otros datos
-        return view('pages.landings.config', compact('landing', 'finalVariables', 'regex'));
+        return view('pages.landings.config')
+        ->with('landing', $landingJpa)
+        ->with('variables', $finalVariables)
+        ->with('regex', $regex);
     }
 
     public function get(Request $request, $page)
