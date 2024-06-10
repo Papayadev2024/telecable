@@ -94,7 +94,7 @@
 
 
               <div class="md:col-span-5">
-                <label for="description">Subir imagen (Vista desktop: 1440x735px)</label>
+                <label for="description">Imagen Desktop</label>
                 <div class="relative mb-2 mt-2">
                   <img src="{{ asset($slider->url_image . $slider->name_image) }}"
                     class="max-w-xs max-h-48 object-cover  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -104,7 +104,7 @@
 
 
               <div class="md:col-span-5">
-                <label for="imagen">Subir imagen (Vista movil: 735px192px)</label>
+                <label for="imagen">Subir imagen (Vista desktop: 1440x735px)</label>
                 <div class="relative mb-2  mt-2">
                   <input name="imagen"
                     class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -114,7 +114,7 @@
 
 
               <div class="md:col-span-5">
-                <label for="description">Imagen (Lado derecho)</label>
+                <label for="description">Imagen móvil</label>
                 <div class="relative mb-2 mt-2">
                   <img src="{{ asset($slider->url_image . $slider->name_image2) }}"
                     class="max-w-xs max-h-48 object-cover  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -123,7 +123,7 @@
 
 
               <div class="md:col-span-5">
-                <label for="imagen2">Subir una foto</label>
+                <label for="imagen2">Subir imagen (Vista movil: 375px192px)</label>
                 <div class="relative mb-2  mt-2">
                   <input name="imagen2"
                     class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
