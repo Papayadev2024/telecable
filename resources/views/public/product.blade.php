@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <div class="pt-10 md:pt-16 flex flex-col gap-5">
+            {{-- <div class="pt-10 md:pt-16 flex flex-col gap-5">
                 <h3 class="font-roboto font-bold text-text28 text-[#082252]">Características técnicas</h3>
                 <div class="mx-6" data-aos="fade-up" data-aos-offset="150">
                     <ul class="font-roboto font-normal text-text16 list-disc text-[#565656]">
@@ -92,7 +92,7 @@
                         <li>Aliquam bibendum</li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
         </section>
 
         <section class="bg-[#F7F8F8] py-20">
