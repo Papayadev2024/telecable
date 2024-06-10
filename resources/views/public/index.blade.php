@@ -96,9 +96,9 @@
                                     <div class="w-full md:w-auto">
                                         <div
                                             class="flex flex-col items-center w-full md:w-auto md:flex-row md:justify-center md:items-center gap-10">
-                                            <a href="#"
+                                            <a href="{{route('catalogo', 0)}}"
                                                 class="bg-[#FF5E14] py-3 px-6 rounded-xl text-white font-roboto font-semibold text-text16 w-full md:w-auto text-center">Productos</a>
-                                            <a href="#"
+                                            <a href="{{route('contacto')}}"
                                                 class="text-[#FF5E14] font-roboto font-medium text-text16 flex justify-center items-center w-full md:w-auto text-center">
                                                 <span>Contactar</span>
                                                 <div class="flex justify-center items-center">
