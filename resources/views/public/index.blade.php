@@ -170,11 +170,11 @@
                         <div
                         class="flex flex-col gap-5 py-6 px-4 md:p-6 bg-white hover:bg-[#0C4AC3] group md:duration-300 rounded-xl">
                             <div class="flex justify-center items-center">
-                                <a href="#"><img src="{{ asset($categorias->url_image . $categorias->name_image) }}"
+                                <a href="{{route('catalogo', $categorias->id)}}"><img src="{{ asset($categorias->url_image . $categorias->name_image) }}"
                                         alt="Tratamiento de Agua"></a>
                             </div>
                             <div class="flex flex-col gap-2">
-                                <a href="#">
+                                <a href="{{route('catalogo', $categorias->id)}}">
                                     <h2
                                         class="text-[#082252] font-roboto font-bold text-text32 group-hover:text-white md:duration-300">
                                         {{$categorias->name}}</h2>
