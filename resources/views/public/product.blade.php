@@ -44,7 +44,7 @@
                         <div class="flex justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
                             data-aos="fade-up" data-aos-offset="150">
                             <div target="_blank" id="chatonline"
-                                class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-full py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
+                                class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
                                 <span>Cotizar aquí</span>
                                 <div>
                                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
