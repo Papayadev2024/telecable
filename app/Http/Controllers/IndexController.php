@@ -1104,8 +1104,10 @@ class IndexController extends Controller
           <tr>
             <td>
               <a
-                target="_blank"
-                href="#"
+                 target="_blank"
+                href="' .
+                $baseUrllink .
+                '"
                 style="
                   text-decoration: none;
                   background-color: #fdfefd;
@@ -1135,7 +1137,7 @@ class IndexController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="./facebook.png" alt=""
+                <img src="'.$baseUrl .'/facebook.png" alt=""
               /></a>
 
               <a
@@ -1145,7 +1147,7 @@ class IndexController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="./instagram.png" alt=""
+                <img src="'.$baseUrl .'/instagram.png" alt=""
               /></a>
 
               <a
@@ -1155,7 +1157,7 @@ class IndexController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="./twitter.png" alt=""
+                <img src="'.$baseUrl .'/twitter.png" alt=""
               /></a>
 
               <a
@@ -1165,7 +1167,7 @@ class IndexController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="./linkedin.png" alt=""
+                <img src="'.$baseUrl .'/linkedin.png" alt=""
               /></a>
 
               <a
@@ -1175,7 +1177,7 @@ class IndexController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="./youtube.png" alt=""
+                <img src=" '.$baseUrl .' /youtube.png" alt=""
               /></a>
             </td>
           </tr>
