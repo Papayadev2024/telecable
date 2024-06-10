@@ -835,7 +835,7 @@ class IndexController extends Controller
                 justify-content: center;
                 align-items: center;
                 margin: 40px;
-                padding: 0 80px;
+                padding: 0 200px;
               "
             >
               <a href="' .
@@ -1021,7 +1021,7 @@ class IndexController extends Controller
                 justify-content: center;
                 align-items: center;
                 margin: 40px;
-                padding: 0 80px;
+                padding: 0 200px;
               "
             >
                 <a href="' .
