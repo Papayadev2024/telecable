@@ -36,7 +36,7 @@
                     <div class="flex flex-col gap-5 pb-10 border-b-2 border-[#DDDDDD]" data-aos="fade-up"
                         data-aos-offset="150">
                         <h2 id="nombreproducto" class="font-roboto font-bold text-text40 text-[#082252]">{{ $producto->producto }}</h2>
-                        <p class="font-moderat_Bold text-text24 md:text-text28 text-[#111111]">S/ 1999.99</p>
+                        {{-- <p class="font-moderat_Bold text-text24 md:text-text28 text-[#111111]">S/ 1999.99</p> --}}
 
                         <p class="text-[#082252] text-text16 font-roboto font-normal">{{ $producto->extract }}</p>
 
