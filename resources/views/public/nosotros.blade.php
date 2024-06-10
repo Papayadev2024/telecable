@@ -103,7 +103,7 @@
                     @foreach ($staff as $equipo)
                         <div class="flex flex-col gap-3" data-aos="fade-up" data-aos-offset="150">
                             <div class="flex justify-center items-center">
-                                <img src="{{ asset($equipo->name_image) }}" alt="profesionales"
+                                <img src="{{ asset($equipo->url_image . $equipo->name_image) }}" alt="profesionales"
                                     class="w-full rounded-xl object-cover">
                             </div>
 
