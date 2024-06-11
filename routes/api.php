@@ -30,6 +30,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::post('/templates', [TemplateController::class, 'save'])->name('templates.save');
         Route::put('/templates', [TemplateController::class, 'upload'])->name('templates.upload');
         Route::patch('/templates', [TemplateController::class, 'visible'])->name('templates.visible');
+        Route::patch('/templates/data_type', [TemplateController::class, 'regulate'])->name('templates.regulate');
         Route::delete('/templates/{id}', [TemplateController::class, 'delete'])->name('templates.delete');
 
         // Template routes
@@ -41,5 +42,10 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::delete('/landings/{id}', [LandingController::class, 'delete'])->name('landings.delete');
 
         Route::post('/landing-settings/massive', [LandingSettingController::class, 'massive'])->name('landingSettings.massive');
+        Route::patch('/landing-settings/{id}', [LandingSettingController::class, 'regulate'])->name('landingSettings.regulate');
+        Route::patch('/landing-settings', [LandingSettingController::class, 'update'])->name('landingSettings.update');
+        Route::post('/landing-settings', [LandingSettingController::class, 'file'])->name('landingSettings.file');
     });
 });
+
+Route::get('/landing-settings/file/download', [LandingSettingController::class, 'getFile'])->name('landingSettings.getFile');

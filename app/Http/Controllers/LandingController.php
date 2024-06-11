@@ -36,71 +36,25 @@ class LandingController extends Controller
             ->where('landings.id', $id)
             ->first();
 
-        // Extraer las variables de la plantilla
-        preg_match_all('/\{\{(\w+)\}\}/', $landingJpa->content, $coincidences);
-        $variables = [];
-        foreach ($coincidences[1] as $variable) {
-            // Verificar si la variable ya existe en la lista final
-            $exists = false;
-            foreach ($variables as $existingVariable) {
-                if ($existingVariable->name === $variable) {
-                    $exists = true;
-                    break;
-                }
-            }
-            // Si la variable no existe en la lista final, se agrega
-            if (!$exists) {
-                $variables[] = (object)[
-                    'id' => 0,
-                    'name' => $variable,
-                    'value' => '',
-                    'type' => 'text'
-                ];
-            }
-        }
-
-        // Obtener los settings guardados en la base de datos
-        $settingsJpa = LandingSetting::where('landing_id', $id)->get();
-
-        // Crear un diccionario de settings guardados para fácil acceso
-        $settingsMap = [];
-        foreach ($settingsJpa as $setting) {
-            $settingsMap[$setting->name] = $setting;
-        }
-
-        $data_types = JSON::parse($landingJpa->data_type ?? '{}');
-
-        // Combinar variables con settings guardados
-        $finalVariables = array_map(function ($variable) use ($settingsMap, $data_types) {
-            if (isset($settingsMap[$variable->name])) {
-                // Si el setting ya existe en la BD, actualizamos id y value
-                $variable->id = $settingsMap[$variable->name]->id;
-                $variable->value = $settingsMap[$variable->name]->value;
-            }
-            if (isset($data_types[$variable->name])) {
-                $variable->type = $data_types[$variable->name];
-            }
-            return $variable;
-        }, $variables);
-
-        // Eliminar settings que no están en la plantilla actual
-        LandingSetting::where('landing_id', $id)
-            ->whereNotIn('name', array_map(function ($variable) {
-                return $variable->name;
-            }, $variables))
-            ->delete();
-
         $regex = '{{s*${key}s*}}';
+        $regex2 = '{[s*${key}s*]}';
+        $regexContainers = '/{\[(.*?)\]}/gs';
+        $regexVariables = '/{{(.*?)}}/gs';
         // Devolver la vista con las variables finales y otros datos
         return view('pages.landings.config')
-        ->with('landing', $landingJpa)
-        ->with('variables', $finalVariables)
-        ->with('regex', $regex);
+            ->with('landing', $landingJpa)
+            ->with('regex', $regex)
+            ->with('regex2', $regex2)
+            ->with('regexContainers', $regexContainers)
+            ->with('regexVariables', $regexVariables)
+            ->with('llavesBegin', '{{')
+            ->with('llavesEnd', '}}')
+            ->with('and', '&&');
     }
 
     public function get(Request $request, $page)
     {
-        $query = Landing::select(['landings.id', 'templates.content'])
+        $query = Landing::select(['landings.id', 'landings.name', 'templates.content', 'templates.data_type'])
             ->join('templates', 'templates.id', 'landings.template_id')
             ->where('landings.page', $page);
 
@@ -108,13 +62,44 @@ class LandingController extends Controller
         $jpa = $query->first();
 
         if ($jpa) {
-            $landingSettings = LandingSetting::where('landing_id', $jpa->id)->get();
+            $landingSettings = LandingSetting::select([
+                'id', 'name', 'value', 'data_type'
+            ])
+                ->where('landing_id', $jpa->id)
+                ->whereNull('parent')
+                ->get();
 
             $html = $jpa->content;
+            $types = JSON::parse($jpa->data_type);
 
             foreach ($landingSettings as $setting) {
-                $html = str_replace('{{' . $setting->name . '}}', $setting->value, $html);
+                switch ($setting->data_type) {
+                    case 'image':
+                        $html = str_replace('{{' . $setting->name . '}}', url('/') . '/api/landing-settings/file/download?path=' . $setting->value, $html);
+                        break;
+                    case 'container':
+                        $values = [];
+                        $settingValue = JSON::parse($setting->value);
+                        foreach ($settingValue as $object) {
+                            $base = $setting->name;
+                            foreach ($object as $key => $value) {
+                                if (isset($types[$key]) && $types[$key] == 'image') {
+                                    $base = str_replace('{{' . $key . '}}', url('/') . '/api/landing-settings/file/download?path=' . $value, $base);
+                                } else {
+                                    $base = str_replace('{{' . $key . '}}', $value, $base);
+                                }
+                            }
+                            $values[] = $base;
+                        }
+                        $html = str_replace('{[' . $setting->name . ']}', implode('', $values), $html);
+                        break;
+                    default:
+                        $html = str_replace('{{' . $setting->name . '}}', $setting->value, $html);
+                        break;
+                }
             }
+
+            $html = str_replace('{{landing.name}}', $jpa->name, $html);
 
             return response($html ?? '', 200, [
                 'Content-Type' => 'text/html'

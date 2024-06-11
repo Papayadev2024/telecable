@@ -12,6 +12,7 @@ class Template extends Model
     protected $fillable = [
         'name',
         'content',
-        'description'
+        'description',
+        'data_type'
     ];
 }

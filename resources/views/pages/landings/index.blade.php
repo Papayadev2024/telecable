@@ -272,12 +272,13 @@
 
     $('#txt-id').val(data.id)
     $('#cbo-template').val(data.template_id)
+    $('#cbo-template').trigger('change')
     $('#txt-name').val(data.name)
     $('#txt-page').val(data.page)
     $('#txt-description').val(data.description)
   })
 
-  // TODO: logica para la previsualizacion
+  // DONE: logica para la previsualizacion
   $(document).on('click', '#btn-preview', async function() {
     const button = $(this)
     const data = button.data('template')

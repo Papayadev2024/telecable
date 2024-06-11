@@ -40,10 +40,25 @@
     <x-form.textarea id="txt-description" label="Descripcion de la plantilla" />
   </x-modal.content>
 
+  <x-modal.button id="btn-modal-variables" ref="variables-modal" is-hidden></x-modal.button>
+  <x-modal.content id="variables-modal" title="Variables y tipos" btn-submit-text="Guardar">
+    <x-form.input id="txt-id3" type="hidden" />
+    <x-table>
+      <x-slot name="thead">
+        <tr>
+          <x-table.th>Variable</x-table.th>
+          <x-table.th>Tipo</x-table.th>
+        </tr>
+      </x-slot>
+      <x-slot name="tbody"></x-slot>
+    </x-table>
+  </x-modal.content>
+
   <x-modal.button id="btn-modal-content" ref="content-modal" is-hidden></x-modal.button>
   <x-modal.content id="content-modal" title="Cargar contenido" btn-submit-text="Guardar">
     <x-form.input id="txt-id2" type="hidden" />
-    <x-form.input id="file" label="Contenido HTML" type="file" required />
+    <x-form.input id="txt-data_type" type="hidden" />
+    <x-form.file id="file" label="Contenido HTML" required />
   </x-modal.content>
 
   <x-modal.button id="btn-modal-preview" ref="preview-modal" is-hidden></x-modal.button>
@@ -123,6 +138,14 @@
             tippy: ''
           }).html('<i class="fa fa-upload"></i>')
 
+          const btnVariables = $('<button>', {
+            id: 'btn-variables',
+            class: 'bg-black px-3 py-2 rounded text-white cursor-pointer me-1',
+            'data-template': JSON.stringify(data),
+            title: 'Editar tipos de variables',
+            tippy: ''
+          }).html('<i class="fas fa-asterisk"></i>')
+
           const btnPreview = $('<button>', {
             id: 'btn-preview',
             class: 'bg-green-400 px-3 py-2 rounded text-white cursor-pointer me-1',
@@ -141,6 +164,7 @@
 
           div.append(btnEdit)
           div.append(btnLoad)
+          div.append(btnVariables)
           div.append(btnPreview)
           div.append(btnDelete)
 
@@ -215,7 +239,82 @@
     $('#txt-description').val(data.description)
   })
 
-  // TODO: logica para la previsualizacion
+  // DONE: logica para la editar el contenido de la plantilla
+  $(document).on('click', '#btn-variables', async function() {
+    const button = $(this)
+    const data = button.data('template')
+
+    const data_type = JSON.parse(data.data_type || '{}')
+
+    const container = $('#variables-modal tbody')
+
+    for (const variable in data_type) {
+      const type = data_type[variable]
+
+      container.append(`<x-table.tr>
+        <x-table.th>${variable}</x-table.th>
+        <x-table.td no-padding>
+          <x-form.select id="variable-${variable}" data-id="${variable}" value="${type}">
+            <option value="text">Texto simple</option>
+            <option value="longtext">Texto largo</option>
+            <option value="image">Imagen</option>
+          </x-form.select>
+        </x-table.td>
+      </x-table.tr>`)
+
+      $(`[data-id="${variable}"]`).val(type)
+    }
+
+    $('#txt-id3').val(data.id)
+    $('#btn-modal-variables').trigger('click');
+
+    $('#variables-modal [data-title]').html(`Variables de ${data.name}`)
+  })
+
+  $('#variables-modal').on('submit', async (e) => {
+    e.preventDefault()
+    const id = $('#txt-id3').val()
+    const data_type = {}
+    $('#variables-modal tbody select').each(function() {
+      const name = $(this).attr('data-id')
+      const type = $(this).val()
+      data_type[name] = type
+    })
+
+    const res = await fetch("{{ route('templates.regulate') }}", {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Xsrf-Token': token
+      },
+      body: JSON.stringify({
+        id,
+        data_type
+      })
+    })
+
+    const data = await res.json()
+    if (!res.ok) {
+      Swal.fire({
+        icon: "error",
+        title: `Ocurrio un error al actualizar los tipos de la plantilla: ${data?.message ?? 'Error inesperado'}`,
+        showConfirmButton: true
+      });
+      return
+    }
+
+    Swal.fire({
+      icon: "success",
+      title: "Tipos guardados correctamente",
+      showConfirmButton: false,
+      timer: 2000
+    });
+
+    $('#variables-modal .btn-close').trigger('click');
+    dataTable.ajax.reload();
+  })
+
+  // DONE: logica para la previsualizacion
   $(document).on('click', '#btn-preview', async function() {
     const button = $(this)
     const data = button.data('template')
@@ -244,6 +343,7 @@
 
     $('#content-modal [data-title]').text(`Cargar contenido de ${data.name}`)
     $('#txt-id2').val(data.id)
+    $('#txt-data_type').val(data.data_type)
   })
 
   // DONE:
@@ -343,11 +443,24 @@
     const url = await File.toURL(file)
 
     const fileRes = await fetch(url)
-    const html = await fileRes.text()
+    const html = await fileRes.text();
+    const data_type = JSON.parse($('#txt-data_type').val());
+    const newDataType = {};
+    [...new Set((html.match({{ $regex }}) ?? []).map(x => x
+      .replaceAll('{{ $llavesBegin }}', '').replaceAll('{{ $llavesEnd }}', '')
+    ))].filter(x => !x.startsWith('landing.') && !x.startsWith('generals.')).forEach(x => {
+      const found = data_type[x]
+      if (!found) {
+        newDataType[x] = 'text'
+      } else {
+        newDataType[x] = data_type[x] || 'text'
+      }
+    })
 
     const request = {
       id: $('#txt-id2').val(),
-      content: html
+      content: html,
+      data_type: JSON.stringify(newDataType)
     }
 
     const res = await fetch("{{ route('templates.upload') }}", {

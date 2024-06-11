@@ -240,7 +240,13 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         //Suscripciones
         Route::get('/subscripciones', [NewsletterSubscriberController::class, 'showSubscripciones'])->name('subscripciones');
 
-        Route::get('/templates', fn () => view('pages.templates.index'))->name('templates.index');
+        Route::get(
+            '/templates',
+            fn () => view('pages.templates.index')
+                ->with('regex', '/{{(.*?)}}/gs')
+                ->with('llavesBegin', '{{')
+                ->with('llavesEnd', '}}')
+        )->name('templates.index');
         Route::get('/landings', [LandingController::class, 'index'])->name('landings.index');
         Route::get('/landings/config/{landing}', [LandingController::class, 'config'])->name('landings.config');
 
