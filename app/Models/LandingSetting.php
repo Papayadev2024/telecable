@@ -10,8 +10,11 @@ class LandingSetting extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'landing_id',
         'name',
-        'value'
+        'value',
+        'parent',
+        'data_type',
     ];
 }

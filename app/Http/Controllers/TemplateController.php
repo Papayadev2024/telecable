@@ -6,6 +6,7 @@ use App\Models\Template;
 use Exception;
 use Illuminate\Http\Request;
 use SoDe\Extend\Response;
+use SoDe\Extend\JSON;
 
 class TemplateController extends Controller
 {
@@ -30,7 +31,7 @@ class TemplateController extends Controller
     {
         $response = new Response();
         try {
-            $templates = Template::select(['id', 'name', 'description', 'visible', 'status'])
+            $templates = Template::select(['id', 'name', 'description', 'data_type', 'visible', 'status'])
                 ->where('status', true)
                 ->get();
 
@@ -85,10 +86,35 @@ class TemplateController extends Controller
         try {
             $updated = Template::where('id', $request->id)
                 ->update([
-                    'content' => $request->content
+                    'content' => $request->content,
+                    'data_type' => $request->data_type
                 ]);
 
             if (!$updated) throw new Exception('No se actualizado el registro o el contenido es el mismo');
+
+            $response->status = 200;
+            $response->message = 'Operacion correcta';
+        } catch (\Throwable $th) {
+            $response->status = 400;
+            $response->message = $th->getMessage();
+        } finally {
+            return response(
+                $response->toArray(),
+                $response->status
+            );
+        }
+    }
+
+    static function regulate(Request $request)
+    {
+        $response = new Response();
+        try {
+            $updated = Template::where('id', $request->id)
+                ->update([
+                    'data_type' => JSON::stringify($request->data_type)
+                ]);
+
+            if (!$updated) throw new Exception('No se ha cambiado los tipos de dato de la plantilla');
 
             $response->status = 200;
             $response->message = 'Operacion correcta';

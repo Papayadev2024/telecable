@@ -20,6 +20,6 @@
     <input type="{{ $type ?? 'text' }}" name="{{ $id ?? '' }}" id="{{ $id ?? '' }}" data-id="{{ $dataId ?? '' }}"
       data-name="{{ $dataName ?? '' }}" data-type="{{ $dataType ?? '' }}"
       class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm px-2 py-1  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      placeholder="{{ $placeholder ?? '' }}" {{ $required ? 'required' : '' }} value="{{ $value ?? '' }}">
+      placeholder="{{ $placeholder ?? '' }}" {{ $required ? 'required' : '' }} value="{{ $value ?? '' }}" {{ $attributes->merge(['class' => 'alert']) }}> 
   </div>
 </div>

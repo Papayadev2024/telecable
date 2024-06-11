@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('landing_settings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('landing_id');
-            $table->string('name');
+            $table->longText('name');
             $table->longText('value');
             $table->timestamps();
 
