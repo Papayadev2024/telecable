@@ -853,7 +853,7 @@ class IndexController extends Controller
                 style="
                   color: #ffffff;
                   font-weight: 500;
-                  font-size: 18px;
+                  font-size: 40px;
                   text-align: center;
                   width: 500px;
                   margin: 0 auto;
