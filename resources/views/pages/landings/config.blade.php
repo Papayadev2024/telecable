@@ -80,7 +80,7 @@
           break;
         case 'container':
           const types = JSON.parse(input.attr('data-types'))
-          const values = JSON.parse(value || '{}')
+          const values = JSON.parse(value || '[]')
           data[key] = values.map(x => {
             let base = structuredClone(key)
             for (const key in x) {
