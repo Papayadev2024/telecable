@@ -780,7 +780,7 @@ class IndexController extends Controller
     private function envioCorreoAdmin($data)
     {
         $generales = General::first();
-        $name = $data['full_name'];
+        // $name = $data['full_name'];
         $name = 'Administrador';
         $mensaje = 'tienes un nuevo mensaje - HPI';
         $mail = EmailConfig::config($name, $mensaje);
@@ -969,7 +969,7 @@ class IndexController extends Controller
     { 
         $generales = General::first();
         $name = $data['full_name'];
-        $mensaje = 'Gracias por comunicarte con CreditoMype';
+        $mensaje = 'Gracias por comunicarte - HPI';
         $mail = EmailConfig::config($name, $mensaje);
         $baseUrl = 'https://' . $_SERVER['HTTP_HOST'] . '/mail';
         $baseUrllink = 'https://' . $_SERVER['HTTP_HOST'] . '/';

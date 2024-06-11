@@ -174,7 +174,7 @@
               <div class="px-2">
                 <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text={{ $general[0]->mensaje_whatsapp }}">
                   <p class="text-slate-400 font-roboto text-text14 ">Ventas de Productos Químicos</p>
-                  <h3 class="text-slate-700 font-roboto text-text16 font-semibold">Rossana .R</h3>
+                  <h3 class="text-slate-700 font-roboto text-text16 font-semibold">{{$general[0]->support_one}}</h3>
                   <div class="flex flex-row items-center "><p class="text-slate-400 font-roboto text-text12">En Línea </p><div class="w-2 h-2 bg-green-400 rounded-full ml-1"></div></div>
                 </a>
               </div>
@@ -184,9 +184,9 @@
         <div class="flex flex-row p-3">
           <div class="flex flex-col justify-center items-center"><img class="w-10" src="{{asset('images/img/asistente.png')}}"/></div>
             <div class="px-2">
-              <a>
+              <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp2 }}&text={{ $general[0]->mensaje_whatsapp }}">
                 <p class="text-slate-400 font-roboto text-text14 ">Ventas de Tratamiento de Agua</p>
-                <h3 class="text-slate-700 font-roboto text-text16 font-semibold ">Marisela</h3>
+                <h3 class="text-slate-700 font-roboto text-text16 font-semibold ">{{$general[0]->support_two }}</h3>
                 <div class="flex flex-row items-center "><p class="text-slate-400 font-roboto text-text12">En Línea </p><div class="w-2 h-2 bg-green-400 rounded-full ml-1"></div></div>
               </a>
             </div>

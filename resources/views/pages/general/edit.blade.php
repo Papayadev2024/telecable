@@ -212,7 +212,7 @@
                                                                 </svg>
                                                             </div>
                                                             <input type="text" id="support_one" name="support_one"
-                                                                value="{{ $general->whatsapp }}"
+                                                                value="{{ $general->support_one }}"
                                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                                 placeholder="Nombre de soporte 1">
                                                         </div>
@@ -257,7 +257,7 @@
                                                                 </svg>
                                                             </div>
                                                             <input type="text" id="support_two" name="support_two"
-                                                                value="{{ $general->whatsapp }}"
+                                                                value="{{ $general->support_two }}"
                                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                                 placeholder="Nombre de soporte 2">
                                                         </div>
@@ -279,7 +279,7 @@
                                                                 </svg>
                                                             </div>
                                                             <input type="text" id="whatsapp2" name="whatsapp2"
-                                                                value="{{ $general->whatsapp }}"
+                                                                value="{{ $general->whatsapp2 }}"
                                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                                 placeholder="+51987654321">
                                                         </div>
