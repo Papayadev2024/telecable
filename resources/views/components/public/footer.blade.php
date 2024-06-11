@@ -153,7 +153,7 @@
         >&copy; 2024 Mundo Web. Reservados todos los derechos</a
       >
       <div class="flex justify-start items-center gap-5">
-        <a
+        {{-- <a
           href="#"
           target="_blank"
           class="underline text-white font-roboto font-normal text-text14"
@@ -164,7 +164,7 @@
           target="_blank"
           class="underline text-white font-roboto font-normal text-text14"
           >Terminos de servicio</a
-        >
+        > --}}
       </div>
     </div>
   </footer>

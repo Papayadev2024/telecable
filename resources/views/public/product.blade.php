@@ -36,7 +36,7 @@
                     <div class="flex flex-col gap-5 pb-10 border-b-2 border-[#DDDDDD]" data-aos="fade-up"
                         data-aos-offset="150">
                         <h2 id="nombreproducto" class="font-roboto font-bold text-text40 text-[#082252]">{{ $producto->producto }}</h2>
-                        <p class="font-moderat_Bold text-text24 md:text-text28 text-[#111111]">S/ 1999.99</p>
+                        {{-- <p class="font-moderat_Bold text-text24 md:text-text28 text-[#111111]">S/ 1999.99</p> --}}
 
                         <p class="text-[#082252] text-text16 font-roboto font-normal">{{ $producto->extract }}</p>
 
@@ -44,7 +44,7 @@
                         <div class="flex justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
                             data-aos="fade-up" data-aos-offset="150">
                             <div target="_blank" id="chatonline"
-                                class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-full py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
+                                class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
                                 <span>Cotizar aquí</span>
                                 <div>
                                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <div class="pt-10 md:pt-16 flex flex-col gap-5">
+            {{-- <div class="pt-10 md:pt-16 flex flex-col gap-5">
                 <h3 class="font-roboto font-bold text-text28 text-[#082252]">Características técnicas</h3>
                 <div class="mx-6" data-aos="fade-up" data-aos-offset="150">
                     <ul class="font-roboto font-normal text-text16 list-disc text-[#565656]">
@@ -92,7 +92,7 @@
                         <li>Aliquam bibendum</li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
         </section>
 
         <section class="bg-[#F7F8F8] py-20">

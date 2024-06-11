@@ -96,9 +96,9 @@
                                     <div class="w-full md:w-auto">
                                         <div
                                             class="flex flex-col items-center w-full md:w-auto md:flex-row md:justify-center md:items-center gap-10">
-                                            <a href="#"
+                                            <a href="{{route('catalogo', 0)}}"
                                                 class="bg-[#FF5E14] py-3 px-6 rounded-xl text-white font-roboto font-semibold text-text16 w-full md:w-auto text-center">Productos</a>
-                                            <a href="#"
+                                            <a href="{{route('contacto')}}"
                                                 class="text-[#FF5E14] font-roboto font-medium text-text16 flex justify-center items-center w-full md:w-auto text-center">
                                                 <span>Contactar</span>
                                                 <div class="flex justify-center items-center">
@@ -170,11 +170,11 @@
                         <div
                         class="flex flex-col gap-5 py-6 px-4 md:p-6 bg-white hover:bg-[#0C4AC3] group md:duration-300 rounded-xl">
                             <div class="flex justify-center items-center">
-                                <a href="#"><img src="{{ asset($categorias->url_image . $categorias->name_image) }}"
+                                <a href="{{route('catalogo', $categorias->id)}}"><img src="{{ asset($categorias->url_image . $categorias->name_image) }}"
                                         alt="Tratamiento de Agua"></a>
                             </div>
                             <div class="flex flex-col gap-2">
-                                <a href="#">
+                                <a href="{{route('catalogo', $categorias->id)}}">
                                     <h2
                                         class="text-[#082252] font-roboto font-bold text-text32 group-hover:text-white md:duration-300">
                                         {{$categorias->name}}</h2>
