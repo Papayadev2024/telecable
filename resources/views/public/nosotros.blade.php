@@ -112,19 +112,24 @@
                                     <p class="text-[#082252] font-roboto font-semibold text-text20">{{ $equipo->nombre }}
                                     </p>
                                     <div class="flex justify-between gap-2 items-center">
+                                        @if (!empty($equipo->facebook))
+                                            <a href="{{ $equipo->facebook }}" target="_blank">
+                                                <img src="{{ asset('images/img/facebook.png') }}" alt="facebook">
+                                            </a>
+                                        @endif
                                         @if (!empty($equipo->instagram))
                                             <a href="{{ $equipo->instagram }}" target="_blank">
-                                                <img src="{{ asset('images/svg/image_15.svg') }}" alt="instagram">
+                                                <img src="{{ asset('images/img/instagram.png') }}" alt="instagram">
                                             </a>
                                         @endif
                                         @if (!empty($equipo->twitter))
                                             <a href="{{ $equipo->twitter }}" target="_blank">
-                                                <img src="{{ asset('images/svg/image_16.svg') }}" alt="twitter">
+                                                <img src="{{ asset('images/img/twitter.png') }}" alt="twitter">
                                             </a>
                                         @endif
                                         @if (!empty($equipo->youtube))
                                             <a href="{{ $equipo->youtube }}" target="_blank">
-                                                <img src="{{ asset('images/svg/image_17.svg') }}" alt="youtube">
+                                                <img src="{{ asset('images/img/youtube.png') }}" alt="youtube">
                                             </a>
                                         @endif
                                     </div>

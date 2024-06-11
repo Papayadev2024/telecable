@@ -9,7 +9,7 @@
     <main>
         <section class="bg-white pt-52">
             <div class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="flex flex-col gap-5 pb-10 md:pb-20">
+                <div class="flex flex-col gap-5 pb-10 md:pb-5">
                     <div class="flex flex-col gap-1">
                         <h3 class="font-roboto font-bold text-text48 text-[#082252]">Hablemos Hoy</h3>
                         <p class="text-[#082252] text-text18 font-roboto font-normal">
@@ -59,8 +59,9 @@
                 </div>
 
                 <div class="flex justify-center items-start">
-                    <img src="{{ asset('images/img/image_60.png') }}" alt="ubicacion" class="w-full object-cover h-[588px] hidden md:block rounded-xl">
-                    <img src="{{ asset('images/img/image_61.png') }}" alt="ubicacion" class="w-full object-cover h-[588px] block md:hidden rounded-xl">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.558014709529!2d-77.05893329999999!3d-11.935816800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105d123f4bc6baf%3A0xe43079ef49fcf9b3!2sHPI!5e0!3m2!1ses!2spe!4v1718064498652!5m2!1ses!2spe" class="w-full h-72 md:h-full" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
+                    {{-- <img src="{{ asset('images/img/image_60.png') }}" alt="ubicacion" class="w-full object-cover h-[588px] hidden md:block rounded-xl">
+                    <img src="{{ asset('images/img/image_61.png') }}" alt="ubicacion" class="w-full object-cover h-[588px] block md:hidden rounded-xl"> --}}
                 </div>
             </div>
         </section>

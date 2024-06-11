@@ -146,6 +146,8 @@
           </div>
         </form>
         <div class="flex justify-center items-center">
+
+          
           <img src="{{ asset('images/img/mapa.png') }}" alt="ubicacion" />
         </div>
       </div>

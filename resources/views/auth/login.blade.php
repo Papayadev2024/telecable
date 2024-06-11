@@ -4,7 +4,7 @@
         <!-- Primer div -->
         <div class="basis-1/2 hidden md:block font-poppins">
             <!-- Imagen ocupando toda la altura y sin desbordar -->
-            <div style="background-image: url('{{ asset('images/img/summer_2.png') }}')" class="bg-cover bg-center bg-no-repeat w-full h-full">
+            <div style="background-image: url('{{ asset('images/img/loginhpi.png') }}')" class="bg-cover bg-center bg-no-repeat w-full h-full">
                 {{-- <h1 class="font-mediumDisplaytext-text24 xl:text-text28 py-10 bg-black bg-opacity-25 text-center text-white">
                     Doomine
                 </h1> --}}

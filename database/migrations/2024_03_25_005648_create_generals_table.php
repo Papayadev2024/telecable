@@ -28,7 +28,10 @@ return new class extends Migration
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('tiktok')->nullable();
+            $table->string('support_one')->nullable();
             $table->string('whatsapp')->nullable();
+            $table->string('support_two')->nullable();
+            $table->string('whatsapp2')->nullable();
             $table->string('form_email')->nullable();
             $table->string('business_hours')->nullable();
             $table->string('mensaje_whatsapp')->nullable();

@@ -156,14 +156,44 @@
 
   {{-- whatssapp --}}
   <div class="flex justify-end w-11/12 mx-auto z-[100] relative">
-    <div class="fixed bottom-6 sm:bottom-[2rem] lg:bottom-[4rem] z-20">
-      <a target="_blank"
-        href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text={{ $general[0]->mensaje_whatsapp }}"
-        rel="noopener">
-        <img src="{{ asset('images/svg/image_31.svg') }}" alt="whatsapp" class="w-20 h-20 md:w-full md:h-full">
+    <div class="fixed bottom-6 sm:bottom-[2rem] lg:bottom-[4rem] z-20 cursor-pointer">
+      <a target="_blank" id="whatsapp-toggle" 
+        {{-- href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text={{ $general[0]->mensaje_whatsapp }}" --}}
+         >
+        <img src="{{ asset('images/svg/image_31.svg') }}" alt="whatsapp" class="w-16 h-16 md:w-24 md:h-24">
       </a>
     </div>
   </div>
+
+  <div class="fixed bottom-24 right-6 lg:bottom-40 z-20 shadow-xl hidden animate-once animate-duration-1000" id="whatsapp-chat">
+    <div class="w-72 h-auto rounded-xl">
+      <div class="bg-green-500 font-roboto text-white text-center py-3 rounded-t-xl"> Whatsapp Chat </div>
+      <div class="bg-white shadow-xl hover:bg-slate-100 cursor-pointer">
+          <div class="flex flex-row p-3">
+              <div class="flex flex-col justify-center items-center"><img class="w-10" src="{{asset('images/img/asistente.png')}}"/></div>
+              <div class="px-2">
+                <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text={{ $general[0]->mensaje_whatsapp }}">
+                  <p class="text-slate-400 font-roboto text-text14 ">Ventas de Productos Químicos</p>
+                  <h3 class="text-slate-700 font-roboto text-text16 font-semibold">Rossana .R</h3>
+                  <div class="flex flex-row items-center "><p class="text-slate-400 font-roboto text-text12">En Línea </p><div class="w-2 h-2 bg-green-400 rounded-full ml-1"></div></div>
+                </a>
+              </div>
+          </div>
+      </div>
+      <div class="bg-white shadow-xl rounded-b-xl hover:bg-slate-100 cursor-pointer">
+        <div class="flex flex-row p-3">
+          <div class="flex flex-col justify-center items-center"><img class="w-10" src="{{asset('images/img/asistente.png')}}"/></div>
+            <div class="px-2">
+              <a>
+                <p class="text-slate-400 font-roboto text-text14 ">Ventas de Tratamiento de Agua</p>
+                <h3 class="text-slate-700 font-roboto text-text16 font-semibold ">Marisela</h3>
+                <div class="flex flex-row items-center "><p class="text-slate-400 font-roboto text-text12">En Línea </p><div class="w-2 h-2 bg-green-400 rounded-full ml-1"></div></div>
+              </a>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
 
 </header>
 
@@ -172,5 +202,18 @@
   const body = document.body;
   menu.addEventListener("click", (e) => {
     body.classList.toggle("overflow-hidden");
+  });
+</script>
+
+<script>
+  document.getElementById('whatsapp-toggle').addEventListener('click', function() {
+      var chatBox = document.getElementById('whatsapp-chat');
+      if (chatBox.classList.contains('hidden')) {
+          chatBox.classList.remove('hidden');
+          chatBox.classList.add('animate-fade-up');
+      } else {
+          chatBox.classList.add('hidden');
+          chatBox.classList.remove('animate-fade-up');
+      }
   });
 </script>

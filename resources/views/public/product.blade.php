@@ -10,7 +10,12 @@
 
 
 @section('content')
-
+@php
+    function capitalizeFirstLetter($string)
+     {
+         return ucfirst($string);
+     }
+@endphp
     <main>
         <section class="w-11/12 md:w-10/12 mx-auto pt-44 pb-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
@@ -36,7 +41,7 @@
                     <div class="flex flex-col gap-5 pb-10 border-b-2 border-[#DDDDDD]" data-aos="fade-up"
                         data-aos-offset="150">
                         <h2 id="nombreproducto" class="font-roboto font-bold text-text40 text-[#082252]">{{ $producto->producto }}</h2>
-                        {{-- <p class="font-moderat_Bold text-text24 md:text-text28 text-[#111111]">S/ 1999.99</p> --}}
+                        
 
                         <p class="text-[#082252] text-text16 font-roboto font-normal">{{ $producto->extract }}</p>
 
@@ -60,13 +65,23 @@
 
 
                     <div class="pt-5" data-aos="fade-up" data-aos-offset="150">
+                       @if (is_null($producto->categoria->name))   
+                       @else
                         <p class="font-roboto font-medium text-text14 text-[#082252]">
                             Categoría: <span
                                 class="text-[#565656] font-normal text-text14">{{ $producto->categoria->name }}</span>
-                        </p>
+                        </p> 
+                       @endif 
+                       
+                       @if (is_null($producto->sku))
+                           
+                       @else
                         <p class="font-roboto font-medium text-text14 text-[#082252]">
-                            SKU: <span class="text-[#565656] font-normal text-text14">{{ $producto->sku }}</span>
+                                SKU: <span class="text-[#565656] font-normal text-text14">{{ $producto->sku }}</span>
                         </p>
+                       @endif 
+                       
+
                     </div>
                 </div>
             </div>
@@ -81,79 +96,54 @@
                 </div>
             </div>
 
-            {{-- <div class="pt-10 md:pt-16 flex flex-col gap-5">
-                <h3 class="font-roboto font-bold text-text28 text-[#082252]">Características técnicas</h3>
-                <div class="mx-6" data-aos="fade-up" data-aos-offset="150">
-                    <ul class="font-roboto font-normal text-text16 list-disc text-[#565656]">
-                        <li>Aliquam bibendum</li>
-                        <li>Aliquam bibendum</li>
-                        <li>Aliquam bibendum</li>
-                        <li>Aliquam bibendum</li>
-                        <li>Aliquam bibendum</li>
-                    </ul>
+            @if ($especificaciones->isEmpty())
+            @else
+                <div class="pt-10 md:pt-16 flex flex-col gap-5">
+                    <h3 class="font-roboto font-bold text-text28 text-[#082252]">Características técnicas</h3>
+                    <div class="mx-6" data-aos="fade-up" data-aos-offset="150">
+                        <ul class="font-roboto font-normal text-text16 list-disc text-[#082252]">
+                            
+                            @foreach ($especificaciones as $item)
+                            <li><span class="font-semibold">{{ capitalizeFirstLetter($item->tittle) }}:</span> {{ capitalizeFirstLetter($item->specifications) }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-            </div> --}}
+            @endif
         </section>
 
-        <section class="bg-[#F7F8F8] py-20">
-            <div class="grid grid-cols-1 md:grid-cols-3 w-11/12 mx-auto gap-5">
-                <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
-                    <div class="flex justify-center items-center">
-                        <a href="#" class="w-full"><img src="{{ asset('images/img/image_43.png') }}"
-                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
+        @if ($ProdComplementarios->isEmpty())
+            
+        @else
+            <section class="bg-[#F7F8F8] py-20">
+                <div class="grid grid-cols-1 md:grid-cols-3 w-11/12 mx-auto gap-5">
+                    @foreach ($ProdComplementarios as $complemento)
+                    <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
+                        <div class="flex justify-center items-center">
+                            <a href="{{route('producto', $item->id)}}" class="w-full"><img src="{{ asset($complemento->imagen) }}"
+                                    alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            @if ($complemento->categoria && $complemento->categoria->name)
+                                <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">{{$complemento->categoria->name}}
+                                </h3>                              
+                            @endif
+                            <a href="{{route('producto', $complemento->id)}}">
+                                <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">
+                                    {{$complemento->producto}}</h2>
+                            </a>
+                            <p class="font-roboto font-normal text-text16 text-[#082252]">
+                                {{Str::limit($complemento->extract, 220)}}
+                            </p>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-2">
-                        <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">Tratamiento de agua</h3>
-                        <a href="#">
-                            <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">Planta de tratamiento
-                                de Agua</h2>
-                        </a>
-                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias harum, rem ullam ut
-                            libero obcaecati culpa voluptates dolores illo impedit. Necessitatibus nostrum libero
-                            cupiditate dicta deleniti soluta maiores commodi ipsam.
-                        </p>
-                    </div>
+                    @endforeach
                 </div>
+            </section> 
+        @endif
+        
 
-                <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
-                    <div class="flex justify-center items-center">
-                        <a href="#" class="w-full"><img src="{{ asset('images/img/image_31.png') }}"
-                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">Ablandadores</h3>
-                        <a href="#">
-                            <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">Ablandadores</h2>
-                        </a>
-                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias harum, rem ullam ut
-                            libero obcaecati culpa voluptates dolores illo impedit. Necessitatibus nostrum libero
-                            cupiditate dicta deleniti soluta maiores commodi ipsam.
-                        </p>
-                    </div>
-                </div>
 
-                <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
-                    <div class="flex justify-center items-center">
-                        <a href="#" class="w-full"><img src="{{ asset('images/img/image_32.png') }}"
-                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">Equipos de filtración</h3>
-                        <a href="#">
-                            <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">Equipos de
-                                filtración</h2>
-                        </a>
-                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias harum, rem ullam ut
-                            libero obcaecati culpa voluptates dolores illo impedit. Necessitatibus nostrum libero
-                            cupiditate dicta deleniti soluta maiores commodi ipsam.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
 @section('scripts_importados')

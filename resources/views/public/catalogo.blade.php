@@ -110,14 +110,18 @@
                                         alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
                             </div>
                             <div class="flex flex-col gap-2">
-                                <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">{{$item->categoria->name}}
-                                </h3>
+                                @if (is_null($item->categoria->name))
+                                @else
+                                    <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">{{$item->categoria->name}}
+                                    </h3>
+                                @endif
+                               
                                 <a href="{{route('producto', $item->id)}}">
                                     <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">
                                         {{$item->producto}}</h2>
                                 </a>
                                 <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                    {{$item->extract}}
+                                    {{Str::limit($item->extract, 220)}}
                                 </p>
                             </div>
                         </div>
