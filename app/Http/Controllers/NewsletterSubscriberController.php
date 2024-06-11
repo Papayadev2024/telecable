@@ -217,7 +217,7 @@ class NewsletterSubscriberController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="./facebook.png" alt=""
+                <img src="'.$baseUrl .'/facebook.png" alt="facebook"
               /></a>
 
               <a
@@ -227,7 +227,7 @@ class NewsletterSubscriberController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="./instagram.png" alt=""
+                <img src="'.$baseUrl .'/instagram.png" alt="instagram"
               /></a>
 
               <a
@@ -237,7 +237,7 @@ class NewsletterSubscriberController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="./twitter.png" alt=""
+                <img src="'.$baseUrl .'/twitter.png" alt="twitter"
               /></a>
 
               <a
@@ -247,7 +247,7 @@ class NewsletterSubscriberController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="./linkedin.png" alt=""
+                <img src="'.$baseUrl .'/linkedin.png" alt="linkedin"
               /></a>
 
               <a
@@ -257,7 +257,7 @@ class NewsletterSubscriberController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="./youtube.png" alt=""
+                <img src=" '.$baseUrl .'/youtube.png" alt="youtube"
               /></a>
             </td>
           </tr>
@@ -394,7 +394,7 @@ class NewsletterSubscriberController extends Controller
                 "
               >
                 ¡Gracias
-                <span style="color: #ffffff">por escribirnos!</span>
+                <span style="color: #ffffff">por suscribirte!</span>
               </p>
             </td>
           </tr>
@@ -412,7 +412,7 @@ class NewsletterSubscriberController extends Controller
                   font-family: Montserrat, sans-serif;
                 "
               >
-                En breve estaremos comunicandonos contigo.
+                Mantente enterado de nuestras promociones y ofertas.
               </p>
             </td>
           </tr>
@@ -452,7 +452,7 @@ class NewsletterSubscriberController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="'.$baseUrl .'/facebook.png" alt=""
+                <img src="'.$baseUrl .'/facebook.png" alt="facebook"
               /></a>
 
               <a
@@ -462,7 +462,7 @@ class NewsletterSubscriberController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="'.$baseUrl .'/instagram.png" alt=""
+                <img src="'.$baseUrl .'/instagram.png" alt="instagram"
               /></a>
 
               <a
@@ -472,7 +472,7 @@ class NewsletterSubscriberController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="'.$baseUrl .'/twitter.png" alt=""
+                <img src="'.$baseUrl .'/twitter.png" alt="twitter"
               /></a>
 
               <a
@@ -482,7 +482,7 @@ class NewsletterSubscriberController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src="'.$baseUrl .'/linkedin.png" alt=""
+                <img src="'.$baseUrl .'/linkedin.png" alt="linkedin"
               /></a>
 
               <a
@@ -492,7 +492,7 @@ class NewsletterSubscriberController extends Controller
                 target="_blank"
                 style="padding: 0 5px 30px 0; display: inline-block"
               >
-                <img src=" '.$baseUrl .' /youtube.png" alt=""
+                <img src=" '.$baseUrl .'/youtube.png" alt="youtube"
               /></a>
             </td>
           </tr>
