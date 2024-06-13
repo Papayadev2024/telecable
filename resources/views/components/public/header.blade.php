@@ -169,7 +169,7 @@
     </div>
   </div>
 
-  <div class="fixed bottom-24 right-6 lg:bottom-40 z-20 shadow-xl hidden animate-once animate-duration-1000" id="whatsapp-chat">
+  <div class="fixed bottom-24 right-6 lg:bottom-40 z-50 shadow-xl hidden animate-once animate-duration-1000" id="whatsapp-chat">
     <div class="w-72 h-auto rounded-xl">
       <div class="bg-green-500 font-roboto text-white text-center py-3 rounded-t-xl"> Whatsapp Chat </div>
       <div class="bg-white shadow-xl hover:bg-slate-100 cursor-pointer">
