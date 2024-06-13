@@ -291,7 +291,7 @@
                             <a href="{{route('detalleBlog', $post->id)}}">
                                 <h2 class="text-[#082252] font-roboto font-bold text-text24 leading-tight">{{$post->title}}</h2>
                             </a>
-                            <p class="text-[#082252] font-roboto font-normal text-text16">{!! Str::limit($post->description, 150) !!}</p>
+                            <p class="text-[#082252] font-roboto font-normal text-text16"> {{ Str::limit($post->extract, 250) }}</p>
                         </div>
 
                         <div class="flex justify-start items-center gap-2">

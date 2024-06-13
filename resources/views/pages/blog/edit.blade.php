@@ -36,14 +36,19 @@
                                                 </div>
                                             </div>
 
+                                            <div class="md:col-span-5">
+                                                <label for="extract">Extracto de post</label>
+                                                <div class="relative mb-2 mt-2">
+                                                    <textarea type="text" rows="2" name="extract" value="" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Extracto">{{$blog->extract}}</textarea>
+                                                </div>
+                                            </div>
             
                                             <div class="md:col-span-5">
                                                 <label for="description" >Imagen de servicio (808x445 px)</label>
                                                 <div class="relative mb-2 mt-2">
-                                                <img src="{{ asset('storage/images/posts/'.$blog->name_image) }}" class="max-w-xs max-h-48 object-cover  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">              
+                                                <img src="{{ asset($blog->url_image.$blog->name_image) }}" class="max-w-xs max-h-48 object-cover  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">              
                                                 </div>
                                             </div>    
-
 
                                             <div class="md:col-span-5">
                                                 <label for="imagen">Imagen principal</label>
@@ -52,10 +57,11 @@
                                                 </div>
                                             </div>
 
+
                                             <div class="md:col-span-5">
                                                 <label for="description">Descripcion de post</label>
                                                 <div class="relative mb-2 mt-2">
-                                                    <textarea type="text" rows="2"  id="description" name="description" value="" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descripción">{{ $blog->description }}</textarea>
+                                                    <x-textarea name="description" value="{!! $blog->description !!}" />
                                                 </div>
                                             </div>
 

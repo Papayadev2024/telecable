@@ -139,8 +139,9 @@
 
           <div
             class="relative w-full order-1 lg:order-2  lg:w-[20%] pb-8 lg:py-0 border-b lg:border-0 border-[#082252]">
-            <input type="text" placeholder="Buscar..."
+            <input id="buscarproducto" type="text" placeholder="Buscar..."
               class="w-full pl-8 pr-10 py-2 border border-[#082252] lg:border-[#E6E4E5] rounded-lg focus:outline-none focus:ring-0 text-[#082252] placeholder:text-[#082252] lg:placeholder:text-[#E6E4E5]">
+            
             <span class="absolute inset-y-0 left-0 flex items-start lg:items-center px-2 pb-2 pt-[9px] lg:p-2">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -148,7 +149,10 @@
                   fill="#E6E4E5" class="fill-fillAzulPetroleo lg:fill-fillPink" />
               </svg>
             </span>
+
+            <div class="bg-white z-60 shadow-2xl top-12 w-full absolute overflow-y-auto max-h-[200px]" id="resultados"></div>  
           </div>
+          
         </ul>
       </nav>
     </div>
@@ -214,6 +218,60 @@
       } else {
           chatBox.classList.add('hidden');
           chatBox.classList.remove('animate-fade-up');
+      }
+  });
+</script>
+
+<script>
+  
+  $(document).ready(function() {
+    $('#buscarproducto').keyup(function() {
+
+      var query = $(this).val().trim();
+
+      if (query !== '') {
+        $.ajax({
+          url: '{{ route('buscar') }}',
+          method: 'GET',
+          data: {
+            query: query
+          },
+          success: function(data) {
+            var resultsHtml = '';
+            var url = '{{ asset('') }}';
+            data.forEach(function(result) {
+              resultsHtml +=
+                '<a class="bg-white z-50" href="/producto/' + result.id +
+                '"> <div class="bg-white z-50 w-full flex flex-row py-3 px-3 hover:bg-slate-200"> ' +
+                ' <div class="w-[20%]"><img class="w-14 rounded-md" src="' +
+                url + result.imagen + '" /></div>' +
+                ' <div class="flex flex-col justify-center w-[80%] pl-3"> ' +
+                ' <h2 class="text-left line-clamp-1">' + result.producto +
+                '</h2> ' +
+                '<p class="text-text12 text-left line-clamp-1">' + result.categoria.name + '</p></div> ' +
+                '</div></a>';
+            });
+
+            $('#resultados').html(resultsHtml);
+          }
+        });
+      } else {
+        $('#resultados').empty();
+      }
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('click', function(event) {
+      var input = document.getElementById('buscarproducto');
+      var resultados = document.getElementById('resultados');
+      var isClickInsideInput = input.contains(event.target);
+      var isClickInsideResultados = resultados.contains(event.target);
+
+      if (!isClickInsideInput && !isClickInsideResultados) {
+          input.value = '';
+          $('#resultados').empty();
       }
   });
 </script>

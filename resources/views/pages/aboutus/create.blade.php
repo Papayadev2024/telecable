@@ -48,19 +48,20 @@
                       </g>
                     </svg>
                   </div>
-                  <input type="text" id="descripcion" name="descripcion" value=""
+                  {{-- <input type="text" id="descripcion" name="descripcion" value=""
                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Descripcion">
+                    placeholder="Descripcion"> --}}
+                  <x-textarea name="descripcion" value="" />
                 </div>
               </div>
-              <div class="md:col-span-5">
+              {{-- <div class="md:col-span-5">
                 <label for="imagen">Imagen principal</label>
                 <div class="relative mb-2  mt-2">
                   <input id="imagen" name="imagen"
                     class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     aria-describedby="user_avatar_help" id="user_avatar" type="file">
                 </div>
-              </div>
+              </div> --}}
               <div class="md:col-span-5 text-right mt-6 flex justify-between">
                 <div class="inline-flex items-end">
                   <a href="{{ URL::previous() }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>

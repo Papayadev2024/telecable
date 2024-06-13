@@ -1,4 +1,4 @@
-@extends('components.public.matrix', ['pagina'=>'catalogo'])
+@extends('components.public.matrix', ['pagina' => 'catalogo'])
 @section('titulo', 'Producto')
 @section('css_importados')
     <style>
@@ -10,12 +10,12 @@
 
 
 @section('content')
-@php
-    function capitalizeFirstLetter($string)
-     {
-         return ucfirst($string);
-     }
-@endphp
+    @php
+        function capitalizeFirstLetter($string)
+        {
+            return ucfirst($string);
+        }
+    @endphp
     <main>
         <section class="w-11/12 md:w-10/12 mx-auto pt-44 pb-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
@@ -40,11 +40,60 @@
                 <div class="flex flex-col gap-5">
                     <div class="flex flex-col gap-5 pb-10 border-b-2 border-[#DDDDDD]" data-aos="fade-up"
                         data-aos-offset="150">
-                        <h2 id="nombreproducto" class="font-roboto font-bold text-text40 text-[#082252]">{{ $producto->producto }}</h2>
-                        
+                        <h2 id="nombreproducto" class="font-roboto font-bold text-text40 text-[#082252]">
+                            {{ $producto->producto }}</h2>
+
 
                         <p class="text-[#082252] text-text16 font-roboto font-normal">{{ $producto->extract }}</p>
 
+                        <div class="flex justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
+                            data-aos="fade-up" data-aos-offset="150">
+                         @if ($producto->name_fichatecnica)
+                         <a href="{{ asset('storage/archives/'.$producto->name_fichatecnica) }}" target="_blank" 
+                            class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
+                            <span>Ficha técnica</span>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" x="0" y="0"
+                                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                    class="">
+                                    <g>
+                                        <path
+                                            d="M382.56 233.376A15.96 15.96 0 0 0 368 224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832 0-16 7.168-16 16v208h-64a16.013 16.013 0 0 0-14.56 9.376c-2.624 5.728-1.6 12.416 2.528 17.152l112 128A15.946 15.946 0 0 0 256 384c4.608 0 8.992-2.016 12.032-5.472l112-128c4.16-4.704 5.12-11.424 2.528-17.152z"
+                                            fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
+                                        <path
+                                            d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
+                                            fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
+                                    </g>
+                                </svg>
+                            </div>
+                        </a>                    
+                         @endif
+                          
+                        @if ($producto->name_docriesgo)
+                        <a href="{{ asset('storage/archives/'.$producto->name_docriesgo) }}" target="_blank" 
+                            class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
+                            <span>Ficha de riesgo</span>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" x="0" y="0"
+                                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                    class="">
+                                    <g>
+                                        <path
+                                            d="M382.56 233.376A15.96 15.96 0 0 0 368 224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832 0-16 7.168-16 16v208h-64a16.013 16.013 0 0 0-14.56 9.376c-2.624 5.728-1.6 12.416 2.528 17.152l112 128A15.946 15.946 0 0 0 256 384c4.608 0 8.992-2.016 12.032-5.472l112-128c4.16-4.704 5.12-11.424 2.528-17.152z"
+                                            fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
+                                        <path
+                                            d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
+                                            fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
+                                    </g>
+                                </svg>
+                            </div>
+                        </a>
+                        @endif
+                            
+
+                        </div>
 
                         <div class="flex justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
                             data-aos="fade-up" data-aos-offset="150">
@@ -65,22 +114,21 @@
 
 
                     <div class="pt-5" data-aos="fade-up" data-aos-offset="150">
-                       @if (is_null($producto->categoria->name))   
-                       @else
-                        <p class="font-roboto font-medium text-text14 text-[#082252]">
-                            Categoría: <span
-                                class="text-[#565656] font-normal text-text14">{{ $producto->categoria->name }}</span>
-                        </p> 
-                       @endif 
-                       
-                       @if (is_null($producto->sku))
-                           
-                       @else
-                        <p class="font-roboto font-medium text-text14 text-[#082252]">
+                        @if (is_null($producto->categoria->name))
+                        @else
+                            <p class="font-roboto font-medium text-text14 text-[#082252]">
+                                Categoría: <span
+                                    class="text-[#565656] font-normal text-text14">{{ $producto->categoria->name }}</span>
+                            </p>
+                        @endif
+
+                        @if (is_null($producto->sku))
+                        @else
+                            <p class="font-roboto font-medium text-text14 text-[#082252]">
                                 SKU: <span class="text-[#565656] font-normal text-text14">{{ $producto->sku }}</span>
-                        </p>
-                       @endif 
-                       
+                            </p>
+                        @endif
+
 
                     </div>
                 </div>
@@ -102,9 +150,10 @@
                     <h3 class="font-roboto font-bold text-text28 text-[#082252]">Características técnicas</h3>
                     <div class="mx-6" data-aos="fade-up" data-aos-offset="150">
                         <ul class="font-roboto font-normal text-text16 list-disc text-[#082252]">
-                            
+
                             @foreach ($especificaciones as $item)
-                            <li><span class="font-semibold">{{ capitalizeFirstLetter($item->tittle) }}:</span> {{ capitalizeFirstLetter($item->specifications) }}</li>
+                                <li><span class="font-semibold">{{ capitalizeFirstLetter($item->tittle) }}:</span>
+                                    {{ capitalizeFirstLetter($item->specifications) }}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -113,35 +162,36 @@
         </section>
 
         @if ($ProdComplementarios->isEmpty())
-            
         @else
             <section class="bg-[#F7F8F8] py-20">
                 <div class="grid grid-cols-1 md:grid-cols-3 w-11/12 mx-auto gap-5">
-                    @foreach ($ProdComplementarios as $complemento)
-                    <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
-                        <div class="flex justify-center items-center">
-                            <a href="{{route('producto', $item->id)}}" class="w-full"><img src="{{ asset($complemento->imagen) }}"
-                                    alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
+                    @foreach ($ProdComplementarios->take(3) as $complemento)
+                        <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
+                            <div class="flex justify-center items-center">
+                                <a href="{{ route('producto', $complemento->id) }}" class="w-full"><img
+                                        src="{{ asset($complemento->imagen) }}" alt="planta de tratmiento de agua"
+                                        class="w-full object-cover rounded-lg h-96"></a>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                @if ($complemento->categoria && $complemento->categoria->name)
+                                    <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">
+                                        {{ $complemento->categoria->name }}
+                                    </h3>
+                                @endif
+                                <a href="{{ route('producto', $complemento->id) }}">
+                                    <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">
+                                        {{ $complemento->producto }}</h2>
+                                </a>
+                                <p class="font-roboto font-normal text-text16 text-[#082252]">
+                                    {{ Str::limit($complemento->extract, 220) }}
+                                </p>
+                            </div>
                         </div>
-                        <div class="flex flex-col gap-2">
-                            @if ($complemento->categoria && $complemento->categoria->name)
-                                <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">{{$complemento->categoria->name}}
-                                </h3>                              
-                            @endif
-                            <a href="{{route('producto', $complemento->id)}}">
-                                <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">
-                                    {{$complemento->producto}}</h2>
-                            </a>
-                            <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                {{Str::limit($complemento->extract, 220)}}
-                            </p>
-                        </div>
-                    </div>
                     @endforeach
                 </div>
-            </section> 
+            </section>
         @endif
-        
+
 
 
     </main>
@@ -175,7 +225,7 @@
                     ];
                     for (var i in mobile)
                         if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0)
-                        return true;
+                            return true;
                     return false;
                 }
 
@@ -195,7 +245,6 @@
                 }, 200);
             });
         });
-        
     </script>
 
 @stop

@@ -865,3 +865,7 @@ src: url("/fonts/HelveticaNowDisplay-Light.woff") format("woff");
 font-family: "font_LightItalicDisplay";
 src: url("/fonts/HelveticaNowDisplay-LightIta.woff") format("woff");
 }
+
+.emptyspan span{
+    display: none!important;
+}

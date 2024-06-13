@@ -1,6 +1,10 @@
 .img-container {
     overflow: hidden;
   }
+
+  .emptyspan span{
+    display: none!important;
+}
   
   .newsletter {
     position: relative;

@@ -27,6 +27,8 @@
   <!-- 'classic' theme -->
   <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 
+  <!-- Include the Quill library -->
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 
   <!-- DataTable -->
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>

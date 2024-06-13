@@ -21,7 +21,7 @@
       </button>
       <!-- Logo -->
       <a class="block mt-8" href="{{ route('dashboard') }}">
-        <img src="{{ asset('images/img/logo_black.png') }}" alt="doomine" />
+        <img src="{{ asset('images/svg/image_1.svg') }}" alt="HPI" />
       </a>
     </div>
 
@@ -32,7 +32,7 @@
         <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
           <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
             aria-hidden="true">•••</span>
-          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Dommine - Backend</span>
+          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">HPI - Backend</span>
         </h3>
         <ul class="mt-3">
 
@@ -64,6 +64,26 @@
               </div>
             </a>
           </li>
+
+           <!-- About Us -->
+           <li
+           class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['aboutus'])) {{ 'bg-slate-900' }} @endif">
+           <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['aboutus'])) {{ 'hover:text-slate-200' }} @endif"
+             href="{{ route('aboutus.index') }}">
+             <div class="flex items-center">
+               <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                 <path
+                   class="fill-current @if (in_array(Request::segment(2), ['aboutus'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
+                   d="M1 3h22v20H1z" />
+                 <path
+                   class="fill-current @if (in_array(Request::segment(2), ['aboutus'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
+                   d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
+               </svg>
+               <span
+                 class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Nosotros</span>
+             </div>
+           </a>
+         </li>
 
           <!-- Subscripciones -->
           <li

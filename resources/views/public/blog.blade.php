@@ -52,7 +52,7 @@
                                 <h2 class="text-[#082252] font-roboto font-bold text-text32 leading-tight">
                                     {{ $lastpost->title }}</h2>
                                 <p class="text-[#082252] text-text16 font-normal font-roboto">
-                                    {!! Str::limit($lastpost->description, 250) !!}
+                                    {{ Str::limit($lastpost->extract, 250) }}
                                 </p>
                             </div>
 
@@ -92,7 +92,7 @@
                                         <h2 class="text-[#082252] font-roboto font-bold text-text32 leading-tight">
                                             {{ $post->title }}</h2>
                                         <p class="text-[#082252] text-text16 font-normal font-roboto">
-                                            {!! Str::limit($post->description, 250) !!}
+                                            {{ Str::limit($post->extract, 250) }}
                                         </p>
                                     </div>
 

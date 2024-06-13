@@ -70,13 +70,29 @@
                     </div>
 
                     <div class="flex flex-col gap-2 order-2 md:order-2 col-span-1 md:col-span-2 md:row-span-2">
-                        <p class="text-[#082252] font-roboto font-normal text-text18">
+                        <div class="text-[#082252] font-roboto font-normal text-text18">
                             {!! $general->aboutus !!}
-                        </p>
+                        </div>
 
                     </div>
                 </div>
             </div>
+
+            @if ($nosotros->isEmpty())
+                
+            @else
+                <div class="w-11/12 mx-auto flex flex-col gap-4 mt-5 lg:mt-10 ">
+                    @foreach ($nosotros as $item)
+                    <div>
+                        <h2 class="text-[#082252] font-roboto font-bold text-text40 lg:text-text48 leading-none">{{$item->titulo}}</h2>
+                        <div class="text-[#082252] font-roboto font-normal text-text18 mt-3">
+                                {!!$item->descripcion!!}
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            @endif
+            
 
             <div class="flex justify-center items-center w-11/12 mx-auto my-10 md:my-20" data-aos="fade-up"
                 data-aos-offset="150">
@@ -99,7 +115,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-
                     @foreach ($staff as $equipo)
                         <div class="flex flex-col gap-3" data-aos="fade-up" data-aos-offset="150">
                             <div class="flex justify-center items-center">

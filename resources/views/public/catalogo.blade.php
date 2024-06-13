@@ -107,7 +107,7 @@
                         <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
                             <div class="flex justify-center items-center">
                                 <a href="{{route('producto', $item->id)}}" class="w-full"><img src="{{ asset($item->imagen) }}"
-                                        alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
+                                        alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg h-96 " /></a>
                             </div>
                             <div class="flex flex-col gap-2">
                                 @if (is_null($item->categoria->name))
@@ -179,7 +179,7 @@
                                 `<div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
                                     <div class="flex justify-center items-center">
                                         <a href=" " class="w-full"><img src="{{ asset('${value.imagen}') }}"
-                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
+                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg h-96"></a>
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>
@@ -238,7 +238,7 @@
                                 `<a href="producto/${value.id}" ><div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
                                     <div class="flex justify-center items-center">
                                         <a href=" " class="w-full"><img src="{{ asset('${value.imagen}') }}"
-                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
+                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg h-96"></a>
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>

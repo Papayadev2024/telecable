@@ -73,10 +73,10 @@ class ProductsController extends Controller
     $tagsSeleccionados = $request->input('tags_id');
     $onlyOneCaratula = false;
 
-    if(is_null($request->input('descuento'))){
-      $request->merge(['descuento' => 0]);
-      $data['descuento'];
-    }
+    // if(is_null($request->input('descuento'))){
+    //   $request->merge(['descuento' => 0]);
+    //   $data['descuento'];
+    // }
     
     // $valorprecio = $request->input('precio') - 0.1;
 
@@ -84,8 +84,6 @@ class ProductsController extends Controller
       $request->validate([
         'producto' => 'required',
         'categoria_id' => 'required', 
-        'precio' => 'min:0|required|numeric',
-        'descuento' => 'lt:' . $request->input('precio'),
       ]);
 
       if ($request->hasFile("imagen")) {
@@ -103,6 +101,38 @@ class ProductsController extends Controller
 
         $data['imagen'] = $routeImg . $nombreImagen;
       }
+
+
+      if ($request->hasFile("fichatecnica")) {
+				$file = $request->file('fichatecnica');
+				$routearchive = 'storage/archives/';
+				$nombrearchive = Str::random(10) . '_' . $file->getClientOriginalName();
+                
+				if (!file_exists($routearchive)) {
+                    mkdir($routearchive, 0777, true);
+                }
+
+                $file->move($routearchive, $nombrearchive);
+
+                $data['url_fichatecnica'] = $routearchive;
+                $data['name_fichatecnica'] = $nombrearchive;
+			}
+
+
+      if ($request->hasFile("fichariesgo")) {
+				$file = $request->file('fichariesgo');
+				$routearchive2 = 'storage/archives/';
+				$nombrearchive2 = Str::random(10) . '_' . $file->getClientOriginalName();
+                
+				if (!file_exists($routearchive2)) {
+                    mkdir($routearchive2, 0777, true);
+                }
+
+                $file->move($routearchive2, $nombrearchive2);
+
+                $data['url_docriesgo'] = $routearchive2;
+                $data['name_docriesgo'] = $nombrearchive2;
+			}
 
 
 
@@ -146,14 +176,17 @@ class ProductsController extends Controller
         return !is_null($value);
       });
 
+
+
+
       $producto = Products::create($cleanedData);
 
-      if ($producto['descuento'] == 0 || is_null($producto['descuento'])) {
-        $precioFiltro = $producto['precio'];
-      } else {
-        $precioFiltro = $producto['descuento'];
-      }
-      $producto->update(['preciofiltro' => $precioFiltro]);
+      // if ($producto['descuento'] == 0 || is_null($producto['descuento'])) {
+      //   $precioFiltro = $producto['precio'];
+      // } else {
+      //   $precioFiltro = $producto['descuento'];
+      // }
+      // $producto->update(['preciofiltro' => $precioFiltro]);
 
       if (isset($atributos)) {
         foreach ($atributos as $atributo => $valores) {
@@ -188,11 +221,15 @@ class ProductsController extends Controller
         foreach ($data['filesGallery'] as $file) {
         
           [$first, $code] = explode(';base64,', $file);
-
-        
-
+          
+          // dd($file);
           $imageData = base64_decode($code);
 
+          // $manager = new ImageManager(new Driver());
+
+          // $img =  $manager->read($imageData);
+          
+          // $img->coverDown(1000, 1500, 'center');
           
           $routeImg = 'storage/images/gallery/';
           $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
@@ -201,6 +238,7 @@ class ProductsController extends Controller
           if (!file_exists($routeImg)) {
             mkdir($routeImg, 0777, true); 
           }
+          
           // Guardar los datos binarios en un archivo
           file_put_contents($routeImg . $nombreImagen, $imageData);
           $dataGalerie['imagen'] = $routeImg . $nombreImagen;

@@ -25,17 +25,7 @@
             <thead>
               <tr>
                 <th>Producto</th>
-                {{-- <th>Extracto</th> --}}
-                {{-- <th>Descripcion</th> --}}
-                <th>Precio</th>
-                <th>Descuento</th>
-                {{-- <th>Costo por articulo</th> --}}
-                <th>Stock</th>
-                {{-- <th>Peso</th> --}}
                 <th>Imagen</th>
-                <th>Lo más pedido</th>
-                <th>Novedad</th>
-                <th>Liquidacion</th>
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>
@@ -45,66 +35,10 @@
               @foreach ($products as $item)
                 <tr>
                   <td>{{ $item->producto }}</td>
-                  {{-- <td>{{ $item->extract }}</td> --}}
-                  {{-- <td>{{ $item->description }}</td> --}}
-                  <td>{{ $item->precio }}</td>
-                  <td>{{ $item->descuento }}</td>
-                  {{-- <td>{{ $item->costo_x_art }}</td> --}}
-                  <td>{{ $item->stock }}</td>
-                  {{-- <td>{{ $item->peso }}</td> --}}
                   <td class="px-3 py-2">
-                    @foreach ($item->images as $imagen)
-                      @if ($imagen->caratula == 1)
-                        <img class="w-20" src="{{ asset($imagen->name_imagen) }}" alt="">
+                      @if ($item->imagen)
+                        <img class="w-16 h-20 object-cover" src="{{ asset($item->imagen) }}" alt="">
                       @endif
-                    @endforeach
-
-
-                  </td>
-                  <td>
-                    <form method="POST" action="">
-                      @csrf
-                      <input type="checkbox" id="hs-basic-usage"
-                        class="check_v btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
-                              rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none 
-                              checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 dark:bg-gray-800 dark:border-gray-700 
-                              dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
-                              before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
-                              before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
-                        id='{{ 'v_' . $item->id }}' data-field='destacar' data-idService='{{ $item->id }}'
-                        data-titleService='{{ $item->producto }}' {{ $item->destacar == 1 ? 'checked' : '' }}>
-                      <label for="{{ 'v_' . $item->id }}"></label>
-                    </form>
-                  </td>
-                  <td>
-                    <form method="POST" action="">
-                      @csrf
-                      <input type="checkbox" id="hs-basic-usage"
-                        class="check_v btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
-                              rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none 
-                              checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 dark:bg-gray-800 dark:border-gray-700 
-                              dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
-                              before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
-                              before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
-                        id='{{ 'v_' . $item->id }}' data-field='recomendar' data-idService='{{ $item->id }}'
-                        data-titleService='{{ $item->producto }}' {{ $item->recomendar == 1 ? 'checked' : '' }}>
-                      <label for="{{ 'v_' . $item->id }}"></label>
-                    </form>
-                  </td>
-                  <td>
-                    <form method="POST" action="">
-                      @csrf
-                      <input type="checkbox" id="hs-basic-usage"
-                        class="check_v btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
-                              rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none 
-                              checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 dark:bg-gray-800 dark:border-gray-700 
-                              dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-600 before:inline-block before:size-6
-                              before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow 
-                              before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-blue-200"
-                        id='{{ 'v_' . $item->id }}' data-field='liquidacion' data-idService='{{ $item->id }}'
-                        data-titleService='{{ $item->producto }}' {{ $item->liquidacion == 1 ? 'checked' : '' }}>
-                      <label for="{{ 'v_' . $item->id }}"></label>
-                    </form>
                   </td>
                   <td>
                     <form method="POST" action="">
@@ -143,17 +77,7 @@
             <tfoot>
               <tr>
                 <th>Producto</th>
-                {{-- <th>Extracto</th> --}}
-                {{-- <th>Descripcion</th> --}}
-                <th>Precio</th>
-                <th>Descuento</th>
-                {{-- <th>Costo por articulo</th> --}}
-                <th>Stock</th>
-                {{-- <th>Peso</th> --}}
                 <th>Imagen</th>
-                <th>Lo más pedido</th>
-                <th>Novedad</th>
-                <th>Liquidacion</th>
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>

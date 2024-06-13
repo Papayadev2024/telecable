@@ -82,6 +82,7 @@ class BlogController extends Controller
     $post->category_id = $request->category_id;
     $post->title = $request->title;
     $post->description = $request->description;
+    $post->extract = $request->extract;
     $post->status = 1;
     $post->visible = 1;
 
@@ -140,6 +141,7 @@ class BlogController extends Controller
     $post->category_id = $request->category_id;
     $post->title = $request->title;
     $post->description = $request->description;
+    $post->extract = $request->extract;
 
 
     $post->update();

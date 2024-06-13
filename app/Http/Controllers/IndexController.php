@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\EmailConfig;
 use App\Http\Requests\StoreIndexRequest;
 use App\Http\Requests\UpdateIndexRequest;
+use App\Models\AboutUs;
 use App\Models\AddressUser;
 use App\Models\Attributes;
 use App\Models\AttributesValues;
@@ -605,7 +606,8 @@ class IndexController extends Controller
             $general = General::first();
             $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
             $staff = Staff::where('status', '=', 1)->get();
-            return view('public.nosotros', compact('general', 'testimonie', 'staff'));
+            $nosotros = AboutUs::where('status', '=', 1)->get();
+            return view('public.nosotros', compact('general', 'testimonie', 'staff', 'nosotros'));
         } catch (\Throwable $th) {
         }
     }
@@ -636,7 +638,7 @@ class IndexController extends Controller
 
                 $categoria = Category::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $filtro)->get();
 
-                $lastpost = Blog::where('status', '=', 1)->where('visible', '=', 1)->orderBy('created_at', 'desc')->first();
+                $lastpost = Blog::where('status', '=', 1)->where('visible', '=', 1)->orderBy('created_at', 'desc')->where('category_id', '=', $filtro)->first();
             }
 
             return view('public.blog', compact('posts', 'categoria', 'categorias', 'filtro', 'lastpost'));
@@ -677,13 +679,8 @@ class IndexController extends Controller
     public function searchProduct(Request $request)
     {
         $query = $request->input('query');
-        $resultados = Products::where('producto', 'like', "%$query%")
-            ->with([
-                'images' => function ($query) {
-                    $query->where('caratula', 1);
-                },
-            ])
-            ->get();
+        $resultados = Products::where('producto', 'like', "%$query%")->where('visible', '=', true)->where('status', '=', true)
+                                ->with('categoria')->get();
 
         return response()->json($resultados);
     }

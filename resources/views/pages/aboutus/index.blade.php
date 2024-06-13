@@ -25,8 +25,8 @@
               <tr>
                 <th>Titulo </th>
                 <th>Descripcion</th>
-                <th>Imagen</th>
-                <th>Status</th>
+                {{-- <th>Imagen</th> --}}
+                {{-- <th>Status</th> --}}
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -35,11 +35,11 @@
               @foreach ($aboutUs as $item)
                 <tr>
                   <td>{{ $item->titulo }}</td>
-                  <td>{{ $item->descripcion }}</td>
+                  <td>{{ !!$item->descripcion¡¡}}</td>
 
-                  <td class="px-3 py-2"><img class="w-20" src="{{ asset($item->imagen) }}" alt=""></td>
+                  {{-- <td class="px-3 py-2"><img class="w-20" src="{{ asset($item->imagen) }}" alt=""></td> --}}
 
-                  <td>
+                  {{-- <td>
                     <form method="POST" action="">
                       @csrf
                       <input type="checkbox" id="hs-basic-usage"
@@ -56,7 +56,7 @@
 
 
 
-                  </td>
+                  </td> --}}
 
                   <td class="flex flex-row justify-end items-center gap-5">
 
@@ -80,8 +80,8 @@
               <tr>
                 <th>Titulo </th>
                 <th>Descripcion</th>
-                <th>Imagen</th>
-                <th>Status</th>
+                {{-- <th>Imagen</th> --}}
+                {{-- <th>Status</th> --}}
                 <th>Acciones</th>
               </tr>
             </tfoot>
