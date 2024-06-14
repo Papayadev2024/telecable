@@ -1,7 +1,11 @@
 @extends('components.public.matrix', ['pagina'=>'catalogo'])
 @section('titulo', 'Productos')
 @section('css_importados')
-
+<style>
+    .selected {
+    background-color: #245BC8 !important;
+    }
+</style>
 @stop
 
 
@@ -24,7 +28,7 @@
                         </div>
 
                         <div class="relative w-full md:max-w-[450px] pb-8 lg:py-0">
-                            <input type="text" placeholder="Buscar"
+                            <input type="text" placeholder="Buscar" id="buscarproducto2"
                                 class="w-full md:max-w-[450px] pl-8 pr-10 py-2 border border-[#E6E4E5] rounded-lg focus:outline-none focus:ring-0 text-[#082252] placeholder:text-[#E6E4E5] lg:placeholder:text-[#E6E4E5] focus:border-[#E6E4E5]">
                             <span
                                 class="absolute inset-y-0 left-0 flex items-start lg:items-center px-2 pb-2 pt-[9px] lg:p-2">
@@ -35,6 +39,7 @@
                                         fill="#E6E4E5" />
                                 </svg>
                             </span>
+                            <div class="bg-white z-60 shadow-2xl top-12 w-full absolute overflow-y-auto max-h-[200px]" id="resultados2"></div>  
                         </div>
                     </div>
 
@@ -42,7 +47,7 @@
                         <div class="swiper logos">
                             <div class="swiper-wrapper">
                                 @foreach ($categorias as $item)
-                                    <div class="swiper-slide !flex justify-center">
+                                    <div class="swiper-slide !flex justify-center cursor-pointer">
                                         {{-- <a href="{{route('catalogo', $item->id)}}"> --}}
                                         <a id="{{ $item->id }}" class="categoryselect">
                                             <div class="inline-flex flex-col gap-3 w-[142px] h-[202px]">
@@ -84,13 +89,13 @@
                         <div class="flex flex-col md:flex-row md:justify-start gap-3">
                             <div class="relative inline-block text-left min-w-64 w-auto">
                                 <select id="selectSubcategory"
-                                    class="bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
+                                    class="hidden bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
                                     <option>Selecciona subcategoria</option>
                                 </select>
                             </div>
                             <div class="relative inline-block text-left min-w-64 w-auto">
                                 <select id="selectMicrocategory"
-                                    class="bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
+                                    class="hidden bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
                                     <option>Selecciona microcategoria</option>
                                 </select>
                             </div>
@@ -219,7 +224,7 @@
                     dataType: "json",
                     success: function(response) {
                         //    console.log(response);
-                        $('#selectMicrocategory').empty();
+                        $('#selectMicrocategory').empty().show();
                         $.each(response.microcategorias, function(key, value) {
 
                             console.log(value);
@@ -269,7 +274,8 @@
             $('.categoryselect').click(function() {
 
                 var id = $(this).attr('id');
-                // var status = $(this).attr('data-val');
+                $('.categoryselect .rounded-full').removeClass('selected'); 
+                $(this).find('.rounded-full').addClass('selected');
 
 
                 $.ajax({
@@ -282,8 +288,8 @@
                     dataType: "json",
                     success: function(response) {
                         console.log(response);
-                        $('#selectSubcategory').empty();
-                        $('#selectMicrocategory').empty();
+                        $('#selectSubcategory').empty().show();
+                        $('#selectMicrocategory').empty().hide();
                         $('#selectMicrocategory').append(
                             '<option value="">Selecciona microcategoria</option>');
                         $('#selectSubcategory').append(
@@ -312,7 +318,7 @@
                                     
                                     <div class="flex justify-center items-center">
                                         <a href='${productoUrl}' class="w-full"><img src="{{ asset('${value.imagen}') }}"
-                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg"></a>
+                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg h-96"></a>
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>

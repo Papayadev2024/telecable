@@ -78,10 +78,16 @@
                 </div>
             </div>
 
+
+            <div class="flex justify-center items-center w-11/12 mx-auto my-10 md:my-16" data-aos="fade-up"
+                data-aos-offset="150">
+                <img src="{{ asset('images/img/image_20.png') }}" alt="HPI" class="w-full rounded-xl object-cover">
+            </div>
+
             @if ($nosotros->isEmpty())
                 
             @else
-                <div class="w-11/12 mx-auto flex flex-col gap-4 mt-5 lg:mt-10 ">
+                <div class="w-11/12 mx-auto flex flex-col gap-8 my-5 lg:my-16 ">
                     @foreach ($nosotros as $item)
                     <div>
                         <h2 class="text-[#082252] font-roboto font-bold text-text40 lg:text-text48 leading-none">{{$item->titulo}}</h2>
@@ -92,19 +98,13 @@
                     @endforeach
                 </div>
             @endif
-            
-
-            <div class="flex justify-center items-center w-11/12 mx-auto my-10 md:my-20" data-aos="fade-up"
-                data-aos-offset="150">
-                <img src="{{ asset('images/img/image_20.png') }}" alt="HPI" class="w-full rounded-xl object-cover">
-            </div>
 
         </section>
 
         @if ($staff->isEmpty())
         @else
         <section>
-            <div class="flex flex-col gap-8 w-11/12 mx-auto pb-20">
+            <div class="flex flex-col gap-8 w-11/12 mx-auto pb-20 mt-12">
                 <div class="flex flex-col gap-2" data-aos="fade-up" data-aos-offset="150">
                     <h3 class="text-[#FF5E14] font-roboto font-normal text-text16">PROFESIONALES</h3>
                     <h2 class="text-[#082252] font-roboto font-bold text-text48 leading-tight">Nuestro Equipo de Expertos

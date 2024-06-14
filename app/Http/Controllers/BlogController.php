@@ -78,7 +78,8 @@ class BlogController extends Controller
             $post->url_image = $routeImg;
             $post->name_image = $nombreImagen;
         }
-
+    $url = $request->video;
+    $post->url_video = $this->getYTVideoId($url);
     $post->category_id = $request->category_id;
     $post->title = $request->title;
     $post->description = $request->description;
@@ -86,6 +87,7 @@ class BlogController extends Controller
     $post->status = 1;
     $post->visible = 1;
 
+    
 
 
     $post->save();
@@ -93,6 +95,22 @@ class BlogController extends Controller
     return redirect()->route('blog.index')->with('success', 'Publicación creado exitosamente.');
   }
 
+
+  private function getYTVideoId($url)
+  {
+      $patterns = [
+        '/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/', // URL estándar
+        '/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]+)/', // URL corta
+        '/(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([a-zA-Z0-9_-]+)/', // URL embebida
+        '/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)(?:&.*)?/', // URL estándar con parámetros adicionales
+      ];
+      foreach ($patterns as $pattern) {
+        if (preg_match($pattern, $url, $matches)) {
+          return $matches[1];
+        }
+      }
+      return null;
+  }
   /**
    * Display the specified resource.
    */
@@ -137,7 +155,8 @@ class BlogController extends Controller
       $post->name_image = $nombreImagen;
   }
 
-
+    $url = $request->video;
+    $post->url_video = $this->getYTVideoId($url);
     $post->category_id = $request->category_id;
     $post->title = $request->title;
     $post->description = $request->description;

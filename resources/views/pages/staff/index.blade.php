@@ -24,10 +24,6 @@
               <tr>
                 <th>Nombre </th>
                 <th>cargo</th>
-                <th>facebook</th>
-                <th>instagram</th>
-                <th>youtube</th>
-                <th>twitter</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -37,10 +33,7 @@
                 <tr>
                   <td>{{ $item->nombre }}</td>
                   <td>{{ $item->cargo }}</td>
-                  <td>{{ $item->facebook }}</td>
-                  <td>{{ $item->instagram }}</td>
-                  <td>{{ $item->youtube }}</td>
-                  <td>{{ $item->twitter }}</td>
+                  
                   <td class="flex flex-row justify-end items-center gap-5">
 
                     <a href="{{ route('staff.edit', $item->id) }}"
@@ -63,10 +56,6 @@
               <tr>
                 <th>Nombre </th>
                 <th>cargo</th>
-                <th>facebook</th>
-                <th>instagram</th>
-                <th>youtube</th>
-                <th>twitter</th>
                 <th>Acciones</th>
               </tr>
             </tfoot>

@@ -169,7 +169,7 @@
     </div>
   </div>
 
-  <div class="fixed bottom-24 right-6 lg:bottom-40 z-50 shadow-xl hidden animate-once animate-duration-1000" id="whatsapp-chat">
+  <div class="fixed bottom-24 right-6 lg:bottom-40 z-[99] shadow-xl hidden animate-once animate-duration-1000" id="whatsapp-chat">
     <div class="w-72 h-auto rounded-xl">
       <div class="bg-green-500 font-roboto text-white text-center py-3 rounded-t-xl"> Whatsapp Chat </div>
       <div class="bg-white shadow-xl hover:bg-slate-100 cursor-pointer">
@@ -260,6 +260,44 @@
       }
     });
   });
+
+
+  $(document).ready(function() {
+    $('#buscarproducto2').keyup(function() {
+
+      var query = $(this).val().trim();
+
+      if (query !== '') {
+        $.ajax({
+          url: '{{ route('buscar') }}',
+          method: 'GET',
+          data: {
+            query: query
+          },
+          success: function(data) {
+            var resultsHtml = '';
+            var url = '{{ asset('') }}';
+            data.forEach(function(result) {
+              resultsHtml +=
+                '<a class="bg-white z-50" href="/producto/' + result.id +
+                '"> <div class="bg-white z-50 w-full flex flex-row py-3 px-3 hover:bg-slate-200"> ' +
+                ' <div class="w-[20%]"><img class="w-14 rounded-md" src="' +
+                url + result.imagen + '" /></div>' +
+                ' <div class="flex flex-col justify-center w-[80%] pl-3"> ' +
+                ' <h2 class="text-left line-clamp-1">' + result.producto +
+                '</h2> ' +
+                '<p class="text-text12 text-left line-clamp-1">' + result.categoria.name + '</p></div> ' +
+                '</div></a>';
+            });
+
+            $('#resultados2').html(resultsHtml);
+          }
+        });
+      } else {
+        $('#resultados2').empty();
+      }
+    });
+  });
 </script>
 
 <script>
@@ -272,6 +310,18 @@
       if (!isClickInsideInput && !isClickInsideResultados) {
           input.value = '';
           $('#resultados').empty();
+      }
+  });
+
+  document.addEventListener('click', function(event) {
+      var input = document.getElementById('buscarproducto2');
+      var resultados = document.getElementById('resultados2');
+      var isClickInsideInput = input.contains(event.target);
+      var isClickInsideResultados = resultados.contains(event.target);
+
+      if (!isClickInsideInput && !isClickInsideResultados) {
+          input.value = '';
+          $('#resultados2').empty();
       }
   });
 </script>
