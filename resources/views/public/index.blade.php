@@ -90,10 +90,10 @@
                         <div class="swiper-slide">
                             <div class="bg-[#E6E4E5] pt-20">
                                 <div class="flex flex-col items-center gap-8 w-11/12 mx-auto md:max-w-[900px]">
-                                    {{-- <h2
+                                    <h2
                                         class="text-[#082252] font-roboto font-bold text-text40 md:text-text52 leading-tight text-center">
                                         {{$slide->title}}</h2>
-                                    <div class="w-full md:w-auto">
+                                    {{-- <div class="w-full md:w-auto">
                                         <div
                                             class="flex flex-col items-center w-full md:w-auto md:flex-row md:justify-center md:items-center gap-10">
                                             <a href="{{route('catalogo', 0)}}"
