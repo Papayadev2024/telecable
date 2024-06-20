@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('name_fichatecnica')->nullable();
             $table->string('url_docriesgo')->nullable();
             $table->string('name_docriesgo')->nullable();
-            // $table->json('atributes')->nullable();
+            $table->json('atributes')->nullable();
             $table->boolean('liquidacion')->default(false);
             $table->boolean('destacar')->default(false);
             $table->boolean('recomendar')->default(false);

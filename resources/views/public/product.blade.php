@@ -170,7 +170,7 @@
                             <div class="flex justify-center items-center">
                                 <a href="{{ route('producto', $complemento->id) }}" class="w-full"><img
                                         src="{{ asset($complemento->imagen) }}" alt="planta de tratmiento de agua"
-                                        class="w-full object-cover rounded-lg h-96"></a>
+                                        class="w-full object-cover rounded-lg h-full"></a>
                             </div>
                             <div class="flex flex-col gap-2">
                                 @if ($complemento->categoria && $complemento->categoria->name)
