@@ -1,11 +1,11 @@
-@extends('components.public.matrix', ['pagina'=>'catalogo'])
+@extends('components.public.matrix', ['pagina' => 'catalogo'])
 @section('titulo', 'Productos')
 @section('css_importados')
-<style>
-    .selected {
-    background-color: #245BC8 !important;
-    }
-</style>
+    <style>
+        .selected {
+            background-color: #245BC8 !important;
+        }
+    </style>
 @stop
 
 
@@ -39,7 +39,8 @@
                                         fill="#E6E4E5" />
                                 </svg>
                             </span>
-                            <div class="bg-white z-60 shadow-2xl top-12 w-full absolute overflow-y-auto max-h-[200px]" id="resultados2"></div>  
+                            <div class="bg-white z-60 shadow-2xl top-12 w-full absolute overflow-y-auto max-h-[200px]"
+                                id="resultados2"></div>
                         </div>
                     </div>
 
@@ -77,11 +78,11 @@
             <div class="flex flex-col gap-5 md:gap-10 w-11/12 mx-auto py-10">
                 <div class="flex flex-col gap-5">
                     <div class="flex flex-col gap-2">
-                        <h2 class="text-[#082252] font-roboto font-bold text-text32">Soluciones Efectivas para Tratamiento
-                            de
-                            Agua</h2>
-                        <p class="text-[#082252] font-roboto font-normal text-text18">Descubre nuestra variedad de productos
-                            químicos diseñados para el tratamiento de agua, garantizando resultados eficientes y de calidad.
+                        <h2 class="text-[#082252] font-roboto font-bold text-text32 subtitle">
+
+                        </h2>
+                        <p class="text-[#082252] font-roboto font-normal text-text18 description">
+
                         </p>
                     </div>
 
@@ -90,13 +91,13 @@
                             <div class="relative inline-block text-left min-w-64 w-auto">
                                 <select id="selectSubcategory"
                                     class="hidden bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
-                                    <option>Selecciona subcategoria</option>
+                                    <option value="sinproduct" >Selecciona subcategoria</option>
                                 </select>
                             </div>
                             <div class="relative inline-block text-left min-w-64 w-auto">
                                 <select id="selectMicrocategory"
                                     class="hidden bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
-                                    <option>Selecciona microcategoria</option>
+                                    <option value="sinproduct" >Selecciona microcategoria</option>
                                 </select>
                             </div>
                         </div>
@@ -111,22 +112,24 @@
                     @foreach ($productos as $item)
                         <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
                             <div class="flex justify-center items-center">
-                                <a href="{{route('producto', $item->id)}}" class="w-full"><img src="{{ asset($item->imagen) }}"
-                                        alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg h-96 " /></a>
+                                <a href="{{ route('producto', $item->id) }}" class="w-full"><img
+                                        src="{{ asset($item->imagen) }}" alt="planta de tratmiento de agua"
+                                        class="w-full object-cover rounded-lg h-96 " /></a>
                             </div>
                             <div class="flex flex-col gap-2">
                                 @if (is_null($item->categoria->name))
                                 @else
-                                    <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">{{$item->categoria->name}}
+                                    <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">
+                                        {{ $item->categoria->name }}
                                     </h3>
                                 @endif
-                               
-                                <a href="{{route('producto', $item->id)}}">
+
+                                <a href="{{ route('producto', $item->id) }}">
                                     <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">
-                                        {{$item->producto}}</h2>
+                                        {{ $item->producto }}</h2>
                                 </a>
                                 <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                    {{Str::limit($item->extract, 220)}}
+                                    {{ Str::limit($item->extract, 220) }}
                                 </p>
                             </div>
                         </div>
@@ -180,15 +183,18 @@
                         $('#getProductAjax').empty();
                         $.each(response.productos, function(key, value) {
 
+                            var productoUrl = `{{ route('producto', ':id') }}`.replace(
+                                ':id', value.id);
+
                             $('#getProductAjax').append(
                                 `<div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
                                     <div class="flex justify-center items-center">
-                                        <a href=" " class="w-full"><img src="{{ asset('${value.imagen}') }}"
+                                        <a href='${productoUrl}' class="w-full"><img src="{{ asset('${value.imagen}') }}"
                                                 alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg h-96"></a>
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>
-                                        <a href=" ">
+                                        <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
                                         <p class="font-roboto font-normal text-text16 text-[#082252]">
@@ -224,37 +230,46 @@
                     dataType: "json",
                     success: function(response) {
                         //    console.log(response);
-                        $('#selectMicrocategory').empty().show();
-                        $.each(response.microcategorias, function(key, value) {
+                        if (response.microcategorias && response.microcategorias.length > 0) {
+                            $('#selectMicrocategory').empty().show();
 
-                            console.log(value);
-                            $('#selectMicrocategory').append(
-                                '<option value="' + value['id'] + '">' + value[
-                                    'name'] +
-                                '</option>'
-                            );
-                        });
+                            $.each(response.microcategorias, function(key, value) {
 
+                                console.log(value);
+                                $('#selectMicrocategory').append(
+                                    '<option value="' + value['id'] + '">' + value[
+                                        'name'] +
+                                    '</option>'
+                                );
+                            });
+                        }
+
+                        if (response.microcategorias && response.microcategorias.length == 0) {
+                            $('#selectMicrocategory').empty().hide();
+                        }
 
                         $('#getProductAjax').empty();
                         $.each(response.productos, function(key, value) {
 
+                            var productoUrl = `{{ route('producto', ':id') }}`.replace(
+                                ':id', value.id);
+
                             $('#getProductAjax').append(
-                                `<a href="producto/${value.id}" ><div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
+                                `<div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
                                     <div class="flex justify-center items-center">
-                                        <a href=" " class="w-full"><img src="{{ asset('${value.imagen}') }}"
+                                        <a href='${productoUrl}' class="w-full"><img src="{{ asset('${value.imagen}') }}"
                                                 alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg h-96"></a>
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>
-                                        <a href=" ">
+                                        <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
                                         <p class="font-roboto font-normal text-text16 text-[#082252]">
                                             ${value.extract}
                                         </p>
                                     </div>
-                                </div></a>`
+                                </div>`
                             );
                         });
 
@@ -274,7 +289,7 @@
             $('.categoryselect').click(function() {
 
                 var id = $(this).attr('id');
-                $('.categoryselect .rounded-full').removeClass('selected'); 
+                $('.categoryselect .rounded-full').removeClass('selected');
                 $(this).find('.rounded-full').addClass('selected');
 
 
@@ -295,6 +310,11 @@
                         $('#selectSubcategory').append(
                             '<option value="">Selecciona subcategoria</option>');
 
+                        $('.subtitle').empty();
+                        $('.subtitle').text(response.categorias[0].extract);
+
+                        $('.description').empty();
+                        $('.description').text(response.categorias[0].description);
 
                         $.each(response.subcategorias, function(key, value) {
 

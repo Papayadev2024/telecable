@@ -54,59 +54,59 @@
 
     <script>
         function alerta(message) {
-          Swal.fire({
-            title: message,
-            icon: "error",
-          });
+            Swal.fire({
+                title: message,
+                icon: "error",
+            });
         }
-    
+
         function validarTelefono(value) {
-    
-          if (value !== '') {
-            if (isNaN(value)) {
-              alerta("Por favor, asegúrate de ingresar solo números en el teléfono");
-              return false;
+
+            if (value !== '') {
+                if (isNaN(value)) {
+                    alerta("Por favor, asegúrate de ingresar solo números en el teléfono");
+                    return false;
+                }
             }
-          }
-    
-          if (value.length < 9) {
-            alerta("El teléfono solo puede tener 9 dígitos");
-            return false;
-          }
-    
-          return true;
+
+            if (value.length < 9) {
+                alerta("El teléfono solo puede tener 9 dígitos");
+                return false;
+            }
+
+            return true;
         }
-    
+
         function validarEmail(value) {
-          const regex =
-            /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
-    
-          if (!regex.test(value)) {
-            alerta("Por favor, asegúrate de ingresar una dirección de correo electrónico válida");
-            return false;
-          }
-          return true;
+            const regex =
+                /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
+
+            if (!regex.test(value)) {
+                alerta("Por favor, asegúrate de ingresar una dirección de correo electrónico válida");
+                return false;
+            }
+            return true;
         }
-    
-    
+
+
         $('#formContactos').submit(function(event) {
-          event.preventDefault();
-          let formDataArray = $(this).serializeArray();
-    
-    
-          if (!validarTelefono($('#telefonoContacto').val())) {
-            return;
-          };
-    
-          if (!validarEmail($('#emailContacto').val())) {
-            return;
-          };
-    
-    
-          Swal.fire({
-    
-            title: 'Procesando información',
-            html: `Enviando... 
+            event.preventDefault();
+            let formDataArray = $(this).serializeArray();
+
+
+            if (!validarTelefono($('#telefonoContacto').val())) {
+                return;
+            };
+
+            if (!validarEmail($('#emailContacto').val())) {
+                return;
+            };
+
+
+            Swal.fire({
+
+                title: 'Procesando información',
+                html: `Enviando... 
                     <p class=" text-text12">Revise su correo de Span</p>
                           <div class="max-w-2xl mx-auto overflow-hidden flex justify-center items-center mt-4 ">
                           <div role="status">
@@ -118,60 +118,60 @@
                           </div>
                           </div>
                           `,
-            allowOutsideClick: false,
-            onBeforeOpen: () => {
-              Swal.showLoading();
-            }
-          });
-    
-          $.ajax({
-            url: '{{ route('guardarContactos') }}',
-            method: 'POST',
-            data: formDataArray,
-            success: function(response) {
-              Swal.close();
-    
-              Swal.fire({
-                title: response.message,
-                icon: "success",
-              });
-    
-              $('#formContactos')[0].reset();
-            },
-            error: function(error) {
-              Swal.close();
-              const obj = error.responseJSON.message;
-              const keys = Object.keys(error.responseJSON.message);
-              let flag = false;
-              keys.forEach(key => {
-                if (!flag) {
-                  const e = obj[key];
-                  Swal.fire({
-                    title: error.message,
-                    text: e,
-                    icon: "error",
-                  });
-                  flag = true; 
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
                 }
-              });
-            }
-          });
+            });
+
+            $.ajax({
+                url: '{{ route('guardarContactos') }}',
+                method: 'POST',
+                data: formDataArray,
+                success: function(response) {
+                    Swal.close();
+
+                    Swal.fire({
+                        title: response.message,
+                        icon: "success",
+                    });
+
+                    $('#formContactos')[0].reset();
+                },
+                error: function(error) {
+                    Swal.close();
+                    const obj = error.responseJSON.message;
+                    const keys = Object.keys(error.responseJSON.message);
+                    let flag = false;
+                    keys.forEach(key => {
+                        if (!flag) {
+                            const e = obj[key];
+                            Swal.fire({
+                                title: error.message,
+                                text: e,
+                                icon: "error",
+                            });
+                            flag = true;
+                        }
+                    });
+                }
+            });
         })
-    
-    
-    
+
+
+
         $('#footerFormulario').submit(function(event) {
-          event.preventDefault();
-          let formDataArray = $(this).serializeArray();
-    
-          if (!validarEmail($('#emailFooter').val())) {
-            return;
-          };
-    
-          Swal.fire({
-    
-            title: 'Procesando información',
-            html: `Enviando...
+            event.preventDefault();
+            let formDataArray = $(this).serializeArray();
+
+            if (!validarEmail($('#emailFooter').val())) {
+                return;
+            };
+
+            Swal.fire({
+
+                title: 'Procesando información',
+                html: `Enviando...
                     <p class=" text-text12">Revise su correo de Span</p>
                             <div class="max-w-2xl mx-auto overflow-hidden flex justify-center items-center mt-4 ">
                                 <div role="status">
@@ -183,51 +183,51 @@
                                 </div>
                                 
                             </div>
-    
-        `,
-            allowOutsideClick: false,
-            onBeforeOpen: () => {
-              Swal.showLoading();
-            }
-          });
-    
-    
-          $.ajax({
-            url: '{{ route('subscripciones.guardar') }}',
-            method: 'POST',
-            data: formDataArray,
-            success: function(response) {
-              //Falta limpiar el radio del form contacto
-    
-              Swal.close();
-    
-              Swal.fire({
-                title: response.message,
-                icon: "success",
-              });
-              $('#footerFormulario')[0].reset();
-            },
-            error: function(error) {
-              Swal.close();
-              const obj = error.responseJSON.message;
-              
-              const keys = Object.keys(error.responseJSON.message);
-              let flag = false;
-              keys.forEach(key => {
-                if (!flag) {
-                  const e = obj[key];
-                  Swal.fire({
-                    title: error.message,
-                    text: "Usuario ya existente",
-                    icon: "error",
-                  });
-                  flag = true; // Marcar como mostrado
+      
+            `,
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
                 }
-              });
-            }
-          });
+            });
+
+
+            $.ajax({
+                url: '{{ route('subscripciones.guardar') }}',
+                method: 'POST',
+                data: formDataArray,
+                success: function(response) {
+                    //Falta limpiar el radio del form contacto
+
+                    Swal.close();
+
+                    Swal.fire({
+                        title: response.message,
+                        icon: "success",
+                    });
+                    $('#footerFormulario')[0].reset();
+                },
+                error: function(error) {
+                    Swal.close();
+                    const obj = error.responseJSON.message;
+
+                    const keys = Object.keys(error.responseJSON.message);
+                    let flag = false;
+                    keys.forEach(key => {
+                        if (!flag) {
+                            const e = obj[key];
+                            Swal.fire({
+                                title: error.message,
+                                text: "Usuario ya existente",
+                                icon: "error",
+                            });
+                            flag = true; // Marcar como mostrado
+                        }
+                    });
+                }
+            });
         })
-      </script>     
+    </script>
 </body>
 
 </html>

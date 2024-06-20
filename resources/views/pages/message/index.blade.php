@@ -17,6 +17,12 @@
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>Teléfono</th>
+                                <th>IP</th>
+                                <th>Dispositivo</th>
+                                <th>Latitud</th>
+                                <th>Longitud</th>
+                                <th>Sistema</th>
+
                                 <th class="w-32">Acciones</th>
                             </tr>
                         </thead>
@@ -37,6 +43,13 @@
                                     </td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
+
+                                    <td>{{ $item->ip }}</td>
+                                    <td>{{ $item->device }}</td>
+                                    <td>{{ $item->client_latitude }}</td>
+                                    <td>{{ $item->client_longitude }}</td>
+                                    <td>{{ $item->client_system }}</td>
+
                                     <td class="flex flex-row items-center justify-center">
                                         <button method="POST" onclick="borrarmensaje({{ $item->id }})"
                                             class="bg-red-600 p-2 rounded text-white"><i
@@ -52,7 +65,13 @@
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>Teléfono</th>
+                                <th>IP</th>
+                                <th>Dispositivo</th>
+                                <th>Latitud</th>
+                                <th>Longitud</th>
+                                <th>Sistema</th>
                                 <th>Acciones</th>
+                                
                             </tr>
                         </tfoot>
                     </table>

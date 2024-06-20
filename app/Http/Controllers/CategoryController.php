@@ -78,6 +78,7 @@ class CategoryController extends Controller
 
         $category->name = $request->name;
         $category->description = $request->description;
+        $category->extract = $request->extract;
         $category->slug = $slug;
         $category->status = 1;
         $category->visible = 1;
@@ -134,6 +135,7 @@ class CategoryController extends Controller
 
         $category->name = $request->name;
         $category->description = $request->description;
+        $category->extract = $request->extract;
         $category->slug = $slug;
         $category->save();
 
@@ -206,9 +208,9 @@ class CategoryController extends Controller
             ->select('products.*', 'categories.name as category_name')
             ->get();
     
-            
+            $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $request->id)->get(['id', 'name', 'extract', 'description']);
            
-            return response()->json(['message' => 'Subcategorias', 'subcategorias' => $subcategorias, 'productos' => $productos]);
+            return response()->json(['message' => 'Subcategorias', 'subcategorias' => $subcategorias, 'productos' => $productos, 'categorias' => $categorias]);
     }
 
 

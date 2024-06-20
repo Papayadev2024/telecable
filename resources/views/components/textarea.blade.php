@@ -11,10 +11,15 @@
     const quill = new Quill('#quill-{{ $name }}', {
       theme: 'snow'
     });
+    
+    const existingContent = $('#{{ $name }}').val();
+    quill.root.innerHTML = existingContent;
+
     quill.on('text-change', function() {
       const value = quill.root.innerHTML;
       console.log(value)
       $('#{{ $name }}').attr('value', value);
+      // $('#{{ $name }}').attr('value', value);
     })
 
   })

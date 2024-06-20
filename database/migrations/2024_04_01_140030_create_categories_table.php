@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->unsigned();
             $table->string('name');
             $table->string('slug')->nullable();
+            $table->string('extract')->nullable();
             $table->string('description')->nullable();
             $table->string('url_image')->nullable();
             $table->string('name_image')->nullable();

@@ -381,7 +381,11 @@
                                         class="w-full py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]"
                                         placeholder="Mensaje"></textarea>
                                 </div>
-
+                                <input type="hidden" name="client_width" id="anchodispositivo">
+                                <input type="hidden" name="client_height" id="largodispositivo">
+                                <input type="hidden" name="client_latitude" id="latitud">
+                                <input type="hidden" name="client_longitude" id="longitud">
+                                <input type="hidden" name="client_system" id="sistema">
                                 <div class="flex justify-center items-center py-5" 
                                     >
                                     <button type="submit"
@@ -556,7 +560,31 @@
 
         });
     </script>
-
+    <script>
+ 
+        // Obtener información del navegador y del sistema operativo
+        const platform = navigator.platform;
+        document.getElementById('sistema').value = platform;
+    
+        // Obtener la geolocalización del usuario (si se permite)
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                document.getElementById('latitud').value = position.coords.latitude;
+                document.getElementById('longitud').value = position.coords.longitude;
+            });
+        }
+    
+        // Obtener la página de referencia
+        const referrer = document.referrer;
+        document.getElementById('llegade').value = referrer;
+    
+    
+        // Obtener la resolución de la pantalla
+        const screenWidth = window.screen.width;
+        const screenHeight = window.screen.height;
+        document.getElementById('anchodispositivo').value = screenWidth;
+        document.getElementById('largodispositivo').value = screenHeight;
+    </script>
 @stop
 
 @stop

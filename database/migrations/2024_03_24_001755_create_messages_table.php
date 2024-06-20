@@ -20,6 +20,15 @@ return new class extends Migration
             $table->text('message')->nullable();
             $table->string('service_product')->nullable();
             $table->string('source')->nullable();
+
+            $table->string('client_width')->nullable();
+            $table->string('client_height')->nullable();
+            $table->string('client_latitude')->nullable();
+            $table->string('client_longitude')->nullable();
+            $table->string('client_system')->nullable();
+            $table->string('ip')->nullable();
+            $table->string('device')->nullable();
+
             $table->boolean('status')->default(true);
             $table->boolean('is_read')->default(false);
             $table->string('comunication')->nullable();

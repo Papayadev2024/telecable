@@ -47,6 +47,11 @@
                             </div>
 
                             <input type="hidden" id="tipo" placeholder="tipo" name="source" value="Contacto" />
+                            <input type="hidden" name="client_width" id="anchodispositivo">
+                            <input type="hidden" name="client_height" id="largodispositivo">
+                            <input type="hidden" name="client_latitude" id="latitud">
+                            <input type="hidden" name="client_longitude" id="longitud">
+                            <input type="hidden" name="client_system" id="sistema">
 
                             <div class="flex justify-start items-center pt-5" data-aos="fade-up" data-aos-duration="150">
                                 <button type="submit"
@@ -117,7 +122,31 @@
 
 
 @section('scripts_importados')
+<script>
+ 
+    // Obtener información del navegador y del sistema operativo
+    const platform = navigator.platform;
+    document.getElementById('sistema').value = platform;
 
+    // Obtener la geolocalización del usuario (si se permite)
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            document.getElementById('latitud').value = position.coords.latitude;
+            document.getElementById('longitud').value = position.coords.longitude;
+        });
+    }
+
+    // Obtener la página de referencia
+    const referrer = document.referrer;
+    document.getElementById('llegade').value = referrer;
+
+
+    // Obtener la resolución de la pantalla
+    const screenWidth = window.screen.width;
+    const screenHeight = window.screen.height;
+    document.getElementById('anchodispositivo').value = screenWidth;
+    document.getElementById('largodispositivo').value = screenHeight;
+</script>
 
 @stop
 
