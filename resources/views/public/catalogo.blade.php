@@ -107,7 +107,7 @@
 
             <div>
                 <div id="getProductAjax"
-                    class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-x-5 gap-y-10 pb-10 md:pb-20">
+                    class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-x-10 gap-y-10 pb-10 md:pb-20">
 
                     @foreach ($productos as $item)
                         <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
