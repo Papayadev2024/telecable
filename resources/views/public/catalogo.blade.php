@@ -129,7 +129,7 @@
                                         {{ $item->producto }}</h2>
                                 </a>
                                 <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                    {{ Str::limit($item->extract, 220) }}
+                                    {{ Str::limit($item->extract, 100) }}
                                 </p>
                             </div>
                         </div>
