@@ -10,7 +10,7 @@
         <section class="w-11/12 md:w-10/12 mx-auto flex flex-col gap-10 pt-52 pb-16" data-aos="fade-up" data-aos-offset="150">
             <div class="flex flex-col gap-5">
                 <h3 class="font-semibold font-roboto text-text16 text-[#FF5E14]">Blog</h3>
-                <h2 class="font-roboto font-semibold text-text48 md:text-text56 text-[#082252] leading-tight">
+                <h2 class="font-roboto font-bold text-text48 md:text-text56 text-[#082252] leading-tight tracking-tight">
                     {{$post->title}}
                 </h2>
                 <p class="font-roboto font-semibold text-text20 text-[#0C4AC3]">{{ \Carbon\Carbon::parse($post->created_at)->translatedFormat('d F, Y') }}</p>
@@ -25,7 +25,7 @@
                
 
 
-                <div class="flex flex-col gap-2 text-[#082252] font-roboto font-normal text-text18">
+                <div class="flex flex-col gap-2 text-[#082252] font-roboto font-normal text-text18 py-4">
                     {!!$post->description!!}
                 </div>
 

@@ -280,7 +280,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    @foreach ($posts as $post)
+                    @foreach ($posts->take(3) as $post)
                     <div class="flex flex-col gap-5">
                         <div class="flex flex-col gap-2">
                             <div class="flex justify-center items-center">

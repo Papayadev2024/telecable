@@ -156,7 +156,14 @@ class BlogController extends Controller
   }
 
     $url = $request->video;
-    $post->url_video = $this->getYTVideoId($url);
+    
+    if ($post->url_video == $url) {
+      $post->url_video == $url;
+    }else{
+      $post->url_video = $this->getYTVideoId($url);
+    }
+    
+   
     $post->category_id = $request->category_id;
     $post->title = $request->title;
     $post->description = $request->description;
