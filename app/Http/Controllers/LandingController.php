@@ -79,7 +79,7 @@ class LandingController extends Controller
                         break;
                     case 'container':
                         $values = [];
-                        $settingValue = JSON::parse($setting->value);
+                        $settingValue = JSON::parse($setting->value ?? '[]');
                         foreach ($settingValue as $object) {
                             $base = $setting->name;
                             foreach ($object as $key => $value) {
