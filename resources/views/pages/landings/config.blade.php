@@ -89,7 +89,7 @@
               if (types[key] == 'image') {
                 base = base.replace(regex,
                   `${location.origin}/api/landing-settings/file/download?path=${encodeURIComponent(x[key])}`
-                  )
+                )
               } else {
                 base = base.replace(regex, x[key])
               }
@@ -113,8 +113,8 @@
       }
     }
     const blob = new Blob([newTemplate
-      .replaceAll('{{ $llavesBegin }}', '')
-      .replaceAll('{{ $llavesEnd }}', '')
+      .replaceAll('{[', '')
+      .replaceAll(']}', '')
     ], {
       type: 'text/html'
     });
