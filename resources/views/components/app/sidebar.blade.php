@@ -127,7 +127,7 @@
             </a>
           </li>
 
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['pedidos'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['pedidos'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('orders') }}">
@@ -144,7 +144,7 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Pedidos</span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
 
 
@@ -295,19 +295,25 @@
         </ul>
       </div>
 
+      <x-menu.group title="Productos">
+        <x-menu.item id="category" href="{{ route('categorias.index') }}" icon="fas fa-list-alt">Categorías</x-menu.item>
+        <x-menu.item id="subcategory" href="{{ route('subcategorias.index') }}" icon="fas fa-list-alt">Subcategorías</x-menu.item>
+        <x-menu.item id="microcategory" href="{{ route('microcategorias.index') }}" icon="fas fa-list-alt">Microcategorías</x-menu.item>
+        <x-menu.item id="product" href="{{ route('products.index') }}" icon="fas fa-pager">Productos</x-menu.item>
+      </x-menu.group>
 
       <!-- PRODUCTOS -->
-      <div>
+      {{-- <div>
         <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
           <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
             aria-hidden="true">•••</span>
           <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">PRODUCTOS</span>
         </h3>
-        <ul class="mt-3">
+        <ul class="mt-3"> --}}
 
 
           <!-- Category -->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['categorias'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['categorias'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('categorias.index') }}">
@@ -324,11 +330,11 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Categoría</span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
 
           <!-- Subcategory -->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['subcategorias'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['subcategorias'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('subcategorias.index') }}">
@@ -345,10 +351,10 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Subcategoría</span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
           <!-- Microcategory -->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['microcategorias'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['microcategorias'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('microcategorias.index') }}">
@@ -365,11 +371,11 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Microcategoria</span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
 
           <!-- Colecciones -->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['colecciones'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['colecciones'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('colecciones.index') }}">
@@ -386,10 +392,10 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Colecciones</span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
           <!-- Productos -->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['products'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['products'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('products.index') }}">
@@ -406,14 +412,14 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Productos</span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
-        </ul>
-      </div>
+        {{-- </ul>
+      </div> --}}
 
 
       <!-- Mantenedores -->
-      <div>
+      {{-- <div>
         <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
           <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
             aria-hidden="true">•••</span>
@@ -500,12 +506,12 @@
 
 
         </ul>
-      </div>
+      </div> --}}
 
       <!-- Generador de Landing -->
       <x-menu.group title="Generador de Landing">
         <x-menu.item id="templates" href="{{ route('templates.index') }}"
-          icon=" fas fa-window-maximize">Plantillas</x-menu.item>
+          icon="fas fa-window-maximize">Plantillas</x-menu.item>
         <x-menu.item id="landings" href="{{ route('landings.index') }}" icon="fas fa-pager">Landings</x-menu.item>
       </x-menu.group>
     </div>
