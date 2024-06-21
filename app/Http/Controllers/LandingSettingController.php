@@ -44,9 +44,9 @@ class LandingSettingController extends Controller
 
             foreach ($body['variables'] as $variable) {
                 $parentJpa = LandingSetting::select('id')
-                ->where('name', 'like', '%{{' . $variable . '}}%')
-                ->where('landing_id', $landing_id)
-                ->first();
+                    ->where('name', 'like', '%{{' . $variable . '}}%')
+                    ->where('landing_id', $landing_id)
+                    ->first();
                 LandingSetting::updateOrCreate([
                     'name' => $variable,
                     'landing_id' => $landing_id
@@ -105,14 +105,15 @@ class LandingSettingController extends Controller
         }
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         $response = new Response();
 
         try {
             $setting = LandingSetting::find($request->id);
             $setting->value = $request->value;
             $setting->save();
-            
+
             $response->status = 200;
             $response->message = 'Operacion correcta';
         } catch (\Throwable $th) {
@@ -166,10 +167,9 @@ class LandingSettingController extends Controller
             ]);
         } catch (\Throwable $th) {
 
-            return response(
-                Storage::get('/uploads/default-image.jpg'),
-                400
-            );
+            return response(Storage::get('/uploads/default-image.jpg'), 400, [
+                'Content-Type' => 'application/octet-stream'
+            ]);
         }
     }
 }
