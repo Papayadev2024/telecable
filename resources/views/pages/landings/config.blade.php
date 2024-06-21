@@ -140,10 +140,16 @@
     const container = $('#variables-container')
     container.empty()
     const parentsId = settings.filter((x) => x.parent).map((x) => x.parent);
-    settings.filter((x) => !x.parent && !parentsId.includes(x.id)).forEach(setting => {
+    
+    const filtered = settings.filter((x) => x.data_type != 'container' && !x.parent && !parentsId.includes(x.id))
+    
+    filtered.forEach(setting => {
       container.append(getFormElement(setting))
     })
     const containers = settings.filter(x => parentsId.includes(x.id))
+
+    console.log(containers)
+
     if (containers.length > 0) {
       container.append('<hr class="mb-2"><p class="mb-2"><b>Contenedores</b></p>')
       containers.forEach((setting, i) => {
@@ -358,7 +364,6 @@
       variables.forEach(variable => {
         const td = $('<td>', {
           class: 'border',
-          contenteditable: true,
           'data-name': variable.name
         }).html(getFormElement({
           ...variable,
@@ -417,7 +422,7 @@
     try {
       const children = [...$('#table-container tbody tr')].map(e => {
         const obj = {}
-        $(e).find('input[id^="container-variable"]').each(function() {
+        $(e).find('[id^="container-variable"]').each(function() {
           const name = $(this).attr('data-name')
           const value = $(this).val()
           obj[name] = value

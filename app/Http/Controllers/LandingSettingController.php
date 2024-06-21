@@ -23,7 +23,10 @@ class LandingSettingController extends Controller
                 ->delete();
 
             foreach ($body['containers'] as $container) {
-                LandingSetting::updateOrCreate(['name' => $container], [
+                LandingSetting::updateOrCreate([
+                    'name' => $container,
+                    'landing_id' => $landing_id
+                ], [
                     'landing_id' => $landing_id,
                     'name' => $container,
                     'data_type' => 'container'
@@ -40,8 +43,14 @@ class LandingSettingController extends Controller
             $data_types = JSON::parse($template->data_type);
 
             foreach ($body['variables'] as $variable) {
-                $parentJpa = LandingSetting::select('id')->where('name', 'like', '%{{' . $variable . '}}%')->first();
-                LandingSetting::updateOrCreate(['name' => $variable], [
+                $parentJpa = LandingSetting::select('id')
+                ->where('name', 'like', '%{{' . $variable . '}}%')
+                ->where('landing_id', $landing_id)
+                ->first();
+                LandingSetting::updateOrCreate([
+                    'name' => $variable,
+                    'landing_id' => $landing_id
+                ], [
                     'landing_id' => $landing_id,
                     'name' => $variable,
                     'parent' => $parentJpa->id ?? null,

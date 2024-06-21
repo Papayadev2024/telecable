@@ -247,6 +247,7 @@
     const data_type = JSON.parse(data.data_type || '{}')
 
     const container = $('#variables-modal tbody')
+    container.empty()
 
     for (const variable in data_type) {
       const type = data_type[variable]
