@@ -133,16 +133,19 @@
                     </div>
                 </div>
             </div>
+            
+            @if (!is_null($producto->description))
+                <div class="flex flex-col gap-5 pt-10 md:pt-16" data-aos="fade-up" data-aos-offset="150">
 
-            <div class="flex flex-col gap-5 pt-10 md:pt-16" data-aos="fade-up" data-aos-offset="150">
-
-                <h3 class="font-roboto font-bold text-text28 text-[#082252]">Descripción</h3>
-                <div class="text-[#082252] text-text16 font-normal font-roboto flex flex-col gap-5">
-                    <p>
-                        {!! $producto->description !!}
-                    </p>
+                    <h3 class="font-roboto font-bold text-text28 text-[#082252]">Descripción</h3>
+                    <div class="text-[#082252] text-text16 font-normal font-roboto flex flex-col gap-5">
+                        <p>
+                            {!! $producto->description !!}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            @endif
+                
 
             @if ($especificaciones->isEmpty())
             @else
