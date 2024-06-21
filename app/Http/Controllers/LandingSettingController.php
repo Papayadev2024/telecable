@@ -157,17 +157,17 @@ class LandingSettingController extends Controller
     public function getFile(Request $request)
     {
         try {
-            $content = Storage::get($request->path);
+            $path = $request->path;
+            if (!$path) $path = '/uploads/default-image.jpg';
+            $content = Storage::get($path);
 
             return response($content, 200, [
                 'Content-Type' => 'application/octet-stream'
             ]);
         } catch (\Throwable $th) {
+
             return response(
-                [
-                    'status' => 400,
-                    'message' => $th->getMessage()
-                ],
+                Storage::get('/uploads/default-image.jpg'),
                 400
             );
         }
