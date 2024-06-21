@@ -401,6 +401,50 @@ class ProductsController extends Controller
     ]);
 
     
+    if ($request->hasFile("imagen")) {
+      $file = $request->file('imagen');
+      $routeImg = 'storage/images/productos/';
+      $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+      $this->saveImg($file, $routeImg, $nombreImagen);
+
+      $data['imagen'] = $routeImg . $nombreImagen;
+     
+    } 
+
+
+    if ($request->hasFile("fichatecnica")) {
+      $file = $request->file('fichatecnica');
+      $routearchive = 'storage/archives/';
+      $nombrearchive = Str::random(10) . '_' . $file->getClientOriginalName();
+              
+      if (!file_exists($routearchive)) {
+                  mkdir($routearchive, 0777, true);
+              }
+
+              $file->move($routearchive, $nombrearchive);
+
+              $data['url_fichatecnica'] = $routearchive;
+              $data['name_fichatecnica'] = $nombrearchive;
+    }
+
+
+    if ($request->hasFile("fichariesgo")) {
+      $file = $request->file('fichariesgo');
+      $routearchive2 = 'storage/archives/';
+      $nombrearchive2 = Str::random(10) . '_' . $file->getClientOriginalName();
+              
+      if (!file_exists($routearchive2)) {
+                  mkdir($routearchive2, 0777, true);
+              }
+
+              $file->move($routearchive2, $nombrearchive2);
+
+              $data['url_docriesgo'] = $routearchive2;
+              $data['name_docriesgo'] = $nombrearchive2;
+    }
+
+
 
     foreach ($request->all() as $key => $value) {
 

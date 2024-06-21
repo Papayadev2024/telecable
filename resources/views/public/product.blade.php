@@ -49,7 +49,7 @@
                         <div class="flex justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
                             data-aos="fade-up" data-aos-offset="150">
                          @if ($producto->name_fichatecnica)
-                         <a href="{{ asset('storage/archives/'.$producto->name_fichatecnica) }}" target="_blank" 
+                         <a href="{{ asset($producto->url_fichatecnica . $producto->name_fichatecnica) }}" target="_blank" 
                             class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
                             <span>Ficha técnica</span>
                             <div>
@@ -71,7 +71,7 @@
                          @endif
                           
                         @if ($producto->name_docriesgo)
-                        <a href="{{ asset('storage/archives/'.$producto->name_docriesgo) }}" target="_blank" 
+                        <a href="{{ asset($producto->url_docriesgo.$producto->name_docriesgo) }}" target="_blank" 
                             class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
                             <span>Ficha de riesgo</span>
                             <div>

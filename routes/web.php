@@ -103,6 +103,7 @@ Route::post('/calculeEnvio', [PriceController::class, 'calculeEnvio'])->name('pr
 Route::post('/getSubcategoria', [CategoryController::class, 'getSubcategoria'])->name('getSubcategoria');
 Route::post('/getMicrocategoria', [CategoryController::class, 'getMicrocategoria'])->name('getMicrocategoria');
 Route::post('/getProductMicrocategoria', [CategoryController::class, 'getProductMicrocategoria'])->name('getProductMicrocategoria');
+Route::post('/getTotalProductos', [CategoryController::class, 'getTotalProductos'])->name('getTotalProductos');
 
 
 

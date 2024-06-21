@@ -198,7 +198,7 @@ class CategoryController extends Controller
     }
 
     public function getSubcategoria(Request $request){
-       
+            $page = 0;
             $subcategorias = Subcategory::where('category_id', '=', $request->id)->get();
             $productos = DB::table('products')
             ->join('categories', 'products.categoria_id', '=', 'categories.id')
@@ -206,11 +206,21 @@ class CategoryController extends Controller
             ->where('products.visible', '=', 1)
             ->where('products.categoria_id', '=', $request->id)
             ->select('products.*', 'categories.name as category_name')
-            ->get();
+            ->paginate(9);
+
+            
+            if (!empty($productos->nextPageUrl())) {
+                $parse_url = parse_url($productos->nextPageUrl());
+
+                if (!empty($parse_url['query'])) {
+                    parse_str($parse_url['query'], $get_array);
+                    $page = !empty($get_array['page']) ? $get_array['page'] : 0;
+                }
+            }
     
             $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $request->id)->get(['id', 'name', 'extract', 'description']);
            
-            return response()->json(['message' => 'Subcategorias', 'subcategorias' => $subcategorias, 'productos' => $productos, 'categorias' => $categorias]);
+            return response()->json(['message' => 'Subcategorias', 'subcategorias' => $subcategorias, 'productos' => $productos, 'categorias' => $categorias, 'page' => $page]);
     }
 
 
@@ -222,7 +232,7 @@ class CategoryController extends Controller
             ->where('products.visible', '=', 1)
             ->where('products.subcategoria_id', '=', $request->id)
             ->select('products.*', 'categories.name as category_name')
-            ->get();
+            ->paginate(9);
 
             return response()->json(['message' => 'Microcategoria', 'microcategorias' => $microcategorias,'productos' => $productos]);
     }
@@ -235,9 +245,44 @@ class CategoryController extends Controller
         ->where('products.visible', '=', 1)
         ->where('products.microcategoria_id', '=', $request->id)
         ->select('products.*', 'categories.name as category_name')
-        ->get();
+        ->paginate(9);
 
             return response()->json(['message' => 'Microcategoria', 'productos' => $productos]);
+    }
+
+
+    public function getTotalProductos(Request $request){
+
+        $id = $request->id;
+        $page = 0;
+
+        $productos = DB::table('products')
+        ->join('categories', 'products.categoria_id', '=', 'categories.id')
+        ->where('products.status', '=', 1)
+        ->where('products.visible', '=', 1)
+        ->where(function ($query) use ($id) {
+            $query->where('products.categoria_id', '=', $id)
+                  ->orWhere('products.subcategoria_id', '=', $id)
+                  ->orWhere('products.microcategoria_id', '=', $id);
+        })
+        ->select('products.*', 'categories.name as category_name')
+        ->paginate(9);
+
+        if (!empty($productos->nextPageUrl())) {
+            $parse_url = parse_url($productos->nextPageUrl());
+
+            if (!empty($parse_url['query'])) {
+                parse_str($parse_url['query'], $get_array);
+                $page = !empty($get_array['page']) ? $get_array['page'] : 0;
+                
+            }
+        }
+        // $productos = Products::where('categoria_id', $id)
+        // ->orWhere('subcategoria_id', $id)
+        // ->orWhere('microcategoria_id', $id)
+        // ->paginate(3);
+
+        return response()->json(['message' => 'productosPaginados', 'productos' => $productos, 'page' => $page]);
     }
 
 }

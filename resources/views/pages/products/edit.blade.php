@@ -467,7 +467,16 @@
                     </div>
                   </div>
 
-                  <div class="">
+                  <div class="md:col-span-5">
+                      <label for="imagen">Imagen Principal</label>
+                      <div class="relative mb-2  mt-2">
+                          <input id="imagen" name="imagen"
+                              class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                              aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                      </div>
+                  </div>
+
+                  {{-- <div class="">
 
                     <label for="destacar">Lo más pedido
                     </label>
@@ -508,7 +517,7 @@
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         @if ($product->liquidacion) checked @endif>
                     </div>
-                  </div>
+                  </div> --}}
 
 
                 </div>
@@ -519,7 +528,7 @@
             <div class="basis-0 md:basis-2/5">
 
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
-                <div class="md:col-span-5 flex justify-between gap-4">
+                {{-- <div class="md:col-span-5 flex justify-between gap-4">
                   <div class="w-full">
                     <label for="precio">Precio</label>
                     <div class="relative mb-2  mt-2">
@@ -574,7 +583,7 @@
                       class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Costo por articulo">
                   </div>
-                </div>
+                </div> --}}
 
                 <div class="md:col-span-5">
                   <label for="costo_x_art">Categoria</label>
@@ -588,7 +597,7 @@
                       </svg>
                     </div>
                     <select name="categoria_id"
-                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      class="categoryselect mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       <option value="">Seleccionar Categoria</option>
                       @foreach ($categoria as $item)
                         <option value="{{ $item->id }}"
@@ -601,6 +610,47 @@
                 </div>
 
                 <div class="md:col-span-5">
+                      <label for="costo_x_art">Subcategoria</label>
+                      <div class="relative mb-2  mt-2">
+                          <div
+                              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                              <svg class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                  xmlns="http://www.w3.org/2000/svg" fill="none" width="512"
+                                  height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
+                                  stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                              </svg>
+                          </div>
+                          <select name="subcategoria_id" id="selectSubcategory"
+                              class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
+                              <option value="">Seleccionar Subcategoria </option>
+                          </select>
+                      </div>
+                  </div>
+
+
+                  <div class="md:col-span-5">
+                        <label for="costo_x_art">Microcategoria</label>
+                        <div class="relative mb-2  mt-2">
+                            <div
+                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" width="512"
+                                    height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </div>
+                            <select name="microcategoria_id" id="selectMicrocategory"
+                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
+                                <option value="">Seleccionar Microcategoria </option>
+                            </select>
+                        </div>
+                    </div>
+
+                {{-- <div class="md:col-span-5">
                   <label for="costo_x_art">Colección</label>
                   <div class="relative mb-2  mt-2">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -622,7 +672,7 @@
 
                     </select>
                   </div>
-                </div>
+                </div> --}}
 
                 <div class="md:col-span-5 mt-2">
                   <div class=" flex items-end justify-between gap-2 ">
@@ -677,10 +727,32 @@
                 </div>
 
 
+                <div class="md:col-span-5">
+                  <label for="archive">Ficha Técnica</label>
+                  <div class="relative mb-2  mt-2">
+                      <input name="fichatecnica" accept="application/pdf"
+                          class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                          aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                  </div>
+              </div>
+
+
+              <div class="md:col-span-5">
+                  <label for="archive">Ficha de Riesgo</label>
+                  <div class="relative mb-2  mt-2">
+                      <input name="fichariesgo" accept="application/pdf"
+                          class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                          aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                  </div>
+              </div>
+
+
 
               </div>
 
-              <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
+
+            
+              {{-- <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
                 <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
                   Inventario</h4>
                 <div class="md:col-span-5 flex justify-between gap-4">
@@ -714,7 +786,8 @@
 
 
                 </div>
-              </div>
+              </div> --}}
+
               <div class="md:col-span-5 mt-2">
                 <div class="flex justify-between gap-5">
                   @foreach ($product->images as $item)
@@ -734,7 +807,7 @@
                 </div>
 
               </div>
-              <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-1 rounded shadow-lg p-4 px-4">
+              {{-- <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-1 rounded shadow-lg p-4 px-4">
                 @foreach ($valorAtributo as $item)
                   @if ($item->attribute_id == 2)
                     <div class="grid grid-cols-3">
@@ -768,9 +841,9 @@
                     </div>
                   @endif
                 @endforeach
-              </div>
+              </div> --}}
 
-              <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
+              {{-- <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
                 <div class="md:col-span-5 mt-2 ">
                   <div class=" flex items-end justify-between gap-2 ">
                     <label for="AddCombinacion">Combinaciones </label>
@@ -863,7 +936,7 @@
 
                   </div>
                 </div>
-              </div>
+              </div> --}}
 
             </div>
           </div>
@@ -887,6 +960,87 @@
 
   </div>
   <script>
+
+    $('document').ready(function() {
+        $('#selectSubcategory').change(function() {
+
+                var id = $('#selectSubcategory').val();
+                $.ajax({
+                    url: '{{ route('getMicrocategoria') }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        //    console.log(response);
+                        $('#selectMicrocategory').empty();
+                        $.each(response.microcategorias, function(key, value) {
+
+                            console.log(value);
+                            $('#selectMicrocategory').append(
+                                '<option value="' + value['id'] + '">' + value[
+                                    'name'] +
+                                '</option>'
+                            );
+                        });
+
+
+                    },
+                    error: function(error) {
+
+                    }
+                });
+
+
+            });
+
+
+             $('.categoryselect').change(function() {
+
+           var id = $('.categoryselect').val();
+            // var status = $(this).attr('data-val');
+
+
+            $.ajax({
+                url: '{{ route('getSubcategoria') }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id
+                },
+                dataType: "json",
+                success: function(response) {
+                    //    console.log(response);
+                    $('#selectSubcategory').empty();
+                    $('#selectMicrocategory').empty();
+                    $('#selectMicrocategory').append(
+                        '<option value="">Selecciona Microcategoria</option>');
+                    $('#selectSubcategory').append('<option value="">Selecciona Subcategoria</option>');
+
+
+                    $.each(response.subcategorias, function(key, value) {
+
+                        console.log(value);
+                        $('#selectSubcategory').append(
+                            '<option value="' + value['id'] + '">' + value['name'] +
+                            '</option>'
+                        );
+
+                    });
+
+
+                },
+                error: function(error) {
+
+                }
+            });
+
+        });
+
+    });
+
     $('#tags_id').select2();
     // Obtener los enlaces de pestaña
     const generalTab = document.getElementById('general-tab');

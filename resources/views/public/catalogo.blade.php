@@ -52,7 +52,7 @@
                                         {{-- <a href="{{route('catalogo', $item->id)}}"> --}}
                                         <a id="{{ $item->id }}" class="categoryselect">
                                             <div class="inline-flex flex-col gap-3 w-[142px] h-[202px]">
-                                                <div
+                                                <div id="{{ $item->id }}"
                                                     class="rounded-full bg-white hover:bg-[#245BC8] md:duration-300 w-[142px] h-[142px] flex justify-center items-center">
                                                     <div>
                                                         <img src="{{ asset('images/img/image_24.png') }}"
@@ -91,15 +91,16 @@
                             <div class="relative inline-block text-left min-w-64 w-auto">
                                 <select id="selectSubcategory"
                                     class="hidden bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
-                                    <option value="sinproduct" >Selecciona subcategoria</option>
+                                    <option value="sinproduct">Selecciona subcategoria</option>
                                 </select>
                             </div>
                             <div class="relative inline-block text-left min-w-64 w-auto">
                                 <select id="selectMicrocategory"
                                     class="hidden bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
-                                    <option value="sinproduct" >Selecciona microcategoria</option>
+                                    <option value="sinproduct">Selecciona microcategoria</option>
                                 </select>
                             </div>
+                            <input type="hidden" id="valorcategoria" />
                         </div>
                     </div>
                 </div>
@@ -136,6 +137,15 @@
                     @endforeach
 
                 </div>
+
+                <div class="flex justify-center items-center mb-10">
+                    <a href="javascript:;" @if (empty($page)) style="display:none;" @endif
+                        data-page={{ $page }}
+                        class="text-white py-3 px-5 border-2 bg-[#082252] rounded-3xl w-60 text-center font-medium text-text16 cargarMas">
+                        Cargar más modelos
+                    </a>
+                </div>
+
             </div>
         </section>
     </main>
@@ -181,7 +191,16 @@
                     success: function(response) {
 
                         $('#getProductAjax').empty();
-                        $.each(response.productos, function(key, value) {
+
+                        $('.cargarMas').attr('data-page', response.page);
+
+                        if (response.page == 0) {
+                            $('.cargarMas').hide();
+                        } else {
+                            $('.cargarMas').show();
+                        }
+
+                        $.each(response.productos.data, function(key, value) {
 
                             var productoUrl = `{{ route('producto', ':id') }}`.replace(
                                 ':id', value.id);
@@ -230,6 +249,14 @@
                     dataType: "json",
                     success: function(response) {
                         //    console.log(response);
+                        $('.cargarMas').attr('data-page', response.page);
+                        $('.cargarMas').html('Cargar más modelos');
+                        if (response.page == 0) {
+                            $('.cargarMas').hide();
+                        } else {
+                            $('.cargarMas').show();
+                        }
+
                         if (response.microcategorias && response.microcategorias.length > 0) {
                             $('#selectMicrocategory').empty().show();
 
@@ -249,7 +276,7 @@
                         }
 
                         $('#getProductAjax').empty();
-                        $.each(response.productos, function(key, value) {
+                        $.each(response.productos.data, function(key, value) {
 
                             var productoUrl = `{{ route('producto', ':id') }}`.replace(
                                 ':id', value.id);
@@ -302,7 +329,7 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        console.log(response);
+                        console.log(response.productos);
                         $('#selectSubcategory').empty().show();
                         $('#selectMicrocategory').empty().hide();
                         $('#selectMicrocategory').append(
@@ -316,6 +343,14 @@
                         $('.description').empty();
                         $('.description').text(response.categorias[0].description);
 
+                        $('.cargarMas').attr('data-page', response.page);
+
+                        if (response.page == 0) {
+                            $('.cargarMas').hide();
+                        } else {
+                            $('.cargarMas').show();
+                        }
+
                         $.each(response.subcategorias, function(key, value) {
 
 
@@ -328,7 +363,7 @@
                         });
 
                         $('#getProductAjax').empty();
-                        $.each(response.productos, function(key, value) {
+                        $.each(response.productos.data, function(key, value) {
 
                             var productoUrl = `{{ route('producto', ':id') }}`.replace(
                                 ':id', value.id);
@@ -363,9 +398,90 @@
 
             });
 
+
+
+
+            $('body').delegate('.cargarMas', 'click', function() {
+                var page = $(this).attr('data-page');
+                $('.cargarMas').html('Cargando...');
+
+                var id = $('#valorcategoria').val();
+ 
+                $.ajax({
+                    url: "{{ route('getTotalProductos') }}?page=" + page,
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+
+                        console.log(response);
+
+                        $.each(response.productos.data, function(key, value) {
+
+                            var productoUrl = `{{ route('producto', ':id') }}`.replace(
+                                ':id', value.id);
+
+                            $('#getProductAjax').append(
+                                `<div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
+                                    
+                                    <div class="flex justify-center items-center">
+                                        <a href='${productoUrl}' class="w-full"><img src="{{ asset('${value.imagen}') }}"
+                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg h-full"></a>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>
+                                        <a href='${productoUrl}'>
+                                            <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
+                                        </a>
+                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
+                                            ${value.extract}
+                                        </p>
+                                    </div>
+                                    
+                                </div>`
+                            );
+                        });
+
+
+                        $('.cargarMas').attr('data-page', response.page);
+                        $('.cargarMas').html('Cargar más modelos');
+                        if (response.page == 0) {
+                            $('.cargarMas').hide();
+                        } else {
+                            $('.cargarMas').show();
+                        }
+                    },
+                    error: function(error) {}
+                });
+
+            })
+
         });
     </script>
+    <script>
+        $(document).on('click', '.selected', function() {
+            var id = $(this).attr('id');
+            console.log('ID from selected div:', id);
+            $('#valorcategoria').val(id);
+        });
 
+        // Actualizar id cuando cambie el select con id 'selectSubcategory'
+        $('#selectSubcategory').on('change', function() {
+            var id = $(this).val();
+            console.log('ID from selectSubcategory:', id);
+            $('#valorcategoria').val(id);
+        });
+
+        // Actualizar id cuando cambie el select con id 'selectMicrocategory'
+        $('#selectMicrocategory').on('change', function() {
+            var id = $(this).val();
+            console.log('ID from selectMicrocategory:', id);
+            $('#valorcategoria').val(id);
+        });
+    </script>
 @stop
 
 @stop
