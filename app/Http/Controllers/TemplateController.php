@@ -62,6 +62,7 @@ class TemplateController extends Controller
 
             if (!$jpa) {
                 $body['content'] = '<i>- Bien hecho, creaste una plantilla -</i>';
+                $body['data_type'] = '{}';
                 Template::create($body);
             } else {
                 $jpa->update($body);
