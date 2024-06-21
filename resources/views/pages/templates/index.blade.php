@@ -343,7 +343,7 @@
 
     $('#content-modal [data-title]').text(`Cargar contenido de ${data.name}`)
     $('#txt-id2').val(data.id)
-    $('#txt-data_type').val(data.data_type)
+    $('#txt-data_type').val(data.data_type ?? '{}')
   })
 
   // DONE:
