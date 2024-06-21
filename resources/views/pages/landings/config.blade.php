@@ -81,12 +81,15 @@
         case 'container':
           const types = JSON.parse(input.attr('data-types'))
           const values = JSON.parse(value || '[]')
+          if (values.length == 0) return key
           data[key] = values.map(x => {
             let base = structuredClone(key)
             for (const key in x) {
               const regex = new RegExp(`{{ $regex }}`, 'g')
               if (types[key] == 'image') {
-                base = base.replace(regex, `${location.origin}/api/landing-settings/file/download?path=${encodeURIComponent(x[key])}`)
+                base = base.replace(regex,
+                  `${location.origin}/api/landing-settings/file/download?path=${encodeURIComponent(x[key])}`
+                  )
               } else {
                 base = base.replace(regex, x[key])
               }
@@ -109,7 +112,10 @@
         newTemplate = newTemplate.replace(regex, data[key])
       }
     }
-    const blob = new Blob([newTemplate], {
+    const blob = new Blob([newTemplate
+      .replaceAll('{{ $llavesBegin }}', '')
+      .replaceAll('{{ $llavesEnd }}', '')
+    ], {
       type: 'text/html'
     });
     const url = await File.toURL(blob)
@@ -140,9 +146,9 @@
     const container = $('#variables-container')
     container.empty()
     const parentsId = settings.filter((x) => x.parent).map((x) => x.parent);
-    
+
     const filtered = settings.filter((x) => x.data_type != 'container' && !x.parent && !parentsId.includes(x.id))
-    
+
     filtered.forEach(setting => {
       container.append(getFormElement(setting))
     })
