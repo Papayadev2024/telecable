@@ -44,10 +44,7 @@
 
 
 @section('scripts_importados')
-<script>
 
-
-</script>
 @stop
 
 @stop
