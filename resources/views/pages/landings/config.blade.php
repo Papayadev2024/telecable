@@ -81,12 +81,15 @@
         case 'container':
           const types = JSON.parse(input.attr('data-types'))
           const values = JSON.parse(value || '[]')
+          if (values.length == 0) return key
           data[key] = values.map(x => {
             let base = structuredClone(key)
             for (const key in x) {
               const regex = new RegExp(`{{ $regex }}`, 'g')
               if (types[key] == 'image') {
-                base = base.replace(regex, `${location.origin}/api/landing-settings/file/download?path=${encodeURIComponent(x[key])}`)
+                base = base.replace(regex,
+                  `${location.origin}/api/landing-settings/file/download?path=${encodeURIComponent(x[key])}`
+                )
               } else {
                 base = base.replace(regex, x[key])
               }
@@ -109,7 +112,10 @@
         newTemplate = newTemplate.replace(regex, data[key])
       }
     }
-    const blob = new Blob([newTemplate], {
+    const blob = new Blob([newTemplate
+      .replaceAll('{[', '')
+      .replaceAll(']}', '')
+    ], {
       type: 'text/html'
     });
     const url = await File.toURL(blob)
@@ -140,10 +146,16 @@
     const container = $('#variables-container')
     container.empty()
     const parentsId = settings.filter((x) => x.parent).map((x) => x.parent);
-    settings.filter((x) => !x.parent && !parentsId.includes(x.id)).forEach(setting => {
+
+    const filtered = settings.filter((x) => x.data_type != 'container' && !x.parent && !parentsId.includes(x.id))
+
+    filtered.forEach(setting => {
       container.append(getFormElement(setting))
     })
     const containers = settings.filter(x => parentsId.includes(x.id))
+
+    console.log(containers)
+
     if (containers.length > 0) {
       container.append('<hr class="mb-2"><p class="mb-2"><b>Contenedores</b></p>')
       containers.forEach((setting, i) => {
@@ -358,7 +370,6 @@
       variables.forEach(variable => {
         const td = $('<td>', {
           class: 'border',
-          contenteditable: true,
           'data-name': variable.name
         }).html(getFormElement({
           ...variable,
@@ -417,7 +428,7 @@
     try {
       const children = [...$('#table-container tbody tr')].map(e => {
         const obj = {}
-        $(e).find('input[id^="container-variable"]').each(function() {
+        $(e).find('[id^="container-variable"]').each(function() {
           const name = $(this).attr('data-name')
           const value = $(this).val()
           obj[name] = value

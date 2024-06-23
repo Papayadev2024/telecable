@@ -23,7 +23,10 @@ class LandingSettingController extends Controller
                 ->delete();
 
             foreach ($body['containers'] as $container) {
-                LandingSetting::updateOrCreate(['name' => $container], [
+                LandingSetting::updateOrCreate([
+                    'name' => $container,
+                    'landing_id' => $landing_id
+                ], [
                     'landing_id' => $landing_id,
                     'name' => $container,
                     'data_type' => 'container'
@@ -40,8 +43,14 @@ class LandingSettingController extends Controller
             $data_types = JSON::parse($template->data_type);
 
             foreach ($body['variables'] as $variable) {
-                $parentJpa = LandingSetting::select('id')->where('name', 'like', '%{{' . $variable . '}}%')->first();
-                LandingSetting::updateOrCreate(['name' => $variable], [
+                $parentJpa = LandingSetting::select('id')
+                    ->where('name', 'like', '%{{' . $variable . '}}%')
+                    ->where('landing_id', $landing_id)
+                    ->first();
+                LandingSetting::updateOrCreate([
+                    'name' => $variable,
+                    'landing_id' => $landing_id
+                ], [
                     'landing_id' => $landing_id,
                     'name' => $variable,
                     'parent' => $parentJpa->id ?? null,
@@ -96,14 +105,15 @@ class LandingSettingController extends Controller
         }
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         $response = new Response();
 
         try {
             $setting = LandingSetting::find($request->id);
             $setting->value = $request->value;
             $setting->save();
-            
+
             $response->status = 200;
             $response->message = 'Operacion correcta';
         } catch (\Throwable $th) {
@@ -148,19 +158,18 @@ class LandingSettingController extends Controller
     public function getFile(Request $request)
     {
         try {
-            $content = Storage::get($request->path);
+            $path = $request->path;
+            if (!$path) $path = '/uploads/default-image.jpg';
+            $content = Storage::get($path);
 
             return response($content, 200, [
                 'Content-Type' => 'application/octet-stream'
             ]);
         } catch (\Throwable $th) {
-            return response(
-                [
-                    'status' => 400,
-                    'message' => $th->getMessage()
-                ],
-                400
-            );
+
+            return response(Storage::get('/uploads/default-image.jpg'), 400, [
+                'Content-Type' => 'application/octet-stream'
+            ]);
         }
     }
 }

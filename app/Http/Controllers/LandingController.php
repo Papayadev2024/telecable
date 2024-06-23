@@ -75,16 +75,24 @@ class LandingController extends Controller
             foreach ($landingSettings as $setting) {
                 switch ($setting->data_type) {
                     case 'image':
-                        $html = str_replace('{{' . $setting->name . '}}', url('/') . '/api/landing-settings/file/download?path=' . $setting->value, $html);
+                        $path = $setting->value;
+                        if (!$path) $path = '/uploads/default-image.jpg';
+                        $html = str_replace('{{' . $setting->name . '}}', url('/') . '/api/landing-settings/file/download?path=' . $path, $html);
                         break;
                     case 'container':
                         $values = [];
-                        $settingValue = JSON::parse($setting->value);
+                        if ($setting->value) {
+                            $settingValue = JSON::parse($setting->value);
+                        } else {
+                            $settingValue = [];
+                        }
                         foreach ($settingValue as $object) {
                             $base = $setting->name;
                             foreach ($object as $key => $value) {
                                 if (isset($types[$key]) && $types[$key] == 'image') {
-                                    $base = str_replace('{{' . $key . '}}', url('/') . '/api/landing-settings/file/download?path=' . $value, $base);
+                                    $path = $value;
+                                    if (!$path) $path = '/uploads/default-image.jpg';
+                                    $base = str_replace('{{' . $key . '}}', url('/') . '/api/landing-settings/file/download?path=' . $path, $base);
                                 } else {
                                     $base = str_replace('{{' . $key . '}}', $value, $base);
                                 }
