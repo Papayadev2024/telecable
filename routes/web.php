@@ -119,6 +119,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         //messages
         Route::resource('/mensajes', MessageController::class);
         Route::post('/mensajes/borrar', [MessageController::class, 'borrar'])->name('mensajes.borrar');
+        Route::get('/mensajeslanding', [MessageController::class, 'showMessageLanding'])->name('mensajeslanding');
 
         //Datos Generales
         Route::resource('/datosgenerales', GeneralController::class);

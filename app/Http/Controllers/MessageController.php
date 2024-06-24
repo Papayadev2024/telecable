@@ -16,10 +16,24 @@ class MessageController extends Controller
     public function index()
     {
         //
-        $mensajes = Message::where('status' , '=', 1 )->orderBy('created_at', 'DESC')->get();
+        $mensajes = Message::where('status', '=', 1)
+                            ->where(function($query) {
+                                $query->where('source', '=', 'Inicio')
+                                    ->orWhere('source', '=', 'Contacto');
+                            })
+                            ->orderBy('created_at', 'DESC')
+                            ->get();
         return view('pages.message.index', compact('mensajes'));
     
         
+    }
+
+    public function showMessageLanding(){
+        $mensajeslanding = Message::where('status', '=', 1)
+                            ->whereNotIn('source', ['Inicio', 'Contacto'])
+                            ->orderBy('created_at', 'DESC')
+                            ->get();
+        return view('pages.landingmessages.index', compact('mensajeslanding'));
     }
 
     /**
