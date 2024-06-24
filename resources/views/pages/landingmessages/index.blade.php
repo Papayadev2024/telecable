@@ -143,7 +143,7 @@
         function borrarmensaje(id) {
             console.log(id)
             $.ajax({
-                url: '{{ route('mensajes.borrar') }}',
+                url: '{{ route('mensajeslanding.borrar') }}',
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -158,7 +158,7 @@
                         icon: "success"
                     });
 
-                    window.location.href = '/admin/mensajes';
+                    window.location.href = '/admin/mensajeslanding';
                 },
                 error: function(error) {
                     console.log(error)

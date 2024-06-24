@@ -129,6 +129,17 @@ class MessageController extends Controller
 
     }
 
+    public function mensajeslandingDelete(Request $request)
+    {
+
+        $mensaje = Message::find($request->id);
+        $mensaje->status = 0; 
+        $mensaje->save();
+
+        return response()->json(['success' => true]);
+
+    }
+
 
     public function deleteMensajes(Request $request) {
         //Recupero el id mandado mediante ajax
