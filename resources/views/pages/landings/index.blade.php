@@ -14,10 +14,10 @@
         <table id="tabladatos" class="display text-lg" style="width:100%">
           <thead>
             <tr>
+              <th>Nombre de landing</th>
               <th>Plantilla base</th>
               <th>Landing</th>
               <th>Descripción</th>
-              <th>Pagina</th>
               <th>Publico</th>
               <th>Acciones</th>
             </tr>
@@ -25,10 +25,10 @@
           <tbody></tbody>
           <tfoot>
             <tr>
+              <th>Nombre de landing</th>
               <th>Plantilla base</th>
               <th>Landing</th>
               <th>Descripción</th>
-              <th>Pagina</th>
               <th>Publico</th>
               <th>Acciones</th>
             </tr>
@@ -55,7 +55,8 @@
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           Previsualizacion
         </label>
-        <iframe class="shadow rounded-md" id="modal-previewer" src="" style="width: 100%; height: 330px; border: none;"></iframe>
+        <iframe class="shadow rounded-md" id="modal-previewer" src=""
+          style="width: 100%; height: 330px; border: none;"></iframe>
       </div>
     </div>
   </x-modal.content>
@@ -87,6 +88,19 @@
       }
     },
     columns: [{
+        data: 'page',
+        render: (value, type, data, params) => {
+          const a = $('<a>', {
+            class: 'text-blue-500 hover:underline',
+            href: `//${location.host}/landing/${data.page}`,
+            target: '_blank',
+            title: `Ver ${data.name} en una nueva ventana`,
+            tippy: ''
+          }).text(data.page)
+          return a.prop('outerHTML')
+        }
+      },
+      {
         data: 'template.name',
         render: (value, type, data, params) => {
           const div = $('<div>')
@@ -112,19 +126,6 @@
         render: (value, type, data, params) => {
           if (!data.description) return '<i class="text-gray-500">- Sin descripcion -</i>'
           else return data.description
-        }
-      },
-      {
-        data: 'page',
-        render: (value, type, data, params) => {
-          const a = $('<a>', {
-            class: 'text-blue-500 hover:underline',
-            href: `//${location.host}/landing/${data.page}`,
-            target: '_blank',
-            title: `Ver ${data.name} en una nueva ventana`,
-            tippy: ''
-          }).text(data.page)
-          return a.prop('outerHTML')
         }
       },
       {
