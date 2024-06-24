@@ -449,7 +449,7 @@
     const newDataType = {};
     [...new Set((html.match({{ $regex }}) ?? []).map(x => x
       .replaceAll('{{ $llavesBegin }}', '').replaceAll('{{ $llavesEnd }}', '')
-    ))].filter(x => !x.startsWith('landing.') && !x.startsWith('generals.')).forEach(x => {
+    ))].filter(x => !x.startsWith('landing.') && !x.startsWith('generals.') && x != 'csrf_token').forEach(x => {
       const found = data_type[x]
       if (!found) {
         newDataType[x] = 'text'
