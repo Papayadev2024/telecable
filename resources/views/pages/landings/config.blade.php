@@ -402,7 +402,6 @@
     variables.forEach(variable => {
       const td = $('<td>', {
         class: 'border',
-        contenteditable: true,
         'data-name': variable.name
       }).html(getFormElement({
         ...variable,
