@@ -46,9 +46,17 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('components.app.sidebar', function ($view) {
             // Obtener los datos del footer
-            $mensajes = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)->count(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
+            $mensajes = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)
+                                    ->where(function($query) {
+                                        $query->where('source', '=', 'Inicio')
+                                            ->orWhere('source', '=', 'Contacto');
+                                    })->count(); 
+            $mensajeslanding = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)
+                                        ->whereNotIn('source', ['Inicio', 'Contacto'])
+                                        ->count();
             // Pasar los datos a la vista
-            $view->with('mensajes', $mensajes);
+            $view->with('mensajes', $mensajes)
+                 ->with('mensajeslanding', $mensajeslanding);
         });
 
          PaginationPaginator::useTailwind();   
