@@ -215,7 +215,7 @@
 
     const variables = [...new Set((template.match({{ $regexVariables }}) ?? []).map(x => x
       .replaceAll('{{ $llavesBegin }}', '').replaceAll('{{ $llavesEnd }}', '')
-    ))].filter(x => !x.startsWith('landing.') && !x.startsWith('generals.'))
+    ))].filter(x => !x.startsWith('landing.') && !x.startsWith('generals.') && x != 'csrf_token')
 
     const settingsRes = await fetch("{{ route('landingSettings.regulate', $landing->id) }}", {
       method: 'PATCH',

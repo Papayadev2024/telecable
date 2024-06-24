@@ -107,6 +107,7 @@ class LandingController extends Controller
                 }
             }
 
+            $html = str_replace('{{csrf_token}}', csrf_token(), $html);
             $html = str_replace('{{landing.name}}', $jpa->name, $html);
 
             return response($html ?? '', 200, [
