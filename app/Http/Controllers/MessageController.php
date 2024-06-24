@@ -81,6 +81,18 @@ class MessageController extends Controller
         return view('pages.message.show', compact('message'));
     }
 
+
+    public function showMessageL($id)
+    {
+        //
+        $message = Message::findOrFail($id);
+
+        $message->is_read = 1; 
+        $message->save();
+
+        return view('pages.landingmessages.show', compact('message'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

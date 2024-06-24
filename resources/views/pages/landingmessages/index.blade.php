@@ -22,7 +22,7 @@
                                 <th>Latitud</th>
                                 <th>Longitud</th>
                                 <th>Sistema</th>
-
+                                <th>Landing</th>
                                 <th class="w-32">Acciones</th>
                             </tr>
                         </thead>
@@ -32,11 +32,11 @@
                                 <tr>
                                     <td>
                                         @if ($item->is_read == '0')
-                                            <a href="{{ route('mensajes.show', $item->id) }}"><span class="mr-4"><i
+                                            <a href="{{ route('mensajeslanding.show', $item->id) }}"><span class="mr-4"><i
                                                         class="fa-regular fa-envelope"></i></span><span
                                                     class="font-bold dark:text-white">{{ $item->full_name }}</span></a>
                                         @else
-                                            <a href="{{ route('mensajes.show', $item->id) }}"><span class="mr-4"><i
+                                            <a href="{{ route('mensajeslanding.show', $item->id) }}"><span class="mr-4"><i
                                                         class="fa-regular fa-envelope-open"></i></span><span>{{ $item->full_name }}</span></a>
                                         @endif
 
@@ -49,6 +49,7 @@
                                     <td>{{ $item->client_latitude }}</td>
                                     <td>{{ $item->client_longitude }}</td>
                                     <td>{{ $item->client_system }}</td>
+                                    <td>{{ $item->source }}</td>
 
                                     <td class="flex flex-row items-center justify-center">
                                         <button method="POST" onclick="borrarmensaje({{ $item->id }})"
@@ -70,6 +71,7 @@
                                 <th>Latitud</th>
                                 <th>Longitud</th>
                                 <th>Sistema</th>
+                                <th>Landing</th>
                                 <th>Acciones</th>
                                 
                             </tr>
