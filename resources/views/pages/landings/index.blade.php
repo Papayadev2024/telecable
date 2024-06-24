@@ -39,7 +39,7 @@
   </div>
 
   <x-modal.content id="landings-modal" title="Nueva landing" btn-submit-text="Guardar" size="xl">
-    <div class="grid gap-4 grid-cols-2">
+    <div class="grid gap-4 grid-cols-1">
       <div>
         <x-form.input id="txt-id" type="hidden" />
         <x-form.select id="cbo-template" label="Plantilla base" required>
