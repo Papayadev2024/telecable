@@ -51,13 +51,13 @@
         <x-form.input id="txt-page" label="Path de la landing" required />
         <x-form.textarea id="txt-description" label="Descripcion de la landing" />
       </div>
-      <div>
+      {{-- <div>
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           Previsualizacion
         </label>
         <iframe class="shadow rounded-md" id="modal-previewer" src=""
           style="width: 100%; height: 330px; border: none;"></iframe>
-      </div>
+      </div> --}}
     </div>
   </x-modal.content>
 
