@@ -105,8 +105,7 @@ Route::post('/getMicrocategoria', [CategoryController::class, 'getMicrocategoria
 Route::post('/getProductMicrocategoria', [CategoryController::class, 'getProductMicrocategoria'])->name('getProductMicrocategoria');
 Route::post('/getTotalProductos', [CategoryController::class, 'getTotalProductos'])->name('getTotalProductos');
 
-
-
+Route::redirect('/register', '/login');
 
 
 Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () {

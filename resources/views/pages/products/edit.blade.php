@@ -398,12 +398,12 @@
 
           <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">
 
-            Edición de producto: {{ $product->producto }}
+            ID: {{$product->id}} - {{ $product->producto }}
           </h2>
         </header>
         <div class="flex flex-col gap-2 p-3 ">
-          <div class="flex gap-2 p-3 ">
-            <div class="basis-0 md:basis-3/5">
+          <div class="flex flex-col md:flex-row  gap-2 p-3 ">
+            <div class="basis-full md:basis-3/5">
               <div class="rounded shadow-lg p-4 px-4 ">
 
 
@@ -468,13 +468,45 @@
                   </div>
 
                   <div class="md:col-span-5">
-                      <label for="imagen">Imagen Principal</label>
+                      <label for="imagen">Nueva imagen principal</label>
                       <div class="relative mb-2  mt-2">
                           <input id="imagen" name="imagen"
                               class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                               aria-describedby="user_avatar_help" id="user_avatar" type="file">
                       </div>
                   </div>
+
+                  <div class="md:col-span-1 ">
+                      <label>Imagen principal</label>
+                      <div class="h-40 mt-2 py-4 flex flex-row justify-center border items-center border-gray-300 rounded-xl bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+                        <img src="{{ asset($product->imagen) }}" alt="" class="w-24 rounded-xl">
+                      </div>
+                      
+                  </div>
+
+                  <div class="md:col-span-4 ">
+                    <label>Galería</label>
+                    <div class="h-40 mt-2 px-2 py-3 flex flex-row justify-center border items-center border-gray-300 rounded-xl bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+                      @if (!$product->galeria->isEmpty())
+                        <div class="flex gap-5 ">
+                          @foreach ($product->galeria as $item)
+                            <div id="portada-{{ $item->id }}">
+                              <i onclick="borrarImg({{ $item->id }})" class="ml-1 cursor-pointer absolute" >
+                                <svg class="w-6" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36" x="0" y="0" 
+                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve"><g><g fill="#EF5350">
+                                  <path d="M412.6 141.4v.1c0 .6-.2.9-.4 1.1s-.6.5-1.2.5h-11.4c-.4-.1-.9-.2-1.4-.2s-.9.1-1.4.2H115.1c-.4-.1-.9-.2-1.4-.2s-.9.1-1.4.2H101c-1 0-1.7-.8-1.7-1.7v-32.1c0-1 .8-1.7 1.7-1.7h310c1 0 1.7.8 1.7 1.7zM393.4 152.7V442c0 13.3-10.8 24.1-24.1 24.1H142.8c-13.3 0-24.1-10.8-24.1-24.1V152.7zM332 396.2V222.7c0-2.7-2.2-4.9-4.9-4.9s-4.9 2.2-4.9 4.9v173.4c0 2.7 2.2 4.9 4.9 4.9 2.8 0 4.9-2.1 4.9-4.8zM261 409V209.9c0-2.7-2.2-4.9-4.9-4.9s-4.9 2.2-4.9 4.9v199c0 2.7 2.2 4.9 4.9 4.9s4.9-2.1 4.9-4.8zm-71.1-12.8V222.7c0-2.7-2.2-4.9-4.9-4.9s-4.9 2.2-4.9 4.9v173.4c0 2.7 2.2 4.9 4.9 4.9s4.8-2.1 4.9-4.8zM321.5 57.3v40.5h-9.7V57.3c0-.9-.7-1.7-1.7-1.7H201.8c-.9 0-1.7.7-1.7 1.7v40.5h-9.8V57.3c0-6.3 5.1-11.4 11.4-11.4H310c6.4 0 11.5 5.1 11.5 11.4z" 
+                                  fill="#EF5350" opacity="1" data-original="#ef5350"></path></g></g>
+                                </svg>
+                              </i>
+                              <img src="{{ asset($item->imagen) }}" alt="" class="w-24">
+                            </div>
+                          @endforeach
+                        </div>        
+                      @else
+                        <div class="text-black">No cuenta con imágenes en la galería</div>
+                      @endif   
+                    </div>
+                </div>
 
                   {{-- <div class="">
 
@@ -525,7 +557,9 @@
 
               </div>
             </div>
-            <div class="basis-0 md:basis-2/5">
+            
+            
+            <div class="basis-full md:basis-2/5">
 
               <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
                 {{-- <div class="md:col-span-5 flex justify-between gap-4">
@@ -625,6 +659,11 @@
                           <select name="subcategoria_id" id="selectSubcategory"
                               class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
                               <option value="">Seleccionar Subcategoria </option>
+                              @foreach ($subcategoria as $item)
+                                <option value="{{ $item->id }}"
+                                  {{ $item->id == $product->subcategoria_id ? 'selected' : '' }}>
+                                  {{ $item->name }}</option>
+                              @endforeach
                           </select>
                       </div>
                   </div>
@@ -646,6 +685,11 @@
                             <select name="microcategoria_id" id="selectMicrocategory"
                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('categoria_id') is-invalid @enderror">
                                 <option value="">Seleccionar Microcategoria </option>
+                                @foreach ($microcategoria as $item)
+                                  <option value="{{ $item->id }}"
+                                    {{ $item->id == $product->microcategoria_id ? 'selected' : '' }}>
+                                    {{ $item->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -747,8 +791,27 @@
               </div>
 
 
+            </div>
 
-              </div>
+            <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
+                <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
+                    Galeria</h4>
+
+                <div class="md:col-span-5 mt-2">
+                    <section class="scroll-section overflow-y-auto" id="uploadedFilesGallery">
+                        <h2 class="small-title">Subir fotos para Galeria</h2>
+                        <div class="card mb-2">
+                            <div class="card-body">
+
+                                <div class="dropzone border-gray-300"
+                                    id="dropzoneServerFilesGallery">
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>                
+            </div>
 
 
             
@@ -788,25 +851,7 @@
                 </div>
               </div> --}}
 
-              <div class="md:col-span-5 mt-2">
-                <div class="flex justify-between gap-5">
-                  @foreach ($product->images as $item)
-                    <div id="portada-{{ $item->id }}">
-                      <i onclick="borrarImg({{ $item->id }})" class=" w-5 cursor-pointer"
-                        style="position: absolute;"><svg xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                          <path
-                            d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" />
-                        </svg></i>
-
-
-                      <img src="{{ asset($item->name_imagen) }}" alt="" class="w-24">
-                    </div>
-                  @endforeach
-
-                </div>
-
-              </div>
+            
               {{-- <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-1 rounded shadow-lg p-4 px-4">
                 @foreach ($valorAtributo as $item)
                   @if ($item->attribute_id == 2)
@@ -961,8 +1006,93 @@
   </div>
   <script>
 
-    $('document').ready(function() {
-        $('#selectSubcategory').change(function() {
+      
+
+      document.addEventListener('DOMContentLoaded', function() {
+        
+
+        // let idsubcategory = document.querySelector('#selectSubcategory option:selected').value;
+        let selectSubcategory = document.querySelector('#selectSubcategory');
+        let idsubcategory = selectSubcategory.options[selectSubcategory.selectedIndex].value;
+        //let idcategory = document.querySelector('.categoryselect option:selected').value;
+        let selectCategory = document.querySelector('.categoryselect');
+        let idcategory = selectCategory.options[selectCategory.selectedIndex].value;
+       
+
+        // Obtener los valores de PHP y asignarlos a variables de JavaScript
+        let idproductCategory = {{ json_encode($product->subcategoria_id) }};
+        let idproductMicrocategory = {{ json_encode($product->microcategoria_id) }};
+
+        // Verificar si idproductMicrocategory es nulo
+        if (idproductMicrocategory === null) {
+            idproductMicrocategory = 0;
+        }
+
+        $.ajax({
+                url: '{{ route('getSubcategoria') }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: idcategory
+
+                },
+                dataType: "json",
+                success: function(response) {
+                
+                    $('#selectSubcategory').empty();
+                    $('#selectSubcategory').append('<option value="">Selecciona Subcategoria</option>');
+                    $.each(response.subcategorias, function(key, value) {
+
+                        let selected = (value.id == idproductCategory) ? 'selected' : '';
+                        $('#selectSubcategory').append(
+                              '<option value="' + value.id + '" ' + selected + '>' + value.name + '</option>'
+                          );
+                    });
+
+
+                },
+                error: function(error) {
+
+                }
+            });
+
+        $.ajax({
+                    url: '{{ route('getMicrocategoria') }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: idsubcategory
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                     
+                        $('#selectMicrocategory').empty();
+
+                        if (response.microcategorias && response.microcategorias.length > 0) {
+                          $.each(response.microcategorias, function(key, value) {
+                            let selected = (value.id == idproductMicrocategory) ? 'selected' : '';
+                            $('#selectMicrocategory').append(
+                              '<option value="' + value.id + '" ' + selected + '>' + value.name + '</option>'
+                            );
+                          });
+                        } else {
+                          $('#selectMicrocategory').append(
+                            '<option value="">Sin microcategorias</option>'
+                        );
+                        }
+
+                    },
+                    error: function(error) {
+
+                    }
+              });
+       
+    });
+
+  </script>
+
+  <script>
+      $('#selectSubcategory').change(function() {
 
                 var id = $('#selectSubcategory').val();
                 $.ajax({
@@ -976,15 +1106,20 @@
                     success: function(response) {
                         //    console.log(response);
                         $('#selectMicrocategory').empty();
-                        $.each(response.microcategorias, function(key, value) {
-
-                            console.log(value);
+                        if (response.microcategorias && response.microcategorias.length > 0) {
+                          $.each(response.microcategorias, function(key, value) {
                             $('#selectMicrocategory').append(
                                 '<option value="' + value['id'] + '">' + value[
                                     'name'] +
                                 '</option>'
                             );
-                        });
+                          });
+                        } else {
+                          $('#selectMicrocategory').append(
+                            '<option value="">Sin microcategorias</option>'
+                        );
+                        }
+                        
 
 
                     },
@@ -994,14 +1129,16 @@
                 });
 
 
-            });
+        });
 
 
-             $('.categoryselect').change(function() {
+        $('.categoryselect').change(function() {
 
            var id = $('.categoryselect').val();
             // var status = $(this).attr('data-val');
 
+            console.log("qweqweqw");
+            console.log("aaaaa");
 
             $.ajax({
                 url: '{{ route('getSubcategoria') }}',
@@ -1019,16 +1156,20 @@
                         '<option value="">Selecciona Microcategoria</option>');
                     $('#selectSubcategory').append('<option value="">Selecciona Subcategoria</option>');
 
-
-                    $.each(response.subcategorias, function(key, value) {
-
-                        console.log(value);
+                    if (response.subcategorias && response.subcategorias.length > 0) {
+                      $.each(response.subcategorias, function(key, value) {
                         $('#selectSubcategory').append(
                             '<option value="' + value['id'] + '">' + value['name'] +
                             '</option>'
                         );
 
                     });
+                    } else {
+                      $('#selectSubcategory').append(
+                            '<option value="">Sin subcategorias</option>'
+                        );
+                    }
+                    
 
 
                 },
@@ -1038,8 +1179,30 @@
             });
 
         });
+  </script>
 
-    });
+  <script>
+    let editor = null
+    $('document').ready(async function() {
+
+      editor = await tinymce.init({
+        selector: 'textarea#description',
+        height: 500,
+        plugins: [
+          'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
+          'searchreplace', 'visualblocks', 'code', 'fullscreen',
+          'insertdatetime', 'table'
+        ],
+        toolbar: 'undo redo | blocks | ' +
+          'bold italic backcolor | alignleft aligncenter ' +
+          'alignright alignjustify | bullist numlist outdent indent | ' +
+          'removeformat | help',
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px;}'
+      });
+
+    })
+
+
 
     $('#tags_id').select2();
     // Obtener los enlaces de pestaña
@@ -1068,28 +1231,6 @@
       // Mostrar el contenido de Attributes
       attributesContent.classList.remove('hidden');
     });
-  </script>
-
-  <script>
-    let editor = null
-    $('document').ready(async function() {
-
-      editor = await tinymce.init({
-        selector: 'textarea#description',
-        height: 500,
-        plugins: [
-          'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
-          'searchreplace', 'visualblocks', 'code', 'fullscreen',
-          'insertdatetime', 'table'
-        ],
-        toolbar: 'undo redo | blocks | ' +
-          'bold italic backcolor | alignleft aligncenter ' +
-          'alignright alignjustify | bullist numlist outdent indent | ' +
-          'removeformat | help',
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px;}'
-      });
-
-    })
   </script>
   <script>
     const pickr = Pickr.create({
@@ -1524,6 +1665,39 @@
 
     }
   </script>
+
+  <script>
+    function borrarImg(id) {
+      console.log('borranmdo ', id)
+
+      $.ajax({
+        url: "{{ route('activity.borrarimg') }}",
+        method: 'POST',
+        data: {
+          _token: $('input[name="_token"]').val(),
+          status: status,
+          id: id,
+
+        },
+        success: function(success) {
+          Swal.fire({
+
+            icon: "success",
+            title: 'Img borrada exitosamente',
+            showConfirmButton: false,
+            timer: 1500
+
+          });
+          $(`#portada-${id}`).remove()
+        },
+        error: function(error) {
+          console.log(error)
+        }
+
+      })
+    }
+  </script>
+
   @include('_layout.scripts')
 
 </x-app-layout>

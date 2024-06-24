@@ -791,7 +791,7 @@
                                         <div class="card mb-2">
                                             <div class="card-body">
 
-                                                <div class="dropzone border-gray-300  "
+                                                <div class="dropzone border-gray-300"
                                                     id="dropzoneServerFilesGallery">
                                                 </div>
 

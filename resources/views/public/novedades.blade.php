@@ -120,19 +120,49 @@
         {{ $novedades->links() }}
       </div>
     </section>
+    <div class="text-white mb-96">
+
+      <a id="facebook" href="">aaaaaaaaaaaa</a>
+      <a id="instagram" href="">bbbbbbbbbb</a>
+      <a id="youtube" href="">ccccccccccccccccc</a>
+      <a id="linkedin" href="">dddddddddddddd</a>
+
+    </div>
   </main>
 
-
+  
 
 @section('scripts_importados')
-  <script>
-    var appUrl = '{{ env('APP_URL') }}';
+<script>
 
-    // Agrega más variables de entorno aquí según sea necesario
-  </script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+      fetch('/obtenerRedes', {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log('Datos obtenidos:', data);
+          const facebookData = data.facebook;
+          console.log(facebookData);
+          if (facebookData) {
+              // Asigna la URL al elemento <a> con id="facebook"
+              const facebookLink = document.getElementById('facebook');
+              if (facebookLink) {
+                  facebookLink.href = facebookData.url;
+                  facebookLink.textContent = 'Facebook';
+              }
+          }
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+      });
+  });
 
-
-  <script src="{{ asset('js/carrito.js') }}"></script>
+  });
+</script>
 @stop
 
 @stop

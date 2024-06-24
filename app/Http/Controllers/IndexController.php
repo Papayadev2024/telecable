@@ -527,6 +527,8 @@ class IndexController extends Controller
         return view('public.404');
     }
 
+    
+
     public function cambioGaleria(Request $request)
     {
         $colorId = $request->id;

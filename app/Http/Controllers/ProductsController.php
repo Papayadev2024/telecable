@@ -9,8 +9,10 @@ use App\Models\Collection;
 use App\Models\Combinacion;
 use App\Models\Galerie;
 use App\Models\ImagenProducto;
+use App\Models\Microcategory;
 use App\Models\Products;
 use App\Models\Specifications;
+use App\Models\Subcategory;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -221,16 +223,9 @@ class ProductsController extends Controller
         foreach ($data['filesGallery'] as $file) {
         
           [$first, $code] = explode(';base64,', $file);
-          
-          // dd($file);
+   
           $imageData = base64_decode($code);
 
-          // $manager = new ImageManager(new Driver());
-
-          // $img =  $manager->read($imageData);
-          
-          // $img->coverDown(1000, 1500, 'center');
-          
           $routeImg = 'storage/images/gallery/';
           $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
           $nombreImagen = Str::random(10) . '.' . $ext;
@@ -376,9 +371,11 @@ class ProductsController extends Controller
     $especificacion = Specifications::where("product_id", "=", $id)->get();
     $allTags = Tag::all();
     $categoria = Category::all();
+    $subcategoria = Subcategory::all();
+    $microcategoria = Microcategory::all();
     $collection = Collection::all();
 
-    return view('pages.products.edit', compact('product', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'especificacion', 'collection'));
+    return view('pages.products.edit', compact('product', 'atributos', 'valorAtributo', 'allTags', 'categoria', 'subcategoria', 'microcategoria', 'especificacion', 'collection'));
   }
 
   /**
@@ -442,6 +439,32 @@ class ProductsController extends Controller
 
               $data['url_docriesgo'] = $routearchive2;
               $data['name_docriesgo'] = $nombrearchive2;
+    }
+
+
+    if (isset($data['filesGallery'])) {
+
+      foreach ($data['filesGallery'] as $file) {
+      
+        [$first, $code] = explode(';base64,', $file);
+ 
+        $imageData = base64_decode($code);
+
+        $routeImg = 'storage/images/gallery/';
+        $ext = ExtendFile::getExtention(str_replace("data:", '', $first));
+        $nombreImagen = Str::random(10) . '.' . $ext;
+        // Verificar si la ruta no existe y crearla si es necesario
+        if (!file_exists($routeImg)) {
+          mkdir($routeImg, 0777, true); 
+        }
+        
+        // Guardar los datos binarios en un archivo
+        file_put_contents($routeImg . $nombreImagen, $imageData);
+        $dataGalerie['imagen'] = $routeImg . $nombreImagen;
+        $dataGalerie['product_id'] = $product->id;
+        // $dataGalerie['type_img'] = 'gall';
+        Galerie::create($dataGalerie);
+      }
     }
 
 
@@ -532,13 +555,14 @@ class ProductsController extends Controller
       return !is_null($value);
     });
     $cleanedData['description'] = $data['description'];
-    $cleanedData['sku'] = $data['sku'];
 
-    if ($data['descuento'] == 0 || is_null($data['descuento'])) {
-      $cleanedData['preciofiltro'] = $data['precio'];
-    } else {
-      $cleanedData['preciofiltro'] = $data['descuento'];
-    }
+    // $cleanedData['sku'] = $data['sku'];
+
+    // if ($data['descuento'] == 0 || is_null($data['descuento'])) {
+    //   $cleanedData['preciofiltro'] = $data['precio'];
+    // } else {
+    //   $cleanedData['preciofiltro'] = $data['descuento'];
+    // }
 
     
     $product->update($cleanedData);
@@ -607,8 +631,8 @@ class ProductsController extends Controller
   public function borrarimg(Request $request){
     try {
       //code...
-      $imagenGaleria = ImagenProducto::find($request->id);
-      $rutaCompleta  = $imagenGaleria->name_imagen;
+      $imagenGaleria = Galerie::find($request->id);
+      $rutaCompleta  = $imagenGaleria->imagen;
       if (file_exists($rutaCompleta)) {
         // Intentar eliminar el archivo
         if (unlink($rutaCompleta)) {
