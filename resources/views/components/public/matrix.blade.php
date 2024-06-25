@@ -7,7 +7,7 @@
     <meta name="title" content="@yield('meta_title', 'Default Title')">
     <meta name="description" content="@yield('meta_description', 'Default Description')">
     <meta name="keywords" content="@yield('meta_keywords', 'default, keywords')">
-    <title>@yield('meta_title', 'Default Title') | HYDROTECH PERÚ IMPORT EIRL</title>
+    <title>@yield('meta_title', 'HYDROTECH') | HYDROTECH PERÚ IMPORT EIRL</title>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
