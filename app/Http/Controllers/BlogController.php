@@ -84,6 +84,9 @@ class BlogController extends Controller
     $post->title = $request->title;
     $post->description = $request->description;
     $post->extract = $request->extract;
+    $post->meta_title = $request->meta_title;
+    $post->meta_description = $request->meta_description;
+    $post->meta_keywords = $request->meta_keywords;
     $post->status = 1;
     $post->visible = 1;
 
@@ -168,6 +171,9 @@ class BlogController extends Controller
     $post->title = $request->title;
     $post->description = $request->description;
     $post->extract = $request->extract;
+    $post->meta_title = $request->meta_title;
+    $post->meta_description = $request->meta_description;
+    $post->meta_keywords = $request->meta_keywords;
 
 
     $post->update();

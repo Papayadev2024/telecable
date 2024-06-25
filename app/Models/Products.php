@@ -33,7 +33,10 @@ class Products extends Model
     'subcategoria_id',
     'microcategoria_id',
     'collection_id',
-    'sku'
+    'sku',
+    'meta_title', 
+    'meta_description', 
+    'meta_keywords'
   ];
 
 
@@ -154,8 +157,8 @@ class Products extends Model
 
     $return = $return->where('products.status', '=', 1)
           ->where('products.visible', '=', 1)
-          ->with('tags')
           ->groupBy('products.id')
+          ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END')
           ->orderBy('products.id', 'desc')
           ->paginate(9);
 

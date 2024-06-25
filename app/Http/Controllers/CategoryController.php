@@ -206,6 +206,7 @@ class CategoryController extends Controller
             ->where('products.visible', '=', 1)
             ->where('products.categoria_id', '=', $request->id)
             ->select('products.*', 'categories.name as category_name')
+            ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
             ->paginate(9);
 
             
@@ -232,6 +233,7 @@ class CategoryController extends Controller
             ->where('products.visible', '=', 1)
             ->where('products.subcategoria_id', '=', $request->id)
             ->select('products.*', 'categories.name as category_name')
+            ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
             ->paginate(9);
 
             return response()->json(['message' => 'Microcategoria', 'microcategorias' => $microcategorias,'productos' => $productos]);
@@ -245,6 +247,7 @@ class CategoryController extends Controller
         ->where('products.visible', '=', 1)
         ->where('products.microcategoria_id', '=', $request->id)
         ->select('products.*', 'categories.name as category_name')
+        ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
         ->paginate(9);
 
             return response()->json(['message' => 'Microcategoria', 'productos' => $productos]);
@@ -266,6 +269,7 @@ class CategoryController extends Controller
                   ->orWhere('products.microcategoria_id', '=', $id);
         })
         ->select('products.*', 'categories.name as category_name')
+        ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
         ->paginate(9);
 
         if (!empty($productos->nextPageUrl())) {

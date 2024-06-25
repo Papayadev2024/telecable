@@ -52,11 +52,16 @@ class AppServiceProvider extends ServiceProvider
                                             ->orWhere('source', '=', 'Contacto');
                                     })->count(); 
             $mensajeslanding = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)
-                                        ->whereNotIn('source', ['Inicio', 'Contacto'])
+                                        ->whereNotIn('source', ['Inicio', 'Contacto','Producto'])
                                         ->count();
+
+            $mensajesproduct = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)
+                                        ->where('source', '=', 'Producto')
+                                        ->count();                           
             // Pasar los datos a la vista
             $view->with('mensajes', $mensajes)
-                 ->with('mensajeslanding', $mensajeslanding);
+                 ->with('mensajeslanding', $mensajeslanding)
+                 ->with('mensajesproduct', $mensajesproduct);
         });
 
          PaginationPaginator::useTailwind();   

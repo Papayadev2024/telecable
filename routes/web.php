@@ -95,6 +95,7 @@ Route::post('/subscripciones/guardar', [NewsletterSubscriberController::class, '
 Route::get('/404', [IndexController::class, 'error'])->name('error');
 /* Formulario de contacto */
 Route::post('guardarContactos', [IndexController::class, 'guardarContacto'])->name('guardarContactos');
+Route::post('guardarProducto', [IndexController::class, 'guardarProducto'])->name('guardarProducto');
 
 Route::post('/getProvincia', [PriceController::class, 'getProvincias'])->name('prices.getProvincias');
 Route::post('/getDistrito', [PriceController::class, 'getDistrito'])->name('prices.getDistrito');
@@ -122,8 +123,12 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::get('/mensajeslanding', [MessageController::class, 'showMessageLanding'])->name('mensajeslanding');
         Route::get('/mensajeslanding/{id}', [MessageController::class, 'showMessageL'])->name('mensajeslanding.show');
         Route::post('/mensajeslanding/borrar', [MessageController::class, 'mensajeslandingDelete'])->name('mensajeslanding.borrar');
+        Route::get('/mensajesproduct', [MessageController::class, 'showMessageProducto'])->name('mensajesproduct');
+        Route::get('/mensajesproduct/{id}', [MessageController::class, 'showproductL'])->name('mensajesproduct.show');
+        Route::post('/mensajesproduct/borrar', [MessageController::class, 'mensajesproductoDelete'])->name('mensajesproduct.borrar');
 
 
+     
         //Datos Generales
         Route::resource('/datosgenerales', GeneralController::class);
 

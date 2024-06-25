@@ -1,5 +1,10 @@
 @extends('components.public.matrix', ['pagina' => 'catalogo'])
+
 @section('titulo', 'Producto')
+@section('meta_title', $meta_title)
+@section('meta_description', $meta_description)
+@section('meta_keywords', $meta_keywords)
+
 @section('css_importados')
     <style>
         .active {
@@ -19,7 +24,7 @@
     <main>
         <section class="w-11/12 md:w-10/12 mx-auto pt-44 pb-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
-                <div class="flex flex-col md:flex-row justify-center items-center gap-5 md:gap-0">
+                <div class="flex flex-col md:flex-row justify-center items-start gap-5 md:gap-0">
                     <div
                         class="flex flex-row justify-between md:flex-col md:justify-start md:items-center h-full md:gap-10 md:basis-1/4 order-2 md:order-1 w-full">
 
@@ -30,7 +35,7 @@
                         @endforeach
                     </div>
 
-                    <div class="md:basis-3/4 flex justify-center items-center order-1 md:order-2 w-full h-full">
+                    <div class="md:basis-3/4 flex justify-center items-center order-1 md:order-2 w-full ">
                         <img src="{{ asset($producto->imagen) }}" alt="producto"
                             class="w-full h-full object-cover rounded-xl principal" data-aos="fade-up"
                             data-aos-offset="150">
@@ -45,6 +50,16 @@
 
 
                         <p class="text-[#082252] text-text16 font-roboto font-normal">{{ $producto->extract }}</p>
+
+                         @if (!is_null($producto->description))
+                            <div class="flex flex-col gap-5 " data-aos="fade-up" data-aos-offset="150">
+                                <div class="text-[#082252] text-text16 font-normal font-roboto flex flex-col gap-5">
+                                    <p>
+                                        {!! $producto->description !!}
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
 
                         <div class="flex justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
                             data-aos="fade-up" data-aos-offset="150">
@@ -95,9 +110,9 @@
 
                         </div>
 
-                        <div class="flex justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
+                        <div class="flex flex-row items-center justify-center text-white font-roboto font-bold text-text14 gap-5 pt-3  "
                             data-aos="fade-up" data-aos-offset="150">
-                            <div target="_blank" id="chatonline"
+                            {{-- <div target="_blank" id="chatonline"
                                 class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
                                 <span>Cotizar aquí</span>
                                 <div>
@@ -108,6 +123,46 @@
                                             fill="white" />
                                     </svg>
                                 </div>
+                            </div> --}}
+                            <div class= "w-full md:w-11/12">
+                                  <form  id="formProducto">
+                                    @csrf
+                                    <div class="flex flex-col gap-5">
+                                        <div class="relative flex flex-col md:flex-row w-full gap-5"  >
+                                            <input 
+                                                required name="full_name" id="fullNameContacto" type="text" placeholder="Nombre completo"
+                                                class="w-full md:w-1/2 py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]" />
+                                            <input  id="telefonoContacto" name="phone" placeholder="Teléfono" type="tel" maxlength="12" required
+                                                    class="w-full md:w-1/2 py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]" />
+                                        </div>
+
+                                        <input type="hidden" name="service_product" value="{{ $producto->producto }}"/>
+
+                                        <div class="relative w-full" >
+                                            <input type="email" name="email" placeholder="E-mail" required id="emailContacto"
+                                                class="w-full py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]" />
+                                        </div>
+
+                                        <input type="hidden" id="tipo" placeholder="tipo" name="source" value="Producto" />
+
+                                        <div class="relative w-full" >
+                                            <textarea name="message" id="message" rows="2" cols="30"
+                                                class="w-full py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]"
+                                                placeholder="Mensaje"></textarea>
+                                        </div>
+                                        <input type="hidden" name="client_width" id="anchodispositivo">
+                                        <input type="hidden" name="client_height" id="largodispositivo">
+                                        <input type="hidden" name="client_latitude" id="latitud">
+                                        <input type="hidden" name="client_longitude" id="longitud">
+                                        <input type="hidden" name="client_system" id="sistema">
+                                        <div class="flex justify-center items-center py-5" 
+                                            >
+                                            <button type="submit"
+                                                class="text-text18 font-roboto font-semibold text-white bg-[#0C4AC3] md:bg-[#FF5E14] py-3 px-6 w-full text-center rounded-xl">Enviar
+                                                solicitud</button>
+                                        </div>
+                                    </div>
+                                </form>   
                             </div>
                         </div>
                     </div>
@@ -134,7 +189,7 @@
                 </div>
             </div>
             
-            @if (!is_null($producto->description))
+            {{-- @if (!is_null($producto->description))
                 <div class="flex flex-col gap-5 pt-10 md:pt-16" data-aos="fade-up" data-aos-offset="150">
 
                     <h3 class="font-roboto font-bold text-text28 text-[#082252]">Descripción</h3>
@@ -144,7 +199,7 @@
                         </p>
                     </div>
                 </div>
-            @endif
+            @endif --}}
                 
 
             @if ($especificaciones->isEmpty())
@@ -166,7 +221,7 @@
 
         @if ($ProdComplementarios->isEmpty())
         @else
-            <section class="bg-[#F7F8F8] py-20">
+            <section class="bg-[#F7F8F8] py-20 mt-10 md:mt-16">
                 <div class="grid grid-cols-1 md:grid-cols-3 w-11/12 mx-auto gap-5">
                     @foreach ($ProdComplementarios->take(3) as $complemento)
                         <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
@@ -248,6 +303,31 @@
                 }, 200);
             });
         });
+    </script>
+    <script>
+ 
+        // Obtener información del navegador y del sistema operativo
+        const platform = navigator.platform;
+        document.getElementById('sistema').value = platform;
+    
+        // Obtener la geolocalización del usuario (si se permite)
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                document.getElementById('latitud').value = position.coords.latitude;
+                document.getElementById('longitud').value = position.coords.longitude;
+            });
+        }
+    
+        // Obtener la página de referencia
+        const referrer = document.referrer;
+        document.getElementById('llegade').value = referrer;
+    
+    
+        // Obtener la resolución de la pantalla
+        const screenWidth = window.screen.width;
+        const screenHeight = window.screen.height;
+        document.getElementById('anchodispositivo').value = screenWidth;
+        document.getElementById('largodispositivo').value = screenHeight;
     </script>
 
 @stop

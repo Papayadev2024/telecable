@@ -4,7 +4,7 @@
         <div
             class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
             <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Mensajes de Landing</h2>
+                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Mensajes de Producto</h2>
             </header>
             <div class="p-3">
 
@@ -17,40 +17,38 @@
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>Teléfono</th>
+                                <th>Producto</th>
                                 <th>IP</th>
                                 <th>Dispositivo</th>
                                 <th>Latitud</th>
                                 <th>Longitud</th>
-                                <th>Sistema</th>
-                                <th>Landing</th>
                                 <th>Enviado</th>
+                               
                                 <th class="w-32">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach ($mensajeslanding as $item)
+                            @foreach ($mensajesproduct as $item)
                                 <tr>
                                     <td>
                                         @if ($item->is_read == '0')
-                                            <a href="{{ route('mensajeslanding.show', $item->id) }}"><span class="mr-4"><i
+                                            <a href="{{ route('mensajesproduct.show', $item->id) }}"><span class="mr-4"><i
                                                         class="fa-regular fa-envelope"></i></span><span
                                                     class="font-bold dark:text-white">{{ $item->full_name }}</span></a>
                                         @else
-                                            <a href="{{ route('mensajeslanding.show', $item->id) }}"><span class="mr-4"><i
+                                            <a href="{{ route('mensajesproduct.show', $item->id) }}"><span class="mr-4"><i
                                                         class="fa-regular fa-envelope-open"></i></span><span>{{ $item->full_name }}</span></a>
                                         @endif
 
                                     </td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
-
+                                    <td>{{ $item->service_product }}</td>
                                     <td>{{ $item->ip }}</td>
                                     <td>{{ $item->device }}</td>
                                     <td>{{ $item->client_latitude }}</td>
                                     <td>{{ $item->client_longitude }}</td>
-                                    <td>{{ $item->client_system }}</td>
-                                    <td>{{ $item->source }}</td>
                                     <td>{{ $item->created_at->format('d-m-Y') }}</td>
                                     
                                     <td class="flex flex-row items-center justify-center">
@@ -68,13 +66,13 @@
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>Teléfono</th>
+                                <th>Producto</th>
                                 <th>IP</th>
                                 <th>Dispositivo</th>
                                 <th>Latitud</th>
                                 <th>Longitud</th>
-                                <th>Sistema</th>
-                                <th>Landing</th>
                                 <th>Enviado</th>
+                              
                                 <th>Acciones</th>
                                 
                             </tr>
@@ -146,7 +144,7 @@
         function borrarmensaje(id) {
             console.log(id)
             $.ajax({
-                url: '{{ route('mensajeslanding.borrar') }}',
+                url: '{{ route('mensajesproduct.borrar') }}',
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -161,7 +159,7 @@
                         icon: "success"
                     });
 
-                    window.location.href = '/admin/mensajeslanding';
+                    window.location.href = '/admin/mensajesproduct';
                 },
                 error: function(error) {
                     console.log(error)
