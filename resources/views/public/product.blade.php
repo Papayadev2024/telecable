@@ -110,7 +110,7 @@
 
                         </div>
 
-                        <div class="flex flex-col items-start justify-start text-white font-roboto font-bold text-text14 gap-5 w-1/2 lg:w-1/2"
+                        <div class="flex flex-col items-start justify-start text-white font-roboto font-bold text-text14 gap-5 w-1/2 w-full lg:w-1/2"
                             data-aos="fade-up" data-aos-offset="150">
                             {{-- <div target="_blank" id="chatonline"
                                 class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
