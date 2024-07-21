@@ -93,7 +93,6 @@
             return true;
         }
 
-
         $('#formContactos').submit(function(event) {
             event.preventDefault();
             let formDataArray = $(this).serializeArray();
@@ -300,6 +299,7 @@
             });
         })
     </script>
+
 </body>
 
 </html>

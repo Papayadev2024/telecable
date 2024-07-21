@@ -13,7 +13,7 @@
 
     <main>
         <section class="pt-[155px]">
-
+            
             <div class="bg-[#F7F8F8] pb-20">
                 <div class="w-11/12 md:w-10/12 mx-auto">
                     <div class="flex flex-col items-center text-center pt-20 pb-20 gap-5">

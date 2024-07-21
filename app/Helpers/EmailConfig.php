@@ -6,9 +6,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class EmailConfig
 {
-    static  function config($name, $mensaje): PHPMailer
+    static function config($name, $mensaje): PHPMailer
     {
-    
         $mail = new PHPMailer(true);
         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
@@ -18,7 +17,7 @@ class EmailConfig
         $mail->Password = 'piqutsbcfdzsrnkp';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
-        $mail->Subject = '' . $name . ', ' .$mensaje;
+        $mail->Subject = '' . $name . ', ' . $mensaje;
         $mail->CharSet = 'UTF-8';
         $mail->setFrom('diegomartinez1996x@gmail.com', 'HPI');
         return $mail;

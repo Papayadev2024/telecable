@@ -17,6 +17,7 @@ class AboutUsController extends Controller
   public function index()
   {
     $aboutUs = AboutUs::all();
+    $perro = Descargables::all();
     return view('pages.aboutus.index', compact('aboutUs'));
   }
 
