@@ -397,6 +397,7 @@
                                 <input type="hidden" name="client_latitude" id="latitud">
                                 <input type="hidden" name="client_longitude" id="longitud">
                                 <input type="hidden" name="client_system" id="sistema">
+                                <input type="hidden" id="tipo" placeholder="tipo" name="source" value="Inicio" />
                                 <div class="flex justify-center items-center py-5">
                                     <button type="submit"
                                         class="text-text18 font-roboto font-semibold text-white bg-[#0C4AC3] md:bg-[#FF5E14] py-4 px-6 w-full text-center rounded-lg">Enviar
