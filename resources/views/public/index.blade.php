@@ -120,7 +120,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="swiper-pagination_productos !flex justify-center py-5 lg:py-10"></div>
+                <div class="swiper-pagination_productos !flex justify-center py-5 lg:py-10 mt-3"></div>
             </div>
         </section>
 
