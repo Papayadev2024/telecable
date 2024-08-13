@@ -70,7 +70,7 @@ class IndexController extends Controller
         $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
         $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
         $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
-        $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->get();
+        $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->orderBy('order', 'asc')->get();
         $logos = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
         $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
 
