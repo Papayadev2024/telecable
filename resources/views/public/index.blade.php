@@ -196,7 +196,7 @@
 
         @if ($logos->isEmpty())
         @else
-            <section class="py-20 bg-[#082252]">
+            <section class="py-12 bg-[#082252]">
                 <div class="max-w-[700px] mx-auto pb-10 w-11/12">
                     <h2 class="text-white font-roboto font-bold text-text32 leading-tight text-center">
                         Marcas que comercializamos
