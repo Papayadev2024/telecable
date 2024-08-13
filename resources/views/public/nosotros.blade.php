@@ -144,7 +144,7 @@
                                         @endif
                                         @if (!empty($equipo->youtube))
                                             <a href="{{ $equipo->youtube }}" target="_blank">
-                                                <img src="{{ asset('images/img/youtube.png') }}" alt="youtube">
+                                                <img src="{{ asset('images/img/linkedin.png') }}" alt="youtube">
                                             </a>
                                         @endif
                                     </div>
