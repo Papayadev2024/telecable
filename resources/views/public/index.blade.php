@@ -411,9 +411,9 @@
                             <h2 class="font-semibold font-roboto text-[#082252] text-text32">
                                 Datos de contacto
                             </h2>
-                            <p class="font-robot font-normal text-[#082252] text-text18">
+                            {{-- <p class="font-robot font-normal text-[#082252] text-text18">
                                 Donec ac nisl ut mauris facilisis finibus. Nulla sed ultrices enim, nec consectetur tortor.
-                            </p>
+                            </p> --}}
                         </div>
 
                         <div class="flex flex-col gap-10 bg-white md:bg-transparent rounded-xl md:rounded-none p-6 md:p-0">
