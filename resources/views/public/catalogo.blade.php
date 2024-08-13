@@ -57,7 +57,7 @@
                                                     <div class="flex flex-row justify-center items-center">
                                                         <img src="{{ asset($item->url_image.$item->name_image) }}"
                                                             alt="tratamiento de agua"
-                                                            class="w-28 md:w-48 object-cover">
+                                                            class="w-28 md:w-48 object-cover rounded-full">
                                                     </div>
                                                 </div>
                                                 <h2 class="text-[#082252] font-roboto font-bold text-text18 text-center">

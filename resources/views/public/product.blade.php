@@ -181,12 +181,12 @@
                             </p>
                         @endif
 
-                        @if (is_null($producto->sku))
+                        {{-- @if (is_null($producto->sku))
                         @else
                             <p class="font-roboto font-medium text-text14 text-[#082252]">
                                 SKU: <span class="text-[#565656] font-normal text-text14">{{ $producto->sku }}</span>
                             </p>
-                        @endif
+                        @endif --}}
 
 
                     </div>
