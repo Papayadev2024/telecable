@@ -23,7 +23,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::where('status', '=', true)->get();
+        $category = Category::where('status', '=', true)->orderBy('order', 'asc')->get();
 
         return view('pages.categories.index', compact('category'));
     }
@@ -76,9 +76,12 @@ class CategoryController extends Controller
             $slug .= '-' . rand(1, 1000);
         }
 
+        $maxOrder = Category::max('order');
+        $category->order = $maxOrder !== null ? $maxOrder + 1 : 1;
+
         $category->name = $request->name;
         $category->description = $request->description;
-        $category->extract = $request->extract;
+        // $category->extract = $request->extract;
         $category->slug = $slug;
         $category->status = 1;
         $category->visible = 1;
