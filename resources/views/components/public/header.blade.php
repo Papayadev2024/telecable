@@ -79,7 +79,7 @@
         <ul
           class="fixed inset-0 bg-white px-[5%] flex flex-col lg:flex-row lg:items-center pt-40 clip-circle-0 peer-checked/menu:clip-circle-full transition-[clip-path] duration-500 gap-5 lg:gap-10 lg:clip-circle-full lg:relative lg:flex lg:justify-items-center lg:p-0 lg:bg-transparent font-roboto font-bold lg:font-normal text-text24 lg:text-text16 text-[#082252] flex-1">
 
-          <div class="flex flex-col lg:flex-row order-2 lg:order-1 lg:w-[80%] lg:justify-center gap-5 lg:gap-10">
+          <div class="flex flex-col lg:flex-row order-2 lg:order-1 lg:w-[80%] lg:justify-center gap-8 lg:gap-10">
             <li class="flex flex-col">
               <a href="{{ route('index') }}"
                 class="{{ isset($pagina) && $pagina == 'index' ? 'text-[#FF5E14] font-semibold' : '' }}">Inicio</a>
