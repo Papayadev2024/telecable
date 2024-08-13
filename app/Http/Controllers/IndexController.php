@@ -128,7 +128,7 @@ class IndexController extends Controller
         try {
             $general = General::all();
             $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
-            $categorias = Category::all();
+            $categorias = Category::where('status', '=', 1)->where('destacar', '=', 1)->orderBy('order', 'asc')->get();
             $subcategorias = Subcategory::all();
             $microcategorias = Microcategory::all();
             $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
