@@ -137,14 +137,14 @@
                                                 <img src="{{ asset('images/img/instagram.png') }}" alt="instagram">
                                             </a>
                                         @endif
-                                        @if (!empty($equipo->twitter))
-                                            <a href="{{ $equipo->twitter }}" target="_blank">
-                                                <img src="{{ asset('images/img/twitter.png') }}" alt="twitter">
-                                            </a>
-                                        @endif
                                         @if (!empty($equipo->youtube))
                                             <a href="{{ $equipo->youtube }}" target="_blank">
                                                 <img src="{{ asset('images/img/linkedin.png') }}" alt="youtube">
+                                            </a>
+                                        @endif
+                                        @if (!empty($equipo->twitter))
+                                            <a  href="mailto:{{ $equipo->mail }}">
+                                                <img src="{{ asset('images/img/twitter.png') }}" alt="twitter">
                                             </a>
                                         @endif
                                     </div>
