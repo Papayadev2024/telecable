@@ -129,9 +129,9 @@
                                     <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">
                                         {{ $item->producto }}</h2>
                                 </a>
-                                <p class="font-roboto font-normal text-text16 text-[#082252]">
+                                {{-- <p class="font-roboto font-normal text-text16 text-[#082252]">
                                     {{ Str::limit($item->extract, 100) }}
-                                </p>
+                                </p> --}}
                             </div>
                         </div>
                     @endforeach
@@ -149,10 +149,6 @@
             </div>
         </section>
     </main>
-
-    {{-- <p class="font-roboto font-normal text-text16 text-[#082252]">
-        ${value.extract}
-    </p> --}}
 
 @section('scripts_importados')
     <script>
