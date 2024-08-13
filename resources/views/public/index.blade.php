@@ -515,7 +515,7 @@
     <script>
         var swiper = new Swiper(".logos", {
             slidesPerView: 5,
-            spaceBetween: 30,
+            spaceBetween: 60,
             centeredSlides: false,
             initialSlide: 0,
             loop: true,
