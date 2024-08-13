@@ -150,6 +150,9 @@
         </section>
     </main>
 
+    {{-- <p class="font-roboto font-normal text-text16 text-[#082252]">
+        ${value.extract}
+    </p> --}}
 
 @section('scripts_importados')
     <script>
@@ -216,9 +219,6 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
-                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                            ${value.extract}
-                                        </p>
                                     </div>
                                 </div>`
                             );
@@ -292,9 +292,6 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
-                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                            ${value.extract}
-                                        </p>
                                     </div>
                                 </div>`
                             );
@@ -380,9 +377,6 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
-                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                            ${value.extract}
-                                        </p>
                                     </div>
                                     
                                 </div>`
@@ -436,9 +430,6 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
-                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                            ${value.extract}
-                                        </p>
                                     </div>
                                     
                                 </div>`
