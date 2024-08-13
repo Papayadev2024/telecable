@@ -51,10 +51,6 @@ class LogosClientController extends Controller
                
             $img =  $manager->read($request->file('imagen'));
 
-            //seteamos el tamaño de que deben de tener las imagenes que se suban
-             $qwidth = 808;
-             $qheight = 445;
-
             // Obtener las dimensiones de la imagen que se esta subiendo
             $width = $img->width();
             $height = $img->height();
@@ -79,9 +75,6 @@ class LogosClientController extends Controller
             }
             
             $img->save($ruta.$nombreImagen);
-            
-           
-            
             $post->url_image =  $ruta.$nombreImagen; 
         }
 
