@@ -44,6 +44,13 @@ class AppServiceProvider extends ServiceProvider
                  ->with('general', $general);
         });
 
+        View::composer('components.public.matrix', function ($view) {
+              
+            $general = General::all();
+            // Pasar los datos a la vista
+            $view->with('general', $general);
+        });
+
         View::composer('components.app.sidebar', function ($view) {
             // Obtener los datos del footer
             $mensajes = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)
