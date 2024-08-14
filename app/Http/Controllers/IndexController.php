@@ -791,7 +791,7 @@ class IndexController extends Controller
             }else{
               $data['client_system'] = 'Sin data';
             }
-            
+
 
             if ($ancho >= 1 && $ancho <= 767) {
               $data['device'] = 'mobile';
@@ -803,12 +803,82 @@ class IndexController extends Controller
               $data['device'] = 'Sin data';
             }
 
+           
 
             $formlanding = Message::create($data);
             $this->envioCorreoAdmin($formlanding);
             $this->envioCorreoCliente($formlanding);
 
             return response()->json(['message' => 'Mensaje enviado con exito']);
+        } catch (ValidationException $e) {
+            return response()->json(['message' => $e->validator->errors()], 400);
+        }
+    }
+
+
+    public function guardarContactoWsp(Request $request)
+    {
+        $data = $request->all();
+        $data['full_name'] = $request->full_name;
+        $ipAddress = $request->ip();
+        $ancho = $request->client_width;
+        $latitud = $request->client_latitude;
+        $longitud = $request->client_longitude;
+        $sistema = $request->client_system;
+
+        try {
+            $reglasValidacion = [
+                'full_name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+            ];
+            $mensajes = [
+                'full_name.required' => 'El campo nombre es obligatorio.',
+                'email.required' => 'El campo correo electrónico es obligatorio.',
+                'email.email' => 'El formato del correo electrónico no es válido.',
+                'email.max' => 'El campo correo electrónico no puede tener más de :max caracteres.',
+            ];
+            $request->validate($reglasValidacion, $mensajes);
+
+
+            if (!is_null($ipAddress)) {
+              $data['ip'] = $ipAddress;
+            }else{
+              $data['ip'] = 'Sin data';
+            }
+
+            if (!is_null($latitud)) {
+              $data['client_latitude'] = $latitud;
+            }else{
+              $data['client_latitude'] = 'Sin data';
+            }
+
+            if (!is_null($longitud)) {
+              $data['client_longitude'] = $longitud;
+            }else{
+              $data['client_longitude'] = 'Sin data';
+            }
+
+            if (!is_null($sistema)) {
+              $data['client_system'] = $sistema;
+            }else{
+              $data['client_system'] = 'Sin data';
+            }
+                     
+
+            if ($ancho >= 1 && $ancho <= 767) {
+              $data['device'] = 'mobile';
+            } elseif ($ancho >= 768 && $ancho <= 1024) {
+              $data['device'] = 'tablet';
+            } elseif ($ancho >= 1025 ){
+              $data['device'] = 'desktop';
+            } elseif (is_null($ancho)){
+              $data['device'] = 'Sin data';
+            }
+
+           
+
+            $formlanding = Message::create($data);
+            return response()->json(['message' => 'Redirigiendo a Whatsapp']);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->validator->errors()], 400);
         }

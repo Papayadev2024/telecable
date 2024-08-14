@@ -95,6 +95,7 @@ Route::post('/subscripciones/guardar', [NewsletterSubscriberController::class, '
 Route::get('/404', [IndexController::class, 'error'])->name('error');
 /* Formulario de contacto */
 Route::post('guardarContactos', [IndexController::class, 'guardarContacto'])->name('guardarContactos');
+Route::post('guardarContactoWsp', [IndexController::class, 'guardarContactoWsp'])->name('guardarContactoWsp');
 Route::post('guardarProducto', [IndexController::class, 'guardarProducto'])->name('guardarProducto');
 
 Route::post('/getProvincia', [PriceController::class, 'getProvincias'])->name('prices.getProvincias');

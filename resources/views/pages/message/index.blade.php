@@ -22,7 +22,8 @@
                                 <th>Latitud</th>
                                 <th>Longitud</th>
                                 <th>Sistema</th>
-                                <th>Enviado</th>
+                                <th>Fuente</th>
+                                <th>Enviado</th> 
                                 <th class="w-32">Acciones</th>
                             </tr>
                         </thead>
@@ -49,6 +50,7 @@
                                     <td>{{ $item->client_latitude }}</td>
                                     <td>{{ $item->client_longitude }}</td>
                                     <td>{{ $item->client_system }}</td>
+                                    <td>{{ $item->source }}</td>
                                     <td>{{ $item->created_at->format('d-m-Y') }}</td>
                                     
                                     <td class="flex flex-row items-center justify-center">
@@ -71,6 +73,7 @@
                                 <th>Latitud</th>
                                 <th>Longitud</th>
                                 <th>Sistema</th>
+                                <th>Fuente</th>
                                 <th>Enviado</th>
                                 <th>Acciones</th>
                                 

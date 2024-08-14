@@ -49,10 +49,12 @@ class AppServiceProvider extends ServiceProvider
             $mensajes = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)
                                     ->where(function($query) {
                                         $query->where('source', '=', 'Inicio')
-                                            ->orWhere('source', '=', 'Contacto');
+                                            ->orWhere('source', '=', 'Contacto')
+                                            ->orWhere('source', '=', 'WSP - Tratamiento de Agua')
+                                            ->orWhere('source', '=', 'WSP - Productos Químicos');
                                     })->count(); 
             $mensajeslanding = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)
-                                        ->whereNotIn('source', ['Inicio', 'Contacto','Producto'])
+                                        ->whereNotIn('source',  ['Inicio', 'Contacto', 'Producto', 'WSP - Productos Químicos','WSP - Tratamiento de Agua'])
                                         ->count();
 
             $mensajesproduct = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)

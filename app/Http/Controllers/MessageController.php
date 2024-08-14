@@ -19,7 +19,9 @@ class MessageController extends Controller
         $mensajes = Message::where('status', '=', 1)
                             ->where(function($query) {
                                 $query->where('source', '=', 'Inicio')
-                                    ->orWhere('source', '=', 'Contacto');
+                                    ->orWhere('source', '=', 'Contacto')
+                                    ->orWhere('source', '=', 'WSP - Tratamiento de Agua')
+                                    ->orWhere('source', '=', 'WSP - Productos Químicos');
                             })
                             ->orderBy('created_at', 'DESC')
                             ->get();
@@ -30,7 +32,7 @@ class MessageController extends Controller
 
     public function showMessageLanding(){
         $mensajeslanding = Message::where('status', '=', 1)
-                            ->whereNotIn('source', ['Inicio', 'Contacto', 'Producto'])
+                            ->whereNotIn('source', ['Inicio', 'Contacto', 'Producto', 'WSP - Productos Químicos','WSP - Tratamiento de Agua'])
                             ->orderBy('created_at', 'DESC')
                             ->get();
         return view('pages.landingmessages.index', compact('mensajeslanding'));
