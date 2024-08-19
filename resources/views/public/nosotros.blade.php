@@ -149,7 +149,9 @@
                                         @endif
                                     </div>
                                 </div>
-
+                                <p class=" text-[#082252] font-roboto font-normal text-base">
+                                    {{ $equipo->mail }}
+                                </p>
                                 <p class="uppercase text-[#FF5E14] font-roboto font-normal text-text14">
                                     {{ $equipo->cargo }}
                                 </p>
