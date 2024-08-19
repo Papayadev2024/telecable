@@ -22,7 +22,8 @@
                                 <th>Latitud</th>
                                 <th>Longitud</th>
                                 <th>Sistema</th>
-
+                                <th>Fuente</th>
+                                <th>Enviado</th> 
                                 <th class="w-32">Acciones</th>
                             </tr>
                         </thead>
@@ -49,7 +50,9 @@
                                     <td>{{ $item->client_latitude }}</td>
                                     <td>{{ $item->client_longitude }}</td>
                                     <td>{{ $item->client_system }}</td>
-
+                                    <td>{{ $item->source }}</td>
+                                    <td>{{ $item->created_at->format('d-m-Y') }}</td>
+                                    
                                     <td class="flex flex-row items-center justify-center">
                                         <button method="POST" onclick="borrarmensaje({{ $item->id }})"
                                             class="bg-red-600 p-2 rounded text-white"><i
@@ -70,6 +73,8 @@
                                 <th>Latitud</th>
                                 <th>Longitud</th>
                                 <th>Sistema</th>
+                                <th>Fuente</th>
+                                <th>Enviado</th>
                                 <th>Acciones</th>
                                 
                             </tr>

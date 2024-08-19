@@ -8,7 +8,9 @@
             <div class="p-3">
         
                 <div class="p-6">
-                    
+                    <p class="font-bold">Producto:</p>
+                    <p> {{ $message->service_product }} </p>
+                    <br>
                     <p class="font-bold">Correo:</p>
                     <p> {{ $message->email }} </p>
                     <br>
@@ -20,7 +22,7 @@
                         {{ $message->message }}
                     </p>
 
-                    <a href="{{route('mensajeslanding')}}" class="bg-blue-500 px-4 py-2 rounded text-white"><span><i class="fa-solid fa-arrow-left mr-2"></i></span> Volver</a>
+                    <a href="{{route('mensajesproduct')}}" class="bg-blue-500 px-4 py-2 rounded text-white"><span><i class="fa-solid fa-arrow-left mr-2"></i></span> Volver</a>
         
                 </div>
             </div>

@@ -13,7 +13,7 @@
 
     <main>
         <section class="pt-[155px]">
-
+            
             <div class="bg-[#F7F8F8] pb-20">
                 <div class="w-11/12 md:w-10/12 mx-auto">
                     <div class="flex flex-col items-center text-center pt-20 pb-20 gap-5">
@@ -51,13 +51,13 @@
                                     <div class="swiper-slide !flex justify-center cursor-pointer">
                                         {{-- <a href="{{route('catalogo', $item->id)}}"> --}}
                                         <a id="{{ $item->id }}" class="categoryselect">
-                                            <div class="inline-flex flex-col gap-3 w-[142px] h-[202px]">
+                                            <div class="inline-flex flex-col gap-3">
                                                 <div id="{{ $item->id }}"
-                                                    class="rounded-full bg-white hover:bg-[#245BC8] md:duration-300 w-[142px] h-[142px] flex justify-center items-center">
-                                                    <div>
-                                                        <img src="{{ asset('images/img/image_24.png') }}"
+                                                    class="rounded-full bg-white hover:bg-[#245BC8] md:duration-300 w-36 h-36 md:w-52 md:h-52 flex justify-center items-center">
+                                                    <div class="flex flex-row justify-center items-center">
+                                                        <img src="{{ asset($item->url_image.$item->name_image) }}"
                                                             alt="tratamiento de agua"
-                                                            class="w-[96px] h-[64px] object-cover">
+                                                            class="w-28 md:w-48 object-cover rounded-full">
                                                     </div>
                                                 </div>
                                                 <h2 class="text-[#082252] font-roboto font-bold text-text18 text-center">
@@ -129,9 +129,9 @@
                                     <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">
                                         {{ $item->producto }}</h2>
                                 </a>
-                                <p class="font-roboto font-normal text-text16 text-[#082252]">
+                                {{-- <p class="font-roboto font-normal text-text16 text-[#082252]">
                                     {{ Str::limit($item->extract, 100) }}
-                                </p>
+                                </p> --}}
                             </div>
                         </div>
                     @endforeach
@@ -149,7 +149,6 @@
             </div>
         </section>
     </main>
-
 
 @section('scripts_importados')
     <script>
@@ -216,9 +215,6 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
-                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                            ${value.extract}
-                                        </p>
                                     </div>
                                 </div>`
                             );
@@ -292,9 +288,6 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
-                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                            ${value.extract}
-                                        </p>
                                     </div>
                                 </div>`
                             );
@@ -380,9 +373,6 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
-                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                            ${value.extract}
-                                        </p>
                                     </div>
                                     
                                 </div>`
@@ -436,9 +426,6 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
-                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                            ${value.extract}
-                                        </p>
                                     </div>
                                     
                                 </div>`

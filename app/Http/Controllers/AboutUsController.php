@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutUs;
+use App\Models\Descargables;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;

@@ -44,19 +44,33 @@ class AppServiceProvider extends ServiceProvider
                  ->with('general', $general);
         });
 
+        View::composer('components.public.matrix', function ($view) {
+              
+            $general = General::all();
+            // Pasar los datos a la vista
+            $view->with('general', $general);
+        });
+
         View::composer('components.app.sidebar', function ($view) {
             // Obtener los datos del footer
             $mensajes = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)
                                     ->where(function($query) {
                                         $query->where('source', '=', 'Inicio')
-                                            ->orWhere('source', '=', 'Contacto');
+                                            ->orWhere('source', '=', 'Contacto')
+                                            ->orWhere('source', '=', 'WSP - Tratamiento de Agua')
+                                            ->orWhere('source', '=', 'WSP - Productos Químicos');
                                     })->count(); 
             $mensajeslanding = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)
-                                        ->whereNotIn('source', ['Inicio', 'Contacto'])
+                                        ->whereNotIn('source',  ['Inicio', 'Contacto', 'Producto', 'WSP - Productos Químicos','WSP - Tratamiento de Agua'])
                                         ->count();
+
+            $mensajesproduct = Message::where('is_read', '!=', 1 )->where('status', '!=', 0)
+                                        ->where('source', '=', 'Producto')
+                                        ->count();                           
             // Pasar los datos a la vista
             $view->with('mensajes', $mensajes)
-                 ->with('mensajeslanding', $mensajeslanding);
+                 ->with('mensajeslanding', $mensajeslanding)
+                 ->with('mensajesproduct', $mensajesproduct);
         });
 
          PaginationPaginator::useTailwind();   

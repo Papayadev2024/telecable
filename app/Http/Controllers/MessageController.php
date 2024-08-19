@@ -19,7 +19,9 @@ class MessageController extends Controller
         $mensajes = Message::where('status', '=', 1)
                             ->where(function($query) {
                                 $query->where('source', '=', 'Inicio')
-                                    ->orWhere('source', '=', 'Contacto');
+                                    ->orWhere('source', '=', 'Contacto')
+                                    ->orWhere('source', '=', 'WSP - Tratamiento de Agua')
+                                    ->orWhere('source', '=', 'WSP - Productos Químicos');
                             })
                             ->orderBy('created_at', 'DESC')
                             ->get();
@@ -30,10 +32,23 @@ class MessageController extends Controller
 
     public function showMessageLanding(){
         $mensajeslanding = Message::where('status', '=', 1)
-                            ->whereNotIn('source', ['Inicio', 'Contacto'])
+                            ->whereNotIn('source', ['Inicio', 'Contacto', 'Producto', 'WSP - Productos Químicos','WSP - Tratamiento de Agua'])
                             ->orderBy('created_at', 'DESC')
                             ->get();
         return view('pages.landingmessages.index', compact('mensajeslanding'));
+    }
+
+
+    public function showMessageProducto()
+    {
+        //
+        $mensajesproduct = Message::where('status', '=', 1)
+                            ->where('source','=', 'Producto')
+                            ->orderBy('created_at', 'DESC')
+                            ->get();
+        return view('pages.messageProduct.index', compact('mensajesproduct'));
+    
+        
     }
 
     /**
@@ -93,6 +108,16 @@ class MessageController extends Controller
         return view('pages.landingmessages.show', compact('message'));
     }
 
+    public function showproductL($id)
+    {
+        //
+        $message = Message::findOrFail($id);
+
+        $message->is_read = 1; 
+        $message->save();
+
+        return view('pages.messageProduct.show', compact('message'));
+    }
     /**
      * Show the form for editing the specified resource.
      */
@@ -130,6 +155,17 @@ class MessageController extends Controller
     }
 
     public function mensajeslandingDelete(Request $request)
+    {
+
+        $mensaje = Message::find($request->id);
+        $mensaje->status = 0; 
+        $mensaje->save();
+
+        return response()->json(['success' => true]);
+
+    }
+
+    public function mensajesproductoDelete(Request $request)
     {
 
         $mensaje = Message::find($request->id);

@@ -23,7 +23,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::where('status', '=', true)->get();
+        $category = Category::where('status', '=', true)->orderBy('order', 'asc')->get();
 
         return view('pages.categories.index', compact('category'));
     }
@@ -76,9 +76,12 @@ class CategoryController extends Controller
             $slug .= '-' . rand(1, 1000);
         }
 
+        $maxOrder = Category::max('order');
+        $category->order = $maxOrder !== null ? $maxOrder + 1 : 1;
+
         $category->name = $request->name;
         $category->description = $request->description;
-        $category->extract = $request->extract;
+        // $category->extract = $request->extract;
         $category->slug = $slug;
         $category->status = 1;
         $category->visible = 1;
@@ -207,6 +210,7 @@ class CategoryController extends Controller
             ->where('products.categoria_id', '=', $request->id)
             ->orderBy('products.id', 'asc')
             ->select('products.*', 'categories.name as category_name')
+            ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
             ->paginate(9);
 
             
@@ -234,6 +238,7 @@ class CategoryController extends Controller
             ->where('products.subcategoria_id', '=', $request->id)
             ->orderBy('products.id', 'asc')
             ->select('products.*', 'categories.name as category_name')
+            ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
             ->paginate(9);
 
             return response()->json(['message' => 'Microcategoria', 'microcategorias' => $microcategorias,'productos' => $productos]);
@@ -248,6 +253,7 @@ class CategoryController extends Controller
         ->where('products.microcategoria_id', '=', $request->id)
         ->orderBy('products.id', 'asc')
         ->select('products.*', 'categories.name as category_name')
+        ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
         ->paginate(9);
 
             return response()->json(['message' => 'Microcategoria', 'productos' => $productos]);
@@ -270,6 +276,7 @@ class CategoryController extends Controller
         })
         ->orderBy('products.id', 'asc')
         ->select('products.*', 'categories.name as category_name')
+        ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
         ->paginate(9);
 
         if (!empty($productos->nextPageUrl())) {

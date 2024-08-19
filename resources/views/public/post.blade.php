@@ -1,5 +1,8 @@
 @extends('components.public.matrix', ['pagina'=>'blog'])
 @section('titulo', 'Post')
+@section('meta_title', $meta_title)
+@section('meta_description', $meta_description)
+@section('meta_keywords', $meta_keywords)
 @section('css_importados')
 
 @stop

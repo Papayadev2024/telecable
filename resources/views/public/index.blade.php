@@ -1,4 +1,4 @@
-@extends('components.public.matrix', ['pagina'=>'index'])
+@extends('components.public.matrix', ['pagina' => 'index'])
 @section('titulo', 'Inicio')
 @section('css_importados')
 
@@ -26,21 +26,21 @@
         }
 
         /* .custom-swiper-buttons .swiper-button-prev:after {
-            background-image: url({{ asset('images/svg/image_32.svg') }});
-        }
+                background-image: url({{ asset('images/svg/image_32.svg') }});
+            }
 
-        .custom-swiper-buttons .swiper-button-prev:hover:after {
-            background-image: url("./images/svg/image_34.svg");
-        }
- */
+            .custom-swiper-buttons .swiper-button-prev:hover:after {
+                background-image: url("./images/svg/image_34.svg");
+            }
+     */
 
         /* .custom-swiper-buttons .swiper-button-next:after {
-            background-image: url({{ asset('images/svg/image_33.svg') }});
-        }
+                background-image: url({{ asset('images/svg/image_33.svg') }});
+            }
 
-        .custom-swiper-buttons .swiper-button-next:hover:after {
-            background-image: url("./images/svg/image_35.svg");
-        } */
+            .custom-swiper-buttons .swiper-button-next:hover:after {
+                background-image: url("./images/svg/image_35.svg");
+            } */
 
         /* -------------- */
         .swiper-button-next {
@@ -50,11 +50,11 @@
             width: calc(var(--swiper-navigation-size) / 29 * 27) !important;
             height: 50px;
             border-radius: 50%;
-            transition: background-color 0.3s ease-in; 
-            background-image: url({{asset('images/svg/image_43.svg')}})
+            transition: background-color 0.3s ease-in;
+            background-image: url({{ asset('images/svg/image_43.svg') }})
         }
 
-        .swiper-button-next:hover{
+        .swiper-button-next:hover {
             background-color: #FF5E14;
             opacity: 1;
         }
@@ -66,11 +66,11 @@
             width: calc(var(--swiper-navigation-size) / 29 * 27) !important;
             height: 50px;
             border-radius: 50%;
-            transition: background-color 0.3s ease-in; 
-            background-image: url({{asset('images/svg/image_44.svg')}})
+            transition: background-color 0.3s ease-in;
+            background-image: url({{ asset('images/svg/image_44.svg') }})
         }
 
-        .swiper-button-prev:hover{
+        .swiper-button-prev:hover {
             background-color: #FF5E14;
             opacity: 1;
         }
@@ -92,7 +92,7 @@
                                 <div class="flex flex-col items-center gap-8 w-11/12 mx-auto md:max-w-[900px]">
                                     <h2
                                         class="text-[#082252] font-roboto font-bold text-text40 md:text-text52 leading-tight text-center">
-                                        {{$slide->title}}</h2>
+                                        {{ $slide->title }}</h2>
                                     {{-- <div class="w-full md:w-auto">
                                         <div
                                             class="flex flex-col items-center w-full md:w-auto md:flex-row md:justify-center md:items-center gap-10">
@@ -109,92 +109,94 @@
                                     </div> --}}
                                 </div>
                                 <div class="flex justify-center items-center pt-10">
-                                   
+
                                     <img src="{{ asset($slide->url_image . $slide->name_image) }}" alt="producto"
-                                        class="w-full h-[600px] object-cover bg-top hidden md:block">
-                                   
+                                        class="w-full h-[700px] object-contain bg-top hidden md:block">
+
                                     <img src="{{ asset($slide->url_image2 . $slide->name_image2) }}" alt="producto"
-                                        class="w-full object-cover block bg-top md:hidden">
+                                        class="w-full object-contain block bg-top md:hidden">
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
-                <div class="swiper-pagination_productos !flex justify-center py-5 lg:py-0"></div>
+                <div class="swiper-pagination_productos !flex justify-center py-5 lg:py-10 mt-3"></div>
             </div>
         </section>
 
-        @if($benefit->isEmpty())
-                
+        @if ($benefit->isEmpty())
         @else
             <section>
                 <div class="flex flex-col gap-10 w-11/12 mx-auto pt-10 pb-20">
                     <h2
                         class="text-[#082252] font-roboto font-bold text-text32 md:text-text40 leading-tight text-left md:text-center w-full md:max-w-[1064px] mx-auto">
-                        Especialistas en tratamiento de aguas. Suministro de productos químicos e instrumentos de medición.</h2>
+                        Especialistas en tratamiento de aguas. Suministro de productos químicos e instrumentos de medición.
+                    </h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    @foreach ($benefit as $beneficios)
-                        <div class="flex flex-col gap-5 bg-[#F7F8F8] p-4 rounded-xl">
-                            <div class="flex justify-start items-center">
-                                <img src="{{ asset('images/svg/image_7.svg') }}"
-                                    alt="Laboratorio de Investigación y Desarrollo">
+                        @foreach ($benefit as $beneficios)
+                            <div class="flex flex-col gap-5 bg-[#F7F8F8] p-4 rounded-xl">
+                                <div class="flex justify-start items-center">
+                                    <img src="{{ asset('images/svg/image_7.svg') }}"
+                                        alt="Laboratorio de Investigación y Desarrollo">
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <p class="font-roboto font-bold text-text12 text-[#0C4AC3] uppercase">
+                                        {{ $beneficios->descripcionshort }}</p>
+                                    <h2 class="leading-tight font-roboto font-bold text-text28 text-[#082252]">
+                                        {{ $beneficios->titulo }}</h2>
+                                </div>
+                                <p class="text-[#082252] font-roboto font-normal text-text18">
+                                    {{ $beneficios->descripcion }}</p>
                             </div>
-                            <div class="flex flex-col gap-2">
-                                <p class="font-roboto font-bold text-text12 text-[#0C4AC3] uppercase">{{$beneficios->descripcionshort}}</p>
-                                <h2 class="leading-tight font-roboto font-bold text-text28 text-[#082252]">{{$beneficios->titulo}}</h2>
-                            </div>
-                            <p class="text-[#082252] font-roboto font-normal text-text18">{{$beneficios->descripcion}}</p>
-                        </div>       
-                    @endforeach
-                                
+                        @endforeach
+
                     </div>
                 </div>
             </section>
         @endif
-       
+
         @if ($category->isEmpty())
-            
         @else
-        <section class="bg-[#F7F8F8]">
-            <div class="flex flex-col gap-8 w-11/12 mx-auto py-20">
+            <section class="bg-[#F7F8F8]">
+                <div class="flex flex-col gap-8 w-11/12 mx-auto py-20">
 
-                <div class="flex flex-col gap-2">
-                    <h4 class="font-roboto font-bold text-text48 md:text-text52 text-[#082252] leading-tight">Nuestros
-                        productos</h4>
-                    <h3 class="text-[#082252] font-roboto font-normal text-text22">Suministro de productos químicos e
-                        instrumentos de medición.</h3>
-                </div>
+                    <div class="flex flex-col gap-2">
+                        <h4 class="font-roboto font-bold text-text48 md:text-text52 text-[#082252] leading-tight">Nuestros
+                            productos</h4>
+                        <h3 class="text-[#082252] font-roboto font-normal text-text22">Suministro de productos químicos e
+                            instrumentos de medición.</h3>
+                    </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                   @foreach ($category as $categorias)
-                        <div
-                        class="flex flex-col gap-5 py-6 px-4 md:p-6 bg-white hover:bg-[#0C4AC3] group md:duration-300 rounded-xl">
-                            <div class="flex justify-center items-center">
-                                <a href="{{route('catalogo', $categorias->id)}}"><img src="{{ asset($categorias->url_image . $categorias->name_image) }}"
-                                        alt="Tratamiento de Agua"></a>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        @foreach ($category as $categorias)
+                            <div
+                                class="flex flex-col gap-5 py-6 px-4 md:p-6 bg-white hover:bg-[#0C4AC3] group md:duration-300 rounded-xl">
+                                <div class="flex justify-center items-center">
+                                    <a href="{{ route('catalogo', $categorias->id) }}"><img
+                                            src="{{ asset($categorias->url_image . $categorias->name_image) }}"
+                                            alt="Tratamiento de Agua"></a>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <a href="{{ route('catalogo', $categorias->id) }}">
+                                        <h2
+                                            class="text-[#082252] font-roboto font-bold text-text32 group-hover:text-white md:duration-300">
+                                            {{ $categorias->name }}</h2>
+                                    </a>
+                                    <p
+                                        class="text-[#082252] font-roboto font-normal text-text18 group-hover:text-white md:duration-300">
+                                        {{ $categorias->description }}
+                                    </p>
+                                </div>
                             </div>
-                            <div class="flex flex-col gap-2">
-                                <a href="{{route('catalogo', $categorias->id)}}">
-                                    <h2
-                                        class="text-[#082252] font-roboto font-bold text-text32 group-hover:text-white md:duration-300">
-                                        {{$categorias->name}}</h2>
-                                </a>
-                                <p
-                                    class="text-[#082252] font-roboto font-normal text-text18 group-hover:text-white md:duration-300">
-                                    {{$categorias->description}}
-                                </p>
-                            </div>
-                        </div>
-                   @endforeach 
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-        </section>
-        @endif    
-        
+            </section>
+        @endif
+
         @if ($logos->isEmpty())
-            
         @else
-            <section class="py-20 bg-[#082252]">
+            <section class="py-12 bg-[#082252]">
                 <div class="max-w-[700px] mx-auto pb-10 w-11/12">
                     <h2 class="text-white font-roboto font-bold text-text32 leading-tight text-center">
                         Marcas que comercializamos
@@ -204,110 +206,116 @@
                 <div class="w-full mx-auto">
                     <div class="swiper logos">
                         <div class="swiper-wrapper items-center">
-                        @foreach ($logos as $logo)
-                            <div class="swiper-slide">
-                                <div class="flex justify-center items-center">
-                                    <img src="{{ asset($logo->url_image . $logo->name_image) }}" alt="logo" />
+                            @foreach ($logos as $logo)
+                                <div class="swiper-slide">
+                                    <div class="flex justify-center items-center">
+                                        <img src="{{ asset($logo->url_image . $logo->name_image) }}" alt="logo" />
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach 
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </section>
         @endif
-        
+
 
         @if ($testimonie->isEmpty())
-            
         @else
-        <section class="bg-white pt-10 mt-10 pb-32 ">
-            <div class="w-11/12 mx-auto flex flex-col gap-3 items-center">
-                <h2 class="font-roboto font-bold text-text32 md:text-text40 text-center">Reconocimiento de nuestros
-                    clientes</h2>
-            </div>
+            <section class="bg-white pt-10 mt-10 pb-32 ">
+                <div class="w-11/12 mx-auto flex flex-col gap-3 items-center">
+                    <h2 class="font-roboto font-bold text-text32 md:text-text40 text-center">Reconocimiento de nuestros
+                        clientes</h2>
+                </div>
 
 
-            <div class="mt-16 w-11/12 lg:w-9/12 mx-auto  relative">
-                <div class="swiper testimonios rounded-2xl">
-                    <div class="swiper-wrapper">
-                        @foreach ($testimonie as $testimonios)
-                            <div class="swiper-slide">
-                                <div class="flex flex-col gap-10 bg-[#F7F8F8] p-8">
-                                    <p class="text-[#082252] font-roboto font-normal text-text20 text-center">{{$testimonios->testimonie}}
-                                    </p>
+                <div class="mt-16 w-11/12 lg:w-9/12 mx-auto  relative">
+                    <div class="swiper testimonios rounded-2xl">
+                        <div class="swiper-wrapper">
+                            @foreach ($testimonie as $testimonios)
+                                <div class="swiper-slide">
+                                    <div class="flex flex-col gap-10 bg-[#F7F8F8] p-8">
+                                        <p class="text-[#082252] font-roboto font-normal text-text20 text-center">
+                                            {{ $testimonios->testimonie }}
+                                        </p>
 
-                                    <div class="flex flex-col gap-2 items-center">
-                                        <p class="text-[#082252] font-roboto font-bold text-text20 text-center">{{$testimonios->name}}</p>
-                                        <p class="uppercase text-[#0C4AC3] font-roboto font-medium text-text12 text-center">
-                                            {{$testimonios->ocupation}}</p>
+                                        <div class="flex flex-col gap-2 items-center">
+                                            <p class="text-[#082252] font-roboto font-bold text-text20 text-center">
+                                                {{ $testimonios->name }}</p>
+                                            <p
+                                                class="uppercase text-[#0C4AC3] font-roboto font-medium text-text12 text-center">
+                                                {{ $testimonios->ocupation }}</p>
+                                        </div>
                                     </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="custom-swiper-buttons lg:flex lg:absolute block ">
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+
+            </section>
+        @endif
+
+
+        @if ($posts->isEmpty())
+        @else
+            <section class="hidden md:block">
+                <div class="flex flex-col gap-8 w-11/12 mx-auto pb-20">
+                    <div class="flex justify-between items-center">
+
+                        <div class="flex flex-col gap-2">
+                            <h2 class="text-[#082252] font-roboto font-bold text-text52 leading-tight">Últimas publicaciones
+                            </h2>
+                            <p class="text-[#082252] font-roboto font-normal text-text22">Suministro de productos químicos e
+                                instrumentos de medición.</p>
+                        </div>
+
+                        <div class="flex justify-center items-center">
+                            <a href="{{ route('blog', 0) }}"
+                                class="text-white py-4 px-6 bg-[#FF5E14] rounded-xl font-roboto font-semibold text-center">Ver
+                                más publicaciones</a>
+                        </div>
+
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        @foreach ($posts->take(3) as $post)
+                            <div class="flex flex-col gap-5">
+                                <div class="flex flex-col gap-2">
+                                    <div class="flex justify-center items-center">
+                                        <a href="{{ route('detalleBlog', $post->id) }}" class="w-full"><img
+                                                src="{{ asset($post->url_image . $post->name_image) }}"
+                                                class="w-full object-cover rounded-xl" alt="blog"></a>
+                                    </div>
+                                    <h3 class="uppercase text-[#FF5E14] font-roboto font-bold text-text12">
+                                        {{ $post->categories->name }}</h3>
+                                    <a href="{{ route('detalleBlog', $post->id) }}">
+                                        <h2 class="text-[#082252] font-roboto font-bold text-text24 leading-tight">
+                                            {{ $post->title }}</h2>
+                                    </a>
+                                    <p class="text-[#082252] font-roboto font-normal text-text16">
+                                        {{ Str::limit($post->extract, 250) }}</p>
+                                </div>
+
+                                <div class="flex justify-start items-center gap-2">
+                                    <p class="text-[#0C4AC3] font-roboto font-normal text-text14">Publicado
+                                        {{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</p>
+                                    <div class="flex justify-center items-center">
+                                        <img src="{{ asset('images/svg/image_10.svg') }}" alt="point">
+                                    </div>
+
                                 </div>
                             </div>
                         @endforeach
                     </div>
                 </div>
-                <div class="custom-swiper-buttons lg:flex lg:absolute block ">
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
-            </div>
-
-        </section>
+            </section>
         @endif
-       
-  
-        @if ($posts->isEmpty())
-            
-        @else
-        <section class="hidden md:block">
-            <div class="flex flex-col gap-8 w-11/12 mx-auto pb-20">
-                <div class="flex justify-between items-center">
 
-                    <div class="flex flex-col gap-2">
-                        <h2 class="text-[#082252] font-roboto font-bold text-text52 leading-tight">Últimas publicaciones
-                        </h2>
-                        <p class="text-[#082252] font-roboto font-normal text-text22">Suministro de productos químicos e
-                            instrumentos de medición.</p>
-                    </div>
-
-                    <div class="flex justify-center items-center">
-                        <a href="{{route('blog', 0)}}"
-                            class="text-white py-4 px-6 bg-[#FF5E14] rounded-xl font-roboto font-semibold text-center">Ver
-                            más publicaciones</a>
-                    </div>
-
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    @foreach ($posts->take(3) as $post)
-                    <div class="flex flex-col gap-5">
-                        <div class="flex flex-col gap-2">
-                            <div class="flex justify-center items-center">
-                                <a href="{{route('detalleBlog', $post->id)}}" class="w-full"><img src="{{ asset($post->url_image.$post->name_image) }}"
-                                        class="w-full object-cover rounded-xl" alt="blog"></a>
-                            </div>
-                            <h3 class="uppercase text-[#FF5E14] font-roboto font-bold text-text12">{{$post->categories->name}}</h3>
-                            <a href="{{route('detalleBlog', $post->id)}}">
-                                <h2 class="text-[#082252] font-roboto font-bold text-text24 leading-tight">{{$post->title}}</h2>
-                            </a>
-                            <p class="text-[#082252] font-roboto font-normal text-text16"> {{ Str::limit($post->extract, 250) }}</p>
-                        </div>
-
-                        <div class="flex justify-start items-center gap-2">
-                            <p class="text-[#0C4AC3] font-roboto font-normal text-text14">Publicado {{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</p>
-                            <div class="flex justify-center items-center">
-                                <img src="{{ asset('images/svg/image_10.svg') }}" alt="point">
-                            </div>
-                           
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-        @endif
-        
 
         <section class="bg-[#0C4AC3]">
             <div class="grid grid-cols-1 md:grid-cols-2  relative overflow-hidden">
@@ -320,7 +328,7 @@
                             cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                     <div class="flex justify-start items-center">
-                        <a href="{{route('descargables', 0)}}"
+                        <a href="{{ route('descargables', 0) }}"
                             class="text-white font-roboto font-semibold text-text16 bg-[#0C4AC3] rounded-xl py-4 px-6">Descargar
                             Catálogos</a>
                     </div>
@@ -355,28 +363,31 @@
                             </p>
                         </div>
 
-                        <form  id="formContactos">
+                        <form id="formContactos">
                             @csrf
                             <div class="flex flex-col gap-5">
-                                <div class="relative w-full"  >
-                                    <input 
-                                        required name="full_name" id="fullNameContacto" type="text" placeholder="Nombre completo"
+                                <div class="relative w-full">
+                                    <input required name="full_name" id="fullNameContacto" type="text"
+                                        placeholder="Nombre completo"
                                         class="w-full py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]" />
                                 </div>
 
-                                <div class="relative w-full" >
-                                    <input  id="telefonoContacto" name="phone" placeholder="Teléfono" type="tel" maxlength="12" required
+                                <div class="relative w-full">
+                                    <input id="telefonoContacto" name="phone" placeholder="Teléfono" type="tel"
+                                        maxlength="12" required
                                         class="w-full py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]" />
                                 </div>
 
-                                <div class="relative w-full" >
-                                    <input type="email" name="email" placeholder="E-mail" required id="emailContacto"
+                                <div class="relative w-full">
+                                    <input type="email" name="email" placeholder="E-mail" required
+                                        id="emailContacto"
                                         class="w-full py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]" />
                                 </div>
 
-                                <input type="hidden" id="tipo" placeholder="tipo" name="source" value="Inicio" />
+                                <input type="hidden" id="tipo" placeholder="tipo" name="source"
+                                    value="Inicio" />
 
-                                <div class="relative w-full" >
+                                <div class="relative w-full">
                                     <textarea name="message" id="message" rows="3" cols="30"
                                         class="w-full py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]"
                                         placeholder="Mensaje"></textarea>
@@ -386,8 +397,8 @@
                                 <input type="hidden" name="client_latitude" id="latitud">
                                 <input type="hidden" name="client_longitude" id="longitud">
                                 <input type="hidden" name="client_system" id="sistema">
-                                <div class="flex justify-center items-center py-5" 
-                                    >
+                                <input type="hidden" id="tipo" placeholder="tipo" name="source" value="Inicio" />
+                                <div class="flex justify-center items-center py-5">
                                     <button type="submit"
                                         class="text-text18 font-roboto font-semibold text-white bg-[#0C4AC3] md:bg-[#FF5E14] py-4 px-6 w-full text-center rounded-lg">Enviar
                                         solicitud</button>
@@ -395,18 +406,18 @@
                             </div>
                         </form>
                     </div>
-                    <div   class="flex flex-col gap-10">
+                    <div class="flex flex-col gap-10">
                         <div class="flex flex-col gap-1">
                             <h2 class="font-semibold font-roboto text-[#082252] text-text32">
                                 Datos de contacto
                             </h2>
-                            <p class="font-robot font-normal text-[#082252] text-text18">
+                            {{-- <p class="font-robot font-normal text-[#082252] text-text18">
                                 Donec ac nisl ut mauris facilisis finibus. Nulla sed ultrices enim, nec consectetur tortor.
-                            </p>
+                            </p> --}}
                         </div>
 
                         <div class="flex flex-col gap-10 bg-white md:bg-transparent rounded-xl md:rounded-none p-6 md:p-0">
-                            <div class="flex gap-2"  >
+                            <div class="flex gap-2">
                                 <div>
                                     <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -420,12 +431,13 @@
                                     <p class="font-semibold text-[#082252] font-roboto text-text18 leading-none">Dirección
                                     </p>
                                     <p class="font-roboto text-text14 text-[#082252] font-normal">
-                                        {{$general[0]->address}}, {{$general[0]->inside}}, {{$general[0]->district}} - {{$general[0]->city}}
+                                        {{ $general[0]->address }}, {{ $general[0]->inside }},
+                                        {{ $general[0]->district }} - {{ $general[0]->city }}
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="flex gap-2"  >
+                            <div class="flex gap-2">
                                 <div>
                                     <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -440,19 +452,18 @@
                                         Teléfono</p>
                                     <p class="font-roboto text-text14 text-[#082252] font-normal">
                                         @if (!is_null($general[0]->cellphone) && !is_null($general[0]->office_phone))
-                                            {{$general[0]->cellphone}} / {{$general[0]->office_phone}}
+                                            {{ $general[0]->cellphone }} / {{ $general[0]->office_phone }}
                                         @elseif(!is_null($general[0]->cellphone))
-                                            {{$general[0]->cellphone}}
+                                            {{ $general[0]->cellphone }}
                                         @elseif(!is_null($general[0]->office_phone))
-                                            {{$general[0]->office_phone}}
+                                            {{ $general[0]->office_phone }}
                                         @else
-
                                         @endif
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="flex gap-2"  >
+                            <div class="flex gap-2">
                                 <div>
                                     <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -466,12 +477,12 @@
                                     <p class="font-semibold text-[#082252] font-roboto text-text18 leading-none">Correo
                                         Electrónico</p>
                                     <p class="font-roboto text-text14 text-[#082252] font-normal">
-                                        {{$general[0]->email}}
+                                        {{ $general[0]->email }}
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="flex gap-2"  >
+                            <div class="flex gap-2">
                                 <div>
                                     <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -504,7 +515,7 @@
     <script>
         var swiper = new Swiper(".logos", {
             slidesPerView: 5,
-            spaceBetween: 30,
+            spaceBetween: 60,
             centeredSlides: false,
             initialSlide: 0,
             loop: true,
@@ -561,11 +572,10 @@
         });
     </script>
     <script>
- 
         // Obtener información del navegador y del sistema operativo
         const platform = navigator.platform;
         document.getElementById('sistema').value = platform;
-    
+
         // Obtener la geolocalización del usuario (si se permite)
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -573,12 +583,12 @@
                 document.getElementById('longitud').value = position.coords.longitude;
             });
         }
-    
+
         // Obtener la página de referencia
         const referrer = document.referrer;
         document.getElementById('llegade').value = referrer;
-    
-    
+
+
         // Obtener la resolución de la pantalla
         const screenWidth = window.screen.width;
         const screenHeight = window.screen.height;

@@ -19,8 +19,8 @@ class DescargablesController extends Controller
      */
     public function index()
     {
-        $descargables = Descargables::where("status", "=", true)->get();
-       
+        $descargables = Descargables::where('status', '=', true)->get();
+
         return view('pages.downloader.index', compact('descargables'));
     }
 
@@ -28,8 +28,8 @@ class DescargablesController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {   
-        $categoria = Category::where("status", "=", true)->where("visible", "=", true)->get();
+    {
+        $categoria = Category::where('status', '=', true)->where('visible', '=', true)->get();
         return view('pages.downloader.create', compact('categoria'));
     }
 
@@ -43,52 +43,48 @@ class DescargablesController extends Controller
         ]);
 
         $descargables = new Descargables();
-        
-        try {
-			
-			if ($request->hasFile("imagen")) {
-				$file = $request->file('imagen');
-				$routeImg = 'storage/images/descargables/';
-				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
-				$this->saveImg($file, $routeImg, $nombreImagen);
 
-                $descargables ->url_image = $routeImg;
-                $descargables ->name_image = $nombreImagen;
-			}else{
+        try {
+            if ($request->hasFile('imagen')) {
+                $file = $request->file('imagen');
+                $routeImg = 'storage/images/descargables/';
+                $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+                $this->saveImg($file, $routeImg, $nombreImagen);
+
+                $descargables->url_image = $routeImg;
+                $descargables->name_image = $nombreImagen;
+            } else {
                 $routeImg = 'images/img/';
                 $nombreImagen = 'noimagenliquidacion.jpg';
 
-                $descargables ->url_image = $routeImg;
-                $descargables ->name_image = $nombreImagen;
+                $descargables->url_image = $routeImg;
+                $descargables->name_image = $nombreImagen;
             }
 
+            if ($request->hasFile('archive')) {
+                $file = $request->file('archive');
+                $routeImg = 'storage/archives/';
+                $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 
-            if ($request->hasFile("archive")) {
-				$file = $request->file('archive');
-				$routeImg = 'storage/archives/';
-				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
-                
-				if (!file_exists($routeImg)) {
+                if (!file_exists($routeImg)) {
                     mkdir($routeImg, 0777, true);
                 }
 
                 $file->move($routeImg, $nombreImagen);
 
-                $descargables ->url_archive = $routeImg;
-                $descargables ->name_archive = $nombreImagen;
-			}
+                $descargables->url_archive = $routeImg;
+                $descargables->name_archive = $nombreImagen;
+            }
 
-            $descargables ->title = $request->title;
-            $descargables ->categoria_id = $request->categoria_id;
-            $descargables ->description = $request->description;
-            $descargables ->save();
-    
+            $descargables->title = $request->title;
+            $descargables->categoria_id = $request->categoria_id;
+            $descargables->description = $request->description;
+            $descargables->save();
+
             return redirect()->route('descargables.index')->with('success', 'Catalogo creado exitosamente.');
-
-
-		} catch (\Throwable $th) {
-			return response()->json(['messge' => 'Verifique sus datos'], 400); 
-		}
+        } catch (\Throwable $th) {
+            return response()->json(['messge' => 'Verifique sus datos'], 400);
+        }
     }
 
     /**
@@ -105,7 +101,7 @@ class DescargablesController extends Controller
     public function edit(Descargables $descargables, $id)
     {
         $descargables = Descargables::findOrfail($id);
-        $categoria = Category::where("status", "=", true)->where("visible", "=", true)->get();
+        $categoria = Category::where('status', '=', true)->where('visible', '=', true)->get();
         return view('pages.downloader.edit', compact('descargables', 'categoria'));
     }
 
@@ -115,53 +111,48 @@ class DescargablesController extends Controller
     public function update(Request $request, $id)
     {
         $descargables = Descargables::findOrfail($id);
-       
+
         try {
-            
-			if ($request->hasFile("imagen")) {
-				$file = $request->file('imagen');
-				$routeImg = 'storage/images/descargables/';
-				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
-                
+            if ($request->hasFile('imagen')) {
+                $file = $request->file('imagen');
+                $routeImg = 'storage/images/descargables/';
+                $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
                 if ($descargables->url_image !== 'images/img/') {
-                    
                     File::delete($descargables->url_image . $descargables->name_image);
                 }
-                 
-                $this->saveImg($file, $routeImg, $nombreImagen);
-                
-                $descargables->url_image = $routeImg;
-               
-                $descargables->name_image = $nombreImagen;
-               
-			}
 
-            if ($request->hasFile("archive")) {
-				$file = $request->file('archive');
-				$routeImg = 'storage/archives/';
-				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
-                
-				if (!file_exists($routeImg)) {
+                $this->saveImg($file, $routeImg, $nombreImagen);
+
+                $descargables->url_image = $routeImg;
+
+                $descargables->name_image = $nombreImagen;
+            }
+
+            if ($request->hasFile('archive')) {
+                $file = $request->file('archive');
+                $routeImg = 'storage/archives/';
+                $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+
+                if (!file_exists($routeImg)) {
                     mkdir($routeImg, 0777, true);
                 }
 
                 $file->move($routeImg, $nombreImagen);
 
-                $descargables ->url_archive = $routeImg;
-                $descargables ->name_archive = $nombreImagen;
-			}
+                $descargables->url_archive = $routeImg;
+                $descargables->name_archive = $nombreImagen;
+            }
 
             $descargables->title = $request->title;
-            $descargables ->categoria_id = $request->categoria_id;
+            $descargables->categoria_id = $request->categoria_id;
             $descargables->description = $request->description;
             $descargables->update();
 
-			return redirect()->route('descargables.index')->with('success', 'Catalogo modificado exitosamente.');
-
-
-		} catch (\Throwable $th) {
-			return response()->json(['messge' => 'Verifique sus datos '], 400); 
-		}
+            return redirect()->route('descargables.index')->with('success', 'Catalogo modificado exitosamente.');
+        } catch (\Throwable $th) {
+            return response()->json(['messge' => 'Verifique sus datos '], 400);
+        }
     }
 
     /**
@@ -172,41 +163,39 @@ class DescargablesController extends Controller
         //
     }
 
-
-    public function saveImg($file, $route, $nombreImagen){
+    public function saveImg($file, $route, $nombreImagen)
+    {
         $manager = new ImageManager(new Driver());
-		$img =  $manager->read($file);        
-        $img->coverDown(155, 208, 'center'); 
-		if (!file_exists($route)) {
-			mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
-	    }
-		$img->save($route . $nombreImagen);
-	}
-
+        $img = $manager->read($file);
+        $img->coverDown(155, 208, 'center');
+        if (!file_exists($route)) {
+            mkdir($route, 0777, true); // Se crea la ruta con permisos de lectura, escritura y ejecución
+        }
+        $img->save($route . $nombreImagen);
+    }
 
     public function deleteLiquidacion(Request $request)
     {
         //Recupero el id mandado mediante ajax
         $id = $request->id;
-        
+
         //Busco el servicio con id como parametro
         $service = Descargables::findOrfail($id);
         //Modifico el status a false
         $service->status = false;
-        //Guardo 
+        //Guardo
         $service->save();
 
         // Devuelvo una respuesta JSON u otra respuesta según necesites
         return response()->json(['message' => 'Catalogo eliminado.']);
     }
 
-
     public function updateVisible(Request $request)
-    {    
+    {
         $cantidad = $this->contarLiquidacionVisible();
 
-        if($cantidad >= 1000 && $request->status == 1){
-            return response()->json(['message' => 'Solo puedes hacer visible 1000 banner de liquidacion'], 409 );
+        if ($cantidad >= 1000 && $request->status == 1) {
+            return response()->json(['message' => 'Solo puedes hacer visible 1000 banner de liquidacion'], 409);
         }
 
         $id = $request->id;
@@ -218,13 +207,12 @@ class DescargablesController extends Controller
 
         $cantidad = $this->contarLiquidacionVisible();
 
-        return response()->json(['message' => 'Catalogo modificado',  'cantidad' => $cantidad]);
+        return response()->json(['message' => 'Catalogo modificado', 'cantidad' => $cantidad]);
     }
 
-
-    public function contarLiquidacionVisible(){
-
+    public function contarLiquidacionVisible()
+    {
         $cantidad = Descargables::where('visible', '=', 1)->count();
-        return  $cantidad;
+        return $cantidad;
     }
 }

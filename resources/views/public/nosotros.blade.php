@@ -63,7 +63,7 @@
                         <p class="text-[#082252] font-roboto font-normal text-text18">¡Contáctanos hoy y transforma la
                             calidad de tu agua!</p>
                         <div class="flex justify-start items-center">
-                            <a href="#"
+                            <a href="{{ route('contacto') }}"
                                 class="text-white py-3 px-6 bg-[#FF5E14] rounded-xl font-roboto font-semibold text-center w-full md:w-auto">Trabajemos
                                 juntos</a>
                         </div>
@@ -137,14 +137,14 @@
                                                 <img src="{{ asset('images/img/instagram.png') }}" alt="instagram">
                                             </a>
                                         @endif
-                                        @if (!empty($equipo->twitter))
-                                            <a href="{{ $equipo->twitter }}" target="_blank">
-                                                <img src="{{ asset('images/img/twitter.png') }}" alt="twitter">
-                                            </a>
-                                        @endif
                                         @if (!empty($equipo->youtube))
                                             <a href="{{ $equipo->youtube }}" target="_blank">
-                                                <img src="{{ asset('images/img/youtube.png') }}" alt="youtube">
+                                                <img src="{{ asset('images/img/linkedin.png') }}" alt="youtube">
+                                            </a>
+                                        @endif
+                                        @if (!empty($equipo->twitter))
+                                            <a  href="mailto:{{ $equipo->mail }}">
+                                                <img src="{{ asset('images/img/twitter.png') }}" alt="twitter">
                                             </a>
                                         @endif
                                     </div>
@@ -162,7 +162,7 @@
         @endif
 
 
-        @if ($testimonie->isEmpty())
+        {{-- @if ($testimonie->isEmpty())
         @else
             <section class="bg-white md:pt-10 md:mt-10 pb-32 md:pb-32">
                 <div class="w-11/12 mx-auto flex flex-col gap-3 items-center">
@@ -202,7 +202,7 @@
                 </div>
 
             </section>
-        @endif
+        @endif --}}
 
 
     </main>

@@ -70,7 +70,7 @@ class IndexController extends Controller
         $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
         $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
         $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
-        $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->get();
+        $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->orderBy('order', 'asc')->get();
         $logos = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
         $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
 
@@ -128,7 +128,7 @@ class IndexController extends Controller
         try {
             $general = General::all();
             $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
-            $categorias = Category::all();
+            $categorias = Category::where('status', '=', 1)->where('destacar', '=', 1)->orderBy('order', 'asc')->get();
             $subcategorias = Subcategory::all();
             $microcategorias = Microcategory::all();
             $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
@@ -552,17 +552,19 @@ class IndexController extends Controller
 
     public function producto(string $id)
     {
-        // $product = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
+        
         $producto = Products::where('id', '=', $id)->first();
-        // $colors = Products::findOrFail($id)
-        //           ->with('images')
-        //           ->get();
 
+        $meta_title = $producto->meta_title ?? $producto->producto;
+        $meta_description = $producto->meta_description  ?? Str::limit(strip_tags($producto->description), 160);
+        $meta_keywords = $producto->meta_keywords ?? '';
+
+        
         $colors = DB::table('imagen_productos')->where('product_id', $id)->groupBy('color_id')->join('attributes_values', 'color_id', 'attributes_values.id')->get();
 
         $productos = Products::where('id', '=', $id)->with('attributes')->with('tags')->get();
 
-        // $especificaciones = Specifications::where('product_id', '=', $id)->get();
+       
         $especificaciones = Specifications::where('product_id', '=', $id)
             ->where(function ($query) {
                 $query->whereNotNull('tittle')->orWhereNotNull('specifications');
@@ -583,13 +585,13 @@ class IndexController extends Controller
 
         $ProdComplementarios = Products::where('categoria_id', '=', $IdProductosComplementarios)->get();
         $atributos = Attributes::where('status', '=', true)->get();
-        // $atributos = $product->attributes()->get();
+      
 
         $valorAtributo = AttributesValues::where('status', '=', true)->get();
 
         $url_env = $_ENV['APP_URL'];
 
-        return view('public.product', compact('producto', 'productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env', 'colors'));
+        return view('public.product', compact('meta_title','meta_description','meta_keywords', 'producto', 'productos', 'atributos', 'valorAtributo', 'ProdComplementarios', 'productosConGalerias', 'especificaciones', 'url_env', 'colors'));
     }
 
     public function liquidacion()
@@ -651,7 +653,11 @@ class IndexController extends Controller
     public function detalleBlog($id)
     {
         $post = Blog::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $id)->first();
-        return view('public.post', compact('post'));
+        $meta_title = $post->meta_title ?? $post->title;
+        $meta_description = $post->meta_description  ?? Str::limit($post->extract, 160);
+        $meta_keywords = $post->meta_keywords ?? '';
+
+        return view('public.post', compact('meta_title','meta_description','meta_keywords','post'));
     }
 
     public function catalogosDescargables($filtro)
@@ -785,6 +791,147 @@ class IndexController extends Controller
             }else{
               $data['client_system'] = 'Sin data';
             }
+
+
+            if ($ancho >= 1 && $ancho <= 767) {
+              $data['device'] = 'mobile';
+            } elseif ($ancho >= 768 && $ancho <= 1024) {
+              $data['device'] = 'tablet';
+            } elseif ($ancho >= 1025 ){
+              $data['device'] = 'desktop';
+            } elseif (is_null($ancho)){
+              $data['device'] = 'Sin data';
+            }
+
+           
+
+            $formlanding = Message::create($data);
+            $this->envioCorreoAdmin($formlanding);
+            $this->envioCorreoCliente($formlanding);
+
+            return response()->json(['message' => 'Mensaje enviado con exito']);
+        } catch (ValidationException $e) {
+            return response()->json(['message' => $e->validator->errors()], 400);
+        }
+    }
+
+
+    public function guardarContactoWsp(Request $request)
+    {
+        $data = $request->all();
+        $data['full_name'] = $request->full_name;
+        $ipAddress = $request->ip();
+        $ancho = $request->client_width;
+        $latitud = $request->client_latitude;
+        $longitud = $request->client_longitude;
+        $sistema = $request->client_system;
+
+        try {
+            $reglasValidacion = [
+                'full_name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+            ];
+            $mensajes = [
+                'full_name.required' => 'El campo nombre es obligatorio.',
+                'email.required' => 'El campo correo electrónico es obligatorio.',
+                'email.email' => 'El formato del correo electrónico no es válido.',
+                'email.max' => 'El campo correo electrónico no puede tener más de :max caracteres.',
+            ];
+            $request->validate($reglasValidacion, $mensajes);
+
+
+            if (!is_null($ipAddress)) {
+              $data['ip'] = $ipAddress;
+            }else{
+              $data['ip'] = 'Sin data';
+            }
+
+            if (!is_null($latitud)) {
+              $data['client_latitude'] = $latitud;
+            }else{
+              $data['client_latitude'] = 'Sin data';
+            }
+
+            if (!is_null($longitud)) {
+              $data['client_longitude'] = $longitud;
+            }else{
+              $data['client_longitude'] = 'Sin data';
+            }
+
+            if (!is_null($sistema)) {
+              $data['client_system'] = $sistema;
+            }else{
+              $data['client_system'] = 'Sin data';
+            }
+                     
+
+            if ($ancho >= 1 && $ancho <= 767) {
+              $data['device'] = 'mobile';
+            } elseif ($ancho >= 768 && $ancho <= 1024) {
+              $data['device'] = 'tablet';
+            } elseif ($ancho >= 1025 ){
+              $data['device'] = 'desktop';
+            } elseif (is_null($ancho)){
+              $data['device'] = 'Sin data';
+            }
+
+           
+
+            $formlanding = Message::create($data);
+            return response()->json(['message' => 'Redirigiendo a Whatsapp']);
+        } catch (ValidationException $e) {
+            return response()->json(['message' => $e->validator->errors()], 400);
+        }
+    }
+
+    public function guardarProducto(Request $request)
+    {   
+        $data = $request->all();
+        $data['full_name'] = $request->full_name;
+        $data['service_product'] = $request->service_product;
+        $ipAddress = $request->ip();
+        $ancho = $request->client_width;
+        $latitud = $request->client_latitude;
+        $longitud = $request->client_longitude;
+        $sistema = $request->client_system;
+
+        try {
+            $reglasValidacion = [
+                'full_name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+            ];
+            $mensajes = [
+                'full_name.required' => 'El campo nombre es obligatorio.',
+                'email.required' => 'El campo correo electrónico es obligatorio.',
+                'email.email' => 'El formato del correo electrónico no es válido.',
+                'email.max' => 'El campo correo electrónico no puede tener más de :max caracteres.',
+            ];
+            $request->validate($reglasValidacion, $mensajes);
+
+
+            if (!is_null($ipAddress)) {
+              $data['ip'] = $ipAddress;
+            }else{
+              $data['ip'] = 'Sin data';
+            }
+
+            if (!is_null($latitud)) {
+              $data['client_latitude'] = $latitud;
+            }else{
+              $data['client_latitude'] = 'Sin data';
+            }
+
+            if (!is_null($longitud)) {
+              $data['client_longitude'] = $longitud;
+            }else{
+              $data['client_longitude'] = 'Sin data';
+            }
+
+            if (!is_null($sistema)) {
+              $data['client_system'] = $sistema;
+            }else{
+              $data['client_system'] = 'Sin data';
+            }
             
 
             if ($ancho >= 1 && $ancho <= 767) {
@@ -799,9 +946,8 @@ class IndexController extends Controller
 
 
             $formlanding = Message::create($data);
-            $this->envioCorreoAdmin($formlanding);
-            $this->envioCorreoCliente($formlanding);
-
+            // $this->envioCorreoAdmin($formlanding);
+           
             return response()->json(['message' => 'Mensaje enviado con exito']);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->validator->errors()], 400);
