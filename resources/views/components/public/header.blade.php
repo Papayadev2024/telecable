@@ -7,7 +7,7 @@
             <div class="flex justify-center items-center">
               <img src="{{ asset('images/svg/image_18.svg') }}" alt="telefono">
             </div>
-            @if (!is_null($general[0]->cellphone) && !is_null($general[0]->office_phone))
+            {{-- @if (!is_null($general[0]->cellphone) && !is_null($general[0]->office_phone))
               <p class="font-roboto font-normal text-text16 text-white">{{ $general[0]->cellphone }} -
                 {{ $general[0]->office_phone }}</p>
             @elseif(!is_null($general[0]->cellphone))
@@ -15,7 +15,7 @@
             @elseif(!is_null($general[0]->office_phone))
               <p class="font-roboto font-normal text-text16 text-white">{{ $general[0]->office_phone }}</p>
             @else
-            @endif
+            @endif --}}
 
           </div>
           @if (is_null($general[0]->email))
