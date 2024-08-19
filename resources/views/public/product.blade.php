@@ -168,7 +168,7 @@
                                     </div>
                                 </form>   
                             </div>
-                            <form  id="formContactos">
+                            {{-- <form  id="formContactos">
                                 @csrf
                                 <div class="flex flex-col gap-5">
                                     <div class="relative w-full"  >
@@ -206,7 +206,7 @@
                                             solicitud</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form> --}}
                         </div>
                     </div>
 
