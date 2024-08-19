@@ -142,15 +142,15 @@
                                                 <img src="{{ asset('images/img/linkedin.png') }}" alt="youtube">
                                             </a>
                                         @endif
-                                        @if (!empty($equipo->twitter))
+                                        {{-- @if (!empty($equipo->twitter))
                                             <a  href="mailto:{{ $equipo->mail }}">
                                                 <img src="{{ asset('images/img/twitter.png') }}" alt="twitter">
                                             </a>
-                                        @endif
+                                        @endif --}}
                                     </div>
                                 </div>
                                 <p class=" text-[#082252] font-roboto font-normal text-base">
-                                    {{ $equipo->mail }}
+                                    {{ $equipo->twitter }}
                                 </p>
                                 <p class="uppercase text-[#FF5E14] font-roboto font-normal text-text14">
                                     {{ $equipo->cargo }}
