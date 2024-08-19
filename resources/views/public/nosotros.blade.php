@@ -81,7 +81,7 @@
 
             <div class="flex justify-center items-center w-11/12 mx-auto my-10 md:my-16 " data-aos="fade-up"
                 data-aos-offset="150">
-                <img src="{{ asset('images/img/image_20.jpg') }}" alt="HPI" class="w-full rounded-xl object-cover">
+                <img src="{{ asset('images/img/terminada.jpg') }}" alt="HPI" class="w-full rounded-xl object-cover">
             </div>
 
             @if ($nosotros->isEmpty())
