@@ -205,6 +205,7 @@ class CategoryController extends Controller
             ->where('products.status', '=', 1)
             ->where('products.visible', '=', 1)
             ->where('products.categoria_id', '=', $request->id)
+            ->orderBy('products.id', 'asc')
             ->select('products.*', 'categories.name as category_name')
             ->paginate(9);
 
@@ -231,6 +232,7 @@ class CategoryController extends Controller
             ->where('products.status', '=', 1)
             ->where('products.visible', '=', 1)
             ->where('products.subcategoria_id', '=', $request->id)
+            ->orderBy('products.id', 'asc')
             ->select('products.*', 'categories.name as category_name')
             ->paginate(9);
 
@@ -244,6 +246,7 @@ class CategoryController extends Controller
         ->where('products.status', '=', 1)
         ->where('products.visible', '=', 1)
         ->where('products.microcategoria_id', '=', $request->id)
+        ->orderBy('products.id', 'asc')
         ->select('products.*', 'categories.name as category_name')
         ->paginate(9);
 
@@ -265,6 +268,7 @@ class CategoryController extends Controller
                   ->orWhere('products.subcategoria_id', '=', $id)
                   ->orWhere('products.microcategoria_id', '=', $id);
         })
+        ->orderBy('products.id', 'asc')
         ->select('products.*', 'categories.name as category_name')
         ->paginate(9);
 

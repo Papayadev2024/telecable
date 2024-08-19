@@ -30,7 +30,7 @@
                         @endforeach
                     </div>
 
-                    <div class="md:basis-3/4 flex justify-center items-center order-1 md:order-2 w-full h-full">
+                    <div class="md:basis-3/4 flex justify-start items-start order-1 md:order-2 w-full">
                         <img src="{{ asset($producto->imagen) }}" alt="producto"
                             class="w-full h-full object-cover rounded-xl principal" data-aos="fade-up"
                             data-aos-offset="150">
@@ -95,7 +95,7 @@
 
                         </div>
 
-                        <div class="flex justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
+                        <div class="flex  justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
                             data-aos="fade-up" data-aos-offset="150">
                             <div target="_blank" id="chatonline"
                                 class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
@@ -109,6 +109,45 @@
                                     </svg>
                                 </div>
                             </div>
+                            <form  id="formContactos">
+                                @csrf
+                                <div class="flex flex-col gap-5">
+                                    <div class="relative w-full"  >
+                                        <input 
+                                            required name="full_name" id="fullNameContacto" type="text" placeholder="Nombre completo"
+                                            class="w-full py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]" />
+                                    </div>
+    
+                                    <div class="relative w-full" >
+                                        <input  id="telefonoContacto" name="phone" placeholder="Teléfono" type="tel" maxlength="12" required
+                                            class="w-full py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]" />
+                                    </div>
+    
+                                    <div class="relative w-full" >
+                                        <input type="email" name="email" placeholder="E-mail" required id="emailContacto"
+                                            class="w-full py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]" />
+                                    </div>
+    
+                                    <input type="hidden" id="tipo" placeholder="tipo" name="source" value="Inicio" />
+    
+                                    <div class="relative w-full" >
+                                        <textarea name="message" id="message" rows="3" cols="30"
+                                            class="w-full py-3 px-4 focus:outline-none font-roboto text-text16 text-[#082252] focus:ring-0 placeholder:text-[#082252] placeholder:text-opacity-40 border-[#082252] border-b transition-all focus:outline-0 border-t-0 border-l-0 border-r-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#082252]"
+                                            placeholder="Mensaje"></textarea>
+                                    </div>
+                                    <input type="hidden" name="client_width" id="anchodispositivo">
+                                    <input type="hidden" name="client_height" id="largodispositivo">
+                                    <input type="hidden" name="client_latitude" id="latitud">
+                                    <input type="hidden" name="client_longitude" id="longitud">
+                                    <input type="hidden" name="client_system" id="sistema">
+                                    <div class="flex justify-center items-center py-5" 
+                                        >
+                                        <button type="submit"
+                                            class="text-text18 font-roboto font-semibold text-white bg-[#0C4AC3] md:bg-[#FF5E14] py-4 px-6 w-full text-center rounded-lg">Enviar
+                                            solicitud</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
