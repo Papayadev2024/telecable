@@ -249,7 +249,7 @@
             </a>
           </li>
 
-          <!-- Logos -->
+          <!-- Marcas comercializadas -->
           <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['liquidacion'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['liquidacion'])) {{ 'hover:text-slate-200' }} @endif"
@@ -264,7 +264,49 @@
                     d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
                 </svg>
                 <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Marcas</span>
+                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Marcas comercializadas</span>
+              </div>
+            </a>
+          </li>
+
+
+           <!-- Nuestras Marcas -->
+          <li
+            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['mismarcas'])) {{ 'bg-slate-900' }} @endif">
+            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['mismarcas'])) {{ 'hover:text-slate-200' }} @endif"
+              href="{{ route('mismarcas.index') }}">
+              <div class="flex items-center">
+                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                  <path
+                    class="fill-current @if (in_array(Request::segment(2), ['mismarcas'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
+                    d="M1 3h22v20H1z" />
+                  <path
+                    class="fill-current @if (in_array(Request::segment(2), ['mismarcas'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
+                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
+                </svg>
+                <span
+                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Nuestras marcas</span>
+              </div>
+            </a>
+          </li>
+
+
+          <!-- Nuestros Clientes -->
+          <li
+            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['misclientes'])) {{ 'bg-slate-900' }} @endif">
+            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['misclientes'])) {{ 'hover:text-slate-200' }} @endif"
+              href="{{ route('misclientes.index') }}">
+              <div class="flex items-center">
+                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                  <path
+                    class="fill-current @if (in_array(Request::segment(2), ['misclientes'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
+                    d="M1 3h22v20H1z" />
+                  <path
+                    class="fill-current @if (in_array(Request::segment(2), ['misclientes'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
+                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
+                </svg>
+                <span
+                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Nuestros clientes</span>
               </div>
             </a>
           </li>
@@ -328,6 +370,27 @@
                 </svg>
                 <span
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Catalogos</span>
+              </div>
+            </a>
+          </li>
+
+
+          <!-- Certificados -->
+          <li
+            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['certificados'])) {{ 'bg-slate-900' }} @endif">
+            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['certificados'])) {{ 'hover:text-slate-200' }} @endif"
+              href="{{ route('certificados.index') }}">
+              <div class="flex items-center">
+                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                  <path
+                    class="fill-current @if (in_array(Request::segment(2), ['certificados'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
+                    d="M1 3h22v20H1z" />
+                  <path
+                    class="fill-current @if (in_array(Request::segment(2), ['certificados'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
+                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
+                </svg>
+                <span
+                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Certificados</span>
               </div>
             </a>
           </li>

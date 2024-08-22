@@ -21,6 +21,7 @@ use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\CertificadosController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DescargablesController;
 use App\Http\Controllers\FaqsController;
@@ -32,6 +33,8 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LiquidacionController;
 use App\Http\Controllers\MicrocategoryController;
+use App\Http\Controllers\MisClientesController;
+use App\Http\Controllers\MisMarcasController;
 use App\Http\Controllers\NewsletterSubscriberController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\PriceController;
@@ -162,6 +165,10 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::post('/descargables/deleteDownload', [DescargablesController::class, 'deleteDownload'])->name('descargables.deleteDownload');
         Route::post('/descargables/updateVisible', [DescargablesController::class, 'updateVisible'])->name('descargables.updateVisible');
 
+        //Certificados
+        Route::resource('/certificados', CertificadosController::class);
+        Route::post('/certificados/deleteCertificado', [CertificadosController::class, 'deleteCertificado'])->name('certificados.deleteCertificado');
+        Route::post('/certificados/updateVisible', [CertificadosController::class, 'updateVisible'])->name('certificados.updateVisible');
 
         //Servicios
         Route::resource('/servicios', ServiceController::class);
@@ -232,6 +239,16 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::resource('/liquidacion', LiquidacionController::class);
         Route::post('/liquidacion/updateVisible', [LiquidacionController::class, 'updateVisible'])->name('liquidacion.updateVisible');
         Route::post('/liquidacion/deleteSlider', [LiquidacionController::class, 'deleteLiquidacion'])->name('liquidacion.deleteLiquidacion');
+        
+        //Mis Marcas
+        Route::resource('/mismarcas', MisMarcasController::class);
+        Route::post('/mismarcas/updateVisible', [MisMarcasController::class, 'updateVisible'])->name('mismarcas.updateVisible');
+        Route::post('/mismarcas/deleteMisMarcas', [MisMarcasController::class, 'deleteMisMarcas'])->name('mismarcas.deleteMisMarcas');
+
+        //Mis Clientes
+        Route::resource('/misclientes', MisClientesController::class);
+        Route::post('/misclientes/updateVisible', [MisClientesController::class, 'updateVisible'])->name('misclientes.updateVisible');
+        Route::post('/misclientes/deleteMisClientes', [MisClientesController::class, 'deleteMisClientes'])->name('misclientes.deleteMisClientes');
 
         //Galeria
         Route::resource('/galerie', GalerieController::class);

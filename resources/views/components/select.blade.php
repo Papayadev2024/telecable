@@ -1,7 +1,4 @@
 <select name="{{ $name }}" id="{{ $id }}" class="{{ $class }}">
-
-
-
   @foreach ($options as $option)
     @if ($option->id == $item->color_id)
       <option value="{{ $option->$value }}" selected>

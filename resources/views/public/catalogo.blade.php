@@ -405,6 +405,7 @@
                         id: id
                     },
                     dataType: "json",
+                    cache: false,
                     success: function(response) {
 
                         console.log(response);

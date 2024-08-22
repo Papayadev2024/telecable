@@ -26,9 +26,11 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
                 <div class="flex flex-col md:flex-row justify-center items-start gap-5 md:gap-0">
                     <div
-                        class="flex flex-row justify-between md:flex-col md:justify-start md:items-center h-full md:gap-10 md:basis-1/4 order-2 md:order-1 w-full">
+                        class="flex flex-row justify-evenly md:flex-col md:justify-start md:items-center h-full md:gap-5 md:basis-1/4 order-2 md:order-1 w-full">
 
                         @foreach ($productosConGalerias as $galeria)
+                            <img src="{{ asset($producto->imagen) }}" alt="producto"
+                                 class="w-[70px] h-[90px] active rounded-xl cursor-pointer secundario"  >
                             <img src="{{ asset($galeria->imagen) }}" alt="{{ $galeria->descripcion }}"
                                 class="w-[70px] h-[90px] active rounded-xl cursor-pointer secundario" data-aos="fade-up"
                                 data-aos-offset="150">

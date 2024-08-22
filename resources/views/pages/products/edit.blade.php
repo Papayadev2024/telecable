@@ -1013,7 +1013,7 @@
                 @endforeach
               </div> --}}
 
-                            {{-- <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
+                            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
                 <div class="md:col-span-5 mt-2 ">
                   <div class=" flex items-end justify-between gap-2 ">
                     <label for="AddCombinacion">Combinaciones </label>
@@ -1031,33 +1031,33 @@
 
                       <div class="mb-2 mt-2">
                         @component('components.select', [
-    'name' => 'conbinacion-' . $item->id . '[color]',
-    'id' => 1,
-    'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
-    'options' => $valorAtributo,
-    'defaultValue' => 1,
-    'value' => 'id',
-    'label' => 'valor',
-    'item' => $item,
-])
+                            'name' => 'conbinacion-' . $item->id . '[color]',
+                            'id' => 1,
+                            'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                            'options' => $valorAtributo,
+                            'defaultValue' => 1,
+                            'value' => 'id',
+                            'label' => 'valor',
+                            'item' => $item,
+                        ])
                         @endcomponent
 
                       </div>
                       <div class="mb-2 mt-2">
                         @component('components.selectStock', [
-    'name' => 'conbinacion-' . $item->id . '[talla] ',
-    'id' => 1,
-    'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
-    'options' => $valorAtributo,
-    'defaultValue' => 1,
-    'value' => 'id',
-    'label' => 'valor',
-    'item' => $item,
-])
+                            'name' => 'conbinacion-' . $item->id . '[talla] ',
+                            'id' => 1,
+                            'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                            'options' => $valorAtributo,
+                            'defaultValue' => 1,
+                            'value' => 'id',
+                            'label' => 'valor',
+                            'item' => $item,
+                        ])
                         @endcomponent
 
                       </div>
@@ -1106,7 +1106,7 @@
 
                   </div>
                 </div>
-              </div> --}}
+              </div>
 
                         </div>
                     </div>
