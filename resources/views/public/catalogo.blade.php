@@ -179,6 +179,10 @@
             $('#selectMicrocategory').change(function() {
 
                 var id = $('#selectMicrocategory').val();
+                
+                $('#getProductAjax').empty();
+                $('.cargarMas').attr('data-page', 1);  // Reinicia a la primera página
+
                 $.ajax({
                     url: '{{ route('getProductMicrocategoria') }}',
                     method: 'POST',
