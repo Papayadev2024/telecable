@@ -179,10 +179,8 @@
             $('#selectMicrocategory').change(function() {
 
                 var id = $('#selectMicrocategory').val();
-                
                 $('#getProductAjax').empty();
                 $('.cargarMas').attr('data-page', 1);  // Reinicia a la primera página
-
                 $.ajax({
                     url: '{{ route('getProductMicrocategoria') }}',
                     method: 'POST',
@@ -396,10 +394,13 @@
 
 
             $('body').delegate('.cargarMas', 'click', function() {
+               
                 var page = $(this).attr('data-page');
+                var id = $('#valorcategoria').val();
+
                 $('.cargarMas').html('Cargando...');
 
-                var id = $('#valorcategoria').val();
+                
  
                 $.ajax({
                     url: "{{ route('getTotalProductos') }}?page=" + page,
@@ -439,7 +440,7 @@
 
 
                         $('.cargarMas').attr('data-page', response.page);
-                        $('.cargarMas').html('Cargar más modelos');
+                        //$('.cargarMas').html('Cargar más modelos');
                         if (response.page == 0) {
                             $('.cargarMas').hide();
                         } else {
