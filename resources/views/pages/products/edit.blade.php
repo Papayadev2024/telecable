@@ -556,7 +556,8 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <input type="text" id="seotitulo" name="meta_title" value="{{$product->meta_title}}"
+                                            <input type="text" id="seotitulo" name="meta_title"
+                                                value="{{ $product->meta_title }}"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('extract') is-invalid @enderror"
                                                 placeholder="Titulo">
                                         </div>
@@ -585,7 +586,7 @@
                                                 </svg>
                                             </div>
                                             <input type="text" id="seodescription" name="meta_description"
-                                                value="{{$product->meta_description}}"
+                                                value="{{ $product->meta_description }}"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('extract') is-invalid @enderror"
                                                 placeholder="Descripción">
 
@@ -616,7 +617,7 @@
                                             </div>
                                             <textarea id="keyword" name="meta_keywords" value=""
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('extract') is-invalid @enderror"
-                                                placeholder="Keywords">{{$product->meta_keywords}}</textarea>
+                                                placeholder="Keywords">{{ $product->meta_keywords }}</textarea>
 
                                         </div>
                                     </div>
@@ -1013,100 +1014,104 @@
                 @endforeach
               </div> --}}
 
-                            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
-                <div class="md:col-span-5 mt-2 ">
-                  <div class=" flex items-end justify-between gap-2 ">
-                    <label for="AddCombinacion">Combinaciones </label>
-                    <button type="button" id="AddCombinacion"
-                      class="text-blue-500 hover:underline focus:outline-none font-medium">
-                      Agregar Combinacion
-                    </button>
-                  </div>
+                            {{-- <div
+                                class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4">
+                                <div class="md:col-span-5 mt-2 ">
+                                    <div class=" flex items-end justify-between gap-2 ">
+                                        <label for="AddCombinacion">Combinaciones </label>
+                                        <button type="button" id="AddCombinacion"
+                                            class="text-blue-500 hover:underline focus:outline-none font-medium">
+                                            Agregar Combinacion
+                                        </button>
+                                    </div>
 
 
 
-                  @foreach ($product->combinations as $item)
-                    <div id='combination-{{ $item->id }}'
-                      class="grid grid-cols-4 gap-2 items-center justify-center">
+                                    @foreach ($product->combinations as $item)
+                                        <div id='combination-{{ $item->id }}'
+                                            class="grid grid-cols-4 gap-2 items-center justify-center">
 
-                      <div class="mb-2 mt-2">
-                        @component('components.select', [
-                            'name' => 'conbinacion-' . $item->id . '[color]',
-                            'id' => 1,
-                            'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
-                            'options' => $valorAtributo,
-                            'defaultValue' => 1,
-                            'value' => 'id',
-                            'label' => 'valor',
-                            'item' => $item,
-                        ])
-                        @endcomponent
+                                            <div class="mb-2 mt-2">
+                                                @component('components.select', [
+                                                    'name' => 'conbinacion-' . $item->id . '[color]',
+                                                    'id' => 1,
+                                                    'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                                                    'options' => $valorAtributo,
+                                                    'defaultValue' => 1,
+                                                    'value' => 'id',
+                                                    'label' => 'valor',
+                                                    'item' => $item,
+                                                ])
+                                                @endcomponent
 
-                      </div>
-                      <div class="mb-2 mt-2">
-                        @component('components.selectStock', [
-                            'name' => 'conbinacion-' . $item->id . '[talla] ',
-                            'id' => 1,
-                            'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
-                            'options' => $valorAtributo,
-                            'defaultValue' => 1,
-                            'value' => 'id',
-                            'label' => 'valor',
-                            'item' => $item,
-                        ])
-                        @endcomponent
+                                            </div>
+                                            <div class="mb-2 mt-2">
+                                                @component('components.selectStock', [
+                                                    'name' => 'conbinacion-' . $item->id . '[talla] ',
+                                                    'id' => 1,
+                                                    'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                                                    'options' => $valorAtributo,
+                                                    'defaultValue' => 1,
+                                                    'value' => 'id',
+                                                    'label' => 'valor',
+                                                    'item' => $item,
+                                                ])
+                                                @endcomponent
 
-                      </div>
+                                            </div>
 
-                      <div class="mb-2 mt-2"><input type="text" name="conbinacion-{{ $item->id }}[stock]"
-                          placeholder="Stock" value="{{ $item->stock }}" id="stock-2"
-                          class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      </div>
-                      <button
-                        class="ml-2 bg-red-500 justify-self-center   h-10 hover:bg-red-700 text-white font-bold 
-                        py-2 px-4 rounded-full  eliminarConvinacion"
-                        value="combination-{{ $item->id }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                          stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0">
-                          </path>
-                        </svg>
-                      </button>
-                    </div>
-                  @endforeach
-
-
-
-                </div>
-
-              </div>
-
-              <div class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
-                <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
-                  Tags</h4>
-                <div class="md:col-span-5 flex justify-between gap-4">
-
-                  <div class="w-2/3">
-                    <div class="relative mb-2  mt-2">
-                      <select id="tags_id" name="tags_id[]" multiple class="w-full">
-                        @foreach ($allTags as $tag)
-                          <option value="{{ $tag->id }}"
-                            {{ in_array($tag->id, $product->tags->pluck('id')->toArray()) ? 'selected' : '' }}>
-                            {{ $tag->name }}
-                          </option>
-                        @endforeach
-                      </select>
-                    </div>
+                                            <div class="mb-2 mt-2"><input type="text"
+                                                    name="conbinacion-{{ $item->id }}[stock]" placeholder="Stock"
+                                                    value="{{ $item->stock }}" id="stock-2"
+                                                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            </div>
+                                            <button
+                                                class="ml-2 bg-red-500 justify-self-center   h-10 hover:bg-red-700 text-white font-bold 
+                                                    py-2 px-4 rounded-full  eliminarConvinacion"
+                                                value="combination-{{ $item->id }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    @endforeach
 
 
-                  </div>
-                </div>
-              </div>
+
+                                </div>
+
+                            </div>
+
+                            <div
+                                class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
+                                <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
+                                    Tags</h4>
+                                <div class="md:col-span-5 flex justify-between gap-4">
+
+                                    <div class="w-2/3">
+                                        <div class="relative mb-2  mt-2">
+                                            <select id="tags_id" name="tags_id[]" multiple class="w-full">
+                                                @foreach ($allTags as $tag)
+                                                    <option value="{{ $tag->id }}"
+                                                        {{ in_array($tag->id, $product->tags->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                        {{ $tag->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div> --}}
 
                         </div>
                     </div>
