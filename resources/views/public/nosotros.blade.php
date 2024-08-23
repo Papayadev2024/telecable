@@ -164,6 +164,72 @@
         @endif
 
 
+        @if ($clientes->isEmpty())
+        @else
+            <section class="py-12">
+                <div class="max-w-[700px] mx-auto pb-10 w-11/12">
+                    <h2 class="text-white font-roboto font-bold text-text32 leading-tight text-center">
+                        Confiaron en nosotros
+                    </h2>
+                </div>
+
+                <div class="w-full mx-auto">
+                    <div class="swiper clientes">
+                        <div class="swiper-wrapper items-center">
+                            @foreach ($clientes as $cliente)
+                                <div class="swiper-slide">
+                                    <div class="flex justify-center items-center">
+                                        <img src="{{ asset($cliente->url_image . $cliente->name_image) }}" alt="logo" />
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @endif
+
+        @if ($certificados->isEmpty())
+        @else
+            <section class="pt-44 pb-20">
+                <div class="w-11/12 mx-auto">
+                    <div class="w-full md:max-w-[1000px] mx-auto flex flex-col gap-16 py-20">
+                        <div class="flex flex-col gap-2">
+                            <h2
+                                class="text-[#082252] font-roboto font-bold text-text48 md:text-text56 text-center leading-tight">
+                                Nuestras certificaciones</h2>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
+                        @foreach ($certificados as $descargable)
+                            <div class="flex justify-start items-center gap-8 h-[150px] md:h-[250px]">
+                                <div class="bg-[#F5F4F5] rounded-xl flex justify-center items-center w-2/5 h-full">
+                                    <img src="{{ asset($descargable->url_image.$descargable->name_image ) }}" alt="catalogo"
+                                        class="w-[80px] h-[115px] md:w-[150px] md:h-[190px]">
+                                </div>
+                                <div class="flex flex-col gap-4 w-3/5">
+                                    <div class="flex flex-col gap-2">
+                                        <h2 class="text-[#082252] font-roboto font-bold text-text18 md:text-text24 leading-tight">
+                                            {{$descargable->title}}</h2>
+                                        <p class="text-[#082252] font-roboto font-normal text-text10 md:text-text16">{{$descargable->description}}</p>
+                                    </div>
+
+                                    <a href="{{ asset('storage/archives/'.$descargable->name_archive) }}" target="_blank" 
+                                        class="text-[#FF5E14] font-roboto font-normal text-text10 md:text-text16 flex justify-start items-center gap-2">
+                                        <span>Descargar</span>
+                                        <div>
+                                            <img src="{{ asset('images/svg/image_42.svg') }}" alt="download"
+                                                class="w-[8px] h-[9px] md:w-[auto] md:h-auto">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        @endif
         {{-- @if ($testimonie->isEmpty())
         @else
             <section class="bg-white md:pt-10 md:mt-10 pb-32 md:pb-32">
@@ -229,6 +295,32 @@
                 }
             },
 
+        });
+
+         var swiper = new Swiper(".clientes", {
+            slidesPerView: 5,
+            spaceBetween: 60,
+            centeredSlides: false,
+            initialSlide: 0,
+            loop: true,
+            autoplay: {
+                delay: 1500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 2,
+                    centeredSlides: true,
+                },
+                768: {
+                    slidesPerView: 3,
+                    centeredSlides: false,
+                },
+                1024: {
+                    slidesPerView: 5,
+                    centeredSlides: false,
+                },
+            },
         });
     </script>
 @stop

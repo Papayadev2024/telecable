@@ -317,6 +317,32 @@
         @endif
 
 
+        @if ($mismarcas->isEmpty())
+        @else
+            <section class="py-12 bg-[#082252]">
+                <div class="max-w-[700px] mx-auto pb-10 w-11/12">
+                    <h2 class="text-white font-roboto font-bold text-text32 leading-tight text-center">
+                        Nuestras Marcas
+                    </h2>
+                </div>
+
+                <div class="w-full mx-auto">
+                    <div class="swiper marcas">
+                        <div class="swiper-wrapper items-center">
+                            @foreach ($mismarcas as $marca)
+                                <div class="swiper-slide">
+                                    <div class="flex justify-center items-center">
+                                        <img src="{{ asset($marca->url_image . $marca->name_image) }}" alt="logo" />
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @endif
+
+
         <section class="bg-[#0C4AC3]">
             <div class="grid grid-cols-1 md:grid-cols-2  relative overflow-hidden">
                 <div class="flex flex-col gap-5 justify-center w-11/12 mx-auto z-[50] md:max-w-[620px] pt-10">
@@ -514,6 +540,33 @@
 @section('scripts_importados')
     <script>
         var swiper = new Swiper(".logos", {
+            slidesPerView: 5,
+            spaceBetween: 60,
+            centeredSlides: false,
+            initialSlide: 0,
+            loop: true,
+            autoplay: {
+                delay: 1500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 2,
+                    centeredSlides: true,
+                },
+                768: {
+                    slidesPerView: 3,
+                    centeredSlides: false,
+                },
+                1024: {
+                    slidesPerView: 5,
+                    centeredSlides: false,
+                },
+            },
+        });
+
+
+        var swiper = new Swiper(".marcas", {
             slidesPerView: 5,
             spaceBetween: 60,
             centeredSlides: false,

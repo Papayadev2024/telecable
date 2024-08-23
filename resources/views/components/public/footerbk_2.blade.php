@@ -132,3 +132,75 @@
     />
   </div>
 </footer>
+
+
+ <div class="flex flex-col gap-10" data-aos="fade-up" data-aos-offset="150">
+                <div class="flex flex-col gap-0">
+                    <p class="font-roboto font-semibold text-lg text-white leading-none">
+                        Empresa certificada por:
+                    </p>
+                    <a href="{{ asset('certificados/CAMARA DE COMERCIO CERTIFICADO HPI PREMIO EXCELENCIA 2022.pdf') }}" target="_blank">
+                      <div class="flex justify-start items-center">
+                          <img src="{{ asset('images/img/CAMARA-DE-COMERCIO.png') }}" alt="CAMARA DE COMERCIO">
+                      </div>
+                    </a>
+                </div>
+
+                <div class="flex flex-col gap-0">
+                    <p class="font-roboto font-semibold text-lg text-white leading-none">
+                        Empresa certificada por:
+                    </p>
+                    <a href="{{ asset('certificados/MEGA Certificado Lev. Hydrotech Peru Import EIRL - ROMERO.pdf') }}" target="_blank">
+                      <div class="flex justify-start items-center">
+                          <img src="{{ asset('images/img/MEGA.png') }}" alt="MEGA">
+                      </div>
+                    </a>
+                </div>
+
+                <div class="flex flex-col gap-0">
+                    <p class="font-roboto font-semibold text-lg text-white leading-none">
+                        Empresa certificada por:
+                    </p>
+                    <a href="{{ asset('certificados/Certificado SGS.pdf') }}" target="_blank">
+                      <div class="flex justify-start items-center">
+                          <img src="{{ asset('images/img/SGS.png') }}" alt="sgs">
+                      </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-10" data-aos="fade-up" data-aos-offset="150">
+              <div class="flex flex-col gap-0">
+                  <p class="font-roboto font-semibold text-lg text-white leading-none">
+                      Empresa certificada por:
+                  </p>
+                  <a href="{{ asset('certificados/HODELPE - HYDROTECH PERU IMPORT E.I.R.L..pdf') }}" target="_blank">
+                    <div class="flex justify-start items-center">
+                        <img src="{{ asset('images/img/HODELPE.png') }}" alt="HODELPE">
+                    </div>
+                  </a>
+              </div>
+
+              <div class="flex flex-col gap-0">
+                  <p class="font-roboto font-semibold text-lg text-white leading-none">
+                      Empresa certificada por:
+                  </p>
+                  <div class="flex justify-start items-center">
+                      <img src="{{ asset('images/img/CCL.png') }}" alt="CCL">
+                  </div>
+              </div>
+
+              <div class="flex flex-col gap-0">
+                  <p class="font-roboto font-semibold text-lg text-white leading-none">
+                      Empresa certificada por:
+                  </p>
+                  <a href="{{ asset('certificados/Politica Integrada.docx.pdf') }}" target="_blank">
+                  <div class="flex justify-start items-center">
+                      <img src="{{ asset('images/img/ISO.png') }}" alt="CAMARA DE COMERCIO">
+                  </div>
+                  </a>
+              </div>
+
+              
+
+            </div>

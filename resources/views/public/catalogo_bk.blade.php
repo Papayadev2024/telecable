@@ -179,6 +179,9 @@
             $('#selectMicrocategory').change(function() {
 
                 var id = $('#selectMicrocategory').val();
+                $('#getProductAjax').empty();
+                $('.cargarMas').attr('data-page', 1);  // Reinicia a la primera página
+
                 $.ajax({
                     url: '{{ route('getProductMicrocategoria') }}',
                     method: 'POST',
@@ -191,12 +194,18 @@
 
                         $('#getProductAjax').empty();
 
-                        $('.cargarMas').attr('data-page', response.page);
+                        //$('.cargarMas').attr('data-page', response.page);
 
-                        if (response.page == 0) {
-                            $('.cargarMas').hide();
-                        } else {
+                        //if (response.page == 0) {
+                        //    $('.cargarMas').hide();
+                        //} else {
+                        //    $('.cargarMas').show();
+                        //}
+
+                        if (response.productos.next_page_url) {
                             $('.cargarMas').show();
+                        } else {
+                            $('.cargarMas').hide();
                         }
 
                         $.each(response.productos.data, function(key, value) {
@@ -235,6 +244,13 @@
             $('#selectSubcategory').change(function() {
 
                 var id = $('#selectSubcategory').val();
+
+
+                // Vaciar el contenido y reiniciar la paginación
+                $('#getProductAjax').empty();
+                $('.cargarMas').attr('data-page', 1);  // Reinicia a la primera página
+
+
                 $.ajax({
                     url: '{{ route('getMicrocategoria') }}',
                     method: 'POST',
@@ -255,9 +271,10 @@
 
                         if (response.microcategorias && response.microcategorias.length > 0) {
                             $('#selectMicrocategory').empty().show();
-
+                           $('#selectMicrocategory').append(
+                                    '<option value="">Selecciona microcategoria</option>');     
                             $.each(response.microcategorias, function(key, value) {
-
+                              
                                 console.log(value);
                                 $('#selectMicrocategory').append(
                                     '<option value="' + value['id'] + '">' + value[
@@ -271,7 +288,8 @@
                             $('#selectMicrocategory').empty().hide();
                         }
 
-                        $('#getProductAjax').empty();
+                        $('#getProductAjax').empty(); 
+                        
                         $.each(response.productos.data, function(key, value) {
 
                             var productoUrl = `{{ route('producto', ':id') }}`.replace(
@@ -405,7 +423,7 @@
                         id: id
                     },
                     dataType: "json",
-                    cache: false,
+                    //cache: false,
                     success: function(response) {
 
                         console.log(response);

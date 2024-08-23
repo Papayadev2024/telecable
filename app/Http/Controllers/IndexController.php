@@ -33,6 +33,9 @@ use App\Models\Subcategory;
 use App\Models\TypeAttribute;
 use App\Models\User;
 use App\Models\UserDetails;
+use App\Models\MisClientes;
+use App\Models\MisMarcas;
+use App\Models\Certificados;
 use Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -72,9 +75,12 @@ class IndexController extends Controller
         $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
         $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->orderBy('order', 'asc')->get();
         $logos = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
+        $mismarcas = MisMarcas::where('status', '=', 1)->where('visible', '=', 1)->get();
+        $clientes = MisClientes::where('status', '=', 1)->where('visible', '=', 1)->get();
+
         $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-        return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos', 'posts'));
+        return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos', 'posts','mismarcas', 'clientes'));
     }
 
     public function coleccion($filtro)
@@ -610,8 +616,10 @@ class IndexController extends Controller
             $general = General::first();
             $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
             $staff = Staff::where('status', '=', 1)->get();
+            $clientes = MisClientes::where('status', '=', 1)->where('visible', '=', 1)->get();
+            $certificados = Certificados::where('status', '=', 1)->where('visible', '=', 1)->get();
             $nosotros = AboutUs::where('status', '=', 1)->get();
-            return view('public.nosotros', compact('general', 'testimonie', 'staff', 'nosotros'));
+            return view('public.nosotros', compact('general', 'testimonie', 'staff', 'nosotros', 'clientes','certificados'));
         } catch (\Throwable $th) {
         }
     }
