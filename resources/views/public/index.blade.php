@@ -567,7 +567,7 @@
 
 
         var swiper = new Swiper(".marcas", {
-            slidesPerView: 5,
+            slidesPerView: 4,
             spaceBetween: 60,
             centeredSlides: false,
             initialSlide: 0,
@@ -605,6 +605,8 @@
                 clickable: true,
             },
         });
+
+
         var swiper = new Swiper(".testimonios", {
             slidesPerView: 1,
             spaceBetween: 30,
