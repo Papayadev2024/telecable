@@ -1,14 +1,14 @@
 <x-app-layout title="Editar Liquidacion">
 
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-    <form action="{{ route('liquidacion.update', $liquidacion->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('misclientes.update', $misclientes->id) }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <div
         class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
         <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Edición banner de liquidación:
-            {{ $liquidacion->title }}</h2>
+          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Edición cliente:
+            {{ $misclientes->title }}</h2>
         </header>
 
         <div class="p-3">
@@ -73,7 +73,7 @@
               <div class="md:col-span-5">
                 <label for="description">Imagen</label>
                 <div class="relative mb-2 mt-2">
-                  <img src="{{ asset($liquidacion->url_image . $liquidacion->name_image) }}"
+                  <img src="{{ asset($misclientes->url_image . $misclientes->name_image) }}"
                     class="max-w-xs max-h-48 object-cover  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
               </div>
