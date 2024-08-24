@@ -179,7 +179,7 @@
                             @foreach ($clientes as $cliente)
                                 <div class="swiper-slide">
                                     <div class="flex justify-center items-center">
-                                        <img src="{{ asset($cliente->url_image . $cliente->name_image) }}" alt="logo" />
+                                        <img src="{{ asset($cliente->url_image . $cliente->name_image) }}" alt="logo" class="h-32 object-contain"/>
                                     </div>
                                 </div>
                             @endforeach
@@ -298,8 +298,8 @@
         });
 
          var swiper = new Swiper(".clientes", {
-            slidesPerView: 5,
-            spaceBetween: 60,
+            slidesPerView: 6,
+            spaceBetween: 30,
             centeredSlides: false,
             initialSlide: 0,
             loop: true,
@@ -317,7 +317,7 @@
                     centeredSlides: false,
                 },
                 1024: {
-                    slidesPerView: 5,
+                    slidesPerView: 6,
                     centeredSlides: false,
                 },
             },
