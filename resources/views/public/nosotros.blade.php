@@ -168,7 +168,7 @@
         @else
             <section class="py-12">
                 <div class="max-w-[700px] mx-auto pb-10 w-11/12">
-                    <h2 class="text-white font-roboto font-bold text-text32 leading-tight text-center">
+                    <h2 class="text-[#082252] font-roboto font-bold text-text32 leading-tight text-center">
                         Confiaron en nosotros
                     </h2>
                 </div>
