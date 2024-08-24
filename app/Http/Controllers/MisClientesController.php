@@ -185,4 +185,11 @@ class MisClientesController extends Controller
 
         return response()->json(['message' => 'Cliente modificado',  'cantidad' => $cantidad]);
     }
+
+
+    public function contarLiquidacionVisible(){
+
+        $cantidad = MisClientes::where('visible', '=', 1)->count();
+        return  $cantidad;
+    }
 }
