@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-10 md:gap-5 justify-end items-end">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 md:gap-5 justify-end items-end">
             <div></div>
              <div></div>
             <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
