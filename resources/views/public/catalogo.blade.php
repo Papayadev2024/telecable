@@ -53,7 +53,7 @@
                                         <a id="{{ $item->id }}" class="categoryselect">
                                             <div class="inline-flex flex-col gap-3">
                                                 <div id="{{ $item->id }}"
-                                                    class="rounded-full bg-white hover:bg-[#245BC8] md:duration-300 w-36 h-36 md:w-52 md:h-52 flex justify-center items-center">
+                                                    class="{{ $filtro == $item->id ? 'selected' : '' }} rounded-full bg-white hover:bg-[#245BC8] md:duration-300 w-36 h-36 md:w-52 md:h-52 flex justify-center items-center">
                                                     <div class="flex flex-row justify-center items-center">
                                                         <img src="{{ asset($item->url_image.$item->name_image) }}"
                                                             alt="tratamiento de agua"
@@ -79,10 +79,14 @@
                 <div class="flex flex-col gap-5">
                     <div class="flex flex-col gap-2">
                         <h2 class="text-[#082252] font-roboto font-bold text-text32 subtitle">
-
+                          @if($filtro != 0 )
+                            {{$categoria->extract}}
+                          @endif  
                         </h2>
                         <p class="text-[#082252] font-roboto font-normal text-text18 description">
-
+                          @if($filtro != 0 )
+                                {{$categoria->description}}
+                          @endif    
                         </p>
                     </div>
 
@@ -90,8 +94,13 @@
                         <div class="flex flex-col md:flex-row md:justify-start gap-3">
                             <div class="relative inline-block text-left min-w-64 w-auto">
                                 <select id="selectSubcategory"
-                                    class="hidden bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
+                                    class="{{ ($filtro === null || $filtro == 0) ? 'hidden' : '' }} bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
                                     <option value="sinproduct">Selecciona subcategoria</option>
+                                    @if(!is_null($filtro))
+                                        @foreach($subcategorias as $subcat)
+                                        <option value="{{$subcat->id}}">{{$subcat->name}}</option>  
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <div class="relative inline-block text-left min-w-64 w-auto">
@@ -231,7 +240,6 @@
             });
 
 
-
             $('#selectSubcategory').change(function() {
 
                 var id = $('#selectSubcategory').val();
@@ -302,8 +310,6 @@
 
 
             });
-
-
 
 
             $('.categoryselect').click(function() {
