@@ -36,6 +36,7 @@ use App\Models\UserDetails;
 use App\Models\MisClientes;
 use App\Models\MisMarcas;
 use App\Models\Certificados;
+use App\Models\ContactDetail;
 use Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -77,10 +78,14 @@ class IndexController extends Controller
         $logos = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
         $mismarcas = MisMarcas::where('status', '=', 1)->where('visible', '=', 1)->get();
         $clientes = MisClientes::where('status', '=', 1)->where('visible', '=', 1)->get();
-
+        $contactos = ContactDetail::where('status', '=', 1)->get();
         $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-        return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos', 'posts','mismarcas', 'clientes'));
+        $contactosOrdenados = collect($contactos)->sortBy('categoria_id')->map(function ($contacto) {
+          return $contacto['nombre'] . ' : ' . $contacto['celular'];
+        })->all();
+
+        return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos', 'posts','mismarcas', 'clientes', 'contactos','contactosOrdenados'));
     }
 
     public function coleccion($filtro)

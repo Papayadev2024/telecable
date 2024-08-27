@@ -474,22 +474,29 @@
 
                                 </div>
                                 <div class="flex flex-col gap-1">
-                                    <p class="font-semibold text-[#082252] font-roboto text-text18 leading-none">Número de
-                                        Teléfono</p>
-                                    <p class="font-roboto text-text14 text-[#082252] font-normal">
-                                        @if (!is_null($general[0]->cellphone) && !is_null($general[0]->office_phone))
-                                            {{ $general[0]->cellphone }} / {{ $general[0]->office_phone }}
-                                        @elseif(!is_null($general[0]->cellphone))
-                                            {{ $general[0]->cellphone }}
-                                        @elseif(!is_null($general[0]->office_phone))
-                                            {{ $general[0]->office_phone }}
-                                        @else
-                                        @endif
-                                    </p>
+                                    <p class="font-semibold text-[#082252] font-roboto text-text18 leading-none mb-3">Número de
+                                        Teléfono - Correos</p>
+                                    @php
+                                        $contactosAgrupados = $contactos->groupBy('categoria_id');
+                                    @endphp   
+                                    
+                                    
+                                        @foreach($contactosAgrupados as $categoria_id => $contactos)
+                                            <div><h2 class="font-roboto font-semibold text-lg text-[#082252] mb-1">{{ $contactos->first()->categoria->name }}</h2></div>
+                                            @foreach($contactos as $contacto)
+                                                <div><span class="font-roboto font-semibold text-base text-[#082252] normal-case">
+                                                {{$contacto->nombre}}</span>: 
+                                                <span class="font-roboto text-text14 text-[#082252] font-normal">{{$contacto->celular}}</span> /
+                                                <span class="font-roboto text-text14 text-[#082252] font-normal">{{$contacto->email}}</span>
+                                                </div>
+                                            @endforeach
+                                            <div class="mb-3"></div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="flex gap-2">
+                            {{-- <div class="flex gap-2">
                                 <div>
                                     <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -500,13 +507,13 @@
 
                                 </div>
                                 <div class="flex flex-col gap-1">
-                                    <p class="font-semibold text-[#082252] font-roboto text-text18 leading-none">Correo
+                                    <p class="font-semibold text-[#082252] font-roboto text-text18 leading-none mb-3">Correo
                                         Electrónico</p>
                                     <p class="font-roboto text-text14 text-[#082252] font-normal">
-                                        {{ $general[0]->email }}
+                                      
                                     </p>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="flex gap-2">
                                 <div>

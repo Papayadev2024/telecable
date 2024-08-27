@@ -4,10 +4,10 @@
       <div class="flex justify-end md:justify-between items-center py-4 w-11/12 mx-auto ">
         <div class="hidden md:flex justify-center items-center gap-5">
           <div class="flex justify-start items-center gap-2">
-            {{-- <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center">
               <img src="{{ asset('images/svg/image_18.svg') }}" alt="telefono">
-            </div> --}}
-            {{-- @if (!is_null($general[0]->cellphone) && !is_null($general[0]->office_phone))
+            </div>
+            @if (!is_null($general[0]->cellphone) && !is_null($general[0]->office_phone))
               <p class="font-roboto font-normal text-text16 text-white">{{ $general[0]->cellphone }} -
                 {{ $general[0]->office_phone }}</p>
             @elseif(!is_null($general[0]->cellphone))
@@ -15,10 +15,10 @@
             @elseif(!is_null($general[0]->office_phone))
               <p class="font-roboto font-normal text-text16 text-white">{{ $general[0]->office_phone }}</p>
             @else
-            @endif --}}
+            @endif
 
           </div>
-          {{-- @if (is_null($general[0]->email))
+          @if (is_null($general[0]->email))
           @else
             <div class="flex justify-start items-center gap-2">
               <div class="flex justify-center items-center">
@@ -26,8 +26,7 @@
               </div>
               <p class="font-roboto font-normal text-text16 text-white">{{ $general[0]->email }}</p>
             </div>
-          @endif --}}
-
+          @endif
         </div>
         <div class="flex justify-center items-center gap-3">
           @if ($general[0]->facebook)

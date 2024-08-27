@@ -18,4 +18,9 @@ class ContactDetail extends Model
         'visible',
         'status',
     ];
+
+    public function categoria()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
