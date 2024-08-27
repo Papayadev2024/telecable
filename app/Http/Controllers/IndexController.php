@@ -671,7 +671,7 @@ class IndexController extends Controller
     public function catalogosDescargables($filtro)
     {
         try {
-            $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
+            $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->orderBy('order', 'asc')->get();
 
             if ($filtro == 0) {
                 //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
