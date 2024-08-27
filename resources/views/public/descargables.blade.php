@@ -9,7 +9,7 @@
     <main>
         <section class="pt-44 pb-20">
             <div class="w-11/12 mx-auto">
-                <div class="w-full md:max-w-[1000px] mx-auto flex flex-col gap-16 py-20">
+                <div class="w-full md:max-w-[1000px] mx-auto flex flex-col gap-16 pt-0 lg:py-20">
                     <div class="flex flex-col gap-2">
                         <h2
                             class="text-[#082252] font-roboto font-bold text-text48 md:text-text56 text-center leading-tight">
