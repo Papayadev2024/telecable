@@ -44,7 +44,7 @@
                                     <p class="text-[#082252] font-roboto font-normal text-text10 md:text-text16">{{$descargable->description}}</p>
                                 </div>
 
-                                <a href="{{ asset('storage/archives/'.$descargable->name_archive) }}" target="_blank" 
+                                <a href="{{ asset($descargable->url_archive.$descargable->name_archive) }}" target="_blank" 
                                     class="text-[#FF5E14] font-roboto font-normal text-text10 md:text-text16 flex justify-start items-center gap-2">
                                     <span>Descargar</span>
                                     <div>
