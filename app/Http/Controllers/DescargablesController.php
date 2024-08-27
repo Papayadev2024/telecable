@@ -174,7 +174,7 @@ class DescargablesController extends Controller
         $img->save($route . $nombreImagen);
     }
 
-    public function deleteLiquidacion(Request $request)
+    public function deleteDownload(Request $request)
     {
         //Recupero el id mandado mediante ajax
         $id = $request->id;
