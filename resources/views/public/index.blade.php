@@ -349,13 +349,13 @@
                     <div class="flex flex-col gap-2">
                         <h3 class="font-roboto font-bold text-white text-text40 md:text-text64 leading-tight">Descarga
                             nuestros Catálogos</h3>
-                        <p class="font-roboto font-normal text-white text-text18 ">Duis aute irure dolor in reprehenderit
+                        {{-- <p class="font-roboto font-normal text-white text-text18 ">Duis aute irure dolor in reprehenderit
                             in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> --}}
                     </div>
                     <div class="flex justify-start items-center">
                         <a href="{{ route('descargables', 0) }}"
-                            class="text-white font-roboto font-semibold text-text16 bg-[#0C4AC3] rounded-xl py-4 px-6">Descargar
+                            class="text-white font-roboto font-semibold text-text16 bg-[#FF5E14] rounded-xl py-4 px-6">Descargar
                             Catálogos</a>
                     </div>
                 </div>
