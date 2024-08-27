@@ -90,7 +90,7 @@
                         @if ($producto->name_docriesgo)
                         <a href="{{ asset($producto->url_docriesgo.$producto->name_docriesgo) }}" target="_blank" 
                             class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
-                            <span>Ficha de riesgo</span>
+                            <span>Hoja de seguridad</span>
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" x="0" y="0"
