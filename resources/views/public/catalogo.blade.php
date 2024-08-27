@@ -98,7 +98,9 @@
                                     <option value="sinproduct">Selecciona subcategoria</option>
                                     @if(!is_null($filtro))
                                         @foreach($subcategorias as $subcat)
-                                        <option value="{{$subcat->id}}">{{$subcat->name}}</option>  
+                                           @if($subcat->category_id == $filtro)
+                                            <option value="{{$subcat->id}}">{{$subcat->name}}</option>  
+                                           @endif   
                                         @endforeach
                                     @endif
                                 </select>
