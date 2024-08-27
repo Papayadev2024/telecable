@@ -203,10 +203,10 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
                         @foreach ($certificados as $descargable)
-                            <div class="flex justify-start items-center gap-8 h-[150px] md:h-[250px]">
-                                <div class="bg-[#F5F4F5] rounded-xl flex justify-center items-center w-2/5 h-full">
+                            <div class="flex justify-start items-center gap-8 h-[100px]">
+                                <div class="bg-[#F5F4F5] rounded-xl flex justify-center items-center w-2/5 h-full ">
                                     <img src="{{ asset($descargable->url_image.$descargable->name_image ) }}" alt="catalogo"
-                                        class="w-[80px] h-[115px] md:w-[150px] md:h-[190px]">
+                                        class="w-[80px] md:w-[150px] h-[80px] object-contain">
                                 </div>
                                 <div class="flex flex-col gap-4 w-3/5">
                                     <div class="flex flex-col gap-2">
