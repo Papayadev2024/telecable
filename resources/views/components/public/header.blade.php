@@ -71,7 +71,7 @@
         <div class="flex justify-center items-center z-40">
           <a href="{{ route('index') }}">
             {{-- <img src="./images/svg/image_27.svg" alt="HPI" /> --}}
-            <img src="{{ asset('images/img/image_27.png') }}" alt="HPI">
+            <img src="{{ asset('images/svg/hpi_logo.svg') }}" alt="HPI" class="w-[150px]">
           </a>
         </div>
 

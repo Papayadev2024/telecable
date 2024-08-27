@@ -364,7 +364,7 @@
                     <img src="{{ asset('images/img/image_17.png') }}" alt="catalogo">
                 </div>
 
-                <div class="flex justify-center items-center absolute bottom-0 md:right-0 z-[25]">
+                <div class="flex justify-center items-center absolute bottom-0 md:right-0 bg-cover z-[25]">
                     <img src="{{ asset('images/img/image_16.png') }}" alt="shadow" class="hidden md:block">
                     <img src="{{ asset('images/img/image_18.png') }}" alt="shadow" class="block md:hidden">
                 </div>
