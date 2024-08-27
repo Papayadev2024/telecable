@@ -44,7 +44,7 @@
                 <div class="w-full mx-auto md:max-w-[1064px] flex flex-col gap-1" data-aos="fade-up" data-aos-offset="150">
                     <h3 class="text-[#0C4AC3] font-roboto font-normal text-text18 text-center">Sobre HYDROTECH PERÚ IMPORT
                         E.I.R.L</h3>
-                    <h2 class="text-[#082252] font-roboto font-bold text-text48 md:text-text56 text-center leading-tight">
+                    <h2 class="text-[#082252] font-roboto font-bold text-4xl md:text-text56 text-center leading-tight">
                         Conócenos: Expertos en Soluciones de Tratamiento de Agua</h2>
                 </div>
 
@@ -53,7 +53,7 @@
                         <div class="flex flex-col gap-2">
                             <h3 class="text-[#FF5E14] font-roboto font-normal text-text16">Sobre HYDROTECH PERÚ IMPORT
                                 E.I.R.L</h3>
-                            <h2 class="text-[#082252] font-roboto font-bold text-text48 leading-tight">Químicos y
+                            <h2 class="text-[#082252] font-roboto font-bold text-4xl md:text-text56 leading-tight">Químicos y
                                 tratamiento de agua</h2>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                 <div class="w-11/12 mx-auto flex flex-col gap-8 my-5 lg:my-16 ">
                     @foreach ($nosotros as $item)
                     <div>
-                        <h2 class="text-[#082252] font-roboto font-bold text-text40 lg:text-text48 leading-none">{{$item->titulo}}</h2>
+                        <h2 class="text-[#082252] font-roboto font-bold text-4xl lg:text-text48 leading-none">{{$item->titulo}}</h2>
                         <div class="text-[#082252] font-roboto font-normal text-text18 mt-3">
                                 {!!$item->descripcion!!}
                         </div>
@@ -107,7 +107,7 @@
             <div class="flex flex-col gap-8 w-11/12 mx-auto pb-20 mt-12">
                 <div class="flex flex-col gap-2" data-aos="fade-up" data-aos-offset="150">
                     <h3 class="text-[#FF5E14] font-roboto font-normal text-text16">PROFESIONALES</h3>
-                    <h2 class="text-[#082252] font-roboto font-bold text-text48 leading-tight">Nuestro Equipo de Expertos
+                    <h2 class="text-[#082252] font-roboto font-bold text-4xl lg:text-text48 leading-tight">Nuestro Equipo de Expertos
                     </h2>
                     <p class="text-[#082252] font-roboto font-normal text-text18">Nuestro equipo está compuesto por
                         ingenieros y técnicos especializados en tratamiento de agua, dedicados a ofrecer soluciones
@@ -167,8 +167,8 @@
         @if ($clientes->isEmpty())
         @else
             <section class="py-12">
-                <div class="max-w-[700px] mx-auto pb-10 w-11/12">
-                    <h2 class="text-[#082252] font-roboto font-bold text-text32 leading-tight text-center">
+                <div class="max-w-[700px] mx-auto pb-14 w-11/12">
+                    <h2 class="text-[#082252] font-roboto font-bold text-4xl md:text-text56 text-center leading-tight">
                         Confiaron en nosotros
                     </h2>
                 </div>
@@ -191,17 +191,17 @@
 
         @if ($certificados->isEmpty())
         @else
-            <section class="pt-44 pb-20">
+            <section class="pt-0 pb-20">
                 <div class="w-11/12 mx-auto">
                     <div class="w-full md:max-w-[1000px] mx-auto flex flex-col gap-16 py-20">
                         <div class="flex flex-col gap-2">
                             <h2
-                                class="text-[#082252] font-roboto font-bold text-text48 md:text-text56 text-center leading-tight">
+                                class="text-[#082252] font-roboto font-bold text-4xl md:text-text56 text-center leading-tight">
                                 Nuestras certificaciones</h2>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-20">
                         @foreach ($certificados as $descargable)
                             <div class="flex justify-start items-center gap-8 h-[100px]">
                                 <div class="bg-[#F5F4F5] rounded-xl flex justify-center items-center w-2/5 h-full ">
