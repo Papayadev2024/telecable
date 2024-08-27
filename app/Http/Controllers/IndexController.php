@@ -81,11 +81,7 @@ class IndexController extends Controller
         $contactos = ContactDetail::where('status', '=', 1)->get();
         $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-        $contactosOrdenados = collect($contactos)->sortBy('categoria_id')->map(function ($contacto) {
-          return $contacto['nombre'] . ' : ' . $contacto['celular'];
-        })->all();
-
-        return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos', 'posts','mismarcas', 'clientes', 'contactos','contactosOrdenados'));
+        return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos', 'posts','mismarcas', 'clientes', 'contactos'));
     }
 
     public function coleccion($filtro)
@@ -253,7 +249,8 @@ class IndexController extends Controller
     public function contacto()
     {
         $general = General::all();
-        return view('public.contacto', compact('general'));
+        $contactos = ContactDetail::where('status', '=', 1)->get();
+        return view('public.contacto', compact('general','contactos'));
     }
 
     public function carrito()

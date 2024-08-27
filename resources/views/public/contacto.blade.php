@@ -70,9 +70,11 @@
                 </div>
             </div>
         </section>
-
+          @php
+                $contactosAgrupados = $contactos->groupBy('categoria_id');
+          @endphp      
         <section>
-            <div class="grid grid-cols-1 md:grid-cols-3 w-11/12 mx-auto gap-8 py-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 w-11/12 mx-auto gap-8 py-20">
                 <div class="flex flex-col gap-3 bg-[#F7F8F8] rounded-xl p-6" data-aos="fade-up" data-aos-duration="150">
                     <div class="flex justify-start items-center">
                         <img src="{{asset('images/svg/image_39.svg')}}" alt="email">
@@ -80,8 +82,18 @@
 
                     <div class="flex flex-col gap-2">
                         <p class="text-[#082252] font-roboto font-bold text-text32">Email</p>
-                        <p class="text-[#082252] font-roboto font-normal text-text16">Escríbenos para recibir atención personalizada y resolver tus dudas.</p>
-                        <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->email}}</p>
+                        <p class="text-[#082252] font-roboto font-normal text-text16 mb-2">Escríbenos para recibir atención personalizada y resolver tus dudas.</p>
+                        {{-- <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->email}}</p> --}}
+                        @foreach($contactosAgrupados as $categoria_id => $contactos)
+                            <div><h2 class="font-roboto font-semibold text-lg text-[#FF5E14] mb-1">{{ $contactos->first()->categoria->name }}</h2></div>
+                            @foreach($contactos as $contacto)
+                                <div><span class="font-roboto font-semibold text-base text-[#082252] normal-case">
+                                {{$contacto->nombre}}</span>: 
+                                <span class="font-roboto text-text14 text-[#082252] font-normal">{{$contacto->email}}</span> 
+                                </div>
+                            @endforeach
+                            <div class="mb-3"></div>
+                        @endforeach
                     </div>
                 </div>
 
@@ -92,16 +104,19 @@
 
                     <div class="flex flex-col gap-2">
                         <p class="text-[#082252] font-roboto font-bold text-text32">Teléfono</p>
-                        <p class="text-[#082252] font-roboto font-normal text-text16">Llámanos para obtener soporte inmediato y asistencia profesional.</p>
-                        @if (!is_null($general[0]->cellphone) && !is_null($general[0]->office_phone))
-                             <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->cellphone}} / {{$general[0]->office_phone}}</p>
-                        @elseif(!is_null($general[0]->cellphone))
-                             <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->cellphone}}</p>
-                        @elseif(!is_null($general[0]->office_phone))
-                             <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->office_phone}}</p>
-                        @else
-
-                        @endif
+                        <p class="text-[#082252] font-roboto font-normal text-text16 mb-2">Llámanos para obtener soporte inmediato y asistencia profesional.</p>
+                       
+                                                    
+                        @foreach($contactosAgrupados as $categoria_id => $contactos)
+                            <div><h2 class="font-roboto font-semibold text-lg text-[#FF5E14] mb-1">{{ $contactos->first()->categoria->name }}</h2></div>
+                            @foreach($contactos as $contacto)
+                                <div><span class="font-roboto font-semibold text-base text-[#082252] normal-case">
+                                {{$contacto->nombre}}</span>: 
+                                <span class="font-roboto text-text14 text-[#082252] font-normal">{{$contacto->celular}}</span> 
+                                </div>
+                            @endforeach
+                            <div class="mb-3"></div>
+                        @endforeach
                     </div>
                 </div>
 
