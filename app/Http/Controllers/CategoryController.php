@@ -214,22 +214,24 @@ class CategoryController extends Controller
             ->paginate(9);
 
             
-            if (!empty($productos->nextPageUrl())) {
-                $parse_url = parse_url($productos->nextPageUrl());
+            // if (!empty($productos->nextPageUrl())) {
+            //     $parse_url = parse_url($productos->nextPageUrl());
 
-                if (!empty($parse_url['query'])) {
-                    parse_str($parse_url['query'], $get_array);
-                    $page = !empty($get_array['page']) ? $get_array['page'] : 0;
-                }
-            }
+            //     if (!empty($parse_url['query'])) {
+            //         parse_str($parse_url['query'], $get_array);
+            //         $page = !empty($get_array['page']) ? $get_array['page'] : 0;
+            //     }
+            // }
+            $nextPage = $productos->hasMorePages() ? $productos->currentPage() + 1 : 0;
     
             $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $request->id)->get(['id', 'name', 'extract', 'description']);
            
-            return response()->json(['message' => 'Subcategorias', 'subcategorias' => $subcategorias, 'productos' => $productos, 'categorias' => $categorias, 'page' => $page]);
+            return response()->json(['message' => 'Subcategorias', 'subcategorias' => $subcategorias, 'productos' => $productos, 'categorias' => $categorias, 'page' => $nextPage]);
     }
 
 
     public function getMicrocategoria(Request $request){
+            $page = 0;
             $microcategorias = Microcategory::where('subcategory_id', '=', $request->id)->get();
             $productos = DB::table('products')
             ->join('categories', 'products.categoria_id', '=', 'categories.id')
@@ -241,7 +243,9 @@ class CategoryController extends Controller
             ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
             ->paginate(9);
 
-            return response()->json(['message' => 'Microcategoria', 'microcategorias' => $microcategorias,'productos' => $productos]);
+            $nextPage = $productos->hasMorePages() ? $productos->currentPage() + 1 : 0;
+
+            return response()->json(['message' => 'Microcategoria', 'microcategorias' => $microcategorias,'productos' => $productos, 'page' => $nextPage]);
     }
 
     public function getProductMicrocategoria(Request $request){
@@ -256,7 +260,9 @@ class CategoryController extends Controller
         ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
         ->paginate(9);
 
-            return response()->json(['message' => 'Microcategoria', 'productos' => $productos]);
+        $nextPage = $productos->hasMorePages() ? $productos->currentPage() + 1 : 0;
+
+            return response()->json(['message' => 'Microcategoria', 'productos' => $productos, 'page' => $nextPage]);
     }
 
 
@@ -279,21 +285,27 @@ class CategoryController extends Controller
         ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
         ->paginate(9);
 
-        if (!empty($productos->nextPageUrl())) {
-            $parse_url = parse_url($productos->nextPageUrl());
+        // if (!empty($productos->nextPageUrl())) {
+        //     $parse_url = parse_url($productos->nextPageUrl());
 
-            if (!empty($parse_url['query'])) {
-                parse_str($parse_url['query'], $get_array);
-                $page = !empty($get_array['page']) ? $get_array['page'] : 0;
+        //     if (!empty($parse_url['query'])) {
+        //         parse_str($parse_url['query'], $get_array);
+        //         $page = !empty($get_array['page']) ? $get_array['page'] : 0;
                 
-            }
-        }
+        //     }
+        // }
+
+        $nextPage = $productos->hasMorePages() ? $productos->currentPage() + 1 : 0;
         // $productos = Products::where('categoria_id', $id)
         // ->orWhere('subcategoria_id', $id)
         // ->orWhere('microcategoria_id', $id)
         // ->paginate(3);
 
-        return response()->json(['message' => 'productosPaginados', 'productos' => $productos, 'page' => $page]);
+        // dd($productos->currentPage());
+        // dd($nextPage);
+        // dd($productos->hasMorePages());
+
+        return response()->json(['message' => 'productosPaginados', 'productos' => $productos, 'page' => $nextPage]);
     }
 
 }

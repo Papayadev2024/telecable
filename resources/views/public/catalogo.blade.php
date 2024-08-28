@@ -150,12 +150,20 @@
                 </div>
 
                 <div class="flex justify-center items-center mb-10">
-                    <a href="javascript:;" @if (empty($page)) style="display:none;" @endif
+                    <a href="javascript:;" @if (empty($page) || $page == 0) style="display:none;" @endif
                         data-page={{ $page }}
                         class="text-white py-3 px-5 border-2 bg-[#082252] rounded-3xl w-60 text-center font-medium text-text16 cargarMas">
                         Cargar más modelos
                     </a>
                 </div>
+                   
+                {{-- @if ($productos->hasMorePages())
+                    <div class="flex justify-center items-center mb-10">
+                        <a href="javascript:;" data-page="{{ $productos->currentPage() + 1 }}" class="text-white py-3 px-5 border-2 bg-[#082252] rounded-3xl w-60 text-center font-medium text-text16 cargarMas">
+                            Cargar más modelos
+                        </a>
+                    </div>
+                @endif --}}
 
             </div>
         </section>
@@ -243,7 +251,8 @@
 
 
             $('#selectSubcategory').change(function() {
-
+                
+                var page = $(this).attr('data-page');
                 var id = $('#selectSubcategory').val();
                 $.ajax({
                     url: '{{ route('getMicrocategoria') }}',
@@ -254,15 +263,7 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        //    console.log(response);
-                        $('.cargarMas').attr('data-page', response.page);
-                        $('.cargarMas').html('Cargar más modelos');
-                        if (response.page == 0) {
-                            $('.cargarMas').hide();
-                        } else {
-                            $('.cargarMas').show();
-                        }
-
+                       console.log(response.page)
                         if (response.microcategorias && response.microcategorias.length > 0) {
                             $('#selectMicrocategory').empty().show();
 
@@ -303,6 +304,14 @@
                             );
                         });
 
+                         //    console.log(response);
+                        $('.cargarMas').attr('data-page', response.page);
+                        $('.cargarMas').html('Cargar más modelos');
+                        if (response.page == 0) {
+                            $('.cargarMas').hide();
+                        } else {
+                            $('.cargarMas').show();
+                        }
 
                     },
                     error: function(error) {
@@ -316,12 +325,14 @@
 
             $('.categoryselect').click(function() {
 
-                var id = $(this).attr('id');
+                var id = $(this).attr('id'); 
+
                 $('.categoryselect .rounded-full').removeClass('selected');
                 $(this).find('.rounded-full').addClass('selected');
 
 
                 $.ajax({
+                    
                     url: '{{ route('getSubcategoria') }}',
                     method: 'POST',
                     data: {
@@ -397,8 +408,6 @@
             });
 
 
-
-
             $('body').delegate('.cargarMas', 'click', function() {
                 var page = $(this).attr('data-page');
                 $('.cargarMas').html('Cargando...');
@@ -415,9 +424,8 @@
                     dataType: "json",
                     cache: false,
                     success: function(response) {
-
-                        console.log(response);
-
+                        console.log(response.page);
+                      
                         $.each(response.productos.data, function(key, value) {
 
                             var productoUrl = `{{ route('producto', ':id') }}`.replace(
@@ -444,11 +452,20 @@
 
                         $('.cargarMas').attr('data-page', response.page);
                         $('.cargarMas').html('Cargar más modelos');
+                        
                         if (response.page == 0) {
                             $('.cargarMas').hide();
                         } else {
                             $('.cargarMas').show();
                         }
+                       
+
+                        //if (response.productos.next_page_url) {
+                        //    $('.cargarMas').data('page', page + 1).html('Cargar más modelos');
+                        //} else {
+                        //    $('.cargarMas').hide();
+                        //}
+                        
                     },
                     error: function(error) {}
                 });

@@ -164,41 +164,6 @@ class IndexController extends Controller
                 }
             }
 
-            // if ($rangefrom !== null && $rangeto !== null) {
-
-            //   if ($filtro == 0) {
-            //     $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
-            //     $categoria = Category::all();
-            //   } else {
-            //     $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
-            //     $categoria = Category::findOrFail($filtro);
-            //   }
-
-            //   $cleanedData = $productos->filter(function ($value) use ($rangefrom, $rangeto) {
-
-            //     if ($value['descuento'] == 0) {
-
-            //       if ($value['precio'] <= $rangeto && $value['precio'] >= $rangefrom) {
-            //         return $value;
-            //       }
-            //     } else {
-
-            //       if ($value['descuento'] <= $rangeto && $value['descuento'] >= $rangefrom) {
-            //         return $value;
-            //       }
-            //     }
-            //   });
-
-            //   $currentPage = LengthAwarePaginator::resolveCurrentPage();
-            //   $productos = new LengthAwarePaginator(
-            //     $cleanedData->forPage($currentPage, 12), // Obtener los productos por página
-            //     $cleanedData->count(), // Contar todos los elementos
-            //     12, // Número de elementos por página
-            //     $currentPage, // Página actual
-            //     ['path' => request()->url()] // URL base para la paginación
-            //   );
-            // }
-
             return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'atributos', 'colecciones', 'page', 'subcategorias', 'microcategorias'));
         } catch (\Throwable $th) {
         }
@@ -1455,4 +1420,40 @@ class IndexController extends Controller
             ]);
         }
     }
+
+
+    // if ($rangefrom !== null && $rangeto !== null) {
+
+            //   if ($filtro == 0) {
+            //     $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
+            //     $categoria = Category::all();
+            //   } else {
+            //     $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->where('categoria_id', '=', $filtro)->with('tags')->paginate(12);
+            //     $categoria = Category::findOrFail($filtro);
+            //   }
+
+            //   $cleanedData = $productos->filter(function ($value) use ($rangefrom, $rangeto) {
+
+            //     if ($value['descuento'] == 0) {
+
+            //       if ($value['precio'] <= $rangeto && $value['precio'] >= $rangefrom) {
+            //         return $value;
+            //       }
+            //     } else {
+
+            //       if ($value['descuento'] <= $rangeto && $value['descuento'] >= $rangefrom) {
+            //         return $value;
+            //       }
+            //     }
+            //   });
+
+            //   $currentPage = LengthAwarePaginator::resolveCurrentPage();
+            //   $productos = new LengthAwarePaginator(
+            //     $cleanedData->forPage($currentPage, 12), // Obtener los productos por página
+            //     $cleanedData->count(), // Contar todos los elementos
+            //     12, // Número de elementos por página
+            //     $currentPage, // Página actual
+            //     ['path' => request()->url()] // URL base para la paginación
+            //   );
+            // }
 }
