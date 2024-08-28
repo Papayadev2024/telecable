@@ -360,13 +360,13 @@
                     </div>
                 </div>
 
-                <div class="flex justify-center items-center w-11/12 mx-auto z-[50] py-20">
+                <div class="flex justify-center items-center w-full lg:w-11/12 mx-auto z-[50] py-20">
                     <img src="{{ asset('images/img/image_17.png') }}" alt="catalogo">
                 </div>
 
-                <div class="flex justify-center items-center absolute bottom-0 md:right-0 bg-cover z-[25]">
+                <div class="flex justify-center items-center absolute bottom-0 md:right-0 bg-cover z-[25] w-full md:w-auto">
                     <img src="{{ asset('images/img/image_16.png') }}" alt="shadow" class="hidden md:block">
-                    <img src="{{ asset('images/img/image_18.png') }}" alt="shadow" class="block md:hidden">
+                    <img src="{{ asset('images/img/image_18.png') }}" alt="shadow" class="block md:hidden object-cover w-full md:w-auto">
                 </div>
             </div>
         </section>
