@@ -40,11 +40,6 @@ class SliderController extends Controller
     public function store(Request $request)
     {   
 
-        $request->validate([
-            'imagen' => 'required',
-            'imagen2' => 'required',
-        ]);
-    
 
         $slider = new Slider();
 
