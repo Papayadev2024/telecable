@@ -111,7 +111,7 @@
                                 <div class="flex justify-center items-center pt-10">
 
                                     <img src="{{ asset($slide->url_image . $slide->name_image) }}" alt="producto"
-                                        class="w-full h-[400px] md:h-[700px] object-contain bg-top">
+                                        class="w-full h-[250px] md:h-[700px] object-contain bg-top">
 
                                     {{-- <img src="{{ asset($slide->url_image2 . $slide->name_image2) }}" alt="producto"
                                         class="w-full h-[400px] object-contain block bg-top md:hidden"> --}}
