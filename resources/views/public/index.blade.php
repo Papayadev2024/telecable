@@ -136,7 +136,7 @@
                         @foreach ($benefit as $beneficios)
                             <div class="flex flex-col gap-5 bg-[#F7F8F8] p-4 rounded-xl">
                                 <div class="flex justify-start items-center">
-                                    <img src="{{ asset('images/svg/image_7.svg') }}"
+                                    <img src="{{ asset($beneficios->icono) }}"
                                         alt="Laboratorio de Investigación y Desarrollo">
                                 </div>
                                 <div class="flex flex-col gap-2">
