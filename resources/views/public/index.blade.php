@@ -607,6 +607,10 @@
             initialSlide: 0,
             grabCursor: true,
             loop: true,
+             autoplay: {
+                delay: 2000, 
+                disableOnInteraction: true,
+            },
             pagination: {
                 el: ".swiper-pagination_productos",
                 clickable: true,
