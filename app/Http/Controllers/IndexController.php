@@ -921,7 +921,8 @@ class IndexController extends Controller
 
 
             $formlanding = Message::create($data);
-            // $this->envioCorreoAdmin($formlanding);
+            $this->envioCorreoAdmin($formlanding);
+            $this->envioCorreoCliente($formlanding);
            
             return response()->json(['message' => 'Mensaje enviado con exito']);
         } catch (ValidationException $e) {
@@ -947,7 +948,7 @@ class IndexController extends Controller
         $name = 'Administrador';
         $mensaje = 'tienes un nuevo mensaje - HPI';
         $mail = EmailConfig::config($name, $mensaje);
-        $emailadmin = $genenrales->email;
+        $emailadmin = $generales->email;
         $baseUrl = 'https://' . $_SERVER['HTTP_HOST'] . '/mail';
         $baseUrllink = 'https://' . $_SERVER['HTTP_HOST'] . '/';
 
