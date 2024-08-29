@@ -91,7 +91,7 @@
                             <div class="bg-[#E6E4E5] pt-12 lg:pt-20">
                                 <div class="flex flex-col items-center gap-8 w-11/12 mx-auto md:max-w-[900px]">
                                     <h2
-                                        class="text-[#082252] font-roboto font-bold text-text40 md:text-text52 leading-tight text-center">
+                                        class="text-[#082252] font-roboto font-bold text-text32 sm:text-text40 md:text-text52 leading-tight text-center">
                                         {{ $slide->title }}</h2>
                                     {{-- <div class="w-full md:w-auto">
                                         <div
