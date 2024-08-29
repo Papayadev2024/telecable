@@ -114,7 +114,7 @@
                                         class="w-full h-[700px] object-contain bg-top hidden md:block">
 
                                     <img src="{{ asset($slide->url_image2 . $slide->name_image2) }}" alt="producto"
-                                        class="w-full h-[350px] object-contain block bg-top md:hidden">
+                                        class="w-full h-[400px] object-contain block bg-top md:hidden">
                                 </div>
                             </div>
                         </div>
