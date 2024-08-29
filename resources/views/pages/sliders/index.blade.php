@@ -22,7 +22,7 @@
                             <tr>
                                 <th>Titulo</th>
                                 <th>Imagen (Escritorio)</th>
-                                <th>Imagen (Movil)</th>
+                                {{-- <th>Imagen (Movil)</th> --}}
                                 <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
@@ -33,7 +33,7 @@
                                 <tr>
                                     <td>{{$item->title}}</td>
                                     <td class="px-3 py-2"><img class="w-16" src="{{ asset($item->url_image.$item->name_image) }}" alt=""></td>
-                                    <td class="px-3 py-2"><img class="w-16" src="{{ asset($item->url_image2.$item->name_image2) }}" alt=""></td>
+                                    {{-- <td class="px-3 py-2"><img class="w-16" src="{{ asset($item->url_image2.$item->name_image2) }}" alt=""></td> --}}
                                     <td>
                                         <form method="POST" action="">
                                           @csrf
@@ -69,7 +69,7 @@
                             <tr>
                                 <th>Titulo</th>
                                 <th>Imagen (Escritorio)</th>
-                                <th>Imagen (Movil)</th>
+                                {{-- <th>Imagen (Movil)</th> --}}
                                 <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
