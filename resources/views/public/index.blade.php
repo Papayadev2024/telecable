@@ -88,10 +88,10 @@
                 <div class="swiper-wrapper">
                     @foreach ($slider as $slide)
                         <div class="swiper-slide">
-                            <div class="bg-[#E6E4E5] pt-12 lg:pt-20">
-                                <div class="flex flex-col items-center gap-8 w-11/12 mx-auto md:max-w-[900px] min-h-32">
+                            <div class="bg-[#E6E4E5] pt-10">
+                                <div class="flex flex-col items-center gap-8 w-11/12 mx-auto md:max-w-[900px] lg:min-h-32">
                                     <h2
-                                        class="text-[#082252] font-roboto font-bold text-text32 sm:text-text40 md:text-text52 leading-tight text-center">
+                                        class="text-[#082252] font-roboto font-bold text-text28 sm:text-text40 leading-tight text-center">
                                         {{ $slide->title }}</h2>
                                     {{-- <div class="w-full md:w-auto">
                                         <div
@@ -111,7 +111,7 @@
                                 <div class="flex justify-center items-center pt-10">
 
                                     <img src="{{ asset($slide->url_image . $slide->name_image) }}" alt="producto"
-                                        class="w-full h-[250px] md:h-[300px] lg:h-[700px] object-contain bg-top">
+                                        class="w-full h-full object-contain bg-top">
 
                                     {{-- <img src="{{ asset($slide->url_image2 . $slide->name_image2) }}" alt="producto"
                                         class="w-full h-[400px] object-contain block bg-top md:hidden"> --}}
