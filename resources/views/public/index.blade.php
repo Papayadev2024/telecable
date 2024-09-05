@@ -89,7 +89,7 @@
                     @foreach ($slider as $slide)
                         <div class="swiper-slide">
                             <div class="bg-[#E6E4E5] pt-10">
-                                <div class="flex flex-col items-center gap-8 w-11/12 mx-auto md:max-w-[900px] lg:min-h-32">
+                                <div class="flex flex-col items-center gap-8 w-11/12 mx-auto md:max-w-[900px] lg:min-h-28">
                                     <h2
                                         class="text-[#082252] font-roboto font-bold text-text28 sm:text-text40 leading-tight text-center">
                                         {{ $slide->title }}</h2>
