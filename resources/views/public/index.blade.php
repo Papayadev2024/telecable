@@ -130,7 +130,7 @@
                 <div class="flex flex-col gap-10 w-11/12 mx-auto pt-10 pb-20">
                     <h2
                         class="text-[#082252] font-roboto font-bold text-text32 md:text-text40 leading-tight text-left md:text-center w-full md:max-w-[1064px] mx-auto">
-                        Especialistas en tratamiento de aguas. Suministro de productos químicos e instrumentos de medición.
+                        Especialistas en tratamiento de aguas.<br> Suministro de productos químicos e instrumentos de medición.
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                         @foreach ($benefit as $beneficios)
