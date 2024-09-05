@@ -1,7 +1,7 @@
 <x-app-layout title="Editar Downloader">
 
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-    <form action="{{ route('certificados.update', $descargables->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('certificados.update', $certificados->id) }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <div

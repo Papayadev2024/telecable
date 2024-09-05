@@ -648,4 +648,76 @@ class ProductsController extends Controller
 
     }
   }
+
+
+  public function borrarFichaTecnica(Request $request){
+    try {
+       
+        $obtenerproducto = Products::find($request->id);
+
+        if (!$obtenerproducto) {
+            return response()->json(['message' => 'Producto no encontrado'], 404);
+        }
+
+      
+        $rutaCompleta = $obtenerproducto->url_fichatecnica . $obtenerproducto->name_fichatecnica;
+
+      
+        if (file_exists($rutaCompleta)) {
+            
+            if (unlink($rutaCompleta)) {
+               
+                $obtenerproducto->url_fichatecnica = "";
+                $obtenerproducto->name_fichatecnica = "";
+                $obtenerproducto->update();
+                
+                return response()->json(['message' => 'Ficha Técnica eliminada con éxito']);
+            } else {
+                return response()->json(['message' => 'No se pudo eliminar el archivo físico'], 500);
+            }
+        } else {
+            return response()->json(['message' => 'El archivo no existe'], 404);
+        }
+
+    } catch (\Throwable $th) {
+        return response()->json(['message' => 'No se ha podido eliminar la Ficha Técnica', 'error' => $th->getMessage()], 400);
+    }
+}
+
+
+  public function borrarHojaSeguridad(Request $request){
+    try {
+       
+      $obtenerproducto = Products::find($request->id);
+
+      if (!$obtenerproducto) {
+          return response()->json(['message' => 'Producto no encontrado'], 404);
+      }
+
+    
+      $rutaCompleta = $obtenerproducto->url_docriesgo . $obtenerproducto->name_docriesgo;
+
+    
+      if (file_exists($rutaCompleta)) {
+          
+          if (unlink($rutaCompleta)) {
+             
+              $obtenerproducto->url_docriesgo = "";
+              $obtenerproducto->name_docriesgo = "";
+              $obtenerproducto->update();
+              
+              return response()->json(['message' => 'Hoja de seguridad eliminada con éxito']);
+          } else {
+              return response()->json(['message' => 'No se pudo eliminar el archivo físico'], 500);
+          }
+      } else {
+          return response()->json(['message' => 'El archivo no existe'], 404);
+      }
+
+  } catch (\Throwable $th) {
+      return response()->json(['message' => 'No se ha podido eliminar la Hoja de seguridad', 'error' => $th->getMessage()], 400);
+  }
+
+}
+
 }

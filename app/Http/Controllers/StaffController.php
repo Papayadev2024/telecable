@@ -16,7 +16,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staff = Staff::all();
+        $staff = Staff::where('status', '=', true)->get();
         return view('pages.staff.index', compact('staff') );
     }
 
@@ -147,5 +147,21 @@ class StaffController extends Controller
 
         $staff->save();
         return response()->json(['message'=> 'registro actualizado']);
+    }
+
+
+    public function deleteStaff(Request $request)
+    {
+        //Recupero el id mandado mediante ajax
+        $id = $request->id;
+        //Busco el servicio con id como parametro
+        $service = Staff::findOrfail($id);
+        //Modifico el status a false
+        $service->status = false;
+        //Guardo
+        $service->save();
+
+        // Devuelvo una respuesta JSON u otra respuesta según necesites
+        return response()->json(['message' => 'Personal eliminado.']);
     }
 }

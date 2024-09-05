@@ -468,12 +468,19 @@
                                         </div>
                                     </div>
                                     <div class="md:col-span-5">
-                                        <label for="description">Descripcion</label>
+                                        <label for="description">Descripción</label>
                                         <div class="relative mb-2 mt-2">
                                             {{-- <textarea type="text" rows="2" id="description" name="description"
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Descripción">{{ $product->description }}</textarea> --}}
                                             <x-textarea name="description" value="{!! $product->description !!}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-5">
+                                        <label for="especificacion">Especificación</label>
+                                        <div class="relative mb-2 mt-2"> 
+                                            <x-textarea name="especificacion" value="{!! $product->especificacion !!}" />
                                         </div>
                                     </div>
 
@@ -835,7 +842,7 @@
                   </div>
                 </div> --}}
 
-                                <div class="md:col-span-5 mt-2">
+                                {{-- <div class="md:col-span-5 mt-2">
                                     <div class=" flex items-end justify-between gap-2 ">
                                         <label for="especificacion">Especificacion </label>
                                         <button type="button" id="AddEspecifiacion"
@@ -894,11 +901,35 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                </div>
+                                </div> --}}
 
 
                                 <div class="md:col-span-5">
-                                    <label for="archive">Ficha Técnica</label>
+
+                                    <label for="archive">Ficha Técnica:</label> 
+                                    @if($product->name_fichatecnica)
+                                         <span><a
+                                                href="{{ asset($product->url_fichatecnica . $product->name_fichatecnica) }}"
+                                                target="_blank">{{ $product->name_fichatecnica }}</a>
+                                            <i onclick="borrarFicha({{ $product->id }})"
+                                                class="ml-1 cursor-pointer absolute">
+                                                <svg class="w-full" xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="20"
+                                                    height="20" x="0" y="0" viewBox="0 0 512 512"
+                                                    style="enable-background:new 0 0 512 512" xml:space="preserve">
+                                                    <g>
+                                                        <g fill="#EF5350">
+                                                            <path
+                                                                d="M412.6 141.4v.1c0 .6-.2.9-.4 1.1s-.6.5-1.2.5h-11.4c-.4-.1-.9-.2-1.4-.2s-.9.1-1.4.2H115.1c-.4-.1-.9-.2-1.4-.2s-.9.1-1.4.2H101c-1 0-1.7-.8-1.7-1.7v-32.1c0-1 .8-1.7 1.7-1.7h310c1 0 1.7.8 1.7 1.7zM393.4 152.7V442c0 13.3-10.8 24.1-24.1 24.1H142.8c-13.3 0-24.1-10.8-24.1-24.1V152.7zM332 396.2V222.7c0-2.7-2.2-4.9-4.9-4.9s-4.9 2.2-4.9 4.9v173.4c0 2.7 2.2 4.9 4.9 4.9 2.8 0 4.9-2.1 4.9-4.8zM261 409V209.9c0-2.7-2.2-4.9-4.9-4.9s-4.9 2.2-4.9 4.9v199c0 2.7 2.2 4.9 4.9 4.9s4.9-2.1 4.9-4.8zm-71.1-12.8V222.7c0-2.7-2.2-4.9-4.9-4.9s-4.9 2.2-4.9 4.9v173.4c0 2.7 2.2 4.9 4.9 4.9s4.8-2.1 4.9-4.8zM321.5 57.3v40.5h-9.7V57.3c0-.9-.7-1.7-1.7-1.7H201.8c-.9 0-1.7.7-1.7 1.7v40.5h-9.8V57.3c0-6.3 5.1-11.4 11.4-11.4H310c6.4 0 11.5 5.1 11.5 11.4z"
+                                                                fill="#EF5350" opacity="1" data-original="#ef5350">
+                                                            </path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </i>
+                                         </span>
+                                    @endif
+                                   
                                     <div class="relative mb-2  mt-2">
                                         <input name="fichatecnica" accept="application/pdf"
                                             class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -908,7 +939,29 @@
 
 
                                 <div class="md:col-span-5">
-                                    <label for="archive">Ficha de Riesgo</label>
+                                    <label for="archive">Hoja de Seguridad:</label>
+                                     @if($product->name_docriesgo)
+                                         <span><a
+                                                href="{{ asset($product->url_docriesgo . $product->name_docriesgo) }}"
+                                                target="_blank">{{ $product->name_docriesgo }}</a>
+                                            <i onclick="borrarHoja({{ $product->id }})"
+                                                class="ml-1 cursor-pointer absolute">
+                                                <svg class="w-full" xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="20"
+                                                    height="20" x="0" y="0" viewBox="0 0 512 512"
+                                                    style="enable-background:new 0 0 512 512" xml:space="preserve">
+                                                    <g>
+                                                        <g fill="#EF5350">
+                                                            <path
+                                                                d="M412.6 141.4v.1c0 .6-.2.9-.4 1.1s-.6.5-1.2.5h-11.4c-.4-.1-.9-.2-1.4-.2s-.9.1-1.4.2H115.1c-.4-.1-.9-.2-1.4-.2s-.9.1-1.4.2H101c-1 0-1.7-.8-1.7-1.7v-32.1c0-1 .8-1.7 1.7-1.7h310c1 0 1.7.8 1.7 1.7zM393.4 152.7V442c0 13.3-10.8 24.1-24.1 24.1H142.8c-13.3 0-24.1-10.8-24.1-24.1V152.7zM332 396.2V222.7c0-2.7-2.2-4.9-4.9-4.9s-4.9 2.2-4.9 4.9v173.4c0 2.7 2.2 4.9 4.9 4.9 2.8 0 4.9-2.1 4.9-4.8zM261 409V209.9c0-2.7-2.2-4.9-4.9-4.9s-4.9 2.2-4.9 4.9v199c0 2.7 2.2 4.9 4.9 4.9s4.9-2.1 4.9-4.8zm-71.1-12.8V222.7c0-2.7-2.2-4.9-4.9-4.9s-4.9 2.2-4.9 4.9v173.4c0 2.7 2.2 4.9 4.9 4.9s4.8-2.1 4.9-4.8zM321.5 57.3v40.5h-9.7V57.3c0-.9-.7-1.7-1.7-1.7H201.8c-.9 0-1.7.7-1.7 1.7v40.5h-9.8V57.3c0-6.3 5.1-11.4 11.4-11.4H310c6.4 0 11.5 5.1 11.5 11.4z"
+                                                                fill="#EF5350" opacity="1" data-original="#ef5350">
+                                                            </path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </i>
+                                         </span>
+                                    @endif
                                     <div class="relative mb-2  mt-2">
                                         <input name="fichariesgo" accept="application/pdf"
                                             class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -1036,24 +1089,24 @@
                                                     'name' => 'conbinacion-' . $item->id . '[color]',
                                                     'id' => 1,
                                                     'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
                                                     'options' => $valorAtributo,
                                                     'defaultValue' => 1,
                                                     'value' => 'id',
                                                     'label' => 'valor',
                                                     'item' => $item,
                                                 ])
-                                                @endcomponent
+                                                                                                @endcomponent
 
-                                            </div>
-                                            <div class="mb-2 mt-2">
-                                                @component('components.selectStock', [
+                                                                                            </div>
+                                                                                            <div class="mb-2 mt-2">
+                                                                                                @component('components.selectStock', [
                                                     'name' => 'conbinacion-' . $item->id . '[talla] ',
                                                     'id' => 1,
                                                     'class' => 'mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
                                                     'options' => $valorAtributo,
                                                     'defaultValue' => 1,
                                                     'value' => 'id',
@@ -1118,7 +1171,7 @@
 
                     <div class="md:col-span-5 text-right mt-6 flex justify-between px-4 pb-4">
                         <div class="inline-flex items-end">
-                            <a href="{{ URL::previous() }}"
+                            <a href="{{ route('products.index') }}"
                                 class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
                         </div>
                         <div class="inline-flex items-end">
@@ -1791,19 +1844,13 @@
                 }
 
             })
-
-
-
-
         }
-    </script>
 
-    <script>
-        function borrarImg(id) {
-            console.log('borranmdo ', id)
+
+        function borrarFicha(id) {
 
             $.ajax({
-                url: "{{ route('activity.borrarimg') }}",
+                url: "{{ route('activity.borrarficha') }}",
                 method: 'POST',
                 data: {
                     _token: $('input[name="_token"]').val(),
@@ -1815,12 +1862,46 @@
                     Swal.fire({
 
                         icon: "success",
-                        title: 'Img borrada exitosamente',
+                        title: 'Ficha eliminada exitosamente',
                         showConfirmButton: false,
                         timer: 1500
 
+                    }).then(() => {
+                        location.reload();
                     });
-                    $(`#portada-${id}`).remove()
+                },
+                error: function(error) {
+                    console.log(error)
+                }
+
+            })
+        }
+    </script>
+
+    <script>
+        function borrarHoja(id) {
+           
+            $.ajax({
+                url: "{{ route('activity.borrarhoja') }}",
+                method: 'POST',
+                data: {
+                    _token: $('input[name="_token"]').val(),
+                    status: status,
+                    id: id,
+
+                },
+                success: function(success) {
+                    Swal.fire({
+
+                        icon: "success",
+                        title: 'Hoja eliminada exitosamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                        
+                    }).then(() => {
+                        location.reload();
+                    });
+                    
                 },
                 error: function(error) {
                     console.log(error)

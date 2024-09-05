@@ -485,7 +485,14 @@
                                     <div class="md:col-span-5">
                                         <label for="description">Descripción</label>
                                         <div class="relative mb-2 mt-2">
-                                            <x-textarea name="description" value="" rows="2" />
+                                            <x-textarea name="description" value="" rows="4" />
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-5">
+                                        <label for="especificacion">Especificación</label>
+                                        <div class="relative mb-2 mt-2">
+                                            <x-textarea name="especificacion" value="" rows="2" />
                                         </div>
                                     </div>
 
@@ -709,7 +716,7 @@
                                     </div>
                                 </div>
 
-                                <div class="md:col-span-5 mt-2">
+                                {{-- <div class="md:col-span-5 mt-2">
                                     <div class=" flex items-end justify-between gap-2 ">
                                         <label for="especificacion">Especificacion </label>
                                         <button type="button" id="AddEspecifiacion"
@@ -766,7 +773,7 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="md:col-span-5">
                                     <label for="archive">Ficha Técnica</label>
@@ -779,7 +786,7 @@
 
 
                                 <div class="md:col-span-5">
-                                    <label for="archive">Ficha de Riesgo</label>
+                                    <label for="archive">Hoja de Seguridad</label>
                                     <div class="relative mb-2  mt-2">
                                         <input name="fichariesgo" accept="application/pdf"
                                             class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"

@@ -27,6 +27,7 @@ class Products extends Model
     'status',
     'extract',
     'description',
+    'especificacion',
     'costo_x_art',
     'peso',
     'categoria_id',

@@ -26,13 +26,14 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
                 <div class="flex flex-col md:flex-row justify-center items-start gap-5 md:gap-0">
                     <div
-                        class="flex flex-row justify-evenly md:flex-col md:justify-start md:items-center h-full md:gap-5 md:basis-1/4 order-2 md:order-1 w-full">
-
+                        class="flex flex-row justify-evenly md:flex-col md:justify-start md:items-center h-full md:gap-3 md:basis-1/4 order-2 md:order-1 w-full">
+                        
+                        <img src="{{ asset($producto->imagen) }}" alt="producto"
+                                 class="w-[70px] h-[70px] active rounded-xl cursor-pointer secundario object-contain">
+                                 
                         @foreach ($productosConGalerias as $galeria)
-                            <img src="{{ asset($producto->imagen) }}" alt="producto"
-                                 class="w-[70px] h-[90px] active rounded-xl cursor-pointer secundario"  >
                             <img src="{{ asset($galeria->imagen) }}" alt="{{ $galeria->descripcion }}"
-                                class="w-[70px] h-[90px] active rounded-xl cursor-pointer secundario" data-aos="fade-up"
+                                class="w-[70px] h-[70px] active rounded-xl cursor-pointer secundario object-contain" data-aos="fade-up"
                                 data-aos-offset="150">
                         @endforeach
                     </div>
@@ -234,20 +235,20 @@
                 </div>
             </div>
             
-            {{-- @if (!is_null($producto->description))
+            @if (!is_null($producto->especificacion))
                 <div class="flex flex-col gap-5 pt-10 md:pt-16" data-aos="fade-up" data-aos-offset="150">
 
-                    <h3 class="font-roboto font-bold text-text28 text-[#082252]">Descripción</h3>
+                    <h3 class="font-roboto font-bold text-text28 text-[#082252]">Características técnicas</h3>
                     <div class="text-[#082252] text-text16 font-normal font-roboto flex flex-col gap-5">
                         <p>
-                            {!! $producto->description !!}
+                            {!! $producto->especificacion !!}
                         </p>
                     </div>
                 </div>
-            @endif --}}
+            @endif
                 
 
-            @if ($especificaciones->isEmpty())
+            {{-- @if ($especificaciones->isEmpty())
             @else
                 <div class="pt-10 md:pt-16 flex flex-col gap-5">
                     <h3 class="font-roboto font-bold text-text28 text-[#082252]">Características técnicas</h3>
@@ -261,7 +262,7 @@
                         </ul>
                     </div>
                 </div>
-            @endif
+            @endif --}}
         </section>
 
         @if ($ProdComplementarios->isEmpty())

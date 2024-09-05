@@ -92,7 +92,7 @@
 
                 Swal.fire({
                     title: "Seguro que deseas eliminar?",
-                    text: "Vas a eliminar un catalogo",
+                    text: "Vas a eliminar un certificado",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",

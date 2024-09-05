@@ -167,7 +167,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         //Certificados
         Route::resource('/certificados', CertificadosController::class);
-        Route::post('/certificados/deleteCertificado', [CertificadosController::class, 'deleteCertificado'])->name('certificados.deleteCertificado');
+        Route::post('/certificados/deleteCertificado', [CertificadosController::class, 'deleteCerticado'])->name('certificados.deleteCertificado');
         Route::post('/certificados/updateVisible', [CertificadosController::class, 'updateVisible'])->name('certificados.updateVisible');
 
         //Servicios
@@ -224,6 +224,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::post('/products/updateVisible', [ProductsController::class, 'updateVisible'])->name('products.updateVisible');
         Route::post('/products/borrar', [ProductsController::class, 'borrar'])->name('products.borrar');
         Route::post('/products/borrarimg', [ProductsController::class, 'borrarimg'])->name('activity.borrarimg');
+        Route::post('/products/borrarficha', [ProductsController::class, 'borrarFichaTecnica'])->name('activity.borrarficha');
+        Route::post('/products/borrarhoja', [ProductsController::class, 'borrarHojaSeguridad'])->name('activity.borrarhoja');
 
         //Preguntas frecuentes
         Route::resource('/faqs', FaqsController::class);
