@@ -497,7 +497,7 @@
                                     </div>
 
                                     <div class="md:col-span-5">
-                                        <label for="imagen">Imagen Principal</label>
+                                        <label for="imagen">Imagen Principal (1000x1000px)</label>
                                         <div class="relative mb-2  mt-2">
                                             <input id="imagen" name="imagen"
                                                 class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -876,7 +876,7 @@
 
                                 <div class="md:col-span-5 mt-2">
                                     <section class="scroll-section overflow-y-auto" id="uploadedFilesGallery">
-                                        <h2 class="small-title">Subir fotos para Galeria</h2>
+                                        <h2 class="small-title">Subir fotos para Galeria (1000x1000px)</h2>
                                         <div class="card mb-2">
                                             <div class="card-body">
 
