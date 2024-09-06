@@ -40,7 +40,7 @@
                 @endif
             </div>
 
-            <div>
+            {{-- <div>
                 <div class="mb-4 flex justify-between border-t-2 pt-5" aria-label="Pagination">
                     <a class="px-2 py-2 text-[#3F76BB] flex gap-2" href="#">
                         <img src="{{asset('images/svg/image_38.svg')}}" alt="previo" />
@@ -52,7 +52,7 @@
                         <img src="{{asset('images/svg/image_37.svg')}}" alt="next" />
                     </a>
                 </div>
-            </div>
+            </div> --}}
         </section>
     </main>
 

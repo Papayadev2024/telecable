@@ -234,8 +234,10 @@
                     </div>
                 </div>
             </div>
-            
-            @if (!is_null($producto->especificacion) && trim($producto->especificacion) !== '')
+            @php
+                $especificacionf = trim($producto->especificacion);
+            @endphp
+            @if (!is_null($producto->especificacion) && $especificacionf !== '')
                 <div class="flex flex-col gap-2 pt-10 md:pt-16" data-aos="fade-up" data-aos-offset="150">
                     <h3 class="font-roboto font-bold text-text28 text-[#082252]">Características técnicas</h3>
                     <div class="text-[#082252] text-text16 font-normal font-roboto flex flex-col gap-5">
