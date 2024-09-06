@@ -2,7 +2,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 w-11/12 mx-auto py-10 gap-10 md:gap-5">
         <div class="w-full md:max-w-[500px] flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
             <a href="{{ route('index') }}">
-                <img src="{{ asset('images/svg/image_1.svg') }}" alt="HPI" class="w-32" />
+                <img src="{{ asset('images/svg/logohpifooter.svg') }}" alt="HPI" class="w-[150px]" />
             </a>
             <p class="text-white font-roboto font-normal text-text16">
                 Únase a nuestro boletín para mantenerse actualizado sobre funciones y lanzamientos.
