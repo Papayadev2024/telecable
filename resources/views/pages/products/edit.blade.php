@@ -494,7 +494,7 @@
                                     </div>
 
                                     <div class="md:col-span-1 ">
-                                        <label>Imagen principal</label>
+                                        <label>Imagen principal (1000x1000px)</label>
                                         <div
                                             class="h-40 mt-2 py-4 flex flex-row justify-center border items-center border-gray-300 rounded-xl bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                                             <img src="{{ asset($product->imagen) }}" alt=""
@@ -979,7 +979,7 @@
 
                                 <div class="md:col-span-5 mt-2">
                                     <section class="scroll-section overflow-y-auto" id="uploadedFilesGallery">
-                                        <h2 class="small-title">Subir fotos para Galeria</h2>
+                                        <h2 class="small-title">Subir fotos para Galeria (1000x1000px)</h2>
                                         <div class="card mb-2">
                                             <div class="card-body">
 
