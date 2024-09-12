@@ -558,7 +558,17 @@ class IndexController extends Controller
         $IdProductosComplementarios = $productos->toArray();
         $IdProductosComplementarios = $IdProductosComplementarios[0]['categoria_id'];
 
-        $ProdComplementarios = Products::where('categoria_id', '=', $IdProductosComplementarios)->get();
+        $ProdComplementarios = $producto->productrelacionados()->where('status', 1)->get();
+
+        if ($ProdComplementarios->isEmpty()) {
+          $ProdComplementarios = Products::where('categoria_id', '=', $IdProductosComplementarios)
+              ->where('id', '!=', $producto->id) // Excluir el producto actual
+              ->where('status', 1)
+              ->get();
+        }
+
+        //$productosRelacionados = Products::where('categoria_id', '=', $IdProductosComplementarios)->get();
+
         $atributos = Attributes::where('status', '=', true)->get();
       
 

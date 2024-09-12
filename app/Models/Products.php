@@ -60,6 +60,11 @@ class Products extends Model
   {
       return $this->belongsToMany(Tag::class, 'tags_xproducts', 'producto_id', 'tag_id');
   }
+
+  public function productrelacionados()
+  {
+      return $this->belongsToMany(Products::class, 'product_xproducts', 'product_id', 'related_product_id');
+  }
   
   public function scopeActiveDestacado($query)
   {

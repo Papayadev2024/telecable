@@ -1171,20 +1171,20 @@
                                 </div>
 
                             </div>
-
+                            --}}
                             <div
-                                class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
+                                class=" grid gap-4 gap-y-2 text-sm grid-cols-1 rounded shadow-lg p-4 px-4 ">
                                 <h4 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">
-                                    Tags</h4>
-                                <div class="md:col-span-5 flex justify-between gap-4">
+                                    Productos relacionados</h4>
+                                <div class="flex justify-between gap-4">
 
                                     <div class="w-2/3">
                                         <div class="relative mb-2  mt-2">
                                             <select id="tags_id" name="tags_id[]" multiple class="w-full">
-                                                @foreach ($allTags as $tag)
-                                                    <option value="{{ $tag->id }}"
-                                                        {{ in_array($tag->id, $product->tags->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                                        {{ $tag->name }}
+                                                @foreach ($productosRelacionados as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ in_array($item->id, $product->productrelacionados->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                        {{ $item->producto }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -1193,7 +1193,7 @@
 
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div> 
 
                         </div>
                     </div>
