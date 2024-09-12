@@ -136,12 +136,12 @@
 
                         <div class="flex flex-col gap-2 justify-center">
 
-                            <form   id="footerFormulario"
+                            <form   id="footerBlog_Catalogo"
                                 class="flex flex-col md:flex-row md:justify-start md:items-center gap-5">
                                 @csrf
                                 <div class="w-full">
                                     <input type="email"
-                                        required name="email" id="emailFooter"
+                                        required name="email" id="emailFooter2"
                                         class="bg-white px-5 py-3 rounded-xl w-full placeholder:text-opacity-40 text-[#082252] transition-all focus:border-transparent border-0 focus:font-semibold"
                                         placeholder="Introduce tu correo electrónico" />
                                     <input type="hidden" id="nameFooter" required name="full_name" value="Usuario suscrito" />

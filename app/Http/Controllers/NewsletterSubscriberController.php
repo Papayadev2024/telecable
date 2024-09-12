@@ -87,6 +87,19 @@ class NewsletterSubscriberController extends Controller
 
     }
 
+    public function saveSubscripciones2(Request $request){
+        
+      $data = $request->all() ; 
+      $data['nombre'] = $data['full_name'];
+      NewsletterSubscriber::create($data);
+
+      $this->envioCorreoAdmin($data);
+      $this->envioCorreoCliente($data);
+
+      return response()->json(['message'=> 'Suscrito Correctamente']);
+
+  }
+
 
 
     private function envioCorreoAdmin($data)

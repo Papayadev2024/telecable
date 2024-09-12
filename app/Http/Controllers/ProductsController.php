@@ -555,6 +555,7 @@ class ProductsController extends Controller
       return !is_null($value);
     });
     $cleanedData['description'] = $data['description'];
+    $cleanedData['order'] = $data['order'];
 
     // $cleanedData['sku'] = $data['sku'];
 

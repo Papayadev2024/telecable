@@ -1470,7 +1470,6 @@ class IndexController extends Controller
       public function TerminosyCondiciones()
 
       {
-        
         $termsAndCondicitions = TermsAndCondition::first();
         return view('public.terminosycondiciones', compact('termsAndCondicitions'));
       }

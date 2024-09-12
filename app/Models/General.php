@@ -9,7 +9,7 @@ class General extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['address', 'inside', 'district', 'city', 'country', 'cellphone','office_phone', 'email', 'facebook', 'instagram','youtube','linkedin', 'twitter', 'tiktok', 'whatsapp','whatsapp2', 'support_one', 'support_two',  'form_email', 'business_hours', 'schedule', 'mensaje_whatsapp', 'aboutus'];
+    protected $fillable = ['address', 'inside', 'district', 'city', 'country', 'cellphone','office_phone', 'email', 'facebook', 'instagram','youtube','linkedin', 'twitter', 'tiktok', 'whatsapp','whatsapp2', 'support_one', 'support_two',  'form_email', 'business_hours', 'schedule', 'mensaje_whatsapp', 'aboutus', 'mapa'];
 
 
     public function categoria()

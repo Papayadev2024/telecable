@@ -37,7 +37,8 @@ class Products extends Model
     'sku',
     'meta_title', 
     'meta_description', 
-    'meta_keywords'
+    'meta_keywords',
+    'order'
   ];
 
 
@@ -121,8 +122,9 @@ class Products extends Model
     }
 
     $productos = $query->groupBy('products.id')
-        ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END')
+        ->orderBy('products.order', 'asc')
         ->orderBy('products.id', 'asc')
+        ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END')
         ->paginate(9);
 
     return $productos;

@@ -128,7 +128,9 @@
                     <div class="flex flex-col gap-2">
                         <p class="text-[#082252] font-roboto font-bold text-text32">Oficina</p>
                         <p class="text-[#082252] font-roboto font-normal text-text16">Visítanos en nuestra oficina para conocer nuestras soluciones de tratamiento de agua en persona.</p>
-                        <p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->address}}, {{$general[0]->inside}}, {{$general[0]->district}} - {{$general[0]->city}}</p>
+                        <a @if (!is_null($general[0]->mapa))
+                            href="{{$general[0]->mapa}}" 
+                            @endif target="_blank"><p class="text-[#FF5E14] font-roboto font-normal text-text16 underline">{{$general[0]->address}}, {{$general[0]->inside}}, {{$general[0]->district}} - {{$general[0]->city}}</p></a>
                     </div>
                 </div>
             </div>

@@ -60,12 +60,11 @@
 
                     <div class="flex flex-col justify-end gap-3 order-3 md:order-3 col-span-1 md:col-span-2 md:row-span-1">
                         <h3 class="text-[#082252] font-roboto font-bold text-text24">Agua Pura, Vida Segura</h3>
-                        <p class="text-[#082252] font-roboto font-normal text-text18">¡Contáctanos hoy y transforma la
-                            calidad de tu agua!</p>
+                        <p class="text-[#082252] font-roboto font-normal text-text18">¡Transforma la calidad de tu agua!</p>
                         <div class="flex justify-start items-center">
                             <a href="{{ route('contacto') }}"
-                                class="text-white py-3 px-6 bg-[#FF5E14] rounded-xl font-roboto font-semibold text-center w-full md:w-auto">Trabajemos
-                                juntos</a>
+                                class="text-white py-3 px-6 bg-[#FF5E14] rounded-xl font-roboto font-semibold text-center w-full md:w-auto">
+                                Contáctenos</a>
                         </div>
                     </div>
 

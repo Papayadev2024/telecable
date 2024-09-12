@@ -24,8 +24,9 @@
           <table id="tabladatos" class="display text-lg" style="width:100%">
             <thead>
               <tr>
-                <th>Producto</th>
+                <th>Orden</th>
                 <th>Imagen</th>
+                <th>Nombre</th>
                 <th>Destacar</th>
                 <th>Visible</th>
                 <th>Acciones</th>
@@ -35,6 +36,7 @@
 
               @foreach ($products as $item)
                 <tr>
+                  <td>{{ $item->order }}</td>
                   <td class="px-3 py-2">
                       @if ($item->imagen)
                         <img class="w-16 h-20 object-cover" src="{{ asset($item->imagen) }}" alt="">
@@ -93,8 +95,9 @@
             </tbody>
             <tfoot>
               <tr>
-                <th>Producto</th>
+                <th>Orden</th>
                 <th>Imagen</th>
+                <th>Nombre</th>
                 <th>Destacar</th>
                 <th>Visible</th>
                 <th>Acciones</th>
