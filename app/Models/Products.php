@@ -122,6 +122,7 @@ class Products extends Model
     }
 
     $productos = $query->groupBy('products.id')
+        ->orderByRaw('CASE WHEN products.order IS NULL THEN 1 ELSE 0 END')
         ->orderBy('products.order', 'asc')
         ->orderBy('products.id', 'asc')
         ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END')

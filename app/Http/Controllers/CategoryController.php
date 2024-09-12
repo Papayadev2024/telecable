@@ -205,6 +205,8 @@ class CategoryController extends Controller
             $subcategorias = Subcategory::where('category_id', '=', $request->id)->get();
             $productos = DB::table('products')
             ->join('categories', 'products.categoria_id', '=', 'categories.id')
+            ->orderByRaw('CASE WHEN products.order IS NULL THEN 1 ELSE 0 END')
+            ->orderBy('products.order', 'asc')
             ->where('products.status', '=', 1)
             ->where('products.visible', '=', 1)
             ->where('products.categoria_id', '=', $request->id)
@@ -239,6 +241,7 @@ class CategoryController extends Controller
             ->where('products.status', '=', 1)
             ->where('products.visible', '=', 1)
             ->where('products.subcategoria_id', '=', $request->id)
+            ->orderByRaw('CASE WHEN products.order IS NULL THEN 1 ELSE 0 END')
             ->orderBy('products.order', 'asc')
             ->orderBy('products.id', 'asc')
             ->select('products.*', 'categories.name as category_name')
@@ -257,6 +260,7 @@ class CategoryController extends Controller
         ->where('products.status', '=', 1)
         ->where('products.visible', '=', 1)
         ->where('products.microcategoria_id', '=', $request->id)
+        ->orderByRaw('CASE WHEN products.order IS NULL THEN 1 ELSE 0 END')
         ->orderBy('products.order', 'asc')
         ->orderBy('products.id', 'asc')
         ->select('products.*', 'categories.name as category_name')
@@ -283,6 +287,7 @@ class CategoryController extends Controller
                   ->orWhere('products.subcategoria_id', '=', $id)
                   ->orWhere('products.microcategoria_id', '=', $id);
         })
+        ->orderByRaw('CASE WHEN products.order IS NULL THEN 1 ELSE 0 END')
         ->orderBy('products.order', 'asc')
         ->orderBy('products.id', 'asc')
         ->select('products.*', 'categories.name as category_name')
