@@ -51,13 +51,13 @@
                                     <div class="swiper-slide !flex justify-center cursor-pointer">
                                         {{-- <a href="{{route('catalogo', $item->id)}}"> --}}
                                         <a id="{{ $item->id }}" class="categoryselect">
-                                            <div class="inline-flex flex-col gap-3">
+                                            <div class="flex flex-col justify-center items-center gap-3">
                                                 <div id="{{ $item->id }}"
                                                     class="{{ $filtro == $item->id ? 'selected' : '' }} rounded-full bg-white hover:bg-[#245BC8] md:duration-300 w-36 h-36 md:w-52 md:h-52 flex justify-center items-center">
                                                     <div class="flex flex-row justify-center items-center">
                                                         <img src="{{ asset($item->url_image.$item->name_image) }}"
                                                             alt="tratamiento de agua"
-                                                            class="w-28 md:w-48 object-cover rounded-full">
+                                                            class="max-w-[93%] object-cover rounded-full">
                                                     </div>
                                                 </div>
                                                 <h2 class="text-[#082252] font-roboto font-bold text-text18 text-center">
@@ -140,9 +140,9 @@
                                     <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">
                                         {{ $item->producto }}</h2>
                                 </a>
-                                {{-- <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                    {{ Str::limit($item->extract, 100) }}
-                                </p> --}}
+                                <p class="font-roboto font-normal text-text16 text-[#082252] line-clamp-3">
+                                    {{ $item->extract }}
+                                </p>
                             </div>
                         </div>
                     @endforeach
@@ -185,7 +185,10 @@
                 0: {
                     slidesPerView: 2,
                 },
-                768: {
+                700: {
+                    slidesPerView: 3,
+                },
+                1024: {
                     slidesPerView: 4,
                 },
             },
@@ -234,6 +237,9 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
+                                        <p class="font-roboto font-normal text-text16 text-[#082252] line-clamp-3">
+                                            ${value.extract}
+                                        </p>
                                     </div>
                                 </div>`
                             );
@@ -299,6 +305,9 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
+                                        <p class="font-roboto font-normal text-text16 text-[#082252] line-clamp-3">
+                                            ${value.extract}
+                                        </p>
                                     </div>
                                 </div>`
                             );
@@ -392,6 +401,9 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
+                                        <p class="font-roboto font-normal text-text16 text-[#082252] line-clamp-3">
+                                            ${value.extract}
+                                        </p>
                                     </div>
                                     
                                 </div>`
@@ -443,6 +455,9 @@
                                         <a href='${productoUrl}'>
                                             <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
                                         </a>
+                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
+                                            ${value.extract}
+                                        </p>
                                     </div>
                                     
                                 </div>`

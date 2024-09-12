@@ -37,6 +37,7 @@ use App\Http\Controllers\MisClientesController;
 use App\Http\Controllers\MisMarcasController;
 use App\Http\Controllers\NewsletterSubscriberController;
 use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\PolyticsConditionController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SliderController;
@@ -47,6 +48,7 @@ use App\Http\Controllers\ValoresAtributosController;
 
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\TermsAndConditionController;
 use App\Models\AboutUs;
 use App\Models\Microcategory;
 use App\Models\NewsletterSubscriber;
@@ -110,6 +112,9 @@ Route::post('/getMicrocategoria', [CategoryController::class, 'getMicrocategoria
 Route::post('/getProductMicrocategoria', [CategoryController::class, 'getProductMicrocategoria'])->name('getProductMicrocategoria');
 Route::post('/getTotalProductos', [CategoryController::class, 'getTotalProductos'])->name('getTotalProductos');
 
+Route::get('/politicas-de-devolucion', [IndexController::class, 'politicasDevolucion'])->name('politicas_dev');
+Route::get('/terminos-y-condiciones', [IndexController::class, 'TerminosyCondiciones'])->name('terms_condition');
+
 Route::redirect('/register', '/login');
 
 
@@ -131,7 +136,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::get('/mensajesproduct/{id}', [MessageController::class, 'showproductL'])->name('mensajesproduct.show');
         Route::post('/mensajesproduct/borrar', [MessageController::class, 'mensajesproductoDelete'])->name('mensajesproduct.borrar');
 
-
+        Route::resource('/politicas-de-devolucion', PolyticsConditionController::class);
+        Route::resource('/terminos-y-condiciones', TermsAndConditionController::class);    
      
         //Datos Generales
         Route::resource('/datosgenerales', GeneralController::class);

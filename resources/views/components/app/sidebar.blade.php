@@ -188,6 +188,11 @@
             </a>
           </li>
 
+          <x-menu.item id="politicas-de-devolucion" href="{{ route('politicas-de-devolucion.edit', 1) }}"
+            icon="fas fa-undo-alt">
+            Politicas de Privacidad
+          </x-menu.item>
+         
           {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['pedidos'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['pedidos'])) {{ 'hover:text-slate-200' }} @endif"

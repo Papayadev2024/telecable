@@ -165,7 +165,7 @@
                                         <div class="flex justify-center items-center py-5" 
                                             >
                                             <button type="submit"
-                                                class="text-text18 font-roboto font-semibold text-white bg-[#0C4AC3] md:bg-[#FF5E14] py-3 px-6 w-full text-center rounded-xl">Enviar
+                                                class="text-text18 font-roboto font-semibold text-white bg-[#FF5E14] py-3 px-6 w-full text-center rounded-xl">Enviar
                                                 solicitud</button>
                                         </div>
                                     </div>
@@ -235,15 +235,17 @@
                 </div>
             </div>
             @php
-                $especificacionf = trim($producto->especificacion);
+                $especificacionf = strip_tags($producto->especificacion);
+                
             @endphp
+                
             @if (!is_null($producto->especificacion) && $especificacionf !== '')
                 <div class="flex flex-col gap-2 pt-10 md:pt-16" data-aos="fade-up" data-aos-offset="150">
                     <h3 class="font-roboto font-bold text-text28 text-[#082252]">Características técnicas</h3>
-                    <div class="text-[#082252] text-text16 font-normal font-roboto flex flex-col gap-5">
-                        <p>
+                    <div class="text-[#082252] text-text16 font-normal font-roboto flex flex-col ">
+                        
                             {!! $producto->especificacion !!}
-                        </p>
+                        
                     </div>
                 </div>
             @endif

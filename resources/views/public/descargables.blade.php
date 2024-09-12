@@ -30,7 +30,7 @@
                     {{-- ---- --}}
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 mt-20 lg:mt-0">
                     @foreach ($descargables as $descargable)
                         <div class="flex justify-start items-center gap-8 h-[150px] md:h-[250px]">
                             <div class="bg-[#F5F4F5] rounded-xl flex justify-center items-center w-2/5 h-full">

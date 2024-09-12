@@ -1,3 +1,11 @@
+<style>
+    #modalPoliticasDev #modalTerminosCondiciones {
+        height: 70vh;
+        /* Establece la altura del modal al 70% de la altura de la ventana gráfica */
+        overflow-y: auto;
+        /* Permite el desplazamiento vertical si el contenido excede la altura del modal */
+    }
+</style>
 <footer class="bg-[#082252]">
     <div class="grid grid-cols-1 md:grid-cols-2 w-11/12 mx-auto py-10 gap-10 md:gap-5">
         <div class="w-full md:max-w-[500px] flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
@@ -21,12 +29,13 @@
 
                     <div class="flex justify-center items-center w-full md:w-auto">
                         <button type="submit"
-                            class="font-roboto font-semibold text-text16 text-white border border-white py-3 px-6 rounded-xl w-full md:w-auto text-center">Suscribe
+                            class="font-roboto font-semibold text-text16 text-white border border-white py-3 px-6 rounded-xl w-full md:w-auto text-center">subscríbete
                         </button>
                     </div>
                 </form>
                 <p class="font-roboto font-normal text-text12 text-white">
-                    Al suscribirse, acepta nuestra Política de privacidad y brinda su consentimiento para recibir
+                    Al suscribirse, acepta nuestra <a id="linkPoliticas" target="_blank" class="underline cursor-pointer">Política de
+                        privacidad</a> y brinda su consentimiento para recibir
                     actualizaciones de nuestra empresa.
                 </p>
             </div>
@@ -34,7 +43,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 md:gap-5 justify-end items-end">
             <div></div>
-             <div></div>
+            <div></div>
             <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
                 <p class="font-roboto font-semibold text-text16 text-white">Síganos</p>
 
@@ -105,4 +114,39 @@
         > --}}
         </div>
     </div>
+
+    <div id="modalTerminosCondiciones" class="modal" style="max-width: 900px !important;width: 100% !important;  ">
+        <!-- Modal body -->
+        <div class="p-4 ">
+            <h1 class="font-boldDisplay">Terminos y condiciones</h1>
+            <p class="font-Inter_Regular p-2 prose">{!! $terminos->content ?? '' !!}</p>
+        </div>
+    </div>
+
+    <div id="modalPoliticasDev" class="modal" style="max-width: 900px !important; width: 100% !important;  ">
+        <!-- Modal body -->
+        <div class="p-4 ">
+            <h1 class="font-boldDisplay text-2xl">Politicas de privacidad</h1>
+            <p class="font-Inter_Regular p-2">{!! $politicDev->content ?? '' !!}</p>
+        </div>
+    </div>
+
 </footer>
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '#linkTerminos', function() {
+            $('#modalTerminosCondiciones').modal({
+                show: true,
+                fadeDuration: 400,
+            })
+        });
+
+        $(document).on('click', '#linkPoliticas', function() {
+            $('#modalPoliticasDev').modal({
+                show: true,
+                fadeDuration: 400,
+            })
+        });
+    });
+</script>

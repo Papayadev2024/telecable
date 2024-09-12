@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Collection;
 use App\Models\General;
 use App\Models\Message;
+use App\Models\PolyticsCondition;
+use App\Models\TermsAndCondition;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
 use Illuminate\Support\Facades\View;
@@ -30,7 +32,13 @@ class AppServiceProvider extends ServiceProvider
             // Obtener los datos del footer
             $general = General::all(); // Suponiendo que tienes un modelo Footer y un método footerData() en él
             // Pasar los datos a la vista
-            $view->with('general', $general);
+            $politicDev = PolyticsCondition::first();
+            $termsAndCondicitions = TermsAndCondition::first();
+            // $view->with('general', $general)
+            //     ->with('politicDev', $politicDev)
+            //     ->with('termsAndCondicitions', $termsAndCondicitions);
+
+            $view->with(['general' => $general, 'politicDev' => $politicDev, 'termsAndCondicitions' => $termsAndCondicitions]);
         });
 
         View::composer('components.public.header', function ($view) {

@@ -37,6 +37,8 @@ use App\Models\MisClientes;
 use App\Models\MisMarcas;
 use App\Models\Certificados;
 use App\Models\ContactDetail;
+use App\Models\PolyticsCondition;
+use App\Models\TermsAndCondition;
 use Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -135,7 +137,7 @@ class IndexController extends Controller
         try {
             $general = General::all();
             $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
-            $categorias = Category::where('status', '=', 1)->where('destacar', '=', 1)->orderBy('order', 'asc')->get();
+            $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->orderBy('order', 'asc')->get();
             $subcategorias = Subcategory::all();
             $microcategorias = Microcategory::all();
             $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
@@ -1457,4 +1459,19 @@ class IndexController extends Controller
             //     ['path' => request()->url()] // URL base para la paginación
             //   );
             // }
+
+      public function politicasDevolucion()
+
+      {
+        $politicDev = PolyticsCondition::first();
+        return view('public.politicasdeenvio', compact('politicDev'));
+      }
+
+      public function TerminosyCondiciones()
+
+      {
+        
+        $termsAndCondicitions = TermsAndCondition::first();
+        return view('public.terminosycondiciones', compact('termsAndCondicitions'));
+      }
 }

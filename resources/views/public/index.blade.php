@@ -349,9 +349,12 @@
                     <div class="flex flex-col gap-2">
                         <h3 class="font-roboto font-bold text-white text-text40 md:text-text64 leading-tight">Descarga
                             nuestros Catálogos</h3>
-                        {{-- <p class="font-roboto font-normal text-white text-text18 ">Duis aute irure dolor in reprehenderit
-                            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> --}}
+                        <p class="font-roboto font-normal text-white text-text18">
+                            Explora nuestra amplia gama de productos y soluciones para el tratamiento de agua y 
+                            productos químicos especializados. Descarga nuestro catálogo completo para conocer 
+                            en detalle nuestras ofertas, especificaciones técnicas y cómo podemos ayudarte a 
+                            mejorar tus procesos. ¡Accede a la información que necesitas con un solo clic!
+                        </p>
                     </div>
                     <div class="flex justify-start items-center">
                         <a href="{{ route('descargables', 0) }}"

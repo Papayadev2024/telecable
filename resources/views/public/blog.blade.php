@@ -70,7 +70,7 @@
 
                     @if ($posts->isEmpty())
                     @else
-                        <div class="grid grid-cols-2 gap-x-5 gap-y-10">
+                        <div class="grid grid-cols-1 xl:grid-cols-2 gap-x-5 gap-y-10">
                             @foreach ($posts as $post)
                                 <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-duration="150">
                                     <div class="flex justify-center items-center">
@@ -151,15 +151,15 @@
                                 <div class="flex justify-center items-center w-full md:w-auto">
                                     <button type="submit"
                                         class="font-roboto font-normal text-text16 text-white py-3 px-6 rounded-xl w-full md:w-auto text-center bg-[#FF5E14]">
-                                        Suscribe
+                                        Subscríbete
                                     </button>
                                 </div>
                             </form>
 
                             <div
-                                class="text-white font-roboto font-semibold text-text10 flex flex-wrap justify-start items-center gap-1">
-                                <p>Al hacer clic en Registrarse, confirma que está de acuerdo con nuestros </p>
-                                <a href="#" target="_blank" class="underline "> Términos y condiciones</a>
+                                class="text-white font-roboto font-semibold text-text12 flex flex-wrap justify-start items-center gap-1">
+                                <p>Al hacer clic en Registrarse, confirma que está de acuerdo con nuestra </p>
+                                <a id="linkPoliticas" target="_blank" class="underline cursor-pointer">Política de privacidad</a>
                             </div>
                         </div>
                     </div>

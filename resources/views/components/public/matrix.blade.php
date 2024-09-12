@@ -8,8 +8,9 @@
     <meta name="description" content="@yield('meta_description', 'Default Description')">
     <meta name="keywords" content="@yield('meta_keywords', 'default, keywords')">
     <title>@yield('meta_title', 'HYDROTECH') | HYDROTECH PERÚ IMPORT EIRL</title>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    
+    
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}" /> --}}
@@ -23,7 +24,14 @@
     {{-- Swipper --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+    
+    
+    {{-- Modal Jquery --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+   
     {{-- Alpine --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -32,7 +40,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="{{ asset('images/img/faviconhpi.png') }}" type="image/x-icon">
     {{-- <title>@yield('titulo', 'Pagina') | HYDROTECH PERÚ IMPORT EIRL</title> --}}
-
+    
 </head>
 
 <body class="body">
