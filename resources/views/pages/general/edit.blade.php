@@ -398,6 +398,7 @@
                                                                 placeholder="Nombre de soporte 1">
                                                         </div>
                                                     </div>
+
                                                     <div class="md:col-span-3">
                                                         <label for="whatsapp">Whatsapp de soporte 1 (sin
                                                             guiones)</label>
@@ -444,6 +445,7 @@
                                                                 placeholder="Nombre de soporte 2">
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="md:col-span-3">
                                                         <label for="whatsapp">Whatsapp de soporte 2 (sin
                                                             guiones)</label>
