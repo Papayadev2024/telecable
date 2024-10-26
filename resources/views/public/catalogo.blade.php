@@ -12,44 +12,17 @@
 @section('content')
 
     <main>
-        <section class="pt-[155px]">
-            
-            <div class="bg-[#F7F8F8] pb-20">
-                <div class="w-11/12 md:w-10/12 mx-auto">
-                    <div class="flex flex-col items-center text-center pt-20 pb-20 gap-5">
-                        <div class="flex flex-col gap-2 w-full md:max-w-[850px]" data-aos="fade-up" data-aos-offset="150">
-                            <h3
-                                class="text-[#082252] font-roboto font-bold text-text48 md:text-text56 leading-tight text-center">
-                                Descubre Nuestra Gama de Soluciones</h3>
-                            <p class="font-roboto font-normal text-text18 text-[#082252] text-center">
-                                Explora nuestra selección de productos innovadores y eficientes para el tratamiento de agua,
-                                diseñados para satisfacer tus necesidades industriales y residenciales
-                            </p>
-                        </div>
 
-                        <div class="relative w-full md:max-w-[450px] pb-8 lg:py-0">
-                            <input type="text" placeholder="Buscar" id="buscarproducto2"
-                                class="w-full md:max-w-[450px] pl-8 pr-10 py-2 border border-[#E6E4E5] rounded-lg focus:outline-none focus:ring-0 text-[#082252] placeholder:text-[#E6E4E5] lg:placeholder:text-[#E6E4E5] focus:border-[#E6E4E5]">
-                            <span
-                                class="absolute inset-y-0 left-0 flex items-start lg:items-center px-2 pb-2 pt-[9px] lg:p-2">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M14.6851 13.6011C14.3544 13.2811 13.8268 13.2898 13.5068 13.6206C13.1868 13.9514 13.1955 14.4789 13.5263 14.7989L14.6851 13.6011ZM16.4206 17.5989C16.7514 17.9189 17.2789 17.9102 17.5989 17.5794C17.9189 17.2486 17.9102 16.7211 17.5794 16.4011L16.4206 17.5989ZM15.2333 9.53333C15.2333 12.6814 12.6814 15.2333 9.53333 15.2333V16.9C13.6018 16.9 16.9 13.6018 16.9 9.53333H15.2333ZM9.53333 15.2333C6.38531 15.2333 3.83333 12.6814 3.83333 9.53333H2.16667C2.16667 13.6018 5.46484 16.9 9.53333 16.9V15.2333ZM3.83333 9.53333C3.83333 6.38531 6.38531 3.83333 9.53333 3.83333V2.16667C5.46484 2.16667 2.16667 5.46484 2.16667 9.53333H3.83333ZM9.53333 3.83333C12.6814 3.83333 15.2333 6.38531 15.2333 9.53333H16.9C16.9 5.46484 13.6018 2.16667 9.53333 2.16667V3.83333ZM13.5263 14.7989L16.4206 17.5989L17.5794 16.4011L14.6851 13.6011L13.5263 14.7989Z"
-                                        fill="#E6E4E5" />
-                                </svg>
-                            </span>
-                            <div class="bg-white z-60 shadow-2xl top-12 w-full absolute overflow-y-auto max-h-[200px]"
-                                id="resultados2"></div>
-                        </div>
-                    </div>
-
-                    <div>
+        <section
+            class="flex flex-col lg:flex-row gap-10 lg:gap-10 justify-center items-center px-[5%] -mt-24 bg-cover bg-top pt-32"
+            style="background-image:url({{ asset('images/img/portadaimagen.png') }})">
+            <div class="w-full pt-20 pb-10">
+                {{-- <div>
                         <div class="swiper logos">
                             <div class="swiper-wrapper">
                                 @foreach ($categorias as $item)
                                     <div class="swiper-slide !flex justify-center cursor-pointer">
-                                        {{-- <a href="{{route('catalogo', $item->id)}}"> --}}
+                                        
                                         <a id="{{ $item->id }}" class="categoryselect">
                                             <div class="flex flex-col justify-center items-center gap-3">
                                                 <div id="{{ $item->id }}"
@@ -68,23 +41,40 @@
                                 @endforeach
                             </div>
                         </div>
+                    </div> --}}
+                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-end">
+                    <div class="flex flex-col gap-3 items-start justify-center max-w-2xl">
+                        <h2 class="leading-normal font-gotham_medium  text-4xl sm:text-5xl lg:text-6xl text-white">
+                            Portafolio de productos</h2>
+                    </div>
+                    <div
+                        class="w-full flex flex-col justify-end items-start lg:items-end gap-2 px-0 lg:pl-[5%] pt-5 lg:pt-0 xl:max-w-3xl ">
+                        <p class="text-[#F8FCFF] text-base font-gotham_medium line-clamp-1">
+                            Líderes globales para asegurar solidez
+                        </p>
+                        <div class="flex flex-wrap gap-5 mt-3">
+                            <img class="h-8 object-contain" src="{{ asset('images/img/logosatec.png') }}" />
+                            <img class="h-8 object-contain" src="{{ asset('images/img/metrycon.png') }}" />
+                            <img class="h-8 object-contain" src="{{ asset('images/img/eaton.png') }}" />
+                            <img class="h-8 object-contain" src="{{ asset('images/img/metcon.png') }}" />
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </section>
 
-        <section>
-            <div class="flex flex-col gap-5 md:gap-10 w-11/12 mx-auto py-10">
+        <section class="flex flex-col gap-10 w-full px-[5%] mx-auto py-10 lg:py-20 bg-[#F5F7F9]">
+            {{-- <div class="flex flex-col gap-5 md:gap-10 w-11/12 mx-auto py-10">
                 <div class="flex flex-col gap-5">
                     <div class="flex flex-col gap-2">
                         <h2 class="text-[#082252] font-roboto font-bold text-text32 subtitle">
-                          @if($filtro != 0 )
+                          @if ($filtro != 0)
                             {{$categoria->extract}}
                           @endif  
                         </h2>
                         <p class="text-[#082252] font-roboto font-normal text-text18 description">
-                          @if($filtro != 0 )
+                          @if ($filtro != 0)
                                 {{$categoria->description}}
                           @endif    
                         </p>
@@ -96,9 +86,9 @@
                                 <select id="selectSubcategory"
                                     class="{{ ($filtro === null || $filtro == 0) ? 'hidden' : '' }} bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
                                     <option value="sinproduct">Selecciona subcategoria</option>
-                                    @if(!is_null($filtro))
-                                        @foreach($subcategorias as $subcat)
-                                           @if($subcat->category_id == $filtro)
+                                    @if (!is_null($filtro))
+                                        @foreach ($subcategorias as $subcat)
+                                           @if ($subcat->category_id == $filtro)
                                             <option value="{{$subcat->id}}">{{$subcat->name}}</option>  
                                            @endif   
                                         @endforeach
@@ -115,9 +105,202 @@
                         </div>
                     </div>
                 </div>
+            </div> --}}
+
+            <div class="grid grid-cols-1 gap-5 sm:gap-10">
+                <div class="flex flex-col justify-center gap-5 rounded-xl">
+                    <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] ">
+                        Energía de Precisión</h2>
+                    <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>
+                    <p class="text-[#02324A] font-gotham_book font-normal text-lg">
+                        Exactitud en consumos. Equipos de medición de energía eléctrica para aplicaciones
+                        comerciales industriales de alta precisión. Calcula el consumo energético y la
+                        proyección de demanda logrando optimizarlos y validar la facturación mensual.
+                    </p>
+                </div>
             </div>
 
-            <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full pt-10 gap-x-10 gap-y-16">
+
+                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                            <span
+                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                        </div>
+                        <a href="#" class="">
+                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
+                                class="w-full h-full object-contain aspect-square" />
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col gap-1 justify-start">
+                        <a href="#">
+                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                Medidor BFM2</h2>
+                        </a>
+                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                            Por pedido</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                            <span
+                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                        </div>
+                        <a href="#" class="">
+                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
+                                class="w-full h-full object-contain aspect-square" />
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col gap-1 justify-start">
+                        <a href="#">
+                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                Medidor BFM2</h2>
+                        </a>
+                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                            Por pedido</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                            <span
+                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                        </div>
+                        <a href="#" class="">
+                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
+                                class="w-full h-full object-contain aspect-square" />
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col gap-1 justify-start">
+                        <a href="#">
+                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                Medidor BFM2</h2>
+                        </a>
+                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                            Por pedido</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                            <span
+                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                        </div>
+                        <a href="#" class="">
+                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
+                                class="w-full h-full object-contain aspect-square" />
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col gap-1 justify-start">
+                        <a href="#">
+                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                Medidor BFM2</h2>
+                        </a>
+                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                            Por pedido</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                            <span
+                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                        </div>
+                        <a href="#" class="">
+                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
+                                class="w-full h-full object-contain aspect-square" />
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col gap-1 justify-start">
+                        <a href="#">
+                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                Medidor BFM2</h2>
+                        </a>
+                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                            Por pedido</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                            <span
+                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                        </div>
+                        <a href="#" class="">
+                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
+                                class="w-full h-full object-contain aspect-square" />
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col gap-1 justify-start">
+                        <a href="#">
+                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                Medidor BFM2</h2>
+                        </a>
+                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                            Por pedido</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                            <span
+                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                        </div>
+                        <a href="#" class="">
+                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
+                                class="w-full h-full object-contain aspect-square" />
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col gap-1 justify-start">
+                        <a href="#">
+                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                Medidor BFM2</h2>
+                        </a>
+                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                            Por pedido</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                            <span
+                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                        </div>
+                        <a href="#" class="">
+                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
+                                class="w-full h-full object-contain aspect-square" />
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col gap-1 justify-start">
+                        <a href="#">
+                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                Medidor BFM2</h2>
+                        </a>
+                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                            Por pedido</p>
+                    </div>
+                </div>
+
+            </div>
+
+            {{-- <div>
                 <div id="getProductAjax"
                     class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-x-10 gap-y-10 pb-10 md:pb-20">
 
@@ -149,6 +332,7 @@
 
                 </div>
 
+
                 <div class="flex justify-center items-center mb-10">
                     <a href="javascript:;" @if (empty($page) || $page == 0) style="display:none;" @endif
                         data-page={{ $page }}
@@ -156,17 +340,38 @@
                         Cargar más modelos
                     </a>
                 </div>
-                   
-                {{-- @if ($productos->hasMorePages())
-                    <div class="flex justify-center items-center mb-10">
-                        <a href="javascript:;" data-page="{{ $productos->currentPage() + 1 }}" class="text-white py-3 px-5 border-2 bg-[#082252] rounded-3xl w-60 text-center font-medium text-text16 cargarMas">
-                            Cargar más modelos
-                        </a>
-                    </div>
-                @endif --}}
+            </div> --}}
 
+        </section>
+
+        <section>
+            <div class="flex flex-col gap-10 w-full px-[5%] mx-auto bg-[#F5F7F9]">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-0">
+
+                    <div class="flex flex-col justify-start gap-5 w-full  col-span-2">
+                        <h2 class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
+                            Necesitas ayuda?</h2>
+                        <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>
+                        <p class="text-[#02324A] font-gotham_book font-normal text-lg">
+                            Donec non velit non elit euismod varius eu id tellus. Nunc ultrices mauris quis facilisis sollicitudin. 
+                            Vestibulum convallis diam et nulla aliquet fringilla eget ut massa. Proin ac consequat neque. 
+                            Pellentesque arcu nisi, bibendum eget gravida sed, condimentum id nulla.</p>
+                        <div
+                            class="py-3 rounded-3xl bg-[#11355A] flex flex-row w-48 justify-center items-center gap-2 mt-5">
+                            <a class="text-white font-gotham_medium tracking-wider text-center">Contactarme</a>
+                            <img src="{{ asset('images/svg/flechaderecha.svg') }}" />
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col justify-end col-span-1">
+                        <img class="h-96 object-cover sm:object-contain object-bottom"
+                            src="{{ asset('images/img/secretaria.png') }}" />
+                    </div>
+
+                </div>
             </div>
         </section>
+
     </main>
 
 @section('scripts_importados')
@@ -257,7 +462,7 @@
 
 
             $('#selectSubcategory').change(function() {
-                
+
                 var page = $(this).attr('data-page');
                 var id = $('#selectSubcategory').val();
                 $.ajax({
@@ -269,7 +474,7 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                       console.log(response.page)
+                        console.log(response.page)
                         if (response.microcategorias && response.microcategorias.length > 0) {
                             $('#selectMicrocategory').empty().show();
 
@@ -313,7 +518,7 @@
                             );
                         });
 
-                         //    console.log(response);
+                        //    console.log(response);
                         $('.cargarMas').attr('data-page', response.page);
                         $('.cargarMas').html('Cargar más modelos');
                         if (response.page == 0) {
@@ -334,14 +539,14 @@
 
             $('.categoryselect').click(function() {
 
-                var id = $(this).attr('id'); 
+                var id = $(this).attr('id');
 
                 $('.categoryselect .rounded-full').removeClass('selected');
                 $(this).find('.rounded-full').addClass('selected');
 
 
                 $.ajax({
-                    
+
                     url: '{{ route('getSubcategoria') }}',
                     method: 'POST',
                     data: {
@@ -425,7 +630,7 @@
                 $('.cargarMas').html('Cargando...');
 
                 var id = $('#valorcategoria').val();
- 
+
                 $.ajax({
                     url: "{{ route('getTotalProductos') }}?page=" + page,
                     method: 'POST',
@@ -437,7 +642,7 @@
                     cache: false,
                     success: function(response) {
                         console.log(response.page);
-                      
+
                         $.each(response.productos.data, function(key, value) {
 
                             var productoUrl = `{{ route('producto', ':id') }}`.replace(
@@ -467,20 +672,20 @@
 
                         $('.cargarMas').attr('data-page', response.page);
                         $('.cargarMas').html('Cargar más modelos');
-                        
+
                         if (response.page == 0) {
                             $('.cargarMas').hide();
                         } else {
                             $('.cargarMas').show();
                         }
-                       
+
 
                         //if (response.productos.next_page_url) {
                         //    $('.cargarMas').data('page', page + 1).html('Cargar más modelos');
                         //} else {
                         //    $('.cargarMas').hide();
                         //}
-                        
+
                     },
                     error: function(error) {}
                 });

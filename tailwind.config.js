@@ -41,14 +41,12 @@ export default {
                 blue: '2px solid rgba(0, 112, 244, 0.5)',
             },
             fontFamily: {
-                mediumDisplay: ["font_MediumDisplay"] /* font-mediumDisplay */,
-                mediumItalicDisplay: ["font_MediumItalicDisplay"],
-                boldDisplay: ["font_BoldDisplay"] /* font-boldDisplay */,
-                boldItalicDisplay: ["font_BoldItalicDisplay"],
-                regularDisplay: ["font_RegularDisplay"] /* font-regularDisplay */,
-                regularItalicDisplay: ["font_RegularItalicDisplay"],
-                lightDisplay: ["font_LightDisplay"],
-                lightItalicDisplay: ["font_LightItalicDisplay"],
+                gotham_black: ["gotham_black"],
+                gotham_bold: ["gotham_bold"],
+                gotham_book: ["gotham_book"],
+                gotham_light: ["gotham_light"],
+                gotham_medium: ["gotham_medium"],
+             
             },
             fontSize: {
                 xs: ['0.75rem', { lineHeight: '1.5' }],

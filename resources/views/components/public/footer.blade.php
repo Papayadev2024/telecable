@@ -6,112 +6,94 @@
         /* Permite el desplazamiento vertical si el contenido excede la altura del modal */
     }
 </style>
-<footer class="bg-[#082252]">
-    <div class="grid grid-cols-1 md:grid-cols-2 w-11/12 mx-auto py-10 gap-10 md:gap-5">
-        <div class="w-full md:max-w-[500px] flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
+<footer class="bg-[#11355a]">
+    <div class="grid grid-cols-1 w-full px-[5%] lg:px-[10%] py-10 lg:py-16 gap-10 md:gap-5">
+        <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-5 col-span-1" data-aos="fade-up" data-aos-offset="150">
             <a href="{{ route('index') }}">
-                <img src="{{ asset('images/svg/logohpifooter.svg') }}" alt="HPI" class="w-[150px]" />
+                <img src="{{ asset('images/svg/logocadmo.svg') }}" alt="HPI" class="w-[150px]" />
             </a>
-            <p class="text-white font-roboto font-normal text-text16">
-                Únase a nuestro boletín para mantenerse actualizado sobre funciones y lanzamientos.
-            </p>
-
-            <div class="flex flex-col gap-2" data-aos="fade-up" data-aos-offset="150">
-                <form id="footerFormulario" class="flex flex-col md:flex-row md:justify-start md:items-center gap-5">
-                    @csrf
-                    <div class="w-full">
-                        <input required name="email" id="emailFooter" placeholder="Dejanos tu email" type="email"
-                            class="bg-white px-5 py-3 rounded-xl w-full" />
-                        <input type="hidden" id="nameFooter" required name="full_name" value="Usuario suscrito" />
-                        <input type="hidden" id="tipo" placeholder="tipo" name="tipo_message"
-                            value="Inscripción" />
-                    </div>
-
-                    <div class="flex justify-center items-center w-full md:w-auto">
-                        <button type="submit"
-                            class="font-roboto font-semibold text-text16 text-white border border-white py-3 px-6 rounded-xl w-full md:w-auto text-center">subscríbete
-                        </button>
-                    </div>
-                </form>
-                <p class="font-roboto font-normal text-text12 text-white">
-                    Al suscribirse, acepta nuestra <a id="linkPoliticas" target="_blank" class="underline cursor-pointer">Política de
-                        privacidad</a> y brinda su consentimiento para recibir
-                    actualizaciones de nuestra empresa.
+            <div class="flex flex-col gap-5">
+                <p class="font-gotham_book text-base uppercase text-white tracking-wider font-semibold">
+                    Enlaces
                 </p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 md:gap-5 justify-end items-end">
-            <div></div>
-            <div></div>
-            <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
-                <p class="font-roboto font-semibold text-text16 text-white">Síganos</p>
-
-                <div class="flex flex-col gap-5">
-                    @if ($general[0]->facebook)
-                        <a href="{{ $general[0]->facebook }}" target="_blank"
-                            class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14">
-                            <img src="{{ asset('images/svg/image_2.svg') }}" alt="facebook" />
-                            <span>Facebook</span>
-                        </a>
-                    @endif
-                    @if ($general[0]->instagram)
-                        <a href="{{ $general[0]->instagram }}" target="_blank"
-                            class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14">
-                            <img src="{{ asset('images/svg/image_3.svg') }}" alt="instagram" />
-                            <span>Instagram</span>
-                        </a>
-                    @endif
-                    @if ($general[0]->twitter)
-                        <a href="{{ $general[0]->twitter }}" target="_blank"
-                            class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14">
-                            <img src="{{ asset('images/svg/image_4.svg') }}" alt="twitter" />
-                            <span>Twitter</span>
-                        </a>
-                    @endif
-                    @if ($general[0]->linkedin)
-                        <a href="{{ $general[0]->linkedin }}" target="_blank"
-                            class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14">
-                            <img src="{{ asset('images/svg/image_5.svg') }}" alt="linkedin" />
-                            <span>Linkedin</span>
-                        </a>
-                    @endif
-                    @if ($general[0]->youtube)
-                        <a href="{{ $general[0]->youtube }}" target="_blank"
-                            class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14">
-                            <img src="{{ asset('images/svg/image_6.svg') }}" alt="youtube" />
-                            <span>YouTube</span>
-                        </a>
-                    @endif
-                    @if ($general[0]->tiktok)
-                        <a href="{{ $general[0]->tiktok }}" target="_blank"
-                            class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14">
-                            <img src="{{ asset('images/svg/image_tiktok.svg') }}" alt="tiktok" />
-                            <span>Tik Tok</span>
-                        </a>
-                    @endif
+                <div class="flex flex-col gap-2 text-white font-gotham_light text-base">
+                    <a href="{{route('catalogo', 0)}}">Inicio</a>
+                    <a href="{{route('coleccion', 0)}}">Productos</a>
+                    <a href="{{route('novedades')}}">Innovación</a>
+                    <a href="{{route('contacto')}}">Nosotros</a>
+                    <a href="{{route('contacto')}}">Contacto</a>
                 </div>
             </div>
+        
+            <div class="flex flex-col gap-5">
+                <p class="font-gotham_book text-base uppercase text-white tracking-wider font-semibold">
+                    Aviso legal
+                </p>
+                <div class="flex flex-col gap-2 text-white font-gotham_light text-base">
+                    <a href="{{route('catalogo', 0)}}">Política de Privacidad</a>
+                    <a href="{{route('coleccion', 0)}}">Términos y Condicione</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-5">
+                <p class="font-gotham_book text-base uppercase text-white tracking-wider font-semibold">
+                   DATOS DE CONTACTO
+                </p>
+                <div class="flex flex-col gap-2 text-white font-gotham_light text-base">
+                    <a>{{ $general[0]->address }}, {{ $general[0]->inside }},
+                                        {{ $general[0]->district }} - {{ $general[0]->city }}</a>
+                    <a>Correo Electrónico: <br> {{ $general[0]->email }}</a> 
+                    <a>Teléfono: {{ $general[0]->office_phone }}</a>
+                </div>
+            </div>
+            
+         
         </div>
     </div>
 
     <div
-        class="flex flex-col items-start gap-3 md:flex-row md:justify-between md:items-center w-11/12 mx-auto py-10 border-t border-white">
-        <a href="#" target="_blank" class="text-white font-roboto font-normal text-text14">&copy; 2024 Mundo Web.
+        class="flex flex-col items-start gap-3 md:flex-row md:justify-between md:items-center w-full px-[5%] lg:px-[10%] py-5 bg-cover"
+        style="background-image:url({{asset('images/img/footerbarra.png')}})">
+        <a href="#" target="_blank" class="text-white font-gotham_book text-sm text-center">Copyright &copy; 2024 Cadmo Soluciones.
             Reservados todos los derechos</a>
-        <div class="flex justify-start items-center gap-5">
-            {{-- <a
-          href="#"
-          target="_blank"
-          class="underline text-white font-roboto font-normal text-text14"
-          >Política de privacidad</a
-        >
-        <a
-          href="#"
-          target="_blank"
-          class="underline text-white font-roboto font-normal text-text14"
-          >Terminos de servicio</a
-        > --}}
+       
+        <div class="flex justify-start items-center gap-5 mx-auto sm:mx-0">
+            <div class="flex flex-row gap-5">
+                @if ($general[0]->facebook)
+                    <a href="{{ $general[0]->facebook }}" target="_blank"
+                        class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14">
+                        <img class="w-6" src="{{ asset('images/img/fb.png') }}" alt="facebook" />
+                    </a>
+                @endif
+                @if ($general[0]->instagram)
+                    <a href="{{ $general[0]->instagram }}" target="_blank"
+                        class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14">
+                        <img class="w-6" src="{{ asset('images/img/insta.png') }}" alt="instagram" />
+                     
+                    </a>
+                @endif
+                @if ($general[0]->twitter)
+                    <a href="{{ $general[0]->twitter }}" target="_blank"
+                        class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14">
+                         <img class="w-6" src="{{ asset('images/img/twit.png') }}" alt="twitter" />
+                       
+                    </a>
+                @endif
+                @if ($general[0]->linkedin)
+                    <a href="{{ $general[0]->linkedin }}" target="_blank"
+                        class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14">
+                        <img class="w-6" src="{{ asset('images/img/linked.png') }}" alt="linkedin" />
+                       
+                    </a>
+                @endif
+                @if ($general[0]->tiktok)
+                    <a href="{{ $general[0]->tiktok }}" target="_blank"
+                        class="flex justify-start items-center gap-2 text-white font-roboto font-normal text-text14">
+                        <img class="w-6" src="{{ asset('images/img/tik-tok.png') }}" alt="tiktok" />
+                       
+                    </a>
+                @endif
+            </div>
         </div>
     </div>
 

@@ -77,9 +77,11 @@ class IndexController extends Controller
         $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
         $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
         $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->orderBy('order', 'asc')->get();
+        
         $logos = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
         $mismarcas = MisMarcas::where('status', '=', 1)->where('visible', '=', 1)->get();
         $clientes = MisClientes::where('status', '=', 1)->where('visible', '=', 1)->get();
+        
         $contactos = ContactDetail::where('status', '=', 1)->get();
         $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
 
@@ -598,9 +600,16 @@ class IndexController extends Controller
             $clientes = MisClientes::where('status', '=', 1)->where('visible', '=', 1)->get();
             $certificados = Certificados::where('status', '=', 1)->where('visible', '=', 1)->get();
             $nosotros = AboutUs::where('status', '=', 1)->get();
-            return view('public.nosotros', compact('general', 'testimonie', 'staff', 'nosotros', 'clientes','certificados'));
+            $benefit = Strength::where('status', '=', 1)->get();
+            return view('public.nosotros', compact('benefit','general', 'testimonie', 'staff', 'nosotros', 'clientes','certificados'));
         } catch (\Throwable $th) {
         }
+    }
+
+    public function innovaciones()
+    {
+      $general = General::first();
+      return view('public.innovaciones', compact('general'));
     }
 
     public function novedades()

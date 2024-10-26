@@ -39,189 +39,102 @@
 
 @section('content')
     <main>
-        <section class="pt-52">
-            <div class="w-11/12 mx-auto flex flex-col gap-10 md:gap-20">
-                <div class="w-full mx-auto md:max-w-[1064px] flex flex-col gap-1" data-aos="fade-up" data-aos-offset="150">
-                    <h3 class="text-[#0C4AC3] font-roboto font-normal text-text18 text-center">Sobre HYDROTECH PERÚ IMPORT
-                        E.I.R.L</h3>
-                    <h2 class="text-[#082252] font-roboto font-bold text-4xl md:text-text56 text-center leading-tight">
-                        Conócenos: Expertos en Soluciones de Tratamiento de Agua</h2>
-                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-10" data-aos="fade-up" data-aos-offset="150">
-                    <div class="w-full md:max-w-[600px] order-1 md:order-1 col-span-1 md:col-span-2 md:row-span-1">
-                        <div class="flex flex-col gap-2">
-                            <h3 class="text-[#FF5E14] font-roboto font-normal text-text16">Sobre HYDROTECH PERÚ IMPORT
-                                E.I.R.L</h3>
-                            <h2 class="text-[#082252] font-roboto font-bold text-4xl md:text-text56 leading-tight">Químicos y
-                                tratamiento de agua</h2>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col justify-end gap-3 order-3 md:order-3 col-span-1 md:col-span-2 md:row-span-1">
-                        <h3 class="text-[#082252] font-roboto font-bold text-text24">Agua Pura, Vida Segura</h3>
-                        <p class="text-[#082252] font-roboto font-normal text-text18">¡Transforma la calidad de tu agua!</p>
-                        <div class="flex justify-start items-center">
-                            <a href="{{ route('contacto') }}"
-                                class="text-white py-3 px-6 bg-[#FF5E14] rounded-xl font-roboto font-semibold text-center w-full md:w-auto">
-                                Contáctenos</a>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col gap-2 order-2 md:order-2 col-span-1 md:col-span-2 md:row-span-2">
-                        <div class="text-[#082252] font-roboto font-normal text-text18">
-                            {!! $general->aboutus !!}
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="flex justify-center items-center w-11/12 mx-auto my-10 md:my-16 " data-aos="fade-up"
-                data-aos-offset="150">
-                <img src="{{ asset('images/img/terminada.jpg') }}" alt="HPI" class="w-full rounded-xl object-cover">
-            </div>
-
-            @if ($nosotros->isEmpty())
-                
-            @else
-                <div class="w-11/12 mx-auto flex flex-col gap-8 my-5 lg:my-16 ">
-                    @foreach ($nosotros as $item)
-                    <div>
-                        <h2 class="text-[#082252] font-roboto font-bold text-4xl lg:text-text48 leading-none">{{$item->titulo}}</h2>
-                        <div class="text-[#082252] font-roboto font-normal text-text18 mt-3">
-                                {!!$item->descripcion!!}
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            @endif
-
+        <section class="flex flex-col lg:flex-row gap-10 lg:gap-10 justify-center items-center px-[5%] lg:pl-0 lg:pr-0 -mt-24 bg-cover bg-top pt-32" style="background-image:url({{asset('images/img/portadaimagen.png')}})">
         </section>
 
-        @if ($staff->isEmpty())
-        @else
+       <section>
+            <div class="flex flex-col gap-10 w-full px-[5%] mx-auto py-10 lg:py-20 bg-[#FBFBFB]">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-10">
+                       
+                            <div class="flex flex-col justify-center gap-5 rounded-xl">
+                                <h2 class="leading-tight font-gotham_medium  text-4xl lg:text-5xl xl:text-6xl text-[#0181AA] ">
+                                    Nuestra historia, nuestro nacimiento</h2>
+                                <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
+                                <p class="text-[#02324A] font-gotham_book font-normal text-lg">
+                                    Nullam nec orci dui. Praesent tristique facilisis quam, a egestas lorem
+                                     consectetur fringilla. Suspendisse cursus erat eget ante auctor, non hendrerit 
+                                     ipsum egestas. Nullam nec orci dui. Praesent tristique facilisis quam, a egestas 
+                                     lorem consectetur fringilla. Suspendisse cursus erat eget ante auctor, 
+                                     non hendrerit ipsum egestas.
+                                </p>
+                                <p class="text-[#02324A] font-gotham_book font-normal text-lg">
+                                    Nullam nec orci dui. Praesent tristique facilisis quam, a egestas lorem
+                                     consectetur fringilla. Suspendisse cursus erat eget ante auctor, non hendrerit 
+                                     ipsum egestas. Nullam nec orci dui. Praesent tristique facilisis quam, a egestas 
+                                     lorem consectetur fringilla. Suspendisse cursus erat eget ante auctor, 
+                                     non hendrerit ipsum egestas.
+                                </p>
+                            </div>
+                             
+                            <div class="flex flex-col items-center justify-center">
+                                <img class="h-[450px] md:h-[500px] object-contain lg:h-[650px] w-full"  src="{{asset('images/img/cadmonosotros.png')}}" />
+                            </div>
+                     
+                    </div>
+            </div>
+        </section>
+
+
         <section>
-            <div class="flex flex-col gap-8 w-11/12 mx-auto pb-20 mt-12">
-                <div class="flex flex-col gap-2" data-aos="fade-up" data-aos-offset="150">
-                    <h3 class="text-[#FF5E14] font-roboto font-normal text-text16">PROFESIONALES</h3>
-                    <h2 class="text-[#082252] font-roboto font-bold text-4xl lg:text-text48 leading-tight">Nuestro Equipo de Expertos
-                    </h2>
-                    <p class="text-[#082252] font-roboto font-normal text-text18">Nuestro equipo está compuesto por
-                        ingenieros y técnicos especializados en tratamiento de agua, dedicados a ofrecer soluciones
-                        eficientes y de alta calidad para satisfacer tus necesidades industriales y residenciales.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    @foreach ($staff as $equipo)
-                        <div class="flex flex-col gap-3" data-aos="fade-up" data-aos-offset="150">
-                            <div class="flex justify-center items-center">
-                                <img src="{{ asset($equipo->url_image . $equipo->name_image) }}" alt="profesionales"
-                                    class="w-full rounded-xl object-cover">
+            <div class="flex flex-col gap-10 w-full px-[5%] mx-auto pb-10 lg:pb-20 bg-[#FBFBFB]">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-10">
+                            
+                            <div class="flex flex-col items-start justify-center order-2 lg:order-1 gap-0 lg:gap-5">
+                                <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] ">
+                                        Nuestras motivaciones diarias</h2>    
+                                <img class="h-[350px] md:h-[400px] object-contain object-left lg:h-[450px] w-full"  src="{{asset('images/img/oficinacadmo.png')}}" />
                             </div>
-
-                            <div>
-                                <div class="flex justify-between items-center">
-                                    <p class="text-[#082252] font-roboto font-semibold text-text20">{{ $equipo->nombre }}
+                     
+                            <div class="flex flex-col justify-center gap-8 xl:gap-16 order-1 lg:order-2">
+                                <div class="flex flex-col gap-3">
+                                    <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] ">
+                                        Misión</h2>
+                                    <div class="h-[3px] bg-[#0181AA] w-28 rounded-full -mt-4"> </div>   
+                                    <p class="text-[#02324A] font-gotham_book font-normal text-lg">
+                                        Conectamos dispositivos a la nube. Desarrollamos e integramos soluciones 
+                                        basadas en el Internet de las cosas (Internet of Things - IoT) para proyectos 
+                                        de Smart Grid a la medida. Utilizamos protocolos de comunicación que permiten 
+                                        la escabilidad de nuestras soluciones y flexibilidad para la integración a 
+                                        diferentes industrias. Energía inteligente.
                                     </p>
-                                    <div class="flex justify-between gap-2 items-center">
-                                        @if (!empty($equipo->facebook))
-                                            <a href="{{ $equipo->facebook }}" target="_blank">
-                                                <img src="{{ asset('images/img/facebook.png') }}" alt="facebook">
-                                            </a>
-                                        @endif
-                                        @if (!empty($equipo->instagram))
-                                            <a href="{{ $equipo->instagram }}" target="_blank">
-                                                <img src="{{ asset('images/img/instagram.png') }}" alt="instagram">
-                                            </a>
-                                        @endif
-                                        @if (!empty($equipo->youtube))
-                                            <a href="{{ $equipo->youtube }}" target="_blank">
-                                                <img src="{{ asset('images/img/linkedin.png') }}" alt="youtube">
-                                            </a>
-                                        @endif
-                                        {{-- @if (!empty($equipo->twitter))
-                                            <a  href="mailto:{{ $equipo->mail }}">
-                                                <img src="{{ asset('images/img/twitter.png') }}" alt="twitter">
-                                            </a>
-                                        @endif --}}
-                                    </div>
                                 </div>
-                                <p class=" text-[#082252] font-roboto font-normal text-base">
-                                    {{ $equipo->twitter }}
-                                </p>
-                                <p class="uppercase text-[#FF5E14] font-roboto font-normal text-text14">
-                                    {{ $equipo->cargo }}
-                                </p>
+                                <div class="flex flex-col gap-3">
+                                    <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] ">
+                                        Visión</h2>
+                                    <div class="h-[3px] bg-[#0181AA] w-28 rounded-full -mt-4"> </div>   
+                                    <p class="text-[#02324A] font-gotham_book font-normal text-lg">
+                                        Software de administración de energía, ofrece un conjunto de soluciones: desde facturación, 
+                                        monitoreo, eficiencia energética y respuesta a la demanda hasta análisis exhaustivos de 
+                                        calidad de energía y soporte de procesos centrales de planificación y previsión para generadores, 
+                                        transmisores y distribuidores de energía e también para grandes proyectos residenciales, edificios 
+                                        de oficinas, centros comerciales, entre otros.
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
+                             
+                           
+                    </div>
             </div>
         </section>
-        @endif
-
-
-        @if ($clientes->isEmpty())
+    
+       
+        @if ($benefit->isEmpty())
         @else
-            <section class="py-12">
-                <div class="max-w-[700px] mx-auto pb-14 w-11/12">
-                    <h2 class="text-[#082252] font-roboto font-bold text-4xl md:text-text56 text-center leading-tight">
-                        Confiaron en nosotros
-                    </h2>
-                </div>
-
-                <div class="w-full mx-auto">
-                    <div class="swiper clientes">
-                        <div class="swiper-wrapper items-center">
-                            @foreach ($clientes as $cliente)
-                                <div class="swiper-slide">
-                                    <div class="flex justify-center items-center">
-                                        <img src="{{ asset($cliente->url_image . $cliente->name_image) }}" alt="logo" class="h-32 object-contain"/>
-                                    </div>
+            <section>
+                <div class="flex flex-col gap-10 w-full px-[5%] mx-auto pt-20 pb-10 lg:pb-20 bg-[#F5F7F9]">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        @foreach ($benefit as $beneficios)
+                            <div class="flex flex-col gap-5 bg-[#F5F7F9] p-4 rounded-xl">
+                                <div class="flex justify-start items-center">
+                                    <img class="h-10 w-10 object-contain" src="{{ asset($beneficios->icono) }}"
+                                        alt="{{ $beneficios->titulo }}">
                                 </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </section>
-        @endif
-
-        @if ($certificados->isEmpty())
-        @else
-            <section class="pt-0 pb-20">
-                <div class="w-11/12 mx-auto">
-                    <div class="w-full md:max-w-[1000px] mx-auto flex flex-col gap-16 py-20">
-                        <div class="flex flex-col gap-2">
-                            <h2
-                                class="text-[#082252] font-roboto font-bold text-4xl md:text-text56 text-center leading-tight">
-                                Nuestras certificaciones</h2>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-20">
-                        @foreach ($certificados as $descargable)
-                            <div class="flex justify-start items-center gap-8 h-[100px]">
-                                <div class="rounded-xl flex justify-center items-center w-2/5 h-full ">
-                                    <img src="{{ asset($descargable->url_image.$descargable->name_image ) }}" alt="catalogo"
-                                        class="w-[100px] md:w-[150px] h-[100px] object-contain">
-                                </div>
-                                <div class="flex flex-col gap-4 w-3/5">
-                                    <div class="flex flex-col gap-2">
-                                        <h2 class="text-[#082252] font-roboto font-bold text-text18 md:text-text24 leading-tight">
-                                            {{$descargable->title}}</h2>
-                                        <p class="text-[#082252] font-roboto font-normal text-text10 md:text-text16">{{$descargable->description}}</p>
-                                    </div>
-
-                                    <a href="{{ asset('storage/archives/'.$descargable->name_archive) }}" target="_blank" 
-                                        class="text-[#FF5E14] font-roboto font-normal text-text10 md:text-text16 flex justify-start items-center gap-2">
-                                        <span>Descargar</span>
-                                        <div>
-                                            <img src="{{ asset('images/svg/image_42.svg') }}" alt="download"
-                                                class="w-[8px] h-[9px] md:w-[auto] md:h-auto">
-                                        </div>
-                                    </a>
+                                <div class="flex flex-col gap-2">
+                                    <h2 class="leading-none font-gotham_medium text-4xl text-[#0181AA] ">
+                                        {{ $beneficios->titulo }}</h2>
+                                    <p class="text-[#02324A] font-gotham_book font-normal text-lg">
+                                        {{ $beneficios->descripcion }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -229,49 +142,8 @@
                 </div>
             </section>
         @endif
-        {{-- @if ($testimonie->isEmpty())
-        @else
-            <section class="bg-white md:pt-10 md:mt-10 pb-32 md:pb-32">
-                <div class="w-11/12 mx-auto flex flex-col gap-3 items-center">
-                    <h2 class="font-roboto font-bold text-text32 md:text-text40 text-center">Reconocimiento de nuestros
-                        clientes</h2>
-                </div>
-
-
-                <div class="mt-16 w-11/12 lg:w-9/12 mx-auto  relative">
-                    <div class="swiper testimonios rounded-2xl">
-                        <div class="swiper-wrapper">
-
-                            @foreach ($testimonie as $testimonios)
-                                <div class="swiper-slide">
-                                    <div class="flex flex-col gap-10 bg-[#F7F8F8] p-8">
-                                        <p class="text-[#082252] font-roboto font-normal text-text20 text-center">
-                                            {{ $testimonios->testimonie }}
-                                        </p>
-
-                                        <div class="flex flex-col gap-2 items-center">
-                                            <p class="text-[#082252] font-roboto font-bold text-text20 text-center">
-                                                {{ $testimonios->name }}</p>
-                                            <p
-                                                class="uppercase text-[#0C4AC3] font-roboto font-medium text-text12 text-center">
-                                                {{ $testimonios->ocupation }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-                    <div class="custom-swiper-buttons lg:flex lg:absolute block ">
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                    </div>
-                </div>
-
-            </section>
-        @endif --}}
-
-
+       
+    
     </main>
 
 @section('scripts_importados')
