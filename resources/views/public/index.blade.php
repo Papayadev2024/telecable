@@ -401,7 +401,7 @@
                             @foreach ($mismarcas as $marca)
                                 <div class="swiper-slide">
                                     <div class="flex justify-center items-center">
-                                        <img src="{{ asset($marca->url_image . $marca->name_image) }}" alt="logo" />
+                                        <img class="h-16 object-contain" src="{{ asset($marca->url_image . $marca->name_image) }}" alt="logo" />
                                     </div>
                                 </div>
                             @endforeach
@@ -527,7 +527,6 @@
                                 </h2>
                                 <form id="formContactos" class="grid grid-cols-1 gap-4">
                                     @csrf
-                                    
                                         <div class="relative w-full">
                                             <label for="fullNameContacto" class="font-gotham_book font-semibold text-sm text-[#11355a]">Nombre completo</label>
                                             <input required name="full_name" id="fullNameContacto" type="text"

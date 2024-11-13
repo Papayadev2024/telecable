@@ -22,8 +22,8 @@
                             <tr>
                                 <th>Titulo</th>
                                 <th>Imagen</th>
-                                <th>Visible</th>
-                                <th>Acciones</th>
+                                <th class="w-20">Visible</th>
+                                <th class="w-20">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,7 +31,7 @@
                             @foreach($mismarcas as $item)
                                 <tr>
                                     <td>{{$item->title}}</td>
-                                    <td class="px-3 py-2"><img class="w-16 h-16 bg-gray-400 object-contain" src="{{ asset($item->url_image.$item->name_image) }}" alt=""></td>
+                                    <td class="px-3 py-2"><img class="w-16 h-16 bg-white object-contain" src="{{ asset($item->url_image.$item->name_image) }}" alt=""></td>
                                     <td>
                                         <form method="POST" action="">
                                           @csrf

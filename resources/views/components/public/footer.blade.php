@@ -30,8 +30,8 @@
                     Aviso legal
                 </p>
                 <div class="flex flex-col gap-2 text-white font-gotham_light text-base">
-                    <a href="{{route('catalogo', 0)}}">Política de Privacidad</a>
-                    <a href="{{route('coleccion', 0)}}">Términos y Condicione</a>
+                    <a class="cursor-pointer" id="linkPoliticas">Política de Privacidad</a>
+                    <a class="cursor-pointer" id="linkTerminos">Términos y Condiciones</a>
                 </div>
             </div>
 

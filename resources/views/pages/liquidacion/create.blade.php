@@ -5,7 +5,7 @@
         @csrf
         <div class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
             <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Agregar marca</h2>
+                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Agregar rubro</h2>
             </header>
           
             <div class="p-3">
@@ -53,20 +53,20 @@
                                             </div> --}}
 
 
-                                            <div class="md:col-span-5">
+                                            {{-- <div class="md:col-span-5">
                                                     <label for="imagen">Subir imagen (198x72 px)</label>
                                                     <div class="relative mb-2  mt-2">
                                                         <input name="imagen" class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                                     </div>
-                                             </div>
+                                             </div> --}}
 
                                              
                                             <div class="md:col-span-5 text-right mt-6 flex justify-between">
                                                 <div class="inline-flex items-end">
-                                                    <a href="{{ URL::previous() }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
+                                                    <a href="{{ route('liquidacion.index') }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
                                                   </div>
                                                 <div class="inline-flex items-end">
-                                                <button type="submit"  class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Guardar slider</button>
+                                                <button type="submit"  class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Guardar</button>
                                                 </div>
                                             </div>
                                 </div>           

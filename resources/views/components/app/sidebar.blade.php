@@ -20,8 +20,8 @@
         </svg>
       </button>
       <!-- Logo -->
-      <a class="block mt-8" href="{{ route('dashboard') }}">
-        <img src="{{ asset('images/svg/image_1.svg') }}" alt="HPI" />
+      <a class="block mt-8 " href="{{ route('dashboard') }}">
+        <img src="{{ asset('images/img/logocadmo.png') }}" alt="CADMO" />
       </a>
     </div>
 
@@ -67,7 +67,7 @@
 
 
           <!-- Messages Landing-->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['mensajeslanding'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['mensajeslanding'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('mensajeslanding') }}">
@@ -93,11 +93,11 @@
                 </div>
               </div>
             </a>
-          </li>
+          </li> --}}
 
 
         <!-- Messages Product-->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['mensajesproduct'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['mensajesproduct'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('mensajesproduct') }}">
@@ -123,7 +123,7 @@
                 </div>
               </div>
             </a>
-          </li>
+          </li> --}}
 
 
            <!-- About Us -->
@@ -147,7 +147,7 @@
          </li>
 
           <!-- Subscripciones -->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['subscripciones'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['subscripciones'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('subscripciones') }}">
@@ -165,7 +165,7 @@
                 </span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
           <!-- Datos generales -->
           <li
@@ -269,7 +269,7 @@
                     d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
                 </svg>
                 <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Marcas comercializadas</span>
+                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Rubros</span>
               </div>
             </a>
           </li>
@@ -290,7 +290,7 @@
                     d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
                 </svg>
                 <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Nuestras marcas</span>
+                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Marcas</span>
               </div>
             </a>
           </li>
@@ -311,7 +311,7 @@
                     d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
                 </svg>
                 <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Nuestros clientes</span>
+                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Estadisticas</span>
               </div>
             </a>
           </li>
@@ -360,7 +360,7 @@
 
 
           <!-- Catalogos -->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['catalogos'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['catalogos'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('descargables.index') }}">
@@ -377,11 +377,11 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Catalogos</span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
 
           <!-- Certificados -->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['certificados'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['certificados'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('certificados.index') }}">
@@ -398,11 +398,11 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Certificados</span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
           <!-- Blog -->
 
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['blog'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['blog'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('blog.index') }}">
@@ -419,7 +419,7 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Blog</span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
         </ul>
       </div>
@@ -638,11 +638,11 @@
       </div> --}}
 
       <!-- Generador de Landing -->
-      <x-menu.group title="Generador de Landing">
+      {{-- <x-menu.group title="Generador de Landing">
         <x-menu.item id="templates" href="{{ route('templates.index') }}"
           icon="fas fa-window-maximize">Plantillas</x-menu.item>
         <x-menu.item id="landings" href="{{ route('landings.index') }}" icon="fas fa-pager">Landings</x-menu.item>
-      </x-menu.group>
+      </x-menu.group> --}}
     </div>
 
     <!-- Expand / collapse button -->

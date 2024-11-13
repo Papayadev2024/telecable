@@ -21,40 +21,51 @@
             return ucfirst($string);
         }
     @endphp
+
+    <section class="flex flex-col lg:flex-row gap-10 lg:gap-10 justify-center items-center px-[5%] lg:pl-0 lg:pr-0 -mt-24 bg-cover bg-top pt-32" style="background-image:url({{asset('images/img/portadaimagen.png')}})">
+    </section>
+
     <main>
-        <section class="w-11/12 md:w-10/12 mx-auto pt-44 pb-10">
+        <section class="w-full px-[5%] py-10 lg:py-20">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
-                <div class="flex flex-col md:flex-row justify-center items-start gap-5 md:gap-0">
-                    <div
-                        class="flex flex-row justify-evenly md:flex-col md:justify-start md:items-center h-full md:gap-3 md:basis-1/4 order-2 md:order-1 w-full">
+                
+                <div class="flex flex-col justify-start items-center gap-5">
+                    <div id="containerProductosdetail"
+                        class="w-full flex justify-center items-center aspect-square overflow-hidden">
+                        <img src="{{ asset($producto->imagen) }}" alt="computer" class="w-full h-full object-contain"
+                            data-aos="fade-up" data-aos-offset="150"
+                            onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';">
+                    </div>
+                    <x-product-slider :product="$producto" />
+                </div>    
+
+
+
+                <div class="flex flex-col justify-start items-center gap-5">
+                    <div class="flex flex-col" data-aos="fade-up" data-aos-offset="150">
                         
-                        <img src="{{ asset($producto->imagen) }}" alt="producto"
-                                 class="w-[70px] h-[70px] active rounded-xl cursor-pointer secundario object-contain">
-                                 
-                        @foreach ($productosConGalerias as $galeria)
-                            <img src="{{ asset($galeria->imagen) }}" alt="{{ $galeria->descripcion }}"
-                                class="w-[70px] h-[70px] active rounded-xl cursor-pointer secundario object-contain" data-aos="fade-up"
-                                data-aos-offset="150">
-                        @endforeach
-                    </div>
 
-                    <div class="md:basis-3/4 flex justify-center items-center order-1 md:order-2 w-full ">
-                        <img src="{{ asset($producto->imagen) }}" alt="producto"
-                            class="w-full h-full object-cover rounded-xl principal" data-aos="fade-up"
-                            data-aos-offset="150">
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-5">
-                    <div class="flex flex-col gap-5 pb-10 border-b-2 border-[#DDDDDD]" data-aos="fade-up"
-                        data-aos-offset="150">
-                        <h2 id="nombreproducto" class="font-roboto font-bold text-text40 text-[#082252]">
-                            {{ $producto->producto }}</h2>
+                        <div class="flex flex-col gap-5 w-full lg:max-w-lg">
+                            <h2 id="nombreproducto" class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
+                                {{ $producto->producto }}</h2>
+                            <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
+                            <p class="text-[#02324A] font-gotham_book font-normal text-lg">
+                                Portafolio amplio que incluye empresas líderes en la investigación, desarrollo, fabricación 
+                                y comercialización de soluciones de gestión de energía tanto medidores de energía, analizadores 
+                                de redes y calidad de energía, equipos de automatización para subestaciones y software de gestión 
+                                energética. Cumpliendo con Normas IEC, IEEE, EN, ANSI, entre otras.</p>
+                            <div class="flex flex-row">
+                                <div target="_blank" id="chatonline" class="cursor-pointer py-3 rounded-3xl bg-[#11355A] flex flex-row w-auto px-6 justify-center items-center gap-2 mt-5">
+                                    <a class="text-white font-gotham_medium tracking-wider text-center">Solicitar producto</a>
+                                    <img src="{{asset('images/svg/flechaderecha.svg')}}"/>
+                                </div> 
+                            </div>
+                        </div>
 
 
-                        <p class="text-[#082252] text-text16 font-roboto font-normal">{{ $producto->extract }}</p>
+                        {{-- <p class="text-[#082252] text-text16 font-roboto font-normal">{{ $producto->extract }}</p> --}}
 
-                         @if (!is_null($producto->description))
+                         {{-- @if (!is_null($producto->description))
                             <div class="flex flex-col gap-5 " data-aos="fade-up" data-aos-offset="150">
                                 <div class="text-[#082252] text-text16 font-normal font-roboto flex flex-col gap-5">
                                     <p>
@@ -62,60 +73,60 @@
                                     </p>
                                 </div>
                             </div>
-                        @endif
+                        @endif --}}
 
-                        <div class="flex justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
+                        {{-- <div class="flex justify-between items-center text-white font-roboto font-bold text-text14 gap-5 pt-3"
                             data-aos="fade-up" data-aos-offset="150">
-                         @if ($producto->name_fichatecnica)
-                         <a href="{{ asset($producto->url_fichatecnica . $producto->name_fichatecnica) }}" target="_blank" 
-                            class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
-                            <span>Ficha técnica</span>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" x="0" y="0"
-                                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                    class="">
-                                    <g>
-                                        <path
-                                            d="M382.56 233.376A15.96 15.96 0 0 0 368 224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832 0-16 7.168-16 16v208h-64a16.013 16.013 0 0 0-14.56 9.376c-2.624 5.728-1.6 12.416 2.528 17.152l112 128A15.946 15.946 0 0 0 256 384c4.608 0 8.992-2.016 12.032-5.472l112-128c4.16-4.704 5.12-11.424 2.528-17.152z"
-                                            fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
-                                        <path
-                                            d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
-                                            fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
-                                    </g>
-                                </svg>
-                            </div>
-                        </a>                    
-                         @endif
-                          
-                        @if ($producto->name_docriesgo)
-                        <a href="{{ asset($producto->url_docriesgo.$producto->name_docriesgo) }}" target="_blank" 
-                            class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
-                            <span>Hoja de seguridad</span>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" x="0" y="0"
-                                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                    class="">
-                                    <g>
-                                        <path
-                                            d="M382.56 233.376A15.96 15.96 0 0 0 368 224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832 0-16 7.168-16 16v208h-64a16.013 16.013 0 0 0-14.56 9.376c-2.624 5.728-1.6 12.416 2.528 17.152l112 128A15.946 15.946 0 0 0 256 384c4.608 0 8.992-2.016 12.032-5.472l112-128c4.16-4.704 5.12-11.424 2.528-17.152z"
-                                            fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
-                                        <path
-                                            d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
-                                            fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
-                                    </g>
-                                </svg>
-                            </div>
-                        </a>
-                        @endif
                             
+                            @if ($producto->name_fichatecnica)
+                                <a href="{{ asset($producto->url_fichatecnica . $producto->name_fichatecnica) }}" target="_blank" 
+                                    class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
+                                    <span>Ficha técnica</span>
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" x="0" y="0"
+                                            viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                            class="">
+                                            <g>
+                                                <path
+                                                    d="M382.56 233.376A15.96 15.96 0 0 0 368 224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832 0-16 7.168-16 16v208h-64a16.013 16.013 0 0 0-14.56 9.376c-2.624 5.728-1.6 12.416 2.528 17.152l112 128A15.946 15.946 0 0 0 256 384c4.608 0 8.992-2.016 12.032-5.472l112-128c4.16-4.704 5.12-11.424 2.528-17.152z"
+                                                    fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
+                                                <path
+                                                    d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
+                                                    fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </a>                    
+                            @endif
+                            
+                            @if ($producto->name_docriesgo)
+                                <a href="{{ asset($producto->url_docriesgo.$producto->name_docriesgo) }}" target="_blank" 
+                                    class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
+                                    <span>Hoja de seguridad</span>
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" x="0" y="0"
+                                            viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                            class="">
+                                            <g>
+                                                <path
+                                                    d="M382.56 233.376A15.96 15.96 0 0 0 368 224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832 0-16 7.168-16 16v208h-64a16.013 16.013 0 0 0-14.56 9.376c-2.624 5.728-1.6 12.416 2.528 17.152l112 128A15.946 15.946 0 0 0 256 384c4.608 0 8.992-2.016 12.032-5.472l112-128c4.16-4.704 5.12-11.424 2.528-17.152z"
+                                                    fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
+                                                <path
+                                                    d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
+                                                    fill="#FFFFFF" opacity="1" data-original="#000000" class=""></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </a>
+                            @endif 
+                             
+                        </div> --}}
 
-                        </div>
-
-                        <div class="flex flex-col items-start justify-start text-white font-roboto font-bold text-text14 gap-5 w-1/2 w-full lg:w-1/2"
+                        {{-- <div class="flex flex-col items-start justify-start text-white font-roboto font-bold text-text14 gap-5 w-full lg:w-1/2"
                             data-aos="fade-up" data-aos-offset="150">
-                            {{-- <div target="_blank" id="chatonline"
+                            <div target="_blank" id="chatonline"
                                 class="cursor-pointer bg-[#FF5E14] flex justify-center items-center w-6/12 py-3 px-4 md:px-10 text-center gap-2 rounded-xl">
                                 <span>Cotizar aquí</span>
                                 <div>
@@ -126,8 +137,10 @@
                                             fill="white" />
                                     </svg>
                                 </div>
-                            </div> --}}
+                            </div>
+                            
                             <h2 class="font-roboto font-bold text-text28 text-[#082252]">Obtén una cotización</h2>
+                            
                             <div class= "">
                                   <form  id="formProducto">
                                     @csrf
@@ -171,7 +184,8 @@
                                     </div>
                                 </form>   
                             </div>
-                            {{-- <form  id="formContactos">
+
+                            <form  id="formContactos">
                                 @csrf
                                 <div class="flex flex-col gap-5">
                                     <div class="relative w-full"  >
@@ -209,12 +223,13 @@
                                             solicitud</button>
                                     </div>
                                 </div>
-                            </form> --}}
-                        </div>
+                            </form>
+
+                        </div> --}}
                     </div>
 
 
-                    <div class="pt-5" data-aos="fade-up" data-aos-offset="150">
+                    {{-- <div class="pt-5" data-aos="fade-up" data-aos-offset="150">
                         @if (is_null($producto->categoria->name))
                         @else
                             <p class="font-roboto font-medium text-text14 text-[#082252]">
@@ -223,23 +238,23 @@
                             </p>
                         @endif
 
-                        {{-- @if (is_null($producto->sku))
+                        @if (is_null($producto->sku))
                         @else
                             <p class="font-roboto font-medium text-text14 text-[#082252]">
                                 SKU: <span class="text-[#565656] font-normal text-text14">{{ $producto->sku }}</span>
                             </p>
-                        @endif --}}
-
-
-                    </div>
+                        @endif
+                    </div> --}}
+                    
                 </div>
             </div>
-            @php
+            
+            {{-- @php
                 $especificacionf = strip_tags($producto->especificacion);
                 
-            @endphp
+            @endphp --}}
                 
-            @if (!is_null($producto->especificacion) && $especificacionf !== '')
+            {{-- @if (!is_null($producto->especificacion) && $especificacionf !== '')
                 <div class="flex flex-col gap-2 pt-10 md:pt-16" data-aos="fade-up" data-aos-offset="150">
                     <h3 class="font-roboto font-bold text-text28 text-[#082252]">Características técnicas</h3>
                     <div class="text-[#082252] text-text16 font-normal font-roboto flex flex-col ">
@@ -248,7 +263,7 @@
                         
                     </div>
                 </div>
-            @endif
+            @endif --}}
             
                 
 
@@ -269,12 +284,41 @@
             @endif --}}
         </section>
 
+
+        <section>
+            <div class="flex flex-col gap-10 w-full px-[5%] mx-auto bg-[#F5F7F9] pt-10">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-0">
+
+                    <div class="flex flex-col justify-start gap-5 w-full  col-span-2">
+                        <h2 class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
+                            Necesitas ayuda?</h2>
+                        <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>
+                        <p class="text-[#02324A] font-gotham_book font-normal text-lg">
+                            Donec non velit non elit euismod varius eu id tellus. Nunc ultrices mauris quis facilisis sollicitudin. 
+                            Vestibulum convallis diam et nulla aliquet fringilla eget ut massa. Proin ac consequat neque. 
+                            Pellentesque arcu nisi, bibendum eget gravida sed, condimentum id nulla.</p>
+                        <div
+                            class="py-3 rounded-3xl bg-[#11355A] flex flex-row w-48 justify-center items-center gap-2 mt-5">
+                            <a class="text-white font-gotham_medium tracking-wider text-center">Contactarme</a>
+                            <img src="{{ asset('images/svg/flechaderecha.svg') }}" />
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col justify-end col-span-1">
+                        <img class="h-96 object-cover sm:object-contain object-bottom"
+                            src="{{ asset('images/img/secretaria.png') }}" />
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
         @if ($ProdComplementarios->isEmpty())
         @else
-            <section class="bg-[#F7F8F8] py-20 mt-10 md:mt-16">
-                <div class="grid grid-cols-1 md:grid-cols-3 w-11/12 mx-auto gap-5">
-                    @foreach ($ProdComplementarios->take(3) as $complemento)
-                        <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
+            <section class="py-10 lg:py-16 px-[5%]">
+                <div>
+                        {{-- <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
                             <div class="flex justify-center items-center">
                                 <a href="{{ route('producto', $complemento->id) }}" class="w-full"><img
                                         src="{{ asset($complemento->imagen) }}" alt="planta de tratmiento de agua"
@@ -294,8 +338,36 @@
                                     {{ Str::limit($complemento->extract, 220) }}
                                 </p>
                             </div>
+                        </div> --}}
+                    <div class="swiper slider_productos">
+                        <div class="swiper-wrapper">
+                            @foreach ($ProdComplementarios as $complemento)
+                                <div class="swiper-slide">   
+                                    <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                                        <div class="flex justify-center items-center bg-[#F5F7F9] p-1 sm:p-2 relative">
+                                            <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                                                <span
+                                                    class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                                            </div>
+                                            <a href="{{ route('producto', $complemento->id) }}" class="">
+                                                <img src="{{ asset($complemento->imagen)}}" alt="aa"
+                                                    class="w-full h-full object-contain aspect-square" />
+                                            </a>
+                                        </div>
+                    
+                                        <div class="flex flex-col gap-1 justify-start">
+                                            <a href="{{ route('producto', $complemento->id) }}">
+                                                <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                                    {{ $complemento->producto }}</h2>
+                                            </a>
+                                            <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                                                Por pedido</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             </section>
         @endif
@@ -354,6 +426,7 @@
             });
         });
     </script>
+
     <script>
  
         // Obtener información del navegador y del sistema operativo
@@ -378,6 +451,43 @@
         const screenHeight = window.screen.height;
         document.getElementById('anchodispositivo').value = screenWidth;
         document.getElementById('largodispositivo').value = screenHeight;
+    </script>
+
+    <script>
+        var swiper = new Swiper(".slider_productos", {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            centeredSlides: false,
+            initialSlide: 0,
+            grabCursor: true,
+            loop: true,
+             autoplay: {
+                delay: 2000, 
+                disableOnInteraction: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                   
+                },
+                600: {
+                    slidesPerView: 2,
+                   
+                },
+                950: {
+                    slidesPerView: 3,
+                   
+                },
+                1200: {
+                    slidesPerView: 4,
+                   
+                },
+            },
+            pagination: {
+                el: ".swiper-pagination_productos",
+                clickable: true,
+            },
+        });
     </script>
 
 @stop
