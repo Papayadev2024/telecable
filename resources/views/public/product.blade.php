@@ -49,11 +49,8 @@
                             <h2 id="nombreproducto" class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
                                 {{ $producto->producto }}</h2>
                             <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
-                            <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                Portafolio amplio que incluye empresas líderes en la investigación, desarrollo, fabricación 
-                                y comercialización de soluciones de gestión de energía tanto medidores de energía, analizadores 
-                                de redes y calidad de energía, equipos de automatización para subestaciones y software de gestión 
-                                energética. Cumpliendo con Normas IEC, IEEE, EN, ANSI, entre otras.</p>
+                            <div class="text-[#02324A] font-gotham_book font-normal text-lg">
+                                {!! $producto->description !!}</div>
                             <div class="flex flex-row">
                                 <div target="_blank" id="chatonline" class="cursor-pointer py-3 rounded-3xl bg-[#11355A] flex flex-row w-auto px-6 justify-center items-center gap-2 mt-5">
                                     <a class="text-white font-gotham_medium tracking-wider text-center">Solicitar producto</a>

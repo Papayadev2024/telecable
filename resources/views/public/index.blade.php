@@ -69,19 +69,19 @@
         <div class="w-full lg:w-[55%] text-[#151515] flex flex-col justify-center items-center gap-2 md:gap-10 pb-5 xl:pb-20">
             <div class="w-full flex flex-col gap-5 px-0 lg:px-[5%] pt-8 lg:pt-0 xl:max-w-3xl">
               <h1 class="text-[#F8FCFF] font-gotham_medium text-5xl xl:text-6xl line-clamp-4 xl:line-clamp-3">
-                Energía Inteligente para la industria
+                {{$textoshome->title1section ?? "Ingrese un texto"}}
               </h1>
-              <div class="py-3 rounded-3xl bg-[#11355A] flex flex-row w-56 justify-center items-center gap-2">
-                <a class="text-white font-gotham_medium tracking-wider text-center">Ver productos</a>
+              <div class="cursor-pointer py-3 rounded-3xl bg-[#11355A] flex flex-row w-56 justify-center items-center gap-2">
+                <a href="{{$textoshome->url_image1section ?? "/catalogo"}}" class=" text-white font-gotham_medium tracking-wider text-center">{{$textoshome->title2section ?? "Ingrese un texto"}}</a>
                 <img src="{{asset('images/svg/flechaderecha.svg')}}"/>
               </div>
               <p class="text-[#F8FCFF] text-lg font-gotham_book line-clamp-3">
-                Soluciones de IoT integradas en sistemas de medición de energía de alta precisión.
+                {{$textoshome->description1section ?? "Ingrese un texto"}}
               </p>
             </div>
             <div class="w-full flex flex-col gap-2 px-0 lg:px-[5%] pt-5 lg:pt-0 xl:max-w-3xl">
                 <p class="text-[#F8FCFF] text-base font-gotham_medium line-clamp-1">
-                    Líderes globales para asegurar solidez
+                    {{$textoshome->description2section ?? "Ingrese un texto"}}
                 </p>
                 <div class="flex flex-wrap gap-10 mt-3">
                     <img class="h-8 object-contain" src="{{asset('images/img/logosatec.png')}}" />
@@ -155,47 +155,32 @@
 
 
 
-
+        @if ($estadisticas->isEmpty())
+        @else    
             <section>
                 <div class="flex flex-col gap-10 w-full px-[5%] mx-auto py-10 lg:py-20 bg-[#FBFBFB]">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                        
                             <div class="flex flex-col justify-center gap-5 rounded-xl">
                                 <h2 class="leading-tight font-gotham_medium  text-4xl xl:text-5xl text-[#0181AA] ">
-                                    Optimizamos procesos de medición energética</h2>
+                                    {{$textoshome->title3section ?? "Ingrese un texto"}}</h2>
                                 <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
                                 <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                    Logramos eficiencias mediante una asesoría especializada según las necesidades del cliente.</p>
+                                    {{$textoshome->description3section ?? "Ingrese un texto"}}</p>
                                 <div class="py-3 rounded-3xl bg-[#11355A] flex flex-row w-48 justify-center items-center gap-2 mt-5">
-                                    <a class="text-white font-gotham_medium tracking-wider text-center">Nosotros</a>
+                                    <a href="{{route('nosotros')}}" class="cursor-pointer text-white font-gotham_medium tracking-wider text-center">Nosotros</a>
                                     <img src="{{asset('images/svg/flechaderecha.svg')}}"/>
                                 </div>
 
                                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-5 mt-4">
+                                  @foreach ($estadisticas as $estadistica)
                                     <div class="flex flex-col">
                                         <h2 class="leading-tight font-gotham_medium text-5xl text-[#0181AA] ">
-                                            15+</h2>
+                                            {{$estadistica->title}}</h2>
                                         <p class="text-[#02324A] font-gotham_book font-normal text-base">
-                                            Años de experiencia.</p>
+                                            {{$estadistica->link1}}</p>
                                     </div>
-                                    <div class="flex flex-col">
-                                        <h2 class="leading-tight font-gotham_medium text-5xl text-[#0181AA] ">
-                                            15+</h2>
-                                        <p class="text-[#02324A] font-gotham_book font-normal text-base">
-                                            Años de experiencia.</p>
-                                    </div>    
-                                    <div class="flex flex-col">
-                                        <h2 class="leading-tight font-gotham_medium text-5xl text-[#0181AA] ">
-                                            15+</h2>
-                                        <p class="text-[#02324A] font-gotham_book font-normal text-base">
-                                            Años de experiencia.</p>
-                                    </div>    
-                                    <div class="flex flex-col">
-                                        <h2 class="leading-tight font-gotham_medium text-5xl text-[#0181AA] ">
-                                            15+</h2>
-                                        <p class="text-[#02324A] font-gotham_book font-normal text-base">
-                                            Años de experiencia.</p>
-                                    </div>       
+                                  @endforeach  
                                 </div>
                             </div>
                              
@@ -207,7 +192,7 @@
                     </div>
                 </div>
             </section>
-
+        @endif    
 
             <section>
                 <div class="flex flex-col gap-10 w-full px-[5%] mx-auto pt-10 lg:pt-20 bg-[#F5F7F9]">
@@ -215,15 +200,12 @@
                        
                             <div class="flex flex-col justify-start gap-5 w-full lg:max-w-lg pb-10 lg:pb-20 order-1">
                                 <h2 class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
-                                    Flexible Portfolio</h2>
+                                    {{$textoshome->title4section ?? "Ingrese un texto"}}</h2>
                                 <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
                                 <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                    Portafolio amplio que incluye empresas líderes en la investigación, desarrollo, fabricación 
-                                    y comercialización de soluciones de gestión de energía tanto medidores de energía, analizadores 
-                                    de redes y calidad de energía, equipos de automatización para subestaciones y software de gestión 
-                                    energética. Cumpliendo con Normas IEC, IEEE, EN, ANSI, entre otras.</p>
+                                    {{$textoshome->description4section ?? "Ingrese un texto"}}</p>
                                 <div class="py-3 rounded-3xl bg-[#11355A] flex flex-row w-48 justify-center items-center gap-2 mt-5">
-                                    <a class="text-white font-gotham_medium tracking-wider text-center">Conoce más</a>
+                                    <a href="{{route('innovaciones')}}" class="cursor-pointer text-white font-gotham_medium tracking-wider text-center">Conoce más</a>
                                     <img src="{{asset('images/svg/flechaderecha.svg')}}"/>
                                 </div> 
                             </div>
@@ -234,30 +216,29 @@
                              
                             <div class="flex flex-col justify-start gap-5 w-full lg:max-w-lg pb-10 lg:pb-20 order-2 lg:order-3">
                                 <h2 class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
-                                    Powerful team</h2>
+                                    {{$textoshome->title5section ?? "Ingrese un texto"}}</h2>
                                 <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
                                 <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                    Contamos con un equipo de ingenieros especializados que desarrolla e integra soluciones basadas 
-                                    en el Internet de las cosas (Internet of Things - IoT) para los segmentos de Smart Grid. 
-                                    Smart Energy, Smart Homes y Smart Security.</p>
+                                    {{$textoshome->description5section ?? "Ingrese un texto"}}</p>
                             </div>
                             
                     </div>
                 </div>
             </section>
 
-
+        @if ($destacados->isEmpty())
+        @else     
             <section>
                 <div class="flex flex-col gap-10 w-full px-[5%] mx-auto py-10 lg:py-20 bg-[#FBFBFB]">
                     <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center"> 
                         <div class="flex flex-col gap-3 items-start justify-center max-w-2xl">
                              <h2 class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
-                                    Portafolio de productos</h2>  
+                                {{$textoshome->footer5section ?? "Ingrese un texto"}}</h2>  
                             <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                    Cras quis sapien vel est pharetra porta.</p>  
+                                {{$textoshome->description7section ?? "Ingrese un texto"}}</p>  
                         </div>
                          <div class="py-3 rounded-3xl bg-[#11355A] flex flex-row w-48 justify-center items-center gap-2 mt-5">
-                                <a class="text-white font-gotham_medium tracking-wider text-center">Conoce más</a>
+                                <a href="{{route('catalogo', 0)}}" class="text-white font-gotham_medium tracking-wider text-center">Conoce más</a>
                                 <img src="{{asset('images/svg/flechaderecha.svg')}}"/>
                         </div> 
                     </div>
@@ -265,130 +246,36 @@
                     <div class="w-full">
                          <div class="swiper slider_productos">
                             <div class="swiper-wrapper">
-
-                                <div class="swiper-slide">   
-                                    <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                                        <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                                            <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                                                <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                                            </div>   
-                                            <a href="#" class="">
-                                                <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                                    class="w-full h-full object-contain aspect-square" />
-                                            </a>
+                              @foreach ($destacados as $destacado)
+                                    <div class="swiper-slide">   
+                                        <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                                            <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                                                <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                                                    <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                                                </div>   
+                                                <a href="#" class="">
+                                                    <img src="{{ asset($destacado->imagen) }}" alt="aa"
+                                                        class="w-full h-full object-contain aspect-square" />
+                                                </a>
+                                            </div>
+                                            
+                                            <div class="flex flex-col gap-1 justify-start">
+                                                <a href="#">
+                                                    <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                                   {{$destacado->producto}}</h2>  
+                                                </a>
+                                                <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                                                    Por pedido</p>   
+                                            </div>
                                         </div>
-                                        
-                                        <div class="flex flex-col gap-1 justify-start">
-                                            <a href="#">
-                                                <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                                Medidor BFM2</h2>  
-                                            </a>
-                                            <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                                                Por pedido</p>   
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 <div class="swiper-slide">   
-                                    <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                                        <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                                            <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                                                <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                                            </div>   
-                                            <a href="#" class="">
-                                                <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                                    class="w-full h-full object-contain aspect-square" />
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="flex flex-col gap-1 justify-start">
-                                            <a href="#">
-                                                <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                                Medidor BFM2</h2>  
-                                            </a>
-                                            <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                                                Por pedido</p>   
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 <div class="swiper-slide">   
-                                    <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                                        <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                                            <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                                                <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                                            </div>   
-                                            <a href="#" class="">
-                                                <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                                    class="w-full h-full object-contain aspect-square" />
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="flex flex-col gap-1 justify-start">
-                                            <a href="#">
-                                                <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                                Medidor BFM2</h2>  
-                                            </a>
-                                            <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                                                Por pedido</p>   
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 <div class="swiper-slide">   
-                                    <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                                        <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                                            <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                                                <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                                            </div>   
-                                            <a href="#" class="">
-                                                <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                                    class="w-full h-full object-contain aspect-square" />
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="flex flex-col gap-1 justify-start">
-                                            <a href="#">
-                                                <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                                Medidor BFM2</h2>  
-                                            </a>
-                                            <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                                                Por pedido</p>   
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 <div class="swiper-slide">   
-                                    <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                                        <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                                            <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                                                <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                                            </div>   
-                                            <a href="#" class="">
-                                                <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                                    class="w-full h-full object-contain aspect-square" />
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="flex flex-col gap-1 justify-start">
-                                            <a href="#">
-                                                <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                                Medidor BFM2</h2>  
-                                            </a>
-                                            <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                                                Por pedido</p>   
-                                        </div>
-                                    </div>
-                                </div>
-
-                                
-
+                                    </div> 
+                              @endforeach   
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
+        @endif      
 
 
 
@@ -481,11 +368,10 @@
 
                     <div class="flex flex-col gap-2">
                         <h2 class="leading-tight font-gotham_medium  text-4xl xl:text-5xl text-[#0181AA]">
-                             Nuestros datos de contacto</h2>
+                            {{$textoshome->title6section ?? "Ingrese un texto"}}</h2>
                         <div class="h-[3px] bg-[#0181AA] w-32 rounded-full"> </div>   
                         <p class="text-[#02324A] font-gotham_book font-normal text-lg mt-5">
-                            Nullam nec orci dui. Praesent tristique facilisis quam, a egestas lorem consectetur fringilla. 
-                            Suspendisse cursus erat eget ante auctor, non hendrerit ipsum egestas.
+                            {{$textoshome->description6section ?? "Ingrese un texto"}}
                         </p>
                     </div>
 
@@ -523,7 +409,7 @@
                    
                         <div class="flex flex-col gap-10 bg-white rounded-xl p-6">
                                 <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA]">
-                                   Ponerse en contacto
+                                    {{$textoshome->title7section ?? "Ingrese un texto"}}
                                 </h2>
                                 <form id="formContactos" class="grid grid-cols-1 gap-4">
                                     @csrf

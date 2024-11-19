@@ -19,11 +19,10 @@
 
                     <div class="flex flex-col gap-2">
                         <h2 class="leading-tight font-gotham_medium  text-4xl xl:text-5xl text-[#0181AA]">
-                            Nuestros datos de contacto</h2>
+                           {{$textoshome->title6section ?? "Ingrese un texto"}}</h2>
                         <div class="h-[3px] bg-[#0181AA] w-32 rounded-full"> </div>
                         <p class="text-[#02324A] font-gotham_book font-normal text-lg mt-5">
-                            Nullam nec orci dui. Praesent tristique facilisis quam, a egestas lorem consectetur fringilla.
-                            Suspendisse cursus erat eget ante auctor, non hendrerit ipsum egestas.
+                            {{$textoshome->description6section ?? "Ingrese un texto"}}
                         </p>
                     </div>
 
@@ -61,7 +60,7 @@
 
                     <div class="flex flex-col gap-10 bg-white rounded-xl p-6">
                         <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA]">
-                            Ponerse en contacto
+                            {{$textoshome->title7section ?? "Ingrese un texto"}}
                         </h2>
                         <form id="formContactos" class="grid grid-cols-1 gap-4">
                             @csrf
@@ -130,105 +129,55 @@
             <img class="w-full object-cover object-center h-60 sm:h-96 lg:h-[450px]" src="{{asset('images/img/bannercontacto.png')}}" />
         </div>
 
-        <section>
-            <div class="flex flex-col gap-10 w-full px-[5%] mx-auto pb-10 lg:pb-20 bg-[#F5F7F9]">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-10 lg:gap-20">
-                       
-                            <div class="flex flex-col justify-center gap-5 rounded-xl">
-                                <h2 class="leading-tight font-gotham_medium text-4xl text-[#0181AA]">
-                                    Todo FAQs</h2>
-                                <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
-                         
-                                <div class="font-poppins">
-                                    <div class="relative bg-white px-[5%] ring-gray-900/5 sm:mx-auto sm:rounded-lg">
-                                        <div class="mx-auto">
-                                            <div class="mx-auto mt-8 grid max-w-[900px] divide-y divide-neutral-200">
-                                               
-                                                <div class="py-3 sm:py-4">
-                                                    <details class="group">
-                                                            <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                                                <span class="font-gotham_medium text-lg sm:text-xl text-[#0181AA] leading-tight">
-                                                                ¿Qué poner en preguntas frecuentes?</span>
-                                                                <span class="transition group-open:rotate-180">
-                                                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M17 10.5L11.9992 15.08L7 10.5" stroke="#0181AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                    </svg>
-                                                                </span>
-                                                            </summary>
-                                                            <p class="group-open:animate-fadeIn mt-3 text-[#02324A] font-gotham_book font-normal text-base">
-                                                                Respuesta 1
-                                                            </p>
-                                                    </details>
-                                                </div>
-
-                                                <div class="py-3 sm:py-4">
-                                                    <details class="group">
-                                                            <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                                                <span class="font-gotham_medium text-lg sm:text-xl text-[#0181AA] leading-tight">
-                                                                ¿Qué poner en preguntas frecuentes?</span>
-                                                                <span class="transition group-open:rotate-180">
-                                                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M17 10.5L11.9992 15.08L7 10.5" stroke="#0181AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                    </svg>
-                                                                </span>
-                                                            </summary>
-                                                            <p class="group-open:animate-fadeIn mt-3 text-[#02324A] font-gotham_book font-normal text-base">
-                                                                Respuesta 1
-                                                            </p>
-                                                    </details>
-                                                </div>
-
-                                                <div class="py-3 sm:py-4">
-                                                    <details class="group">
-                                                            <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                                                <span class="font-gotham_medium text-lg sm:text-xl text-[#0181AA]  leading-tight">
-                                                                ¿Qué poner en preguntas frecuentes?</span>
-                                                                <span class="transition group-open:rotate-180">
-                                                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M17 10.5L11.9992 15.08L7 10.5" stroke="#0181AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                    </svg>
-                                                                </span>
-                                                            </summary>
-                                                            <p class="group-open:animate-fadeIn mt-3 text-[#02324A] font-gotham_book font-normal text-base">
-                                                                Respuesta 1
-                                                            </p>
-                                                    </details>
-                                                </div>
-
-                                                <div class="py-3 sm:py-4">
-                                                    <details class="group">
-                                                            <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                                                <span class="font-gotham_medium text-lg sm:text-xl text-[#0181AA] leading-tight">
-                                                                ¿Qué poner en preguntas frecuentes?</span>
-                                                                <span class="transition group-open:rotate-180">
-                                                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M17 10.5L11.9992 15.08L7 10.5" stroke="#0181AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                    </svg>
-                                                                </span>
-                                                            </summary>
-                                                            <p class="group-open:animate-fadeIn mt-3 text-[#02324A] font-gotham_book font-normal text-base">
-                                                                Respuesta 1
-                                                            </p>
-                                                    </details>
-                                                </div>
-
+        @if ($preguntasfrec->isEmpty())
+        @else
+            <section>
+                <div class="flex flex-col gap-10 w-full px-[5%] mx-auto pb-10 lg:pb-20 bg-[#F5F7F9]">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-10 lg:gap-20">
+                        
+                                <div class="flex flex-col justify-center gap-5 rounded-xl">
+                                    <h2 class="leading-tight font-gotham_medium text-4xl text-[#0181AA]">
+                                        Todo FAQs</h2>
+                                    <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
+                            
+                                    <div class="font-poppins">
+                                        <div class="relative bg-white px-[5%] ring-gray-900/5 sm:mx-auto sm:rounded-lg">
+                                            <div class="mx-auto">
+                                                <div class="mx-auto mt-8 grid max-w-[900px] divide-y divide-neutral-200">
+                                                    @foreach ($preguntasfrec as $preguntas)  
+                                                        <div class="py-3 sm:py-4">
+                                                            <details class="group">
+                                                                    <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                                                        <span class="font-gotham_medium text-lg sm:text-xl text-[#0181AA] leading-tight">
+                                                                        {{$preguntas->pregunta}}</span>
+                                                                        <span class="transition group-open:rotate-180">
+                                                                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="M17 10.5L11.9992 15.08L7 10.5" stroke="#0181AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </summary>
+                                                                    <div class="group-open:animate-fadeIn mt-3 text-[#02324A] font-gotham_book font-normal text-base">
+                                                                        {!!$preguntas->respuesta!!}
+                                                                    </div>
+                                                            </details>
+                                                        </div>
+                                                    @endforeach    
+                                                </div> 
                                             </div>
-                                            
                                         </div>
                                     </div>
+
                                 </div>
-
-                            </div>
-                             
-                            <div class="flex flex-col items-center justify-center">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15604.322139862717!2d-77.0165134!3d-12.1066391!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c7e150f2e221%3A0x21876935c1e5963!2sCADMO%20Soluciones%20SAC!5e0!3m2!1ses-419!2spe!4v1729968311226!5m2!1ses-419!2spe" 
-                                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                     
-                    </div>
-            </div>
-        </section>
-
+                                
+                                <div class="flex flex-col items-center justify-center">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15604.322139862717!2d-77.0165134!3d-12.1066391!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c7e150f2e221%3A0x21876935c1e5963!2sCADMO%20Soluciones%20SAC!5e0!3m2!1ses-419!2spe!4v1729968311226!5m2!1ses-419!2spe" 
+                                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                        
+                        </div>
+                </div>
+            </section>
+        @endif    
     </main>
 
 

@@ -32,7 +32,7 @@
         <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
           <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
             aria-hidden="true">•••</span>
-          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">HPI - Backend</span>
+          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Cadmo - Backend</span>
         </h3>
         <ul class="mt-3">
 
@@ -64,89 +64,62 @@
               </div>
             </a>
           </li>
+ 
 
+        
 
-          <!-- Messages Landing-->
-          {{-- <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['mensajeslanding'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['mensajeslanding'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('mensajeslanding') }}">
-              <div class="flex items-center justify-between">
-                <div class="grow flex items-center">
-                  <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                    <path
-                      class="fill-current @if (in_array(Request::segment(2), ['mensajeslanding'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                      d="M14.5 7c4.695 0 8.5 3.184 8.5 7.111 0 1.597-.638 3.067-1.7 4.253V23l-4.108-2.148a10 10 0 01-2.692.37c-4.695 0-8.5-3.184-8.5-7.11C6 10.183 9.805 7 14.5 7z" />
-                    <path
-                      class="fill-current @if (in_array(Request::segment(2), ['mensajeslanding'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                      d="M11 1C5.477 1 1 4.582 1 9c0 1.797.75 3.45 2 4.785V19l4.833-2.416C8.829 16.85 9.892 17 11 17c5.523 0 10-3.582 10-8s-4.477-8-10-8z" />
-                  </svg>
-                  <span
-                    class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Mensajes de landing</span>
-                </div>
-                <!-- Badge -->
-                <div class="flex flex-shrink-0 ml-2">
-                  @if ($mensajeslanding !== 0)
-                    <span
-                      class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-indigo-500 px-2 rounded">{{ $mensajeslanding }}</span>
-                  @endif
-                </div>
-              </div>
-            </a>
-          </li> --}}
+          
+          <x-menu.item id="datosgenerales" href="{{ route('datosgenerales.edit', 1) }}"
+            icon="fas fa-undo-alt">
+            Datos Generales
+          </x-menu.item>
 
+          <x-menu.item id="politicas-de-devolucion" href="{{ route('politicas-de-devolucion.edit', 1) }}"
+            icon="fas fa-undo-alt">
+            Politicas de Privacidad
+          </x-menu.item>
 
-        <!-- Messages Product-->
-          {{-- <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['mensajesproduct'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['mensajesproduct'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('mensajesproduct') }}">
-              <div class="flex items-center justify-between">
-                <div class="grow flex items-center">
-                  <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                    <path
-                      class="fill-current @if (in_array(Request::segment(2), ['mensajesproduct'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                      d="M14.5 7c4.695 0 8.5 3.184 8.5 7.111 0 1.597-.638 3.067-1.7 4.253V23l-4.108-2.148a10 10 0 01-2.692.37c-4.695 0-8.5-3.184-8.5-7.11C6 10.183 9.805 7 14.5 7z" />
-                    <path
-                      class="fill-current @if (in_array(Request::segment(2), ['mensajesproduct'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                      d="M11 1C5.477 1 1 4.582 1 9c0 1.797.75 3.45 2 4.785V19l4.833-2.416C8.829 16.85 9.892 17 11 17c5.523 0 10-3.582 10-8s-4.477-8-10-8z" />
-                  </svg>
-                  <span
-                    class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Mensajes de producto</span>
-                </div>
-                <!-- Badge -->
-                <div class="flex flex-shrink-0 ml-2">
-                  @if ($mensajesproduct !== 0)
-                    <span
-                      class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-indigo-500 px-2 rounded">{{ $mensajesproduct }}</span>
-                  @endif
-                </div>
-              </div>
-            </a>
-          </li> --}}
+          <x-menu.item id="homeview" href="{{ route('homeview.edit', 1) }}" icon="fas fa-address-card">
+            Textos - Home
+          </x-menu.item>
 
+          <x-menu.item id="sobrenosotros" href="{{ route('nosotrosview.edit', 1) }}" icon="fas fa-address-card">
+            Textos - Nosotros
+          </x-menu.item>
 
-           <!-- About Us -->
-           <li
-           class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['aboutus'])) {{ 'bg-slate-900' }} @endif">
-           <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['aboutus'])) {{ 'hover:text-slate-200' }} @endif"
-             href="{{ route('aboutus.index') }}">
-             <div class="flex items-center">
-               <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                 <path
-                   class="fill-current @if (in_array(Request::segment(2), ['aboutus'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                   d="M1 3h22v20H1z" />
-                 <path
-                   class="fill-current @if (in_array(Request::segment(2), ['aboutus'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                   d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
-               </svg>
-               <span
-                 class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Nosotros</span>
-             </div>
-           </a>
-         </li>
+          <x-menu.item id="innovaciones" href="{{ route('innovacionesview.edit', 1) }}" icon="fas fa-address-card">
+            Textos - Innovacion
+          </x-menu.item>
 
-          <!-- Subscripciones -->
+          <x-menu.item id="productos" href="{{ route('productosview.edit', 1) }}" icon="fas fa-address-card">
+            Textos - Productos
+          </x-menu.item>
+
+          <x-menu.item id="benefit" href="{{ route('strength.index') }}" icon="fas fa-address-card">
+            Beneficios
+          </x-menu.item>
+
+          <x-menu.item id="liquidacion" href="{{ route('liquidacion.index') }}" icon="fas fa-address-card">
+            Rubros
+          </x-menu.item>
+
+          <x-menu.item id="mismarcas" href="{{ route('mismarcas.index') }}" icon="fas fa-address-card">
+            Marcas
+          </x-menu.item>
+
+          <x-menu.item id="estadisticas" href="{{ route('misclientes.index') }}" icon="fas fa-address-card">
+            Estadisticas
+          </x-menu.item>
+
+          <x-menu.item id="testimonios" href="{{ route('testimonios.index') }}" icon="fas fa-address-card">
+            Testimonios
+          </x-menu.item>
+
+          <x-menu.item id="faqs" href="{{ route('faqs.index') }}" icon="fas fa-address-card">
+            Preguntas Frecuentes
+          </x-menu.item>
+
+            <!-- Subscripciones -->
           {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['subscripciones'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['subscripciones'])) {{ 'hover:text-slate-200' }} @endif"
@@ -167,32 +140,7 @@
             </a>
           </li> --}}
 
-          <!-- Datos generales -->
-          <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['datosgenerales'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['datosgenerales'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('datosgenerales.edit', 1) }}">
-              <div class="flex items-center">
-                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['datosgenerales'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                    d="M1 3h22v20H1z" />
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['datosgenerales'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
-                </svg>
-                <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Datos
-                  Generales</span>
-              </div>
-            </a>
-          </li>
 
-          <x-menu.item id="politicas-de-devolucion" href="{{ route('politicas-de-devolucion.edit', 1) }}"
-            icon="fas fa-undo-alt">
-            Politicas de Privacidad
-          </x-menu.item>
-         
           {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['pedidos'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['pedidos'])) {{ 'hover:text-slate-200' }} @endif"
@@ -215,7 +163,7 @@
 
 
           <!-- Sliders -->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['slider'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['slider'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('slider.index') }}">
@@ -232,114 +180,11 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Sliders</span>
               </div>
             </a>
-          </li>
-
-          <!-- Beneficios -->
-          <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['benefit'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['benefit'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('strength.index') }}">
-              <div class="flex items-center">
-                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['benefit'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                    d="M1 3h22v20H1z" />
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['benefit'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
-                </svg>
-                <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Beneficios</span>
-              </div>
-            </a>
-          </li>
-
-          <!-- Marcas comercializadas -->
-          <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['liquidacion'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['liquidacion'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('liquidacion.index') }}">
-              <div class="flex items-center">
-                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['liquidacion'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                    d="M1 3h22v20H1z" />
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['liquidacion'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
-                </svg>
-                <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Rubros</span>
-              </div>
-            </a>
-          </li>
-
-
-           <!-- Nuestras Marcas -->
-          <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['mismarcas'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['mismarcas'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('mismarcas.index') }}">
-              <div class="flex items-center">
-                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['mismarcas'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                    d="M1 3h22v20H1z" />
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['mismarcas'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
-                </svg>
-                <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Marcas</span>
-              </div>
-            </a>
-          </li>
-
-
-          <!-- Nuestros Clientes -->
-          <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['misclientes'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['misclientes'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('misclientes.index') }}">
-              <div class="flex items-center">
-                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['misclientes'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                    d="M1 3h22v20H1z" />
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['misclientes'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
-                </svg>
-                <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Estadisticas</span>
-              </div>
-            </a>
-          </li>
-
-
-          <!-- Testimonios -->
-          <li
-            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['testimonios'])) {{ 'bg-slate-900' }} @endif">
-            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['testimonios'])) {{ 'hover:text-slate-200' }} @endif"
-              href="{{ route('testimonios.index') }}">
-              <div class="flex items-center">
-                <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['testimonios'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                    d="M1 3h22v20H1z" />
-                  <path
-                    class="fill-current @if (in_array(Request::segment(2), ['testimonios'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                    d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
-                </svg>
-                <span
-                  class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Testimonios</span>
-              </div>
-            </a>
-          </li>
+          </li> --}}
 
 
           <!-- Staff -->
-          <li
+          {{-- <li
             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(2), ['staff'])) {{ 'bg-slate-900' }} @endif">
             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(2), ['staff'])) {{ 'hover:text-slate-200' }} @endif"
               href="{{ route('staff.index') }}">
@@ -356,7 +201,7 @@
                   class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Equipo</span>
               </div>
             </a>
-          </li>
+          </li> --}}
 
 
           <!-- Catalogos -->
@@ -427,7 +272,7 @@
       <x-menu.group title="Productos">
         <x-menu.item id="category" href="{{ route('categorias.index') }}" icon="fas fa-list-alt">Categorías</x-menu.item>
         <x-menu.item id="subcategory" href="{{ route('subcategorias.index') }}" icon="fas fa-list-alt">Subcategorías</x-menu.item>
-        <x-menu.item id="microcategory" href="{{ route('microcategorias.index') }}" icon="fas fa-list-alt">Microcategorías</x-menu.item>
+        {{-- <x-menu.item id="microcategory" href="{{ route('microcategorias.index') }}" icon="fas fa-list-alt">Microcategorías</x-menu.item> --}}
         <x-menu.item id="product" href="{{ route('products.index') }}" icon="fas fa-pager">Productos</x-menu.item>
       </x-menu.group>
 

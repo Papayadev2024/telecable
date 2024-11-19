@@ -7,7 +7,7 @@
     <meta name="title" content="@yield('meta_title', 'Default Title')">
     <meta name="description" content="@yield('meta_description', 'Default Description')">
     <meta name="keywords" content="@yield('meta_keywords', 'default, keywords')">
-    <title>@yield('meta_title', 'CADMO') | CADMO Soluciones SAC</title>
+    <title>{{ ucwords(strtolower($pagina ?? 'Pagina'))  }} | {{ config('app.name', 'Laravel') }}</title>
     
     
     
@@ -38,8 +38,8 @@
     {{-- Sweet Alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="{{ asset('images/img/faviconhpi.png') }}" type="image/x-icon">
-    {{-- <title>@yield('titulo', 'Pagina') | HYDROTECH PERÚ IMPORT EIRL</title> --}}
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+ 
     
 </head>
 

@@ -11,7 +11,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet" />
-
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -77,7 +77,7 @@
                     {{-- <img class="object-cover object-center w-full h-full" src="{{ asset('images/auth-image.jpg') }}" width="760" height="1024" alt="Authentication image" />
                     <img class="absolute top-1/4 left-0 -translate-x-1/2 ml-8 hidden lg:block" src="{{ asset('images/auth-decoration.png') }}" width="218" height="224" alt="Authentication decoration" /> --}}
 
-                    <img class="object-cover object-center w-full h-full" src="{{ asset('images/img/imagenlogin.png') }}" width="760" height="1024" alt="Authentication image" />
+                    <img class="object-cover object-center w-full h-full" src="{{ asset('images/img/oficinacadmo.png') }}" width="760" height="1024" alt="Authentication image" />
                     {{-- <img class="absolute top-1/4 left-0 -translate-x-1/2 ml-8 hidden lg:block" src="{{ asset('images/auth-decoration.png') }}" width="218" height="224" alt="Authentication decoration" /> --}}
                 </div>
 

@@ -478,7 +478,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="md:col-span-5 mt-2">
+                                    {{-- <div class="md:col-span-5 mt-2">
 
                                         <label for="extract">Extracto</label>
 
@@ -507,7 +507,7 @@
                                             @enderror
 
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="md:col-span-5">
                                         <label for="description">Descripción</label>
@@ -516,12 +516,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="md:col-span-5">
+                                    {{-- <div class="md:col-span-5">
                                         <label for="especificacion">Especificación</label>
                                         <div class="relative mb-2 mt-2">
                                             <x-textarea name="especificacion" value="" rows="2" />
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="md:col-span-5">
                                         <label for="imagen">Imagen Principal (1000x1000px)</label>
@@ -726,7 +726,7 @@
                                 </div>
 
 
-                                <div class="md:col-span-5">
+                                {{-- <div class="md:col-span-5">
                                     <label for="costo_x_art">Microcategoria</label>
                                     <div class="relative mb-2  mt-2">
                                         <div
@@ -744,7 +744,7 @@
                                             <option value="">Seleccionar Microcategoria </option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 {{-- <div class="md:col-span-5 mt-2">
                                     <div class=" flex items-end justify-between gap-2 ">
@@ -805,7 +805,7 @@
                                     </div>
                                 </div> --}}
 
-                                <div class="md:col-span-5">
+                                {{-- <div class="md:col-span-5">
                                     <label for="archive">Ficha Técnica</label>
                                     <div class="relative mb-2  mt-2">
                                         <input name="fichatecnica" accept="application/pdf"
@@ -822,7 +822,7 @@
                                             class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                             aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                     </div>
-                                </div>
+                                </div> --}}
 
                             </div>
 

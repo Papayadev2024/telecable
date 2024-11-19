@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HomeView;
-use App\Http\Requests\StoreHomeViewRequest;
-use App\Http\Requests\UpdateHomeViewRequest;
+use App\Models\InnovacionView;
+use App\Http\Requests\StoreInnovacionViewRequest;
+use App\Http\Requests\UpdateInnovacionViewRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
-
-class HomeViewController extends Controller
+class InnovacionViewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,7 +31,7 @@ class HomeViewController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreHomeViewRequest $request)
+    public function store(StoreInnovacionViewRequest $request)
     {
         //
     }
@@ -40,7 +39,7 @@ class HomeViewController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(HomeView $homeView)
+    public function show(InnovacionView $innovacionView)
     {
         //
     }
@@ -48,13 +47,13 @@ class HomeViewController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(HomeView $homeView)
+    public function edit(InnovacionView $innovacionView)
     {
-        $homeview = HomeView::first();
-        if (!$homeview) {
-            $homeview = HomeView::create();
+        $innovacionview = InnovacionView::first();
+        if (!$innovacionview) {
+            $innovacionview = InnovacionView::create();
         }
-        return view('pages.homeview.edit', compact('homeview'));
+        return view('pages.innovacionview.edit', compact('innovacionview'));
     }
 
     /**
@@ -62,22 +61,33 @@ class HomeViewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $homeview = HomeView::findOrfail($id); 
+        $innovacionview = InnovacionView::findOrfail($id); 
 
-        if ($request->hasFile("imagen")) {
-            $file = $request->file('imagen');
-            $routeImg = 'storage/images/general/';
+        if ($request->hasFile("url_image1section")) {
+            $file = $request->file('url_image1section');
+            $routeImg = 'storage/images/innovacion/';
             $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
       
             $this->saveImg($file, $routeImg, $nombreImagen);
       
-            $homeview['url_image1section'] = $routeImg . $nombreImagen;
+            $innovacionview['url_image1section'] = $routeImg . $nombreImagen;
            
-        } 
+        }
+        
+        if ($request->hasFile("url_image3section")) {
+            $file = $request->file('url_image3section');
+            $routeImg = 'storage/images/innovacion/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+      
+            $this->saveImg($file, $routeImg, $nombreImagen);
+      
+            $innovacionview['url_image3section'] = $routeImg . $nombreImagen;
+           
+        }
 
-        $homeview->update($request->all());
+        $innovacionview->update($request->all());
 
-        $homeview->save();  
+        $innovacionview->save();  
 
         return back()->with('success', 'Registro actualizado correctamente');
     }
@@ -98,7 +108,7 @@ class HomeViewController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(HomeView $homeView)
+    public function destroy(InnovacionView $innovacionView)
     {
         //
     }

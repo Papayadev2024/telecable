@@ -2,10 +2,17 @@
 @section('titulo', 'Productos')
 @section('css_importados')
     <style>
-        .selected {
-            background-color: #245BC8 !important;
+        select {
+          background: linear-gradient(to right, cyan, green, yellow);
+          color: white;
+          font-weight: bold;
+          border: none;
+          border-radius: 8px;
+          padding: 10px;
+          width: 100%;
+          appearance: none; /* Elimina el estilo predeterminado */
         }
-    </style>
+      </style>
 @stop
 
 
@@ -45,12 +52,12 @@
                 <div class="flex flex-col lg:flex-row lg:justify-between lg:items-end">
                     <div class="flex flex-col gap-3 items-start justify-center max-w-2xl">
                         <h2 class="leading-normal font-gotham_medium  text-4xl sm:text-5xl lg:text-6xl text-white">
-                            Portafolio de productos</h2>
+                            {{$textoproducto->title1section ?? "Ingrese un texto"}}</h2>
                     </div>
                     <div
                         class="w-full flex flex-col justify-end items-start lg:items-end gap-2 px-0 lg:pl-[5%] pt-5 lg:pt-0 xl:max-w-3xl ">
                         <p class="text-[#F8FCFF] text-base font-gotham_medium line-clamp-1">
-                            Líderes globales para asegurar solidez
+                            {{$textoproducto->subtitle1section ?? "Ingrese un texto"}}
                         </p>
                         <div class="flex flex-wrap gap-5 mt-3">
                             <img class="h-8 object-contain" src="{{ asset('images/img/logosatec.png') }}" />
@@ -109,239 +116,68 @@
 
             <div class="grid grid-cols-1 gap-5 sm:gap-10">
                 <div class="flex flex-col justify-center gap-5 rounded-xl">
-                    <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] ">
-                        Energía de Precisión</h2>
+                    <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] subtitle">
+                        {{$textoproducto->title3section ?? "Ingrese un texto"}}</h2>
                     <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>
-                    <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                        Exactitud en consumos. Equipos de medición de energía eléctrica para aplicaciones
-                        comerciales industriales de alta precisión. Calcula el consumo energético y la
-                        proyección de demanda logrando optimizarlos y validar la facturación mensual.
+                    <p class="text-[#02324A] font-gotham_book font-normal text-lg description">
+                        {{$textoproducto->description3section ?? "Ingrese un texto"}}
                     </p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full pt-10 gap-x-10 gap-y-16">
 
-                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                            <span
-                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                        </div>
-                        <a href="#" class="">
-                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                class="w-full h-full object-contain aspect-square" />
-                        </a>
+            <div class="flex flex-row">
+                <div class="flex flex-col md:flex-row md:justify-start gap-3">
+                    
+                    <div class="relative inline-block text-left min-w-64 w-auto">
+                        <select id="categoryselect" 
+                            class="bg-[#11355A] w-full py-3 text-left px-4 text-white font-bold font-roboto  text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
+                            <option value="sinproduct">Selecciona categoria</option>
+                            @foreach ($categorias as $item)
+                                <option value="{{ $item->id }}">
+                                    {{ $item->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
 
-                    <div class="flex flex-col gap-1 justify-start">
-                        <a href="#">
-                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                Medidor BFM2</h2>
-                        </a>
-                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                            Por pedido</p>
+                    <div class="relative inline-block text-left min-w-64 w-auto">
+                        <select id="selectSubcategory"
+                            class="hidden bg-[#11355A] w-full py-3 text-left px-4 text-white font-bold font-roboto text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
+                            <option value="sinproduct">Selecciona subcategoria</option>
+                        </select>
                     </div>
+
+                    <input type="hidden" id="valorcategoria" />
                 </div>
-
-                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                            <span
-                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                        </div>
-                        <a href="#" class="">
-                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                class="w-full h-full object-contain aspect-square" />
-                        </a>
-                    </div>
-
-                    <div class="flex flex-col gap-1 justify-start">
-                        <a href="#">
-                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                Medidor BFM2</h2>
-                        </a>
-                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                            Por pedido</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                            <span
-                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                        </div>
-                        <a href="#" class="">
-                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                class="w-full h-full object-contain aspect-square" />
-                        </a>
-                    </div>
-
-                    <div class="flex flex-col gap-1 justify-start">
-                        <a href="#">
-                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                Medidor BFM2</h2>
-                        </a>
-                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                            Por pedido</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                            <span
-                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                        </div>
-                        <a href="#" class="">
-                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                class="w-full h-full object-contain aspect-square" />
-                        </a>
-                    </div>
-
-                    <div class="flex flex-col gap-1 justify-start">
-                        <a href="#">
-                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                Medidor BFM2</h2>
-                        </a>
-                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                            Por pedido</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                            <span
-                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                        </div>
-                        <a href="#" class="">
-                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                class="w-full h-full object-contain aspect-square" />
-                        </a>
-                    </div>
-
-                    <div class="flex flex-col gap-1 justify-start">
-                        <a href="#">
-                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                Medidor BFM2</h2>
-                        </a>
-                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                            Por pedido</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                            <span
-                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                        </div>
-                        <a href="#" class="">
-                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                class="w-full h-full object-contain aspect-square" />
-                        </a>
-                    </div>
-
-                    <div class="flex flex-col gap-1 justify-start">
-                        <a href="#">
-                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                Medidor BFM2</h2>
-                        </a>
-                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                            Por pedido</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                            <span
-                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                        </div>
-                        <a href="#" class="">
-                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                class="w-full h-full object-contain aspect-square" />
-                        </a>
-                    </div>
-
-                    <div class="flex flex-col gap-1 justify-start">
-                        <a href="#">
-                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                Medidor BFM2</h2>
-                        </a>
-                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                            Por pedido</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                            <span
-                                class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                        </div>
-                        <a href="#" class="">
-                            <img src="{{ asset('images/img/cadmoproducto.png') }}" alt="aa"
-                                class="w-full h-full object-contain aspect-square" />
-                        </a>
-                    </div>
-
-                    <div class="flex flex-col gap-1 justify-start">
-                        <a href="#">
-                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
-                                Medidor BFM2</h2>
-                        </a>
-                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                            Por pedido</p>
-                    </div>
-                </div>
-
             </div>
 
-            {{-- <div>
-                <div id="getProductAjax"
-                    class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-x-10 gap-y-10 pb-10 md:pb-20">
+            <div id="getProductAjax" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full pt-10 gap-x-10 gap-y-16">
 
-                    @foreach ($productos as $item)
-                        <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
-                            <div class="flex justify-center items-center">
-                                <a href="{{ route('producto', $item->id) }}" class="w-full"><img
-                                        src="{{ asset($item->imagen) }}" alt="planta de tratmiento de agua"
-                                        class="w-full object-cover rounded-lg h-full " /></a>
+                @foreach ($productos as $item)
+                    <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                        <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                            <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                                <span
+                                    class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
                             </div>
-                            <div class="flex flex-col gap-2">
-                                @if (is_null($item->categoria->name))
-                                @else
-                                    <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">
-                                        {{ $item->categoria->name }}
-                                    </h3>
-                                @endif
-
-                                <a href="{{ route('producto', $item->id) }}">
-                                    <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">
-                                        {{ $item->producto }}</h2>
-                                </a>
-                                <p class="font-roboto font-normal text-text16 text-[#082252] line-clamp-3">
-                                    {{ $item->extract }}
-                                </p>
-                            </div>
+                            <a href="{{ route('producto', $item->id) }}" class="">
+                                <img  src="{{ asset($item->imagen) }}" alt="{{$item->producto}}"
+                                    class="w-full h-full object-contain aspect-square" />
+                            </a>
                         </div>
-                    @endforeach
 
-                </div>
-
-
-                <div class="flex justify-center items-center mb-10">
-                    <a href="javascript:;" @if (empty($page) || $page == 0) style="display:none;" @endif
-                        data-page={{ $page }}
-                        class="text-white py-3 px-5 border-2 bg-[#082252] rounded-3xl w-60 text-center font-medium text-text16 cargarMas">
-                        Cargar más modelos
-                    </a>
-                </div>
-            </div> --}}
-
+                        <div class="flex flex-col gap-1 justify-start">
+                            <a href="{{ route('producto', $item->id) }}">
+                                <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                    {{$item->producto}}</h2>
+                            </a>
+                            <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                                Por pedido</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </section>
 
         <section>
@@ -350,15 +186,13 @@
 
                     <div class="flex flex-col justify-start gap-5 w-full  col-span-2">
                         <h2 class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
-                            Necesitas ayuda?</h2>
+                            {{$textoproducto->title2section ?? "Ingrese un texto"}}</h2>
                         <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>
                         <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                            Donec non velit non elit euismod varius eu id tellus. Nunc ultrices mauris quis facilisis sollicitudin. 
-                            Vestibulum convallis diam et nulla aliquet fringilla eget ut massa. Proin ac consequat neque. 
-                            Pellentesque arcu nisi, bibendum eget gravida sed, condimentum id nulla.</p>
+                            {{$textoproducto->description2section ?? "Ingrese un texto"}}</p>
                         <div
                             class="py-3 rounded-3xl bg-[#11355A] flex flex-row w-48 justify-center items-center gap-2 mt-5">
-                            <a class="text-white font-gotham_medium tracking-wider text-center">Contactarme</a>
+                            <a href="{{route('contacto')}}" class="cursor-pointer text-white font-gotham_medium tracking-wider text-center">Contactarme</a>
                             <img src="{{ asset('images/svg/flechaderecha.svg') }}" />
                         </div>
                     </div>
@@ -405,7 +239,7 @@
 
             $('#selectMicrocategory').change(function() {
 
-                var id = $('#selectMicrocategory').val();
+                let id = $('#selectMicrocategory').val();
                 $.ajax({
                     url: '{{ route('getProductMicrocategoria') }}',
                     method: 'POST',
@@ -463,8 +297,8 @@
 
             $('#selectSubcategory').change(function() {
 
-                var page = $(this).attr('data-page');
-                var id = $('#selectSubcategory').val();
+                let page = $(this).attr('data-page');
+                let id = $('#selectSubcategory').val();
                 $.ajax({
                     url: '{{ route('getMicrocategoria') }}',
                     method: 'POST',
@@ -500,18 +334,23 @@
                                 ':id', value.id);
 
                             $('#getProductAjax').append(
-                                `<div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
-                                    <div class="flex justify-center items-center">
-                                        <a href='${productoUrl}' class="w-full"><img src="{{ asset('${value.imagen}') }}"
-                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg h-full"></a>
-                                    </div>
-                                    <div class="flex flex-col gap-2">
-                                        <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>
-                                        <a href='${productoUrl}'>
-                                            <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
+                                `<div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                                            <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                                        </div>
+                                        <a href='${productoUrl}' class="">
+                                            <img src="{{ asset('${value.imagen}') }}" alt="${value.producto}" class="w-full h-full object-contain aspect-square" />
                                         </a>
-                                        <p class="font-roboto font-normal text-text16 text-[#082252] line-clamp-3">
-                                            ${value.extract}
+                                    </div>
+                                    <div class="flex flex-col gap-1 justify-start">
+                                        <a href='${productoUrl}'>
+                                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl text-[#0181AA] line-clamp-1">
+                                                ${value.producto}
+                                            </h2>
+                                        </a>
+                                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">
+                                            Por pedido
                                         </p>
                                     </div>
                                 </div>`
@@ -537,12 +376,12 @@
             });
 
 
-            $('.categoryselect').click(function() {
+            $('#categoryselect').change(function() {
 
-                var id = $(this).attr('id');
-
-                $('.categoryselect .rounded-full').removeClass('selected');
-                $(this).find('.rounded-full').addClass('selected');
+                let id = $('#categoryselect').val();
+                console.log(id)
+                // $('.categoryselect .rounded-full').removeClass('selected');
+                // $(this).find('.rounded-full').addClass('selected');
 
 
                 $.ajax({
@@ -564,7 +403,7 @@
                             '<option value="">Selecciona subcategoria</option>');
 
                         $('.subtitle').empty();
-                        $('.subtitle').text(response.categorias[0].extract);
+                        $('.subtitle').text(response.categorias[0].name);
 
                         $('.description').empty();
                         $('.description').text(response.categorias[0].description);
@@ -595,22 +434,25 @@
                                 ':id', value.id);
 
                             $('#getProductAjax').append(
-                                `<div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
-                                    
-                                    <div class="flex justify-center items-center">
-                                        <a href='${productoUrl}' class="w-full"><img src="{{ asset('${value.imagen}') }}"
-                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg h-full"></a>
-                                    </div>
-                                    <div class="flex flex-col gap-2">
-                                        <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>
-                                        <a href='${productoUrl}'>
-                                            <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
+                                `<div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                                            <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
+                                        </div>
+                                        <a href='${productoUrl}' class="">
+                                            <img src="{{ asset('${value.imagen}') }}" alt="${value.producto}" class="w-full h-full object-contain aspect-square" />
                                         </a>
-                                        <p class="font-roboto font-normal text-text16 text-[#082252] line-clamp-3">
-                                            ${value.extract}
+                                    </div>
+                                    <div class="flex flex-col gap-1 justify-start">
+                                        <a href='${productoUrl}'>
+                                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl text-[#0181AA] line-clamp-1">
+                                                ${value.producto}
+                                            </h2>
+                                        </a>
+                                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">
+                                            Por pedido
                                         </p>
                                     </div>
-                                    
                                 </div>`
                             );
                         });
@@ -695,22 +537,22 @@
         });
     </script>
     <script>
-        $(document).on('click', '.selected', function() {
-            var id = $(this).attr('id');
+         $('#categoryselect').on('change', function() {
+            let id = $(this).val();
             console.log('ID from selected div:', id);
             $('#valorcategoria').val(id);
         });
 
         // Actualizar id cuando cambie el select con id 'selectSubcategory'
         $('#selectSubcategory').on('change', function() {
-            var id = $(this).val();
+            let id = $(this).val();
             console.log('ID from selectSubcategory:', id);
             $('#valorcategoria').val(id);
         });
 
         // Actualizar id cuando cambie el select con id 'selectMicrocategory'
         $('#selectMicrocategory').on('change', function() {
-            var id = $(this).val();
+            let id = $(this).val();
             console.log('ID from selectMicrocategory:', id);
             $('#valorcategoria').val(id);
         });

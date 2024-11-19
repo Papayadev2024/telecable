@@ -329,27 +329,34 @@
 </script>
 
 <script>
-  document.addEventListener('click', function(event) {
-      var input = document.getElementById('buscarproducto');
-      var resultados = document.getElementById('resultados');
-      var isClickInsideInput = input.contains(event.target);
-      var isClickInsideResultados = resultados.contains(event.target);
+    document.addEventListener('click', function(event) {
+      var input = document.getElementById('buscarproducto2');
+      var resultados = document.getElementById('resultados2');
 
-      if (!isClickInsideInput && !isClickInsideResultados) {
-          input.value = '';
-          $('#resultados').empty();
+      if (input && resultados) { // Verificar que ambos elementos existen
+          var isClickInsideInput = input.contains(event.target);
+          var isClickInsideResultados = resultados.contains(event.target);
+
+          if (!isClickInsideInput && !isClickInsideResultados) {
+              input.value = '';
+              $('#resultados2').empty();
+          }
       }
   });
 
   document.addEventListener('click', function(event) {
       var input = document.getElementById('buscarproducto2');
       var resultados = document.getElementById('resultados2');
-      var isClickInsideInput = input.contains(event.target);
-      var isClickInsideResultados = resultados.contains(event.target);
 
-      if (!isClickInsideInput && !isClickInsideResultados) {
-          input.value = '';
-          $('#resultados2').empty();
+      // Verificar que los elementos existen
+      if (input && resultados) {
+          var isClickInsideInput = input.contains(event.target);
+          var isClickInsideResultados = resultados.contains(event.target);
+
+          if (!isClickInsideInput && !isClickInsideResultados) {
+              input.value = '';
+              $('#resultados2').empty();
+          }
       }
   });
 </script>

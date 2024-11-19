@@ -17,10 +17,10 @@
                     Enlaces
                 </p>
                 <div class="flex flex-col gap-2 text-white font-gotham_light text-base">
-                    <a href="{{route('catalogo', 0)}}">Inicio</a>
-                    <a href="{{route('coleccion', 0)}}">Productos</a>
-                    <a href="{{route('novedades')}}">Innovación</a>
-                    <a href="{{route('contacto')}}">Nosotros</a>
+                    <a href="{{route('index')}}">Inicio</a>
+                    <a href="{{route('catalogo', 0)}}">Productos</a>
+                    <a href="{{route('innovaciones')}}">Innovación</a>
+                    <a href="{{route('nosotros')}}">Nosotros</a>
                     <a href="{{route('contacto')}}">Contacto</a>
                 </div>
             </div>

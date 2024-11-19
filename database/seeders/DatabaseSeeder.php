@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\InnovacionView;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -36,7 +37,12 @@ class DatabaseSeeder extends Seeder
             GeneralSeeder::class,
             CategorySeeder::class,
             StatusOrdensSeeder::class,
-            AtributosSeeder::class
+            AtributosSeeder::class,
+            HomeViewSeeder::class,
+            ProductosViewSeeder::class,
+            InnovacionViewSeeder::class,
+            NosotrosViewSeeder::class
+
             //ServiceSeeder::class,
         ]);
     }

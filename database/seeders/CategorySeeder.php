@@ -15,22 +15,15 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         //
-        $cat = ['Tratamiento de agua', 'Productos Químicos', 'Medición e Instrumentación', 'Piscinas & Spa'];
-        $cat2 = ['Nuestro enfoque integral abarca desde la captación hasta la distribución del agua tratada, cumpliendo con las normativas y regulaciones locales.', 
-                'Nuestros productos cumplen con altos estándares de calidad y regulaciones internacionales.',
-                'Ofrecemos una amplia gama de instrumentos para el monitoreo y control de calidad de agua, análisis de suelos, alimentos y otros. Brindamos capacitación y servicio técnico para el correcto uso del producto.',
-                'Somos especialistas en el tratamiento de agua para piscinas y spas. Ofrecemos una amplia gama de productos, tales como sistemas de filtración, productos químicos y accesorios.'];
-        $extract = ['Soluciones Efectivas para Tratamiento de Agua',
-                    'Soluciones Efectivas para Productos Químicos',
-                    'Soluciones Efectivas para Medición e Instrumentación',
-                    'Soluciones Efectivas para Piscinas & Spa'];
-        $ids = [135, 116, 126, 127];
-        for ($i = 0; $i < 4; $i++) {
+        $cat = ['Energía Flexible', 'Energía de Precisión'];
+        $cat2 = ['Lo que no se mide, no se optimiza. Soluciones integrales para la gestión energética en plantas industriales y locales comerciales. Calcula balances de energía para detectar hurtos, pérdidas en cables y transformadores, Ten el control de tus consumos y logra la máxima optimización.', 
+                'Exactitud en consumos. Equipos de medición de energía eléctrica para aplicaciones comerciales industriales de alta precisión. Calcula el consumo energético y la proyección de demanda logrando optimizarlos y validar la facturación mensual.'];
+        $ids = [1, 2];
+        for ($i = 0; $i < 2; $i++) {
             Category::create([
                 'id' => $ids[$i],
                 'name' => $cat[$i],
                 'description' => $cat2[$i],
-                'extract' => $extract[$i],
                 'status' => 1,
                 'visible' => 1,
             ]);

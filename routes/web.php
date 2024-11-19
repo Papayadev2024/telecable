@@ -27,18 +27,22 @@ use App\Http\Controllers\DescargablesController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\GalerieController;
+use App\Http\Controllers\HomeViewController;
 use App\Http\Controllers\LogosClientController;
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\InnovacionViewController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LiquidacionController;
 use App\Http\Controllers\MicrocategoryController;
 use App\Http\Controllers\MisClientesController;
 use App\Http\Controllers\MisMarcasController;
 use App\Http\Controllers\NewsletterSubscriberController;
+use App\Http\Controllers\NosotrosViewController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\PolyticsConditionController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\ProductosViewController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StaffController;
@@ -141,10 +145,13 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         Route::resource('/politicas-de-devolucion', PolyticsConditionController::class);
         Route::resource('/terminos-y-condiciones', TermsAndConditionController::class);    
-     
+        
         //Datos Generales
         Route::resource('/datosgenerales', GeneralController::class);
-
+        Route::resource('/homeview', HomeViewController::class);
+        Route::resource('/nosotrosview', NosotrosViewController::class);
+        Route::resource('/innovacionesview', InnovacionViewController::class);
+        Route::resource('/productosview', ProductosViewController::class);
         //Testimonies
         Route::resource('/testimonios', TestimonyController::class);
         Route::post('/testimonios/deleteTestimony', [TestimonyController::class, 'deleteTestimony'])->name('testimonios.deleteTestimony');

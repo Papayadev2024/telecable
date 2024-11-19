@@ -48,11 +48,11 @@
                     <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center"> 
                         <div class="flex flex-col gap-3 items-start justify-center max-w-2xl">
                              <h2 class="leading-tight font-gotham_medium  text-4xl lg:text-6xl  text-[#0181AA] ">
-                                    Innovación tecnológica</h2>   
+                                    {{$innovaciontext->title1section ?? "Ingrese un texto"}}</h2>   
                         </div>
                          <div class="flex flex-col gap-3 items-start justify-center max-w-md text-left lg:text-right">
                              <h2 class="leading-tight font-gotham_medium  text-xl lg:text-3xl  text-[#11355a] ">
-                                   Creamos tecnología de vanguardia</h2>  
+                                {{$innovaciontext->subtitle1section ?? "Ingrese un texto"}}</h2>  
                         </div>
                     </div>
                 </div>
@@ -70,14 +70,10 @@
                        
                             <div class="flex flex-col justify-center gap-5 rounded-xl">
                                 <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] ">
-                                    Hardware</h2>
+                                    {{$innovaciontext->title2section ?? "Ingrese un texto"}}</h2>
                                 <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
                                 <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                   Conectamos dispositivos a la nube. Desarrollamos e integramos soluciones basadas 
-                                   en el Internet de las cosas (Internet of Things - IoT) para proyectos de Smart Grid 
-                                   a la medida. Utilizamos protocolos de comunicación que permiten la escabilidad de 
-                                   nuestras soluciones y flexibilidad para la integración a diferentes industrias. 
-                                   Energía inteligente.
+                                    {{$innovaciontext->description2section ?? "Ingrese un texto"}}
                                 </p>
                             </div>
                              
@@ -100,14 +96,10 @@
                             <div class="flex flex-col justify-start gap-8 xl:gap-16 order-1 lg:order-2">
                                 <div class="flex flex-col justify-start gap-5">
                                     <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] ">
-                                        Software</h2>
+                                        {{$innovaciontext->title3section ?? "Ingrese un texto"}}</h2>
                                     <div class="h-[3px] bg-[#0181AA] w-28 rounded-full -mt-4"> </div>   
                                     <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                        Software de administración de energía, ofrece un conjunto de soluciones: desde facturación, 
-                                        monitoreo, eficiencia energética y respuesta a la demanda hasta análisis exhaustivos de 
-                                        calidad de energía y soporte de procesos centrales de planificación y previsión para 
-                                        generadores, transmisores y distribuidores de energía e también para grandes proyectos 
-                                        residenciales, edificios de oficinas, centros comerciales, entre otros.
+                                        {{$innovaciontext->description3section ?? "Ingrese un texto"}}
                                     </p>
                                 </div>
                             </div>
@@ -125,12 +117,10 @@
                             <div class="flex flex-col justify-start gap-8 xl:gap-16">
                                 <div class="flex flex-col justify-start gap-5">
                                     <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] ">
-                                        Servicios</h2>
+                                        {{$innovaciontext->title4section ?? "Ingrese un texto"}}</h2>
                                     <div class="h-[3px] bg-[#0181AA] w-28 rounded-full -mt-4"> </div>   
                                     <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                        Donec non velit non elit euismod varius eu id tellus. Nunc ultrices mauris quis facilisis sollicitudin. 
-                                        Vestibulum convallis diam et nulla aliquet fringilla eget ut massa. Proin ac consequat neque. 
-                                        Pellentesque arcu nisi, bibendum eget gravida sed.
+                                        {{$innovaciontext->description4section ?? "Ingrese un texto"}}
                                     </p>
                                 </div>
                             </div>

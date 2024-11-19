@@ -559,8 +559,8 @@ class ProductsController extends Controller
     });
     $cleanedData['description'] = $data['description'];
     $cleanedData['order'] = $data['order'];
-    $cleanedData['extract'] = $data['extract'];
-    $cleanedData['especificacion'] = $data['especificacion'];
+    // $cleanedData['extract'] = $data['extract'];
+    // $cleanedData['especificacion'] = $data['especificacion'];
 
     // $cleanedData['sku'] = $data['sku'];
 

@@ -24,9 +24,9 @@
               <tr>
                 <th>Titulo </th>
                 <th>Pregunta</th>
-                <th>Respuesta</th>
-                <th>Visible</th>
-                <th>Acciones</th>
+                {{-- <th>Respuesta</th> --}}
+                <th class="w-32">Visible</th>
+                <th class="w-32">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -35,7 +35,7 @@
                 <tr>
                   <td>{{ $item->titulo }}</td>
                   <td>{{ $item->pregunta }}</td>
-                  <td>{{ $item->respuesta }}</td>
+                  {{-- <td>{{ $item->respuesta }}</td> --}}
 
                   <td>
                     <form method="POST" action="">
@@ -77,7 +77,7 @@
               <tr>
                 <th>Titulo </th>
                 <th>Pregunta</th>
-                <th>Respuesta</th>
+                {{-- <th>Respuesta</th> --}}
                 <th>Visible</th>
                 <th>Acciones</th>
               </tr>

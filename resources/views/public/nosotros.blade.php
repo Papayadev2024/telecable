@@ -49,22 +49,12 @@
                        
                             <div class="flex flex-col justify-center gap-5 rounded-xl">
                                 <h2 class="leading-tight font-gotham_medium  text-4xl lg:text-5xl xl:text-6xl text-[#0181AA] ">
-                                    Nuestra historia, nuestro nacimiento</h2>
+                                    {{$textosnosotros->title1section ?? "Ingrese un texto"}}</h2>
                                 <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
                                 <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                    Nullam nec orci dui. Praesent tristique facilisis quam, a egestas lorem
-                                     consectetur fringilla. Suspendisse cursus erat eget ante auctor, non hendrerit 
-                                     ipsum egestas. Nullam nec orci dui. Praesent tristique facilisis quam, a egestas 
-                                     lorem consectetur fringilla. Suspendisse cursus erat eget ante auctor, 
-                                     non hendrerit ipsum egestas.
+                                    {{$textosnosotros->description1section ?? "Ingrese un texto"}}
                                 </p>
-                                <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                    Nullam nec orci dui. Praesent tristique facilisis quam, a egestas lorem
-                                     consectetur fringilla. Suspendisse cursus erat eget ante auctor, non hendrerit 
-                                     ipsum egestas. Nullam nec orci dui. Praesent tristique facilisis quam, a egestas 
-                                     lorem consectetur fringilla. Suspendisse cursus erat eget ante auctor, 
-                                     non hendrerit ipsum egestas.
-                                </p>
+                               
                             </div>
                              
                             <div class="flex flex-col items-center justify-center">
@@ -82,33 +72,25 @@
                             
                             <div class="flex flex-col items-start justify-center order-2 lg:order-1 gap-0 lg:gap-5">
                                 <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] ">
-                                        Nuestras motivaciones diarias</h2>    
+                                    {{$textosnosotros->title3section ?? "Ingrese un texto"}}</h2>    
                                 <img class="h-[350px] md:h-[400px] object-contain object-left lg:h-[450px] w-full"  src="{{asset('images/img/oficinacadmo.png')}}" />
                             </div>
                      
                             <div class="flex flex-col justify-center gap-8 xl:gap-16 order-1 lg:order-2">
                                 <div class="flex flex-col gap-3">
                                     <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] ">
-                                        Misión</h2>
+                                        {{$textosnosotros->title3secondsection ?? "Ingrese un texto"}}</h2>
                                     <div class="h-[3px] bg-[#0181AA] w-28 rounded-full -mt-4"> </div>   
                                     <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                        Conectamos dispositivos a la nube. Desarrollamos e integramos soluciones 
-                                        basadas en el Internet de las cosas (Internet of Things - IoT) para proyectos 
-                                        de Smart Grid a la medida. Utilizamos protocolos de comunicación que permiten 
-                                        la escabilidad de nuestras soluciones y flexibilidad para la integración a 
-                                        diferentes industrias. Energía inteligente.
+                                        {{$textosnosotros->description3secondsection ?? "Ingrese un texto"}}
                                     </p>
                                 </div>
                                 <div class="flex flex-col gap-3">
                                     <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] ">
-                                        Visión</h2>
+                                        {{$textosnosotros->title4section ?? "Ingrese un texto"}}</h2>
                                     <div class="h-[3px] bg-[#0181AA] w-28 rounded-full -mt-4"> </div>   
                                     <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                                        Software de administración de energía, ofrece un conjunto de soluciones: desde facturación, 
-                                        monitoreo, eficiencia energética y respuesta a la demanda hasta análisis exhaustivos de 
-                                        calidad de energía y soporte de procesos centrales de planificación y previsión para generadores, 
-                                        transmisores y distribuidores de energía e también para grandes proyectos residenciales, edificios 
-                                        de oficinas, centros comerciales, entre otros.
+                                        {{$textosnosotros->description4section ?? "Ingrese un texto"}}
                                     </p>
                                 </div>
                             </div>

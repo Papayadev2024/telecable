@@ -37,7 +37,11 @@ use App\Models\MisClientes;
 use App\Models\MisMarcas;
 use App\Models\Certificados;
 use App\Models\ContactDetail;
+use App\Models\HomeView;
+use App\Models\InnovacionView;
+use App\Models\NosotrosView;
 use App\Models\PolyticsCondition;
+use App\Models\ProductosView;
 use App\Models\TermsAndCondition;
 use Attribute;
 use Illuminate\Http\Request;
@@ -66,6 +70,7 @@ class IndexController extends Controller
         // $productos = Products::all();
         $productos = Products::where('status', '=', 1)->with('tags')->get();
         $categorias = Category::all();
+        $textoshome = HomeView::first();
         $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
         // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
         // ->where('visible', '=', 1)->with('tags')->get();
@@ -80,12 +85,12 @@ class IndexController extends Controller
         
         $logos = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
         $mismarcas = MisMarcas::where('status', '=', 1)->where('visible', '=', 1)->get();
-        $clientes = MisClientes::where('status', '=', 1)->where('visible', '=', 1)->get();
+        $estadisticas = MisClientes::where('status', '=', 1)->where('visible', '=', 1)->get();
         
         $contactos = ContactDetail::where('status', '=', 1)->get();
         $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-        return view('public.index', compact('productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos', 'posts','mismarcas', 'clientes', 'contactos'));
+        return view('public.index', compact('textoshome', 'productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos', 'posts','mismarcas', 'estadisticas', 'contactos'));
     }
 
     public function coleccion($filtro)
@@ -138,6 +143,7 @@ class IndexController extends Controller
 
         try {
             $general = General::all();
+            $textoproducto = ProductosView::first();
             $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
             $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->orderBy('order', 'asc')->get();
             $subcategorias = Subcategory::all();
@@ -168,7 +174,7 @@ class IndexController extends Controller
                 }
             }
 
-            return view('public.catalogo', compact('general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'atributos', 'colecciones', 'page', 'subcategorias', 'microcategorias'));
+            return view('public.catalogo', compact('textoproducto','general', 'faqs', 'categorias', 'testimonie', 'filtro', 'productos', 'categoria', 'atributos', 'colecciones', 'page', 'subcategorias', 'microcategorias'));
         } catch (\Throwable $th) {
         }
     }
@@ -218,8 +224,10 @@ class IndexController extends Controller
     public function contacto()
     {
         $general = General::all();
+        $textoshome = HomeView::first();
         $contactos = ContactDetail::where('status', '=', 1)->get();
-        return view('public.contacto', compact('general','contactos'));
+        $preguntasfrec = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
+        return view('public.contacto', compact('preguntasfrec', 'textoshome','general','contactos'));
     }
 
     public function carrito()
@@ -595,13 +603,14 @@ class IndexController extends Controller
     {
         try {
             $general = General::first();
+            $textosnosotros = NosotrosView::first();
             $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
             $staff = Staff::where('status', '=', 1)->get();
             $clientes = MisClientes::where('status', '=', 1)->where('visible', '=', 1)->get();
             $certificados = Certificados::where('status', '=', 1)->where('visible', '=', 1)->get();
             $nosotros = AboutUs::where('status', '=', 1)->get();
             $benefit = Strength::where('status', '=', 1)->get();
-            return view('public.nosotros', compact('benefit','general', 'testimonie', 'staff', 'nosotros', 'clientes','certificados'));
+            return view('public.nosotros', compact('textosnosotros', 'benefit','general', 'testimonie', 'staff', 'nosotros', 'clientes','certificados'));
         } catch (\Throwable $th) {
         }
     }
@@ -609,7 +618,8 @@ class IndexController extends Controller
     public function innovaciones()
     {
       $general = General::first();
-      return view('public.innovaciones', compact('general'));
+      $innovaciontext = InnovacionView::first();
+      return view('public.innovaciones', compact('general','innovaciontext'));
     }
 
     public function novedades()
