@@ -100,6 +100,16 @@
     </div>
   </div>
 
+  <div class="flex justify-end w-full mx-auto z-[100] relative">
+    <div class="fixed bottom-6 sm:bottom-[2rem] lg:bottom-[4rem] z-20 cursor-pointer">
+      <a target="_blank" id="whatsapp-toggle" 
+        href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text={{ $general[0]->mensaje_whatsapp }}"
+         >
+        <img src="{{ asset('images/svg/wsp.svg') }}" alt="whatsapp" class="w-16 h-16 md:w-24 md:h-24">
+      </a>
+    </div>
+  </div>
+
   {{-- href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp2 }}&text={{ $general[0]->mensaje_whatsapp }}"   --}}
   {{-- href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text={{ $general[0]->mensaje_whatsapp }}" --}}
   {{-- whatssapp --}}
