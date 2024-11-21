@@ -95,7 +95,7 @@
         <!-- Segundo div -->
         <div class="w-full lg:w-[45%] ">
           <div class="w-full h-full -mb-20 flex flex-row items-center justify-center">
-              <img src="{{ asset('images/img/productocadmo.png') }}" class="min-h-[500px] object-contain xl:h-[600px]" />
+              <img src="{{ asset($textoshome->url_image2section) }}" onerror="this.onerror=null;this.src='/images/img/productocadmo.png';" class="min-h-[500px] object-contain xl:h-[600px]" />
           </div>
         </div>
 
@@ -186,7 +186,7 @@
                              
 
                             <div class="flex flex-col items-center justify-center">
-                                <img class="h-[450px] md:h-[500px] object-contain lg:h-[650px] w-full"  src="{{asset('images/img/imagennosotros.png')}}" />
+                                <img class="h-[450px] md:h-[500px] object-contain lg:h-[650px] w-full" onerror="this.onerror=null;this.src='/images/img/imagennosotros.png';" src="{{asset($textoshome->url_image3section)}}" />
                             </div>
                      
                     </div>

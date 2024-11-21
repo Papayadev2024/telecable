@@ -7,6 +7,9 @@ use App\Http\Requests\StoreNosotrosViewRequest;
 use App\Http\Requests\UpdateNosotrosViewRequest;
 use App\Models\General;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class NosotrosViewController extends Controller
 {
@@ -61,11 +64,46 @@ class NosotrosViewController extends Controller
     {
         $nosotros = NosotrosView::findOrfail($id); 
 
+        if ($request->hasFile("url_image2section")) {
+            $file = $request->file('url_image2section');
+            $routeImg = 'storage/images/nosotroshome/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+      
+            $this->saveImg($file, $routeImg, $nombreImagen);
+      
+            $nosotros['url_image2section'] = $routeImg . $nombreImagen;
+           
+        } 
+
+        if ($request->hasFile("url_image4section")) {
+            $file = $request->file('url_image4section');
+            $routeImg = 'storage/images/nosotroshome/';
+            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+      
+            $this->saveImg($file, $routeImg, $nombreImagen);
+      
+            $nosotros['url_image4section'] = $routeImg . $nombreImagen;
+           
+        } 
+
         $nosotros->update($request->all());
 
         $nosotros->save();  
 
         return back()->with('success', 'Registro actualizado correctamente');
+    }
+
+    public function saveImg($file, $route, $nombreImagen)
+    {
+      $manager = new ImageManager(new Driver());
+      $img =  $manager->read($file);
+      // $img->coverDown(1000, 1500, 'center');
+  
+      if (!file_exists($route)) {
+        mkdir($route, 0777, true);
+      }
+  
+      $img->save($route . $nombreImagen);
     }
 
     /**
