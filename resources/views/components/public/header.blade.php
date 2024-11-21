@@ -105,7 +105,7 @@
       <a target="_blank" id="whatsapp-toggle" 
         href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text={{ $general[0]->mensaje_whatsapp }}"
          >
-        <img src="{{ asset('images/svg/wsp.svg') }}" alt="whatsapp" class="w-16 h-16 md:w-24 md:h-24">
+        <img src="{{ asset('images/svg/wsp.svg') }}" alt="whatsapp" class="mr-3 w-16 h-16 md:w-[85px] md:h-[85px]">
       </a>
     </div>
   </div>
