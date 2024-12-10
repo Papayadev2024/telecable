@@ -30,7 +30,7 @@
 
                             @foreach($subcategory as $item)
                                 <tr>
-                                    <td>{{$item->categories->name}}</td>
+                                    <td>{{$item->categories->name ?? "Sin nombre"}}</td>
 
                                     <td>{{$item->name}}</td>
                                     
