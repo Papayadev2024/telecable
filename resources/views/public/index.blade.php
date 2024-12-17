@@ -250,9 +250,9 @@
                                     <div class="swiper-slide">   
                                         <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
                                             <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                                                <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                                                {{-- <div class="absolute left-2 top-2 flex flex-wrap gap-2">
                                                     <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                                                </div>   
+                                                </div>    --}}
                                                 <a href="#" class="">
                                                     <img src="{{ asset($destacado->imagen) }}" alt="aa"
                                                         class="w-full h-full object-contain aspect-square" />
@@ -261,11 +261,11 @@
                                             
                                             <div class="flex flex-col gap-1 justify-start">
                                                 <a href="#">
-                                                    <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                                    <h2 class="leading-tight font-gotham_medium text-lg md:text-xl  text-[#0181AA] line-clamp-2">
                                                    {{$destacado->producto}}</h2>  
                                                 </a>
-                                                <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                                                    Por pedido</p>   
+                                                {{-- <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                                                    Por pedido</p>    --}}
                                             </div>
                                         </div>
                                     </div> 
