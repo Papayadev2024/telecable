@@ -253,14 +253,14 @@
                                                 {{-- <div class="absolute left-2 top-2 flex flex-wrap gap-2">
                                                     <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
                                                 </div>    --}}
-                                                <a href="#" class="">
+                                                <a href="{{ route('producto', $destacado->id) }}" class="">
                                                     <img src="{{ asset($destacado->imagen) }}" alt="aa"
                                                         class="w-full h-full object-contain aspect-square" />
                                                 </a>
                                             </div>
                                             
                                             <div class="flex flex-col gap-1 justify-start">
-                                                <a href="#">
+                                                <a href="{{ route('producto', $destacado->id) }}">
                                                     <h2 class="leading-tight font-gotham_medium text-lg md:text-xl  text-[#0181AA] line-clamp-2">
                                                    {{$destacado->producto}}</h2>  
                                                 </a>
