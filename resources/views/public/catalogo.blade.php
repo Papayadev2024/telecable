@@ -172,6 +172,16 @@
                                 <h2 class="leading-tight font-gotham_medium text-lg md:text-xl  text-[#0181AA] line-clamp-2">
                                     {{$item->producto}}</h2>
                             </a>
+                            <div class="flex flex-row justify-start items-end gap-2">
+                                @if ($item->descuento == 0)
+                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                                        {{$item->precio}}</p>
+                                @else
+                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">S/ {{ $item->descuento }} </p>
+                                    <p class="leading-tight font-gotham_book text-sm font-semibold text-[#7080A0] line-through"> S/ {{ $item->precio }}</p>
+                                
+                                @endif  
+                            </div> 
                             {{-- <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
                                 Por pedido</p> --}}
                         </div>
@@ -327,11 +337,30 @@
                             $('#selectMicrocategory').empty().hide();
                         }
 
+                        
+
                         $('#getProductAjax').empty();
                         $.each(response.productos.data, function(key, value) {
 
                             var productoUrl = `{{ route('producto', ':id') }}`.replace(
                                 ':id', value.id);
+
+                            var precioHtml = '';
+
+                            if (value.descuento == 0) {
+                                precioHtml = `
+                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">
+                                        S/ ${value.precio}
+                                    </p>`;
+                            } else {
+                                precioHtml = `
+                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">
+                                        S/ ${value.descuento}
+                                    </p>
+                                    <p class="leading-tight font-gotham_book text-sm font-semibold text-[#7080A0] line-through">
+                                        S/ ${value.precio}
+                                    </p>`;
+                            }
 
                             $('#getProductAjax').append(
                                 `<div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
@@ -346,7 +375,9 @@
                                                 ${value.producto}
                                             </h2>
                                         </a>
-                                        
+                                        <div class="flex flex-row justify-start items-end gap-2">
+                                            ${precioHtml}
+                                        </div>
                                     </div>
                                 </div>`
                             );
@@ -422,6 +453,21 @@
 
                         });
 
+                        if (value.descuento == 0) {
+                                precioHtml = `
+                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">
+                                        S/ ${value.precio}
+                                    </p>`;
+                        } else {
+                                precioHtml = `
+                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">
+                                        S/ ${value.descuento}
+                                    </p>
+                                    <p class="leading-tight font-gotham_book text-sm font-semibold text-[#7080A0] line-through">
+                                        S/ ${value.precio}
+                                    </p>`;
+                        }
+
                         $('#getProductAjax').empty();
                         $.each(response.productos.data, function(key, value) {
 
@@ -442,7 +488,9 @@
                                                 ${value.producto}
                                             </h2>
                                         </a>
-                                     
+                                        <div class="flex flex-row justify-start items-end gap-2">
+                                            ${precioHtml}
+                                        </div>
                                     </div>
                                 </div>`
                             );
@@ -481,6 +529,22 @@
                             var productoUrl = `{{ route('producto', ':id') }}`.replace(
                                 ':id', value.id);
 
+                            if (value.descuento == 0) {
+                                precioHtml = `
+                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">
+                                        S/ ${value.precio}
+                                    </p>`;
+                            } else {
+                                precioHtml = `
+                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">
+                                        S/ ${value.descuento}
+                                    </p>
+                                    <p class="leading-tight font-gotham_book text-sm font-semibold text-[#7080A0] line-through">
+                                        S/ ${value.precio}
+                                    </p>`;
+                            }    
+
+
                             $('#getProductAjax').append(
                                 `<div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
                                     <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
@@ -495,7 +559,9 @@
                                                 ${value.producto}
                                             </h2>
                                         </a>
-                                       
+                                        <div class="flex flex-row justify-start items-end gap-2">
+                                            ${precioHtml}
+                                        </div>
                                     </div>
                                 </div>`
                             );

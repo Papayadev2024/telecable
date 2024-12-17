@@ -87,6 +87,7 @@ class ProductsController extends Controller
     try {
       $request->validate([
         'producto' => 'required',
+        'precio' => 'required',
         'categoria_id' => 'required', 
       ]);
 
@@ -398,6 +399,8 @@ class ProductsController extends Controller
 
     $request->validate([
       'producto' => 'required',
+      'precio' => 'required',
+      'categoria_id' => 'required'
     ]);
 
     

@@ -5,7 +5,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 
-<script>
+
+{{-- <script>
   $('document').ready(function() {
 
     const quill = new Quill('#quill-{{ $name }}', {
@@ -23,4 +24,24 @@
     })
 
   })
+</script> --}}
+
+<script>
+  $('document').ready(function() {
+
+    const quill = new Quill('#quill-{{ $name }}', {
+      theme: 'snow'
+    });
+
+    // Obtén el valor inicial escapado y descomprímelo en Quill
+    const existingContent = $('#{{ $name }}').val();
+    quill.root.innerHTML = existingContent;
+
+    // Sincroniza los cambios en tiempo real
+    quill.on('text-change', function() {
+      const value = quill.root.innerHTML;
+      $('#{{ $name }}').val(value);
+    });
+
+  });
 </script>

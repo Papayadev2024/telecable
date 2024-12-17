@@ -264,6 +264,16 @@
                                                     <h2 class="leading-tight font-gotham_medium text-lg md:text-xl  text-[#0181AA] line-clamp-2">
                                                    {{$destacado->producto}}</h2>  
                                                 </a>
+                                                <div class="flex flex-row justify-start items-end gap-2">
+                                                    @if ($destacado->descuento == 0)
+                                                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                                                            {{$destacado->precio}}</p>
+                                                    @else
+                                                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">S/ {{ $destacado->descuento }} </p>
+                                                        <p class="leading-tight font-gotham_book text-sm font-semibold text-[#7080A0] line-through"> S/ {{ $destacado->precio }}</p>
+                                                    
+                                                    @endif  
+                                                </div> 
                                                 {{-- <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
                                                     Por pedido</p>    --}}
                                             </div>

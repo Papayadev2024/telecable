@@ -10,7 +10,24 @@
         .active {
             border: 2px solid #FF5E14;
         }
+
+        .ckeditor-content ul {
+            list-style-type: disc; /* Muestra bullets (puntos) */
+            padding-left: 20px; /* Sangría para listas */
+            margin: 10px 0; /* Margen superior e inferior */
+        }
+
+        .ckeditor-content ol {
+            list-style-type: decimal; /* Números para listas ordenadas */
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .ckeditor-content li {
+            margin-bottom: 5px; /* Espacio entre ítems */
+        }
     </style>
+    
 @stop
 
 
@@ -49,7 +66,19 @@
                             <h2 id="nombreproducto" class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
                                 {{ $producto->producto }}</h2>
                             <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
-                            <div class="text-[#02324A] font-gotham_book font-normal text-lg">
+
+                            <div class="flex flex-row justify-start items-end gap-2">
+                                @if ($producto->descuento == 0)
+                                    <p class="leading-tight font-gotham_book text-xl font-semibold text-[#7080A0] ">
+                                        {{$producto->precio}}</p>
+                                @else
+                                    <p class="leading-tight font-gotham_book text-xl font-semibold text-[#7080A0]">S/ {{ $producto->descuento }} </p>
+                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] line-through"> S/ {{ $producto->precio }}</p>
+                                
+                                @endif  
+                            </div>    
+
+                            <div class="text-[#02324A] font-gotham_book font-normal ckeditor-content">
                                 {!! $producto->description !!}</div>
                             <div class="flex flex-row">
                                 <div target="_blank" id="chatonline" class="cursor-pointer py-3 rounded-3xl bg-[#11355A] flex flex-row w-auto px-6 justify-center items-center gap-2 mt-5">
@@ -58,7 +87,6 @@
                                 </div> 
                             </div>
                         </div>
-
 
                         {{-- <p class="text-[#082252] text-text16 font-roboto font-normal">{{ $producto->extract }}</p> --}}
 

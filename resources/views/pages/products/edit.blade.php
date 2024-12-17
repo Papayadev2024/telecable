@@ -411,7 +411,8 @@
 
                                     <div class="col-span-1 md:col-span-5 mt-2">
 
-                                        <label for="producto">Producto</label>
+                                        <label for="producto">Producto <span class="text-red-500"> (Obligatorio)
+                                        </span></label>
 
                                         <div class="relative mb-2  mt-2">
                                             <div
@@ -499,10 +500,11 @@
                                     <div class="md:col-span-5">
                                         <label for="description">Descripción</label>
                                         <div class="relative mb-2 mt-2">
-                                            <x-textarea name="description" value="{!! $product->description !!}" />
+                                            {{-- <x-textarea name="description" value="{!! $product->description !!}" /> --}}
+                                            <textarea class="ckeditor" id="description" name="description">{!! $product->description !!}</textarea>
                                         </div>
                                     </div>
-
+                                    
                                     {{-- <div class="md:col-span-5">
                                         <label for="especificacion">Especificación</label>
                                         <div class="relative mb-2 mt-2"> 
@@ -710,65 +712,66 @@
 
                             <div
                                 class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
-                                {{-- <div class="md:col-span-5 flex justify-between gap-4">
-                  <div class="w-full">
-                    <label for="precio">Precio</label>
-                    <div class="relative mb-2  mt-2">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                          fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
-                          stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
+                                <div class="md:col-span-5 flex justify-between gap-4">
+                                    <div class="w-full">
+                                        <label for="precio">Precio <span class="text-red-500"> (Obligatorio)
+                                        </span></label>
+                                        <div class="relative mb-2  mt-2">
+                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                            </svg>
 
-                      </div>
-                      <input type="number" id="precio" name="precio" value="{{ $product->precio }}"
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="precio">
-                    </div>
+                                        </div>
+                                        <input type="number" id="precio" name="precio" value="{{ $product->precio }}"
+                                            class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="precio">
+                                        </div>
 
-                  </div>
-                  <div class="w-full">
-                    <label for="descuento">Descuento</label>
-                    <div class="relative mb-2  mt-2">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                          fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
-                          stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                      </div>
-                      <input type="number" id="descuento" name="descuento" value="{{ $product->descuento }}"
-                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="descuento">
-                    </div>
+                                    </div>
 
-                  </div>
+                                    <div class="w-full">
+                                        <label for="descuento">Descuento</label>
+                                        <div class="relative mb-2  mt-2">
+                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                            </svg>
+                                        </div>
+                                        <input type="number" id="descuento" name="descuento" value="{{ $product->descuento }}"
+                                            class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="descuento">
+                                        </div>
 
+                                    </div>
+                                </div>
 
-                </div>
-
-                <div class="md:col-span-5">
-                  <label for="costo_x_art">Costo por articulo</label>
-                  <div class="relative mb-2  mt-2">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                      </svg>
-                    </div>
-                    <input type="number" id="costo_x_art" name="costo_x_art" value="{{ $product->costo_x_art }}"
-                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Costo por articulo">
-                  </div>
-                </div> --}}
+                                {{-- <div class="md:col-span-5">
+                                    <label for="costo_x_art">Costo por articulo</label>
+                                    <div class="relative mb-2  mt-2">
+                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                        </div>
+                                        <input type="number" id="costo_x_art" name="costo_x_art" value="{{ $product->costo_x_art }}"
+                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Costo por articulo">
+                                    </div>
+                                </div> --}}
 
                                 <div class="md:col-span-5">
-                                    <label for="costo_x_art">Categoria</label>
+                                    <label for="costo_x_art">Categoria <span class="text-red-500"> (Obligatorio)
+                                    </span></label>
                                     <div class="relative mb-2  mt-2">
                                         <div
                                             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -1214,6 +1217,26 @@
 
 
     </div>
+
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+       CKEDITOR.replace('description', {
+            toolbar: [
+                { name: 'document', items: ['Source'] }, // Código fuente
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'] },
+                { name: 'styles', items: ['Styles', 'Format', 'FontSize'] }, // Tamaño y fuente
+                { name: 'colors', items: ['TextColor', 'BGColor'] }, // Color de texto y fondo
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Blockquote'] },
+                { name: 'insert', items: ['Table', 'HorizontalRule'] },
+                { name: 'links', items: ['Link', 'Unlink'] },
+                { name: 'tools', items: ['Maximize'] } // Maximizar
+            ],
+            extraPlugins: 'colorbutton,font', // Activa plugins para color y fuentes
+            removePlugins: 'elementspath', // Elimina la ruta de elementos
+            resize_enabled: true // Permite redimensionar el editor
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -1391,28 +1414,7 @@
     </script>
 
     <script>
-        let editor = null
-        $('document').ready(async function() {
-
-            editor = await tinymce.init({
-                selector: 'textarea#description',
-                height: 500,
-                plugins: [
-                    'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
-                    'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                    'insertdatetime', 'table'
-                ],
-                toolbar: 'undo redo | blocks | ' +
-                    'bold italic backcolor | alignleft aligncenter ' +
-                    'alignright alignjustify | bullist numlist outdent indent | ' +
-                    'removeformat | help',
-                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px;}'
-            });
-
-        })
-
-
-
+       
         $('#tags_id').select2();
         // Obtener los enlaces de pestaña
         const generalTab = document.getElementById('general-tab');

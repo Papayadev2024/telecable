@@ -512,7 +512,8 @@
                                     <div class="md:col-span-5">
                                         <label for="description">Descripción</label>
                                         <div class="relative mb-2 mt-2">
-                                            <x-textarea name="description" value="" rows="4" />
+                                            {{-- <x-textarea name="description" value="" rows="4" /> --}}
+                                            <textarea class="ckeditor" id="description" name="description"></textarea>
                                         </div>
                                     </div>
 
@@ -625,7 +626,7 @@
                             <div
                                 class=" grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 rounded shadow-lg p-4 px-4 ">
 
-                                {{-- <div class="md:col-span-5 flex justify-between gap-4">
+                                <div class="md:col-span-5 flex justify-between gap-4">
 
                                     <div class="w-full">
                                         <label for="precio">Precio <span class="text-red-500"> (Obligatorio)
@@ -675,10 +676,11 @@
 
                                     </div>
 
-                                </div> --}}
+                                </div>
 
                                 <div class="md:col-span-5">
-                                    <label for="costo_x_art">Categoria</label>
+                                    <label for="costo_x_art">Categoria <span class="text-red-500"> (Obligatorio)
+                                    </span></label>
                                     <div class="relative mb-2  mt-2">
                                         <div
                                             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -1252,21 +1254,6 @@
 
             let valorInput = 1
 
-            tinymce.init({
-                selector: 'textarea#description',
-                height: 500,
-                plugins: [
-                    'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
-                    'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                    'insertdatetime', 'table'
-                ],
-                toolbar: 'undo redo | blocks | ' +
-                    'bold italic backcolor | alignleft aligncenter ' +
-                    'alignright alignjustify | bullist numlist outdent indent | ' +
-                    'removeformat | help',
-                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px;}'
-            });
-
             $("#AddEspecifiacion").on('click', function(e) {
                 e.preventDefault()
                 valorInput++
@@ -1535,6 +1522,26 @@
             initializeAllDropzones();
 
         })
+    </script>
+
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+       CKEDITOR.replace('description', {
+            toolbar: [
+                { name: 'document', items: ['Source'] }, // Código fuente
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'] },
+                { name: 'styles', items: ['Styles', 'Format', 'FontSize'] }, // Tamaño y fuente
+                { name: 'colors', items: ['TextColor', 'BGColor'] }, // Color de texto y fondo
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Blockquote'] },
+                { name: 'insert', items: ['Table', 'HorizontalRule'] },
+                { name: 'links', items: ['Link', 'Unlink'] },
+                { name: 'tools', items: ['Maximize'] } // Maximizar
+            ],
+            extraPlugins: 'colorbutton,font', // Activa plugins para color y fuentes
+            removePlugins: 'elementspath', // Elimina la ruta de elementos
+            resize_enabled: true // Permite redimensionar el editor
+        });
     </script>
 
     @include('_layout.scripts')
