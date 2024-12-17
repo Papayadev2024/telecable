@@ -157,10 +157,10 @@
                 @foreach ($productos as $item)
                     <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
                         <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                            <div class="absolute left-2 top-2 flex flex-wrap gap-2">
+                            {{-- <div class="absolute left-2 top-2 flex flex-wrap gap-2">
                                 <span
                                     class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                            </div>
+                            </div> --}}
                             <a href="{{ route('producto', $item->id) }}" class="">
                                 <img  src="{{ asset($item->imagen) }}" alt="{{$item->producto}}"
                                     class="w-full h-full object-contain aspect-square" />
@@ -169,11 +169,11 @@
 
                         <div class="flex flex-col gap-1 justify-start">
                             <a href="{{ route('producto', $item->id) }}">
-                                <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl  text-[#0181AA] line-clamp-1">
+                                <h2 class="leading-tight font-gotham_medium text-lg md:text-xl  text-[#0181AA] line-clamp-2">
                                     {{$item->producto}}</h2>
                             </a>
-                            <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                                Por pedido</p>
+                            {{-- <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
+                                Por pedido</p> --}}
                         </div>
                     </div>
                 @endforeach
@@ -336,22 +336,17 @@
                             $('#getProductAjax').append(
                                 `<div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
                                     <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                                            <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                                        </div>
                                         <a href='${productoUrl}' class="">
                                             <img src="{{ asset('${value.imagen}') }}" alt="${value.producto}" class="w-full h-full object-contain aspect-square" />
                                         </a>
                                     </div>
                                     <div class="flex flex-col gap-1 justify-start">
                                         <a href='${productoUrl}'>
-                                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl text-[#0181AA] line-clamp-1">
+                                            <h2 class="leading-tight font-gotham_medium text-lg md:text-xl text-[#0181AA] line-clamp-2">
                                                 ${value.producto}
                                             </h2>
                                         </a>
-                                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">
-                                            Por pedido
-                                        </p>
+                                        
                                     </div>
                                 </div>`
                             );
@@ -436,22 +431,18 @@
                             $('#getProductAjax').append(
                                 `<div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
                                     <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                                        <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                                            <span class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                                        </div>
+                                       
                                         <a href='${productoUrl}' class="">
                                             <img src="{{ asset('${value.imagen}') }}" alt="${value.producto}" class="w-full h-full object-contain aspect-square" />
                                         </a>
                                     </div>
                                     <div class="flex flex-col gap-1 justify-start">
                                         <a href='${productoUrl}'>
-                                            <h2 class="leading-tight font-gotham_medium text-lg md:text-2xl text-[#0181AA] line-clamp-1">
+                                            <h2 class="leading-tight font-gotham_medium text-lg md:text-xl text-[#0181AA] line-clamp-2">
                                                 ${value.producto}
                                             </h2>
                                         </a>
-                                        <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">
-                                            Por pedido
-                                        </p>
+                                     
                                     </div>
                                 </div>`
                             );
@@ -491,22 +482,21 @@
                                 ':id', value.id);
 
                             $('#getProductAjax').append(
-                                `<div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
-                                    
-                                    <div class="flex justify-center items-center">
-                                        <a href='${productoUrl}' class="w-full"><img src="{{ asset('${value.imagen}') }}"
-                                                alt="planta de tratmiento de agua" class="w-full object-cover rounded-lg h-full"></a>
-                                    </div>
-                                    <div class="flex flex-col gap-2">
-                                        <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">${value.category_name}</h3>
-                                        <a href='${productoUrl}'>
-                                            <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">${value.producto}</h2>
+                                `<div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
+                                    <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
+                                       
+                                        <a href='${productoUrl}' class="">
+                                            <img src="{{ asset('${value.imagen}') }}" alt="${value.producto}" class="w-full h-full object-contain aspect-square" />
                                         </a>
-                                        <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                            ${value.extract}
-                                        </p>
                                     </div>
-                                    
+                                    <div class="flex flex-col gap-1 justify-start">
+                                        <a href='${productoUrl}'>
+                                            <h2 class="leading-tight font-gotham_medium text-lg md:text-xl text-[#0181AA] line-clamp-2">
+                                                ${value.producto}
+                                            </h2>
+                                        </a>
+                                       
+                                    </div>
                                 </div>`
                             );
                         });
