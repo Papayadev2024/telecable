@@ -39,8 +39,7 @@
         }
     @endphp
 
-    <section class="flex flex-col lg:flex-row gap-10 lg:gap-10 justify-center items-center px-[5%] lg:pl-0 lg:pr-0 -mt-24 bg-cover bg-top pt-32" style="background-image:url({{asset('images/img/portadaimagen.png')}})">
-    </section>
+
 
     <main>
         <section class="w-full px-[5%] py-10 lg:py-20">
@@ -48,8 +47,8 @@
                 
                 <div class="flex flex-col justify-start items-center gap-5">
                     <div id="containerProductosdetail"
-                        class="w-full flex justify-center items-center aspect-square overflow-hidden">
-                        <img src="{{ asset($producto->imagen) }}" alt="computer" class="w-full h-full object-contain"
+                        class="w-full flex justify-center items-center aspect-[3/2] overflow-hidden">
+                        <img src="{{ asset($producto->imagen) }}" alt="computer" class="w-full h-full object-cover"
                             data-aos="fade-up" data-aos-offset="150"
                             onerror="this.onerror=null;this.src='/images/img/noimagen.jpg';">
                     </div>
@@ -59,31 +58,32 @@
 
 
                 <div class="flex flex-col justify-start items-center gap-5">
-                    <div class="flex flex-col" data-aos="fade-up" data-aos-offset="150">
+                    <div class="flex flex-col w-full" data-aos="fade-up" data-aos-offset="150">
                         
 
                         <div class="flex flex-col gap-5 w-full lg:max-w-lg">
-                            <h2 id="nombreproducto" class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
+                            <h2 id="nombreproducto" class="leading-tight text-[#54340E] font-bignoodle text-5xl">
                                 {{ $producto->producto }}</h2>
-                            <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
+                          
+                            <div class="text-[#54340E] font-latoregular font-normal ckeditor-content">
+                                    {!! $producto->description !!}</div>
+
 
                             <div class="flex flex-row justify-start items-end gap-2">
                                 @if ($producto->descuento == 0)
-                                    <p class="leading-tight font-gotham_book text-xl font-semibold text-[#7080A0] ">
-                                        {{$producto->precio}}</p>
+                                    <p class="leading-tight font-latoregular font-semibold text-4xl  text-[#54340E]">
+                                       S/. {{$producto->precio}}</p>
                                 @else
-                                    <p class="leading-tight font-gotham_book text-xl font-semibold text-[#7080A0]">S/ {{ $producto->descuento }} </p>
-                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] line-through"> S/ {{ $producto->precio }}</p>
+                                    <p class="leading-tight font-latoregular font-semibold text-4xl  text-[#54340E]">S/ {{ $producto->descuento }} </p>
+                                    <p class="leading-tight font-latoregular text-2xl font-semibold text-[#54340E] line-through"> S/ {{ $producto->precio }}</p>
                                 
                                 @endif  
                             </div>    
 
-                            <div class="text-[#02324A] font-gotham_book font-normal ckeditor-content">
-                                {!! $producto->description !!}</div>
+                            
                             <div class="flex flex-row">
-                                <div target="_blank" id="chatonline" class="cursor-pointer py-3 rounded-3xl bg-[#11355A] flex flex-row w-auto px-6 justify-center items-center gap-2 mt-5">
-                                    <a class="text-white font-gotham_medium tracking-wider text-center">Solicitar producto</a>
-                                    <img src="{{asset('images/svg/flechaderecha.svg')}}"/>
+                                <div target="_blank" id="chatonline" class="cursor-pointer py-2 rounded-xl bg-[#F07407] flex flex-row w-auto px-6 justify-center items-center gap-2 mt-5">
+                                    <a class="text-white font-latoregular text-center">Hacer mi pedido</a>
                                 </div> 
                             </div>
                         </div>
@@ -310,93 +310,61 @@
         </section>
 
 
-        <section>
-            <div class="flex flex-col gap-10 w-full px-[5%] mx-auto bg-[#F5F7F9] pt-10">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-0">
-
-                    <div class="flex flex-col justify-start gap-5 w-full  col-span-2">
-                        <h2 class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
-                            Necesitas ayuda?</h2>
-                        <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>
-                        <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                            Donec non velit non elit euismod varius eu id tellus. Nunc ultrices mauris quis facilisis sollicitudin. 
-                            Vestibulum convallis diam et nulla aliquet fringilla eget ut massa. Proin ac consequat neque. 
-                            Pellentesque arcu nisi, bibendum eget gravida sed, condimentum id nulla.</p>
-                        <div
-                            class="py-3 rounded-3xl bg-[#11355A] flex flex-row w-48 justify-center items-center gap-2 mt-5">
-                            <a class="text-white font-gotham_medium tracking-wider text-center">Contactarme</a>
-                            <img src="{{ asset('images/svg/flechaderecha.svg') }}" />
-                        </div>
-                    </div>
-
-                    <div class="relative flex flex-col justify-end col-span-1">
-                        <img class="h-96 object-cover sm:object-contain object-bottom"
-                            src="{{ asset('images/img/secretaria.png') }}" />
-                    </div>
-
-                </div>
-            </div>
-        </section>
+       
 
 
         @if ($ProdComplementarios->isEmpty())
         @else
-            <section class="py-10 lg:py-16 px-[5%]">
+            <section class=" justify-center items-center px-[5%] py-10 lg:py-16 bg-white space-y-12">
+
+                <div class="flex flex-col justify-start gap-3 md:flex-row md:justify-between w-full md:items-center">
+                    <h2 class="text-[#54340E] font-bignoodle text-5xl">Nuestros recomendados</h2>
+                    <div class="flex flex-row">
+                        <a href="{{route('catalogo.all')}}">
+                            <div class="bg-[#F07407] text-white rounded-lg px-3 py-1.5 text-base font-latoregular">Ver todos los recomendados</div>
+                        </a>
+                    </div>
+                </div>
+
                 <div>
-                        {{-- <div class="flex flex-col gap-5" data-aos="fade-up" data-aos-offset="150">
-                            <div class="flex justify-center items-center">
-                                <a href="{{ route('producto', $complemento->id) }}" class="w-full"><img
-                                        src="{{ asset($complemento->imagen) }}" alt="planta de tratmiento de agua"
-                                        class="w-full object-cover rounded-lg h-full"></a>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                @if ($complemento->categoria && $complemento->categoria->name)
-                                    <h3 class="text-[#FF5E14] uppercase font-roboto font-bold text-text12">
-                                        {{ $complemento->categoria->name }}
-                                    </h3>
-                                @endif
-                                <a href="{{ route('producto', $complemento->id) }}">
-                                    <h2 class="text-[#082252] font-bold font-roboto text-text24 leading-tight">
-                                        {{ $complemento->producto }}</h2>
-                                </a>
-                                <p class="font-roboto font-normal text-text16 text-[#082252]">
-                                    {{ Str::limit($complemento->extract, 220) }}
-                                </p>
-                            </div>
-                        </div> --}}
                     <div class="swiper slider_productos">
                         <div class="swiper-wrapper">
-                            @foreach ($ProdComplementarios as $complemento)
+                            @foreach ($ProdComplementarios as $product)
                                 <div class="swiper-slide">   
-                                    <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                                        <div class="flex justify-center items-center bg-[#F5F7F9] p-1 sm:p-2 relative">
-                                            {{-- <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                                                <span
-                                                    class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                                            </div> --}}
-                                            <a href="{{ route('producto', $complemento->id) }}" class="">
-                                                <img src="{{ asset($complemento->imagen)}}" alt="aa"
-                                                    class="w-full h-full object-contain aspect-square" />
+                                    <div class="flex flex-col rounded-lg border border-[#DDCCBA] overflow-hidden group cursor-pointer">
+                                        <a href="{{route('producto', $product->id)}}">
+                                            <img
+                                                class="w-full h-full aspect-[3/2] object-cover"
+                                                src="{{asset($product->imagen)}}"
+                                            />
+                                        </a>
+                                        
+                                        <div class="text-[#54340E] font-latobold text-xl px-3 pt-2 pb-3 w-full flex flex-col gap-1">
+                                            <div class="flex flex-col">
+                                                <h2 class="line-clamp-1">{{$product->producto}}</h2>
+                                                <div class="line-clamp-2 font-latoregular text-sm h-9 leading-tight flex flex-col justify-center">
+                                                    {!! $product->extract ?? $product->description !!}
+                                                </div>
+                                                <div class="flex flex-row justify-start items-center gap-2 font-latobold mt-1">
+                                                    @if ($product->descuento == 0)
+                                                        <span class="text-lg">S/ {{$product->precio}}</span>   
+                                                    @else
+                                                        <span class="text-lg">S/ {{$product->descuento}}</span>
+                                                        <span class="text-sm line-through">S/ {{$product->precio}}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                
+                                            <a href="{{route('producto', $product->id)}}" class="botonopciones">
+                                                <div class="bg-[#54340E] rounded-lg pt-1 pb-2 text-center ">
+                                                    <span
+                                                        class="bg-[#54340E] text-white font-latoregular text-base text-center w-full"
+                                                        href="{{route('producto', $product->id)}}"
+                                                    >
+                                                        Ordena aqui
+                                                    </span>
+                                                </div>
                                             </a>
-                                        </div>
-                    
-                                        <div class="flex flex-col gap-1 justify-start">
-                                            <a href="{{ route('producto', $complemento->id) }}">
-                                                <h2 class="leading-tight font-gotham_medium text-lg md:text-xl  text-[#0181AA] line-clamp-2">
-                                                    {{ $complemento->producto }}</h2>
-                                            </a>
-                                            <div class="flex flex-row justify-start items-end gap-2">
-                                                @if ($complemento->descuento == 0)
-                                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                                                        {{$complemento->precio}}</p>
-                                                @else
-                                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">S/ {{ $complemento->descuento }} </p>
-                                                    <p class="leading-tight font-gotham_book text-sm font-semibold text-[#7080A0] line-through"> S/ {{ $complemento->precio }}</p>
-                                                
-                                                @endif  
-                                            </div> 
-                                            {{-- <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                                                Por pedido</p> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -404,6 +372,7 @@
                         </div>
                     </div>
                 </div>
+
             </section>
         @endif
 

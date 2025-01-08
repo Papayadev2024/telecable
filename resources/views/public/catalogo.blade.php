@@ -2,15 +2,8 @@
 @section('titulo', 'Productos')
 @section('css_importados')
     <style>
-        select {
-          background: linear-gradient(to right, cyan, green, yellow);
-          color: white;
-          font-weight: bold;
-          border: none;
-          border-radius: 8px;
-          padding: 10px;
-          width: 100%;
-          appearance: none; /* Elimina el estilo predeterminado */
+        .selected {
+            background-color: #F07407 !important;
         }
       </style>
 @stop
@@ -20,206 +13,142 @@
 
     <main>
 
-        <section
-            class="flex flex-col lg:flex-row gap-10 lg:gap-10 justify-center items-center px-[5%] -mt-24 bg-cover bg-top pt-32"
-            style="background-image:url({{ asset('images/img/portadaimagen.png') }})">
-            <div class="w-full pt-20 pb-10">
-                {{-- <div>
-                        <div class="swiper logos">
-                            <div class="swiper-wrapper">
-                                @foreach ($categorias as $item)
-                                    <div class="swiper-slide !flex justify-center cursor-pointer">
-                                        
-                                        <a id="{{ $item->id }}" class="categoryselect">
-                                            <div class="flex flex-col justify-center items-center gap-3">
-                                                <div id="{{ $item->id }}"
-                                                    class="{{ $filtro == $item->id ? 'selected' : '' }} rounded-full bg-white hover:bg-[#245BC8] md:duration-300 w-36 h-36 md:w-52 md:h-52 flex justify-center items-center">
-                                                    <div class="flex flex-row justify-center items-center">
-                                                        <img src="{{ asset($item->url_image.$item->name_image) }}"
-                                                            alt="tratamiento de agua"
-                                                            class="max-w-[93%] object-cover rounded-full">
-                                                    </div>
-                                                </div>
-                                                <h2 class="text-[#082252] font-roboto font-bold text-text18 text-center">
-                                                    {{ $item->name }}</h2>
-                                            </div>
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div> --}}
-                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-end">
-                    <div class="flex flex-col gap-3 items-start justify-center max-w-2xl">
-                        <h2 class="leading-normal font-gotham_medium  text-4xl sm:text-5xl lg:text-6xl text-white">
-                            {{$textoproducto->title1section ?? "Ingrese un texto"}}</h2>
-                    </div>
-                    <div
-                        class="w-full flex flex-col justify-end items-start lg:items-end gap-2 px-0 lg:pl-[5%] pt-5 lg:pt-0 xl:max-w-3xl ">
-                        <p class="text-[#F8FCFF] text-base font-gotham_medium line-clamp-1">
-                            {{$textoproducto->subtitle1section ?? "Ingrese un texto"}}
-                        </p>
-                        <div class="flex flex-wrap gap-5 mt-3">
-                            <img class="h-8 object-contain" src="{{ asset('images/img/logosatec.png') }}" />
-                            <img class="h-8 object-contain" src="{{ asset('images/img/metrycon.png') }}" />
-                            <img class="h-8 object-contain" src="{{ asset('images/img/eaton.png') }}" />
-                            <img class="h-8 object-contain" src="{{ asset('images/img/metcon.png') }}" />
-                        </div>
-                    </div>
-                </div>
-
+        <div class='h-[300px] px-[5%] w-full bg-cover bg-red-500 flex flex-col justify-center' style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), url('{{ asset('images/img/imagencatalogo.png') }}');">
+            <div class=''>
+                <h2 class='font-bignoodle text-6xl'><span class='text-white'>Nuestro</span> <br> <span class='text-[#F07407]'>Catalogo</span></h2>
             </div>
+        </div>
+
+
+        <section class="flex flex-col justify-center items-center px-[5%] xl:px-[8%] py-10 lg:py-16 bg-[#F1EBE3] gap-12 relative">
+
+            <div class="swiper categorias w-full h-max">
+                <div class="swiper-wrapper">                 
+                   @foreach ($categorias as $categoria)
+                        <div class="swiper-slide">
+                            <div id="{{ $categoria->id }}" class="{{ $filtro == $categoria->id ? 'selected' : '' }} group flex flex-col rounded-lg border border-[#DDCCBA] overflow-hidden hover:bg-[#F07407]">
+                                <a href="{{route('catalogo', $categoria->id )}}" class="botonopciones categoryselect">
+                                    <img class="w-full h-full aspect-[3/2] object-cover" src="{{asset($categoria->url_image . $categoria->name_image)}}" />
+                                    
+                                    <div class="{{ $filtro == $categoria->id ? 'text-white' : 'text-[#54340E]' }}  font-latoregular font-semibold text-lg px-3 py-3.5 w-full flex flex-col gap-1">
+                                        <div>
+                                            <h2 class="line-clamp-2 group-hover:text-white leading-none">{{$categoria->name}}</h2>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>    
+                        </div>
+                    @endforeach
+                    
+                </div>
+            </div>
+
+        </section>
+        <input type="hidden" id="valorcategoria" value="{{ $filtro }}" />
+
+        <section class="px-[5%]">
+    
+            <div class="flex flex-wrap gap-10 justify-between items-center mt-10 w-full text-base font-medium">
+              <h2 class="text-[#54340E] font-bignoodle text-5xl">pide todo lo que quieras y comparte</h2>
+            </div>
+
         </section>
 
-        <section class="flex flex-col gap-10 w-full px-[5%] mx-auto py-10 lg:py-20 bg-[#F5F7F9]">
-            {{-- <div class="flex flex-col gap-5 md:gap-10 w-11/12 mx-auto py-10">
-                <div class="flex flex-col gap-5">
-                    <div class="flex flex-col gap-2">
-                        <h2 class="text-[#082252] font-roboto font-bold text-text32 subtitle">
-                          @if ($filtro != 0)
-                            {{$categoria->extract}}
-                          @endif  
-                        </h2>
-                        <p class="text-[#082252] font-roboto font-normal text-text18 description">
-                          @if ($filtro != 0)
-                                {{$categoria->description}}
-                          @endif    
-                        </p>
-                    </div>
 
-                    <div>
-                        <div class="flex flex-col md:flex-row md:justify-start gap-3">
-                            <div class="relative inline-block text-left min-w-64 w-auto">
-                                <select id="selectSubcategory"
-                                    class="{{ ($filtro === null || $filtro == 0) ? 'hidden' : '' }} bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
-                                    <option value="sinproduct">Selecciona subcategoria</option>
-                                    @if (!is_null($filtro))
-                                        @foreach ($subcategorias as $subcat)
-                                           @if ($subcat->category_id == $filtro)
-                                            <option value="{{$subcat->id}}">{{$subcat->name}}</option>  
-                                           @endif   
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                            <div class="relative inline-block text-left min-w-64 w-auto">
-                                <select id="selectMicrocategory"
-                                    class="hidden bg-[#FF5E14] w-full py-3 text-left px-4 text-white font-bold font-roboto hover:bg-[#FF5E14] hover:bg-opacity-80 text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
-                                    <option value="sinproduct">Selecciona microcategoria</option>
-                                </select>
-                            </div>
-                            <input type="hidden" id="valorcategoria" />
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
+        <section class="flex flex-col gap-10 w-full px-[5%] mx-auto py-10 ">
+           
+           
+            <div id="getProductAjax" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-5">
 
-            <div class="grid grid-cols-1 gap-5 sm:gap-10">
-                <div class="flex flex-col justify-center gap-5 rounded-xl">
-                    <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA] subtitle">
-                        {{$textoproducto->title3section ?? "Ingrese un texto"}}</h2>
-                    <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>
-                    <p class="text-[#02324A] font-gotham_book font-normal text-lg description">
-                        {{$textoproducto->description3section ?? "Ingrese un texto"}}
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="flex flex-row">
-                <div class="flex flex-col md:flex-row md:justify-start gap-3">
+                @foreach ($productos as $product)
                     
-                    <div class="relative inline-block text-left min-w-64 w-auto">
-                        <select id="categoryselect" 
-                            class="bg-[#11355A] w-full py-3 text-left px-4 text-white font-bold font-roboto  text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
-                            <option value="sinproduct">Selecciona categoria</option>
-                            @foreach ($categorias as $item)
-                                <option value="{{ $item->id }}">
-                                    {{ $item->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="relative inline-block text-left min-w-64 w-auto">
-                        <select id="selectSubcategory"
-                            class="hidden bg-[#11355A] w-full py-3 text-left px-4 text-white font-bold font-roboto text-text16 focus:outline-none border-b-[1.5px] border-x-0 border-t-0 border-gray-200 focus:ring-0 focus:border-gray-200 focus:border-b-[1.5px] rounded-lg">
-                            <option value="sinproduct">Selecciona subcategoria</option>
-                        </select>
-                    </div>
-
-                    <input type="hidden" id="valorcategoria" />
-                </div>
-            </div>
-
-            <div id="getProductAjax" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full pt-10 gap-x-10 gap-y-16">
-
-                @foreach ($productos as $item)
-                    <div class="flex flex-col gap-4 max-w-[300px] mx-auto" data-aos="fade-up" data-aos-offset="150">
-                        <div class="flex justify-center items-center bg-white p-1 sm:p-2 relative">
-                            {{-- <div class="absolute left-2 top-2 flex flex-wrap gap-2">
-                                <span
-                                    class="bg-[#11355A] text-white px-3 py-0.5 rounded-2xl font-gotham_book text-sm">Satec</span>
-                            </div> --}}
-                            <a href="{{ route('producto', $item->id) }}" class="">
-                                <img  src="{{ asset($item->imagen) }}" alt="{{$item->producto}}"
-                                    class="w-full h-full object-contain aspect-square" />
+                        <div class="flex flex-col rounded-lg border border-[#DDCCBA] overflow-hidden group cursor-pointer">
+                            <a href="{{route('producto', $product->id)}}">
+                                <img
+                                    class="w-full h-full aspect-[3/2] object-cover"
+                                    src="{{asset($product->imagen)}}"
+                                />
                             </a>
+                            
+                            <div class="text-[#54340E] font-latobold text-xl px-3 pt-2 pb-3 w-full flex flex-col gap-1">
+                                <div class="flex flex-col">
+                                    <h2 class="line-clamp-1">{{$product->producto}}</h2>
+                                    <div class="line-clamp-2 font-latoregular text-sm h-9 leading-tight flex flex-col justify-center">
+                                        {!! $product->extract ?? $product->description !!}
+                                    </div>
+                                    <div class="flex flex-row justify-start items-center gap-2 font-latobold mt-1">
+                                        @if ($product->descuento == 0)
+                                            <span class="text-lg">S/ {{$product->precio}}</span>   
+                                        @else
+                                            <span class="text-lg">S/ {{$product->descuento}}</span>
+                                            <span class="text-sm line-through">S/ {{$product->precio}}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                    
+                                <a href="{{route('producto', $product->id)}}" class="botonopciones">
+                                    <div class="bg-[#54340E] rounded-lg pt-1 pb-2 text-center ">
+                                        <span
+                                            class="bg-[#54340E] text-white font-latoregular text-base text-center w-full"
+                                            href="{{route('producto', $product->id)}}"
+                                        >
+                                            Ordena aqui
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-
-                        <div class="flex flex-col gap-1 justify-start">
-                            <a href="{{ route('producto', $item->id) }}">
-                                <h2 class="leading-tight font-gotham_medium text-lg md:text-xl  text-[#0181AA] line-clamp-2">
-                                    {{$item->producto}}</h2>
-                            </a>
-                            <div class="flex flex-row justify-start items-end gap-2">
-                                @if ($item->descuento == 0)
-                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                                        {{$item->precio}}</p>
-                                @else
-                                    <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0]">S/ {{ $item->descuento }} </p>
-                                    <p class="leading-tight font-gotham_book text-sm font-semibold text-[#7080A0] line-through"> S/ {{ $item->precio }}</p>
-                                
-                                @endif  
-                            </div> 
-                            {{-- <p class="leading-tight font-gotham_book text-base font-semibold text-[#7080A0] ">
-                                Por pedido</p> --}}
-                        </div>
-                    </div>
+                   
                 @endforeach
             </div>
         </section>
 
-        <section>
-            <div class="flex flex-col gap-10 w-full px-[5%] mx-auto bg-[#F5F7F9]">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-0">
+        <div class="flex justify-center items-center mb-10">
+            <a href="javascript:;" @if (empty($page) || $page == 0) style="display:none;" @endif
+                data-page={{ $page }}
+                class="text-white py-2.5 px-3 bg-[#F07407] rounded-xl w-48 text-center font-latoregular text-base cargarMas">
+                Cargar más modelos
+            </a>
+        </div>
 
-                    <div class="flex flex-col justify-start gap-5 w-full  col-span-2">
-                        <h2 class="leading-tight font-gotham_medium  text-4xl  text-[#0181AA] ">
-                            {{$textoproducto->title2section ?? "Ingrese un texto"}}</h2>
-                        <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>
-                        <p class="text-[#02324A] font-gotham_book font-normal text-lg">
-                            {{$textoproducto->description2section ?? "Ingrese un texto"}}</p>
-                        <div
-                            class="py-3 rounded-3xl bg-[#11355A] flex flex-row w-48 justify-center items-center gap-2 mt-5">
-                            <a href="{{route('contacto')}}" class="cursor-pointer text-white font-gotham_medium tracking-wider text-center">Contactarme</a>
-                            <img src="{{ asset('images/svg/flechaderecha.svg') }}" />
-                        </div>
-                    </div>
-
-                    <div class="relative flex flex-col justify-end col-span-1">
-                        <img class="h-96 object-cover sm:object-contain object-bottom"
-                            src="{{ asset('images/img/secretaria.png') }}" />
-                    </div>
-
-                </div>
-            </div>
-        </section>
 
     </main>
 
 @section('scripts_importados')
     <script>
+
+var swiper = new Swiper(".categorias", {
+            slidesPerView: 4,
+            spaceBetween: 15,
+            centeredSlides: false,
+            initialSlide: 0,
+            loop: true,
+            autoplay: {
+                delay: 1500,
+                disableOnInteraction: false,
+            },
+            navigation: true,
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                   
+                },
+                768: {
+                    slidesPerView: 2,
+                  
+                },
+                1024: {
+                    slidesPerView: 3,
+                  
+                },
+                1224: {
+                    slidesPerView: 4,
+                  
+                },
+            },
+        });
+
+
         var swiper = new Swiper(".logos", {
             slidesPerView: 4,
             spaceBetween: 30,
@@ -593,8 +522,8 @@
         });
     </script>
     <script>
-         $('#categoryselect').on('change', function() {
-            let id = $(this).val();
+         $(document).on('click', '.selected', function() {
+            var id = $(this).attr('id');
             console.log('ID from selected div:', id);
             $('#valorcategoria').val(id);
         });

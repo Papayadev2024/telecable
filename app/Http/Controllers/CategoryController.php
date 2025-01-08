@@ -214,7 +214,7 @@ class CategoryController extends Controller
             ->orderBy('products.id', 'asc')
             ->select('products.*', 'categories.name as category_name')
             ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
-            ->paginate(9);
+            ->paginate(12);
 
             
             // if (!empty($productos->nextPageUrl())) {
@@ -246,7 +246,7 @@ class CategoryController extends Controller
             ->orderBy('products.id', 'asc')
             ->select('products.*', 'categories.name as category_name')
             ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
-            ->paginate(9);
+            ->paginate(12);
 
             $nextPage = $productos->hasMorePages() ? $productos->currentPage() + 1 : 0;
 
@@ -265,7 +265,7 @@ class CategoryController extends Controller
         ->orderBy('products.id', 'asc')
         ->select('products.*', 'categories.name as category_name')
         ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
-        ->paginate(9);
+        ->paginate(4);
 
         $nextPage = $productos->hasMorePages() ? $productos->currentPage() + 1 : 0;
 
@@ -292,7 +292,7 @@ class CategoryController extends Controller
         ->orderBy('products.id', 'asc')
         ->select('products.*', 'categories.name as category_name')
         ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END, products.id DESC')
-        ->paginate(9);
+        ->paginate(12);
 
         // if (!empty($productos->nextPageUrl())) {
         //     $parse_url = parse_url($productos->nextPageUrl());

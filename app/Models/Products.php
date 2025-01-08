@@ -131,7 +131,7 @@ class Products extends Model
         ->orderBy('products.order', 'asc')
         ->orderBy('products.id', 'asc')
         ->orderByRaw('CASE WHEN products.destacar = 1 THEN 0 ELSE 1 END')
-        ->paginate(9);
+        ->paginate(12);
 
     return $productos;
 }

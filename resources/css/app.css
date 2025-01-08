@@ -15,60 +15,184 @@
 
 
 
-@layer components {
-    #tabladatos_wrapper .dt-length select {
-        @apply px-5;
-    }
-
-    /* ----- testimonios ----- */
-    .custom-swiper-buttons .swiper-button-prev,
-    .custom-swiper-buttons .swiper-button-next {
-        @apply !w-[50px] !h-[50px];
-    }
-    .custom-swiper-buttons .swiper-button-prev:after,
-    .custom-swiper-buttons .swiper-button-next:after {
-        @apply content-[''] block w-[50px] h-[50px] bg-center bg-no-repeat bg-cover;
-    }
-
-    .custom-swiper-buttons {
-        @apply relative hidden left-0 top-[50%] w-44 lg:w-full justify-center lg:justify-between w-auto;
-    }
-
-    .custom-swiper-buttons .swiper-button-prev {
-        @apply absolute top-[50px] lg:top-0 left-[33%] md:left-[40%] lg:-left-[100px] z-[1000];
-    }
-
-    .custom-swiper-buttons .swiper-button-next {
-        @apply absolute top-[50px] lg:top-0 right-[33%] md:right-[40%]  lg:-right-[100px] z-[1000];
-    }
-}
-
-.hamburguesa {
+.text-shadow {
+    /* o el color que prefieras */
+    text-shadow: 0px 0px 32px rgba(0, 0, 0, 0.5);
+  }
+  
+  .fixedWhastapp {
+    right: 2vw ;
+    /* position: fixed; Asegúrate de que el elemento tenga una posición fija */
+  }
+  
+  .hamburguesa {
     @apply w-10 h-10 rounded-lg cursor-pointer;
-}
-
-.menu:checked ~ label p:nth-child(2) {
+  }
+  
+  .menu:checked ~ label p:nth-child(2) {
     @apply hidden;
-}
-
-.menu:checked ~ label p:nth-child(1) {
+  }
+  
+  .menu:checked ~ label p:nth-child(1) {
     @apply -rotate-45 translate-y-[3px];
-}
-
-.menu:checked ~ label p:nth-child(3) {
+  }
+  
+  .menu:checked ~ label p:nth-child(3) {
     @apply rotate-45 -translate-y-[5px];
-}
-
-/*  */
-
-@layer utilities {
+  }
+  
+  /*  */
+  
+  @layer utilities {
     .clip-circle-0 {
         clip-path: circle(0% at top right);
     }
-
+  
     .clip-circle-full {
         clip-path: circle(150% at top right);
     }
-}
-
-
+  }
+  
+  .overlay {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .overlay-content {
+    position: relative;
+    top: 25%;
+    text-align: center;
+    margin-top: 30px;
+    margin: auto;
+  }
+  
+  .overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .overlay .closebtn:hover {
+    color: #ccc;
+  }
+  
+  .overlay input[type=text] {
+    padding: 15px;
+    font-size: 17px;
+    border: none;
+    float: left;
+    width: 100%;
+    background: white;
+  }
+  
+  .overlay input[type=text]:hover {
+    background: #f1f1f1;
+  }
+  
+  .overlay button {
+    float: left;
+    width: 20%;
+    padding: 14.5px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .overlay button:hover {
+    background: #bbb;
+  }
+  
+ 
+  
+  
+  .categorias .swiper-button-next,
+  .categorias .swiper-button-prev {
+    background-color: #F07407; /* Color de fondo */
+    color: white; /* Color del texto */
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px; /* Botón redondeado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  /* Añade efectos hover */
+  .categorias .swiper-button-next:hover,
+  .categorias .swiper-button-prev:hover {
+    background-color: #54340E; /* Cambia el color al hacer hover */
+  }
+  
+  .categorias .swiper-button-next::after,
+  .categorias .swiper-button-prev::after {
+    font-size: 15px;
+  } 
+  
+  .categorias .swiper-button-next{
+    display: inline-flex;
+    left: 100;
+    right: -13px;
+    z-index: 999;
+  }
+  
+  .categorias .swiper-button-prev{
+    display: inline-flex;
+    right: 100;
+    left: -13px;
+    z-index: 999;
+  }
+  
+  /* .swiper {
+    clip-path: inset(0px -13px 0px -13px);
+    overflow:visible!important ;
+  } */
+  
+  .featuredproducts .swiper-button-next,
+  .featuredproducts .swiper-button-prev {
+    background-color: #F07407; /* Color de fondo */
+    color: white; /* Color del texto */
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px; /* Botón redondeado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  /* Añade efectos hover */
+  .featuredproducts .swiper-button-next:hover,
+  .featuredproducts .swiper-button-prev:hover {
+    background-color: #54340E; /* Cambia el color al hacer hover */
+  }
+  
+  .featuredproducts .swiper-button-next::after,
+  .featuredproducts .swiper-button-prev::after {
+    font-size: 15px;
+  } 
+  
+  .featuredproducts .swiper-button-next{
+    display: inline-flex;
+    left: 100;
+    right: -13px;
+    z-index: 999;
+  }
+  
+  .featuredproducts .swiper-button-prev{
+    display: inline-flex;
+    right: 100;
+    left: -13px;
+    z-index: 999;
+  }

@@ -74,14 +74,18 @@ class IndexController extends Controller
         $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
         // $descuentos = Products::where('descuento', '>', 0)->where('status', '=', 1)
         // ->where('visible', '=', 1)->with('tags')->get();
-        $newarrival = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
+        $promociones = Products::where('recomendar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
+        $ultimoProducto = $promociones->last();
+        $restopromociones = $promociones->reject(function ($producto) use ($ultimoProducto) {
+          return $producto->id === $ultimoProducto->id;
+        });
 
         $general = General::all();
         $benefit = Strength::where('status', '=', 1)->get();
         $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
         $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
         $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
-        $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->orderBy('order', 'asc')->get();
+        $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->where('visible', '=', 1)->orderBy('order', 'asc')->get();
         
         $logos = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
         $mismarcas = MisMarcas::where('status', '=', 1)->where('visible', '=', 1)->get();
@@ -90,7 +94,7 @@ class IndexController extends Controller
         $contactos = ContactDetail::where('status', '=', 1)->get();
         $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-        return view('public.index', compact('textoshome', 'productos', 'destacados', 'newarrival', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos', 'posts','mismarcas', 'estadisticas', 'contactos'));
+        return view('public.index', compact('ultimoProducto','restopromociones','textoshome', 'productos', 'destacados', 'promociones', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos', 'posts','mismarcas', 'estadisticas', 'contactos'));
     }
 
     public function coleccion($filtro)
@@ -136,23 +140,25 @@ class IndexController extends Controller
         );
     }
 
-    public function catalogo($filtro, Request $request)
+    public function catalogo(Request $request, string $filtro = null)
     {
         $categorias = null;
         $productos = null;
+        $categoria = null;
 
         try {
             $general = General::all();
             $textoproducto = ProductosView::first();
             $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
-            $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->orderBy('order', 'asc')->get();
+            $categorias = Category::where('status', '=', 1)->where('destacar', '=', 1)->where('visible', '=', 1)->orderBy('order', 'asc')->get();
+           
             $subcategorias = Subcategory::all();
             $microcategorias = Microcategory::all();
             $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
             $atributos = Attributes::where('status', '=', 1)->where('visible', '=', 1)->get();
             $colecciones = Collection::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-            if ($filtro == 0) {
+            if (is_null($filtro) || $filtro == 0) {
                 //$productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->paginate(12);
                 $productos = Products::obtenerProductos();
 

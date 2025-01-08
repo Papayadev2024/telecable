@@ -8,176 +8,161 @@
 @section('content')
     <main>
 
-        <section
-            class="flex flex-col lg:flex-row gap-10 lg:gap-10 justify-center items-center px-[5%] lg:pl-0 lg:pr-0 -mt-24 bg-cover bg-top pt-32"
-            style="background-image:url({{ asset('images/img/portadaimagen.png') }})">
-        </section>
-
-        <section class="w-full bg-[#F5F7F9] py-10 lg:py-20 px-[5%]">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 w-full ">
-                <div class="flex flex-col justify-between">
-
-                    <div class="flex flex-col gap-2">
-                        <h2 class="leading-tight font-gotham_medium  text-4xl xl:text-5xl text-[#0181AA]">
-                           {{$textoshome->title6section ?? "Ingrese un texto"}}</h2>
-                        <div class="h-[3px] bg-[#0181AA] w-32 rounded-full"> </div>
-                        <p class="text-[#02324A] font-gotham_book font-normal text-lg mt-5">
-                            {{$textoshome->description6section ?? "Ingrese un texto"}}
-                        </p>
-                    </div>
-
-                    <div class="flex flex-col gap-2">
-                        <div class="flex flex-col gap-1">
-                            <p class="font-gotham_medium  text-2xl text-[#0181AA] ">Horario
-                            </p>
-                            <p class="font-gotham_book text-base text-[#11355a] font-normal">
-                                @foreach (explode(',', $general[0]->schedule) as $item)
-                                    {{ $item }}<br>
-                                @endforeach
-                            </p>
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <p class="font-gotham_medium  text-2xl text-[#0181AA] ">Dirección
-                            </p>
-                            <p class="font-gotham_book text-base text-[#11355a] font-normal">
-                                {{ $general[0]->address }}, {{ $general[0]->inside }},
-                                {{ $general[0]->district }} - {{ $general[0]->city }}
-                            </p>
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <p class="font-gotham_medium  text-2xl text-[#0181AA] ">Ponerse en contacto
-                            </p>
-                            <p class="font-gotham_book text-base text-[#11355a] font-normal">
-                                {{ $general[0]->cellphone }}<br>
-                                {{ $general[0]->office_phone }}
-                            </p>
-                        </div>
-                    </div>
-
+        <section class="flex flex-col md:flex-row justify-center items-center px-[5%] xl:px-[8%] py-10 lg:py-16 bg-[#F1EBE3] gap-12 relative">
+            
+            <form id="formContactos" class="w-full md:w-1/2 flex flex-col gap-3">
+                @csrf
+                <h2 class="text-[#54340E] font-bignoodle text-5xl">Nuestra Carta</h2>
+                <p class="text-[#54340E] text-lg font-latoregular w-full leading-tight">
+                  Recetas tradicionales peruanas, frescas y deliciosas, directo a tu puerta.
+                </p>
+      
+                <div class="flex flex-col gap-1">
+                  <label class="text-[#54340E] text-base font-latoregular font-semibold w-full leading-tight">Nombre completo</label>
+                  <input id="name" type="text" required name="full_name" placeholder="Nombre y apellido" class="placeholder:text-[#54340E] text-[#54340E] placeholder:text-opacity-50 bg-white font-latoregular font-semibold rounded-xl px-3 py-2.5 ring-0 focus:ring-0 border-0"/>
+                </div>
+      
+                <div class="flex flex-col gap-1">
+                  <label class="text-[#54340E] text-base font-latoregular font-semibold w-full leading-tight">Email</label>
+                  <input required name="email" id="emailContacto" type="email" placeholder="hola@mail.com" class="placeholder:text-[#54340E] text-[#54340E] placeholder:text-opacity-50 bg-white font-latoregular font-semibold rounded-xl px-3 py-2.5 ring-0 focus:ring-0 border-0"/>
                 </div>
 
-                <div class="flex flex-col gap-10 w-full sm:px-[5%] md:px-[10%]  ">
+                <div class="flex flex-col gap-1">
+                    <label class="text-[#54340E] text-base font-latoregular font-semibold w-full leading-tight">Telefono</label>
+                    <input required name="phone" id="telefonoContacto" type="text" placeholder="+51 123456789" class="placeholder:text-[#54340E] text-[#54340E] placeholder:text-opacity-50 bg-white font-latoregular font-semibold rounded-xl px-3 py-2.5 ring-0 focus:ring-0 border-0"/>
+                  </div>
+      
+                <div class="flex flex-col gap-1">
+                  <label class="text-[#54340E] text-base font-latoregular font-semibold w-full leading-tight">Mensaje</label>
+                  <textarea name="message" id="mensaje" rows="3" type="text" placeholder="Escribe tu mensaje" class="placeholder:text-[#54340E] text-[#54340E] placeholder:text-opacity-50 bg-white font-latoregular font-semibold rounded-xl px-3 py-2.5 ring-0 focus:ring-0 border-0"></textarea>
+                </div>
 
-                    <div class="flex flex-col gap-10 bg-white rounded-xl p-6">
-                        <h2 class="leading-tight font-gotham_medium  text-4xl text-[#0181AA]">
-                            {{$textoshome->title7section ?? "Ingrese un texto"}}
-                        </h2>
-                        <form id="formContactos" class="grid grid-cols-1 gap-4">
-                            @csrf
-
-                            <div class="relative w-full">
-                                <label for="fullNameContacto"
-                                    class="font-gotham_book font-semibold text-sm text-[#11355a]">Nombre completo</label>
-                                <input required name="full_name" id="fullNameContacto" type="text"
-                                    placeholder="Nombre completo"
-                                    class="mt-1 w-full py-3 px-4 focus:outline-none font-gotham_book text-base text-[#11355a] focus:ring-0 placeholder:text-[#11355a]  border-[#d7dee6] border transition-all focus:outline-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#d7dee6] rounded-xl" />
-                            </div>
-
-                            <div class="relative w-full">
-                                <label for="telefonoContacto"
-                                    class="font-gotham_book font-semibold text-sm text-[#11355a]">Número de Teléfono</label>
-                                <input id="telefonoContacto" name="phone" placeholder="Teléfono" type="tel"
-                                    maxlength="12" required
-                                    class="mt-1 w-full py-3 px-4 focus:outline-none font-gotham_book text-base text-[#11355a] focus:ring-0 placeholder:text-[#11355a]  border-[#d7dee6] border transition-all focus:outline-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#d7dee6] rounded-xl" />
-                            </div>
-
-                            <div class="relative w-full">
-                                <label for="emailContacto"
-                                    class="font-gotham_book font-semibold text-sm text-[#11355a]">E-Mail</label>
-                                <input type="email" name="email" placeholder="E-mail" required id="emailContacto"
-                                    class="mt-1 w-full py-3 px-4 focus:outline-none font-gotham_book text-base text-[#11355a] focus:ring-0 placeholder:text-[#11355a]  border-[#d7dee6] border transition-all focus:outline-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#d7dee6] rounded-xl" />
-                            </div>
-
-                            <input type="hidden" id="tipo" placeholder="tipo" name="source" value="Inicio" />
-
-                            <div class="relative w-full">
-                                <label for="message" class="font-gotham_book font-semibold text-sm text-[#11355a]">Escribe
-                                    un mensaje</label>
-                                <textarea name="message" id="message" rows="3" cols="30"
-                                    class="mt-1 w-full py-3 px-4 focus:outline-none font-gotham_book text-base text-[#11355a] focus:ring-0 placeholder:text-[#11355a]  border-[#d7dee6] border transition-all focus:outline-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#d7dee6] rounded-xl"
-                                    placeholder="Mensaje"></textarea>
-                            </div>
-
-                            <div class="relative w-full flex flex-row items-center gap-3">
-
-                                <input type="checkbox" required id="polytic"
-                                    class="w-6 h-6  focus:outline-none font-gotham_book text-base text-[#11355a] focus:ring-0 placeholder:text-[#11355a]  border-[#d7dee6] border transition-all focus:outline-0 focus:font-medium bg-transparent focus:bg-transparent focus:border-[#d7dee6] rounded-lg" />
-                                <label for="polytic" class="font-gotham_book font-semibold text-sm text-[#11355a]">Usted
-                                    acepta nuestra amigable política de privacidad.</label>
-                            </div>
-
-                            <input type="hidden" name="client_width" id="anchodispositivo">
-                            <input type="hidden" name="client_height" id="largodispositivo">
-                            <input type="hidden" name="client_latitude" id="latitud">
-                            <input type="hidden" name="client_longitude" id="longitud">
-                            <input type="hidden" name="client_system" id="sistema">
-                            <input type="hidden" id="tipo" placeholder="tipo" name="source" value="Inicio" />
-                            <div class="flex justify-center items-center py-5">
-                                <button type="submit"
-                                    class="flex flex-row justify-center gap-3 items-center text-lg font-gotham_book font-semibold text-white bg-[#11355a] py-3 px-6 w-full text-center rounded-3xl">Enviar
-                                    solicitud
-                                    <span><img src="{{ asset('images/svg/flechaderecha.svg') }}" /></span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                <input required name="source" id="telefonoContacto" type="hidden" value="Inicio" class="placeholder:text-[#54340E] text-[#54340E] placeholder:text-opacity-50 bg-white font-latoregular font-semibold rounded-xl px-3 py-2.5 ring-0 focus:ring-0 border-0"/>
+      
+                <div class="flex flex-col gap-1">  
+                  <button type="submit" class="bg-[#F07407] flex flex-row items-center justify-center gap-2 text-white font-latobold rounded-xl px-3 py-2.5 ring-0 focus:ring-0 border-0" >Enviar
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                      <path d="M18.8327 10.4141C18.8327 10.0046 18.8283 9.1784 18.8195 8.76773C18.7651 6.21311 18.7378 4.93581 17.7953 3.98961C16.8526 3.04342 15.5408 3.01046 12.917 2.94454C11.2999 2.90391 9.69877 2.90391 8.0817 2.94453C5.45796 3.01045 4.14608 3.04341 3.20347 3.98961C2.26087 4.9358 2.23363 6.2131 2.17915 8.76773C2.16163 9.58915 2.16164 10.4056 2.17916 11.2271C2.23363 13.7817 2.26087 15.059 3.20348 16.0052C4.14608 16.9514 5.45796 16.9843 8.08171 17.0502C8.75067 17.0671 9.41693 17.0769 10.0827 17.0798" stroke="#F9F6F3" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M2.16602 5L7.92687 8.27052C10.0316 9.46542 10.9671 9.46542 13.0718 8.27052L18.8327 5" stroke="#F9F6F3" stroke-width="1.25" stroke-linejoin="round"/>
+                      <path d="M18.8327 14.5833H12.166M18.8327 14.5833C18.8327 13.9998 17.1708 12.9096 16.7493 12.5M18.8327 14.5833C18.8327 15.1668 17.1708 16.2571 16.7493 16.6667" stroke="#F9F6F3" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+      
+            </form>
+      
+            
+            <div class="w-full md:w-1/2 ">
+                <div class="flex flex-col justify-center items-start md:items-end gap-4">
+                  <div class="group cursor-pointer hover:bg-[#F07407] border p-3 flex flex-col gap-0.5 border-[#DDCCBA] rounded-xl max-w-sm w-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M1.66602 4.16797L7.42687 7.43849C9.5316 8.63339 10.4671 8.63339 12.5718 7.43849L18.3327 4.16797" stroke="#F07407" class="group-hover:stroke-white" stroke-width="1.25" stroke-linejoin="round"/>
+                      <path d="M8.74935 16.2487C8.36077 16.2436 7.9717 16.2362 7.58171 16.2264C4.95796 16.1604 3.64608 16.1274 2.70348 15.1807C1.76087 14.2339 1.73363 12.9559 1.67916 10.3999C1.66164 9.57795 1.66163 8.76095 1.67915 7.93906C1.73363 5.38297 1.76087 4.10493 2.70347 3.15819C3.64608 2.21145 4.95796 2.17847 7.5817 2.11251C9.19877 2.07186 10.7999 2.07187 12.417 2.11252C15.0408 2.17848 16.3526 2.21146 17.2952 3.15821C18.2378 4.10494 18.2651 5.38298 18.3195 7.93907C18.3276 8.31746 18.3319 8.49578 18.3326 8.7487" class="group-hover:stroke-white" stroke="#F07407" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M15.834 14.168C15.834 14.8583 15.2743 15.418 14.584 15.418C13.8937 15.418 13.334 14.8583 13.334 14.168C13.334 13.4776 13.8937 12.918 14.584 12.918C15.2743 12.918 15.834 13.4776 15.834 14.168ZM15.834 14.168V14.5846C15.834 15.275 16.3937 15.8346 17.084 15.8346C17.7743 15.8346 18.334 15.275 18.334 14.5846V14.168C18.334 12.0969 16.6551 10.418 14.584 10.418C12.5129 10.418 10.834 12.0969 10.834 14.168C10.834 16.2391 12.5129 17.918 14.584 17.918" stroke="#F07407" stroke-width="1.25" stroke-linecap="round" class="group-hover:stroke-white" stroke-linejoin="round"/>
+                    </svg>
+                    <h2 class="text-[#54340E] group-hover:text-white font-latoregular font-semibold text-base">E-mail</h2>
+                    <p class="text-[#54340E] group-hover:text-white text-base font-latoregular w-full leading-tight">
+                        @foreach ($general as $item)
+                            {{ $item->email ?? "Ingrese un email"}}
+                        @endforeach
+                    </p>
+                  </div>
+      
+                  <div class="group cursor-pointer hover:bg-[#F07407] border p-3 flex flex-col gap-0.5 border-[#DDCCBA] rounded-xl max-w-sm w-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path class="group-hover:stroke-white" d="M4.16602 7.5013C4.16602 4.75144 4.16602 3.37651 5.02029 2.52224C5.87456 1.66797 7.24949 1.66797 9.99935 1.66797C12.7492 1.66797 14.1241 1.66797 14.9784 2.52224C15.8327 3.37651 15.8327 4.75144 15.8327 7.5013V12.5013C15.8327 15.2511 15.8327 16.6261 14.9784 17.4804C14.1241 18.3346 12.7492 18.3346 9.99935 18.3346C7.24949 18.3346 5.87456 18.3346 5.02029 17.4804C4.16602 16.6261 4.16602 15.2511 4.16602 12.5013V7.5013Z" stroke="#F07407" stroke-width="1.25" stroke-linecap="round"/>
+                    <path class="group-hover:stroke-white" d="M9.16602 15.832H10.8327" stroke="#F07407" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="group-hover:stroke-white" d="M7.5 1.66797L7.57417 2.11299C7.7349 3.07738 7.81527 3.55958 8.14599 3.853C8.491 4.15909 8.98008 4.16797 10 4.16797C11.0199 4.16797 11.509 4.15909 11.854 3.853C12.1847 3.55958 12.2651 3.07738 12.4258 2.11299L12.5 1.66797" stroke="#F07407" stroke-width="1.25" stroke-linejoin="round"/>
+                  </svg>
+                    <h2 class="text-[#54340E] group-hover:text-white font-latoregular font-semibold text-base">Teléfono</h2>
+                    <p class="text-[#54340E] group-hover:text-white text-base font-latoregular w-full leading-tight">
+                        @foreach ($general as $item)
+                            @if ($item->cellphone && $item->office_phone)
+                                {{ $item->cellphone ?? "Ingrese nro. celular" }} / {{ $item->office_phone ?? "Ingrese nro. telefónico" }}
+                            @elseif($item->cellphone && empty($item->office_phone))
+                                {{ $item->cellphone ?? "Ingrese nro. celular" }}
+                            @elseif($item->office_phone && empty($item->cellphone))
+                                {{ $item->office_phone ?? "Ingrese nro. telefónico" }}
+                            @else
+                                <p>No hay información disponible para este ítem.</p>
+                            @endif
+                        @endforeach
+                    </p>
+                  </div>
+      
+                  <div class="group cursor-pointer hover:bg-[#F07407] border p-3 flex flex-col gap-0.5 border-[#DDCCBA] rounded-xl max-w-sm w-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path class="group-hover:stroke-white" d="M5.83203 15C4.30792 15.3431 3.33203 15.8703 3.33203 16.4614C3.33203 17.4953 6.3168 18.3333 9.9987 18.3333C13.6806 18.3333 16.6654 17.4953 16.6654 16.4614C16.6654 15.8703 15.6894 15.3431 14.1654 15" stroke="#F07407" stroke-width="1.25" stroke-linecap="round"/>
+                      <path class="group-hover:stroke-white" d="M12.0827 7.4974C12.0827 8.64798 11.1499 9.58073 9.99935 9.58073C8.84877 9.58073 7.91602 8.64798 7.91602 7.4974C7.91602 6.3468 8.84877 5.41406 9.99935 5.41406C11.1499 5.41406 12.0827 6.3468 12.0827 7.4974Z" stroke="#F07407" stroke-width="1.25"/>
+                      <path class="group-hover:stroke-white" d="M11.0472 14.5754C10.7661 14.8461 10.3904 14.9974 9.99952 14.9974C9.60852 14.9974 9.23285 14.8461 8.95177 14.5754C6.37793 12.0814 2.92867 9.29531 4.61077 5.2505C5.52027 3.0635 7.70347 1.66406 9.99952 1.66406C12.2955 1.66406 14.4787 3.0635 15.3882 5.2505C17.0682 9.29023 13.6273 12.09 11.0472 14.5754Z" stroke="#F07407" stroke-width="1.25"/>
+                    </svg>
+                    <h2 class="text-[#54340E] group-hover:text-white font-latoregular font-semibold text-base">Dirección</h2>
+                    <p class="text-[#54340E] group-hover:text-white text-base font-latoregular w-full leading-tight">
+                        @foreach ($general as $item)
+                            {{$item->address}} - {{ $item->district }} - {{ $item->city }}
+                        @endforeach
+                    </p>
+                  </div>
+      
+                  <div class="group cursor-pointer hover:bg-[#F07407] border p-3 flex flex-col gap-0.5 border-[#DDCCBA] rounded-xl max-w-sm w-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path class="group-hover:stroke-white" d="M15 1.66797V3.33464M5 1.66797V3.33464" stroke="#F07407" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="group-hover:stroke-white" d="M2.08398 10.2027C2.08398 6.57162 2.08398 4.75607 3.12742 3.62803C4.17085 2.5 5.85023 2.5 9.20898 2.5H10.7923C14.1511 2.5 15.8305 2.5 16.8739 3.62803C17.9173 4.75607 17.9173 6.57162 17.9173 10.2027V10.6307C17.9173 14.2617 17.9173 16.0773 16.8739 17.2053C15.8305 18.3333 14.1511 18.3333 10.7923 18.3333H9.20898C5.85023 18.3333 4.17085 18.3333 3.12742 17.2053C2.08398 16.0773 2.08398 14.2617 2.08398 10.6307V10.2027Z" stroke="#F07407" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="group-hover:stroke-white" d="M2.5 6.66797H17.5" stroke="#F07407" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                    <h2 class="text-[#54340E] group-hover:text-white font-latoregular font-semibold text-base">Horario de atendimiento</h2>
+                    <p class="text-[#54340E] group-hover:text-white text-base font-latoregular w-full leading-tight">
+                        @foreach ($general as $item)
+                            {!! str_replace(',', '<br>', $item->schedule) !!}
+                        @endforeach
+                    </p>
+                  </div>
                 </div>
             </div>
+      
         </section>
 
-        <div class="w-full bg-[#F5F7F9] pb-10 lg:pb-20 px-0 lg:px-[5%]">
+       
+
+        <div class="w-full bg-[#F5F7F9] py-10 lg:py-16 px-0 lg:px-[5%]">
             <img class="w-full object-cover object-center h-60 sm:h-96 lg:h-[450px]" src="{{asset('images/img/bannercontacto.png')}}" />
         </div>
 
-        @if ($preguntasfrec->isEmpty())
-        @else
-            <section>
-                <div class="flex flex-col gap-10 w-full px-[5%] mx-auto pb-10 lg:pb-20 bg-[#F5F7F9]">
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-10 lg:gap-20">
-                        
-                                <div class="flex flex-col justify-center gap-5 rounded-xl">
-                                    <h2 class="leading-tight font-gotham_medium text-4xl text-[#0181AA]">
-                                        Todo FAQs</h2>
-                                    <div class="h-[3px] bg-[#0181AA] w-32 rounded-full -mt-2"> </div>   
-                            
-                                    <div class="font-poppins">
-                                        <div class="relative bg-white px-[5%] ring-gray-900/5 sm:mx-auto sm:rounded-lg">
-                                            <div class="mx-auto">
-                                                <div class="mx-auto mt-8 grid max-w-[900px] divide-y divide-neutral-200">
-                                                    @foreach ($preguntasfrec as $preguntas)  
-                                                        <div class="py-3 sm:py-4">
-                                                            <details class="group">
-                                                                    <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                                                        <span class="font-gotham_medium text-lg sm:text-xl text-[#0181AA] leading-tight">
-                                                                        {{$preguntas->pregunta}}</span>
-                                                                        <span class="transition group-open:rotate-180">
-                                                                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                <path d="M17 10.5L11.9992 15.08L7 10.5" stroke="#0181AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                            </svg>
-                                                                        </span>
-                                                                    </summary>
-                                                                    <div class="group-open:animate-fadeIn mt-3 text-[#02324A] font-gotham_book font-normal text-base">
-                                                                        {!!$preguntas->respuesta!!}
-                                                                    </div>
-                                                            </details>
-                                                        </div>
-                                                    @endforeach    
-                                                </div> 
-                                            </div>
-                                        </div>
-                                    </div>
+      
+        <section class="bg-[#54340E] bg-cover bg-opacity-100 relative flex flex-col gap-2">
+            <div 
+                class="bg-cover bg-center w-full" 
+                style="background-image: url({{asset('images/img/2textura.png')}});" 
+            >
+                <div class="w-full h-full absolute opacity-60 bg-white"></div>
 
-                                </div>
+                <form id="footerBlog_Catalogo">
+                    @csrf
+                    <div class="flex flex-col gap-2 justify-center items-center py-10 lg:py-16 px-[5%]">
+                        <h2 class="text-[#54340E] font-bignoodle text-5xl z-10 text-center">Suscríbete a nuestro blog</h2>
+                        <p class="text-[#54340E] text-base font-latoregular w-full leading-tight text-center z-10">
+                            Recetas tradicionales peruanas, frescas y deliciosas, directo a tu puerta.
+                        </p>
+                        <div class="z-10 mt-8 flex flex-col gap-2">
+                            <div class="md:space-x-2 bg-white px-5 py-3 rounded-xl overflow-hidden min-w-[250px] w-full flex flex-col md:flex-row gap-3">
+                                <input type="email" name="email" id="emailFooter2" required
+                                    class="text-[#54340E] placeholder:text-[#54340E] min-w-[300px] font-latoregular ring-0 border-0 focus:ring-0 focus:border-0 border-transparent ring-transparent" 
+                                    placeholder="Introduce tu email"
+                                />
+                                <input type="hidden" id="nameFooter" name="full_name" value="Usuario suscrito" />
                                 
-                                <div class="flex flex-col items-center justify-center">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15604.322139862717!2d-77.0165134!3d-12.1066391!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c7e150f2e221%3A0x21876935c1e5963!2sCADMO%20Soluciones%20SAC!5e0!3m2!1ses-419!2spe!4v1729968311226!5m2!1ses-419!2spe" 
-                                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </div>
-                        
+                                <button type="submit" class="text-white bg-[#F07407] w-full px-3 py-2 rounded-lg font-latoregular">
+                                    Suscribir
+                                </button>
+                            </div>
+                            <p class="text-[#54340E] text-sm font-latoregular w-full leading-tight text-center z-10">
+                                Nos preocupamos por tus datos en nuestra política de privacidad
+                            </p>
                         </div>
-                </div>
-            </section>
-        @endif    
+                    </div>
+                </form>
+            </div>
+        </section>
     </main>
 
 

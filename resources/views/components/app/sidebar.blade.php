@@ -99,6 +99,10 @@
             Beneficios
           </x-menu.item>
 
+          <x-menu.item id="slider" href="{{ route('slider.index') }}" icon="fas fa-address-card">
+            Slider
+          </x-menu.item>
+
           <x-menu.item id="liquidacion" href="{{ route('liquidacion.index') }}" icon="fas fa-address-card">
             Rubros
           </x-menu.item>

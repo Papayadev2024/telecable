@@ -40,7 +40,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
  
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
 </head>
 
 <body class="body">
@@ -48,7 +49,9 @@
     @include('components.public.header')
 
     <div class="main">
-        {{-- Aqui va el contenido de cada pagina --}}
+       
+        @include('components.public.sidebar')  
+
         @yield('content')
 
     </div>
@@ -481,7 +484,7 @@
                 error: function(error) {
                     Swal.close();
                     const obj = error.responseJSON.message;
-
+                    
                     const keys = Object.keys(error.responseJSON.message);
                     let flag = false;
                     keys.forEach(key => {

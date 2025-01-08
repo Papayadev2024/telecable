@@ -851,6 +851,31 @@ font-family: "gotham_medium";
 src: url("/fonts/gotham-medium.woff") format("woff");
 }
 
+@font-face {
+    font-family: "bignoodle";
+    src: url("../fonts/bignoodle.woff") format("woff");
+  }
+  
+@font-face {
+    font-family: "bignoodlecurve";
+    src: url("../fonts/bignoodlecurve.woff") format("woff");
+}
+  
+@font-face {
+    font-family: "latolight";
+    src: url("../fonts/latolight.woff") format("woff");
+}
+
+@font-face {
+    font-family: "latoregular";
+    src: url("../fonts/latoregular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "latobold";
+    src: url("../fonts/latobold.woff") format("woff");
+}
+
 
 .emptyspan span{
     display: none!important;

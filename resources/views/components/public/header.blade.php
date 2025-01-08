@@ -1,14 +1,82 @@
-<style>
-  .header-bg-image {
-    background-image: url("{{ asset('images/img/bannerheader.png') }}");
-    background-size: cover;
-    background-position: center;
-  }
-</style>
+<header id="main-header" class="fixed  top-0 w-full z-50">
 
-<header id="main-header" class="sticky top-0 right-0 z-[200] bg-transparent h-[96px] pt-5">
-  
-  <div>
+      <div class="left-0 right-0 z-[200]">
+        {{-- Top bar --}}
+        <div class="hidden bg-transparent z-[1000] relative font-galano_medium text-sm">
+            <div class="flex flex-row justify-end items-center py-4 h-10 w-full px-[5%] text-white text-sm">
+                {{-- <div class="flex flex-col justify-center items-center font-latobold">
+                    <div class="bg-[#E29720] px-3 py-2 rounded-lg">
+                        <p class="leading-none text-[#21149E]">Habla con nosotros</p>
+                    </div>
+                </div> --}}
+            </div>
+        </div>
+
+        {{-- Navbar --}}
+        <div class="flex lg:hidden justify-between w-full px-[5%]">
+            <nav class="flex h-[100px] items-center justify-between gap-10 w-full">
+                <input
+                    type="checkbox"
+                    id="menu"
+                    class="peer/menu menu hidden"
+                />
+                <label
+                    for="menu"
+                    class="transition-all flex flex-col gap-1 z-40 lg:hidden hamburguesa justify-center items-center order-3 lg:order-3"
+                >   
+                    
+                    
+                    <div class="bg-[#E29720] p-3 rounded-2xl">
+                      <div class="peer-checked:flex hidden">
+                        <p class="w-7 h-1 bg-[#110B79] transition-transform duration-500"></p>
+                        <p class="w-7 h-1 bg-[#110B79] transition-transform duration-500"></p>
+                        <p class="w-7 h-1 bg-[#110B79] transition-transform duration-500"></p>
+                      </div>
+                      <svg class="peer-checked:hidden flex" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M8.33464 5.0013C8.33464 3.16035 6.84225 1.66797 5.0013 1.66797C3.16035 1.66797 1.66797 3.16035 1.66797 5.0013C1.66797 6.84225 3.16035 8.33464 5.0013 8.33464C6.84225 8.33464 8.33464 6.84225 8.33464 5.0013Z" stroke="#110B79" stroke-width="1.25"/>
+                        <path d="M8.33464 15.0013C8.33464 13.1604 6.84225 11.668 5.0013 11.668C3.16035 11.668 1.66797 13.1604 1.66797 15.0013C1.66797 16.8422 3.16035 18.3346 5.0013 18.3346C6.84225 18.3346 8.33464 16.8422 8.33464 15.0013Z" stroke="#110B79" stroke-width="1.25"/>
+                        <path d="M18.3346 5.0013C18.3346 3.16035 16.8422 1.66797 15.0013 1.66797C13.1604 1.66797 11.668 3.16035 11.668 5.0013C11.668 6.84225 13.1604 8.33464 15.0013 8.33464C16.8422 8.33464 18.3346 6.84225 18.3346 5.0013Z" stroke="#110B79" stroke-width="1.25"/>
+                        <path d="M18.3346 15.0013C18.3346 13.1604 16.8422 11.668 15.0013 11.668C13.1604 11.668 11.668 13.1604 11.668 15.0013C11.668 16.8422 13.1604 18.3346 15.0013 18.3346C16.8422 18.3346 18.3346 16.8422 18.3346 15.0013Z" stroke="#110B79" stroke-width="1.25"/>
+                      </svg>
+                    </div>
+                    
+                </label>
+
+                <div class="flex lg:hidden justify-center items-center z-40">
+                    <a href="{{ url('/') }}">
+                        <img
+                            src="{{ asset('images/img/logorexconect.svg') }}"
+                            alt="Cremoso"
+                            class="max-w-36"
+                        />
+                    </a>
+                </div>
+
+                <ul
+                    class="flex font-bignoodle text-2xl text-[#54340E] pt-40 fixed inset-0 bg-[#21149E] px-[5%] flex-col lg:flex-row lg:items-center clip-circle-0 peer-checked/menu:clip-circle-full transition-[clip-path] duration-500 gap-5 lg:gap-10 lg:clip-circle-full lg:relative lg:flex lg:justify-items-center lg:p-0 lg:bg-transparent flex-1"
+                >
+                    <div class="flex lg:hidden flex-col font-normal lg:flex-row order-2 lg:order-1 lg:w-full lg:justify-end gap-5 lg:gap-10 text-white">
+                        <li class="flex flex-col">
+                            <a href="{{ url('/') }}" class="">Inicio</a>
+                        </li>
+                        <li class="flex flex-col">
+                            <a href="{{ url('/nosotros') }}" class="">Nosotros</a>
+                        </li>
+                        <li class="flex flex-col">
+                            <a href="{{ route('catalogo.all') }}" class="">Carta y Promos</a>
+                        </li>
+                        <li class="flex flex-col">
+                            <a href="{{ url('/blog/0') }}" class="">Wayquicha</a>
+                        </li>
+                        <li class="flex flex-col">
+                            <a href="{{ url('/contacto') }}" class="">Contacto</a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
+  {{-- <div>
     <div class="flex justify-between w-full px-[5%] mx-auto">
       <nav class="flex h-24 items-center justify-between gap-10 w-full">
         <input type="checkbox" id="menu" class="peer/menu menu hidden" />
@@ -33,53 +101,53 @@
             <li class="flex flex-col">
               <a href="{{ route('index') }}"
                 class="{{ isset($pagina) && $pagina == 'index' ? 'font-semibold' : '' }}">Inicio</a>
-              {{-- @if (isset($pagina) && $pagina == 'index')
+              @if (isset($pagina) && $pagina == 'index')
                 <p
                   class="hidden lg:block lg:after:content-[''] lg:after:w-full lg:after:h-[2px] lg:after:bg-[#FF5E14] lg:after:block">
                 </p>
-              @endif --}}
+              @endif
             </li>
             
             <li class="flex flex-col">
               <a href="{{ route('catalogo', 0) }}"
                 class="{{ isset($pagina) && $pagina == 'catalogo' ? ' font-semibold' : '' }}">Productos</a>
-              {{-- @if (isset($pagina) && $pagina == 'catalogo')
+              @if (isset($pagina) && $pagina == 'catalogo')
                 <p
                   class="hidden lg:block lg:after:content-[''] lg:after:w-full lg:after:h-[2px] lg:after:bg-[#FF5E14] lg:after:block">
                 </p>
-              @endif --}}
+              @endif
             </li>
             <li class="flex flex-col">
               <a href="{{ route('innovaciones') }}"
                 class="{{ isset($pagina) && $pagina == 'innovaciones' ? ' font-semibold' : '' }}">Innovaciones</a>
-              {{-- @if (isset($pagina) && $pagina == 'blog')
+              @if (isset($pagina) && $pagina == 'blog')
                 <p
                   class="hidden lg:block lg:after:content-[''] lg:after:w-full lg:after:h-[2px] lg:after:bg-[#FF5E14] lg:after:block">
                 </p>
-              @endif --}}
+              @endif
             </li>
             <li class="flex flex-col">
               <a href="{{ route('nosotros') }}"
                 class="{{ isset($pagina) && $pagina == 'nosotros' ? ' font-semibold' : '' }}">Nosotros</a>
-              {{-- @if (isset($pagina) && $pagina == 'nosotros')
+              @if (isset($pagina) && $pagina == 'nosotros')
                 <p
                   class="hidden lg:block lg:after:content-[''] lg:after:w-full lg:after:h-[2px] lg:after:bg-[#FF5E14] lg:after:block">
                 </p>
-              @endif --}}
+              @endif
             </li>
             <li class="flex flex-col">
               <a href="{{ route('contacto') }}"
                 class="{{ isset($pagina) && $pagina == 'contacto' ? ' font-semibold' : '' }}">Contacto</a>
-              {{-- @if (isset($pagina) && $pagina == 'contacto')
+              @if (isset($pagina) && $pagina == 'contacto')
                 <p
                   class="hidden lg:block lg:after:content-[''] lg:after:w-full lg:after:h-[2px] lg:after:bg-[#FF5E14] lg:after:block">
                 </p>
-              @endif --}}
+              @endif
 
             </li>
           </div>
 
-          {{-- <div
+          <div
             class="relative w-full order-1 lg:order-2  lg:w-[20%] pb-8 lg:py-0 border-b lg:border-0 border-[#082252]">
             <input id="buscarproducto" type="text" placeholder="Buscar..."
               class="w-full pl-8 pr-10 py-2 border border-[#082252] lg:border-[#E6E4E5] rounded-lg focus:outline-none focus:ring-0 text-[#082252] placeholder:text-[#082252] lg:placeholder:text-[#E6E4E5]">
@@ -93,12 +161,12 @@
             </span>
 
             <div class="bg-white z-60 shadow-2xl top-12 w-full absolute overflow-y-auto max-h-[200px]" id="resultados"></div>  
-          </div> --}}
+          </div>
           
         </ul>
       </nav>
     </div>
-  </div>
+  </div> --}}
 
   <div class="flex justify-end w-full mx-auto z-[100] relative">
     <div class="fixed bottom-6 sm:bottom-[2rem] lg:bottom-[4rem] z-20 cursor-pointer">
@@ -376,21 +444,17 @@
             const logo = document.getElementById('imagenlogo');
             
             if (window.scrollY > 50) {
-                header.classList.remove('bg-transparent');
-                header.classList.remove('pt-5');
-                header.classList.add('header-bg-image');
+                
 
-                logo.classList.remove('h-20');
-                logo.classList.add('h-16');
+              header.classList.add('bg-[#21149E]'); 
+              header.classList.remove('bg-transparent'); 
                 
                 
             } else {
-                header.classList.remove('header-bg-image');
-                header.classList.add('bg-transparent'); 
-                header.classList.add('pt-5');
-
-                logo.classList.remove('h-16');
-                logo.classList.add('h-20');
+              header.classList.add('bg-transparent');
+              header.classList.remove('bg-[#21149E]');
+                
+             
                 
             }
         }

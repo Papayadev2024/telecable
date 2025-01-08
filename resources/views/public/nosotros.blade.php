@@ -38,13 +38,32 @@
 
 
 @section('content')
-    <main>
+    <main class="bg-cover bg-center pt-16 xl:pt-5"  style="background-image:url({{asset('images/img/texturanosotros.png')}})">
 
-        <section class="flex flex-col lg:flex-row gap-10 lg:gap-10 justify-center items-center px-[5%] lg:pl-0 lg:pr-0 -mt-24 bg-cover bg-top pt-32" style="background-image:url({{asset('images/img/portadaimagen.png')}})">
+       
+        <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16" 
+          style="background-image: url('{{asset('images/img/textura3.svg')}}');">
+           
+          <div class="px-[5%]  flex flex-col items-center justify-center gap-5">
+            <div class="flex flex-col gap-1 max-w-3xl text-center">
+                <h3 class="font-gotham_bold text-white text-lg ">Nosotros</h3>
+                <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none">Conexión que <span class="text-[#E29720]">Te Impulsa</span></h2>
+                <p class="text-white text-base font-gotham_book"> 
+                    Ofrecemos internet rápido y confiable para hogares y empresas, con planes flexibles y soporte dedicado. Mejora tu conexión con velocidades que se adaptan a tus necesidades y disfruta de una experiencia sin interrupciones.
+                </p>
+            </div>
+          </div>
+
+          <div class="px-[5%] md:pl-[8%] md:pr-0 py-5 flex md:flex-row gap-5 md:gap-10">
+                <div class="w-full">
+                 
+                </div>
+            </div>  
         </section>
 
-       <section>
-            <div class="flex flex-col gap-10 w-full px-[5%] mx-auto py-10 lg:py-20 bg-[#FBFBFB]">
+
+       {{-- <section>
+            <div class="flex flex-col gap-10 w-full px-[5%] mx-auto py-10 lg:py-20">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-10">
                        
                             <div class="flex flex-col justify-center gap-5 rounded-xl">
@@ -63,11 +82,11 @@
                      
                     </div>
             </div>
-        </section>
+       </section> --}}
 
 
-        <section>
-            <div class="flex flex-col gap-10 w-full px-[5%] mx-auto pb-10 lg:pb-20 bg-[#FBFBFB]">
+        {{-- <section>
+            <div class="flex flex-col gap-10 w-full px-[5%] mx-auto pb-10 lg:pb-20 ">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-10">
                             
                             <div class="flex flex-col items-start justify-center order-2 lg:order-1 gap-0 lg:gap-5">
@@ -98,13 +117,13 @@
                            
                     </div>
             </div>
-        </section>
+        </section> --}}
     
        
-        @if ($benefit->isEmpty())
+        {{-- @if ($benefit->isEmpty())
         @else
             <section>
-                <div class="flex flex-col gap-10 w-full px-[5%] mx-auto pt-20 pb-10 lg:pb-20 bg-[#F5F7F9]">
+                <div class="flex flex-col gap-10 w-full px-[5%] mx-auto pt-20 pb-10 lg:pb-20 ">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                         @foreach ($benefit as $beneficios)
                             <div class="flex flex-col gap-5 bg-[#F5F7F9] p-4 rounded-xl">
@@ -123,7 +142,7 @@
                     </div>
                 </div>
             </section>
-        @endif
+        @endif --}}
        
     
     </main>
