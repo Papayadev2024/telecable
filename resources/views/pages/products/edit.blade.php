@@ -508,12 +508,13 @@
                                         </div>
                                     </div>
                                     
-                                    {{-- <div class="md:col-span-5">
+                                    <div class="md:col-span-5">
                                         <label for="especificacion">Especificación</label>
                                         <div class="relative mb-2 mt-2"> 
-                                            <x-textarea name="especificacion" value="{!! $product->especificacion !!}" />
+                                            {{-- <x-textarea name="especificacion" value="{!! $product->especificacion !!}" /> --}}
+                                            <textarea class="ckeditor" id="especificacion" name="especificacion">{!! $product->especificacion !!}</textarea>
                                         </div>
-                                    </div> --}}
+                                    </div>
 
                                     <div class="md:col-span-5">
                                         <label for="imagen">Nueva imagen principal (1000x1000px)</label>
@@ -940,28 +941,28 @@
                                 </div> --}}
 
                                 {{-- <div class="md:col-span-5">
-                  <label for="costo_x_art">Colección</label>
-                  <div class="relative mb-2  mt-2">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                      </svg>
-                    </div>
-                    <select name="collection_id"
-                      class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      <option value="">Seleccionar Colección </option>
-                      @foreach ($collection as $item)
-                        <option value="{{ $item->id }}"
-                          {{ $item->id == $product->collection_id ? 'selected' : '' }}>
-                          {{ $item->name }}</option>
-                      @endforeach
+                                    <label for="costo_x_art">Colección</label>
+                                    <div class="relative mb-2  mt-2">
+                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" width="512" height="512" x="0" viewBox="0 0 24 24" stroke-width="1.5"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                        </div>
+                                        <select name="collection_id"
+                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="">Seleccionar Colección </option>
+                                        @foreach ($collection as $item)
+                                            <option value="{{ $item->id }}"
+                                            {{ $item->id == $product->collection_id ? 'selected' : '' }}>
+                                            {{ $item->name }}</option>
+                                        @endforeach
 
-                    </select>
-                  </div>
-                </div> --}}
+                                        </select>
+                                    </div>
+                                </div> --}}
 
                                 {{-- <div class="md:col-span-5 mt-2">
                                     <div class=" flex items-end justify-between gap-2 ">
@@ -973,7 +974,7 @@
                                     </div>
                                     @foreach ($especificacion as $item)
                                         <div class="flex gap-2">
-                                            <div class="relative mb-2  mt-2">
+                                            <div class="relative mb-2  mt-2 hidden">
                                                 <div
                                                     class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                                     <svg class="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -991,7 +992,9 @@
                                                     </svg>
                                                 </div>
                                                 <input type="text" id="tittle-{{ $item->id }}"
-                                                    name="tittle-{{ $item->id }}" value="{{ $item->tittle }}"
+                                                    name="tittle-{{ $item->id }}" 
+                                                    value="{{ $item->tittle }}"
+                                                   
                                                     class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="Tutulo">
 
@@ -1058,7 +1061,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="md:col-span-5">
                                     <label for="archive">Hoja de Seguridad:</label>
                                      @if($product->name_docriesgo)
@@ -1089,8 +1091,6 @@
                                             aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                     </div>
                                 </div> --}}
-
-
                             </div>
 
                             {{-- <div
@@ -1313,6 +1313,23 @@
     <script src="/ckeditor/ckeditor.js"></script>
     <script>
        CKEDITOR.replace('description', {
+            toolbar: [
+                { name: 'document', items: ['Source'] }, // Código fuente
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'] },
+                { name: 'styles', items: ['Styles', 'Format', 'FontSize'] }, // Tamaño y fuente
+                { name: 'colors', items: ['TextColor', 'BGColor'] }, // Color de texto y fondo
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Blockquote'] },
+                { name: 'insert', items: ['Table', 'HorizontalRule'] },
+                { name: 'links', items: ['Link', 'Unlink'] },
+                { name: 'tools', items: ['Maximize'] } // Maximizar
+            ],
+            extraPlugins: 'colorbutton,font', // Activa plugins para color y fuentes
+            removePlugins: 'elementspath', // Elimina la ruta de elementos
+            resize_enabled: true // Permite redimensionar el editor
+        });
+
+        CKEDITOR.replace('especificacion', {
             toolbar: [
                 { name: 'document', items: ['Source'] }, // Código fuente
                 { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'] },

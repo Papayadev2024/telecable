@@ -1,8 +1,8 @@
-<header id="main-header" class="fixed  top-0 w-full z-50">
+<header id="main-header" class="fixed  top-0 w-full z-40">
 
-      <div class="left-0 right-0 z-[200]">
+      <div class="left-0 right-0">
         {{-- Top bar --}}
-        <div class="hidden bg-transparent z-[1000] relative font-galano_medium text-sm">
+        <div class="hidden bg-transparent relative font-galano_medium text-sm">
             <div class="flex flex-row justify-end items-center py-4 h-10 w-full px-[5%] text-white text-sm">
                 {{-- <div class="flex flex-col justify-center items-center font-latobold">
                     <div class="bg-[#E29720] px-3 py-2 rounded-lg">

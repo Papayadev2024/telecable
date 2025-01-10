@@ -80,7 +80,9 @@
         #imagen-zona {
             transition: opacity 0.3s ease-in-out;
         }
-
+        .blocker{
+            z-index: 50!important;
+        }
     </style>
 
 @stop
@@ -217,34 +219,58 @@
         @endif
 
 
-        <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16" 
-          style="background-image: url('{{asset('images/img/textura3.svg')}}');">
+        <section 
+            x-data="{
+                selected: 0,
+                categories: {{ json_encode($category) }},
+                products: {{ json_encode($productos) }},
+                get filteredProducts() {
+                    const selectedCategory = this.categories[this.selected];
+                    return this.products.filter(product => product.categoria_id === selectedCategory.id);
+                }
+            }"
+            class="bg-cover bg-opacity-100 relative py-10 lg:py-16"  style="background-image: url('{{asset('images/img/textura3.svg')}}');"
+            >
            
           <div class="px-[5%]  flex flex-col items-center justify-center gap-5">
             <div class="flex flex-col gap-1 max-w-xl text-center">
                 <h3 class="font-gotham_bold text-white text-lg ">Descrubre tu Plan Ideal</h3>
                 <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">Elige el <span class="text-[#E29720]">Plan de Internet</span> que se Ajusta a Ti</h2>
             </div>
+            
+            {{-- <div x-data="{ selected: 0 }" class="flex flex-row gap-3 justify-center items-start font-gotham_medium">
+                    @foreach ($category as $index => $cat)
+                            <div 
+                                @click="selected = {{ $index }}" 
+                                :class="selected === {{ $index }} 
+                                    ? 'bg-[#E29720] text-[#110B79]' 
+                                    : 'bg-white bg-opacity-10 text-white'" 
+                                class="px-5 py-2.5 rounded-full tracking-normal cursor-pointer"
+                            >
+                                <p class="leading-none text-sm sm:text-base">{{ $cat->name }}</p>
+                            </div>
+                    @endforeach
+            </div> --}}
 
-            <div x-data="{ selected: 0 }" class="flex flex-row gap-3 justify-center items-start font-gotham_medium">
-                @foreach ($category as $index => $cat)
+            <div class="flex flex-row gap-3 justify-center items-start font-gotham_medium">
+                <template x-for="(cat, index) in categories" :key="index">
                         <div 
-                            @click="selected = {{ $index }}" 
-                            :class="selected === {{ $index }} 
+                            @click="selected = index" 
+                            :class="selected === index 
                                 ? 'bg-[#E29720] text-[#110B79]' 
                                 : 'bg-white bg-opacity-10 text-white'" 
                             class="px-5 py-2.5 rounded-full tracking-normal cursor-pointer"
                         >
-                            <p class="leading-none text-sm sm:text-base">{{ $cat->name }}</p>
+                            <p class="leading-none text-sm sm:text-base" x-text="cat.name"></p>
                         </div>
-                @endforeach
+                </template>
             </div>
           </div>
 
           <div class="px-[5%] md:pl-[8%] md:pr-0 py-5 flex md:flex-row gap-5 md:gap-10">
     
                 <div class="w-full">
-                    <div class="swiper planes w-full">
+                    {{-- <div class="swiper planes w-full">
                         <div class="swiper-wrapper">   
                            @foreach ($productos as $producto)    
                                 <div class="swiper-slide my-auto">
@@ -276,7 +302,59 @@
                                 </div>
                             @endforeach
                         </div>
+                    </div> --}}
+
+                    <div class="swiper planes w-full mt-6">
+                        <div class="swiper-wrapper">   
+                            <template x-for="producto in filteredProducts" :key="producto.id">
+                                <div class="swiper-slide my-auto">
+                                    <div class="flex flex-col gap-3 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
+                                        
+                                        <div class="flex flex-row w-full">
+                                            <a class="bg-[#E29720] px-4 py-2 rounded-xl text-[#21149E] text-center font-gotham_bold w-auto line-clamp-2">
+                                                <span x-text="producto.producto"></span>
+                                            </a>
+                                        </div>
+        
+                                        <h2 class="font-gotham_bold text-white text-4xl line-clamp-2" x-text="producto.extract"></h2>
+        
+                                        <div class="flex flex-col w-full">
+                                            <span class="font-gotham_book font-semibold tracking-wide text-white text-base">Desde</span>
+                                            <h2 class="font-gotham_bold text-white text-3xl">
+                                                S/ <span x-text="producto.precio"></span>
+                                                <span class="font-gotham_book tracking-wide text-white text-base">/mes</span>
+                                            </h2>
+                                        </div>
+        
+                                        <img class="w-full h-44 object-contain mx-auto my-2" 
+                                            :src="'{{ asset('images/img/noimagen.jpg') }}'" 
+                                            x-bind:src="producto.imagen ? '{{ asset('') }}' + producto.imagen : '{{ asset('images/img/noimagen.jpg') }}'" 
+                                            alt="Imagen producto" 
+                                        />
+        
+                                        <div class="flex flex-col gap-3 justify-center items-start">
+                                            <div class="flex flex-row w-full">
+                                                <a id="linkmodalcotizar" 
+                                                   x-bind:data-id="producto.id"  
+                                                   class="btn-cotizar cursor-pointer bg-[#21149E] border border-[#21149E] px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full">
+                                                   <span>Me interesa</span>
+                                                </a>
+                                            </div>
+                                            <div class="flex flex-row w-full">
+                                                <a id="linkmodaldetalleplan" 
+                                                   x-bind:data-id="producto.id" 
+                                                   class="btn-detalle cursor-pointer bg-transparent border border-white px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full">
+                                                   <span>Saber más</span>
+                                                </a>
+                                            </div>
+                                            <span class="font-gotham_book text-xs text-white">Al seleccionar, acepta Términos y Condiciones.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
                     </div>
+
                 </div>
             </div>  
         </section>
@@ -708,18 +786,100 @@
 
     @foreach ($productos as $producto)
         <!-- Modal Cotizar -->
-        <div id="modalcotizar-{{$producto->id}}" class="modal" style="display: none; max-width: 900px !important; width: 100% !important;">
-            <div class="p-4">
-                <h1 class="font-gotham_bold">Cotizar: {{$producto->producto}}</h1>
-                <p class="font-gotham_book">Contenido relacionado al producto.</p>
+        <div id="modalcotizar-{{$producto->id}}" class="modal !bg-[#1EA7A2] !px-[15px] !z-50" style="display: none; max-width: 500px !important; width: 100% !important;">
+            <div class="p-4 !bg-[#1EA7A2] flex flex-col gap-3">
+                <div class="flex flex-col">
+                    <h2 class="font-gotham_bold leading-none text-white text-2xl md:text-3xl">{{$producto->producto}} </h2>  
+                    <span class="text-[#21149E] text-base font-gotham_bold"> {{$producto->extract}} </span>
+                </div>
+
+                <h3 class="font-gotham_book text-base  text-white text-left ">
+                    ¡Se parte de la experiencia Red Conex, déjanos tus datos y te llamamos pronto!
+                </h3>
+
+                <h2 class="font-gotham_bold leading-none text-white text-2xl md:text-3xl">¡Olvídate de lo común, disfruta el <span class="text-[#21149E]"> 100% de fibra óptica </span> real!</h2>
+
+                <form id="formulariocotizar">
+                    @csrf
+                    <div class="flex flex-col gap-2 justify-center items-center">
+            
+                        <div class="flex flex-col gap-2 w-full">
+                            <div class="w-full flex flex-col gap-3">
+                                <input type="phone" name="phone" id="phone" required
+                                    class="text-[#21149E] placeholder:text-[#21149E] font-gotham_medium px-2 text-base rounded-xl py-2 ring-0 border-0 focus:ring-0 focus:border-0 border-transparent ring-transparent" 
+                                    placeholder="Número de teléfono"
+                                />
+
+                                <input type="dni" name="dni" id="dni" required
+                                    class="text-[#21149E] placeholder:text-[#21149E]  font-gotham_medium  px-2 text-base rounded-xl py-2 ring-0 border-0 focus:ring-0 focus:border-0 border-transparent ring-transparent" 
+                                    placeholder="DNI/RUC/CEX"
+                                />
+                                <input type="hidden" id="nameFooter" name="full_name" value="Usuario suscrito" />
+                                
+                                <button type="submit" class="text-white bg-[#21149E] w-full px-3 py-2 rounded-3xl font-gotham_medium text-base">
+                                    Descubre tu Plan Ideal
+                                </button>
+                            </div>
+                            <p class="text-white text-sm font-latoregular w-full leading-tight text-left">
+                                Al enviar mis datos, acepto los Términos y Condiciones.
+                            </p>
+                        </div>
+                    </div>
+                </form>
+               
             </div>
         </div>
 
         <!-- Modal Detalle -->
-        <div id="modaldetalleplan-{{$producto->id}}" class="modal" style="display: none; max-width: 900px !important; width: 100% !important;">
-            <div class="p-4">
-                <h1 class="font-gotham_bold">Detalles: {{$producto->producto}}</h1>
-                <p class="font-gotham_book">Detalles adicionales del producto.</p>
+        <div id="modaldetalleplan-{{$producto->id}}" class="modal !bg-[#1EA7A2] !p-0 !z-50" style="display: none; max-width: 650px !important; width: 100% !important;">
+            <div class="w-full flex flex-row">
+                <div class="w-1/2 p-4 flex flex-col gap-1">
+                    <div class="flex flex-row w-full">
+                        <a class="bg-[#E29720] px-4 py-2 rounded-xl text-base text-[#21149E] text-center font-gotham_bold w-auto line-clamp-2">
+                            {{$producto->producto}}
+                        </a>
+                    </div>
+
+                    <h2 class="font-gotham_bold text-white text-2xl line-clamp-2">{{$producto->extract}}</h2>
+        
+                    <div class="flex flex-col w-full">
+                        <span class="font-gotham_book font-semibold tracking-wide text-white text-sm">Desde</span>
+                        <h2 class="font-gotham_bold text-white text-2xl">
+                            S/ {{$producto->precio}}
+                            <span class="font-gotham_book tracking-wide text-white text-base">/mes</span>
+                        </h2>
+                    </div>
+
+                    <div class="font-gotham_book text-white text-sm line-clamp-5">{!!$producto->description!!}</div>
+        
+                    <img class="w-full h-36 object-contain mx-auto my-2" 
+                        src="{{ asset($producto->imagen) }}" 
+                        onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"
+                        alt="{{$producto->producto}}" 
+                    />
+                    @php
+                        $html  = $producto->especificacion;
+                        preg_match_all('/<p>(.*?)<\/p>/', $html, $matches);
+                        $texts = $matches[1];
+                    @endphp
+                    <div class="bg-[#E29720] p-2 rounded-xl">
+                        @foreach ($texts as $text)
+                            
+                            <div class="text-[#21149E] font-gotham_light font-semibold text-sm flex flex-row gap-1">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M14.6673 7.9987C14.6673 4.3168 11.6825 1.33203 8.00065 1.33203C4.31875 1.33203 1.33398 4.3168 1.33398 7.9987C1.33398 11.6806 4.31875 14.6654 8.00065 14.6654C11.6825 14.6654 14.6673 11.6806 14.6673 7.9987Z" stroke="#21149E"/>
+                                        <path d="M5.33398 8.33333L7.00065 10L10.6673 6" stroke="#21149E" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                <p>{!! $text !!}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <img class="object-cover max-h-[500px]" src="{{ asset('aa') }}" onerror="this.onerror=null;this.src='{{ asset('images/img/popimg.png') }}';" />
+                </div>
             </div>
         </div>
     @endforeach
