@@ -24,10 +24,10 @@
               <tr>
                 <th>Titulo </th>
                 
-                <th>Icono</th>
+                <th class="w-24">Icono</th>
                 
-                <th>Visible</th>
-                <th>Acciones</th>
+                <th class="w-24">Visible</th>
+                <th class="w-24">Acciones</th>
               </tr>
             </thead>
             <tbody>

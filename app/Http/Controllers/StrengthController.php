@@ -53,9 +53,14 @@ class StrengthController extends Controller
 			if ($request->hasFile("icono")) {
 				$file = $request->file('icono');
 				$route = 'storage/images/icon/';
+				$extension = $file->getClientOriginalExtension();
 				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 				
-				$this->saveImg($file, $route, $nombreImagen);
+				if ($extension === 'svg') {
+					$file->move(public_path($route), $nombreImagen);
+				} else {
+					$this->saveImg($file, $route, $nombreImagen);
+				}
 	
 				$fortaleza->icono = $route.$nombreImagen;
 				// $fortaleza->name_image = $nombreImagen;
@@ -123,9 +128,19 @@ class StrengthController extends Controller
 			if ($request->hasFile("icono")) {
 				$file = $request->file('icono');
 				$route = 'storage/images/icon/';
+				$extension = $file->getClientOriginalExtension();
+
+				if ($fortaleza->icono && file_exists(public_path($fortaleza->icono))) {
+					unlink(public_path($fortaleza->icono));
+				}
+
 				$nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
 				
-				$this->saveImg($file, $route, $nombreImagen);
+				if ($extension === 'svg') {
+					$file->move(public_path($route), $nombreImagen);
+				} else {
+					$this->saveImg($file, $route, $nombreImagen);
+				}
 	
 				$fortaleza->icono = $route.$nombreImagen;
 				// $fortaleza->name_image = $nombreImagen;

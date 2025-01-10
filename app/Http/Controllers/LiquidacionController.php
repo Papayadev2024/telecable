@@ -52,13 +52,7 @@ class LiquidacionController extends Controller
 
                 $liquidacion ->url_image = $routeImg;
                 $liquidacion ->name_image = $nombreImagen;
-			}else{
-                $routeImg = 'images/img/';
-                $nombreImagen = 'noimagenliquidacion.jpg';
-
-                $liquidacion ->url_image = $routeImg;
-                $liquidacion ->name_image = $nombreImagen;
-            }
+			}
 
             $liquidacion ->botontext1 = $request->botontext1;
             $liquidacion ->link1 = '/liquidacion';

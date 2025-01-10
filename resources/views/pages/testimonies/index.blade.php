@@ -20,20 +20,21 @@
                     <table id="tabladatos" class="display text-lg" style="width:100%" >
                         <thead>
                             <tr>
+                                <th class="w-20">Imagen</th>
                                 <th>Nombre</th>
-                                <th>Ocupación</th>
-                                <th>Testimonio</th>
-                                <th>Visible</th>
-                                <th>Acciones</th>
+                                {{-- <th>Testimonio</th> --}}
+                                <th class="w-20">Visible</th>
+                                <th class="w-20">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             @foreach($testimony as $item)
                                 <tr>
+                                    <td class="px-3 py-2"><img class="w-16 h-24 bg-gray-400 object-contain" src="{{ asset($item->ocupation) }}" alt=""></td>
                                     <td>{{$item->name}}</td>
-                                    <td>{{$item->ocupation}}</td>
-                                    <td>{{$item->testimonie}}</td>
+                                    
+                                    {{-- <td>{{$item->testimonie}}</td> --}}
                                     <td>
                                         <form method="POST" action="">
                                           @csrf
@@ -67,9 +68,9 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>Imagen</th>
                                 <th>Nombre</th>
-                                <th>Ocupación</th>
-                                <th>Testimonio</th>
+                                {{-- <th>Testimonio</th> --}}
                                 <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>

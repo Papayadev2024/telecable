@@ -68,7 +68,7 @@ class IndexController extends Controller
     public function index()
     {
         // $productos = Products::all();
-        $productos = Products::where('status', '=', 1)->with('tags')->get();
+        $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->get();
         $categorias = Category::all();
         $textoshome = HomeView::first();
         $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
@@ -85,16 +85,16 @@ class IndexController extends Controller
         $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
         $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
         $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
-        $category = Category::where('status', '=', 1)->where('destacar', '=', 1)->where('visible', '=', 1)->orderBy('order', 'asc')->get();
+        $category = Category::where('status', '=', 1)->where('visible', '=', 1)->orderBy('order', 'asc')->get();
         
-        $logos = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
-        $mismarcas = MisMarcas::where('status', '=', 1)->where('visible', '=', 1)->get();
+        $complementos = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
+        $zonas = MisMarcas::where('status', '=', 1)->where('visible', '=', 1)->get();
         $estadisticas = MisClientes::where('status', '=', 1)->where('visible', '=', 1)->get();
         
         $contactos = ContactDetail::where('status', '=', 1)->get();
-        $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
+        $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->orderBy('created_at', 'desc')->take(3)->get();
 
-        return view('public.index', compact('ultimoProducto','restopromociones','textoshome', 'productos', 'destacados', 'promociones', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'logos', 'posts','mismarcas', 'estadisticas', 'contactos'));
+        return view('public.index', compact('ultimoProducto','restopromociones','textoshome', 'productos', 'destacados', 'promociones', 'general', 'benefit', 'faqs', 'testimonie', 'slider', 'categorias', 'category', 'complementos', 'posts','zonas', 'estadisticas', 'contactos'));
     }
 
     public function coleccion($filtro)
@@ -233,7 +233,8 @@ class IndexController extends Controller
         $textoshome = HomeView::first();
         $contactos = ContactDetail::where('status', '=', 1)->get();
         $preguntasfrec = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
-        return view('public.contacto', compact('preguntasfrec', 'textoshome','general','contactos'));
+        $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
+        return view('public.contacto', compact('preguntasfrec', 'textoshome','general','contactos','faqs'));
     }
 
     public function carrito()
@@ -638,7 +639,7 @@ class IndexController extends Controller
         }
     }
 
-    public function blog($filtro)
+    public function blog(Request $request, string $filtro = null)
     {
         try {
             $categorias = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
@@ -648,16 +649,33 @@ class IndexController extends Controller
 
                 $categoria = Category::where('status', '=', 1)->where('visible', '=', 1)->get();
 
-                $lastpost = Blog::where('status', '=', 1)->where('visible', '=', 1)->orderBy('created_at', 'desc')->first();
+                // $lastpost = Blog::where('status', '=', 1)->where('visible', '=', 1)->orderBy('created_at', 'desc')->first();
+
+                // $lastpost = $posts->last();
+
+                // $restopost = $posts->reject(function ($post) use ($lastpost) {
+                //   return $post->id === $lastpost->id;
+                // });
+
             } else {
                 $posts = Blog::where('status', '=', 1)->where('visible', '=', 1)->where('category_id', '=', $filtro)->get();
 
                 $categoria = Category::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $filtro)->get();
 
-                $lastpost = Blog::where('status', '=', 1)->where('visible', '=', 1)->orderBy('created_at', 'desc')->where('category_id', '=', $filtro)->first();
+                // $lastpost = Blog::where('status', '=', 1)->where('visible', '=', 1)->orderBy('created_at', 'desc')->where('category_id', '=', $filtro)->first();
+
+                // $lastpost = $posts->last();
+
+                // $restopost = $posts->reject(function ($post) use ($lastpost) {
+                //   return $post->id === $lastpost->id;
+                // });
             }
 
-            return view('public.blog', compact('posts', 'categoria', 'categorias', 'filtro', 'lastpost'));
+            $postsgeneral = Blog::where('status', '=', 1)->where('visible', '=', 1)->get();
+
+            $lastpost = $postsgeneral->last();
+
+            return view('public.blog', compact('posts', 'categoria', 'categorias', 'filtro', 'lastpost', 'postsgeneral'));
         } catch (\Throwable $th) {
         }
     }
@@ -665,11 +683,19 @@ class IndexController extends Controller
     public function detalleBlog($id)
     {
         $post = Blog::where('status', '=', 1)->where('visible', '=', 1)->where('id', '=', $id)->first();
+        
+        $postsrelacionados = Blog::where('status', '=', 1)
+                         ->where('visible', '=', 1)
+                         ->where('category_id', '=', $post->category_id)
+                         ->where('id', '!=', $post->id) // Excluir el post actual
+                         ->take(6)
+                         ->get();
+        
         $meta_title = $post->meta_title ?? $post->title;
         $meta_description = $post->meta_description  ?? Str::limit($post->extract, 160);
         $meta_keywords = $post->meta_keywords ?? '';
 
-        return view('public.post', compact('meta_title','meta_description','meta_keywords','post'));
+        return view('public.post', compact('meta_title','meta_description','meta_keywords','post','postsrelacionados'));
     }
 
     public function catalogosDescargables($filtro)

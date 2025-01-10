@@ -15,34 +15,40 @@
         </div>
 
         <div class="flex flex-col gap-3 justify-center items-center">
+            <a href="/">
+                <div class="bg-white cursor-pointer w-10 h-10 rounded-full flex flex-row justify-center items-center group hover:bg-[#E29720]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                        <path class="group-hover:stroke-white" d="M16.441 10.0781C16.6752 8.46119 16.7832 7.62982 16.4853 6.89016C16.1776 6.12647 15.4951 5.60395 14.13 4.55892L13.1102 3.77813C11.4121 2.47813 10.563 1.82812 9.58333 1.82812C8.60367 1.82812 7.75462 2.47813 6.05653 3.77813L5.03664 4.55892C3.6716 5.60395 2.98908 6.12647 2.68145 6.89016C2.37382 7.65385 2.49885 8.51529 2.7489 10.2382L2.96213 11.7075C3.31662 14.1498 3.49386 15.371 4.32112 16.0995C5.14839 16.8281 6.35782 16.8281 8.77667 16.8281H9.16667" stroke="#110B79" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="group-hover:stroke-white" d="M10.834 13.8956C11.7913 13.1166 12.9347 12.6641 14.1628 12.6641C15.3947 12.6641 16.5415 13.1196 17.5007 13.9029M15.9792 15.9974C15.4325 15.6565 14.8156 15.4646 14.1628 15.4646C13.5133 15.4646 12.8993 15.6546 12.3547 15.9922" stroke="#110B79" stroke-width="1.25" stroke-linecap="round"/>
+                        <path class="group-hover:stroke-white" d="M14.166 18.5H14.1713" stroke="#110B79" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </a>
+
             <div class="bg-white cursor-pointer w-10 h-10 rounded-full flex flex-row justify-center items-center group hover:bg-[#E29720]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                    <path class="group-hover:stroke-white" d="M16.441 10.0781C16.6752 8.46119 16.7832 7.62982 16.4853 6.89016C16.1776 6.12647 15.4951 5.60395 14.13 4.55892L13.1102 3.77813C11.4121 2.47813 10.563 1.82812 9.58333 1.82812C8.60367 1.82812 7.75462 2.47813 6.05653 3.77813L5.03664 4.55892C3.6716 5.60395 2.98908 6.12647 2.68145 6.89016C2.37382 7.65385 2.49885 8.51529 2.7489 10.2382L2.96213 11.7075C3.31662 14.1498 3.49386 15.371 4.32112 16.0995C5.14839 16.8281 6.35782 16.8281 8.77667 16.8281H9.16667" stroke="#110B79" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="group-hover:stroke-white" d="M10.834 13.8956C11.7913 13.1166 12.9347 12.6641 14.1628 12.6641C15.3947 12.6641 16.5415 13.1196 17.5007 13.9029M15.9792 15.9974C15.4325 15.6565 14.8156 15.4646 14.1628 15.4646C13.5133 15.4646 12.8993 15.6546 12.3547 15.9922" stroke="#110B79" stroke-width="1.25" stroke-linecap="round"/>
-                    <path class="group-hover:stroke-white" d="M14.166 18.5H14.1713" stroke="#110B79" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <a href="/nosotros">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                        <path class="group-hover:stroke-white" d="M14.9993 17.6667H4.99935C3.428 17.6667 2.64232 17.6667 2.15417 17.1785C1.66602 16.6903 1.66602 15.9047 1.66602 14.3333C1.66602 12.762 1.66602 11.9763 2.15417 11.4882C2.64232 11 3.428 11 4.99935 11H14.9993C16.5707 11 17.3563 11 17.8445 11.4882C18.3327 11.9763 18.3327 12.762 18.3327 14.3333C18.3327 15.9047 18.3327 16.6903 17.8445 17.1785C17.3563 17.6667 16.5707 17.6667 14.9993 17.6667Z" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="group-hover:stroke-white" d="M6.66602 3.05959C7.62337 2.28074 8.76677 1.82812 9.99485 1.82812C11.2268 1.82812 12.3735 2.2836 13.3327 3.06697M11.8113 5.16146C11.2645 4.82052 10.6476 4.62869 9.99485 4.62869C9.34535 4.62869 8.73135 4.81859 8.18666 5.15633" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round"/>
+                        <path class="group-hover:stroke-white" d="M10 7.66406H10.0053" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="group-hover:stroke-white" d="M15 14.3281H15.0075" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="group-hover:stroke-white" d="M11.666 14.3281H11.6735" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="group-hover:stroke-white" d="M5 14.3281H8.33333" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
             </div>
 
             <div class="bg-white cursor-pointer w-10 h-10 rounded-full flex flex-row justify-center items-center group hover:bg-[#E29720]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                    <path class="group-hover:stroke-white" d="M14.9993 17.6667H4.99935C3.428 17.6667 2.64232 17.6667 2.15417 17.1785C1.66602 16.6903 1.66602 15.9047 1.66602 14.3333C1.66602 12.762 1.66602 11.9763 2.15417 11.4882C2.64232 11 3.428 11 4.99935 11H14.9993C16.5707 11 17.3563 11 17.8445 11.4882C18.3327 11.9763 18.3327 12.762 18.3327 14.3333C18.3327 15.9047 18.3327 16.6903 17.8445 17.1785C17.3563 17.6667 16.5707 17.6667 14.9993 17.6667Z" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="group-hover:stroke-white" d="M6.66602 3.05959C7.62337 2.28074 8.76677 1.82812 9.99485 1.82812C11.2268 1.82812 12.3735 2.2836 13.3327 3.06697M11.8113 5.16146C11.2645 4.82052 10.6476 4.62869 9.99485 4.62869C9.34535 4.62869 8.73135 4.81859 8.18666 5.15633" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round"/>
-                    <path class="group-hover:stroke-white" d="M10 7.66406H10.0053" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="group-hover:stroke-white" d="M15 14.3281H15.0075" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="group-hover:stroke-white" d="M11.666 14.3281H11.6735" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="group-hover:stroke-white" d="M5 14.3281H8.33333" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-
-            <div class="bg-white cursor-pointer w-10 h-10 rounded-full flex flex-row justify-center items-center group hover:bg-[#E29720]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                    <path class="group-hover:stroke-white" d="M12.5 6.82812C12.5 8.20883 11.3807 9.32812 10 9.32812C8.61925 9.32812 7.5 8.20883 7.5 6.82812C7.5 5.44742 8.61925 4.32812 10 4.32812C11.3807 4.32812 12.5 5.44742 12.5 6.82812Z" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="group-hover:stroke-white" d="M13.334 3.5C14.7147 3.5 15.834 4.61929 15.834 6C15.834 7.01924 15.224 7.89603 14.3492 8.28525" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="group-hover:stroke-white" d="M11.4286 11.8281H8.57143C6.59898 11.8281 5 13.4271 5 15.3995C5 16.1885 5.63959 16.8281 6.42857 16.8281H13.5714C14.3604 16.8281 15 16.1885 15 15.3995C15 13.4271 13.401 11.8281 11.4286 11.8281Z" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="group-hover:stroke-white" d="M14.7617 11C16.7341 11 18.3331 12.599 18.3331 14.5714C18.3331 15.3604 17.6936 16 16.9046 16" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="group-hover:stroke-white" d="M6.66602 3.5C5.28531 3.5 4.16602 4.61929 4.16602 6C4.16602 7.01924 4.77596 7.89603 5.65075 8.28525" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="group-hover:stroke-white" d="M3.09459 16C2.30561 16 1.66602 15.3604 1.66602 14.5714C1.66602 12.599 3.265 11 5.23744 11" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <a href="/nosotros">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                        <path class="group-hover:stroke-white" d="M12.5 6.82812C12.5 8.20883 11.3807 9.32812 10 9.32812C8.61925 9.32812 7.5 8.20883 7.5 6.82812C7.5 5.44742 8.61925 4.32812 10 4.32812C11.3807 4.32812 12.5 5.44742 12.5 6.82812Z" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="group-hover:stroke-white" d="M13.334 3.5C14.7147 3.5 15.834 4.61929 15.834 6C15.834 7.01924 15.224 7.89603 14.3492 8.28525" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="group-hover:stroke-white" d="M11.4286 11.8281H8.57143C6.59898 11.8281 5 13.4271 5 15.3995C5 16.1885 5.63959 16.8281 6.42857 16.8281H13.5714C14.3604 16.8281 15 16.1885 15 15.3995C15 13.4271 13.401 11.8281 11.4286 11.8281Z" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="group-hover:stroke-white" d="M14.7617 11C16.7341 11 18.3331 12.599 18.3331 14.5714C18.3331 15.3604 17.6936 16 16.9046 16" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="group-hover:stroke-white" d="M6.66602 3.5C5.28531 3.5 4.16602 4.61929 4.16602 6C4.16602 7.01924 4.77596 7.89603 5.65075 8.28525" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="group-hover:stroke-white" d="M3.09459 16C2.30561 16 1.66602 15.3604 1.66602 14.5714C1.66602 12.599 3.265 11 5.23744 11" stroke="#110B79" stroke-opacity="0.6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
             </div>
 
             <div class="bg-white cursor-pointer w-10 h-10 rounded-full flex flex-row justify-center items-center group hover:bg-[#E29720]">

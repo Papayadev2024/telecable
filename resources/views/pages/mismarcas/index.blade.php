@@ -2,7 +2,7 @@
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
         
         <section class="py-4 border-b border-slate-100 dark:border-slate-700">
-            <a href="{{ route('mismarcas.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm" >Agregar marca</a>
+            <a href="{{ route('mismarcas.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm" >Agregar</a>
         </section>
 
 
@@ -10,7 +10,7 @@
             
             
             <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Mis Marcas</h2>
+                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Zonas de cobertura</h2>
             </header>
             <div class="p-3">
         
@@ -21,7 +21,7 @@
                         <thead>
                             <tr>
                                 <th>Titulo</th>
-                                <th>Imagen</th>
+                                <th class="w-20">Imagen</th>
                                 <th class="w-20">Visible</th>
                                 <th class="w-20">Acciones</th>
                             </tr>

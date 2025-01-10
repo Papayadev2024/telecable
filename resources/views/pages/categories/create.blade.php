@@ -21,7 +21,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="md:col-span-5">
+                                            {{-- <div class="md:col-span-5">
                                                 <label for="extract">Extracto</label>
                                                 <div class="relative mb-2 mt-2">
                                                     <div class="absolute inset-y-0 left-0 flex items-start pl-3 pointer-events-none top-3">                       
@@ -29,7 +29,7 @@
                                                     </div>
                                                     <textarea type="text" rows="2"  id="extract" name="extract" value="" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Extracto"></textarea>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="md:col-span-5">
                                                 <label for="description">Descripción</label>
@@ -41,16 +41,16 @@
                                                 </div>
                                             </div>
 
-                                            <div class="md:col-span-5">
+                                            {{-- <div class="md:col-span-5">
                                                 <label for="address">Subir una Foto</label>
                                                 <div class="relative mb-2  mt-2">
                                                     <input name="imagen" class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="md:col-span-5 text-right mt-6 flex justify-between">
                                                 <div class="inline-flex items-end">
-                                                    <a href="{{ URL::previous() }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
+                                                    <a href="{{ route('categorias.index') }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
                                                 </div>
                                                 <div class="inline-flex items-end">
                                                 <button type="submit"  class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Guardar categoría</button>

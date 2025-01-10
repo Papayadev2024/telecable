@@ -15,9 +15,9 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         //
-        $cat = ['Energía Flexible', 'Energía de Precisión'];
-        $cat2 = ['Lo que no se mide, no se optimiza. Soluciones integrales para la gestión energética en plantas industriales y locales comerciales. Calcula balances de energía para detectar hurtos, pérdidas en cables y transformadores, Ten el control de tus consumos y logra la máxima optimización.', 
-                'Exactitud en consumos. Equipos de medición de energía eléctrica para aplicaciones comerciales industriales de alta precisión. Calcula el consumo energético y la proyección de demanda logrando optimizarlos y validar la facturación mensual.'];
+        $cat = ['Planes de internet', 'Duo Familiar'];
+        $cat2 = ['Descripcion para Planes de Internet', 
+                'Descripcion para Duo Familiar'];
         $ids = [1, 2];
         for ($i = 0; $i < 2; $i++) {
             Category::create([

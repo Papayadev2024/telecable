@@ -22,7 +22,7 @@ class BlogController extends Controller
    */
   public function index()
   {
-    $posts = Blog::where('status', '=', true)->where('visible', '=', true)->get();
+    $posts = Blog::where('status', '=', true)->get();
 
     return view('pages.blog.index', compact('posts'));
   }

@@ -96,16 +96,16 @@
     <div id="modalTerminosCondiciones" class="modal" style="max-width: 900px !important;width: 100% !important;  ">
         <!-- Modal body -->
         <div class="p-4 ">
-            <h1 class="font-boldDisplay">Terminos y condiciones</h1>
-            <p class="font-Inter_Regular p-2 prose">{!! $terminos->content ?? '' !!}</p>
+            <h1 class="font-gotham_bold">Terminos y condiciones</h1>
+            <p class="font-gotham_book p-2 prose">{!! $terminos->content ?? '' !!}</p>
         </div>
     </div>
 
     <div id="modalPoliticasDev" class="modal" style="max-width: 900px !important; width: 100% !important;  ">
         <!-- Modal body -->
         <div class="p-4 ">
-            <h1 class="font-boldDisplay text-2xl">Politicas de privacidad</h1>
-            <p class="font-Inter_Regular p-2">{!! $politicDev->content ?? '' !!}</p>
+            <h1 class="font-gotham_bold text-2xl">Politicas de privacidad</h1>
+            <p class="font-gotham_book p-2">{!! $politicDev->content ?? '' !!}</p>
         </div>
     </div>
 

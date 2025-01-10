@@ -6,8 +6,117 @@
 
 
 @section('content')
-    <main>
-        <section class="w-11/12 mx-auto pt-44 flex flex-col gap-10 pb-20">
+    <main class="bg-cover bg-center pt-16 xl:pt-5"  style="background-image:url({{asset('images/img/texturanosotros.png')}})">
+
+        <section class="flex flex-row justify-start items-center px-[5%] xl:px-[10%] pt-10 lg:pt-16 gap-6 relative">
+            <div class="flex flex-col gap-1 max-w-xl text-left">
+                <h3 class="font-gotham_bold text-white text-lg ">Descrubre lo nuevo en tecnología</h3>
+                <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">Nuestro <span class="text-[#E29720]">Blog</span> de articulos</h2>
+            </div>
+        </section>
+
+        <section class="flex flex-col lg:flex-row px-[5%] xl:px-[10%] pt-10 gap-12 justify-center items-start lg:items-center">
+            <div class="w-full lg:w-2/3 flex flex-col justify-center">
+                @if (is_null($lastpost))
+                @else  
+                    <a href="{{ route('detalleBlog', $lastpost->id) }}">
+                        <div class="flex flex-col w-full bg-white bg-opacity-10 overflow-hidden rounded-3xl text-left">
+                            <div class="flex flex-row justify-center">
+                            <img class="w-full h-52 lg:h-96 object-cover" src="{{ asset($lastpost->url_image . $lastpost->name_image) }}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"/>
+                            </div>
+                            <div class="p-6 flex flex-col gap-3">
+                                <h2 class="font-gotham_bold text-white text-2xl xl:text-[21px] line-clamp-3">{{ $lastpost->title }}</h2>
+                                <div class="font-gotham_book text-white text-base text-justify line-clamp-3">{!!$lastpost->extract ?? $lastpost->description!!}</div>
+                                <div class="flex flex-row w-full">
+                                    <a href="{{ route('detalleBlog', $lastpost->id) }}" class="bg-[#E29720] px-4 py-3 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Leer más</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </a>      
+                @endif
+            </div>
+            <div class="w-full lg:w-1/3  flex flex-col justify-center items-start gap-3">
+                <h3 class="font-gotham_bold text-white text-lg ">Últimos post</h3>
+                @foreach ($postsgeneral->take(3) as $postr)
+                    <div class="flex flex-row w-full max-w-[390px] bg-white bg-opacity-10 rounded-3xl overflow-hidden mx-auto">
+                        <a href="{{ route('detalleBlog', $postr->id) }}">
+                            <div class="flex flex-col gap-3 justify-center items-start w-3/5 p-3 cursor-pointer">
+                                <div class="flex flex-col justify-center items-start h-20">
+                                    <h2 class="font-gotham_bold text-lg text-white line-clamp-3">
+                                        {{ $postr->title }}
+                                    </h2>
+                                </div>
+                                <div class="flex flex-row w-full ">
+                                    <a href="{{ route('detalleBlog', $postr->id) }}" class="bg-[#E29720] px-7 py-2 rounded-full text-[#21149E] text-center font-gotham_bold w-auto"><span>Leer más</span></a>
+                                </div>
+                            </div>   
+                            <div class="w-2/5">
+                                <img class="h-full w-full object-cover" src="{{ asset($postr->url_image . $postr->name_image) }}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />  
+                            </div>
+                        </a>
+                    </div> 
+                @endforeach
+            </div>
+        </section> 
+
+        <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16">
+            <div class="px-[5%] md:px-[10%] flex flex-col gap-5 md:gap-10">
+                
+                <div class="flex flex-col gap-6 w-full ">
+                    
+                    <div class="flex flex-col gap-1 max-w-xl text-left">
+                        <h3 class="font-gotham_bold text-white text-lg ">Descrubre lo nuevo en tecnología</h3>
+                        <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">Últimas publicaciones</h2>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <a href="{{ route('blog.all') }}">
+                            <div class="{{ $filtro == 0 ? 'bg-[#E29720] text-[#110B79]' : 'bg-white bg-opacity-10 text-white' }} rounded-3xl px-6 py-1.5 text-lg font-gotham_bold">
+                                Todos
+                            </div>
+                        </a>
+
+                        @foreach ($categorias as $item)
+                            <a href="{{ route('blog', $item->id) }}">
+                                <div class="rounded-3xl px-6 py-1.5 text-lg font-gotham_bold
+                                     {{ $item->id == $filtro ? 'bg-[#E29720] text-[#110B79]' : 'bg-white bg-opacity-10 text-white' }} ">
+                                    {{ $item->name }}
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                   
+                </div>
+                
+                <div class="w-full">
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+                        @if (count($posts) > 0)
+                            @foreach ($posts as $post)  
+                                <div class="flex flex-col w-full bg-white bg-opacity-10 overflow-hidden rounded-3xl text-left">
+                                    <a href="{{ route('detalleBlog', $post->id) }}">
+                                        <div class="flex flex-row justify-center">
+                                        <img class="w-full h-52 object-cover" src="{{ asset($post->url_image . $post->name_image) }}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"/>
+                                        </div>
+                                        <div class="p-6 flex flex-col gap-3">
+                                            <h2 class="font-gotham_bold text-white text-2xl xl:text-[21px] line-clamp-3">{{ $post->title }}</h2>
+                                            <div class="font-gotham_book text-white text-base text-justify line-clamp-3">{!!$lastpost->extract ?? $lastpost->description!!}</div>
+                                            <div class="flex flex-row w-full">
+                                                <a href="{{ route('detalleBlog', $post->id) }}" class="bg-[#E29720] px-4 py-3 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Leer más</span></a>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>   
+                            @endforeach
+                        @else 
+                            <h3 class="font-gotham_bold col-span-3 text-white text-lg text-center">Sin publicaciones en esta categoria</h3>
+                        @endif
+                    </div>
+                </div>
+                
+            </div>  
+        </section>
+
+        {{-- <section class="w-11/12 mx-auto pt-44 flex flex-col gap-10 pb-20">
             <div class="flex flex-col gap-2 w-full md:max-w-[768px]" data-aos="fade-up" data-aos-duration="150">
                 <p class="uppercase text-[#FF5E14] font-roboto font-semibold text-text16">Blog</p>
                 <h2 class="text-[#000929] font-bold font-roboto text-text40 md:text-text56 leading-tight">
@@ -114,9 +223,9 @@
                 </div>
 
             </div>
-        </section>
+        </section> --}}
 
-        <section class="pb-20">
+        {{-- <section class="pb-20">
             <div class="relative w-11/12 mx-auto ">
                 <img src="{{ asset('images/img/image_68.png') }}" alt="fondo"
                     class="w-full h-[270px] object-cover rounded-xl hidden md:block">
@@ -165,7 +274,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
     </main>
 
 

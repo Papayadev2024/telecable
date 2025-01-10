@@ -104,11 +104,11 @@
           </x-menu.item>
 
           <x-menu.item id="liquidacion" href="{{ route('liquidacion.index') }}" icon="fas fa-address-card">
-            Rubros
+            Complementos
           </x-menu.item>
 
           <x-menu.item id="mismarcas" href="{{ route('mismarcas.index') }}" icon="fas fa-address-card">
-            Marcas
+            Cobertura
           </x-menu.item>
 
           <x-menu.item id="estadisticas" href="{{ route('misclientes.index') }}" icon="fas fa-address-card">
@@ -121,6 +121,14 @@
 
           <x-menu.item id="faqs" href="{{ route('faqs.index') }}" icon="fas fa-address-card">
             Preguntas Frecuentes
+          </x-menu.item>
+
+          <x-menu.item id="subscripciones" href="{{ route('subscripciones') }}" icon="fas fa-address-card">
+            Subscripciones
+          </x-menu.item>
+
+          <x-menu.item id="blog" href="{{ route('blog.index') }}" icon="fas fa-address-card">
+            Blog
           </x-menu.item>
 
             <!-- Subscripciones -->

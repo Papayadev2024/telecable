@@ -80,6 +80,7 @@ Route::get('/comentario', [IndexController::class, 'comentario'])->name('comenta
 Route::post('/comentario/nuevo', [IndexController::class, 'hacerComentario'])->name('nuevocomentario');
 Route::get('/contacto', [IndexController::class, 'contacto'])->name('contacto');
 Route::get('/descargables/{filtro}', [IndexController::class, 'catalogosDescargables'])->name('descargables');
+Route::get('/blog', [IndexController::class, 'blog'])->name('blog.all');
 Route::get('/blog/{filtro}', [IndexController::class, 'blog'])->name('blog');
 Route::get('/post/{id}', [IndexController::class, 'detalleBlog'])->name('detalleBlog');
 

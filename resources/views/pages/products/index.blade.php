@@ -24,13 +24,13 @@
           <table id="tabladatos" class="display text-lg" style="width:100%">
             <thead>
               <tr>
-                <th>Orden</th>
-                <th>Imagen</th>
+                <th class="w-24">Orden</th>
+                <th class="w-24">Imagen</th>
                 <th>Nombre</th>
-                <th>Promocion</th>
-                <th>Destacar</th>
-                <th>Visible</th>
-                <th>Acciones</th>
+                {{-- <th>Promocion</th> --}}
+                <th class="w-24">Destacar</th>
+                <th class="w-24">Visible</th>
+                <th class="w-24">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -44,7 +44,7 @@
                       @endif
                   </td>
                   <td>{{ $item->producto }}</td>
-                  <td>
+                  {{-- <td>
                     <form method="POST" action="">
                       @csrf
                       <input type="checkbox" id="hs-basic-usage"
@@ -58,7 +58,7 @@
                         data-titleService='{{ $item->producto }}' {{ $item->recomendar == 1 ? 'checked' : '' }}>
                       <label for="{{ 'v_' . $item->id }}"></label>
                     </form>
-                  </td>
+                  </td> --}}
 
                   <td>
                     <form method="POST" action="">
@@ -115,7 +115,7 @@
                 <th>Orden</th>
                 <th>Imagen</th>
                 <th>Nombre</th>
-                <th>Promocion</th>
+                {{-- <th>Promocion</th> --}}
                 <th>Destacar</th>
                 <th>Visible</th>
                 <th>Acciones</th>

@@ -7,7 +7,7 @@
       <div
         class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
         <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Editar marca:
+          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Editar zona:
             {{ $mismarcas->title }}</h2>
         </header>
 
@@ -71,7 +71,7 @@
 
 
               <div class="md:col-span-5">
-                <label for="description">Imagen</label>
+                <label for="description">Imagen actual</label>
                 <div class="relative mb-2 mt-2">
                   <img src="{{ asset($mismarcas->url_image . $mismarcas->name_image) }}"
                     class="max-w-xs max-h-48 object-cover  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -81,7 +81,7 @@
 
 
               <div class="md:col-span-5">
-                <label for="imagen">Subir imagen (198x72 px)</label>
+                <label for="imagen">Subir imagen - Se aceptan formato .png/.jpg/.webp (760x430 px)</label>
                 <div class="relative mb-2  mt-2">
                   <input name="imagen"
                     class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -92,7 +92,7 @@
 
               <div class="md:col-span-5 text-right mt-6 flex justify-between">
                 <div class="inline-flex items-end">
-                  <a href="{{ URL::previous() }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
+                  <a href="{{ route('mismarcas.index') }}"  class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">Volver</a>
                 </div>
                 <div class="inline-flex items-end">
                   <button type="submit"

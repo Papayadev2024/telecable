@@ -76,6 +76,11 @@
             background-color: white !important; /* Color más tenue */
             opacity: 0.8; /* Opacidad constante */
         }
+
+        #imagen-zona {
+            transition: opacity 0.3s ease-in-out;
+        }
+
     </style>
 
 @stop
@@ -175,77 +180,41 @@
             </section>
         @endif --}}
 
+        @if (count($complementos) > 0)    
+            <section class="bg-cover bg-opacity-100 relative" 
+            style="background-image: url('{{asset('images/img/textura2.png')}}');">
+                <div class="px-[5%] md:pl-[8%] md:pr-0 py-5 flex flex-col  md:flex-row gap-5 md:gap-10">
+                    
+                    <div class="w-full sm:w-full md:w-1/3  xl:w-1/4 flex flex-col justify-center">
+                        <h2 class="font-gotham_bold text-4xl text-white text-left">
+                            ¿Eres cliente Redconex?
+                        </h2>
+                    </div>
 
-        <section class="bg-cover bg-opacity-100 relative" 
-          style="background-image: url('{{asset('images/img/textura2.png')}}');">
-            <div class="px-[5%] md:pl-[8%] md:pr-0 py-5 flex flex-col  md:flex-row gap-5 md:gap-10">
-                <div class="w-full sm:w-full md:w-1/3  xl:w-1/4 flex flex-col justify-center">
-                    <h2 class="font-gotham_bold text-4xl text-white text-left">
-                        ¿Eres cliente Redconex?
-                    </h2>
-                </div>
-
-                <div class="w-full sm:w-3/4 md:w-2/3 xl:w-3/4">
-                    <div class="swiper ofertas w-full">
-                        <div class="swiper-wrapper">   
-                            <div class="swiper-slide">
-                                <div class="flex flex-col md:flex-row gap-3 max-w-[390px] bg-[#21149E] p-6 rounded-3xl mx-auto">
-                                        <img class="w-24 h-32 object-contain mx-auto" src="{{asset('images/img/img1.png')}}" />
-                                        <div class="flex flex-col gap-3 justify-center items-start">
-                                            <h2 class="font-gotham_bold text-2xl text-white line-clamp-2">
-                                                ¡Agrega un TV BOX a tu plan gamer!
-                                            </h2>
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-[#E29720] px-7 py-2 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Pídelo aquí</span></a>
+                    <div class="w-full sm:w-3/4 md:w-2/3 xl:w-3/4">
+                        <div class="swiper ofertas w-full">
+                            <div class="swiper-wrapper">   
+                                @foreach ($complementos as $complemento)
+                                <div class="swiper-slide">
+                                        <div class="flex cursor-pointer flex-col md:flex-row gap-3 max-w-[390px] bg-[#21149E] p-6 rounded-3xl mx-auto">
+                                            <img class="w-24 h-32 object-contain mx-auto" src="{{asset($complemento->url_image . $complemento->name_image)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
+                                            <div class="flex flex-col gap-3 justify-center items-start">
+                                                <h2 class="font-gotham_bold text-2xl text-white line-clamp-2">
+                                                    {{$complemento->title}}
+                                                </h2>
+                                                <div class="flex flex-row w-full">
+                                                    <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text=Ya soy cliente y me interesa: *{{ $complemento->title }}* " class="bg-[#E29720] px-7 py-2 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Pídelo aquí</span></a>
+                                                </div>
                                             </div>
                                         </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="flex flex-col md:flex-row gap-3 max-w-[390px] bg-[#21149E] p-6 rounded-3xl mx-auto">
-                                        <img class="w-24 h-32 object-contain mx-auto" src="{{asset('images/img/img2.png')}}" />
-                                        <div class="flex flex-col gap-3 justify-center items-start">
-                                            <h2 class="font-gotham_bold text-2xl text-white line-clamp-2">
-                                                ¡Agrega un TV BOX a tu plan gamer!
-                                            </h2>
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-[#E29720] px-7 py-2 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Pídelo aquí</span></a>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="flex flex-col md:flex-row gap-3 max-w-[390px] bg-[#21149E] p-6 rounded-3xl mx-auto">
-                                        <img class="w-24 h-32 object-contain mx-auto" src="{{asset('images/img/img1.png')}}" />
-                                        <div class="flex flex-col gap-3 justify-center items-start">
-                                            <h2 class="font-gotham_bold text-2xl text-white line-clamp-2">
-                                                ¡Agrega un TV BOX a tu plan gamer!
-                                            </h2>
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-[#E29720] px-7 py-2 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Pídelo aquí</span></a>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="flex flex-col md:flex-row gap-3 max-w-[390px] bg-[#21149E] p-6 rounded-3xl mx-auto">
-                                        <img class="w-24 h-32 object-contain mx-auto" src="{{asset('images/img/img1.png')}}" />
-                                        <div class="flex flex-col gap-3 justify-center items-start">
-                                            <h2 class="font-gotham_bold text-2xl text-white line-clamp-2">
-                                                ¡Agrega un TV BOX a tu plan gamer!
-                                            </h2>
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-[#E29720] px-7 py-2 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Pídelo aquí</span></a>
-                                            </div>
-                                        </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>  
-        </section>
-
+                </div>  
+            </section>
+        @endif
 
 
         <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16" 
@@ -257,14 +226,18 @@
                 <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">Elige el <span class="text-[#E29720]">Plan de Internet</span> que se Ajusta a Ti</h2>
             </div>
 
-            <div class="flex flex-row gap-3 justify-center items-start font-gotham_medium">
-                <div class="bg-[#E29720] px-5 py-2.5 rounded-full tracking-normal">
-                    <p class="leading-none text-[#21149E] text-sm sm:text-base">Planes de internet</p>
-                </div>
-
-                <div class="bg-transparent px-5 py-2.5 rounded-full tracking-normal border border-white">
-                    <p class="leading-none text-white text-sm sm:text-base">Duo Familiar</p>
-                </div>
+            <div x-data="{ selected: 0 }" class="flex flex-row gap-3 justify-center items-start font-gotham_medium">
+                @foreach ($category as $index => $cat)
+                        <div 
+                            @click="selected = {{ $index }}" 
+                            :class="selected === {{ $index }} 
+                                ? 'bg-[#E29720] text-[#110B79]' 
+                                : 'bg-white bg-opacity-10 text-white'" 
+                            class="px-5 py-2.5 rounded-full tracking-normal cursor-pointer"
+                        >
+                            <p class="leading-none text-sm sm:text-base">{{ $cat->name }}</p>
+                        </div>
+                @endforeach
             </div>
           </div>
 
@@ -273,159 +246,35 @@
                 <div class="w-full">
                     <div class="swiper planes w-full">
                         <div class="swiper-wrapper">   
-                            
-                            <div class="swiper-slide my-auto">
-
-                                <div class="flex flex-col gap-3 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
-                                    
-                                        <div class="flex flex-row w-full">
-                                            <a class="bg-[#E29720] px-4 py-2 rounded-xl text-[#21149E] text-center font-gotham_bold w-auto"><span>Plan Básico | 100% Fibra</span></a>
-                                        </div>
+                           @foreach ($productos as $producto)    
+                                <div class="swiper-slide my-auto">
+                                    <div class="flex flex-col gap-3 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
                                         
-                                        <h2 class="font-gotham_bold text-white text-4xl line-clamp-2">150Mbps</h2>
-
-                                        <div class="flex flex-col w-full">
-                                            <span class="font-gotham_book font-semibold tracking-wide text-white text-base">Desde</span>
-                                            <h2 class="font-gotham_bold text-white text-3xl">S/ 50,00 <span class="font-gotham_book tracking-wide text-white text-base">/mes</span></h2>
-                                        </div>
-
-                                        <img class="w-full h-44 object-contain mx-auto my-2" src="{{asset('images/img/router.png')}}" />
-
-                                        <div class="flex flex-col gap-3 justify-center items-start">
                                             <div class="flex flex-row w-full">
-                                                <a class="bg-[#21149E] border border-[#21149E] px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Me interesa</span></a>
+                                                <a class="bg-[#E29720] px-4 py-2 rounded-xl text-[#21149E] text-center font-gotham_bold w-auto line-clamp-2"><span>{{$producto->producto}}</span></a>
                                             </div>
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-transparent border border-white px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Saber más</span></a>
+                                            
+                                            <h2 class="font-gotham_bold text-white text-4xl line-clamp-2">{{$producto->extract}}</h2>
+
+                                            <div class="flex flex-col w-full">
+                                                <span class="font-gotham_book font-semibold tracking-wide text-white text-base">Desde</span>
+                                                <h2 class="font-gotham_bold text-white text-3xl">S/ {{$producto->precio}} <span class="font-gotham_book tracking-wide text-white text-base">/mes</span></h2>
                                             </div>
-                                            <span class="font-gotham_book text-xs text-white">Al seleccionar, acepta Términos y Condiciones.</span>
-                                        </div>
+
+                                            <img class="w-full h-44 object-contain mx-auto my-2" src="{{asset($producto->imagen)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
+
+                                            <div class="flex flex-col gap-3 justify-center items-start">
+                                                <div class="flex flex-row w-full">
+                                                    <a id="linkmodalcotizar" data-id={{$producto->id}} class="btn-cotizar cursor-pointer bg-[#21149E] border border-[#21149E] px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Me interesa</span></a>
+                                                </div>
+                                                <div class="flex flex-row w-full">
+                                                    <a id="linkmodaldetalleplan" data-id={{$producto->id}} class="btn-detalle cursor-pointer bg-transparent border border-white px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Saber más</span></a>
+                                                </div>
+                                                <span class="font-gotham_book text-xs text-white">Al seleccionar, acepta Términos y Condiciones.</span>
+                                            </div>
+                                    </div>
                                 </div>
-
-                            </div>
-
-                            <div class="swiper-slide my-auto">
-
-                                <div class="flex flex-col gap-3 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
-                                    
-                                        <div class="flex flex-row w-full">
-                                            <a class="bg-[#E29720] px-4 py-2 rounded-xl text-[#21149E] text-center font-gotham_bold w-auto"><span>Plan Gamer | 100% Fibra</span></a>
-                                        </div>
-                                        
-                                        <h2 class="font-gotham_bold text-white text-4xl line-clamp-2">300Mbps +</h2>
-
-                                        <div class="flex flex-col w-full">
-                                            <span class="font-gotham_book font-semibold tracking-wide text-white text-base">Desde</span>
-                                            <h2 class="font-gotham_bold text-white text-3xl">S/ 80,00 <span class="font-gotham_book tracking-wide text-white text-base">/mes</span></h2>
-                                        </div>
-
-                                        <img class="w-full h-44 object-contain mx-auto my-2" src="{{asset('images/img/router.png')}}" />
-
-                                        <div class="flex flex-col gap-3 justify-center items-start">
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-[#21149E] border border-[#21149E] px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Me interesa</span></a>
-                                            </div>
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-transparent border border-white px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Saber más</span></a>
-                                            </div>
-                                            <span class="font-gotham_book text-xs text-white">Al seleccionar, acepta Términos y Condiciones.</span>
-                                        </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="swiper-slide my-auto">
-
-                                <div class="flex flex-col gap-3 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
-                                    
-                                        <div class="flex flex-row w-full">
-                                            <a class="bg-[#E29720] px-4 py-2 rounded-xl text-[#21149E] text-center font-gotham_bold w-auto"><span>Plan Avanzado | 100% Fibra</span></a>
-                                        </div>
-                                        
-                                        <h2 class="font-gotham_bold text-white text-4xl line-clamp-2">400Mbps + Repetidor</h2>
-
-                                        <div class="flex flex-col w-full">
-                                            <span class="font-gotham_book font-semibold tracking-wide text-white text-base">Desde</span>
-                                            <h2 class="font-gotham_bold text-white text-3xl">S/ 100,00 <span class="font-gotham_book tracking-wide text-white text-base">/mes</span></h2>
-                                        </div>
-
-                                        <img class="w-full h-44 object-contain mx-auto my-2" src="{{asset('images/img/router2.png')}}" />
-
-                                        <div class="flex flex-col gap-3 justify-center items-start">
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-[#21149E] border border-[#21149E] px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Me interesa</span></a>
-                                            </div>
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-transparent border border-white px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Saber más</span></a>
-                                            </div>
-                                            <span class="font-gotham_book text-xs text-white">Al seleccionar, acepta Términos y Condiciones.</span>
-                                        </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="swiper-slide my-auto">
-
-                                <div class="flex flex-col gap-3 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
-                                    
-                                        <div class="flex flex-row w-full">
-                                            <a class="bg-[#E29720] px-4 py-2 rounded-xl text-[#21149E] text-center font-gotham_bold w-auto"><span>Plan Vip | 100% Fibra</span></a>
-                                        </div>
-                                        
-                                        <h2 class="font-gotham_bold text-white text-4xl line-clamp-2">500Mbps + Repetidor</h2>
-
-                                        <div class="flex flex-col w-full">
-                                            <span class="font-gotham_book font-semibold tracking-wide text-white text-base">Desde</span>
-                                            <h2 class="font-gotham_bold text-white text-3xl">S/ 150,00 <span class="font-gotham_book tracking-wide text-white text-base">/mes</span></h2>
-                                        </div>
-
-                                        <img class="w-full h-44 object-contain mx-auto my-2" src="{{asset('images/img/router2.png')}}" />
-
-                                        <div class="flex flex-col gap-3 justify-center items-start">
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-[#21149E] border border-[#21149E] px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Me interesa</span></a>
-                                            </div>
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-transparent border border-white px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Saber más</span></a>
-                                            </div>
-                                            <span class="font-gotham_book text-xs text-white">Al seleccionar, acepta Términos y Condiciones.</span>
-                                        </div>
-                                </div>
-
-                            </div>
-
-                            <div class="swiper-slide my-auto">
-
-                                <div class="flex flex-col gap-3 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
-                                    
-                                        <div class="flex flex-row w-full">
-                                            <a class="bg-[#E29720] px-4 py-2 rounded-xl text-[#21149E] text-center font-gotham_bold w-auto"><span>Plan Básico | 100% Fibra</span></a>
-                                        </div>
-                                        
-                                        <h2 class="font-gotham_bold text-white text-4xl line-clamp-2">150Mbps</h2>
-
-                                        <div class="flex flex-col w-full">
-                                            <span class="font-gotham_book font-semibold tracking-wide text-white text-base">Desde</span>
-                                            <h2 class="font-gotham_bold text-white text-3xl">S/ 50,00 <span class="font-gotham_book tracking-wide text-white text-base">/mes</span></h2>
-                                        </div>
-
-                                        <img class="w-full h-44 object-contain mx-auto my-2" src="{{asset('images/img/router2.png')}}" />
-
-                                        <div class="flex flex-col gap-3 justify-center items-start">
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-[#21149E] border border-[#21149E] px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Me interesa</span></a>
-                                            </div>
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-transparent border border-white px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Saber más</span></a>
-                                            </div>
-                                            <span class="font-gotham_book text-xs text-white">Al seleccionar, acepta Términos y Condiciones.</span>
-                                        </div>
-                                </div>
-
-                            </div>
-                         
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -433,80 +282,78 @@
         </section>
 
 
-        <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16" 
-            style="background-image: url('{{asset('images/img/textura4.png')}}');">
-          <div class="px-[5%] md:px-[8%]  flex flex-col  lg:flex-row gap-5 md:gap-10">
-              <div class="w-full sm:w-full lg:w-1/3  flex flex-col justify-center">
-                <div class="swiper lugares w-full mt-1 h-[350px]  md:h-[360px]">
-                    <div class="swiper-wrapper ">
-                        <div class="swiper-slide">
-                            <div class="flex flex-row gap-3 items-center max-w-xs mx-auto p-3 bg-white group hover:bg-[#E29720] bg-opacity-10 rounded-2xl">
-                                <img class="w-20 h-20 rounded-xl object-cover" src="{{asset('images/img/lugar1.png')}}" />
-                                <h3 class="font-gotham_bold text-white text-lg group-hover:text-[#21149E]">Distrito de Ventanilla - Pachacutec</h3>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="flex flex-row gap-3 items-center max-w-xs mx-auto p-3 bg-white group hover:bg-[#E29720] bg-opacity-10 rounded-2xl">
-                                <img class="w-20 h-20 rounded-xl object-cover" src="{{asset('images/img/lugar1.png')}}" />
-                                <h3 class="font-gotham_bold text-white text-lg group-hover:text-[#21149E]">Distrito de Mi Perú</h3>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="flex flex-row gap-3 items-center max-w-xs mx-auto p-3 bg-white group hover:bg-[#E29720] bg-opacity-10 rounded-2xl">
-                                <img class="w-20 h-20 rounded-xl object-cover" src="{{asset('images/img/lugar1.png')}}" />
-                                <h3 class="font-gotham_bold text-white text-lg group-hover:text-[#21149E]">Distrito de Santa Rosa</h3>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="flex flex-row gap-3 items-center max-w-xs mx-auto p-3 bg-white group hover:bg-[#E29720] bg-opacity-10 rounded-2xl">
-                                <img class="w-20 h-20 rounded-xl object-cover" src="{{asset('images/img/lugar1.png')}}" />
-                                <h3 class="font-gotham_bold text-white text-lg group-hover:text-[#21149E]">Distrito de Santa Rosa</h3>
+        @if (count($zonas) > 0)   
+            <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16" style="background-image: url('{{asset('images/img/textura4.png')}}');">
+                <div class="px-[5%] md:px-[8%]  flex flex-col  lg:flex-row gap-5 md:gap-10">
+                    <div class="w-full sm:w-full lg:w-1/3  flex flex-col justify-center">
+                        <div class="swiper lugares w-full mt-1 h-[350px]  md:h-[360px]">
+                            <div class="swiper-wrapper ">
+                                @foreach ($zonas as $zona)
+                                    <div class="swiper-slide">
+                                        <div 
+                                            class="flex cursor-pointer flex-row gap-3 items-center max-w-xs mx-auto p-3 bg-white group hover:bg-[#E29720] bg-opacity-10 rounded-2xl"
+                                            data-image="{{ asset($zona->url_image . $zona->name_image) }}"
+                                        >
+                                            <img class="w-20 h-20 rounded-xl object-cover" src="{{asset($zona->url_image . $zona->name_image)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
+                                            <h3 class="font-gotham_bold text-white text-lg group-hover:text-[#21149E]">{{$zona->title}}</h3>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                </div>
-              </div>
 
-              <div class="w-full sm:w-full lg:w-2/3 flex flex-col justify-center gap-5 md:gap-10">
-                <div class="flex flex-col gap-1 max-w-2xl text-center mx-auto">
-                    <h3 class="font-gotham_bold text-white text-lg ">Zonas de Cobertura</h3>
-                    <h2 class="font-gotham_bold text-white text-4xl xl:text-5xl ">Conoce las <span class="text-[#E29720]">áreas con nuestra conexión</span>  de alta velocidad.</h2>
-                </div> 
-                <div>
-                    <img class="rounded-2xl overflow-hidden h-52 md:h-96 w-full object-cover" src="{{asset('images/img/lugar1.png')}}" />
-                </div>
-              </div>
-          </div>  
-        </section>
-
-
-
-        <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16" 
-            style="background-image: url('{{asset('images/img/textura5.png')}}');">
-            <div class="px-[5%] md:px-[10%] flex flex-col  lg:flex-row gap-5 md:gap-10">
-                <div class="w-full sm:w-full lg:w-1/2  flex flex-col justify-center">
-                    <div class="flex flex-col gap-3 max-w-2xl text-left mx-auto">
-                        <h3 class="font-gotham_bold text-white text-lg ">Sobre Nosotros</h3>
-                        <h2 class="font-gotham_bold text-white text-4xl xl:text-5xl">¡Conéctate al Futuro con<span class="text-[#21149E]"> Red Conex.</span> La Mejor Velocidad en Internet que Puedes Imaginar!</h2>
-                        <p class="font-gotham_book text-white text-base ">¡Bienvenido a Red Conex, tu mejor aliado para una conexión de internet inigualable! Con más de [número de años en el mercado] años de experiencia, estamos aquí para transformar tu experiencia digital con planes de internet de alta velocidad que se adaptan a ti.</p>
-                    </div>   
-                </div>
-
-                <div class="w-full sm:w-full lg:w-1/2 flex flex-col justify-start items-start md:items-center pb-28 md:pb-24">
-                    <div class="relative max-w-md mx-auto">
-                        <img class="rounded-3xl overflow-hidden h-[400px] w-72 object-cover " src="{{asset('images/img/lugar1.png')}}" />
-                        <div class="bg-[#21149E] p-4 rounded-2xl max-w-[300px] md:max-w-[370px] absolute -bottom-1/4 left-5 -right-14 md:-right-1/2">
-                            <p class="font-gotham_book text-white text-base">“Nunc libero purus, porttitor eget tellus eu, iaculis tincidunt dui. Cras sit amet lacinia justo, et euismod sem. Etiam a neque risus. Maecenas vehicula tortor mauris, eget condimentum urna pellentesque sed.”</p>
-                            <h3 class="font-gotham_bold text-white text-base text-right mt-1">Robert Capcha</h3>
+                    <div class="w-full sm:w-full lg:w-2/3 flex flex-col justify-center gap-5 md:gap-10">
+                        <div class="flex flex-col gap-1 max-w-2xl text-center mx-auto">
+                            <h3 class="font-gotham_bold text-white text-lg ">Zonas de Cobertura</h3>
+                            <h2 class="font-gotham_bold text-white text-4xl xl:text-5xl ">Conoce las <span class="text-[#E29720]">áreas con nuestra conexión</span>  de alta velocidad.</h2>
+                        </div> 
+                        <div>
+                            <img id="imagen-zona" class="rounded-2xl overflow-hidden h-52 md:h-96 w-full object-cover transition-opacity duration-300 opacity-100" src="{{asset($zona->url_image . $zona->name_image)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
                         </div>
                     </div>
-                </div>
-            </div>  
-        </section>
+                </div>  
+            </section>
+        @endif
 
+
+        @if (count($testimonie) > 0)
+            <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16"  style="background-image: url('{{asset('images/img/textura5.png')}}');">
+                <div class="px-[5%] md:px-[10%] flex flex-col  lg:flex-row gap-5 md:gap-10 lg:items-center">
+                    
+                    <div class="w-full sm:w-full lg:w-1/2  flex flex-col justify-center">
+                        <div class="flex flex-col gap-3 max-w-2xl text-left mx-auto">
+                            <h3 class="font-gotham_bold text-white text-lg ">Sobre Nosotros</h3>
+                            <h2 class="font-gotham_bold text-white text-4xl xl:text-5xl">¡Conéctate al Futuro con<span class="text-[#21149E]"> Red Conex.</span> La Mejor Velocidad en Internet que Puedes Imaginar!</h2>
+                            <p class="font-gotham_book text-white text-base ">¡Bienvenido a Red Conex, tu mejor aliado para una conexión de internet inigualable! Con más de [número de años en el mercado] años de experiencia, estamos aquí para transformar tu experiencia digital con planes de internet de alta velocidad que se adaptan a ti.</p>
+                        </div>   
+                    </div>
+
+                    <div class="w-full lg:w-1/2">
+                        <div>
+                            <div class="swiper testimonios h-[500px]">
+                                <div class="swiper-wrapper ">   
+                                    @foreach ($testimonie as $testimonio)
+                                        <div class="swiper-slide">
+                                            <div class="flex flex-col justify-center">
+                                                <div class="relative max-w-md mx-auto  xl:ml-auto mt-6 lg:mt-12">
+                                                    <img class="rounded-3xl overflow-hidden h-[400px] w-72 object-cover " src="{{asset($testimonio->ocupation)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
+                                                    <div class="bg-[#21149E] p-4 rounded-2xl max-w-[300px] md:max-w-[370px] absolute -bottom-12 left-5 -right-14 md:-right-1/2">
+                                                        <p class="font-gotham_book text-white text-base line-clamp-[7]">{{$testimonio->testimonie}}</p>
+                                                        <h3 class="font-gotham_bold text-white text-base text-right mt-1">{{$testimonio->name}}</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>  
+            </section>
+        @endif
 
         <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16 flex flex-col gap-10" 
           style="background-image: url('{{asset('images/img/textura3.svg')}}');">
@@ -518,74 +365,20 @@
           </div>
 
           <div class="px-[5%] md:px-[10%] grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-10">
-              <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
+            @foreach ($benefit as $benefi)   
+                <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
                     <div class="flex flex-row justify-center">
-                        <div class="bg-[#1EA7A2] p-3 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M20 35C22.7614 35 25 32.7614 25 30C25 27.2386 22.7614 25 20 25C17.2386 25 15 27.2386 15 30C15 32.7614 17.2386 35 20 35Z" stroke="#F2F4FF" stroke-width="2.5"/>
-                                <path d="M20 25.0013V16.668" stroke="#F2F4FF" stroke-width="2.5" stroke-linecap="round"/>
-                                <path d="M36.6673 21.6667C36.6673 12.4619 29.2053 5 20.0007 5C10.7959 5 3.33398 12.4619 3.33398 21.6667" stroke="#F2F4FF" stroke-width="2.5" stroke-linecap="round"/>
-                            </svg>
+                        <div class="bg-[#1EA7A2] p-0 rounded-full overflow-hidden">
+                            <img class="object-contain w-20" src="{{asset($benefi->icono)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
                         </div>
                     </div>
-                    <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto ">Velocidades que Impresionan</h2>
-                    <p class="font-gotham_book text-white text-base ">Desde 150 Mbps hasta 500 Mbps, ofrecemos conexiones rápidas y estables para que disfrutes de tus juegos online, videollamadas y streaming sin interrupciones.</p>
+                    <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto  lg:line-clamp-2">{{$benefi->titulo}}</h2>
+                    <p class="font-gotham_book text-white text-base  lg:line-clamp-3">{{$benefi->descripcion}}</p>
                     <div class="flex flex-row w-full">
                         <a class="bg-[#E29720] px-4 py-3 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Quiero más velocidad</span></a>
-                    </div>
-              </div>
-
-              <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
-                    <div class="flex flex-row justify-center">
-                        <div class="bg-[#1EA7A2] p-3 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M20 35C22.7614 35 25 32.7614 25 30C25 27.2386 22.7614 25 20 25C17.2386 25 15 27.2386 15 30C15 32.7614 17.2386 35 20 35Z" stroke="#F2F4FF" stroke-width="2.5"/>
-                                <path d="M20 25.0013V16.668" stroke="#F2F4FF" stroke-width="2.5" stroke-linecap="round"/>
-                                <path d="M36.6673 21.6667C36.6673 12.4619 29.2053 5 20.0007 5C10.7959 5 3.33398 12.4619 3.33398 21.6667" stroke="#F2F4FF" stroke-width="2.5" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto ">Velocidades que Impresionan</h2>
-                    <p class="font-gotham_book text-white text-base ">Desde 150 Mbps hasta 500 Mbps, ofrecemos conexiones rápidas y estables para que disfrutes de tus juegos online, videollamadas y streaming sin interrupciones.</p>
-                    <div class="flex flex-row w-full">
-                        <a class="bg-[#E29720] px-4 py-3 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Quiero más velocidad</span></a>
-                    </div>
-              </div>
-
-              <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
-                    <div class="flex flex-row justify-center">
-                        <div class="bg-[#1EA7A2] p-3 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M20 35C22.7614 35 25 32.7614 25 30C25 27.2386 22.7614 25 20 25C17.2386 25 15 27.2386 15 30C15 32.7614 17.2386 35 20 35Z" stroke="#F2F4FF" stroke-width="2.5"/>
-                                <path d="M20 25.0013V16.668" stroke="#F2F4FF" stroke-width="2.5" stroke-linecap="round"/>
-                                <path d="M36.6673 21.6667C36.6673 12.4619 29.2053 5 20.0007 5C10.7959 5 3.33398 12.4619 3.33398 21.6667" stroke="#F2F4FF" stroke-width="2.5" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto ">Velocidades que Impresionan</h2>
-                    <p class="font-gotham_book text-white text-base ">Desde 150 Mbps hasta 500 Mbps, ofrecemos conexiones rápidas y estables para que disfrutes de tus juegos online, videollamadas y streaming sin interrupciones.</p>
-                    <div class="flex flex-row w-full">
-                        <a class="bg-[#E29720] px-4 py-3 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Quiero más velocidad</span></a>
-                    </div>
-             </div>
-
-             <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
-                <div class="flex flex-row justify-center">
-                    <div class="bg-[#1EA7A2] p-3 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                            <path d="M20 35C22.7614 35 25 32.7614 25 30C25 27.2386 22.7614 25 20 25C17.2386 25 15 27.2386 15 30C15 32.7614 17.2386 35 20 35Z" stroke="#F2F4FF" stroke-width="2.5"/>
-                            <path d="M20 25.0013V16.668" stroke="#F2F4FF" stroke-width="2.5" stroke-linecap="round"/>
-                            <path d="M36.6673 21.6667C36.6673 12.4619 29.2053 5 20.0007 5C10.7959 5 3.33398 12.4619 3.33398 21.6667" stroke="#F2F4FF" stroke-width="2.5" stroke-linecap="round"/>
-                        </svg>
                     </div>
                 </div>
-                <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto ">Velocidades que Impresionan</h2>
-                <p class="font-gotham_book text-white text-base ">Desde 150 Mbps hasta 500 Mbps, ofrecemos conexiones rápidas y estables para que disfrutes de tus juegos online, videollamadas y streaming sin interrupciones.</p>
-                <div class="flex flex-row w-full">
-                    <a class="bg-[#E29720] px-4 py-3 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Quiero más velocidad</span></a>
-                </div>
-             </div>
-
+            @endforeach    
           </div> 
 
             <div class="px-[5%] md:px-[10%]">
@@ -627,121 +420,79 @@
             </div>
         </section>
 
-
-        <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16" 
-            style="background-image: url('{{asset('images/img/textura6.png')}}');">
-            <div class="px-[5%] md:px-[10%] flex flex-col gap-5 md:gap-10">
-                
-                <div class="flex flex-col justify-start gap-3 md:flex-row md:justify-between w-full md:items-center">
-                    <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">Nuestras últimas <br><span class="text-[#21149E]"> publicaciones</span></h2>
-                    <div class="flex flex-row">
-                        <a href="#">
-                            <div class="bg-[#E29720] text-[#110B79] rounded-3xl px-6 py-2 text-lg font-gotham_bold">
-                                Ver más noticias
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="w-full">
-                    <div class="swiper slider_blog h-max">
-                        <div class="swiper-wrapper">
-
-                            <div class="swiper-slide">
-                                <div class="flex flex-col w-full bg-[#21149E] overflow-hidden rounded-3xl text-left">
-                                    <div class="flex flex-row justify-center">
-                                       <img class="w-full h-52 object-cover" src="{{asset('images/img/imagenblog.png')}}"/>
+        @if (count($faqs) > 0 || count($posts) > 0)
+            <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16" 
+                style="background-image: url('{{asset('images/img/textura6.png')}}');">
+                <div class="px-[5%] md:px-[10%] flex flex-col gap-5 md:gap-10">
+                    @if (count($posts) > 0)
+                        <div class="flex flex-col justify-start gap-3 md:flex-row md:justify-between w-full md:items-center">
+                            <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">Nuestras últimas <br><span class="text-[#21149E]"> publicaciones</span></h2>
+                            <div class="flex flex-row">
+                                <a href="{{ route('blog.all') }}">
+                                    <div class="bg-[#E29720] text-[#110B79] rounded-3xl px-6 py-2 text-lg font-gotham_bold">
+                                        Ver más noticias
                                     </div>
-                                    <div class="p-6 flex flex-col gap-3">
-                                        <h2 class="font-gotham_bold text-white text-2xl xl:text-[21px] line-clamp-3">Beneficios del Internet de Fibra Óptica para tu Hogar</h2>
-                                        <p class="font-gotham_book text-white text-base text-justify line-clamp-3">Descubre cómo la fibra óptica ofrece una conexión más rápida y estable, ideal para streaming, trabajo remoto y videojuegos. Conoce por qué esta tecnología es la mejor opción para quienes buscan rendimiento.</p>
-                                        <div class="flex flex-row w-full">
-                                            <a class="bg-[#E29720] px-4 py-3 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Leer más</span></a>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="w-full">
+                            <div class="swiper slider_blog h-max">
+                                <div class="swiper-wrapper">
+                                    @foreach ($posts as $post)
+                                        <div class="swiper-slide">
+                                            <a href="{{ route('detalleBlog', $post->id) }}">
+                                                <div class="flex flex-col w-full bg-[#21149E] overflow-hidden rounded-3xl text-left">
+                                                    <div class="flex flex-row justify-center">
+                                                    <img class="w-full h-52 object-cover" src="{{ asset($post->url_image . $post->name_image) }}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"/>
+                                                    </div>
+                                                    <div class="p-6 flex flex-col gap-3">
+                                                        <h2 class="font-gotham_bold text-white text-2xl xl:text-[21px] line-clamp-3">{{$post->title}}</h2>
+                                                        <div class="font-gotham_book text-white text-base text-justify line-clamp-3">{!!$post->extract ?? $post->description!!}</div>
+                                                        <div class="flex flex-row w-full">
+                                                            <a href="{{ route('detalleBlog', $post->id) }}" class="bg-[#E29720] px-4 py-3 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Leer más</span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>   
                                         </div>
-                                    </div>
-                                </div>   
+                                    @endforeach  
+                                </div>
                             </div>
+                        </div>
+                    @endif
 
-                            <div class="swiper-slide">
-                                <div class="flex flex-col w-full bg-[#21149E] overflow-hidden rounded-3xl text-left">
-                                    <div class="flex flex-row justify-center">
-                                        <img class="w-full h-52 object-cover" src="{{asset('images/img/imagenblog.png')}}"/>
-                                    </div>
-                                    <div class="p-6 flex flex-col gap-3">
-                                        <h2 class="font-gotham_bold text-white text-2xl xl:text-[21px]">Beneficios del Internet de Fibra Óptica para tu Hogar</h2>
-                                        <p class="font-gotham_book text-white text-base text-justify line-clamp-3">Descubre cómo la fibra óptica ofrece una conexión más rápida y estable, ideal para streaming, trabajo remoto y videojuegos. Conoce por qué esta tecnología es la mejor opción para quienes buscan rendimiento.</p>
-                                        <div class="flex flex-row w-full">
-                                            <a class="bg-[#E29720] px-4 py-3 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Leer más</span></a>
-                                        </div>
-                                    </div>
-                                </div>   
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="flex flex-col w-full bg-[#21149E] overflow-hidden rounded-3xl text-left">
-                                    <div class="flex flex-row justify-center">
-                                        <img class="w-full h-52 object-cover" src="{{asset('images/img/imagenblog.png')}}"/>
-                                    </div>
-                                    <div class="p-6 flex flex-col gap-3">
-                                        <h2 class="font-gotham_bold text-white text-2xl xl:text-[21px]">Beneficios del Internet de Fibra Óptica para tu Hogar</h2>
-                                        <p class="font-gotham_book text-white text-base text-justify line-clamp-3">Descubre cómo la fibra óptica ofrece una conexión más rápida y estable, ideal para streaming, trabajo remoto y videojuegos. Conoce por qué esta tecnología es la mejor opción para quienes buscan rendimiento.</p>
-                                        <div class="flex flex-row w-full">
-                                            <a class="bg-[#E29720] px-4 py-3 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Leer más</span></a>
-                                        </div>
-                                    </div>
-                                </div>   
-                            </div>
+                    @if (count($faqs) > 0)
+                        <div class="flex flex-col items-center justify-center gap-5">
+                            <div class="flex flex-col gap-1 max-w-3xl text-center">
+                                <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none"> Todo lo que debes saber de <span class="text-[#21149E]">nuestros planes</span></h2>
+                            </div> 
                             
+                            <div class="grid w-full divide-y divide-neutral-200 bg-[#21149E] px-6 py-2 rounded-2xl">
+                            @foreach ($faqs as $faq)
+                                <div class="py-3">
+                                    <details class="group">
+                                    <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                        <span class="font-bold text-[20px] text-white font-gotham_bold">
+                                            {{$faq->pregunta ?? "Ingrese la pregunta"}}</span>
+                                        <span class="transition group-open:rotate-180 bg-[#E29720] rounded-full p-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none">
+                                                <path d="M17 10L11.9992 14.58L7 10" stroke="#21149E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <p class="text-base mt-3 text-white font-gotham_book">
+                                        {!! $faq->respuesta ?? "Ingrese la respuesta" !!}
+                                    </p>
+                                    </details>
+                                </div>
+                            @endforeach  
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="flex flex-col items-center justify-center gap-5">
-                    <div class="flex flex-col gap-1 max-w-3xl text-center">
-                        <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none"> Todo lo que debes saber de <span class="text-[#21149E]">nuestros planes</span></h2>
-                    </div> 
-                    
-                    <div class="grid w-full divide-y divide-neutral-200 bg-[#21149E] px-6 py-2 rounded-2xl">
-                        <div class="py-3">
-                            <details class="group">
-                              <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                <span class="font-bold text-[20px] text-white font-gotham_bold">
-                                    ¿Qué poner en preguntas frecuentes?</span>
-                                <span class="transition group-open:rotate-180 bg-[#E29720] rounded-full p-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none">
-                                        <path d="M17 10L11.9992 14.58L7 10" stroke="#21149E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </span>
-                              </summary>
-                              <p class="text-base mt-3 text-white font-gotham_book">
-                                Suspendisse at dictum lorem. Nunc rutrum tortor eu mi lacinia auctor. Morbi aliquet dignissim felis ac elementum. Ut porttitor mauris eros, quis iaculis tellus rhoncus eget. Nulla pulvinar molestie cursus. Aliquam rutrum suscipit massa vel varius. Aliquam ut tempor nisi, quis blandit est. Aenean at ex purus. Duis eleifend et mauris id varius. Nunc vehicula aliquam massa. Phasellus congue condimentum nisl at pulvinar.
-                              </p>
-                            </details>
-                        </div>
-                        <div class="py-3">
-                            <details class="group">
-                              <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                <span class="font-bold text-[20px] text-white font-gotham_bold">
-                                    ¿Qué poner en preguntas frecuentes?</span>
-                                <span class="transition group-open:rotate-180 bg-[#E29720] rounded-full p-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none">
-                                        <path d="M17 10L11.9992 14.58L7 10" stroke="#21149E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </span>
-                              </summary>
-                              <p class="group-open:animate-fadeIn mt-3 text-white font-gotham_book">
-                                Suspendisse at dictum lorem. Nunc rutrum tortor eu mi lacinia auctor. Morbi aliquet dignissim felis ac elementum. Ut porttitor mauris eros, quis iaculis tellus rhoncus eget. Nulla pulvinar molestie cursus. Aliquam rutrum suscipit massa vel varius. Aliquam ut tempor nisi, quis blandit est. Aenean at ex purus. Duis eleifend et mauris id varius. Nunc vehicula aliquam massa. Phasellus congue condimentum nisl at pulvinar.
-                              </p>
-                            </details>
-                        </div>
-                    </div>
-
-                </div>
-
-               
-            </div>  
-        </section>
-   
+                    @endif    
+                </div>  
+            </section>
+        @endif
 
 
         {{-- <section class="flex flex-col justify-center items-center px-[5%] xl:px-[8%] py-10 lg:py-16 bg-[#F1EBE3] gap-12 relative">
@@ -777,7 +528,6 @@
             </div>
 
         </section> --}}
-
 
         {{-- @if ($destacados->isEmpty())
         @else
@@ -839,11 +589,6 @@
 
             </section>
         @endif --}}
-
- 
-
-      
-
 
         {{-- <section class="flex flex-col md:flex-row justify-center items-center px-[5%] xl:px-[8%] py-10 lg:py-16 bg-[#F1EBE3] gap-12 relative">
             
@@ -961,9 +706,68 @@
 
     </main>
 
+    @foreach ($productos as $producto)
+        <!-- Modal Cotizar -->
+        <div id="modalcotizar-{{$producto->id}}" class="modal" style="display: none; max-width: 900px !important; width: 100% !important;">
+            <div class="p-4">
+                <h1 class="font-gotham_bold">Cotizar: {{$producto->producto}}</h1>
+                <p class="font-gotham_book">Contenido relacionado al producto.</p>
+            </div>
+        </div>
+
+        <!-- Modal Detalle -->
+        <div id="modaldetalleplan-{{$producto->id}}" class="modal" style="display: none; max-width: 900px !important; width: 100% !important;">
+            <div class="p-4">
+                <h1 class="font-gotham_bold">Detalles: {{$producto->producto}}</h1>
+                <p class="font-gotham_book">Detalles adicionales del producto.</p>
+            </div>
+        </div>
+    @endforeach
 
 @section('scripts_importados')
+    
     <script>
+        $(document).ready(function () {
+            $(document).on('click', '.btn-cotizar', function () {
+                const id = $(this).data('id');
+                $(`#modalcotizar-${id}`).modal({
+                    show: true,
+                    fadeDuration: 400,
+                });
+            });
+
+            $(document).on('click', '.btn-detalle', function () {
+                const id = $(this).data('id');
+                $(`#modaldetalleplan-${id}`).modal({
+                    show: true,
+                    fadeDuration: 400,
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const items = document.querySelectorAll('.swiper-slide .flex');
+            const mainImage = document.getElementById('imagen-zona');
+
+            items.forEach(item => {
+                item.addEventListener('click', function () {
+                    const newImageSrc = this.getAttribute('data-image');
+                    
+                    // Aplicar efecto fade-out
+                    mainImage.style.opacity = 0;
+
+                    // Cambiar la imagen después del fade-out
+                    setTimeout(() => {
+                        mainImage.src = newImageSrc;
+
+                        // Aplicar efecto fade-in
+                        mainImage.style.opacity = 1;
+                    }, 300); // Coincide con la duración de la transición CSS
+                });
+            });
+        });
 
         var swiper = new Swiper(".slider", {
             slidesPerView: 1,
@@ -1228,23 +1032,12 @@
 
         var swiper = new Swiper(".testimonios", {
             slidesPerView: 1,
-            spaceBetween: 30,
+            spaceBetween: 15,
             loop: true,
-            grabCursor: true,
             centeredSlides: false,
-            initialSlide: 0,
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1,
-                }
-            },
-
         });
     </script>
+
     <script>
         // Obtener información del navegador y del sistema operativo
         const platform = navigator.platform;
