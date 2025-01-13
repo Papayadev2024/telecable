@@ -1244,7 +1244,7 @@ class IndexController extends Controller
                         style="
                           color: #ffffff;
                           font-size: 40px;
-                          line-height: 70px;
+                          line-height: normal;
                           font-family: Montserrat, sans-serif;
                           font-weight: bold;
                         "
@@ -1265,7 +1265,7 @@ class IndexController extends Controller
                           text-align: center;
                           width: 500px;
                           margin: 0 auto;
-                          padding: 20px 0 20px 0;
+                          padding: 20px 0 5px 0;
                           font-family: Montserrat, sans-serif;
                         "
                       >
@@ -1284,7 +1284,7 @@ class IndexController extends Controller
                           text-align: center;
                           width: 500px;
                           margin: 0 auto;
-                          padding: 0px 10px 0px;
+                          padding: 0px 10px 5px 0px;
                           font-family: Montserrat, sans-serif;
                         "
                       >
