@@ -1252,6 +1252,7 @@ class IndexController extends Controller
                             font-weight: 500;
                             font-size: 21px;
                             text-align: center;
+                            color: white;
                             font-family: Montserrat, sans-serif;
                           "
                         >
@@ -1267,6 +1268,7 @@ class IndexController extends Controller
                             font-weight: 500;
                             font-size: 16px;
                             text-align: center;
+                            color: white;
                             font-family: Montserrat, sans-serif;
                           "
                         >
@@ -1282,6 +1284,7 @@ class IndexController extends Controller
                               font-weight: 500;
                               font-size: 16px;
                               text-align: center;
+                              color: white;
                               font-family: Montserrat, sans-serif;
                             "
                           >
