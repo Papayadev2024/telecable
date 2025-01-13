@@ -1301,7 +1301,7 @@ class IndexController extends Controller
                           href="' . $appUrl . '"
                           style="
                             text-decoration: none;
-                            background-color: white;
+                            background-color: #E29720;
                             color: white;
                             padding: 8px 16px;
                             display: inline-flex;
@@ -1310,8 +1310,8 @@ class IndexController extends Controller
                             font-weight: 600;
                             font-family: Montserrat, sans-serif;
                             font-size: 16px;
-                            border-radius: 0px;
-                            border: 1px solid black;
+                            border-radius: 32px;
+                           
                           "
                         >
                           <span>VISITA NUESTRA WEB</span>
