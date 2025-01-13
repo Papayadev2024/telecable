@@ -1243,19 +1243,7 @@ class IndexController extends Controller
                         />
                       </th>
                     </tr>
-                    <tr>
-                      <th>
-                        <div
-                          style="
-                            background-color: black;
-                            opacity: 0.5;
-                            height: 100px;
-                            width:100%;
-                          "
-                        >
-                        </div>
-                      </th>
-                    </tr>
+                   
     
                     <tr>
                       <td style="padding-bottom:15px">
@@ -1330,21 +1318,6 @@ class IndexController extends Controller
                         </a>
                       </td>
                     </tr>
-    
-                    <tr>
-                      <th>
-                        <div
-                          style="
-                            background-color: black;
-                            opacity: 0.5;
-                            height: 100px;
-                            width:100%;
-                          "
-                        >
-                        </div>
-                      </th>
-                    </tr>
-                    
                   </tbody>
                 </table>
               </main>
