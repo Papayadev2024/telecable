@@ -1207,7 +1207,6 @@ class IndexController extends Controller
               <table
                 style="
                   width: 600px;
-                  height: 900px;
                   margin: 0 auto;
                   text-align: center;
                   background-image: url(' .
@@ -1226,7 +1225,7 @@ class IndexController extends Controller
                         flex-direction: row;
                         justify-content: center;
                         align-items: center;
-                        margin: 40px;
+                        margin-top: 40px;
                         padding: 0 200px;
                       "
                     >
@@ -1244,40 +1243,6 @@ class IndexController extends Controller
                       <p
                         style="
                           color: #ffffff;
-                          font-weight: 500;
-                          font-size: 18px;
-                          text-align: center;
-                          width: 500px;
-                          margin: 0 auto;
-                          padding: 20px 0;
-                          font-family: Montserrat, sans-serif;
-                        "
-                      >
-                        <span style="display: block">Hola </span>
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p
-                        style="
-                          color: #ffffff;
-                          font-size: 40px;
-                          line-height: 20px;
-                          font-family: Montserrat, sans-serif;
-                        "
-                      >
-                        ' .
-                        $name .
-                        '
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p
-                        style="
-                          color: #ffffff;
                           font-size: 40px;
                           line-height: 70px;
                           font-family: Montserrat, sans-serif;
@@ -1289,6 +1254,26 @@ class IndexController extends Controller
                       </p>
                     </td>
                   </tr>
+
+                  <tr>
+                    <td>
+                      <p
+                        style="
+                          color: #ffffff;
+                          font-weight: 500;
+                          font-size: 18px;
+                          text-align: center;
+                          width: 500px;
+                          margin: 0 auto;
+                          padding: 20px 0;
+                          font-family: Montserrat, sans-serif;
+                        "
+                      >
+                        <span style="display: block">Hola ' . $name . '</span>
+                      </p>
+                    </td>
+                  </tr>
+                  
                   <tr>
                     <td>
                       <p
@@ -1316,12 +1301,12 @@ class IndexController extends Controller
                         '"
                         style="
                           text-decoration: none;
-                          background-color: white;
-                          color: black;
+                          background-color: #E29720;
+                          color: #21149E;
                           padding: 16px 20px;
                           display: inline-flex;
                           justify-content: center;
-                          border-radius: 0px;
+                          border-radius: 32px;
                           align-items: center;
                           gap: 10px;
                           font-weight: 600;
