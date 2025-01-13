@@ -1207,6 +1207,7 @@ class IndexController extends Controller
               <table
                 style="
                   width: 600px;
+                  height: 900px;
                   margin: 0 auto;
                   text-align: center;
                   background-image: url(' .
