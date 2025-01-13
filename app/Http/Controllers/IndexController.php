@@ -1211,7 +1211,7 @@ class IndexController extends Controller
                   text-align: center;
                   background-image: url(' .
                         $appUrl .
-                        '/fondo.png);
+                        '/mail/fondo.png);
                   background-repeat: no-repeat;
                   background-position: center;
                   background-size: cover;
