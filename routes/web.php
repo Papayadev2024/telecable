@@ -23,6 +23,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CertificadosController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\DescargablesController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\FooterController;
@@ -104,6 +105,9 @@ Route::post('catalogo_filtro_ajax', [IndexController::class, 'catalogoFiltroAjax
 Route::post('cambiogaleria', [IndexController::class, 'cambioGaleria'])->name('cambioGaleria');
 Route::post('/subscripciones/guardar', [NewsletterSubscriberController::class, 'saveSubscripciones'])->name('subscripciones.guardar');
 Route::post('/subscripciones/guardar2', [NewsletterSubscriberController::class, 'saveSubscripciones2'])->name('subscripciones.guardar2');
+Route::post('/cotizar', [CotizacionController::class, 'saveCotizaciones'])->name('cotizar');
+Route::post('/obtenerdata', [IndexController::class, 'obtenerdata'])->name('obtenerdata');
+
 /* Página 404 */
 Route::get('/404', [IndexController::class, 'error'])->name('error');
 /* Formulario de contacto */
@@ -286,6 +290,9 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
 
         //Suscripciones
         Route::get('/subscripciones', [NewsletterSubscriberController::class, 'showSubscripciones'])->name('subscripciones');
+        
+        //Cotizaciones
+        Route::get('/cotizaciones', [CotizacionController::class, 'showCotizaciones'])->name('cotizaciones');
 
         Route::get(
             '/templates',

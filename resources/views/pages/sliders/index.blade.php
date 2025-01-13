@@ -21,10 +21,10 @@
                         <thead>
                             <tr>
                                 <th>Titulo</th>
-                                <th>Imagen (Escritorio)</th>
+                                <th class="w-24">Imagen (Escritorio)</th>
                                 {{-- <th>Imagen (Movil)</th> --}}
-                                <th>Visible</th>
-                                <th>Acciones</th>
+                                <th class="w-24">Visible</th>
+                                <th class="w-24">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -46,10 +46,10 @@
            
           <div class="px-[5%]  flex flex-col items-center justify-center gap-5">
             <div class="flex flex-col gap-1 max-w-3xl text-center">
-                <h3 class="font-gotham_bold text-white text-lg ">Nosotros</h3>
-                <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none">Conexión que <span class="text-[#E29720]">Te Impulsa</span></h2>
+                <h3 class="font-gotham_bold text-white text-lg ">{{$textosnosotros->subtitle1section ?? "Ingrese un texto"}}</h3>
+                <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none">{{$textosnosotros->title1section ?? "Ingrese un texto"}} <span class="text-[#E29720]">{{$textosnosotros->title1section2 ?? "Ingrese un texto"}}</span></h2>
                 <p class="text-white text-base font-gotham_book"> 
-                    Ofrecemos internet rápido y confiable para hogares y empresas, con planes flexibles y soporte dedicado. Mejora tu conexión con velocidades que se adaptan a tus necesidades y disfruta de una experiencia sin interrupciones.
+                    {{$textosnosotros->description1section ?? "Ingrese un texto"}}
                 </p>
             </div>
           </div>
@@ -57,14 +57,14 @@
           <div class="px-[5%] md:px-[8%] py-5 flex flex-col md:flex-row gap-5 md:gap-10 md:justify-center">
                 
             <div class="flex flex-col md:flex-row gap-3 w-auto md:w-[420px] bg-[#1EA7A2] py-3 md:py-0 px-3 rounded-3xl">
-                <img class="w-auto h-40 object-contain mx-auto " src="{{asset('images/img/nosotroscable.png')}}" />
+                <img class="w-auto h-40 object-contain mx-auto " src="{{asset($textosnosotros->url_image2section)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/nosotroscable.png') }}';" />
                 <div class="flex flex-col gap-3 justify-center items-start p-3">
                     <div class="flex flex-col gap-0">
                         <h2 class="font-gotham_bold text-4xl text-white line-clamp-1">
-                            100%
+                            {{$textosnosotros->title2section ?? "Ingrese un texto"}}
                         </h2>
                         <span class="font-gotham_book text-lg text-white line-clamp-1 ">
-                            Red fibra óptica
+                            {{$textosnosotros->subtitle2section ?? "Ingrese un texto"}}
                         </span>
                     </div>
                     <div class="flex flex-row w-full">
@@ -74,14 +74,14 @@
             </div>
 
                 <div class="flex flex-col md:flex-row gap-3 w-auto md:w-[420px] bg-[#1EA7A2] py-3 md:py-0 px-3 rounded-3xl">
-                    <img class="w-auto h-40 object-contain mx-auto " src="{{asset('images/img/nosotrosvaron.png')}}" />
+                    <img class="w-auto h-40 object-contain mx-auto " src="{{asset($textosnosotros->url_image3section)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/nosotrosvaron.png') }}';" />
                     <div class="flex flex-col gap-3 justify-center items-start p-3">
                         <div class="flex flex-col gap-0">
                             <h2 class="font-gotham_bold text-4xl text-white line-clamp-1">
-                                24/7
+                                {{$textosnosotros->title3section ?? "Ingrese un texto"}}
                             </h2>
-                            <span class="font-gotham_book text-lg text-white line-clamp-1 ">
-                                Atención permanente
+                            <span class="font-gotham_book text-lg text-white line-clamp-1">
+                                {{$textosnosotros->subtitle3section ?? "Ingrese un texto"}}
                             </span>
                         </div>
                         <div class="flex flex-row w-full">
@@ -100,95 +100,30 @@
            
           <div class="px-[5%]  flex flex-col items-center justify-center gap-5">
             <div class="flex flex-col gap-1 max-w-3xl text-center">
-                <h3 class="font-gotham_bold text-white text-lg ">Valores</h3>
-                <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none">Conexión con Propósito:
-                     <span class="text-[#E29720]">Nuestros Valores</span></h2>
+                <h3 class="font-gotham_bold text-white text-lg ">V{{$textosnosotros->subtitle4section ?? "Ingrese un texto"}}</h3>
+                <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none">{{$textosnosotros->title4section ?? "Ingrese un texto"}}
+                     <span class="text-[#E29720]">{{$textosnosotros->title4section2 ?? "Ingrese un texto"}}</span></h2>
                 <p class="text-white text-base font-gotham_book"> 
-                    Nos impulsan valores que reflejan nuestro compromiso de ofrecer la mejor experiencia de conexión para nuestros clientes, guiados siempre por la innovación y el servicio de calidad.
+                    {{$textosnosotros->description4section ?? "Ingrese un texto"}}
                 </p>
             </div>
           </div>
 
           <div class="px-[5%] md:px-[8%] grid grid-cols-1 lg:grid-cols-3 gap-5">
-                
-            <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
-                <div class="flex flex-row justify-center">
-                    <div class="bg-[#E29720] p-3 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            <path d="M27.502 15C27.502 8.09644 21.9055 2.5 15.002 2.5C8.09839 2.5 2.50195 8.09644 2.50195 15C2.50195 21.9035 8.09839 27.5 15.002 27.5C21.9055 27.5 27.502 21.9035 27.502 15Z" fill="#E29720" stroke="#110B79" stroke-width="1.875"/>
-                            <path d="M10.002 15.625L13.127 18.75L20.002 11.25" stroke="#110B79" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+            @foreach ($valores as $valor)    
+                <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
+                    <div class="flex flex-row justify-center">
+                        <div class="bg-[#E29720] p-3 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                <path d="M27.502 15C27.502 8.09644 21.9055 2.5 15.002 2.5C8.09839 2.5 2.50195 8.09644 2.50195 15C2.50195 21.9035 8.09839 27.5 15.002 27.5C21.9055 27.5 27.502 21.9035 27.502 15Z" fill="#E29720" stroke="#110B79" stroke-width="1.875"/>
+                                <path d="M10.002 15.625L13.127 18.75L20.002 11.25" stroke="#110B79" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
+                    <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto ">{{$valor->title}}</h2>
+                    <p class="font-gotham_book text-white text-base ">{{$valor->description}}</p>
                 </div>
-                <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto ">Confiabilidad</h2>
-                <p class="font-gotham_book text-white text-base ">Garantizamos conexiones estables para una experiencia continua y sin fallas.</p>
-           </div>
-
-           <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
-                <div class="flex flex-row justify-center">
-                    <div class="bg-[#E29720] p-3 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            <path d="M27.502 15C27.502 8.09644 21.9055 2.5 15.002 2.5C8.09839 2.5 2.50195 8.09644 2.50195 15C2.50195 21.9035 8.09839 27.5 15.002 27.5C21.9055 27.5 27.502 21.9035 27.502 15Z" fill="#E29720" stroke="#110B79" stroke-width="1.875"/>
-                            <path d="M10.002 15.625L13.127 18.75L20.002 11.25" stroke="#110B79" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </div>
-                <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto ">Innovación</h2>
-                <p class="font-gotham_book text-white text-base ">Garantizamos conexiones estables para una experiencia continua y sin fallas.</p>
-           </div>
-
-           <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
-                <div class="flex flex-row justify-center">
-                    <div class="bg-[#E29720] p-3 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            <path d="M27.502 15C27.502 8.09644 21.9055 2.5 15.002 2.5C8.09839 2.5 2.50195 8.09644 2.50195 15C2.50195 21.9035 8.09839 27.5 15.002 27.5C21.9055 27.5 27.502 21.9035 27.502 15Z" fill="#E29720" stroke="#110B79" stroke-width="1.875"/>
-                            <path d="M10.002 15.625L13.127 18.75L20.002 11.25" stroke="#110B79" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </div>
-                <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto ">Servicio al Cliente</h2>
-                <p class="font-gotham_book text-white text-base ">Garantizamos conexiones estables para una experiencia continua y sin fallas.</p>
-           </div>
-
-           <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
-                <div class="flex flex-row justify-center">
-                    <div class="bg-[#E29720] p-3 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            <path d="M27.502 15C27.502 8.09644 21.9055 2.5 15.002 2.5C8.09839 2.5 2.50195 8.09644 2.50195 15C2.50195 21.9035 8.09839 27.5 15.002 27.5C21.9055 27.5 27.502 21.9035 27.502 15Z" fill="#E29720" stroke="#110B79" stroke-width="1.875"/>
-                            <path d="M10.002 15.625L13.127 18.75L20.002 11.25" stroke="#110B79" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </div>
-                <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto ">Transparencia</h2>
-                <p class="font-gotham_book text-white text-base ">Garantizamos conexiones estables para una experiencia continua y sin fallas.</p>
-           </div>
-
-           <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
-                <div class="flex flex-row justify-center">
-                    <div class="bg-[#E29720] p-3 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            <path d="M27.502 15C27.502 8.09644 21.9055 2.5 15.002 2.5C8.09839 2.5 2.50195 8.09644 2.50195 15C2.50195 21.9035 8.09839 27.5 15.002 27.5C21.9055 27.5 27.502 21.9035 27.502 15Z" fill="#E29720" stroke="#110B79" stroke-width="1.875"/>
-                            <path d="M10.002 15.625L13.127 18.75L20.002 11.25" stroke="#110B79" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </div>
-                <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto ">Flexibilidad</h2>
-                <p class="font-gotham_book text-white text-base ">Garantizamos conexiones estables para una experiencia continua y sin fallas.</p>
-           </div>
-
-           <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
-                <div class="flex flex-row justify-center">
-                    <div class="bg-[#E29720] p-3 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                            <path d="M27.502 15C27.502 8.09644 21.9055 2.5 15.002 2.5C8.09839 2.5 2.50195 8.09644 2.50195 15C2.50195 21.9035 8.09839 27.5 15.002 27.5C21.9055 27.5 27.502 21.9035 27.502 15Z" fill="#E29720" stroke="#110B79" stroke-width="1.875"/>
-                            <path d="M10.002 15.625L13.127 18.75L20.002 11.25" stroke="#110B79" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </div>
-                <h2 class="font-gotham_bold text-white text-3xl max-w-sm mx-auto ">Compromiso Ambiental</h2>
-                <p class="font-gotham_book text-white text-base ">Garantizamos conexiones estables para una experiencia continua y sin fallas.</p>
-           </div>
-
+            @endforeach
            </div>  
         </section>
 

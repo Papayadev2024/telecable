@@ -53,23 +53,23 @@
                 </div>
 
                 <ul
-                    class="flex font-bignoodle text-2xl text-[#54340E] pt-40 fixed inset-0 bg-[#21149E] px-[5%] flex-col lg:flex-row lg:items-center clip-circle-0 peer-checked/menu:clip-circle-full transition-[clip-path] duration-500 gap-5 lg:gap-10 lg:clip-circle-full lg:relative lg:flex lg:justify-items-center lg:p-0 lg:bg-transparent flex-1"
+                    class="flex font-gotham_bold text-2xl pt-40 fixed inset-0 bg-[#21149E] px-[5%] flex-col lg:flex-row lg:items-center clip-circle-0 peer-checked/menu:clip-circle-full transition-[clip-path] duration-500 gap-5 lg:gap-10 lg:clip-circle-full lg:relative lg:flex lg:justify-items-center lg:p-0 lg:bg-transparent flex-1"
                 >
                     <div class="flex lg:hidden flex-col font-normal lg:flex-row order-2 lg:order-1 lg:w-full lg:justify-end gap-5 lg:gap-10 text-white">
                         <li class="flex flex-col">
-                            <a href="{{ url('/') }}" class="">Inicio</a>
+                            <a href="{{route('index')}}" class="">Inicio</a>
                         </li>
                         <li class="flex flex-col">
-                            <a href="{{ url('/nosotros') }}" class="">Nosotros</a>
+                            <a href="{{route('index')}}" class="">Planes</a>
                         </li>
                         <li class="flex flex-col">
-                            <a href="{{ route('catalogo.all') }}" class="">Carta y Promos</a>
+                            <a href="{{route('nosotros')}}" class="">Nosotros</a>
                         </li>
                         <li class="flex flex-col">
-                            <a href="{{ url('/blog/0') }}" class="">Wayquicha</a>
+                            <a href="{{route('blog.all')}}" class="">Blog</a>
                         </li>
                         <li class="flex flex-col">
-                            <a href="{{ url('/contacto') }}" class="">Contacto</a>
+                            <a href="{{route('contacto')}}" class="">Contacto</a>
                         </li>
                     </div>
                 </ul>

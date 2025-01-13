@@ -16,19 +16,24 @@ class NosotrosViewSeeder extends Seeder
         NosotrosView::updateOrCreate([
             'id' => 1
         ],[
-            'title1section' => 'Nuestra historia, nuestro nacimiento',
-            'description1section' => 'Nullam nec orci dui. Praesent tristique facilisis quam, a egestas lorem consectetur fringilla. Suspendisse cursus erat eget ante auctor, non hendrerit ipsum egestas. Nullam nec orci dui. Praesent tristique facilisis quam, a egestas lorem consectetur fringilla. Suspendisse cursus erat eget ante auctor, non hendrerit ipsum egestas.',
-            'url_image2section' => '',
+            'subtitle1section' => 'Nosotros',
+            'title1section' => 'Conexión que',
+            'title1section2' => 'Te Impulsa',
+            'description1section' => 'Ofrecemos internet rápido y confiable para hogares y empresas, con planes flexibles y soporte dedicado. Mejora tu conexión con velocidades que se adaptan a tus necesidades y disfruta de una experiencia sin interrupciones.',
 
             
-            'title3section' => 'Nuestras motivaciones diarias',
-            'url_image4section' => '',
+            'title2section' => '100%',
+            'subtitle2section' => 'Red fibra óptica',
+            'url_image2section' => '',
 
-            'title3secondsection' => 'Misión',
-            'description3secondsection' => 'Conectamos dispositivos a la nube. Desarrollamos e integramos soluciones basadas en el Internet de las cosas (Internet of Things - IoT) para proyectos de Smart Grid a la medida. Utilizamos protocolos de comunicación que permiten la escabilidad de nuestras soluciones y flexibilidad para la integración a diferentes industrias. Energía inteligente.' ,
+            'title3section' => '24/7',
+            'subtitle3section' => 'Atención permanente',
+            'url_image3section' => '',
 
-            'title4section' => 'Visión',
-            'description4section' => 'Software de administración de energía, ofrece un conjunto de soluciones: desde facturación, monitoreo, eficiencia energética y respuesta a la demanda hasta análisis exhaustivos de calidad de energía y soporte de procesos centrales de planificación y previsión para generadores, transmisores y distribuidores de energía e también para grandes proyectos residenciales, edificios de oficinas, centros comerciales, entre otros.' ,
+            'subtitle4section' => 'Valores',
+            'title4section' => 'Conexión con Propósito:',
+            'title4section2' => 'Nuestros Valores',
+            'description4section' => 'Nos impulsan valores que reflejan nuestro compromiso de ofrecer la mejor experiencia de conexión para nuestros clientes, guiados siempre por la innovación y el servicio de calidad.',
 
         ]);
     }

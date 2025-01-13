@@ -29,7 +29,21 @@
                                     <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Portada</h2>
                                     
                                     <div class="md:col-span-5">
-                                        <label for="title1section">Titulo</label>
+                                        <label for="subtitle1section">Subtitulo</label>
+                                        <div class="relative mb-2 ">
+                                            <div
+                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <input type="text" id="subtitle1section" name="subtitle1section"
+                                                value="{{ $nosotros->subtitle1section }}"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese texto">
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-3">
+                                        <label for="title1section">Titulo texto blanco</label>
                                         <div class="relative mb-2 ">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -38,7 +52,21 @@
                                             <input type="text" id="title1section" name="title1section"
                                                 value="{{ $nosotros->title1section }}"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Ingrese el titulo">
+                                                placeholder="Ingrese texto">
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-2">
+                                        <label for="title1section2">Titulo texto amarillo</label>
+                                        <div class="relative mb-2 ">
+                                            <div
+                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <input type="text" id="title1section2" name="title1section2"
+                                                value="{{ $nosotros->title1section2 }}"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese texto">
                                         </div>
                                     </div>
 
@@ -55,6 +83,47 @@
                                         </div>
                                     </div>
 
+                                    {{-- <div class="md:col-span-5">
+                                        <label for="url_image2section">Imagen</label>
+                                        <div class="relative mb-2  mt-2">
+                                            <input id="url_image2section" name="url_image2section"
+                                                class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                                aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                                        </div>
+                                    </div> --}}
+
+
+                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Atencion al cliente</h2>
+
+
+                                    <div class="md:col-span-5">
+                                        <label for="title2section">Titulo</label>
+                                        <div class="relative mb-2">
+                                            <div
+                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <input type="text" id="title2section" name="title2section"
+                                                value="{{ $nosotros->title2section }}"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese el texto">
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-5">
+                                        <label for="subtitle2section">Subtitulo</label>
+                                        <div class="relative mb-2">
+                                            <div
+                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <input type="text" id="subtitle2section" name="subtitle2section"
+                                                value="{{ $nosotros->subtitle2section }}"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese el texto">
+                                        </div>
+                                    </div>
+
                                     <div class="md:col-span-5">
                                         <label for="url_image2section">Imagen</label>
                                         <div class="relative mb-2  mt-2">
@@ -63,9 +132,6 @@
                                                 aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                         </div>
                                     </div>
-
-
-                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Misión y Visión</h2>
 
 
                                     <div class="md:col-span-5">
@@ -78,76 +144,90 @@
                                             <input type="text" id="title3section" name="title3section"
                                                 value="{{ $nosotros->title3section }}"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Ingrese titulo para seccion">
+                                                placeholder="Ingrese el texto">
                                         </div>
                                     </div>
 
                                     <div class="md:col-span-5">
-                                        <label for="url_image4section">Imagen</label>
+                                        <label for="subtitle3section">Subtitulo</label>
+                                        <div class="relative mb-2">
+                                            <div
+                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <input type="text" id="subtitle3section" name="subtitle3section"
+                                                value="{{ $nosotros->subtitle3section }}"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese el texto">
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-5">
+                                        <label for="url_image3section">Imagen</label>
                                         <div class="relative mb-2  mt-2">
-                                            <input id="url_image4section" name="url_image4section"
+                                            <input id="url_image3section" name="url_image3section"
                                                 class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                                 aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                         </div>
                                     </div>
 
 
+                                    
+                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Valores</h2>
+                                   
+
                                     <div class="md:col-span-5">
-                                        <label for="title3secondsection">Titulo - Misión</label>
-                                        <div class="relative mb-2">
+                                        <label for="subtitle4section">Subtitulo</label>
+                                        <div class="relative mb-2 ">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                                 <i class="w-6 text-gray-500 fas fa-edit"></i>
                                             </div>
-                                            <input type="text" id="title3secondsection" name="title3secondsection"
-                                                value="{{ $nosotros->title3secondsection }}"
+                                            <input type="text" id="subtitle4section" name="subtitle4section"
+                                                value="{{ $nosotros->subtitle4section }}"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Ingrese titulo para mision">
+                                                placeholder="Ingrese texto">
                                         </div>
                                     </div>
 
-                                    <div class="md:col-span-5">
-                                        <label for="description3secondsection">Descripción - Misión</label>
-                                        <div class="relative mb-2">
+                                    <div class="md:col-span-3">
+                                        <label for="title4section">Titulo texto blanco</label>
+                                        <div class="relative mb-2 ">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                                 <i class="w-6 text-gray-500 fas fa-edit"></i>
                                             </div>
-                                            <input type="text" id="description3secondsection" name="description3secondsection"
-                                                value="{{ $nosotros->description3secondsection }}"
-                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Ingrese descripcion para mision">
-                                        </div>
-                                    </div>
-
-                                    <div class="md:col-span-5">
-                                        <label for="title4section">Titulo - Visión</label>
-                                        <div class="relative mb-2">
-                                            <div
-                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
-                                            </div>
-                                            <input type="text" id="title4section"
-                                                name="title4section"
+                                            <input type="text" id="title4section" name="title4section"
                                                 value="{{ $nosotros->title4section }}"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Ingrese titulo para vision">
+                                                placeholder="Ingrese texto">
                                         </div>
                                     </div>
 
-                                    
+                                    <div class="md:col-span-2">
+                                        <label for="title4section2">Titulo texto amarillo</label>
+                                        <div class="relative mb-2 ">
+                                            <div
+                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <input type="text" id="title4section2" name="title4section2"
+                                                value="{{ $nosotros->title4section2 }}"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese texto">
+                                        </div>
+                                    </div>
+
                                     <div class="md:col-span-5">
-                                        <label for="description4section">Descripción - Visión</label>
+                                        <label for="description4section">Descripción</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
-                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                                    <i class="w-6 text-gray-500 fas fa-edit"></i>
                                             </div>
-                                            <input type="text" id="description4section"
-                                                name="description4section"
-                                                value="{{ $nosotros->description4section }}"
+                                            <textarea type="text" id="description4section" name="description4section"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Ingrese descripcion para vision">
+                                                placeholder="Ingrese la descripcion">{{ $nosotros->description4section }}</textarea>
                                         </div>
                                     </div>
 

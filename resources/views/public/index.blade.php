@@ -92,96 +92,79 @@
     <main>
         
 
-        <section class="bg-center h-svh bg-cover flex flex-col justify-center relative" style="background-image: url({{asset('images/img/bannerconex.png')}})">
-            
-            <img class="opacity-40 object-cover absolute top-0 h-full w-full" src="{{asset('images/img/texturaconex.png')}}" />
-            <div class="flex flex-col lg:flex-row px-[5%]  py-[5%]  lg:px-[10%] pt-20 gap-5 justify-center items-start lg:items-end">
-                <div class="z-20 w-full md:w-full xl:w-2/3 2xl:w-1/2 flex flex-col gap-4 2xl:gap-10 justify-center">
-                    
-                    <div class="flex flex-col gap-1">
-                        <h3 class="font-gotham_bold text-white text-xl">Descrubre tu Plan Ideal</h3>
-                        <h2 class="font-gotham_bold text-white text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-7xl">Elige el Plan de Internet que se Ajusta a Ti</h2>
-                    </div>
+        @if (count($slider) > 0)
+            <div class="swiper slider">
+                <div class="swiper-wrapper">
+                    @foreach ($slider as $slide)    
+                        <div class="swiper-slide">
+                            <section class="bg-center h-svh bg-cover flex flex-col justify-center relative" style="background-image: url({{asset($slide->url_image . $slide->name_image)}})">
+                                
+                                    <img class="opacity-40 object-cover absolute top-0 h-full w-full" src="{{asset('images/img/texturaconex.png')}}" />
+                                    <div class="flex flex-col lg:flex-row px-[5%]  py-[5%]  lg:px-[10%] pt-20 gap-5 justify-center items-start lg:items-end">
+                                        <div class="z-20 w-full md:w-full xl:w-2/3 2xl:w-1/2 flex flex-col gap-4 2xl:gap-10 justify-center">
+                                            
+                                            <div class="flex flex-col gap-1">
+                                                    <h3 class="font-gotham_bold text-white text-xl line-clamp-1">{{$slide->title}}</h3>
+                                                    <h2 class="font-gotham_bold text-white text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-7xl line-clamp-3">{{$slide->description}}</h2>
+                                            </div>
 
-                    <div class="flex flex-col justify-center items-start font-gotham_bold">
-                        <div class="bg-[#E29720] px-5 py-3 rounded-full tracking-normal">
-                            <p class="leading-none text-[#21149E]">Descubre tu Plan Ideal</p>
+                                            @if ($slide->link1)
+                                                <div class="flex flex-col justify-center items-start font-gotham_bold">
+                                                    <a href="{{$slide->link1}}">
+                                                        <div class="bg-[#E29720] px-5 py-3 rounded-full tracking-normal">
+                                                            <p class="leading-none text-[#21149E]">{{$slide->botontext1 ?? "Ingrese texto"}}</p>
+                                                        </div>
+                                                    </a>
+                                                </div> 
+                                            @endif
+                                           
+
+                                            <div class="grid grid-cols-2 md:grid-cols-3 font-gotham_bold  gap-3 lg:gap-5 max-w-2xl">
+                                                <div class="flex flex-col justify-center">
+                                                    <span class="text-[#1EA7A2] text-3xl xl:text-5xl">100%</span>
+                                                    <h2 class="text-white text-sm sm:text-base xl:text-lg">Red fibra óptica</h2>
+                                                </div>
+                                                <div class="flex flex-col justify-center">
+                                                    <span class="text-[#1EA7A2] text-3xl xl:text-5xl">24/7</span>
+                                                    <h2 class="text-white text-sm sm:text-base xl:text-lg">Atención permanente</h2>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="z-20 w-full lg:w-1/3 2xl:w-1/2 flex flex-col justify-end items-start lg:items-end">
+                                            <div class="flex flex-col items-start justify-center  gap-1 z-10 text-left md:text-right bg-black bg-opacity-50 p-5 rounded-2xl w-full sm:w-auto">
+                                                <p class="text-white text-base font-gotham_bold w-full leading-tight">
+                                                    Llámanos al
+                                                </p>
+
+                                                <p class="text-[#F07407] text-3xl xl:text-4xl font-gotham_bold w-full">
+                                                    +51 9458734355
+                                                </p>
+
+                                                <p class="text-white text-base font-gotham_bold w-full leading-tight">
+                                                    y escoge tu plan ahora
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="absolute top-10 right-[8%] lg:flex hidden">
+                                        <div class="flex flex-col justify-center items-start font-gotham_bold">
+                                            <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text={{ $general[0]->mensaje_whatsapp }}">
+                                                <div class="bg-[#E29720] px-5 py-3 rounded-full tracking-normal">
+                                                    <p class="leading-none text-[#21149E]">Habla con nosotros</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                
+                            </section>
                         </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 md:grid-cols-3 font-gotham_bold  gap-3 lg:gap-5 max-w-2xl">
-                        <div class="flex flex-col justify-center">
-                            <span class="text-[#1EA7A2] text-3xl xl:text-5xl">100%</span>
-                            <h2 class="text-white text-sm sm:text-base xl:text-lg">Red fibra óptica</h2>
-                        </div>
-                        <div class="flex flex-col justify-center">
-                            <span class="text-[#1EA7A2] text-3xl xl:text-5xl">24/7</span>
-                            <h2 class="text-white text-sm sm:text-base xl:text-lg">Atención permanente</h2>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="z-20 w-full lg:w-1/3 2xl:w-1/2 flex flex-col justify-end items-start lg:items-end">
-                    <div class="flex flex-col items-start justify-center  gap-1 z-10 text-left md:text-right bg-black bg-opacity-50 p-5 rounded-2xl w-full sm:w-auto">
-                        <p class="text-white text-base font-gotham_bold w-full leading-tight">
-                            Llámanos al
-                        </p>
-
-                        <p class="text-[#F07407] text-3xl xl:text-4xl font-gotham_bold w-full">
-                            +51 9458734355
-                        </p>
-
-                        <p class="text-white text-base font-gotham_bold w-full leading-tight">
-                            y escoge tu plan ahora
-                        </p>
-                    </div>
-                </div>
-            </div> 
-            <div class="absolute top-10 right-[8%] lg:flex hidden">
-                <div class="flex flex-col justify-center items-start font-gotham_bold">
-                    <div class="bg-[#E29720] px-5 py-3 rounded-full tracking-normal">
-                        <p class="leading-none text-[#21149E]">Habla con nosotros</p>
-                    </div>
+                    @endforeach    
                 </div>
             </div>
-        </section>
+        @endif
 
-
-
-        
-
-        {{-- @if (count($slider) > 0) 
-            <section class="w-full relative">
-                <div class="swiper slider h-max">
-                    <div class="swiper-wrapper">
-                    @foreach ($slider as $slide)                      
-                        <div class="swiper-slide">
-                            <div class="w-full">
-                            <a href="{{$slide->link2}}">  
-                                <div class="flex h-[500px] w-full relative z-10 md:flex-col items-end justify-end">
-                                    <img class="block h-full w-full object-cover object-center"
-                                        src="{{ asset($slide->url_image . $slide->name_image) }}" 
-                                        onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"
-                                        alt="">
-                                </div>
-                                <div class="flex flex-col md:hidden h-auto w-full md:h-auto relative z-10  items-end justify-end">
-                                    <img class="block h-full w-full object-contain object-bottom"
-                                        src="{{ asset($slide->link1) }}" 
-                                        onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"
-                                        alt="">
-                                </div>
-                            </a>      
-                            </div>
-                        </div>
-                    @endforeach 
-                    </div>
-                    <div class="flex flex-row justify-center items-center relative">
-                        <div class="slider-pagination absolute top-full bottom-0 z-10 right-full !left-1/2"></div>
-                    </div>
-                </div>
-            </section>
-        @endif --}}
-
+ 
         @if (count($complementos) > 0)    
             <section class="bg-cover bg-opacity-100 relative" 
             style="background-image: url('{{asset('images/img/textura2.png')}}');">
@@ -218,7 +201,7 @@
             </section>
         @endif
 
-
+        @if (count($productos) > 0)    
         <section 
             x-data="{
                 selected: 0,
@@ -331,7 +314,9 @@
                                             x-bind:src="producto.imagen ? '{{ asset('') }}' + producto.imagen : '{{ asset('images/img/noimagen.jpg') }}'" 
                                             alt="Imagen producto" 
                                         />
-        
+
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+
                                         <div class="flex flex-col gap-3 justify-center items-start">
                                             <div class="flex flex-row w-full">
                                                 <a id="linkmodalcotizar" 
@@ -358,7 +343,7 @@
                 </div>
             </div>  
         </section>
-
+        @endif
 
         @if (count($zonas) > 0)   
             <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16" style="background-image: url('{{asset('images/img/textura4.png')}}');">
@@ -785,55 +770,11 @@
     </main>
 
     @foreach ($productos as $producto)
-        <!-- Modal Cotizar -->
-        <div id="modalcotizar-{{$producto->id}}" class="modal !bg-[#1EA7A2] !px-[15px] !z-50" style="display: none; max-width: 500px !important; width: 100% !important;">
-            <div class="p-4 !bg-[#1EA7A2] flex flex-col gap-3">
-                <div class="flex flex-col">
-                    <h2 class="font-gotham_bold leading-none text-white text-2xl md:text-3xl">{{$producto->producto}} </h2>  
-                    <span class="text-[#21149E] text-base font-gotham_bold"> {{$producto->extract}} </span>
-                </div>
-
-                <h3 class="font-gotham_book text-base  text-white text-left ">
-                    ¡Se parte de la experiencia Red Conex, déjanos tus datos y te llamamos pronto!
-                </h3>
-
-                <h2 class="font-gotham_bold leading-none text-white text-2xl md:text-3xl">¡Olvídate de lo común, disfruta el <span class="text-[#21149E]"> 100% de fibra óptica </span> real!</h2>
-
-                <form id="formulariocotizar">
-                    @csrf
-                    <div class="flex flex-col gap-2 justify-center items-center">
-            
-                        <div class="flex flex-col gap-2 w-full">
-                            <div class="w-full flex flex-col gap-3">
-                                <input type="phone" name="phone" id="phone" required
-                                    class="text-[#21149E] placeholder:text-[#21149E] font-gotham_medium px-2 text-base rounded-xl py-2 ring-0 border-0 focus:ring-0 focus:border-0 border-transparent ring-transparent" 
-                                    placeholder="Número de teléfono"
-                                />
-
-                                <input type="dni" name="dni" id="dni" required
-                                    class="text-[#21149E] placeholder:text-[#21149E]  font-gotham_medium  px-2 text-base rounded-xl py-2 ring-0 border-0 focus:ring-0 focus:border-0 border-transparent ring-transparent" 
-                                    placeholder="DNI/RUC/CEX"
-                                />
-                                <input type="hidden" id="nameFooter" name="full_name" value="Usuario suscrito" />
-                                
-                                <button type="submit" class="text-white bg-[#21149E] w-full px-3 py-2 rounded-3xl font-gotham_medium text-base">
-                                    Descubre tu Plan Ideal
-                                </button>
-                            </div>
-                            <p class="text-white text-sm font-latoregular w-full leading-tight text-left">
-                                Al enviar mis datos, acepto los Términos y Condiciones.
-                            </p>
-                        </div>
-                    </div>
-                </form>
-               
-            </div>
-        </div>
-
+        
         <!-- Modal Detalle -->
         <div id="modaldetalleplan-{{$producto->id}}" class="modal !bg-[#1EA7A2] !p-0 !z-50" style="display: none; max-width: 650px !important; width: 100% !important;">
-            <div class="w-full flex flex-row">
-                <div class="w-1/2 p-4 flex flex-col gap-1">
+            <div class="w-full flex flex-col md:flex-row rounded-xl overflow-hidden">
+                <div class="w-full md:w-1/2 p-4 flex flex-col gap-1">
                     <div class="flex flex-row w-full">
                         <a class="bg-[#E29720] px-4 py-2 rounded-xl text-base text-[#21149E] text-center font-gotham_bold w-auto line-clamp-2">
                             {{$producto->producto}}
@@ -862,35 +803,179 @@
                         preg_match_all('/<p>(.*?)<\/p>/', $html, $matches);
                         $texts = $matches[1];
                     @endphp
-                    <div class="bg-[#E29720] p-2 rounded-xl">
-                        @foreach ($texts as $text)
-                            
-                            <div class="text-[#21149E] font-gotham_light font-semibold text-sm flex flex-row gap-1">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M14.6673 7.9987C14.6673 4.3168 11.6825 1.33203 8.00065 1.33203C4.31875 1.33203 1.33398 4.3168 1.33398 7.9987C1.33398 11.6806 4.31875 14.6654 8.00065 14.6654C11.6825 14.6654 14.6673 11.6806 14.6673 7.9987Z" stroke="#21149E"/>
-                                        <path d="M5.33398 8.33333L7.00065 10L10.6673 6" stroke="#21149E" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </span>
-                                <p>{!! $text !!}</p>
-                            </div>
-                        @endforeach
-                    </div>
+                    
+                    @if (count($texts) > 0)    
+                        <div class="bg-[#E29720] p-2 rounded-xl">
+                            @foreach ($texts as $text)
+                                
+                                <div class="text-[#21149E] font-gotham_light font-semibold text-sm flex flex-row gap-1">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M14.6673 7.9987C14.6673 4.3168 11.6825 1.33203 8.00065 1.33203C4.31875 1.33203 1.33398 4.3168 1.33398 7.9987C1.33398 11.6806 4.31875 14.6654 8.00065 14.6654C11.6825 14.6654 14.6673 11.6806 14.6673 7.9987Z" stroke="#21149E"/>
+                                            <path d="M5.33398 8.33333L7.00065 10L10.6673 6" stroke="#21149E" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                    <p>{!! $text !!}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
-                <div class="w-1/2">
-                    <img class="object-cover max-h-[500px]" src="{{ asset('aa') }}" onerror="this.onerror=null;this.src='{{ asset('images/img/popimg.png') }}';" />
+                <div class="w-full md:w-1/2 ">
+                    <div class="bg-cover bg-center min-h-[500px] h-full w-full" style="background-image: url('{{asset('images/img/popimg.png')}}');" onerror="this.onerror=null;this.src='{{ asset('images/img/popimg.png') }}';" ></div>
                 </div>
             </div>
         </div>
     @endforeach
 
+    <!-- Modal Cotizar -->
+    <div id="modalcotizar" class="modal !bg-[#1EA7A2] !px-[15px] !z-50" style="display: none; max-width: 500px !important; width: 100% !important;">
+        <div class="p-4 !bg-[#1EA7A2] flex flex-col gap-3">
+            <div class="flex flex-col">
+                <h2 class="font-gotham_bold leading-none text-white text-2xl md:text-3xl" id="nombreplan">nombreplan</h2>  
+                <span class="text-[#21149E] text-base font-gotham_bold" id="caracteristicas"> caracteristica </span>
+            </div>
+
+            <h3 class="font-gotham_book text-base  text-white text-left ">
+                ¡Se parte de la experiencia Red Conex, déjanos tus datos y te llamamos pronto!
+            </h3>
+
+            <h2 class="font-gotham_bold leading-none text-white text-2xl md:text-3xl">¡Olvídate de lo común, disfruta el <span class="text-[#21149E]"> 100% de fibra óptica </span> real!</h2>
+            
+            <form id="modalformcotizar">
+                @csrf
+                <div class="flex flex-col gap-2 justify-center items-center">
+                    
+                    <div class="flex flex-col gap-2 w-full">
+                        <div class="w-full flex flex-col gap-3">
+                            <input type="text" name="phone" id="phone" required
+                                class="text-[#21149E] placeholder:text-[#21149E] font-gotham_medium px-2 text-base rounded-xl py-2 ring-0 border-0 focus:ring-0 focus:border-0 border-transparent ring-transparent" 
+                                placeholder="Número de teléfono"
+                            />
+
+                            <input type="text" name="number_document" id="number_document" required
+                                class="text-[#21149E] placeholder:text-[#21149E]  font-gotham_medium  px-2 text-base rounded-xl py-2 ring-0 border-0 focus:ring-0 focus:border-0 border-transparent ring-transparent" 
+                                placeholder="DNI/RUC/CEX"
+                            />
+                            <input type="hidden" id="name" name="name" value="" />
+                            <input type="hidden" id="extract" name="extract" value="" />
+                           
+                            <button type="submit" class="text-white bg-[#21149E] w-full px-3 py-2 rounded-3xl font-gotham_medium text-base">
+                                Descubre tu Plan Ideal
+                            </button>
+                        </div>
+                        <p class="text-white text-sm font-latoregular w-full leading-tight text-left">
+                            Al enviar mis datos, acepto los Términos y Condiciones.
+                        </p>
+                    </div>
+                </div>
+            </form>
+           
+        </div>
+    </div>
+
+    
+
 @section('scripts_importados')
     
+    <script>   
+        $('#modalformcotizar').submit(function(event) {
+            event.preventDefault();
+            let formDataArray = $(this).serializeArray();
+
+            if (!validarTelefono($('#phone').val())) {
+                return;
+            };
+
+            Swal.fire({
+
+                title: 'Procesando información',
+                html: `Enviando...
+                    <p class=" text-text12">Revise su correo de Span</p>
+                            <div class="max-w-2xl mx-auto overflow-hidden flex justify-center items-center mt-4 ">
+                                <div role="status">
+                                    <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                    </svg>
+                                    
+                                </div>
+                                
+                            </div>
+
+            `,
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+           
+            $.ajax({
+                url: '{{ route('cotizar') }}',
+                method: 'POST',
+                data: formDataArray,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').val() // Incluye el token CSRF
+                },
+                success: function(response) {
+                
+                    Swal.close();
+
+                    Swal.fire({
+                        title: response.message,
+                        icon: "success",
+                    });
+
+                    $('#modalformcotizar')[0].reset();
+                },
+                error: function(error) {
+                    Swal.close();
+                    const obj = error.responseJSON.message;
+                    const keys = Object.keys(error.responseJSON.message);
+                    let flag = false;
+                    keys.forEach(key => {
+                        if (!flag) {
+                            const e = obj[key];
+                            Swal.fire({
+                                title: error.message,
+                                text: "Ha ocurrido un error",
+                                icon: "warning",
+                            });
+                            flag = true; 
+                        }
+                    });
+                }
+            });
+        })
+    </script>
     <script>
         $(document).ready(function () {
             $(document).on('click', '.btn-cotizar', function () {
                 const id = $(this).data('id');
-                $(`#modalcotizar-${id}`).modal({
+
+                $.ajax({
+                    url: '{{ route('obtenerdata') }}',
+                    method: 'POST',
+                    data: {
+                        id: id, 
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+                    },
+                    success: function(response) {
+                        $('#nombreplan').text(response.producto.producto);
+                        $('#caracteristicas').text(response.producto.extract);
+                        $('#name').val(response.producto.producto);
+                        $('#extract').val(response.producto.extract);
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
+
+
+                $(`#modalcotizar`).modal({
                     show: true,
                     fadeDuration: 400,
                 });
@@ -936,7 +1021,7 @@
             initialSlide: 0,
             loop: true,
             autoplay: {
-                delay: 1500,
+                delay: 3000,
                 disableOnInteraction: false,
             },
             breakpoints: {
@@ -959,7 +1044,7 @@
             initialSlide: 0,
             loop: true,
             autoplay: {
-                delay: 1500,
+                delay: 2500,
                 disableOnInteraction: false,
             },
             scrollbar: {
@@ -1020,7 +1105,7 @@
             initialSlide: 0,
             loop: true,
             autoplay: {
-                delay: 1500,
+                delay: 2500,
                 disableOnInteraction: false,
             },
             scrollbar: {
@@ -1082,7 +1167,7 @@
             initialSlide: 0,
             loop: true,
             autoplay: {
-                delay: 1500,
+                delay: 2500,
                 disableOnInteraction: false,
             },
             scrollbar: {
@@ -1099,7 +1184,7 @@
             grabCursor: true,
             loop: true,
              autoplay: {
-                delay: 2000, 
+                delay: 2500, 
                 disableOnInteraction: true,
             },
             breakpoints: {
@@ -1129,7 +1214,7 @@
             initialSlide: 0,
             loop: true,
             autoplay: {
-                delay: 1500,
+                delay: 2500,
                 disableOnInteraction: false,
             },
             navigation: true,
