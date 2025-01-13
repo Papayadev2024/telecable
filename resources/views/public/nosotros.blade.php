@@ -100,7 +100,7 @@
            
           <div class="px-[5%]  flex flex-col items-center justify-center gap-5">
             <div class="flex flex-col gap-1 max-w-3xl text-center">
-                <h3 class="font-gotham_bold text-white text-lg ">V{{$textosnosotros->subtitle4section ?? "Ingrese un texto"}}</h3>
+                <h3 class="font-gotham_bold text-white text-lg ">{{$textosnosotros->subtitle4section ?? "Ingrese un texto"}}</h3>
                 <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none">{{$textosnosotros->title4section ?? "Ingrese un texto"}}
                      <span class="text-[#E29720]">{{$textosnosotros->title4section2 ?? "Ingrese un texto"}}</span></h2>
                 <p class="text-white text-base font-gotham_book"> 
