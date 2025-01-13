@@ -1245,7 +1245,7 @@ class IndexController extends Controller
                           color: #ffffff;
                           font-size: 40px;
                           line-height: normal;
-                          font-family: Montserrat, sans-serif;
+                          font-family: Google Sans;
                           font-weight: bold;
                         "
                       >
@@ -1266,7 +1266,7 @@ class IndexController extends Controller
                           width: 500px;
                           margin: 0 auto;
                           padding: 20px 0 5px 0;
-                          font-family: Montserrat, sans-serif;
+                          font-family: Google Sans;
                         "
                       >
                         <span style="display: block">Hola ' . $name . '</span>
@@ -1285,7 +1285,7 @@ class IndexController extends Controller
                           width: 500px;
                           margin: 0 auto;
                           padding: 0px 10px 5px 0px;
-                          font-family: Montserrat, sans-serif;
+                          font-family: Google Sans;
                         "
                       >
                         En breve estaremos comunicandonos contigo.
@@ -1310,7 +1310,7 @@ class IndexController extends Controller
                           align-items: center;
                           gap: 10px;
                           font-weight: 600;
-                          font-family: Montserrat, sans-serif;
+                          font-family: Google Sans;
                           font-size: 16px;
                           margin-bottom: 350px;
                         "
