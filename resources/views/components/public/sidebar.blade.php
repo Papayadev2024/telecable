@@ -1,8 +1,9 @@
   <div class="lg:flex hidden">
     
     <input type="checkbox" id="drawer-toggle" class="relative sr-only peer" checked>
-    <label for="drawer-toggle" class="fixed z-50 top-20 left-0 inline-block py-2 px-1 cursor-pointer rounded-r-lg transition-all duration-500 bg-[#110B7999] peer-checked:left-20">
-        <i class="fa-solid fa-chevron-right text-white"></i>
+    <label for="drawer-toggle" class="fixed z-50 top-20 left-0 inline-block py-2 px-1 cursor-pointer rounded-r-lg transition-all duration-500 bg-[#110B7999] peer-checked:left-20 ">
+        <div id="icon-right" class="flex"><i class="fa-solid fa-chevron-right text-white"></i></div>
+        <div id="icon-left" class="hidden"><i class="fa-solid fa-chevron-left text-white"></i></div>
     </label>
 
     <div class="fixed top-0 left-0 z-50 w-20 h-full transition-all duration-500 transform -translate-x-full bg-[#110B7999] shadow-lg peer-checked:translate-x-0">
@@ -79,3 +80,23 @@
       </div>
     </div>
   </div>
+
+
+  <script>
+    $(document).ready(function () {
+        // Detect changes on the checkbox
+        $('#drawer-toggle').change(function () {
+            if ($(this).is(':checked')) {
+                // Checkbox is checked
+                $('#drawer-label').removeClass('left-20').addClass('left-0');
+                $('#icon-right').removeClass('hidden').addClass('flex');
+                $('#icon-left').removeClass('flex').addClass('hidden');
+            } else {
+                // Checkbox is unchecked
+                $('#drawer-label').removeClass('left-0').addClass('left-20');
+                $('#icon-right').removeClass('flex').addClass('hidden');
+                $('#icon-left').removeClass('hidden').addClass('flex');
+            }
+        });
+    });
+</script>
