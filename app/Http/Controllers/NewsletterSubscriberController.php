@@ -105,182 +105,160 @@ class NewsletterSubscriberController extends Controller
     private function envioCorreoAdmin($data)
     {
         $generales = General::first();
-        // $name = $data['full_name'];
+        $emailadmin = $generales->email;
+        $appUrl = env('APP_URL');
         $name = 'Administrador';
-        $mensaje = 'tienes un nuevo suscriptor - HPI';
+        $mensaje = "Nueva suscriptor - Redconex";
         $mail = EmailConfig::config($name, $mensaje);
-        $emailadmin = 'diego.martinez.r@tecsup.edu.pe';
+      
         $baseUrl = 'https://' . $_SERVER['HTTP_HOST'] . '/mail';
         $baseUrllink = 'https://' . $_SERVER['HTTP_HOST'] . '/';
+      
 
         try {
             $mail->addAddress($emailadmin);
             $mail->Body =
-                '
-          <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mundo web</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <table
-        style="
-          width: 600px;
-          margin: 0 auto;
-          text-align: center;
-          background-image: url(' .
-                $baseUrl .
-                '/fondo.png);
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: cover;
-        "
-      >
-        <thead>
-          <tr>
-            <th
-              style="
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                margin: 40px;
-                padding: 0 200px;
-              "
-            >
-              <a href="' .
-                $baseUrllink .
-                '" target="_blank" style="text-align:center" ><img src="' .
-                $baseUrl .
-                '/logo.png" alt="hpi" /></a>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <p
-                style="
-                  color: #ffffff;
-                  font-weight: 500;
-                  font-size: 40px;
-                  text-align: center;
-                  width: 500px;
-                  margin: 0 auto;
-                  padding: 20px 0;
-                  font-family: Montserrat, sans-serif;
-                "
-              >
-                <span style="display: block">Hola ' .
-                $name .
-                '</span>
-                <span style="display: block">Tienes un nuevo suscriptor</span>
-              </p>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <a
-                target="_blank"
-                href="' .
-                $baseUrllink .
-                '"
-                style="
-                  text-decoration: none;
-                  background-color: #fdfefd;
-                  color: #254f9a;
-                  padding: 16px 20px;
-                  display: inline-flex;
-                  justify-content: center;
-                  border-radius: 10px;
-                  align-items: center;
-                  gap: 10px;
-                  font-weight: 600;
-                  font-family: Montserrat, sans-serif;
-                  font-size: 16px;
-                  margin-bottom: 350px;
-                "
-              >
-                <span>Visita nuestra web</span>
-              </a>
-            </td>
-          </tr>
-          <tr style="margin-top: 300px">
-            <td>
-              <a
-                href="' .
-                htmlspecialchars($generales->facebook, ENT_QUOTES, 'UTF-8') .
-                '"
-                target="_blank"
-                style="padding: 0 5px 30px 0; display: inline-block"
-              >
-                <img src="'.$baseUrl .'/facebook.png" alt="facebook"
-              /></a>
-
-              <a
-                href="' .
-                htmlspecialchars($generales->instagram, ENT_QUOTES, 'UTF-8') .
-                '"
-                target="_blank"
-                style="padding: 0 5px 30px 0; display: inline-block"
-              >
-                <img src="'.$baseUrl .'/instagram.png" alt="instagram"
-              /></a>
-
-              <a
-                href="' .
-                htmlspecialchars($generales->twitter, ENT_QUOTES, 'UTF-8') .
-                '"
-                target="_blank"
-                style="padding: 0 5px 30px 0; display: inline-block"
-              >
-                <img src="'.$baseUrl .'/twitter.png" alt="twitter"
-              /></a>
-
-              <a
-                href="' .
-                htmlspecialchars($generales->linkedin, ENT_QUOTES, 'UTF-8') .
-                '"
-                target="_blank"
-                style="padding: 0 5px 30px 0; display: inline-block"
-              >
-                <img src="'.$baseUrl .'/linkedin.png" alt="linkedin"
-              /></a>
-
-              <a
-                href="' .
-                htmlspecialchars($generales->youtube, ENT_QUOTES, 'UTF-8') .
-                '"
-                target="_blank"
-                style="padding: 0 5px 30px 0; display: inline-block"
-              >
-                <img src=" '.$baseUrl .'/youtube.png" alt="youtube"
-              /></a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </main>
-  </body>
-</html>
-
-        
+                '<html lang="en">
+                <head>
+                  <meta charset="UTF-8" />
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                  <title>Dimensión Lider</title>
+                  <link rel="preconnect" href="https://fonts.googleapis.com" />
+                  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                  <link
+                    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+                    rel="stylesheet"
+                  />
+                  <style>
+                    * {
+                      margin: 0;
+                      padding: 0;
+                      box-sizing: border-box;
+                    }
+                  </style>
+                </head>
+                <body>
+                  <main>
+                    <table
+                      style="
+                        width: 600px;
+                        margin: 0 auto;
+                        text-align: center;
+                        background-image: url(' .
+                              $appUrl .
+                              '/mail/fondo.png);
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                      "
+                    >
+                      <thead>
+                        <tr>
+                          <th
+                            style="
+                              display: flex;
+                              flex-direction: row;
+                              justify-content: center;
+                              align-items: center;
+                              margin-top: 40px;
+                              padding: 0 200px;
+                            "
+                          >
+                              <a href="' .
+                              $appUrl .
+                              '" target="_blank" style="text-align:center" ><img src="' .
+                              $appUrl .
+                              '/mail/logo.png" alt="hpi" /></a>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <p
+                              style="
+                                color: #ffffff;
+                                font-size: 40px;
+                                line-height: normal;
+                                font-family: Google Sans;
+                                font-weight: bold;
+                              "
+                            >
+                              Nuevo
+                              <span style="color: #ffffff">suscriptor</span>
+                            </p>
+                          </td>
+                        </tr>
+      
+                        <tr>
+                          <td>
+                            <p
+                              style="
+                                color: #ffffff;
+                                font-weight: 500;
+                                font-size: 18px;
+                                text-align: center;
+                                width: 500px;
+                                margin: 0 auto;
+                                padding: 20px 0 5px 0;
+                                font-family: Google Sans;
+                              "
+                            >
+                              <span style="display: block">Hola ' . $name . '</span>
+                            </p>
+                          </td>
+                        </tr>
+                        
+                        <tr>
+                          <td>
+                            <p
+                              style="
+                                color: #ffffff;
+                                font-weight: 500;
+                                font-size: 18px;
+                                text-align: center;
+                                width: 500px;
+                                margin: 0 auto;
+                                padding: 0px 10px 5px 0px;
+                                font-family: Google Sans;
+                              "
+                            >
+                              Tienes un nuevo suscriptor.
+                            </p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a
+                               target="_blank"
+                              href="' .
+                              $appUrl .
+                              '"
+                              style="
+                                text-decoration: none;
+                                background-color: #E29720;
+                                color: #21149E;
+                                padding: 13px 20px;
+                                display: inline-flex;
+                                justify-content: center;
+                                border-radius: 32px;
+                                align-items: center;
+                                gap: 10px;
+                                font-weight: 600;
+                                font-family: Google Sans;
+                                font-size: 16px;
+                                margin-bottom: 350px;
+                              "
+                            >
+                              <span>Visita nuestra web</span>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </main>
+                </body>
+              </html>
 ';
 
             $mail->isHTML(true);
@@ -297,225 +275,158 @@ class NewsletterSubscriberController extends Controller
         $generales = General::first();
         // $name = $data['full_name'];
         $name = 'Suscriptor';
-        $mensaje = 'Gracias por suscribirte - HPI';
+        $mensaje = 'Gracias por suscribirte - Redconex';
         $mail = EmailConfig::config($name, $mensaje);
+        $appUrl = env('APP_URL');
         $baseUrl = 'https://' . $_SERVER['HTTP_HOST'] . '/mail';
-        $baseUrllink = 'https://' . $_SERVER['HTTP_HOST'] . '/';
+        $baseUrllink = 'https://' . $_SERVER['HTTP_HOST'] . '/';      
+       
+     
 
         try {
             $mail->addAddress($data['email']);
             $mail->Body =
-                '
-              <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dimensión Lider</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <table
-        style="
-          width: 600px;
-          margin: 0 auto;
-          text-align: center;
-          background-image: url(' .
-                $baseUrl .
-                '/fondo.png);
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: cover;
-        "
-      >
-        <thead>
-          <tr>
-            <th
-              style="
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                margin: 40px;
-                padding: 0 200px;
-              "
-            >
-                <a href="' .
-                $baseUrllink .
-                '" target="_blank" style="text-align:center" ><img src="' .
-                $baseUrl .
-                '/logo.png" alt="hpi" /></a>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <p
-                style="
-                  color: #ffffff;
-                  font-weight: 500;
-                  font-size: 18px;
-                  text-align: center;
-                  width: 500px;
-                  margin: 0 auto;
-                  padding: 20px 0;
-                  font-family: Montserrat, sans-serif;
-                "
-              >
-                <span style="display: block">Hola </span>
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p
-                style="
-                  color: #ffffff;
-                  font-size: 40px;
-                  line-height: 20px;
-                  font-family: Montserrat, sans-serif;
-                "
-              >
-                ' .
-                $name .
-                '
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p
-                style="
-                  color: #ffffff;
-                  font-size: 40px;
-                  line-height: 70px;
-                  font-family: Montserrat, sans-serif;
-                  font-weight: bold;
-                "
-              >
-                ¡Gracias
-                <span style="color: #ffffff">por suscribirte!</span>
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p
-                style="
-                  color: #ffffff;
-                  font-weight: 500;
-                  font-size: 18px;
-                  text-align: center;
-                  width: 500px;
-                  margin: 0 auto;
-                  padding: 20px 0;
-                  font-family: Montserrat, sans-serif;
-                "
-              >
-                Mantente enterado de nuestras promociones y ofertas.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a
-                 target="_blank"
-                href="' .
-                $baseUrllink .
-                '"
-                style="
-                  text-decoration: none;
-                  background-color: #fdfefd;
-                  color: #254f9a;
-                  padding: 16px 20px;
-                  display: inline-flex;
-                  justify-content: center;
-                  border-radius: 10px;
-                  align-items: center;
-                  gap: 10px;
-                  font-weight: 600;
-                  font-family: Montserrat, sans-serif;
-                  font-size: 16px;
-                  margin-bottom: 350px;
-                "
-              >
-                <span>Visita nuestra web</span>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a
-                href="' .
-                htmlspecialchars($generales->facebook, ENT_QUOTES, 'UTF-8') .
-                '"
-                target="_blank"
-                style="padding: 0 5px 30px 0; display: inline-block"
-              >
-                <img src="'.$baseUrl .'/facebook.png" alt="facebook"
-              /></a>
-
-              <a
-                href="' .
-                htmlspecialchars($generales->instagram, ENT_QUOTES, 'UTF-8') .
-                '"
-                target="_blank"
-                style="padding: 0 5px 30px 0; display: inline-block"
-              >
-                <img src="'.$baseUrl .'/instagram.png" alt="instagram"
-              /></a>
-
-              <a
-                href="' .
-                htmlspecialchars($generales->twitter, ENT_QUOTES, 'UTF-8') .
-                '"
-                target="_blank"
-                style="padding: 0 5px 30px 0; display: inline-block"
-              >
-                <img src="'.$baseUrl .'/twitter.png" alt="twitter"
-              /></a>
-
-              <a
-                href="' .
-                htmlspecialchars($generales->linkedin, ENT_QUOTES, 'UTF-8') .
-                '"
-                target="_blank"
-                style="padding: 0 5px 30px 0; display: inline-block"
-              >
-                <img src="'.$baseUrl .'/linkedin.png" alt="linkedin"
-              /></a>
-
-              <a
-                href="' .
-                htmlspecialchars($generales->youtube, ENT_QUOTES, 'UTF-8') .
-                '"
-                target="_blank"
-                style="padding: 0 5px 30px 0; display: inline-block"
-              >
-                <img src=" '.$baseUrl .'/youtube.png" alt="youtube"
-              /></a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </main>
-  </body>
-</html>
-
-            ';
+                '<html lang="en">
+                <head>
+                  <meta charset="UTF-8" />
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                  <title>Dimensión Lider</title>
+                  <link rel="preconnect" href="https://fonts.googleapis.com" />
+                  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                  <link
+                    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+                    rel="stylesheet"
+                  />
+                  <style>
+                    * {
+                      margin: 0;
+                      padding: 0;
+                      box-sizing: border-box;
+                    }
+                  </style>
+                </head>
+                <body>
+                  <main>
+                    <table
+                      style="
+                        width: 600px;
+                        margin: 0 auto;
+                        text-align: center;
+                        background-image: url(' .
+                              $appUrl .
+                              '/mail/fondo.png);
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                      "
+                    >
+                      <thead>
+                        <tr>
+                          <th
+                            style="
+                              display: flex;
+                              flex-direction: row;
+                              justify-content: center;
+                              align-items: center;
+                              margin-top: 40px;
+                              padding: 0 200px;
+                            "
+                          >
+                              <a href="' .
+                              $appUrl .
+                              '" target="_blank" style="text-align:center" ><img src="' .
+                              $appUrl .
+                              '/mail/logo.png" alt="hpi" /></a>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <p
+                              style="
+                                color: #ffffff;
+                                font-size: 40px;
+                                line-height: normal;
+                                font-family: Google Sans;
+                                font-weight: bold;
+                              "
+                            >
+                              ¡Gracias
+                              <span style="color: #ffffff">por escribirnos!</span>
+                            </p>
+                          </td>
+                        </tr>
+      
+                        <tr>
+                          <td>
+                            <p
+                              style="
+                                color: #ffffff;
+                                font-weight: 500;
+                                font-size: 18px;
+                                text-align: center;
+                                width: 500px;
+                                margin: 0 auto;
+                                padding: 20px 0 5px 0;
+                                font-family: Google Sans;
+                              "
+                            >
+                              <span style="display: block">Hola ' . $name . '</span>
+                            </p>
+                          </td>
+                        </tr>
+                        
+                        <tr>
+                          <td>
+                            <p
+                              style="
+                                color: #ffffff;
+                                font-weight: 500;
+                                font-size: 18px;
+                                text-align: center;
+                                width: 500px;
+                                margin: 0 auto;
+                                padding: 0px 10px 5px 0px;
+                                font-family: Google Sans;
+                              "
+                            >
+                              Estaras enterado de nuestras promociones.
+                            </p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a
+                               target="_blank"
+                              href="' .
+                              $appUrl .
+                              '"
+                              style="
+                                text-decoration: none;
+                                background-color: #E29720;
+                                color: #21149E;
+                                padding: 13px 20px;
+                                display: inline-flex;
+                                justify-content: center;
+                                border-radius: 32px;
+                                align-items: center;
+                                gap: 10px;
+                                font-weight: 600;
+                                font-family: Google Sans;
+                                font-size: 16px;
+                                margin-bottom: 350px;
+                              "
+                            >
+                              <span>Visita nuestra web</span>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </main>
+                </body>
+              </html>';
             $mail->isHTML(true);
             $mail->send();
         } catch (\Throwable $th) {
