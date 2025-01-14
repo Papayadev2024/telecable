@@ -46,9 +46,9 @@
            
           <div class="px-[5%]  flex flex-col items-center justify-center gap-5">
             <div class="flex flex-col gap-1 max-w-3xl text-center">
-                <h3 class="font-gotham_bold text-white text-lg ">{{$textosnosotros->subtitle1section ?? "Ingrese un texto"}}</h3>
-                <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none">{{$textosnosotros->title1section ?? "Ingrese un texto"}} <span class="text-[#E29720]">{{$textosnosotros->title1section2 ?? "Ingrese un texto"}}</span></h2>
-                <p class="text-white text-base font-gotham_book"> 
+                <h3 data-aos="fade-down" class="font-gotham_bold text-white text-lg ">{{$textosnosotros->subtitle1section ?? "Ingrese un texto"}}</h3>
+                <h2 data-aos="fade-down" class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none">{{$textosnosotros->title1section ?? "Ingrese un texto"}} <span class="text-[#E29720]">{{$textosnosotros->title1section2 ?? "Ingrese un texto"}}</span></h2>
+                <p data-aos="fade-down" class="text-white text-base font-gotham_book"> 
                     {{$textosnosotros->description1section ?? "Ingrese un texto"}}
                 </p>
             </div>
@@ -60,10 +60,10 @@
                 <img class="w-auto h-40 object-contain mx-auto " src="{{asset($textosnosotros->url_image2section)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/nosotroscable.png') }}';" />
                 <div class="flex flex-col gap-3 justify-center items-start p-3">
                     <div class="flex flex-col gap-0">
-                        <h2 class="font-gotham_bold text-4xl text-white line-clamp-1">
+                        <h2 class="font-gotham_bold text-4xl text-white line-clamp-1" data-aos="fade-down">
                             {{$textosnosotros->title2section ?? "Ingrese un texto"}}
                         </h2>
-                        <span class="font-gotham_book text-lg text-white line-clamp-1 ">
+                        <span class="font-gotham_book text-lg text-white line-clamp-1 " data-aos="fade-down">
                             {{$textosnosotros->subtitle2section ?? "Ingrese un texto"}}
                         </span>
                     </div>
@@ -77,10 +77,10 @@
                     <img class="w-auto h-40 object-contain mx-auto " src="{{asset($textosnosotros->url_image3section)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/nosotrosvaron.png') }}';" />
                     <div class="flex flex-col gap-3 justify-center items-start p-3">
                         <div class="flex flex-col gap-0">
-                            <h2 class="font-gotham_bold text-4xl text-white line-clamp-1">
+                            <h2 class="font-gotham_bold text-4xl text-white line-clamp-1" data-aos="fade-down">
                                 {{$textosnosotros->title3section ?? "Ingrese un texto"}}
                             </h2>
-                            <span class="font-gotham_book text-lg text-white line-clamp-1">
+                            <span class="font-gotham_book text-lg text-white line-clamp-1" data-aos="fade-down">
                                 {{$textosnosotros->subtitle3section ?? "Ingrese un texto"}}
                             </span>
                         </div>
@@ -99,11 +99,11 @@
           style="background-image: url('{{asset('images/img/textura3.svg')}}');">
            
           <div class="px-[5%]  flex flex-col items-center justify-center gap-5">
-            <div class="flex flex-col gap-1 max-w-3xl text-center">
-                <h3 class="font-gotham_bold text-white text-lg ">{{$textosnosotros->subtitle4section ?? "Ingrese un texto"}}</h3>
-                <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none">{{$textosnosotros->title4section ?? "Ingrese un texto"}}
-                     <span class="text-[#E29720]">{{$textosnosotros->title4section2 ?? "Ingrese un texto"}}</span></h2>
-                <p class="text-white text-base font-gotham_book"> 
+            <div class="flex flex-col gap-1 max-w-3xl text-center" >
+                <h3 class="font-gotham_bold text-white text-lg " data-aos="fade-down">{{$textosnosotros->subtitle4section ?? "Ingrese un texto"}}</h3>
+                <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none" data-aos="fade-down">{{$textosnosotros->title4section ?? "Ingrese un texto"}}
+                     <span class="text-[#E29720]" data-aos="fade-down">{{$textosnosotros->title4section2 ?? "Ingrese un texto"}}</span></h2>
+                <p class="text-white text-base font-gotham_book" data-aos="fade-down"> 
                     {{$textosnosotros->description4section ?? "Ingrese un texto"}}
                 </p>
             </div>
@@ -111,7 +111,7 @@
 
           <div class="px-[5%] md:px-[8%] grid grid-cols-1 lg:grid-cols-3 gap-5">
             @foreach ($valores as $valor)    
-                <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
+                <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center" data-aos="zoom-in-up">
                     <div class="flex flex-row justify-center">
                         <div class="bg-[#E29720] p-3 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -131,14 +131,14 @@
         <section class="bg-cover bg-opacity-100 relative pb-10 lg:pb-16 flex flex-col gap-10" 
           style="background-image: url('{{asset('images/img/textura3.svg')}}');">
            
-            <div class="px-[5%] md:px-[10%]">
+            <div class="px-[5%] md:px-[10%]" data-aos="zoom-in-up">
                 <div class="bg-[#1EA7A2]  rounded-3xl overflow-hidden flex flex-col lg:flex-row lg:justify-between gap-0 md:gap-10">
                     <div class="flex flex-col gap-3 w-full lg:w-1/2 p-6 2xl:p-8 lg:max-w-xl  order-2 lg:order-1">
                         <div class="flex flex-col gap-1 text-left">
-                            <h3 class="font-gotham_bold text-white text-lg ">¡Se parte de la experiencia Red Conex!</h3>
-                            <h2 class="font-gotham_bold text-white text-3xl leading-none">¡Déjanos tu correo y recibe la mejor info!</h2>
+                            <h3 class="font-gotham_bold text-white text-lg " data-aos="zoom-in-up">¡Se parte de la experiencia Red Conex!</h3>
+                            <h2 class="font-gotham_bold text-white text-3xl leading-none" data-aos="zoom-in-up">¡Déjanos tu correo y recibe la mejor info!</h2>
                         </div> 
-                        <form id="footerBlog_Catalogo">
+                        <form id="footerBlog_Catalogo" data-aos="zoom-in-up">
                             @csrf
                             <div class="flex flex-col gap-2 justify-center items-center">
                     
@@ -163,7 +163,7 @@
                         </form>
                     </div>
 
-                    <div class="flex flex-row justify-end items-end w-full lg:w-1/2 order-1 lg:order-2">
+                    <div class="flex flex-row justify-end items-end w-full lg:w-1/2 order-1 lg:order-2" data-aos="zoom-in-up">
                         <img class="w-full h-full object-right object-cover" src="{{asset('images/img/imagensus.png')}}" />
                     </div>
                 </div>

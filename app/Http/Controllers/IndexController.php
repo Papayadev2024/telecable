@@ -1019,150 +1019,152 @@ class IndexController extends Controller
         $emailadmin = $generales->email;
         $appUrl = env('APP_URL');
         $name = 'Administrador';
-        $mensaje = "Gracias por comunicarte con Redconex";
+        $mensaje = "Nueva solicitud de contacto - Redconex";
         $mail = EmailConfig::config($name, $mensaje);
 
         try {
           $mail->addAddress($emailadmin);
-          $mail->Body = '<html lang="es">
-            <head>
-              <meta charset="UTF-8" />
-              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>Mundo web</title>
-              <link rel="preconnect" href="https://fonts.googleapis.com" />
-              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-              <link
-                href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-                rel="stylesheet"
-              />
-              <style>
-                * {
-                  margin: 0;
-                  padding: 0;
-                  box-sizing: border-box;
-                }
-              </style>
-            </head>
-            <body>
-              <main>
-                <table
-                  style="
-                    width: 600px;
-                    height: 600px;
-                    margin: 0 auto;
-                    text-align: center;
-                    background-image:url(' . $appUrl . '/mail/fondocontacto.jpg);
-                    background-repeat: no-repeat, no-repeat;
-                    background-position: center bottom , center bottom;;
-                    background-size: fit , fit;
-                    background-color: #f9f9f9;
-                  "
-                >
-                  <thead>
-                    
-                  </thead>
-                  <tbody>
-                    <tr 
+          $mail->Body = '<html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Dimensión Lider</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+              rel="stylesheet"
+            />
+            <style>
+              * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+              }
+            </style>
+          </head>
+          <body>
+            <main>
+              <table
+                style="
+                  width: 600px;
+                  margin: 0 auto;
+                  text-align: center;
+                  background-image: url(' .
+                        $appUrl .
+                        '/mail/fondo.png);
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  background-size: cover;
+                "
+              >
+                <thead>
+                  <tr>
+                    <th
                       style="
-                        margin-bottom: -50px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 40px;
+                        padding: 0 200px;
                       "
-                      >
-                      <th
+                    >
+                        <a href="' .
+                        $appUrl .
+                        '" target="_blank" style="text-align:center" ><img src="' .
+                        $appUrl .
+                        '/mail/logo.png" alt="hpi" /></a>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p
                         style="
-                          display: flex;
-                          flex-direction: row;
+                          color: #ffffff;
+                          font-size: 40px;
+                          line-height: normal;
+                          font-family: Google Sans;
+                          font-weight: bold;
+                        "
+                      >
+                        ¡Gracias
+                        <span style="color: #ffffff">por escribirnos!</span>
+                      </p>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p
+                        style="
+                          color: #ffffff;
+                          font-weight: 500;
+                          font-size: 18px;
+                          text-align: center;
+                          width: 500px;
+                          margin: 0 auto;
+                          padding: 20px 0 5px 0;
+                          font-family: Google Sans;
+                        "
+                      >
+                        <span style="display: block">Hola ' . $name . '</span>
+                      </p>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td>
+                      <p
+                        style="
+                          color: #ffffff;
+                          font-weight: 500;
+                          font-size: 18px;
+                          text-align: center;
+                          width: 500px;
+                          margin: 0 auto;
+                          padding: 0px 10px 5px 0px;
+                          font-family: Google Sans;
+                        "
+                      >
+                        Tienes una nueva solicitud de contacto.
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a
+                         target="_blank"
+                        href="' .
+                        $appUrl .
+                        '"
+                        style="
+                          text-decoration: none;
+                          background-color: #E29720;
+                          color: #21149E;
+                          padding: 13px 20px;
+                          display: inline-flex;
                           justify-content: center;
+                          border-radius: 32px;
                           align-items: center;
-                          margin: 40px;
+                          gap: 10px;
+                          font-weight: 600;
+                          font-family: Google Sans;
+                          font-size: 16px;
+                          margin-bottom: 350px;
                         "
                       >
-                        <img src="' . $appUrl . '/mail/logocontacto.jpg" alt="americanbrands"  style="
-                        margin: auto;
-                        width: 150px;
-                        height: auto;
-                        "
-                        />
-                      </th>
-                    </tr>
-                       
-                    <tr>
-                      <td style="padding-bottom:15px">
-                        <p
-                          style="
-                            font-weight: 500;
-                            font-size: 21px;
-                            text-align: center;
-                            font-family: Montserrat, sans-serif;
-                          "
-                        >
-                            ¡GRACIAS POR ESCRIBIRNOS! 
-                        </p>
-                      </td>
-                    </tr>
-    
-                    <tr>
-                      <td style="">
-                        <p
-                          style="
-                            font-weight: 500;
-                            font-size: 16px;
-                            text-align: center;
-                            font-family: Montserrat, sans-serif;
-                          "
-                        >
-                            ¡Hola! ' . $name . ' 
-                        </p>
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td style="text-align: center;">
-                          <p
-                            style=" 
-                              font-weight: 500;
-                              font-size: 16px;
-                              text-align: center;
-                              font-family: Montserrat, sans-serif;
-                            "
-                          >
-                            En breve estaremos comunicandonos contigo.
-                          </p>
-                      </td>
-                    </tr>
-    
-                    <tr>
-                      <td
-                        style="
-                        text-align: center;
-                        padding-top:15px
-                        "
-                      >
-                        <a
-                          href="' . $appUrl . '"
-                          style="
-                            text-decoration: none;
-                            background-color: #E29720;
-                            color: #21149E;
-                            padding: 8px 16px;
-                            display: inline-flex;
-                            justify-content: center;
-                            align-items: center;
-                            font-weight: 600;
-                            font-family: Montserrat, sans-serif;
-                            font-size: 16px;
-                            border-radius: 0px;
-                            border: 1px solid black;
-                          "
-                        >
-                          <span>VISITA NUESTRA WEB</span>
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </main>
-            </body>
-          </html>
+                        <span>Visita nuestra web</span>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </main>
+          </body>
+        </html>
           ';
           $mail->isHTML(true);
           $mail->send();

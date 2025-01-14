@@ -109,9 +109,9 @@
                                             </div>
 
                                             @if ($slide->link1)
-                                                <div class="flex flex-col justify-center items-start font-gotham_bold">
-                                                    <a href="{{$slide->link1}}">
-                                                        <div class="bg-[#E29720] px-5 py-3 rounded-full tracking-normal">
+                                                <div class="flex flex-col justify-center items-start font-gotham_bold group">
+                                                    <a href="{{$slide->link1}}" class="group-hover:animate-bounce group-hover:animate-thrice">
+                                                        <div class="bg-[#E29720] px-5 py-3 rounded-full tracking-normal ">
                                                             <p class="leading-none text-[#21149E]">{{$slide->botontext1 ?? "Ingrese texto"}}</p>
                                                         </div>
                                                     </a>
@@ -132,7 +132,7 @@
                                             
                                         </div>
                                         <div class="z-20 w-full lg:w-1/3 2xl:w-1/2 flex flex-col justify-end items-start lg:items-end">
-                                            <div class="flex flex-col items-start justify-center  gap-1 z-10 text-left md:text-right bg-black bg-opacity-50 p-5 rounded-2xl w-full sm:w-auto">
+                                            <div class="flex flex-col items-start justify-center  gap-1 z-10 text-left md:text-right bg-black bg-opacity-50 p-5 rounded-2xl w-full sm:w-auto" data-aos="zoom-in-up">
                                                 <p class="text-white text-base font-gotham_bold w-full leading-tight">
                                                     Llámanos al
                                                 </p>
@@ -147,8 +147,8 @@
                                             </div>
                                         </div>
                                     </div> 
-                                    <div class="absolute top-10 right-[8%] lg:flex hidden">
-                                        <div class="flex flex-col justify-center items-start font-gotham_bold">
+                                    <div class="absolute top-10 right-[8%] lg:flex hidden group">
+                                        <div class="flex flex-col justify-center items-start font-gotham_bold  group-hover:animate-bounce group-hover:animate-thrice">
                                             <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text={{ $general[0]->mensaje_whatsapp }}">
                                                 <div class="bg-[#E29720] px-5 py-3 rounded-full tracking-normal">
                                                     <p class="leading-none text-[#21149E]">Habla con nosotros</p>
@@ -170,25 +170,25 @@
             style="background-image: url('{{asset('images/img/textura2.png')}}');">
                 <div class="px-[5%] md:pl-[8%] md:pr-0 py-5 flex flex-col  md:flex-row gap-5 md:gap-10">
                     
-                    <div class="w-full sm:w-full md:w-1/3  xl:w-1/4 flex flex-col justify-center">
+                    <div class="w-full sm:w-full md:w-1/3  xl:w-1/4 flex flex-col justify-center" data-aos="fade-down">
                         <h2 class="font-gotham_bold text-4xl text-white text-left">
                             ¿Eres cliente Redconex?
                         </h2>
                     </div>
 
-                    <div class="w-full sm:w-3/4 md:w-2/3 xl:w-3/4">
+                    <div class="w-full sm:w-3/4 md:w-2/3 xl:w-3/4" data-aos="fade-down">
                         <div class="swiper ofertas w-full">
                             <div class="swiper-wrapper">   
                                 @foreach ($complementos as $complemento)
                                 <div class="swiper-slide">
                                         <div class="flex cursor-pointer flex-col md:flex-row gap-3 max-w-[390px] bg-[#21149E] p-6 rounded-3xl mx-auto">
-                                            <img class="w-24 h-32 object-contain mx-auto" src="{{asset($complemento->url_image . $complemento->name_image)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
+                                            <img  class="w-24 h-32 object-contain mx-auto" src="{{asset($complemento->url_image . $complemento->name_image)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
                                             <div class="flex flex-col gap-3 justify-center items-start">
                                                 <h2 class="font-gotham_bold text-2xl text-white line-clamp-2">
                                                     {{$complemento->title}}
                                                 </h2>
-                                                <div class="flex flex-row w-full">
-                                                    <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text=Ya soy cliente y me interesa: *{{ $complemento->title }}* " class="bg-[#E29720] px-7 py-2 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Pídelo aquí</span></a>
+                                                <div class="flex flex-row w-full group">
+                                                    <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text=Ya soy cliente y me interesa: *{{ $complemento->title }}* " class="group-hover:animate-bounce group-hover:animate-thrice bg-[#E29720] px-7 py-2 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Pídelo aquí</span></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -216,7 +216,7 @@
             >
            
           <div class="px-[5%]  flex flex-col items-center justify-center gap-5">
-            <div class="flex flex-col gap-1 max-w-xl text-center">
+            <div class="flex flex-col gap-1 max-w-xl text-center" data-aos="fade-down">
                 <h3 class="font-gotham_bold text-white text-lg ">Descrubre tu Plan Ideal</h3>
                 <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">Elige el <span class="text-[#E29720]">Plan de Internet</span> que se Ajusta a Ti</h2>
             </div>
@@ -235,16 +235,18 @@
                     @endforeach
             </div> --}}
 
-            <div class="flex flex-row gap-3 justify-center items-start font-gotham_medium">
+            <div class="flex flex-row gap-3 justify-center items-start font-gotham_medium" data-aos="fade-down">
                 <template x-for="(cat, index) in categories" :key="index">
-                        <div 
-                            @click="selected = index" 
-                            :class="selected === index 
-                                ? 'bg-[#E29720] text-[#110B79]' 
-                                : 'bg-white bg-opacity-10 text-white'" 
-                            class="px-5 py-2.5 rounded-full tracking-normal cursor-pointer"
-                        >
-                            <p class="leading-none text-sm sm:text-base" x-text="cat.name"></p>
+                        <div class="group">
+                            <div 
+                                @click="selected = index" 
+                                :class="selected === index 
+                                    ? 'bg-[#E29720] text-[#110B79]' 
+                                    : 'bg-white bg-opacity-10 text-white'" 
+                                class="px-5 py-2.5 rounded-full tracking-normal cursor-pointer group-hover:animate-bounce group-hover:animate-thrice" 
+                            >
+                                <p class="leading-none text-sm sm:text-base" x-text="cat.name"></p>
+                            </div>
                         </div>
                 </template>
             </div>
@@ -287,14 +289,14 @@
                         </div>
                     </div> --}}
 
-                    <div class="swiper planes w-full mt-6">
+                    <div class="swiper planes w-full mt-6" data-aos="fade-down">
                         <div class="swiper-wrapper">   
                             <template x-for="producto in filteredProducts" :key="producto.id">
-                                <div class="swiper-slide my-auto">
+                                <div class="swiper-slide my-auto" >
                                     <div class="flex flex-col gap-3 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
                                         
                                         <div class="flex flex-row w-full">
-                                            <a class="bg-[#E29720] px-4 py-2 rounded-xl text-[#21149E] text-center font-gotham_bold w-auto line-clamp-2">
+                                            <a class="bg-[#E29720] px-4 py-2 rounded-xl text-[#21149E] text-center font-gotham_bold w-auto line-clamp-2 ">
                                                 <span x-text="producto.producto"></span>
                                             </a>
                                         </div>
@@ -350,7 +352,7 @@
                 <div class="px-[5%] md:px-[8%]  flex flex-col  lg:flex-row gap-5 md:gap-10">
                     <div class="w-full sm:w-full lg:w-1/3  flex flex-col justify-center">
                         <div class="swiper lugares w-full mt-1 h-[350px]  md:h-[360px]">
-                            <div class="swiper-wrapper ">
+                            <div class="swiper-wrapper "  data-aos="fade-down">
                                 @foreach ($zonas as $zona)
                                     <div class="swiper-slide">
                                         <div 
@@ -367,12 +369,12 @@
                     </div>
 
                     <div class="w-full sm:w-full lg:w-2/3 flex flex-col justify-center gap-5 md:gap-10">
-                        <div class="flex flex-col gap-1 max-w-2xl text-center mx-auto">
+                        <div class="flex flex-col gap-1 max-w-2xl text-center mx-auto" data-aos="fade-down">
                             <h3 class="font-gotham_bold text-white text-lg ">Zonas de Cobertura</h3>
-                            <h2 class="font-gotham_bold text-white text-4xl xl:text-5xl ">Conoce las <span class="text-[#E29720]">áreas con nuestra conexión</span>  de alta velocidad.</h2>
+                            <h2 class="font-gotham_bold text-white text-4xl xl:text-5xl">Conoce las <span class="text-[#E29720]">áreas con nuestra conexión</span>  de alta velocidad.</h2>
                         </div> 
                         <div>
-                            <img id="imagen-zona" class="rounded-2xl overflow-hidden h-52 md:h-96 w-full object-cover transition-opacity duration-300 opacity-100" src="{{asset($zona->url_image . $zona->name_image)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
+                            <img id="imagen-zona" data-aos="fade-down" class="rounded-2xl overflow-hidden h-52 md:h-96 w-full object-cover transition-opacity duration-300 opacity-100" src="{{asset($zona->url_image . $zona->name_image)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
                         </div>
                     </div>
                 </div>  
@@ -385,7 +387,7 @@
                 <div class="px-[5%] md:px-[10%] flex flex-col  lg:flex-row gap-5 md:gap-10 lg:items-center">
                     
                     <div class="w-full sm:w-full lg:w-1/2  flex flex-col justify-center">
-                        <div class="flex flex-col gap-3 max-w-2xl text-left mx-auto">
+                        <div class="flex flex-col gap-3 max-w-2xl text-left mx-auto" data-aos="fade-down">
                             <h3 class="font-gotham_bold text-white text-lg ">Sobre Nosotros</h3>
                             <h2 class="font-gotham_bold text-white text-4xl xl:text-5xl">¡Conéctate al Futuro con<span class="text-[#21149E]"> Red Conex.</span> La Mejor Velocidad en Internet que Puedes Imaginar!</h2>
                             <p class="font-gotham_book text-white text-base ">¡Bienvenido a Red Conex, tu mejor aliado para una conexión de internet inigualable! Con más de [número de años en el mercado] años de experiencia, estamos aquí para transformar tu experiencia digital con planes de internet de alta velocidad que se adaptan a ti.</p>
@@ -394,7 +396,7 @@
 
                     <div class="w-full lg:w-1/2">
                         <div>
-                            <div class="swiper testimonios h-[500px]">
+                            <div class="swiper testimonios h-[500px]" data-aos="fade-down">
                                 <div class="swiper-wrapper ">   
                                     @foreach ($testimonie as $testimonio)
                                         <div class="swiper-slide">
@@ -422,14 +424,14 @@
           style="background-image: url('{{asset('images/img/textura3.svg')}}');">
            
           <div class="px-[5%] flex flex-col items-center justify-center gap-5">
-            <div class="flex flex-col gap-1 max-w-3xl text-center">
+            <div class="flex flex-col gap-1 max-w-3xl text-center" data-aos="fade-down">
                 <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">¡Los Mejores <span class="text-[#E29720]">Planes de Internet</span> para Tu Hogar Te Esperan!</h2>
             </div>  
           </div>
 
           <div class="px-[5%] md:px-[10%] grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-10">
             @foreach ($benefit as $benefi)   
-                <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center">
+                <div class="flex flex-col gap-5 w-full bg-black bg-opacity-10 p-6 rounded-3xl text-center" data-aos="fade-down">
                     <div class="flex flex-row justify-center">
                         <div class="bg-[#1EA7A2] p-0 rounded-full overflow-hidden">
                             <img class="object-contain w-20" src="{{asset($benefi->icono)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
@@ -445,7 +447,7 @@
           </div> 
 
             <div class="px-[5%] md:px-[10%]">
-                <div class="bg-[#1EA7A2]  rounded-3xl overflow-hidden flex flex-col lg:flex-row lg:justify-between gap-0 md:gap-10">
+                <div class="bg-[#1EA7A2]  rounded-3xl overflow-hidden flex flex-col lg:flex-row lg:justify-between gap-0 md:gap-10" data-aos="zoom-in-up">
                     <div class="flex flex-col gap-3 w-full lg:w-1/2 p-6 2xl:p-8 lg:max-w-xl  order-2 lg:order-1">
                         <div class="flex flex-col gap-1 text-left">
                             <h3 class="font-gotham_bold text-white text-lg ">¡Se parte de la experiencia Red Conex!</h3>
@@ -488,7 +490,7 @@
                 style="background-image: url('{{asset('images/img/textura6.png')}}');">
                 <div class="px-[5%] md:px-[10%] flex flex-col gap-5 md:gap-10">
                     @if (count($posts) > 0)
-                        <div class="flex flex-col justify-start gap-3 md:flex-row md:justify-between w-full md:items-center">
+                        <div class="flex flex-col justify-start gap-3 md:flex-row md:justify-between w-full md:items-center" data-aos="fade-down">
                             <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">Nuestras últimas <br><span class="text-[#21149E]"> publicaciones</span></h2>
                             <div class="flex flex-row">
                                 <a href="{{ route('blog.all') }}">
@@ -500,7 +502,7 @@
                         </div>
                         
                         <div class="w-full">
-                            <div class="swiper slider_blog h-max">
+                            <div class="swiper slider_blog h-max" data-aos="fade-down">
                                 <div class="swiper-wrapper">
                                     @foreach ($posts as $post)
                                         <div class="swiper-slide">
@@ -527,11 +529,11 @@
 
                     @if (count($faqs) > 0)
                         <div class="flex flex-col items-center justify-center gap-5">
-                            <div class="flex flex-col gap-1 max-w-3xl text-center">
+                            <div class="flex flex-col gap-1 max-w-3xl text-center" data-aos="fade-down">
                                 <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl leading-none"> Todo lo que debes saber de <span class="text-[#21149E]">nuestros planes</span></h2>
                             </div> 
                             
-                            <div class="grid w-full divide-y divide-neutral-200 bg-[#21149E] px-6 py-2 rounded-2xl">
+                            <div class="grid w-full divide-y divide-neutral-200 bg-[#21149E] px-6 py-2 rounded-2xl" data-aos="fade-down">
                             @foreach ($faqs as $faq)
                                 <div class="py-3">
                                     <details class="group">
@@ -1021,7 +1023,7 @@
             initialSlide: 0,
             loop: true,
             autoplay: {
-                delay: 3000,
+                delay: 5000,
                 disableOnInteraction: false,
             },
             breakpoints: {

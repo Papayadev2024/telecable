@@ -9,14 +9,14 @@
     <main class="bg-cover bg-center pt-16 xl:pt-5"  style="background-image:url({{asset('images/img/texturanosotros.png')}})">
 
         <section class="flex flex-row justify-start items-center px-[5%] xl:px-[10%] pt-10 lg:pt-16 gap-6 relative">
-            <div class="flex flex-col gap-1 max-w-xl text-left">
+            <div class="flex flex-col gap-1 max-w-xl text-left" data-aos="fade-down">
                 <h3 class="font-gotham_bold text-white text-lg ">Descrubre lo nuevo en tecnología</h3>
                 <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">Nuestro <span class="text-[#E29720]">Blog</span> de articulos</h2>
             </div>
         </section>
 
         <section class="flex flex-col lg:flex-row px-[5%] xl:px-[10%] pt-10 gap-12 justify-center items-start lg:items-center">
-            <div class="w-full lg:w-2/3 flex flex-col justify-center">
+            <div class="w-full lg:w-2/3 flex flex-col justify-center" data-aos="fade-down">
                 @if (is_null($lastpost))
                 @else  
                     <a href="{{ route('detalleBlog', $lastpost->id) }}">
@@ -35,7 +35,7 @@
                     </a>      
                 @endif
             </div>
-            <div class="w-full lg:w-1/3  flex flex-col justify-center items-start gap-3">
+            <div class="w-full lg:w-1/3  flex flex-col justify-center items-start gap-3" data-aos="fade-down">
                 <h3 class="font-gotham_bold text-white text-lg ">Últimos post</h3>
                 @foreach ($postsgeneral->take(3) as $postr)
                     <div class="flex flex-row w-full max-w-[390px] bg-white bg-opacity-10 rounded-3xl overflow-hidden mx-auto">
@@ -65,11 +65,11 @@
                 <div class="flex flex-col gap-6 w-full ">
                     
                     <div class="flex flex-col gap-1 max-w-xl text-left">
-                        <h3 class="font-gotham_bold text-white text-lg ">Descrubre lo nuevo en tecnología</h3>
-                        <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">Últimas publicaciones</h2>
+                        <h3 class="font-gotham_bold text-white text-lg " data-aos="fade-down">Descrubre lo nuevo en tecnología</h3>
+                        <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl" data-aos="fade-down">Últimas publicaciones</h2>
                     </div>
 
-                    <div class="flex flex-wrap gap-3 justify-center">
+                    <div class="flex flex-wrap gap-3 justify-center" data-aos="fade-down">
                         <a href="{{ route('blog.all') }}">
                             <div class="{{ $filtro == 0 ? 'bg-[#E29720] text-[#110B79]' : 'bg-white bg-opacity-10 text-white' }} rounded-3xl px-6 py-1.5 text-lg font-gotham_bold">
                                 Todos
@@ -77,7 +77,7 @@
                         </a>
 
                         @foreach ($categorias as $item)
-                            <a href="{{ route('blog', $item->id) }}">
+                            <a href="{{ route('blog', $item->id) }}" data-aos="fade-down">
                                 <div class="rounded-3xl px-6 py-1.5 text-lg font-gotham_bold
                                      {{ $item->id == $filtro ? 'bg-[#E29720] text-[#110B79]' : 'bg-white bg-opacity-10 text-white' }} ">
                                     {{ $item->name }}
@@ -92,7 +92,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
                         @if (count($posts) > 0)
                             @foreach ($posts as $post)  
-                                <div class="flex flex-col w-full bg-white bg-opacity-10 overflow-hidden rounded-3xl text-left">
+                                <div data-aos="fade-down" class="flex flex-col w-full bg-white bg-opacity-10 overflow-hidden rounded-3xl text-left">
                                     <a href="{{ route('detalleBlog', $post->id) }}">
                                         <div class="flex flex-row justify-center">
                                         <img class="w-full h-52 object-cover" src="{{ asset($post->url_image . $post->name_image) }}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"/>
