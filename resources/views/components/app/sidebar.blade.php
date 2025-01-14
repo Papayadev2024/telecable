@@ -32,7 +32,7 @@
         <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
           <span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
             aria-hidden="true">•••</span>
-          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Cadmo - Backend</span>
+          <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Redconex - Backend</span>
         </h3>
         <ul class="mt-3">
 
@@ -78,6 +78,12 @@
             icon="fas fa-undo-alt">
             Politicas de Privacidad
           </x-menu.item>
+
+          <x-menu.item id="terminos-y-condiciones" href="{{ route('terminos-y-condiciones.edit', 1) }}"
+            icon="fas fa-undo-alt">
+            Terminos y Condiciones
+          </x-menu.item>
+
 
           {{-- <x-menu.item id="homeview" href="{{ route('homeview.edit', 1) }}" icon="fas fa-address-card">
             Textos - Home

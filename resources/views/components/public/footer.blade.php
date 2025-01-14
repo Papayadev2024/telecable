@@ -97,7 +97,7 @@
         <!-- Modal body -->
         <div class="p-4 ">
             <h1 class="font-gotham_bold text-2xl text-center">Terminos y condiciones</h1>
-            <p class="font-gotham_book p-2 prose">{!! $terminos->content ?? '' !!}</p>
+            <p class="font-gotham_book p-2 prose">{!! $termsAndCondicitions->content ?? '' !!}</p>
         </div>
     </div>
 
