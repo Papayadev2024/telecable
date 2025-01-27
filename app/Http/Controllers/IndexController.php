@@ -68,7 +68,7 @@ class IndexController extends Controller
     public function index()
     {
         // $productos = Products::all();
-        $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->get();
+        
         $categorias = Category::all();
         $textoshome = HomeView::first();
         $destacados = Products::where('destacar', '=', 1)->where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('images')->get();
@@ -85,11 +85,12 @@ class IndexController extends Controller
         $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
         $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
         $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
+        $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->get();
         $category = Category::where('status', '=', 1)
                         ->where('visible', '=', 1)
-                        ->whereHas('productos', function ($query) {
-                            $query->where('status', 1)->where('visible', 1);
-                        })
+                        // ->whereHas('productos', function ($query) {
+                        //     $query->where('status', 1)->where('visible', 1);
+                        // })
                         ->orderBy('order', 'asc')
                         ->get();
         
@@ -635,15 +636,23 @@ class IndexController extends Controller
     {
       $general = General::first();
       $innovaciontext = InnovacionView::first();
-      return view('public.innovaciones', compact('general','innovaciontext'));
+      $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->get();
+      $category = Category::where('status', '=', 1)
+                      ->where('visible', '=', 1)
+                      // ->whereHas('productos', function ($query) {
+                      //     $query->where('status', 1)->where('visible', 1);
+                      // })
+                      ->orderBy('order', 'asc')
+                      ->get();
+      return view('public.innovaciones', compact('general','innovaciontext','productos','category'));
     }
 
     public function novedades()
     {
         try {
             $novedades = Products::where('status', '=', 1)->where('visible', '=', 1)->where('recomendar', '=', 1)->paginate(16);
-
-            return view('public.novedades', compact('novedades'));
+            $benefit = Strength::where('status', '=', 1)->get();
+            return view('public.novedades', compact('novedades','benefit'));
         } catch (\Throwable $th) {
         }
     }
@@ -1019,7 +1028,7 @@ class IndexController extends Controller
         $emailadmin = $generales->email;
         $appUrl = env('APP_URL');
         $name = 'Administrador';
-        $mensaje = "Nueva solicitud de contacto - Redconex";
+        $mensaje = "Nueva solicitud de contacto - Telecable";
         $mail = EmailConfig::config($name, $mensaje);
 
         try {
@@ -1142,8 +1151,8 @@ class IndexController extends Controller
                         '"
                         style="
                           text-decoration: none;
-                          background-color: #E29720;
-                          color: #21149E;
+                          background-color: #59C402;
+                          color: #ffffff;
                           padding: 13px 20px;
                           display: inline-flex;
                           justify-content: center;
@@ -1178,7 +1187,7 @@ class IndexController extends Controller
        
         $name = $data['full_name'];
         $appUrl = env('APP_URL');
-        $mensaje = 'Gracias por comunicarte con Redconex';
+        $mensaje = 'Gracias por comunicarte con Telecable';
         $mail = EmailConfig::config($name, $mensaje);
         // $baseUrl = 'https://' . $_SERVER['HTTP_HOST'] . '/mail';
         // $baseUrllink = 'https://' . $_SERVER['HTTP_HOST'] . '/';
@@ -1303,8 +1312,8 @@ class IndexController extends Controller
                         '"
                         style="
                           text-decoration: none;
-                          background-color: #E29720;
-                          color: #21149E;
+                          background-color: #59C402;
+                          color: #ffffff;
                           padding: 13px 20px;
                           display: inline-flex;
                           justify-content: center;

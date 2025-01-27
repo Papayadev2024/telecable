@@ -24,7 +24,7 @@
               <tr>
                 <th>Titulo </th>
                 
-                <th class="w-24">Icono</th>
+                {{-- <th class="w-24">Icono</th> --}}
                 
                 <th class="w-24">Visible</th>
                 <th class="w-24">Acciones</th>
@@ -36,7 +36,7 @@
                 <tr>
                   <td>{{ $item->titulo }}</td>
                   
-                  <td class="px-3 py-2"><img class="w-14" src="{{ asset($item->icono) }}" alt=""></td>
+                  {{-- <td class="px-3 py-2"><img class="w-14" src="{{ asset($item->icono) }}" alt=""></td> --}}
 
                   
 
@@ -81,7 +81,7 @@
               <tr>
                 <th>Titulo </th>
                 
-                <th>Icono</th>
+                {{-- <th>Icono</th> --}}
                
                 <th>Visible</th>
                 <th>Acciones</th>

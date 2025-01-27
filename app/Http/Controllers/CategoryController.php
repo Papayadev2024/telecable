@@ -56,9 +56,17 @@ class CategoryController extends Controller
         if ($request->hasFile('imagen')) {
             $file = $request->file('imagen');
             $routeImg = 'storage/images/categories/';
-            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
 
-            $this->saveImg($file, $routeImg, $nombreImagen);
+            if (strtolower($extension) === 'svg') {
+                // Si el archivo es un SVG, solo se mueve al directorio deseado
+                $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+                $file->move(public_path($routeImg), $nombreImagen);
+            } else {
+                // Para imágenes rasterizadas, realiza el procesamiento habitual
+                $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+                $this->saveImg($file, $routeImg, $nombreImagen);
+            }
 
             $category->url_image = $routeImg;
             $category->name_image = $nombreImagen;
@@ -118,13 +126,17 @@ class CategoryController extends Controller
         if ($request->hasFile('imagen')) {
             $file = $request->file('imagen');
             $routeImg = 'storage/images/categories/';
-            $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
 
-            if ($category->url_image !== 'images/img/') {
-                File::delete($category->url_image . $category->name_image);
+            if (strtolower($extension) === 'svg') {
+                // Si el archivo es un SVG, solo se mueve al directorio deseado
+                $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+                $file->move(public_path($routeImg), $nombreImagen);
+            } else {
+                // Para imágenes rasterizadas, realiza el procesamiento habitual
+                $nombreImagen = Str::random(10) . '_' . $file->getClientOriginalName();
+                $this->saveImg($file, $routeImg, $nombreImagen);
             }
-
-            $this->saveImg($file, $routeImg, $nombreImagen);
 
             $category->url_image = $routeImg;
             $category->name_image = $nombreImagen;

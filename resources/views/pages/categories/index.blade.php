@@ -22,10 +22,10 @@
                             <tr>
                                 <th>Nombre</th>
                               
-                                <th>Destacar</th>
-                                <th>Visible</th>
+                                <th class="w-24">Destacar</th>
+                                <th class="w-24">Visible</th>
                                
-                                <th>Acciones</th>
+                                <th class="w-24">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>

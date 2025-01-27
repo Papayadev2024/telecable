@@ -85,9 +85,9 @@
           </x-menu.item>
 
 
-          {{-- <x-menu.item id="homeview" href="{{ route('homeview.edit', 1) }}" icon="fas fa-address-card">
+          <x-menu.item id="homeview" href="{{ route('homeview.edit', 1) }}" icon="fas fa-address-card">
             Textos - Home
-          </x-menu.item> --}}
+          </x-menu.item>
 
           <x-menu.item id="sobrenosotros" href="{{ route('nosotrosview.edit', 1) }}" icon="fas fa-address-card">
             Textos - Nosotros

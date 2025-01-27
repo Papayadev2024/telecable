@@ -1,8 +1,8 @@
-<header id="main-header" class="fixed  top-0 w-full z-40">
+<header id="main-header" class="sticky top-0 w-full z-40 bg-white">
 
       <div class="left-0 right-0">
         {{-- Top bar --}}
-        <div class="hidden bg-transparent relative font-galano_medium text-sm">
+        <div class="hidden  relative font-galano_medium text-sm">
             <div class="flex flex-row justify-end items-center py-4 h-10 w-full px-[5%] text-white text-sm">
                 {{-- <div class="flex flex-col justify-center items-center font-latobold">
                     <div class="bg-[#E29720] px-3 py-2 rounded-lg">
@@ -13,20 +13,17 @@
         </div>
 
         {{-- Navbar --}}
-        <div class="flex lg:hidden justify-between w-full px-[5%]">
-            <nav class="flex h-[100px] items-center justify-between gap-10 w-full">
+        <div class="flex justify-between w-full px-[5%]">
+            <nav class="flex h-[80px] items-center justify-between gap-10 w-full">
+                
                 <input
                     type="checkbox"
                     id="menu"
                     class="peer/menu menu hidden"
                 />
-                <label
-                    for="menu"
-                    class="transition-all flex flex-col gap-1 z-40 lg:hidden hamburguesa justify-center items-center order-3 lg:order-3"
-                >   
-                    
-                    
-                    <div class="bg-[#E29720] p-3 rounded-2xl">
+
+                <label for="menu" class="transition-all flex flex-col gap-1 z-40 lg:hidden hamburguesa justify-center items-center order-3 lg:order-3">   
+                  <div class="bg-[#E29720] p-3 rounded-2xl">
                       <div class="peer-checked:flex hidden">
                         <p class="w-7 h-1 bg-[#110B79] transition-transform duration-500"></p>
                         <p class="w-7 h-1 bg-[#110B79] transition-transform duration-500"></p>
@@ -38,43 +35,57 @@
                         <path d="M18.3346 5.0013C18.3346 3.16035 16.8422 1.66797 15.0013 1.66797C13.1604 1.66797 11.668 3.16035 11.668 5.0013C11.668 6.84225 13.1604 8.33464 15.0013 8.33464C16.8422 8.33464 18.3346 6.84225 18.3346 5.0013Z" stroke="#110B79" stroke-width="1.25"/>
                         <path d="M18.3346 15.0013C18.3346 13.1604 16.8422 11.668 15.0013 11.668C13.1604 11.668 11.668 13.1604 11.668 15.0013C11.668 16.8422 13.1604 18.3346 15.0013 18.3346C16.8422 18.3346 18.3346 16.8422 18.3346 15.0013Z" stroke="#110B79" stroke-width="1.25"/>
                       </svg>
-                    </div>
-                    
+                  </div>
                 </label>
 
-                <div class="flex lg:hidden justify-center items-center z-40">
+                <div class="flex justify-center items-center z-40">
                     <a href="{{ url('/') }}">
                         <img
-                            src="{{ asset('images/img/logorexconect.svg') }}"
+                            src="{{ asset('images/img/tc_logotelecable.svg') }}"
                             alt="Cremoso"
-                            class="max-w-36"
+                            class="max-w-56"
                         />
                     </a>
                 </div>
 
-                <ul
-                    class="flex font-gotham_bold text-2xl pt-40 fixed inset-0 bg-[#21149E] px-[5%] flex-col lg:flex-row lg:items-center clip-circle-0 peer-checked/menu:clip-circle-full transition-[clip-path] duration-500 gap-5 lg:gap-10 lg:clip-circle-full lg:relative lg:flex lg:justify-items-center lg:p-0 lg:bg-transparent flex-1"
-                >
-                    <div class="flex lg:hidden flex-col font-normal lg:flex-row order-2 lg:order-1 lg:w-full lg:justify-end gap-5 lg:gap-10 text-white">
+                <ul class="flex font-gilroy_medium text-lg pt-40 fixed inset-0 px-[5%] flex-col lg:flex-row lg:items-center clip-circle-0 peer-checked/menu:clip-circle-full transition-[clip-path] duration-500 gap-5 lg:gap-10 lg:clip-circle-full lg:relative lg:flex lg:justify-items-center lg:p-0 lg:bg-transparent flex-1">
+                    <div class="flex flex-col font-normal lg:flex-row order-2 lg:order-1 lg:w-full lg:justify-center gap-5 lg:gap-10 text-[#001F4F]">
                         <li class="flex flex-col">
                             <a href="{{route('index')}}" class="">Inicio</a>
                         </li>
                         <li class="flex flex-col">
-                            <a href="{{route('index')}}" class="">Planes</a>
+                            <a href="{{route('novedades')}}" class="">Planes</a>
                         </li>
                         <li class="flex flex-col">
                             <a href="{{route('nosotros')}}" class="">Nosotros</a>
                         </li>
-                        <li class="flex flex-col">
+                        {{-- <li class="flex flex-col">
                             <a href="{{route('blog.all')}}" class="">Blog</a>
-                        </li>
+                        </li> --}}
                         <li class="flex flex-col">
                             <a href="{{route('contacto')}}" class="">Contacto</a>
                         </li>
                     </div>
                 </ul>
+
+                <div class="hidden md:flex flex-col justify-center items-center font-gilroy_semibold">
+                  <div class="bg-[#0066FF] px-3 py-2 my-auto rounded-3xl">
+                      <p class="leading-none text-white">Lo quiero ahora</p>
+                  </div>
+                </div>
+
             </nav>
+
+            
+
         </div>
+
+        <div class="flex md:hidden flex-col justify-center items-center font-latobold">
+          <div class="bg-[#E29720] px-3 py-2 rounded-lg">
+              <p class="leading-none text-[#21149E]">Habla con nosotros</p>
+          </div>
+        </div>
+
     </div>
   {{-- <div>
     <div class="flex justify-between w-full px-[5%] mx-auto">
@@ -438,28 +449,19 @@
       }
   });
 </script>
-<script>
+{{-- <script>
        function applyScrollStyles() {
             const header = document.getElementById('main-header');
             const logo = document.getElementById('imagenlogo');
-            
+        
             if (window.scrollY > 50) {
-                
-
               header.classList.add('bg-[#21149E]'); 
-              header.classList.remove('bg-transparent'); 
-                
-                
+              header.classList.remove('bg-transparent');      
             } else {
               header.classList.add('bg-transparent');
               header.classList.remove('bg-[#21149E]');
-                
-             
-                
             }
         }
-
-
         window.addEventListener('DOMContentLoaded', applyScrollStyles);
         window.addEventListener('scroll', applyScrollStyles);
-</script>
+</script> --}}

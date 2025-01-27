@@ -847,33 +847,33 @@ src: url("/fonts/gotham-light.woff") format("woff");
 }
 
 @font-face {
-font-family: "gotham_medium";
-src: url("/fonts/gotham-medium.woff") format("woff");
+    font-family: "gilroy-light";
+    src: url("/fonts/gilroy-light.woff") format("woff");
 }
 
 @font-face {
-    font-family: "bignoodle";
-    src: url("../fonts/bignoodle.woff") format("woff");
+    font-family: "gilroy-regular";
+    src: url("../fonts/gilroy-regular.woff") format("woff");
   }
   
 @font-face {
-    font-family: "bignoodlecurve";
-    src: url("../fonts/bignoodlecurve.woff") format("woff");
+    font-family: "gilroy-medium";
+    src: url("../fonts/gilroy-medium.woff") format("woff");
 }
   
 @font-face {
-    font-family: "latolight";
-    src: url("../fonts/latolight.woff") format("woff");
+    font-family: "gilroy-semibold";
+    src: url("../fonts/gilroy-semibold.woff") format("woff");
 }
 
 @font-face {
-    font-family: "latoregular";
-    src: url("../fonts/latoregular.woff") format("woff");
+    font-family: "gilroy-bold";
+    src: url("../fonts/gilroy-bold.woff") format("woff");
 }
 
 @font-face {
-    font-family: "latobold";
-    src: url("../fonts/latobold.woff") format("woff");
+    font-family: "gilroy-extrabold";
+    src: url("../fonts/gilroy-extrabold.woff") format("woff");
 }
 
 

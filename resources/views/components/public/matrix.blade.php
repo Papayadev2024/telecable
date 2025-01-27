@@ -49,8 +49,6 @@
     @include('components.public.header')
 
     <div class="main">
-       
-        @include('components.public.sidebar')  
 
         @yield('content')
 

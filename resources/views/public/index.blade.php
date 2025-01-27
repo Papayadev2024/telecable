@@ -91,263 +91,422 @@
 @section('content')
     <main>
         
-
-        @if (count($slider) > 0)
-            <div class="swiper slider">
-                <div class="swiper-wrapper">
-                    @foreach ($slider as $slide)    
-                        <div class="swiper-slide">
-                            <section class="bg-center h-svh bg-cover flex flex-col justify-center relative" style="background-image: url({{asset($slide->url_image . $slide->name_image)}})">
+    <div
+        x-data="{
+            selected: 1,
+            categories: {{ json_encode($category) }},
+            products: {{ json_encode($productos) }},
+            general: {{ json_encode($general[0]) }},
+            get filteredProducts() {
+                const selectedCategory = this.categories[this.selected];
+                return this.products.filter(product => product.categoria_id === selectedCategory.id);
+            }
+        }"
+    >    
+        <section class="bg-center h-svh bg-cover bg-no-repeat flex flex-col justify-center relative" style="background-image: url({{asset('images/img/tc_banner.png')}})">
                                 
-                                    <img class="opacity-40 object-cover absolute top-0 h-full w-full" src="{{asset('images/img/texturaconex.png')}}" />
-                                    <div class="flex flex-col lg:flex-row px-[5%]  py-[5%]  lg:px-[10%] pt-20 gap-5 justify-center items-start lg:items-end">
-                                        <div class="z-20 w-full md:w-full xl:w-2/3 2xl:w-1/2 flex flex-col gap-4 2xl:gap-10 justify-center">
-                                            
-                                            <div class="flex flex-col gap-1">
-                                                    <h3 class="font-gotham_bold text-white text-xl line-clamp-1">{{$slide->title}}</h3>
-                                                    <h2 class="font-gotham_bold text-white text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-7xl line-clamp-3">{{$slide->description}}</h2>
-                                            </div>
-
-                                            @if ($slide->link1)
-                                                <div class="flex flex-col justify-center items-start font-gotham_bold group">
-                                                    <a href="{{$slide->link1}}" class="group-hover:animate-bounce group-hover:animate-thrice">
-                                                        <div class="bg-[#E29720] px-5 py-3 rounded-full tracking-normal ">
-                                                            <p class="leading-none text-[#21149E]">{{$slide->botontext1 ?? "Ingrese texto"}}</p>
-                                                        </div>
-                                                    </a>
-                                                </div> 
-                                            @endif
-                                           
-
-                                            <div class="grid grid-cols-2 md:grid-cols-3 font-gotham_bold  gap-3 lg:gap-5 max-w-2xl">
-                                                <div class="flex flex-col justify-center">
-                                                    <span class="text-[#1EA7A2] text-3xl xl:text-5xl">100%</span>
-                                                    <h2 class="text-white text-sm sm:text-base xl:text-lg">Red fibra óptica</h2>
-                                                </div>
-                                                <div class="flex flex-col justify-center">
-                                                    <span class="text-[#1EA7A2] text-3xl xl:text-5xl">24/7</span>
-                                                    <h2 class="text-white text-sm sm:text-base xl:text-lg">Atención permanente</h2>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="z-20 w-full lg:w-1/3 2xl:w-1/2 flex flex-col justify-end items-start lg:items-end">
-                                            <div class="flex flex-col items-start justify-center  gap-1 z-10 text-left md:text-right bg-black bg-opacity-50 p-5 rounded-2xl w-full sm:w-auto" data-aos="zoom-in-up">
-                                                <p class="text-white text-base font-gotham_bold w-full leading-tight">
-                                                    Llámanos al
-                                                </p>
-
-                                                <p class="text-[#F07407] text-3xl xl:text-4xl font-gotham_bold w-full">
-                                                    +51 9458734355
-                                                </p>
-
-                                                <p class="text-white text-base font-gotham_bold w-full leading-tight">
-                                                    y escoge tu plan ahora
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                    <div class="absolute top-10 right-[8%] lg:flex hidden group">
-                                        <div class="flex flex-col justify-center items-start font-gotham_bold  group-hover:animate-bounce group-hover:animate-thrice">
-                                            <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text={{ $general[0]->mensaje_whatsapp }}">
-                                                <div class="bg-[#E29720] px-5 py-3 rounded-full tracking-normal">
-                                                    <p class="leading-none text-[#21149E]">Habla con nosotros</p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                
-                            </section>
-                        </div>
-                    @endforeach    
-                </div>
-            </div>
-        @endif
-
- 
-        @if (count($complementos) > 0)    
-            <section class="bg-cover bg-opacity-100 relative" 
-            style="background-image: url('{{asset('images/img/textura2.png')}}');">
-                <div class="px-[5%] md:pl-[8%] md:pr-0 py-5 flex flex-col  md:flex-row gap-5 md:gap-10">
+            <img class="object-cover absolute top-0 left-0 h-full object-left w-full bg-gradient-to-r from-[#00388C] to-transparent" src="{{asset('images/img/tc_textura.svg')}}" />
+            <img class="object-cover absolute bottom-0 right-0 h-full object-bottom w-full" src="{{asset('images/img/tc_textura2.svg')}}" />
+            <div class="flex flex-col lg:flex-row px-[5%]  py-[5%]  lg:px-[5%]  gap-5 justify-center items-start lg:items-end">
+                <div class="z-20 w-full lg:w-3/4 2xl:w-2/3 flex flex-col gap-4 2xl:gap-10 justify-center">
                     
-                    <div class="w-full sm:w-full md:w-1/3  xl:w-1/4 flex flex-col justify-center" data-aos="fade-down">
-                        <h2 class="font-gotham_bold text-4xl text-white text-left">
-                            ¿Eres cliente Redconex?
-                        </h2>
+                    <div class="flex flex-col gap-1">
+                            <h3 class="font-gilroy_regular text-white text-xl line-clamp-1 flex flex-row gap-3 items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                    <path d="M16.3334 3.5H11.6667C7.26693 3.5 5.06705 3.5 3.70021 4.86683C2.33337 6.23367 2.33337 8.43355 2.33337 12.8333C2.33337 17.2331 2.33337 19.4331 3.70021 20.7998C5.06705 22.1667 7.26693 22.1667 11.6667 22.1667H16.3334C20.7331 22.1667 22.9331 22.1667 24.2998 20.7998C25.6667 19.4331 25.6667 17.2331 25.6667 12.8333C25.6667 8.43355 25.6667 6.23367 24.2998 4.86683C22.9331 3.5 20.7331 3.5 16.3334 3.5Z" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+                                    <path d="M19.7167 18.0833C19.7167 17.0524 20.5524 16.2167 21.5833 16.2167M15.9833 18.0833C15.9833 14.9905 18.4905 12.4833 21.5833 12.4833M12.25 18.0833C12.25 12.9287 16.4287 8.75 21.5833 8.75" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+                                    <path d="M21 22.167L22.1667 24.5003" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M7.00004 22.167L5.83337 24.5003" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                {{$textoshome->title1section ?? 'Ingrese texto'}}
+                            </h3>
+                            <h2 class="font-gilroy_bold text-white text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl line-clamp-3">{{$textoshome->description1section ?? 'Ingrese texto'}}</h2>
                     </div>
-
-                    <div class="w-full sm:w-3/4 md:w-2/3 xl:w-3/4" data-aos="fade-down">
-                        <div class="swiper ofertas w-full">
-                            <div class="swiper-wrapper">   
-                                @foreach ($complementos as $complemento)
-                                <div class="swiper-slide">
-                                        <div class="flex cursor-pointer flex-col md:flex-row gap-3 max-w-[390px] bg-[#21149E] p-6 rounded-3xl mx-auto">
-                                            <img  class="w-24 h-32 object-contain mx-auto" src="{{asset($complemento->url_image . $complemento->name_image)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
-                                            <div class="flex flex-col gap-3 justify-center items-start">
-                                                <h2 class="font-gotham_bold text-2xl text-white line-clamp-2">
-                                                    {{$complemento->title}}
-                                                </h2>
-                                                <div class="flex flex-row w-full group">
-                                                    <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text=Ya soy cliente y me interesa: *{{ $complemento->title }}* " class="group-hover:animate-bounce group-hover:animate-thrice bg-[#E29720] px-7 py-2 rounded-full text-[#21149E] text-center font-gotham_bold w-full"><span>Pídelo aquí</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>  
-            </section>
-        @endif
-
-        @if (count($productos) > 0)    
-        <section 
-            x-data="{
-                selected: 0,
-                categories: {{ json_encode($category) }},
-                products: {{ json_encode($productos) }},
-                get filteredProducts() {
-                    const selectedCategory = this.categories[this.selected];
-                    return this.products.filter(product => product.categoria_id === selectedCategory.id);
-                }
-            }"
-            class="bg-cover bg-opacity-100 relative py-10 lg:py-16"  style="background-image: url('{{asset('images/img/textura3.svg')}}');"
-            >
-           
-          <div class="px-[5%]  flex flex-col items-center justify-center gap-5">
-            <div class="flex flex-col gap-1 max-w-xl text-center" data-aos="fade-down">
-                <h3 class="font-gotham_bold text-white text-lg ">Descrubre tu Plan Ideal</h3>
-                <h2 class="font-gotham_bold text-white text-4xl lg:text-5xl">Elige el <span class="text-[#E29720]">Plan de Internet</span> que se Ajusta a Ti</h2>
-            </div>
-            
-            {{-- <div x-data="{ selected: 0 }" class="flex flex-row gap-3 justify-center items-start font-gotham_medium">
-                    @foreach ($category as $index => $cat)
-                            <div 
-                                @click="selected = {{ $index }}" 
-                                :class="selected === {{ $index }} 
-                                    ? 'bg-[#E29720] text-[#110B79]' 
-                                    : 'bg-white bg-opacity-10 text-white'" 
-                                class="px-5 py-2.5 rounded-full tracking-normal cursor-pointer"
-                            >
-                                <p class="leading-none text-sm sm:text-base">{{ $cat->name }}</p>
-                            </div>
-                    @endforeach
-            </div> --}}
-
-            <div class="flex flex-row gap-3 justify-center items-start font-gotham_medium" data-aos="fade-down">
-                <template x-for="(cat, index) in categories" :key="index">
-                        <div class="group">
-                            <div 
+   
+                    <div class="grid grid-cols-2 md:grid-cols-3 font-gotham_bold w-full overflow-hidden rounded-2xl bg-[#5599FF] mt-5">
+                        {{-- @foreach ($category as $categoria) --}}
+                        <template x-for="(cat, index) in categories" :key="index">
+                            <div    
                                 @click="selected = index" 
                                 :class="selected === index 
-                                    ? 'bg-[#E29720] text-[#110B79]' 
-                                    : 'bg-white bg-opacity-10 text-white'" 
-                                class="px-5 py-2.5 rounded-full tracking-normal cursor-pointer group-hover:animate-bounce group-hover:animate-thrice" 
-                            >
-                                <p class="leading-none text-sm sm:text-base" x-text="cat.name"></p>
+                                    ? 'bg-[#004FC6]' 
+                                    : ''" 
+                                 class="flex flex-col justify-center items-center px-6 py-7 cursor-pointer">
+                                <img class="w-12 h-12 object-contain" :src="cat.url_image + cat.name_image"  onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"  />
+                                <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold mt-5" x-text="cat.name"></h3>
+                                <h2 class="text-white text-base font-gilroy_regular" x-text="cat.description"></h2>
                             </div>
-                        </div>
-                </template>
-            </div>
-          </div>
+                        </template>
+                        {{-- @endforeach --}}
+                    </div>
+                    
+                </div>
+                <div class="z-20 w-full lg:w-1/4 2xl:w-1/3 flex flex-col justify-end items-start lg:items-end">
+                    
+                </div>
+            </div> 
+        </section>
 
-          <div class="px-[5%] md:pl-[8%] md:pr-0 py-5 flex md:flex-row gap-5 md:gap-10">
-    
-                <div class="w-full">
-                    {{-- <div class="swiper planes w-full">
-                        <div class="swiper-wrapper">   
-                           @foreach ($productos as $producto)    
-                                <div class="swiper-slide my-auto">
-                                    <div class="flex flex-col gap-3 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
+
+        @if (count($productos) > 0)    
+            <section class="bg-cover bg-opacity-100 relative pb-10 lg:pb-16 flex flex-col gap-10"  style="background-image: url('{{asset('images/img/tc_textura3.svg')}}');">
+            
+            <div class="px-[5%]  flex flex-col items-center justify-center gap-5">
+                <div class="flex flex-col gap-1 max-w-3xl text-center items-center justify-center" data-aos="fade-down">
+                    <h3 class="font-gilroy_regular text-white text-xl line-clamp-1 flex flex-row gap-3 items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M32.882 19.833C33.3505 16.5991 33.5663 14.9364 32.9705 13.4571C32.3552 11.9297 30.9902 10.8847 28.26 8.79461L26.2203 7.23301C22.8242 4.63301 21.126 3.33301 19.1667 3.33301C17.2073 3.33301 15.5092 4.63301 12.1131 7.23301L10.0733 8.79461C7.3432 10.8847 5.97817 11.9297 5.3629 13.4571C4.74763 14.9845 4.9977 16.7073 5.4978 20.1532L5.92427 23.0917C6.63323 27.9763 6.98772 30.4188 8.64225 31.8758C10.2968 33.333 12.7156 33.333 17.5533 33.333H18.3333" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21.6666 27.463C23.5813 25.9052 25.8681 25 28.3243 25C30.7881 25 33.0816 25.911 35 27.4777M31.9571 31.6667C30.8636 30.9848 29.6298 30.6012 28.3243 30.6012C27.0253 30.6012 25.7973 30.981 24.708 31.6563" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M28.3334 36.667H28.344" stroke="white" stroke-width="3.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        {{$textoshome->title2section ?? 'Ingrese texto'}}
+                    </h3>
+                    <h2 class="font-gilroy_bold text-white text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl line-clamp-3">{{$textoshome->description2section ?? 'Ingrese texto'}}</h2>
+                </div>
+            </div>
+
+            <div class="px-[5%] md:pl-[8%] md:pr-0 py-5 flex md:flex-row gap-5 md:gap-10">
+                    <div class="w-full">
+                        <div class="swiper planes w-full">
+                            <div class="swiper-wrapper">   
+                            {{-- @foreach ($productos as $producto)--}}
+                                {{-- <div class="swiper-slide my-auto">
+                                    <div class="flex flex-col gap-5 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
                                         
-                                            <div class="flex flex-row w-full">
-                                                <a class="bg-[#E29720] px-4 py-2 rounded-xl text-[#21149E] text-center font-gotham_bold w-auto line-clamp-2"><span>{{$producto->producto}}</span></a>
+                                            <div class="flex flex-wrap justify-between items-center w-full">
+                                                <h2 class="py-2 text-white text-lg font-gilroy_medium text-left w-auto line-clamp-1"><span>{{$producto->producto}}</span></h2>
+                                                <h3 class="font-gilroy_bold text-white text-2xl">S/ {{$producto->precio}} <span class="font-gilroy_regular tracking-wide text-white text-base">/Mes</span></h3>
+                                            </div>
+
+                                            <div class="flex flex-col justify-center items-start font-gilroy_regular group">
+                                                <div class="bg-[#59C402] px-2 py-1.5 rounded-full tracking-normal">
+                                                    <p class="leading-none text-white text-sm">80% más velocidad</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex flex-col">
+                                                <div class="flex flex-row gap-2 items-center">
+                                                    <h2 class="font-gilroy_extrabold text-white text-5xl line-clamp-3">{{$producto->extract}}</h2>
+                                                </div>
+
+                                                <h2 class="-mt-2 font-gilroy_regular text-white text-sm line-clamp-2">{{$producto->name_fichatecnica}}</h2>
+                                            </div>
+
+                                            <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
+                                                <a class="w-full" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text=Me interesa el servicio: {{$producto->producto}} - {{$producto->extract}} - S/ {{$producto->precio}}">
+                                                    <div class="bg-[#0066FF] w-full px-3 text-center py-3 rounded-3xl tracking-normal">
+                                                        <p class="leading-none text-white text-lg">Lo quiero ahora</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
+
+                                                <div class="flex flex-row gap-2">
+                                                <h3 class="font-gilroy_light font-semibold tracking-wider text-white text-sm line-clamp-1 flex flex-row gap-1 items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                                                        <path d="M7.86755 4.82665L8.85795 3.83627C9.97309 2.72113 11.433 2.25857 12.9781 2.18299C13.5791 2.15359 13.8796 2.13889 14.1205 2.37985C14.3615 2.6208 14.3468 2.92128 14.3174 3.52225C14.2418 5.06733 13.7792 6.52727 12.6641 7.64239L11.6737 8.63279C10.8581 9.44839 10.6262 9.68033 10.7974 10.565C10.9664 11.2408 11.13 11.8952 10.6386 12.3866C10.0425 12.9827 9.49875 12.9827 8.90269 12.3866L4.11374 7.59766C3.51768 7.00158 3.51766 6.45786 4.11374 5.86179C4.60513 5.37039 5.25955 5.53395 5.93533 5.70292C6.82002 5.87415 7.05195 5.64225 7.86755 4.82665Z" stroke="white" stroke-linejoin="round"/>
+                                                        <path d="M11.3306 5.16699H11.3366" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M1.66669 14.8333L5.00002 11.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
+                                                    </svg>
+                                                    Velocidad:
+                                                </h3>
+                                                <h2 class="font-gilroy_regular text-white text-sm">{{$producto->description ?? 'Ingrese texto'}}</h2>
+                                                </div>
+
+                                                <div class="bg-white h-[1px] w-full mx-auto my-3"></div>
+
+                                                <div class="flex flex-row gap-2">
+                                                    <h3 class="font-gilroy_light font-semibold tracking-wider text-white text-sm line-clamp-1 flex flex-row gap-1 items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                                                        <path d="M7.86755 4.82665L8.85795 3.83627C9.97309 2.72113 11.433 2.25857 12.9781 2.18299C13.5791 2.15359 13.8796 2.13889 14.1205 2.37985C14.3615 2.6208 14.3468 2.92128 14.3174 3.52225C14.2418 5.06733 13.7792 6.52727 12.6641 7.64239L11.6737 8.63279C10.8581 9.44839 10.6262 9.68033 10.7974 10.565C10.9664 11.2408 11.13 11.8952 10.6386 12.3866C10.0425 12.9827 9.49875 12.9827 8.90269 12.3866L4.11374 7.59766C3.51768 7.00158 3.51766 6.45786 4.11374 5.86179C4.60513 5.37039 5.25955 5.53395 5.93533 5.70292C6.82002 5.87415 7.05195 5.64225 7.86755 4.82665Z" stroke="white" stroke-linejoin="round"/>
+                                                        <path d="M11.3306 5.16699H11.3366" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M1.66669 14.8333L5.00002 11.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
+                                                    </svg>
+                                                    Instalación:
+                                                    </h3>
+                                                    <h2 class="font-gilroy_regular text-white text-sm">{{$producto->especificacion ?? 'Ingrese texto'}}</h2>
+                                                </div>
+
+                                                <div class="bg-white h-[1px] w-full mx-auto my-3"></div>
+
+                                                <div class="flex flex-row gap-2">
+                                                    <h3 class="font-gilroy_light font-semibold tracking-wider text-white text-sm line-clamp-1 flex flex-row gap-1 items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                                                        <path d="M7.86755 4.82665L8.85795 3.83627C9.97309 2.72113 11.433 2.25857 12.9781 2.18299C13.5791 2.15359 13.8796 2.13889 14.1205 2.37985C14.3615 2.6208 14.3468 2.92128 14.3174 3.52225C14.2418 5.06733 13.7792 6.52727 12.6641 7.64239L11.6737 8.63279C10.8581 9.44839 10.6262 9.68033 10.7974 10.565C10.9664 11.2408 11.13 11.8952 10.6386 12.3866C10.0425 12.9827 9.49875 12.9827 8.90269 12.3866L4.11374 7.59766C3.51768 7.00158 3.51766 6.45786 4.11374 5.86179C4.60513 5.37039 5.25955 5.53395 5.93533 5.70292C6.82002 5.87415 7.05195 5.64225 7.86755 4.82665Z" stroke="white" stroke-linejoin="round"/>
+                                                        <path d="M11.3306 5.16699H11.3366" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M1.66669 14.8333L5.00002 11.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
+                                                    </svg>
+                                                    Soporte:
+                                                    </h3>
+                                                    <h2 class="font-gilroy_regular text-white text-sm">{{$producto->sku ?? 'Ingrese texto'}}</h2>
+                                                </div>
+                                            </div>   
+                                    </div>
+                                </div> --}}
+                            {{-- @endforeach --}}
+                                <template x-for="producto in filteredProducts" :key="producto.id">
+                                    <div class="swiper-slide my-auto">
+                                        <div class="flex flex-col gap-5 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
+                                            
+                                            <!-- Título y precio -->
+                                            <div class="flex flex-wrap justify-between items-center w-full">
+                                                <h2 class="py-2 text-white text-lg font-gilroy_medium text-left w-auto line-clamp-1">
+                                                    <span x-text="producto.producto"></span>
+                                                </h2>
+                                                <h3 class="font-gilroy_bold text-white text-2xl">
+                                                    S/ <span x-text="producto.precio"></span>
+                                                    <span class="font-gilroy_regular tracking-wide text-white text-base">/Mes</span>
+                                                </h3>
+                                            </div>
+                                
+                                            <!-- Etiqueta adicional -->
+                                            <div class="flex flex-col justify-center items-start font-gilroy_regular group">
+                                                <div class="bg-[#59C402] px-2 py-1.5 rounded-full tracking-normal">
+                                                    <p class="leading-none text-white text-sm">80% más velocidad</p>
+                                                </div>
+                                            </div>
+                                
+                                            <!-- Extracto y descripción -->
+                                            <div class="flex flex-col">
+                                                <div class="flex flex-row gap-2 items-center">
+                                                    <h2 class="font-gilroy_extrabold text-white text-5xl line-clamp-3" x-text="producto.extract"></h2>
+                                                </div>
+                                                <h2 class="-mt-2 font-gilroy_regular text-white text-sm line-clamp-2" x-text="producto.name_fichatecnica"></h2>
                                             </div>
                                             
-                                            <h2 class="font-gotham_bold text-white text-4xl line-clamp-2">{{$producto->extract}}</h2>
-
-                                            <div class="flex flex-col w-full">
-                                                <span class="font-gotham_book font-semibold tracking-wide text-white text-base">Desde</span>
-                                                <h2 class="font-gotham_bold text-white text-3xl">S/ {{$producto->precio}} <span class="font-gotham_book tracking-wide text-white text-base">/mes</span></h2>
-                                            </div>
-
-                                            <img class="w-full h-44 object-contain mx-auto my-2" src="{{asset($producto->imagen)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
-
-                                            <div class="flex flex-col gap-3 justify-center items-start">
-                                                <div class="flex flex-row w-full">
-                                                    <a id="linkmodalcotizar" data-id={{$producto->id}} class="btn-cotizar cursor-pointer bg-[#21149E] border border-[#21149E] px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Me interesa</span></a>
-                                                </div>
-                                                <div class="flex flex-row w-full">
-                                                    <a id="linkmodaldetalleplan" data-id={{$producto->id}} class="btn-detalle cursor-pointer bg-transparent border border-white px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full"><span>Saber más</span></a>
-                                                </div>
-                                                <span class="font-gotham_book text-xs text-white">Al seleccionar, acepta Términos y Condiciones.</span>
-                                            </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div> --}}
-
-                    <div class="swiper planes w-full mt-6" data-aos="fade-down">
-                        <div class="swiper-wrapper">   
-                            <template x-for="producto in filteredProducts" :key="producto.id">
-                                <div class="swiper-slide my-auto" >
-                                    <div class="flex flex-col gap-3 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
-                                        
-                                        <div class="flex flex-row w-full">
-                                            <a class="bg-[#E29720] px-4 py-2 rounded-xl text-[#21149E] text-center font-gotham_bold w-auto line-clamp-2 ">
-                                                <span x-text="producto.producto"></span>
-                                            </a>
-                                        </div>
-        
-                                        <h2 class="font-gotham_bold text-white text-4xl line-clamp-2" x-text="producto.extract"></h2>
-        
-                                        <div class="flex flex-col w-full">
-                                            <span class="font-gotham_book font-semibold tracking-wide text-white text-base">Desde</span>
-                                            <h2 class="font-gotham_bold text-white text-3xl">
-                                                S/ <span x-text="producto.precio"></span>
-                                                <span class="font-gotham_book tracking-wide text-white text-base">/mes</span>
-                                            </h2>
-                                        </div>
-        
-                                        <img class="w-full h-44 object-contain mx-auto my-2" 
-                                            :src="'{{ asset('images/img/noimagen.jpg') }}'" 
-                                            x-bind:src="producto.imagen ? '{{ asset('') }}' + producto.imagen : '{{ asset('images/img/noimagen.jpg') }}'" 
-                                            alt="Imagen producto" 
-                                        />
-
-                                        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-                                        <div class="flex flex-col gap-3 justify-center items-start">
-                                            <div class="flex flex-row w-full">
-                                                <a id="linkmodalcotizar" 
-                                                   x-bind:data-id="producto.id"  
-                                                   class="btn-cotizar cursor-pointer bg-[#21149E] border border-[#21149E] px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full">
-                                                   <span>Me interesa</span>
+                                            <!-- Botón de WhatsApp -->
+                                            <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
+                                                <a class="w-full" target="_blank"
+                                                    :href="`https://api.whatsapp.com/send?phone=${general?.whatsapp || ''}&text=${encodeURIComponent('Me interesa el servicio: ' + (producto.producto || '') + ' - ' + (producto.extract || '') + ' - S/ ' + (producto.precio || ''))}`">
+                                                    <div class="bg-[#0066FF] w-full px-3 text-center py-3 rounded-3xl tracking-normal">
+                                                        <p class="leading-none text-white text-lg">Lo quiero ahora</p>
+                                                    </div>
                                                 </a>
                                             </div>
-                                            <div class="flex flex-row w-full">
-                                                <a id="linkmodaldetalleplan" 
-                                                   x-bind:data-id="producto.id" 
-                                                   class="btn-detalle cursor-pointer bg-transparent border border-white px-7 py-2 rounded-full text-white text-center font-gotham_bold w-full">
-                                                   <span>Saber más</span>
-                                                </a>
-                                            </div>
-                                            <span class="font-gotham_book text-xs text-white">Al seleccionar, acepta Términos y Condiciones.</span>
+                                
+                                            <!-- Información adicional -->
+                                            <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
+
+                                                <div class="flex flex-row gap-2">
+                                                <h3 class="font-gilroy_light font-semibold tracking-wider text-white text-sm line-clamp-1 flex flex-row gap-1 items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                                                        <path d="M7.86755 4.82665L8.85795 3.83627C9.97309 2.72113 11.433 2.25857 12.9781 2.18299C13.5791 2.15359 13.8796 2.13889 14.1205 2.37985C14.3615 2.6208 14.3468 2.92128 14.3174 3.52225C14.2418 5.06733 13.7792 6.52727 12.6641 7.64239L11.6737 8.63279C10.8581 9.44839 10.6262 9.68033 10.7974 10.565C10.9664 11.2408 11.13 11.8952 10.6386 12.3866C10.0425 12.9827 9.49875 12.9827 8.90269 12.3866L4.11374 7.59766C3.51768 7.00158 3.51766 6.45786 4.11374 5.86179C4.60513 5.37039 5.25955 5.53395 5.93533 5.70292C6.82002 5.87415 7.05195 5.64225 7.86755 4.82665Z" stroke="white" stroke-linejoin="round"/>
+                                                        <path d="M11.3306 5.16699H11.3366" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M1.66669 14.8333L5.00002 11.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
+                                                    </svg>
+                                                    Velocidad:
+                                                </h3>
+                                                <h2 class="font-gilroy_regular text-white text-sm" x-text="producto.description" ></h2>
+                                                </div>
+
+                                                <div class="bg-white h-[1px] w-full mx-auto my-3"></div>
+
+                                                <div class="flex flex-row gap-2">
+                                                    <h3 class="font-gilroy_light font-semibold tracking-wider text-white text-sm line-clamp-1 flex flex-row gap-1 items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                                                        <path d="M7.86755 4.82665L8.85795 3.83627C9.97309 2.72113 11.433 2.25857 12.9781 2.18299C13.5791 2.15359 13.8796 2.13889 14.1205 2.37985C14.3615 2.6208 14.3468 2.92128 14.3174 3.52225C14.2418 5.06733 13.7792 6.52727 12.6641 7.64239L11.6737 8.63279C10.8581 9.44839 10.6262 9.68033 10.7974 10.565C10.9664 11.2408 11.13 11.8952 10.6386 12.3866C10.0425 12.9827 9.49875 12.9827 8.90269 12.3866L4.11374 7.59766C3.51768 7.00158 3.51766 6.45786 4.11374 5.86179C4.60513 5.37039 5.25955 5.53395 5.93533 5.70292C6.82002 5.87415 7.05195 5.64225 7.86755 4.82665Z" stroke="white" stroke-linejoin="round"/>
+                                                        <path d="M11.3306 5.16699H11.3366" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M1.66669 14.8333L5.00002 11.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
+                                                    </svg>
+                                                    Instalación:
+                                                    </h3>
+                                                    <h2 class="font-gilroy_regular text-white text-sm"  x-text="producto.especificacion"></h2>
+                                                </div>
+
+                                                <div class="bg-white h-[1px] w-full mx-auto my-3"></div>
+
+                                                <div class="flex flex-row gap-2">
+                                                    <h3 class="font-gilroy_light font-semibold tracking-wider text-white text-sm line-clamp-1 flex flex-row gap-1 items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                                                        <path d="M7.86755 4.82665L8.85795 3.83627C9.97309 2.72113 11.433 2.25857 12.9781 2.18299C13.5791 2.15359 13.8796 2.13889 14.1205 2.37985C14.3615 2.6208 14.3468 2.92128 14.3174 3.52225C14.2418 5.06733 13.7792 6.52727 12.6641 7.64239L11.6737 8.63279C10.8581 9.44839 10.6262 9.68033 10.7974 10.565C10.9664 11.2408 11.13 11.8952 10.6386 12.3866C10.0425 12.9827 9.49875 12.9827 8.90269 12.3866L4.11374 7.59766C3.51768 7.00158 3.51766 6.45786 4.11374 5.86179C4.60513 5.37039 5.25955 5.53395 5.93533 5.70292C6.82002 5.87415 7.05195 5.64225 7.86755 4.82665Z" stroke="white" stroke-linejoin="round"/>
+                                                        <path d="M11.3306 5.16699H11.3366" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M1.66669 14.8333L5.00002 11.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
+                                                        <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
+                                                    </svg>
+                                                    Soporte:
+                                                    </h3>
+                                                    <h2 class="font-gilroy_regular text-white text-sm" x-text="producto.sku"></h2>
+                                                </div>
+                                            </div>   
+
                                         </div>
-                                    </div>
-                                </div>
-                            </template>
+                                </template> 
+                            </div>
                         </div>
                     </div>
-
-                </div>
-            </div>  
-        </section>
+                </div> 
+                
+                <div class="font-gilroy_semibold text-sm text-center text-white">{{$textoshome->description2section2 ?? 'Ingrese texto'}}</div>
+            </section>
         @endif
+    </div>
 
-        @if (count($zonas) > 0)   
+        <section class="flex flex-col lg:flex-row px-[5%] lg:px-[5%] py-10 lg:py-16 gap-8 md:gap-16 justify-center items-start lg:items-end">
+          <div class="w-full lg:w-1/2 flex flex-col gap-4">
+            <h3 class="font-gilroy_regular text-[#001F4F] text-xl line-clamp-1 flex flex-row gap-3 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <path d="M16.3334 3.5H11.6667C7.26693 3.5 5.06705 3.5 3.70021 4.86683C2.33337 6.23367 2.33337 8.43355 2.33337 12.8333C2.33337 17.2331 2.33337 19.4331 3.70021 20.7998C5.06705 22.1667 7.26693 22.1667 11.6667 22.1667H16.3334C20.7331 22.1667 22.9331 22.1667 24.2998 20.7998C25.6667 19.4331 25.6667 17.2331 25.6667 12.8333C25.6667 8.43355 25.6667 6.23367 24.2998 4.86683C22.9331 3.5 20.7331 3.5 16.3334 3.5Z" stroke="#001F4F" stroke-width="1.75" stroke-linecap="round"/>
+                    <path d="M19.7167 18.0833C19.7167 17.0524 20.5524 16.2167 21.5833 16.2167M15.9833 18.0833C15.9833 14.9905 18.4905 12.4833 21.5833 12.4833M12.25 18.0833C12.25 12.9287 16.4287 8.75 21.5833 8.75" stroke="#001F4F" stroke-width="1.75" stroke-linecap="round"/>
+                    <path d="M21 22.167L22.1667 24.5003" stroke="#001F4F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7.00004 22.167L5.83337 24.5003" stroke="#001F4F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {{$textoshome->title3section ?? 'Ingrese texto'}}
+            </h3>
+            
+            <h2 class="font-gilroy_medium text-[#001F4F] text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl line-clamp-2"> {{$textoshome->description3section ?? "Ingrese un texto"}} <span class="text-[#59C402] font-gilroy_bold">{{$textoshome->description3section2}}</span></h2>
+            
+            <div class="flex flex-col gap-2 text-[#001637] font-gilroy_regular text-lg">
+              <p>
+                En Telecable, somos expertos en conectar a las personas con tecnología de última generación. Ofrecemos soluciones de internet de fibra óptica diseñadas para brindar velocidad, estabilidad y confiabilidad, siempre adaptándonos a las necesidades de nuestros clientes.
+              </p>
+              <p>
+                Nuestra misión es garantizar una experiencia de conectividad excepcional, respaldada por un equipo comprometido y atención personalizada. Creemos que el internet no solo conecta dispositivos, sino también personas, sueños e ideas.
+              </p>
+              <p>
+                Descubre cómo nuestro servicio puede transformar tu forma de navegar y conectar con el mundo.
+              </p>
+            </div>
+
+            <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
+                <a href="{{route('nosotros')}}">
+                    <div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
+                        <p class="leading-none text-white text-lg">Sobre nosotros</p>
+                    </div>
+                </a>
+            </div>
+
+          </div>
+
+          <div class="w-full lg:w-1/2 flex flex-col justify-center items-center">
+             <img src="{{asset('images/img/tc_nosotros.png')}}" class="aspect-[590/439] w-[590px] object-contain" />
+          </div>
+        </section>
+
+        <section class="flex flex-col lg:flex-row px-[5%] lg:px-[5%] pb-10 lg:pb-16 gap-5 md:gap-16 justify-center items-start lg:items-end">
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 font-gotham_bold w-full rounded-2xl overflow-hidden bg-[#59C4021A] mt-5">
+            
+            <div class="flex flex-col justify-center items-center px-6 py-7 group hover:bg-[#004FC6]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path class="group-hover:stroke-white" d="M23.3333 5H16.6666C10.3812 5 7.23856 5 5.28593 6.95262C3.33331 8.90525 3.33331 12.0479 3.33331 18.3333C3.33331 24.6187 3.33331 27.7615 5.28593 29.714C7.23856 31.6667 10.3812 31.6667 16.6666 31.6667H23.3333C29.6186 31.6667 32.7615 31.6667 34.714 29.714C36.6666 27.7615 36.6666 24.6187 36.6666 18.3333C36.6666 12.0479 36.6666 8.90525 34.714 6.95262C32.7615 5 29.6186 5 23.3333 5Z" stroke="#001637" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="group-hover:stroke-white" d="M28.1667 25.8333C28.1667 24.3605 29.3605 23.1667 30.8333 23.1667M22.8333 25.8333C22.8333 21.415 26.415 17.8333 30.8333 17.8333M17.5 25.8333C17.5 18.4695 23.4695 12.5 30.8333 12.5" stroke="#001637" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="group-hover:stroke-white" d="M30 31.667L31.6667 35.0003" stroke="#001637" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="group-hover:stroke-white" d="M9.99998 31.667L8.33331 35.0003" stroke="#001637" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h3 class="text-[#001637] group-hover:text-white text-lg xl:text-xl font-gilroy_regular mt-5 text-center line-clamp-2">Compromiso con  <br><span class="font-gilroy_bold"> la Calidad</span></h3>
+                <h2 class="mt-2 text-[#001637] group-hover:text-white text-base font-gilroy_regular text-center h-24 line-clamp-4 flex flex-col justify-start">Ofrecemos un servicio diseñado para garantizar velocidad, estabilidad y confianza en cada conexión.</h2>
+            </div>
+
+            <div class="flex flex-col justify-center items-center px-6 py-7 group hover:bg-[#004FC6]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path class="group-hover:stroke-white" d="M32.882 19.833C33.3505 16.5991 33.5663 14.9364 32.9705 13.4571C32.3552 11.9297 30.9902 10.8847 28.26 8.79461L26.2203 7.23301C22.8242 4.63301 21.126 3.33301 19.1667 3.33301C17.2073 3.33301 15.5092 4.63301 12.1131 7.23301L10.0733 8.79461C7.3432 10.8847 5.97817 11.9297 5.3629 13.4571C4.74763 14.9845 4.9977 16.7073 5.4978 20.1532L5.92427 23.0917C6.63323 27.9763 6.98772 30.4188 8.64225 31.8758C10.2968 33.333 12.7156 33.333 17.5533 33.333H18.3333" stroke="#001637" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="group-hover:stroke-white" d="M21.6666 27.463C23.5813 25.9052 25.8681 25 28.3243 25C30.7881 25 33.0816 25.911 35 27.4777M31.9571 31.6667C30.8636 30.9848 29.6298 30.6012 28.3243 30.6012C27.0253 30.6012 25.7973 30.981 24.708 31.6563" stroke="#001637" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="group-hover:stroke-white" d="M28.3334 36.667H28.344" stroke="#001637" stroke-width="3.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                <h3 class="text-[#001637] group-hover:text-white text-lg xl:text-xl font-gilroy_regular mt-5 text-center line-clamp-2">Compromiso con  <br><span class="font-gilroy_bold"> la Calidad</span></h3>
+                <h2 class="mt-2 text-[#001637] group-hover:text-white text-base font-gilroy_regular text-center h-24 line-clamp-4 flex flex-col justify-start">Implementamos tecnología de última generación para mantenernos a la vanguardia del mercado.</h2>
+            </div>
+
+            <div class="flex flex-col justify-center items-center px-6 py-7 group hover:bg-[#004FC6]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path class="group-hover:stroke-white" d="M32.882 19.833C33.3505 16.5991 33.5663 14.9364 32.9705 13.4571C32.3552 11.9297 30.9902 10.8847 28.26 8.79461L26.2203 7.23301C22.8242 4.63301 21.126 3.33301 19.1667 3.33301C17.2073 3.33301 15.5092 4.63301 12.1131 7.23301L10.0733 8.79461C7.3432 10.8847 5.97817 11.9297 5.3629 13.4571C4.74763 14.9845 4.9977 16.7073 5.4978 20.1532L5.92427 23.0917C6.63323 27.9763 6.98772 30.4188 8.64225 31.8758C10.2968 33.333 12.7156 33.333 17.5533 33.333H18.3333" stroke="#001637" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="group-hover:stroke-white" d="M21.6666 27.463C23.5813 25.9052 25.8681 25 28.3243 25C30.7881 25 33.0816 25.911 35 27.4777M31.9571 31.6667C30.8636 30.9848 29.6298 30.6012 28.3243 30.6012C27.0253 30.6012 25.7973 30.981 24.708 31.6563" stroke="#001637" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="group-hover:stroke-white" d="M28.3334 36.667H28.344" stroke="#001637" stroke-width="3.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                <h3 class="text-[#001637] group-hover:text-white text-lg xl:text-xl font-gilroy_regular mt-5 text-center line-clamp-2">Atención  <br><span class="font-gilroy_bold"> Personalizada</span></h3>
+                <h2 class="mt-2 text-[#001637] group-hover:text-white text-base font-gilroy_regular text-center h-24 line-clamp-4 flex flex-col justify-start">Nos enfocamos en entender y satisfacer las necesidades únicas de cada cliente.</h2>
+
+            </div>
+
+            <div class="flex flex-col justify-center items-center px-6 py-7 group hover:bg-[#004FC6]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path class="group-hover:stroke-white" d="M17.5 11.667V16.667M17.5 16.667V21.667M17.5 16.667H14.1667C12.5954 16.667 11.8097 16.667 11.3215 16.1788C10.8334 15.6907 10.8334 14.905 10.8334 13.3337V11.667M22.5 21.667V16.667M22.5 16.667V11.667M22.5 16.667L29.1667 11.667M22.5 16.667L29.1667 21.667" stroke="#001637" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="group-hover:stroke-white" d="M3.33337 16.6663C3.33337 10.3809 3.33337 7.23826 5.28599 5.28562C7.23862 3.33301 10.3813 3.33301 16.6667 3.33301H23.3334C29.6187 3.33301 32.7615 3.33301 34.714 5.28562C36.6667 7.23826 36.6667 10.3809 36.6667 16.6663C36.6667 22.9517 36.6667 26.0945 34.714 28.047C32.7615 29.9997 29.6187 29.9997 23.3334 29.9997H16.6667C10.3813 29.9997 7.23862 29.9997 5.28599 28.047C3.33337 26.0945 3.33337 22.9517 3.33337 16.6663Z" stroke="#001637" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="group-hover:stroke-white" d="M26.6667 36.6667C24.7055 35.6067 22.4285 35 20 35C17.5715 35 15.2945 35.6067 13.3334 36.6667" stroke="#001637" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <h3 class="text-[#001637] group-hover:text-white text-lg xl:text-xl font-gilroy_regular mt-5 text-center line-clamp-2">Conexión con las <br><span class="font-gilroy_bold">  Personas</span></h3>
+                <h2 class="mt-2 text-[#001637] group-hover:text-white text-base font-gilroy_regular text-center h-24 line-clamp-4 flex flex-col justify-start">Más que internet, creamos puentes entre sueños, ideas y experiencias.</h2>
+
+            </div>
+          </div>
+        </section>
+
+
+        
+        <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16 flex flex-col gap-10 w-full"  style="background-image: url('{{asset('images/img/tc_home.png')}}');">
+           
+            <div class="flex flex-col lg:flex-row lg:justify-between px-[5%] gap-5 md:gap-16">
+                
+                <div class="flex flex-col gap-2">
+                   <h3 class="font-gilroy_regular text-white text-xl line-clamp-1 flex flex-row gap-3 items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path d="M16.3334 3.5H11.6667C7.26693 3.5 5.06705 3.5 3.70021 4.86683C2.33337 6.23367 2.33337 8.43355 2.33337 12.8333C2.33337 17.2331 2.33337 19.4331 3.70021 20.7998C5.06705 22.1667 7.26693 22.1667 11.6667 22.1667H16.3334C20.7331 22.1667 22.9331 22.1667 24.2998 20.7998C25.6667 19.4331 25.6667 17.2331 25.6667 12.8333C25.6667 8.43355 25.6667 6.23367 24.2998 4.86683C22.9331 3.5 20.7331 3.5 16.3334 3.5Z" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round"/>
+                        <path d="M19.7167 18.0833C19.7167 17.0524 20.5524 16.2167 21.5833 16.2167M15.9833 18.0833C15.9833 14.9905 18.4905 12.4833 21.5833 12.4833M12.25 18.0833C12.25 12.9287 16.4287 8.75 21.5833 8.75" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round"/>
+                        <path d="M21 22.167L22.1667 24.5003" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7.00004 22.167L5.83337 24.5003" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Conexión veloz y confiable
+                   </h3>
+                
+                   <h2 class="font-gilroy_medium text-white text-4xl lg:text-5xl 2xl:text-7xl line-clamp-2 max-w-xl">¿Por qué elegir <span class="text-[#59C402] font-gilroy_bold">Internet de Fibra Óptica? </span></h2>
+                </div>
+
+                <div class="flex flex-col gap-2 max-w-xs bg-black bg-opacity-50 rounded-2xl p-6">
+                    <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">Conexión Estable</h2>
+                    <p class="font-gilroy_regular text-white text-lg line-clamp-5">Resiste interferencias externas, garantizando un servicio confiable incluso en horarios pico.</p>
+                    <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
+                        <div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
+                            <p class="leading-none text-white text-lg">Lo quiero ahora</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="flex flex-col lg:flex-row lg:justify-between px-[5%] gap-5 md:gap-16">
+                
+                <div class="flex flex-col gap-2 max-w-xs bg-black bg-opacity-50 rounded-2xl p-6">
+                    <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">Velocidad Superior</h2>
+                    <p class="font-gilroy_regular text-white text-lg line-clamp-5">La fibra óptica ofrece mayor rapidez para descargas, streaming y videollamadas sin interrupciones.</p>
+                    <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
+                        <div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
+                            <p class="leading-none text-white text-lg">Lo quiero ahora</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-2 max-w-xs bg-black bg-opacity-50 rounded-2xl p-6">
+                    <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">Alta Capacidad</h2>
+                    <p class="font-gilroy_regular text-white text-lg line-clamp-5">Soporta múltiples dispositivos conectados sin pérdida de calidad.</p>
+                    <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
+                        <div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
+                            <p class="leading-none text-white text-lg">Lo quiero ahora</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        
+        </section>
+
+
+
+
+
+        {{-- @if (count($zonas) > 0)   
             <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16" style="background-image: url('{{asset('images/img/textura4.png')}}');">
                 <div class="px-[5%] md:px-[8%]  flex flex-col  lg:flex-row gap-5 md:gap-10">
                     <div class="w-full sm:w-full lg:w-1/3  flex flex-col justify-center">
@@ -379,10 +538,10 @@
                     </div>
                 </div>  
             </section>
-        @endif
+        @endif --}}
 
 
-        @if (count($testimonie) > 0)
+        {{-- @if (count($testimonie) > 0)
             <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16"  style="background-image: url('{{asset('images/img/textura5.png')}}');">
                 <div class="px-[5%] md:px-[10%] flex flex-col  lg:flex-row gap-5 md:gap-10 lg:items-center">
                     
@@ -418,9 +577,9 @@
                     
                 </div>  
             </section>
-        @endif
+        @endif --}}
 
-        <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16 flex flex-col gap-10" 
+        {{-- <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16 flex flex-col gap-10" 
           style="background-image: url('{{asset('images/img/textura3.svg')}}');">
            
           <div class="px-[5%] flex flex-col items-center justify-center gap-5">
@@ -483,9 +642,9 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
-        @if (count($faqs) > 0 || count($posts) > 0)
+        {{-- @if (count($faqs) > 0 || count($posts) > 0)
             <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16" 
                 style="background-image: url('{{asset('images/img/textura6.png')}}');">
                 <div class="px-[5%] md:px-[10%] flex flex-col gap-5 md:gap-10">
@@ -557,7 +716,7 @@
                     @endif    
                 </div>  
             </section>
-        @endif
+        @endif --}}
 
 
         {{-- <section class="flex flex-col justify-center items-center px-[5%] xl:px-[8%] py-10 lg:py-16 bg-[#F1EBE3] gap-12 relative">
@@ -875,8 +1034,6 @@
            
         </div>
     </div>
-
-    
 
 @section('scripts_importados')
     

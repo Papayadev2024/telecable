@@ -40,34 +40,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="md:col-span-2">
-                                        <label for="title2section">Botón</label>
-                                        <div class="relative mb-2">
-                                            <div
-                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
-                                            </div>
-                                            <input type="text" id="title2section" name="title2section"
-                                                value="{{ $homeview->title2section }}"
-                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Ingrese nombre del boton">
-                                        </div>
-                                    </div>
-
-                                    <div class="md:col-span-3">
-                                        <label for="url_image1section">Url de botón</label>
-                                        <div class="relative mb-2">
-                                            <div
-                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
-                                            </div>
-                                            <input type="text" id="url_image1section" name="url_image1section"
-                                                value="{{ $homeview->url_image1section }}"
-                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Ingrese nombre del boton">
-                                        </div>
-                                    </div>
-
                                     
                                     <div class="md:col-span-5">
                                         <label for="description1section">Descripción</label>
@@ -82,30 +54,62 @@
                                         </div>
                                     </div>
 
-                                    <div class="md:col-span-5">
-                                        <label for="description2section">Titulo de logos</label>
-                                        <div class="relative mb-2">
-                                            <div
-                                                class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
-                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
-                                            </div>
-                                            <input type="text" id="description2section" name="description2section"
-                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Ingrese la descripcion" value="{{ $homeview->description2section }}">
-                                        </div>
-                                    </div>
 
                                     <div class="md:col-span-5">
-                                        <label for="url_image2section">Imagen principal</label>
+                                        <label for="url_image1section">Imagen principal</label>
                                         <div class="relative mb-2  mt-2">
-                                            <input id="url_image2section" name="url_image2section"
+                                            <input id="url_image1section" name="url_image1section"
                                                 class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                                 aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                         </div>
                                     </div>
 
+
+                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Planes</h2>
+
+                                    <div class="md:col-span-5">
+                                        <label for="title2section">Titulo</label>
+                                        <div class="relative mb-2 ">
+                                            <div
+                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <input type="text" id="title2section" name="title2section"
+                                                value="{{ $homeview->title2section }}"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese el titulo">
+                                        </div>
+                                    </div>
+
                                     
-                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Sección 2 - Estadisticas</h2>
+                                    <div class="md:col-span-5">
+                                        <label for="description2section">Descripción</label>
+                                        <div class="relative mb-2">
+                                            <div
+                                                class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <textarea type="text" id="description2section" name="description2section"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese la descripcion">{{ $homeview->description2section }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-5">
+                                        <label for="description2section2">Descripción footer</label>
+                                        <div class="relative mb-2">
+                                            <div
+                                                class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <textarea type="text" id="description2section2" name="description2section2"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese la descripcion">{{ $homeview->description2section2 }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Sección Nosotros</h2>
                                     
 
                                     <div class="md:col-span-5">
@@ -123,7 +127,7 @@
                                     </div>
 
                                     <div class="md:col-span-5">
-                                        <label for="description3section">Descripción</label>
+                                        <label for="description3section">Descripción texto azul</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
@@ -137,6 +141,35 @@
                                     </div>
 
                                     <div class="md:col-span-5">
+                                        <label for="description3section2">Descripción texto verde</label>
+                                        <div class="relative mb-2">
+                                            <div
+                                                class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <textarea type="text" id="description3section2"
+                                                name="description3section2"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese la descripcion">{{ $homeview->description3section2 }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-5">
+                                        <label for="description3section3">Descripción nosotros</label>
+                                        <div class="relative mb-2">
+                                            <div
+                                                class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <textarea type="text" id="description3section3"
+                                                name="description3section3"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese la descripcion">{{ $homeview->description3section3 }}</textarea>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="md:col-span-5">
                                         <label for="url_image3section">Imagen principal</label>
                                         <div class="relative mb-2  mt-2">
                                             <input id="url_image3section" name="url_image3section"
@@ -146,12 +179,13 @@
                                     </div>
 
 
-                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Sección 3 - Portafolio</h2>
+
+                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Sección Caracteristicas</h2>
 
 
 
                                     <div class="md:col-span-5">
-                                        <label for="title4section">Titulo Izquierda</label>
+                                        <label for="title4section">Titulo</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -165,7 +199,7 @@
                                     </div>
 
                                     <div class="md:col-span-5">
-                                        <label for="description4section">Descripción Izquierda</label>
+                                        <label for="description4section">Descripción texto azul</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
@@ -178,71 +212,126 @@
                                         </div>
                                     </div>
 
-                                    
                                     <div class="md:col-span-5">
-                                        <label for="title5section">Titulo Derecha</label>
+                                        <label for="description4section2">Descripción texto verde</label>
+                                        <div class="relative mb-2">
+                                            <div
+                                                class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <textarea type="text" id="description4section2"
+                                                name="description4section2"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese la descripcion">{{ $homeview->description4section2 }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-5">
+                                        <label for="url_image4section">Imagen principal</label>
+                                        <div class="relative mb-2  mt-2">
+                                            <input id="url_image4section" name="url_image4section"
+                                                class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                                aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                                        </div>
+                                    </div>
+
+
+                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Caracteristica 1</h2>
+
+
+                                    <div class="md:col-span-5">
+                                        <label for="titlebenefit1">Titulo</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                                 <i class="w-6 text-gray-500 fas fa-edit"></i>
                                             </div>
-                                            <input type="text" id="title5section" name="title5section"
-                                                value="{{ $homeview->title5section }}"
+                                            <input type="text" id="titlebenefit1" name="titlebenefit1"
+                                                value="{{ $homeview->titlebenefit1 }}"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Ingrese el titulo">
                                         </div>
                                     </div>
 
                                     <div class="md:col-span-5">
-                                        <label for="description5section">Descripción Derecha</label>
+                                        <label for="descriptionbenefit1">Descripción</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
                                                 <i class="w-6 text-gray-500 fas fa-edit"></i>
                                             </div>
-                                            <textarea type="text" id="description5section"
-                                                name="description5section"
+                                            <textarea type="text" id="descriptionbenefit1"
+                                                name="descriptionbenefit1"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Ingrese la descripcion">{{ $homeview->description5section }}</textarea>
+                                                placeholder="Ingrese la descripcion">{{ $homeview->descriptionbenefit1 }}</textarea>
                                         </div>
                                     </div>
 
 
-                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Sección 4 - Productos</h2>
-
+                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Caracteristica 2</h2>
 
 
                                     <div class="md:col-span-5">
-                                        <label for="footer5section">Titulo</label>
+                                        <label for="titlebenefit2">Titulo</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                                 <i class="w-6 text-gray-500 fas fa-edit"></i>
                                             </div>
-                                            <input type="text" id="footer5section" name="footer5section"
-                                                value="{{ $homeview->footer5section }}"
+                                            <input type="text" id="titlebenefit1" name="titlebenefit1"
+                                                value="{{ $homeview->titlebenefit2 }}"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Ingrese el titulo">
                                         </div>
                                     </div>
 
                                     <div class="md:col-span-5">
-                                        <label for="description7section">Descripción</label>
+                                        <label for="descriptionbenefit2">Descripción</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
                                                 <i class="w-6 text-gray-500 fas fa-edit"></i>
                                             </div>
-                                            <textarea type="text" id="description7section"
-                                                name="description7section"
+                                            <textarea type="text" id="descriptionbenefit2"
+                                                name="descriptionbenefit2"
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Ingrese la descripcion">{{ $homeview->description7section }}</textarea>
+                                                placeholder="Ingrese la descripcion">{{ $homeview->descriptionbenefit2}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Caracteristica 3</h2>
+
+
+                                    <div class="md:col-span-5">
+                                        <label for="titlebenefit3">Titulo</label>
+                                        <div class="relative mb-2">
+                                            <div
+                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <input type="text" id="titlebenefit3" name="titlebenefit3"
+                                                value="{{ $homeview->titlebenefit3 }}"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese el titulo">
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-5">
+                                        <label for="descriptionbenefit3">Descripción</label>
+                                        <div class="relative mb-2">
+                                            <div
+                                                class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
+                                                <i class="w-6 text-gray-500 fas fa-edit"></i>
+                                            </div>
+                                            <textarea type="text" id="descriptionbenefit3"
+                                                name="descriptionbenefit3"
+                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Ingrese la descripcion">{{ $homeview->descriptionbenefit3 }}</textarea>
                                         </div>
                                     </div>
 
 
-
-                                    <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Sección 5 - Contacto</h2>
+                                    {{-- <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Sección 5 - Contacto</h2> --}}
 
 
                                     {{-- <div class="md:col-span-5">
@@ -261,7 +350,7 @@
                                     </div> --}}
 
 
-                                    <div class="md:col-span-5">
+                                    {{-- <div class="md:col-span-5">
                                         <label for="title6section">Titulo de contacto</label>
                                         <div class="relative mb-2">
                                             <div
@@ -301,7 +390,7 @@
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Ingrese el titulo">
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     {{-- <div class="md:col-span-5">
                                         <label for="description7section">Descripción: Sección contacto</label>

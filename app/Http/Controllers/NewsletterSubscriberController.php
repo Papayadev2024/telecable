@@ -108,7 +108,7 @@ class NewsletterSubscriberController extends Controller
         $emailadmin = $generales->email;
         $appUrl = env('APP_URL');
         $name = 'Administrador';
-        $mensaje = "Nueva suscriptor - Redconex";
+        $mensaje = "Nueva suscriptor - Telecable";
         $mail = EmailConfig::config($name, $mensaje);
       
         $baseUrl = 'https://' . $_SERVER['HTTP_HOST'] . '/mail';
@@ -236,8 +236,8 @@ class NewsletterSubscriberController extends Controller
                               '"
                               style="
                                 text-decoration: none;
-                                background-color: #E29720;
-                                color: #21149E;
+                                background-color: #59C402;
+                                color: #ffffff;
                                 padding: 13px 20px;
                                 display: inline-flex;
                                 justify-content: center;
@@ -275,7 +275,7 @@ class NewsletterSubscriberController extends Controller
         $generales = General::first();
         // $name = $data['full_name'];
         $name = 'Suscriptor';
-        $mensaje = 'Gracias por suscribirte - Redconex';
+        $mensaje = 'Gracias por suscribirte - Telecable';
         $mail = EmailConfig::config($name, $mensaje);
         $appUrl = env('APP_URL');
         $baseUrl = 'https://' . $_SERVER['HTTP_HOST'] . '/mail';
@@ -404,8 +404,8 @@ class NewsletterSubscriberController extends Controller
                               '"
                               style="
                                 text-decoration: none;
-                                background-color: #E29720;
-                                color: #21149E;
+                                background-color: #59C402;
+                                color: #ffffff;
                                 padding: 13px 20px;
                                 display: inline-flex;
                                 justify-content: center;

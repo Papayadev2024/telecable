@@ -25,7 +25,7 @@
             <thead>
               <tr>
                 <th class="w-24">Orden</th>
-                <th class="w-24">Imagen</th>
+                {{-- <th class="w-24">Imagen</th> --}}
                 <th>Nombre</th>
                 {{-- <th>Promocion</th> --}}
                 <th class="w-24">Destacar</th>
@@ -38,11 +38,11 @@
               @foreach ($products as $item)
                 <tr>
                   <td>{{ $item->order }}</td>
-                  <td class="px-3 py-2">
+                  {{-- <td class="px-3 py-2">
                       @if ($item->imagen)
                         <img class="w-16 h-20 object-cover" src="{{ asset($item->imagen) }}" alt="">
                       @endif
-                  </td>
+                  </td> --}}
                   <td>{{ $item->producto }}</td>
                   {{-- <td>
                     <form method="POST" action="">
@@ -113,7 +113,7 @@
             <tfoot>
               <tr>
                 <th>Orden</th>
-                <th>Imagen</th>
+                {{-- <th>Imagen</th> --}}
                 <th>Nombre</th>
                 {{-- <th>Promocion</th> --}}
                 <th>Destacar</th>
