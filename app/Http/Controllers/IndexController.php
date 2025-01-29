@@ -653,7 +653,7 @@ class IndexController extends Controller
             $general = General::first();
             $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
             $novedades = Products::where('status', '=', 1)->where('visible', '=', 1)->where('recomendar', '=', 1)->paginate(16);
-            $benefit = Strength::where('status', '=', 1)->get();
+            $benefit = Liquidacion::where('status', '=', 1)->where('visible', '=', 1)->get();
             $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('canals')->get();
             $category = Category::where('status', '=', 1)
                             ->where('visible', '=', 1)

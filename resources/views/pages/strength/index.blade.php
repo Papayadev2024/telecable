@@ -1,9 +1,9 @@
-<x-app-layout title="Beneficios">
+<x-app-layout title="Valor">
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
     <section class="py-4 border-b border-slate-100 dark:border-slate-700">
       <a href="{{ route('strength.create') }}"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm">Agregar beneficio</a>
+        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm">Agregar</a>
     </section>
 
 
@@ -12,7 +12,7 @@
 
 
       <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-        <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Beneficios </h2>
+        <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Valor agregado</h2>
       </header>
       <div class="p-3">
 
@@ -24,7 +24,7 @@
               <tr>
                 <th>Titulo </th>
                 
-                {{-- <th class="w-24">Icono</th> --}}
+                <th class="w-24">Icono</th>
                 
                 <th class="w-24">Visible</th>
                 <th class="w-24">Acciones</th>
@@ -36,7 +36,7 @@
                 <tr>
                   <td>{{ $item->titulo }}</td>
                   
-                  {{-- <td class="px-3 py-2"><img class="w-14" src="{{ asset($item->icono) }}" alt=""></td> --}}
+                  <td class="px-3 py-2"><img class="w-14" src="{{ asset($item->icono) }}" alt=""></td>
 
                   
 
@@ -81,7 +81,7 @@
               <tr>
                 <th>Titulo </th>
                 
-                {{-- <th>Icono</th> --}}
+                <th>Icono</th>
                
                 <th>Visible</th>
                 <th>Acciones</th>

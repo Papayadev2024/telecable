@@ -1,4 +1,4 @@
-<x-app-layout title="Editar Beneficio">
+<x-app-layout title="Editar Valor">
 
   <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
     <form action="{{ route('strength.update', $strength->id) }}" method="POST" enctype="multipart/form-data">
@@ -7,7 +7,7 @@
       <div
         class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
         <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Editar beneficio
+          <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Editar
           </h2>
         </header>
 
@@ -75,23 +75,23 @@
                 </div>
               </div>
 
-              {{-- <div class="md:col-span-5">
+              <div class="md:col-span-5">
                 <label>Icono actual</label>
                 <div class="relative mb-2 mt-2">
                   <img src="{{ asset($strength->icono) }}"
                     class="aspect-square max-w-24 max-h-24 object-contain  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
-              </div> --}}
+              </div>
 
 
-              {{-- <div class="md:col-span-5">
+              <div class="md:col-span-5">
                 <label for="icono">Icono principal</label>
                 <div class="relative mb-2  mt-2">
                   <input id="icono" name="icono" value="{{ $strength->icono }}"
                     class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     aria-describedby="user_avatar_help" id="user_avatar" type="file">
                 </div>
-              </div> --}}
+              </div>
               {{-- <div class="md:col-span-5">
                 <label for="imagen">Imagen principal</label>
                 <div class="relative mb-2  mt-2">

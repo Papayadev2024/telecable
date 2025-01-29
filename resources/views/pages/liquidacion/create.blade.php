@@ -1,11 +1,11 @@
-<x-app-layout title="Crear Liquidacion">
+<x-app-layout title="Crear Beneficio">
    
 <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
     <form action="{{ route('liquidacion.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="col-span-full xl:col-span-8 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
             <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Agregar complemento</h2>
+                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Agregar beneficio</h2>
             </header>
           
             <div class="p-3">
@@ -22,7 +22,7 @@
                                                 </div>
                                             </div>
 
-                                            {{-- <div class="md:col-span-5">
+                                            <div class="md:col-span-5">
                                                 <label for="description">Descripción</label>
                                                 <div class="relative mb-2 mt-2">
                                                     <div class="absolute inset-y-0 left-0 flex items-start top-3 pl-3 pointer-events-none ">                       
@@ -32,7 +32,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="md:col-span-5">
+                                            {{-- <div class="md:col-span-5">
                                                 <label for="botontext1">Texto para botón</label>
                                                 <div class="relative mb-2  mt-2">
                                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">                       
@@ -53,12 +53,12 @@
                                             </div> --}}
 
 
-                                            <div class="md:col-span-5">
+                                            {{-- <div class="md:col-span-5">
                                                     <label for="imagen">Subir imagen - Se aceptan formato .png/.jpg/.webp (500x500 px)</label>
                                                     <div class="relative mb-2  mt-2">
                                                         <input name="imagen" class="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                                     </div>
-                                             </div>
+                                             </div> --}}
 
                                              
                                             <div class="md:col-span-5 text-right mt-6 flex justify-between">

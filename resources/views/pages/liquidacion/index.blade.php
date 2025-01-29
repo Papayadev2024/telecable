@@ -1,4 +1,4 @@
-<x-app-layout title="Liquidaciones">
+<x-app-layout title="Beneficios">
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
         
         <section class="py-4 border-b border-slate-100 dark:border-slate-700">
@@ -10,7 +10,7 @@
             
             
             <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Complementos</h2>
+                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Beneficios</h2>
             </header>
             <div class="p-3">
         
@@ -21,7 +21,7 @@
                         <thead>
                             <tr>
                                 <th>Titulo</th>
-                                <th class="w-20">Imagen</th>
+                                {{-- <th class="w-20">Imagen</th> --}}
                                 <th class="w-20">Visible</th>
                                 <th class="w-20">Acciones</th>
                             </tr>
@@ -31,7 +31,7 @@
                             @foreach($liquidacion as $item)
                                 <tr>
                                     <td>{{$item->title}}</td>
-                                    <td class="px-3 py-2"><img class="w-16 h-16 bg-gray-400 object-contain" src="{{ asset($item->url_image.$item->name_image) }}" alt=""></td>
+                                    {{-- <td class="px-3 py-2"><img class="w-16 h-16 bg-gray-400 object-contain" src="{{ asset($item->url_image.$item->name_image) }}" alt=""></td> --}}
                                     <td>
                                         <form method="POST" action="">
                                           @csrf
@@ -63,7 +63,7 @@
                         <tfoot>
                             <tr>
                                 <th>Titulo</th>
-                                <th>Imagen</th>
+                                {{-- <th>Imagen</th> --}}
                                 <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
