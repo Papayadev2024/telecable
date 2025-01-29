@@ -42,7 +42,7 @@
                     <a href="{{ url('/') }}">
                         <img
                             src="{{ asset('images/img/tc_logotelecable.svg') }}"
-                            alt="Cremoso"
+                            alt="Telecable"
                             class="max-w-56"
                         />
                     </a>
@@ -69,9 +69,9 @@
                 </ul>
 
                 <div class="hidden md:flex flex-col justify-center items-center font-gilroy_semibold">
-                  <div class="bg-[#0066FF] px-3 py-2 my-auto rounded-3xl">
+                  <a href="{{route('contacto')}}"><div class="bg-[#0066FF] px-4 py-3 my-auto rounded-3xl">
                       <p class="leading-none text-white">Lo quiero ahora</p>
-                  </div>
+                  </div></a>
                 </div>
 
             </nav>

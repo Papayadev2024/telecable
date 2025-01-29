@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attributes;
 use App\Models\AttributesValues;
+use App\Models\Canal;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Combinacion;
@@ -45,10 +46,11 @@ class ProductsController extends Controller
     $atributos = Attributes::where("status", "=", true)->get();
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
     $tags = Tag::where("status", "=", true)->get();
+    $canales = Canal::where("status", "=", true)->get();
     $categoria = Category::all();
     $productosRelacionados = Products::where('status', '=', 1)->get();
     $collection = Collection::all();
-    return view('pages.products.create', compact('atributos', 'valorAtributo', 'categoria', 'tags', 'collection', 'productosRelacionados'));
+    return view('pages.products.create', compact('atributos', 'valorAtributo', 'categoria', 'tags', 'collection', 'productosRelacionados','canales'));
   }
 
   public function saveImg($file, $route, $nombreImagen)
@@ -75,7 +77,8 @@ class ProductsController extends Controller
     $atributos = null;
     $productosSeleccionados = $request->input('products_id');
     $onlyOneCaratula = false;
-    
+    $tagsSeleccionados = $request->input('tags_id');
+    $canalSeleccionados = $request->input('canal_id');
 
     // if(is_null($request->input('descuento'))){
     //   $request->merge(['descuento' => 0]);
@@ -214,9 +217,14 @@ class ProductsController extends Controller
 
       $this->GuardarEspecificaciones($producto->id, $especificaciones);
 
-     /*  if (!is_null($tagsSeleccionados)) {
+     
+      if (!is_null($tagsSeleccionados)) {
         $this->TagsXProducts($producto->id, $tagsSeleccionados);
-      } */
+      }
+  
+      if (!is_null($canalSeleccionados)) {
+        $this->CanalXProducts($producto->id, $canalSeleccionados);
+      }
 
       $producto->productrelacionados()->sync($productosSeleccionados);
 
@@ -307,10 +315,16 @@ class ProductsController extends Controller
   private function TagsXProducts($id, $nTags)
   {
     foreach ($nTags as $key => $value) {
-      DB::insert('insert into product_xproducts (product_id, related_product_id) values (?, ?)', [$id, $value]);
+      DB::insert('insert into tags_xproducts (producto_id, tag_id) values (?, ?)', [$id, $value]);
     }
   }
 
+  private function CanalXProducts($id, $nCanal)
+  {
+    foreach ($nCanal as $key => $value) {
+      DB::insert('insert into canal_xproducts (producto_id, canal_id) values (?, ?)', [$id, $value]);
+    }
+  }
 
   private function GuardarEspecificaciones($id, $especificaciones)
   {
@@ -372,14 +386,15 @@ class ProductsController extends Controller
     $atributos = Attributes::where("status", "=", true)->get();
     $valorAtributo = AttributesValues::where("status", "=", true)->get();
     $especificacion = Specifications::where("product_id", "=", $id)->get();
-    // $allTags = Tag::all();
-    $productosRelacionados = Products::where('status', '=', 1) ->where('id', '!=', $id)->get();
+    $tags = Tag::where('status', '=', 1)->get();
+    $canales = Canal::where("status", "=", 1)->get();
+    $productosRelacionados = Products::where('status', '=', 1)->where('id', '!=', $id)->get();
     $categoria = Category::all();
     $subcategoria = Subcategory::all();
     $microcategoria = Microcategory::all();
     $collection = Collection::all();
 
-    return view('pages.products.edit', compact('product', 'atributos', 'valorAtributo', 'productosRelacionados', 'categoria', 'subcategoria', 'microcategoria', 'especificacion', 'collection'));
+    return view('pages.products.edit', compact('canales','tags','product', 'atributos', 'valorAtributo', 'productosRelacionados', 'categoria', 'subcategoria', 'microcategoria', 'especificacion', 'collection'));
   }
 
   /**
@@ -392,6 +407,7 @@ class ProductsController extends Controller
     $especificaciones = [];
     $product = Products::find($id);
     $tagsSeleccionados = $request->input('tags_id');
+    $canalSeleccionados = $request->input('canal_id');
     $data = $request->all();
     $atributos = null;
 
@@ -596,10 +612,17 @@ class ProductsController extends Controller
       }
     }
 
-    DB::delete('delete from product_xproducts where product_id = ?', [$id]);
+    DB::delete('delete from tags_xproducts where producto_id = ?', [$id]);
+    DB::delete('delete from canal_xproducts where producto_id = ?', [$id]);
+   
     if (!is_null($tagsSeleccionados)) {
       $this->TagsXProducts($id, $tagsSeleccionados);
     }
+
+    if (!is_null($canalSeleccionados)) {
+      $this->CanalXProducts($id, $canalSeleccionados);
+    }
+
     $this->actualizarEspecificacion($especificaciones);
     return redirect()->route('products.index')->with('success', 'Producto editado exitosamente.');
   }

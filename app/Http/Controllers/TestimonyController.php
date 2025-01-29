@@ -65,7 +65,7 @@ class TestimonyController extends Controller
 
         $testimony->name = $request->name;
         $url = $request->video;
-        $testimony->email = $this->getYTVideoId($url);
+        $testimony->email = $request->cargo;
         $testimony->testimonie = $request->testimonie;
         $testimony->status = 1;
         $testimony->visible = 1;
@@ -126,7 +126,7 @@ class TestimonyController extends Controller
         }
 
         // $testimony->name = $request->name;
-        // $testimony->email = $request->email;
+         $testimony->email = $request->cargo;
         // $testimony->ocupation = $request->ocupation;
         // $testimony->testimonie = $request->testimonie;
         // $testimony->ocupation = $request->ocupation;

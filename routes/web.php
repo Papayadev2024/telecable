@@ -20,6 +20,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CanalController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CertificadosController;
 use App\Http\Controllers\CollectionController;
@@ -237,6 +238,10 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         //Etiquetas
         Route::resource('/tags', TagController::class);
         Route::post('/tags/deleteTags', [TagController::class, 'deleteTags'])->name('tags.deleteTags');
+
+        //Canales
+        Route::resource('/canales', CanalController::class);
+        Route::post('/canales/deleteCanal', [CanalController::class, 'deleteCanal'])->name('canales.deleteCanal');
 
         //Precios
         Route::resource('/prices', PriceController::class);

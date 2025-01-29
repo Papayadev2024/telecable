@@ -147,112 +147,16 @@
             </div> 
         </section>
 
-
-        @if (count($productos) > 0)    
-            <section class="bg-cover bg-opacity-100 relative pb-10 lg:pb-16 flex flex-col gap-10"  style="background-image: url('{{asset('images/img/tc_textura3.svg')}}');">
-            
-            <div class="px-[5%]  flex flex-col items-center justify-center gap-5">
-                <div class="flex flex-col gap-1 max-w-3xl text-center items-center justify-center" data-aos="fade-down">
-                    <h3 class="font-gilroy_regular text-white text-xl line-clamp-1 flex flex-row gap-3 items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                            <path d="M32.882 19.833C33.3505 16.5991 33.5663 14.9364 32.9705 13.4571C32.3552 11.9297 30.9902 10.8847 28.26 8.79461L26.2203 7.23301C22.8242 4.63301 21.126 3.33301 19.1667 3.33301C17.2073 3.33301 15.5092 4.63301 12.1131 7.23301L10.0733 8.79461C7.3432 10.8847 5.97817 11.9297 5.3629 13.4571C4.74763 14.9845 4.9977 16.7073 5.4978 20.1532L5.92427 23.0917C6.63323 27.9763 6.98772 30.4188 8.64225 31.8758C10.2968 33.333 12.7156 33.333 17.5533 33.333H18.3333" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M21.6666 27.463C23.5813 25.9052 25.8681 25 28.3243 25C30.7881 25 33.0816 25.911 35 27.4777M31.9571 31.6667C30.8636 30.9848 29.6298 30.6012 28.3243 30.6012C27.0253 30.6012 25.7973 30.981 24.708 31.6563" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                            <path d="M28.3334 36.667H28.344" stroke="white" stroke-width="3.33333" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        {{$textoshome->title2section ?? 'Ingrese texto'}}
-                    </h3>
-                    <h2 class="font-gilroy_bold text-white text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl line-clamp-3">{{$textoshome->description2section ?? 'Ingrese texto'}}</h2>
-                </div>
-            </div>
-
-            <div class="px-[5%] md:pl-[8%] md:pr-0 py-5 flex md:flex-row gap-5 md:gap-10">
+      
+        
+            <section  class="bg-cover bg-opacity-100 relative pb-10 lg:pb-16 flex flex-col gap-10"  style="background-image: url('{{asset('images/img/tc_textura3.svg')}}');">
+                
+                <div class="px-[5%] md:px-[8%]  py-5 flex md:flex-row gap-5 md:gap-10 lg:-mt-10">
                     <div class="w-full">
                         <div class="swiper planes w-full">
                             <div class="swiper-wrapper">   
-                            {{-- @foreach ($productos as $producto)--}}
-                                {{-- <div class="swiper-slide my-auto">
-                                    <div class="flex flex-col gap-5 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
-                                        
-                                            <div class="flex flex-wrap justify-between items-center w-full">
-                                                <h2 class="py-2 text-white text-lg font-gilroy_medium text-left w-auto line-clamp-1"><span>{{$producto->producto}}</span></h2>
-                                                <h3 class="font-gilroy_bold text-white text-2xl">S/ {{$producto->precio}} <span class="font-gilroy_regular tracking-wide text-white text-base">/Mes</span></h3>
-                                            </div>
-
-                                            <div class="flex flex-col justify-center items-start font-gilroy_regular group">
-                                                <div class="bg-[#59C402] px-2 py-1.5 rounded-full tracking-normal">
-                                                    <p class="leading-none text-white text-sm">80% más velocidad</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex flex-col">
-                                                <div class="flex flex-row gap-2 items-center">
-                                                    <h2 class="font-gilroy_extrabold text-white text-5xl line-clamp-3">{{$producto->extract}}</h2>
-                                                </div>
-
-                                                <h2 class="-mt-2 font-gilroy_regular text-white text-sm line-clamp-2">{{$producto->name_fichatecnica}}</h2>
-                                            </div>
-
-                                            <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
-                                                <a class="w-full" href="https://api.whatsapp.com/send?phone={{ $general[0]->whatsapp }}&text=Me interesa el servicio: {{$producto->producto}} - {{$producto->extract}} - S/ {{$producto->precio}}">
-                                                    <div class="bg-[#0066FF] w-full px-3 text-center py-3 rounded-3xl tracking-normal">
-                                                        <p class="leading-none text-white text-lg">Lo quiero ahora</p>
-                                                    </div>
-                                                </a>
-                                            </div>
-
-                                            <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
-
-                                                <div class="flex flex-row gap-2">
-                                                <h3 class="font-gilroy_light font-semibold tracking-wider text-white text-sm line-clamp-1 flex flex-row gap-1 items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                                                        <path d="M7.86755 4.82665L8.85795 3.83627C9.97309 2.72113 11.433 2.25857 12.9781 2.18299C13.5791 2.15359 13.8796 2.13889 14.1205 2.37985C14.3615 2.6208 14.3468 2.92128 14.3174 3.52225C14.2418 5.06733 13.7792 6.52727 12.6641 7.64239L11.6737 8.63279C10.8581 9.44839 10.6262 9.68033 10.7974 10.565C10.9664 11.2408 11.13 11.8952 10.6386 12.3866C10.0425 12.9827 9.49875 12.9827 8.90269 12.3866L4.11374 7.59766C3.51768 7.00158 3.51766 6.45786 4.11374 5.86179C4.60513 5.37039 5.25955 5.53395 5.93533 5.70292C6.82002 5.87415 7.05195 5.64225 7.86755 4.82665Z" stroke="white" stroke-linejoin="round"/>
-                                                        <path d="M11.3306 5.16699H11.3366" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M1.66669 14.8333L5.00002 11.5" stroke="white" stroke-linecap="round"/>
-                                                        <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
-                                                        <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
-                                                    </svg>
-                                                    Velocidad:
-                                                </h3>
-                                                <h2 class="font-gilroy_regular text-white text-sm">{{$producto->description ?? 'Ingrese texto'}}</h2>
-                                                </div>
-
-                                                <div class="bg-white h-[1px] w-full mx-auto my-3"></div>
-
-                                                <div class="flex flex-row gap-2">
-                                                    <h3 class="font-gilroy_light font-semibold tracking-wider text-white text-sm line-clamp-1 flex flex-row gap-1 items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                                                        <path d="M7.86755 4.82665L8.85795 3.83627C9.97309 2.72113 11.433 2.25857 12.9781 2.18299C13.5791 2.15359 13.8796 2.13889 14.1205 2.37985C14.3615 2.6208 14.3468 2.92128 14.3174 3.52225C14.2418 5.06733 13.7792 6.52727 12.6641 7.64239L11.6737 8.63279C10.8581 9.44839 10.6262 9.68033 10.7974 10.565C10.9664 11.2408 11.13 11.8952 10.6386 12.3866C10.0425 12.9827 9.49875 12.9827 8.90269 12.3866L4.11374 7.59766C3.51768 7.00158 3.51766 6.45786 4.11374 5.86179C4.60513 5.37039 5.25955 5.53395 5.93533 5.70292C6.82002 5.87415 7.05195 5.64225 7.86755 4.82665Z" stroke="white" stroke-linejoin="round"/>
-                                                        <path d="M11.3306 5.16699H11.3366" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M1.66669 14.8333L5.00002 11.5" stroke="white" stroke-linecap="round"/>
-                                                        <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
-                                                        <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
-                                                    </svg>
-                                                    Instalación:
-                                                    </h3>
-                                                    <h2 class="font-gilroy_regular text-white text-sm">{{$producto->especificacion ?? 'Ingrese texto'}}</h2>
-                                                </div>
-
-                                                <div class="bg-white h-[1px] w-full mx-auto my-3"></div>
-
-                                                <div class="flex flex-row gap-2">
-                                                    <h3 class="font-gilroy_light font-semibold tracking-wider text-white text-sm line-clamp-1 flex flex-row gap-1 items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                                                        <path d="M7.86755 4.82665L8.85795 3.83627C9.97309 2.72113 11.433 2.25857 12.9781 2.18299C13.5791 2.15359 13.8796 2.13889 14.1205 2.37985C14.3615 2.6208 14.3468 2.92128 14.3174 3.52225C14.2418 5.06733 13.7792 6.52727 12.6641 7.64239L11.6737 8.63279C10.8581 9.44839 10.6262 9.68033 10.7974 10.565C10.9664 11.2408 11.13 11.8952 10.6386 12.3866C10.0425 12.9827 9.49875 12.9827 8.90269 12.3866L4.11374 7.59766C3.51768 7.00158 3.51766 6.45786 4.11374 5.86179C4.60513 5.37039 5.25955 5.53395 5.93533 5.70292C6.82002 5.87415 7.05195 5.64225 7.86755 4.82665Z" stroke="white" stroke-linejoin="round"/>
-                                                        <path d="M11.3306 5.16699H11.3366" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M1.66669 14.8333L5.00002 11.5" stroke="white" stroke-linecap="round"/>
-                                                        <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
-                                                        <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
-                                                    </svg>
-                                                    Soporte:
-                                                    </h3>
-                                                    <h2 class="font-gilroy_regular text-white text-sm">{{$producto->sku ?? 'Ingrese texto'}}</h2>
-                                                </div>
-                                            </div>   
-                                    </div>
-                                </div> --}}
-                            {{-- @endforeach --}}
                                 <template x-for="producto in filteredProducts" :key="producto.id">
-                                    <div class="swiper-slide my-auto">
+                                    <div class="swiper-slide">
                                         <div class="flex flex-col gap-5 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
                                             
                                             <!-- Título y precio -->
@@ -265,12 +169,14 @@
                                                     <span class="font-gilroy_regular tracking-wide text-white text-base">/Mes</span>
                                                 </h3>
                                             </div>
-                                
+                                            
                                             <!-- Etiqueta adicional -->
-                                            <div class="flex flex-col justify-center items-start font-gilroy_regular group">
-                                                <div class="bg-[#59C402] px-2 py-1.5 rounded-full tracking-normal">
-                                                    <p class="leading-none text-white text-sm">80% más velocidad</p>
-                                                </div>
+                                            <div class="flex flex-wrap gap-2 font-gilroy_regular justify-start items-start">
+                                                <template x-for="tag in producto.tags" :key="tag.id">
+                                                    <div class="bg-[#59C402] px-3 py-2 rounded-full tracking-normal" :style="'background-color: ' + tag.color">
+                                                        <p class="leading-none text-white text-sm" x-text="tag.name"></p>
+                                                    </div>
+                                                </template>
                                             </div>
                                 
                                             <!-- Extracto y descripción -->
@@ -280,17 +186,27 @@
                                                 </div>
                                                 <h2 class="-mt-2 font-gilroy_regular text-white text-sm line-clamp-2" x-text="producto.name_fichatecnica"></h2>
                                             </div>
+
                                             
-                                            <!-- Botón de WhatsApp -->
-                                            <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
-                                                <a class="w-full" target="_blank"
-                                                    :href="`https://api.whatsapp.com/send?phone=${general?.whatsapp || ''}&text=${encodeURIComponent('Me interesa el servicio: ' + (producto.producto || '') + ' - ' + (producto.extract || '') + ' - S/ ' + (producto.precio || ''))}`">
-                                                    <div class="bg-[#0066FF] w-full px-3 text-center py-3 rounded-3xl tracking-normal">
-                                                        <p class="leading-none text-white text-lg">Lo quiero ahora</p>
-                                                    </div>
-                                                </a>
+                                            <!-- Equipamiento -->
+                                            <div class="flex flex-col" x-show="producto.meta_title && producto.categoria_id === 1" >
+                                                <div class="flex flex-col gap-2 items-start p-3 rounded-xl" style="background-color: rgba(238, 249, 230, 0.16)">
+                                                    <h2 class="font-gilroy_medium text-white text-xl">Equipamiento y accesos TV</h2>
+                                                    <p class="font-gilroy_regular text-white text-sm -mt-2" x-text="producto.meta_title"></p>
+                                                </div>
+                                                
                                             </div>
-                                
+
+                                            <!-- Canales -->
+                                            <div class="flex flex-row gap-3" x-show="producto.canals && producto.categoria_id === 3">
+                                                <template x-for="canal in producto.canals.slice(-3)" :key="canal.id">
+                                                    <div><img class="w-12 h-12 object-contain rounded-full" :src="canal.imagen ? canal.imagen : '{{ asset('images/img/noimagen.jpg') }}'" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" /></div>
+                                                </template>
+                                                <div :data-id="producto.id" class="cursor-pointer botoncanales"><img class="w-12 h-12 object-contain rounded-full" src="{{ asset('images/img/canalmas.png') }}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" /></div>
+                                            </div>
+                                            
+                                            
+                                        
                                             <!-- Información adicional -->
                                             <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
 
@@ -303,7 +219,7 @@
                                                         <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
                                                         <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
                                                     </svg>
-                                                    Velocidad:
+                                                    <span x-text="producto.categoria_id === 3 ? 'Deco:' : 'Velocidad:'"></span>
                                                 </h3>
                                                 <h2 class="font-gilroy_regular text-white text-sm" x-text="producto.description" ></h2>
                                                 </div>
@@ -319,7 +235,7 @@
                                                         <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
                                                         <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
                                                     </svg>
-                                                    Instalación:
+                                                        <span x-text="producto.categoria_id === 3 ? 'Netflix:' : 'Instalación:'"></span>
                                                     </h3>
                                                     <h2 class="font-gilroy_regular text-white text-sm"  x-text="producto.especificacion"></h2>
                                                 </div>
@@ -341,6 +257,16 @@
                                                 </div>
                                             </div>   
 
+                                            <!-- Botón de WhatsApp -->
+                                            <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
+                                                <a class="w-full" target="_blank"
+                                                    :href="`https://api.whatsapp.com/send?phone=${general?.whatsapp || ''}&text=${encodeURIComponent('Me interesa el servicio: ' + (producto.producto || '') + ' - ' + (producto.extract || '') + ' - S/ ' + (producto.precio || ''))}`">
+                                                    <div class="bg-[#0066FF] w-full px-3 text-center py-3 rounded-3xl tracking-normal">
+                                                        <p class="leading-none text-white text-lg">Lo quiero ahora</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            
                                         </div>
                                 </template> 
                             </div>
@@ -349,8 +275,9 @@
                 </div> 
                 
                 <div class="font-gilroy_semibold text-sm text-center text-white">{{$textoshome->description2section2 ?? 'Ingrese texto'}}</div>
+            
             </section>
-        @endif
+        
     </div>
 
         <section class="flex flex-col lg:flex-row px-[5%] lg:px-[5%] py-10 lg:py-16 gap-8 md:gap-16 justify-center items-start lg:items-end">
@@ -467,9 +394,9 @@
                     <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">Conexión Estable</h2>
                     <p class="font-gilroy_regular text-white text-lg line-clamp-5">Resiste interferencias externas, garantizando un servicio confiable incluso en horarios pico.</p>
                     <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
-                        <div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
+                        <a href="{{route('contacto')}}"><div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
                             <p class="leading-none text-white text-lg">Lo quiero ahora</p>
-                        </div>
+                        </div></a>
                     </div>
                 </div>
 
@@ -482,9 +409,9 @@
                     <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">Velocidad Superior</h2>
                     <p class="font-gilroy_regular text-white text-lg line-clamp-5">La fibra óptica ofrece mayor rapidez para descargas, streaming y videollamadas sin interrupciones.</p>
                     <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
-                        <div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
+                        <a href="{{route('contacto')}}"><div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
                             <p class="leading-none text-white text-lg">Lo quiero ahora</p>
-                        </div>
+                        </div></a>
                     </div>
                 </div>
 
@@ -492,9 +419,9 @@
                     <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">Alta Capacidad</h2>
                     <p class="font-gilroy_regular text-white text-lg line-clamp-5">Soporta múltiples dispositivos conectados sin pérdida de calidad.</p>
                     <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
-                        <div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
+                        <a href="{{route('contacto')}}"><div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
                             <p class="leading-none text-white text-lg">Lo quiero ahora</p>
-                        </div>
+                        </div></a>
                     </div>
                 </div>
 
@@ -933,107 +860,37 @@
     @foreach ($productos as $producto)
         
         <!-- Modal Detalle -->
-        <div id="modaldetalleplan-{{$producto->id}}" class="modal !bg-[#1EA7A2] !p-0 !z-50" style="display: none; max-width: 650px !important; width: 100% !important;">
-            <div class="w-full flex flex-col md:flex-row rounded-xl overflow-hidden">
-                <div class="w-full md:w-1/2 p-4 flex flex-col gap-1">
-                    <div class="flex flex-row w-full">
-                        <a class="bg-[#E29720] px-4 py-2 rounded-xl text-base text-[#21149E] text-center font-gotham_bold w-auto line-clamp-2">
-                            {{$producto->producto}}
-                        </a>
-                    </div>
-
-                    <h2 class="font-gotham_bold text-white text-2xl line-clamp-2">{{$producto->extract}}</h2>
-        
-                    <div class="flex flex-col w-full">
-                        <span class="font-gotham_book font-semibold tracking-wide text-white text-sm">Desde</span>
-                        <h2 class="font-gotham_bold text-white text-2xl">
-                            S/ {{$producto->precio}}
-                            <span class="font-gotham_book tracking-wide text-white text-base">/mes</span>
-                        </h2>
-                    </div>
-
-                    <div class="font-gotham_book text-white text-sm line-clamp-5">{!!$producto->description!!}</div>
-        
-                    <img class="w-full h-36 object-contain mx-auto my-2" 
-                        src="{{ asset($producto->imagen) }}" 
-                        onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"
-                        alt="{{$producto->producto}}" 
+        <div id="modaldetalleplan-{{$producto->id}}" class="modal !bg-white !p-0 !z-50" style="display: none; max-width: 750px !important; width: 100% !important;">
+            <div class="w-full flex flex-col rounded-2xl overflow-hidden">
+                <div class="bg-[#EEF9E6] py-4 px-6">
+                    <img
+                        src="{{ asset('images/img/tc_logotelecable.svg') }}"
+                        alt="Telecable"
+                        class="max-w-56"
                     />
-                    @php
-                        $html  = $producto->especificacion;
-                        preg_match_all('/<p>(.*?)<\/p>/', $html, $matches);
-                        $texts = $matches[1];
-                    @endphp
-                    
-                    @if (count($texts) > 0)    
-                        <div class="bg-[#E29720] p-2 rounded-xl">
-                            @foreach ($texts as $text)
-                                
-                                <div class="text-[#21149E] font-gotham_light font-semibold text-sm flex flex-row gap-1">
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                            <path d="M14.6673 7.9987C14.6673 4.3168 11.6825 1.33203 8.00065 1.33203C4.31875 1.33203 1.33398 4.3168 1.33398 7.9987C1.33398 11.6806 4.31875 14.6654 8.00065 14.6654C11.6825 14.6654 14.6673 11.6806 14.6673 7.9987Z" stroke="#21149E"/>
-                                            <path d="M5.33398 8.33333L7.00065 10L10.6673 6" stroke="#21149E" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </span>
-                                    <p>{!! $text !!}</p>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endif
+
                 </div>
-                <div class="w-full md:w-1/2 ">
-                    <div class="bg-cover bg-center min-h-[500px] h-full w-full" style="background-image: url('{{asset('images/img/popimg.png')}}');" onerror="this.onerror=null;this.src='{{ asset('images/img/popimg.png') }}';" ></div>
-                </div>
-            </div>
-        </div>
-    @endforeach
-
-    <!-- Modal Cotizar -->
-    <div id="modalcotizar" class="modal !bg-[#1EA7A2] !px-[15px] !z-50" style="display: none; max-width: 500px !important; width: 100% !important;">
-        <div class="p-4 !bg-[#1EA7A2] flex flex-col gap-3">
-            <div class="flex flex-col">
-                <h2 class="font-gotham_bold leading-none text-white text-2xl md:text-3xl" id="nombreplan">nombreplan</h2>  
-                <span class="text-[#21149E] text-base font-gotham_bold" id="caracteristicas"> caracteristica </span>
-            </div>
-
-            <h3 class="font-gotham_book text-base  text-white text-left ">
-                ¡Se parte de la experiencia Red Conex, déjanos tus datos y te llamamos pronto!
-            </h3>
-
-            <h2 class="font-gotham_bold leading-none text-white text-2xl md:text-3xl">¡Olvídate de lo común, disfruta el <span class="text-[#21149E]"> 100% de fibra óptica </span> real!</h2>
-            
-            <form id="modalformcotizar">
-                @csrf
-                <div class="flex flex-col gap-2 justify-center items-center">
-                    
-                    <div class="flex flex-col gap-2 w-full">
-                        <div class="w-full flex flex-col gap-3">
-                            <input type="text" name="phone" id="phone" required
-                                class="text-[#21149E] placeholder:text-[#21149E] font-gotham_medium px-2 text-base rounded-xl py-2 ring-0 border-0 focus:ring-0 focus:border-0 border-transparent ring-transparent" 
-                                placeholder="Número de teléfono"
-                            />
-
-                            <input type="text" name="number_document" id="number_document" required
-                                class="text-[#21149E] placeholder:text-[#21149E]  font-gotham_medium  px-2 text-base rounded-xl py-2 ring-0 border-0 focus:ring-0 focus:border-0 border-transparent ring-transparent" 
-                                placeholder="DNI/RUC/CEX"
-                            />
-                            <input type="hidden" id="name" name="name" value="" />
-                            <input type="hidden" id="extract" name="extract" value="" />
-                           
-                            <button type="submit" class="text-white bg-[#21149E] w-full px-3 py-2 rounded-3xl font-gotham_medium text-base">
-                                Descubre tu Plan Ideal
-                            </button>
+                <div class="bg-white py-4 px-6 gap-5 flex flex-col">
+                    <div class="flex flex-col">
+                        <div class="flex flex-row gap-2 items-center">
+                            <h2 class="font-gilroy_extrabold text-[#001637] text-4xl line-clamp-3">{{$producto->extract}}</h2>
                         </div>
-                        <p class="text-white text-sm font-latoregular w-full leading-tight text-left">
-                            Al enviar mis datos, acepto los Términos y Condiciones.
-                        </p>
+                        <h2 class="-mt-2 font-gilroy_regular text-[#001637] text-sm line-clamp-2">{{$producto->name_fichatecnica}}</h2>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-2">
+                        @foreach ($producto->canals as $canal)
+                            <div class="flex flex-col gap-2 justify-start items-center">
+                                <img class="h-12 w-12 rounded-full" src="{{asset($canal->imagen)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
+                                <h2 class="font-gilroy_regular text-[#001637] text-sm line-clamp-2 uppercase text-center">{{$canal->name}}</h2>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-            </form>
-           
+            </div>
         </div>
-    </div>
+
+    @endforeach
 
 @section('scripts_importados')
     
@@ -1140,7 +997,7 @@
                 });
             });
 
-            $(document).on('click', '.btn-detalle', function () {
+            $(document).on('click', '.botoncanales', function () {
                 const id = $(this).data('id');
                 $(`#modaldetalleplan-${id}`).modal({
                     show: true,
@@ -1258,7 +1115,7 @@
         });
 
         var swiper = new Swiper(".planes", {
-            slidesPerView: 3.5,
+            slidesPerView: 3,
             spaceBetween: 10,
             centeredSlides: false,
             initialSlide: 0,
@@ -1277,38 +1134,13 @@
                    
                 },
                 768: {
-                    slidesPerView: 1.5,
-
-                  
-                },
-                850: {
                     slidesPerView: 2,
-
-                  
-                },
-                920: {
-                    slidesPerView: 2.5,
-
+                    spaceBetween: 20,
                   
                 },
                 1024: {
-                    slidesPerView: 2.5,
-                  
-                },
-                1280: {
                     slidesPerView: 3,
                     spaceBetween: 20,
-                  
-                },
-                1300: {
-                    slidesPerView: 3.5,
-                    spaceBetween: 20,
-                  
-                },
-                1500: {
-                    slidesPerView: 3.5,
-                    spaceBetween: 20,
-                  
                 },
                 1600: {
                     slidesPerView: 4,

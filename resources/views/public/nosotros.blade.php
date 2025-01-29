@@ -299,48 +299,47 @@
         </section>
    
 
-        {{-- @if (count($testimonie) > 0) --}}
-        <section class="bg-cover relative pt-10 lg:pt-0"  style="background-image: url('{{asset('images/img/tc_texturacomentarios.svg')}}');">
-            <div class="px-[5%] md:px-[10%] flex flex-col  lg:flex-row gap-5 md:gap-10 lg:items-end">
-                
-                <div class="w-full lg:w-1/2 py-0 lg:py-16 flex flex-col justify-center">
-                    <div>
-                        <div class="swiper testimonios min-h-[300px]" data-aos="fade-down">
-                            <div class="swiper-wrapper ">   
-                                {{-- @foreach ($testimonie as $testimonio) --}}
-                                    <div class="swiper-slide">
-                                        <div class="flex flex-col justify-center">
-                                            <div class="relative max-w-md mx-auto flex flex-col gap-2">
-                                                <div class="flex flex-col gap-0 text-left">
-                                                  <p class="font-gilroy_semibold text-[#001F4F] text-4xl line-clamp-[7]">“Con la Fibra Óptica mi conexión es súper rápida, ideal para el teletrabajo y mis videollamadas.”</p>
+        @if (count($testimonie) > 0)
+            <section class="bg-cover relative pt-10 lg:pt-0"  style="background-image: url('{{asset('images/img/tc_texturacomentarios.svg')}}');">
+                <div class="px-[5%] md:px-[10%] flex flex-col  lg:flex-row gap-5 md:gap-10 lg:items-end">
+                    
+                    <div class="w-full lg:w-1/2 py-0 lg:py-16 flex flex-col justify-center">
+                        <div>
+                            <div class="swiper testimonios min-h-[300px]" data-aos="fade-down">
+                                <div class="swiper-wrapper ">   
+                                    @foreach ($testimonie as $testimonio)
+                                            <div class="swiper-slide">
+                                                <div class="flex flex-col justify-center">
+                                                    <div class="relative max-w-md mx-auto flex flex-col gap-2">
+                                                        <div class="flex flex-col gap-0 text-left">
+                                                        <p class="font-gilroy_semibold text-[#001F4F] text-4xl line-clamp-[7]">{{$testimonio->testimonie}}</p>
+                                                        </div>
+                                                        <div class="flex flex-row gap-2">
+                                                        <div>
+                                                            <img class="w-14 h-14 rounded-full object-cover" src="{{asset($testimonio->ocupation)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/tc_testimonio.png') }}';" />
+                                                        </div>
+                                                        <div class="flex flex-col gap-0 text-left">
+                                                            <h3 class="font-gilroy_bold text-[#001F4F] text-base">{{$testimonio->name}}</h3>
+                                                            <p class="font-gilroy_regular text-[#001F4F] text-sm">{{$testimonio->email}}</p>
+                                                        </div>
+                                                        </div>
+                                                        
+                                                    </div>
                                                 </div>
-                                                <div class="flex flex-row gap-2">
-                                                  <div>
-                                                    <img class="w-14 h-14 rounded-full object-cover" src="{{asset('images/img/tc_testimonio.png')}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
-                                                  </div>
-                                                  <div class="flex flex-col gap-0 text-left">
-                                                    <h3 class="font-gilroy_bold text-[#001F4F] text-base">Ana López</h3>
-                                                    <p class="font-gilroy_regular text-[#001F4F] text-sm">Estudiante de Medicina</p>
-                                                  </div>
-                                                </div>
-                                                
                                             </div>
-                                        </div>
-                                    </div>
-
-                                {{-- @endforeach --}}
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="w-full sm:w-full lg:w-1/2  flex flex-col justify-end items-center">
-                    <img class="h-full  object-contain " src="{{asset('images/img/tc_comentarios2.png')}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
-                </div>
-                
-            </div>  
-        </section>
-    {{-- @endif --}}
+                    <div class="w-full sm:w-full lg:w-1/2  flex flex-col justify-end items-center">
+                        <img class="h-full  object-contain " src="{{asset('images/img/tc_comentarios2.png')}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
+                    </div>
+                    
+                </div>  
+            </section>
+        @endif
 
         {{-- <section>
             <div class="flex flex-col gap-10 w-full px-[5%] mx-auto pb-10 lg:pb-20 ">

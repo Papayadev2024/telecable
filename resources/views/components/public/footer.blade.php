@@ -23,8 +23,7 @@
                 <div class="flex flex-col gap-2 text-white font-gilroy_regular text-base">
                     <a href="{{route('index')}}">Inicio</a>
                     <a href="{{route('nosotros')}}">Nosotros</a>
-                    <a href="{{route('index')}}#beneficios">Beneficios</a>
-                    <a href="{{route('index')}}#planes">Planes de internet</a>
+                    <a href="{{route('novedades')}}">Planes</a>
                     <a href="{{route('contacto')}}">Contacto</a>
                 </div>
              

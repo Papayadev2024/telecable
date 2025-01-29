@@ -1,8 +1,8 @@
-<x-app-layout title="Etiquetas">
+<x-app-layout title="Canales">
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
         
         <section class="py-4 border-b border-slate-100 dark:border-slate-700">
-            <a href="{{ route('tags.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm" >Agregar etiqueta</a>
+            <a href="{{ route('canales.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded text-sm" >Agregar canal</a>
         </section>
 
 
@@ -10,7 +10,7 @@
             
             
             <header class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Etiquetas</h2>
+                <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-2xl tracking-tight">Canales</h2>
             </header>
             <div class="p-3">
         
@@ -22,18 +22,20 @@
                             <tr>
                                 <th>Nombre</th>
                                 {{-- <th>Descripción</th> --}}
-                                <th class="w-24">Color</th>
+                                <th class="w-24">Imagen</th>
                                 {{-- <th class="w-24">Visible</th> --}}
                                 <th class="w-24">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach($tags as $item)
+                            @foreach($canales as $item)
                                 <tr>
                                     <td>{{$item->name}}</td>
-                                    {{-- <td>{{$item->description}}</td> --}}
-                                    <td ><div class="rounded-full w-8 h-8 mx-auto" style="background-color: {{ $item->color }}"></div></td>
+                                    <td><img class="w-14 h-14 rounded-full object-contain" src="{{asset($item->imagen)}}" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" /> </td>
+                                    
+                                    {{-- <td ><div class="rounded-full w-8 h-8 mx-auto" style="background-color: {{ $item->color }}"></div></td> --}}
+                                    
                                     {{-- <td>
                                         <form method="POST" action="">
                                           @csrf
@@ -46,13 +48,10 @@
                                             id='{{'v_'.$item->id}}' data-field='visible' data-idService='{{$item->id}}' data-titleService='{{$item->name}}' {{$item->visible == 1 ? 'checked' : ''}}>
                                             <label for="{{'v_'.$item->id}}"></label>
                                          </form>
-
-                                       
-
                                     </td> --}}
                                     <td class="flex flex-row justify-end items-center gap-5">
-                                  
-                                        <a href="{{ route('tags.edit', $item->id) }}" class="bg-yellow-400 px-3 py-2 rounded text-white  "><i class="fa-regular fa-pen-to-square"></i></a>
+                     
+                                        <a href="{{ route('canales.edit', $item->id) }}" class="bg-yellow-400 px-3 py-2 rounded text-white  "><i class="fa-regular fa-pen-to-square"></i></a>
                                         {{-- {{  route('servicios.destroy', $item->id) }} --}}
                                         <form action=" " method="POST">
                                             @csrf
@@ -69,7 +68,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 {{-- <th>Descripción</th> --}}
-                                <th>Color</th>
+                                <th>Imagen</th>
                                 {{-- <th>Visible</th> --}}
                                 <th>Acciones</th>
                             </tr>
@@ -110,7 +109,7 @@
                         
                         $.ajax({
 
-                                url: '{{ route("tags.deleteTags") }}',
+                                url: '{{ route("canales.deleteCanal") }}',
                                 method: 'POST',
                                 data:{
                                     _token: $('input[name="_token"]').val(),

@@ -85,7 +85,7 @@ class IndexController extends Controller
         $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
         $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
         $slider = Slider::where('status', '=', 1)->where('visible', '=', 1)->get();
-        $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->get();
+        $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('canals')->get();
         $category = Category::where('status', '=', 1)
                         ->where('visible', '=', 1)
                         // ->whereHas('productos', function ($query) {
@@ -650,9 +650,19 @@ class IndexController extends Controller
     public function novedades()
     {
         try {
+            $general = General::first();
+            $testimonie = Testimony::where('status', '=', 1)->where('visible', '=', 1)->get();
             $novedades = Products::where('status', '=', 1)->where('visible', '=', 1)->where('recomendar', '=', 1)->paginate(16);
             $benefit = Strength::where('status', '=', 1)->get();
-            return view('public.novedades', compact('novedades','benefit'));
+            $productos = Products::where('status', '=', 1)->where('visible', '=', 1)->with('tags')->with('canals')->get();
+            $category = Category::where('status', '=', 1)
+                            ->where('visible', '=', 1)
+                            // ->whereHas('productos', function ($query) {
+                            //     $query->where('status', 1)->where('visible', 1);
+                            // })
+                            ->orderBy('order', 'asc')
+                            ->get();
+            return view('public.novedades', compact('novedades','benefit','productos','category','general','testimonie'));
         } catch (\Throwable $th) {
         }
     }

@@ -92,9 +92,9 @@ class TagController extends Controller
        
         $category = Tag::findOrfail($id); 
        
-        // $category->status = false;
+        $category->delete();
        
-        $category->save();
+        // $category->save();
 
         return response()->json(['message' => 'Tag eliminada']);
     }

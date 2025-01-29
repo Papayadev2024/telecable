@@ -235,18 +235,18 @@
                         @foreach ($faqs as $faq)
                             <div class="py-1">
                                 <details class="group">
-                                <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                    <span class="font-bold text-[19px] text-[#001F4F] font-gilroy_bold">
-                                      {{$faq->pregunta}}</span>
-                                    <span class="transition group-open:rotate-180 bg-white rounded-full p-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none">
-                                            <path d="M17 10L11.9992 14.58L7 10" stroke="#59C402" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </span>
-                                </summary>
-                                <p class="text-base mt-1 text-[#001F4F] font-gilroy_regular">
-                                  {{$faq->respuesta}}
-                                </p>
+                                  <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                      <span class="font-bold text-[19px] text-[#001F4F] font-gilroy_bold">
+                                        {{$faq->pregunta}}</span>
+                                      <span class="transition group-open:rotate-180 bg-white rounded-full p-2">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none">
+                                              <path d="M17 10L11.9992 14.58L7 10" stroke="#59C402" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                          </svg>
+                                      </span>
+                                  </summary>
+                                  <p class="text-base mt-1 text-[#001F4F] font-gilroy_regular">
+                                    {{$faq->respuesta}}
+                                  </p>
                                 </details>
                             </div>
                         @endforeach  

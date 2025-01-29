@@ -45,8 +45,8 @@ class StrengthController extends Controller
 	public function store(Request $request)
 	{
 			$request->validate([
-		'titulo' => 'required',
-		]);
+			'titulo' => 'required',
+			]);
 		
 		$fortaleza = new Strength();
 		try {
