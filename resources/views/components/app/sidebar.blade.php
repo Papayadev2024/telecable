@@ -65,9 +65,10 @@
             </a>
           </li>
  
-
-        
-
+          <x-menu.item id="subscripciones" href="{{ route('subscripciones') }}" icon="fas fa-address-card">
+            Subscripciones
+          </x-menu.item>
+  
           
           <x-menu.item id="datosgenerales" href="{{ route('datosgenerales.edit', 1) }}"
             icon="fas fa-undo-alt">
@@ -89,9 +90,9 @@
             Textos - Home
           </x-menu.item>
 
-          <x-menu.item id="sobrenosotros" href="{{ route('nosotrosview.edit', 1) }}" icon="fas fa-address-card">
+          {{-- <x-menu.item id="sobrenosotros" href="{{ route('nosotrosview.edit', 1) }}" icon="fas fa-address-card">
             Textos - Nosotros
-          </x-menu.item>
+          </x-menu.item> --}}
 
           <x-menu.item id="contactoview" href="{{ route('contactoview.edit', 1) }}" icon="fas fa-address-card">
             Textos - Contacto
@@ -106,24 +107,24 @@
           </x-menu.item> --}}
 
           <x-menu.item id="benefit" href="{{ route('strength.index') }}" icon="fas fa-address-card">
+            Caracteristicas
+          </x-menu.item>
+
+          {{-- <x-menu.item id="slider" href="{{ route('slider.index') }}" icon="fas fa-address-card">
+            Slider
+          </x-menu.item> --}}
+
+          <x-menu.item id="liquidacion" href="{{ route('liquidacion.index') }}" icon="fas fa-address-card">
             Beneficios
           </x-menu.item>
 
-          <x-menu.item id="slider" href="{{ route('slider.index') }}" icon="fas fa-address-card">
-            Slider
-          </x-menu.item>
-
-          <x-menu.item id="liquidacion" href="{{ route('liquidacion.index') }}" icon="fas fa-address-card">
-            Complementos
-          </x-menu.item>
-
-          <x-menu.item id="mismarcas" href="{{ route('mismarcas.index') }}" icon="fas fa-address-card">
+          {{-- <x-menu.item id="mismarcas" href="{{ route('mismarcas.index') }}" icon="fas fa-address-card">
             Cobertura
-          </x-menu.item>
+          </x-menu.item> --}}
 
-          <x-menu.item id="valores" href="{{ route('misclientes.index') }}" icon="fas fa-address-card">
+          {{-- <x-menu.item id="valores" href="{{ route('misclientes.index') }}" icon="fas fa-address-card">
             Valores
-          </x-menu.item>
+          </x-menu.item> --}}
 
           <x-menu.item id="testimonios" href="{{ route('testimonios.index') }}" icon="fas fa-address-card">
             Testimonios
@@ -133,20 +134,18 @@
             Preguntas Frecuentes
           </x-menu.item>
 
-          <x-menu.item id="subscripciones" href="{{ route('subscripciones') }}" icon="fas fa-address-card">
-            Subscripciones
-          </x-menu.item>
+          
 
-          <x-menu.item id="cotizaciones" href="{{ route('cotizaciones') }}" icon="fas fa-address-card">
+          {{-- <x-menu.item id="cotizaciones" href="{{ route('cotizaciones') }}" icon="fas fa-address-card">
             Cotizaciones
-          </x-menu.item>
+          </x-menu.item> --}}
 
-          <x-menu.item id="blog" href="{{ route('blog.index') }}" icon="fas fa-address-card">
+          {{-- <x-menu.item id="blog" href="{{ route('blog.index') }}" icon="fas fa-address-card">
             Blog
-          </x-menu.item>
+          </x-menu.item> --}}
 
           <x-menu.item id="tags" href="{{ route('tags.index') }}" icon="fas fa-address-card">
-            Tags
+            Etiquetas
           </x-menu.item>
 
           <x-menu.item id="canales" href="{{ route('canales.index') }}" icon="fas fa-address-card">

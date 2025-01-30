@@ -22,7 +22,7 @@
                             <tr>
                                 <th>Nombre</th>
                               
-                                <th class="w-24">Destacar</th>
+                                {{-- <th class="w-24">Destacar</th> --}}
                                 <th class="w-24">Visible</th>
                                
                                 <th class="w-24">Acciones</th>
@@ -34,7 +34,7 @@
                                 <tr>
                                     <td>{{$item->name}}</td>
                                     
-                                    <td>
+                                    {{-- <td>
                                         <form method="POST" action="">
                                           @csrf
                                             <input type="checkbox" id="hs-basic-usage" class="check_d btn_swithc relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent 
@@ -49,7 +49,7 @@
 
                                        
 
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <form method="POST" action="">
                                           @csrf
@@ -85,7 +85,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 
-                                <th>Destacar</th>
+                                {{-- <th>Destacar</th> --}}
                                 <th>Visible</th>
                                 <th>Acciones</th>
                             </tr>
