@@ -1,4 +1,4 @@
-@extends('components.public.matrix', ['pagina' => 'index'])
+@extends('components.public.matrix', ['pagina' => 'Inicio'])
 @section('titulo', 'Inicio')
 @section('css_importados')
 
