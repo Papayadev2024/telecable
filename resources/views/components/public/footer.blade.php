@@ -123,6 +123,13 @@
             })
         });
 
+        $(document).on('click', '#linkTerminos2', function() {
+            $('#modalTerminosCondiciones').modal({
+                show: true,
+                fadeDuration: 400,
+            })
+        });
+
         $(document).on('click', '#linkPoliticas', function() {
             $('#modalPoliticasDev').modal({
                 show: true,

@@ -46,9 +46,9 @@
 
                 <input required name="source" id="telefonoContacto" type="hidden" value="Inicio" class="placeholder:text-[#001F4F] text-[#001F4F] placeholder:text-opacity-30 bg-white font-gilroy_regular  rounded-xl px-3 py-2.5 ring-0 focus:ring-0 border-0"/>
                 
-                <label class="text-[#001F4F] text-sm font-gilroy_regular flex flex-row items-center gap-2">
+                <label class="text-[#001F4F] text-sm font-gilroy_regular flex flex-row items-center gap-2 focus:ring-0 focus:border-0">
                   <input type="checkbox" name="terms" required>
-                  Estoy de acuerdo con todos sus <a class="font-semibold" href="/terms-and-conditions" target="_blank"> Términos & condiciones</a>
+                  Estoy de acuerdo con todos sus <span class="font-semibold" id="#linkTerminos2" > Términos & condiciones</span>
                 </label>
 
                 <div class="flex flex-col gap-1">  
