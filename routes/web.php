@@ -24,6 +24,7 @@ use App\Http\Controllers\CanalController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CertificadosController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\ContactoViewController;
 use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\DescargablesController;
 use App\Http\Controllers\FaqsController;
@@ -160,6 +161,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Admin'])->group(function () 
         Route::resource('/nosotrosview', NosotrosViewController::class);
         Route::resource('/innovacionesview', InnovacionViewController::class);
         Route::resource('/productosview', ProductosViewController::class);
+        Route::resource('/contactoview', ContactoViewController::class);
+        
         //Testimonies
         Route::resource('/testimonios', TestimonyController::class);
         Route::post('/testimonios/deleteTestimony', [TestimonyController::class, 'deleteTestimony'])->name('testimonios.deleteTestimony');

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ContactoView;
 use App\Models\InnovacionView;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -41,7 +42,8 @@ class DatabaseSeeder extends Seeder
             HomeViewSeeder::class,
             ProductosViewSeeder::class,
             InnovacionViewSeeder::class,
-            NosotrosViewSeeder::class
+            NosotrosViewSeeder::class,
+            ContactoViewSeeder::class,
 
             //ServiceSeeder::class,
         ]);

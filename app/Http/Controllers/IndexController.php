@@ -37,6 +37,7 @@ use App\Models\MisClientes;
 use App\Models\MisMarcas;
 use App\Models\Certificados;
 use App\Models\ContactDetail;
+use App\Models\ContactoView;
 use App\Models\HomeView;
 use App\Models\InnovacionView;
 use App\Models\NosotrosView;
@@ -241,11 +242,12 @@ class IndexController extends Controller
     {
         $general = General::all();
         $contactodetalle = ContactDetail::all();
+        $textocontacto = ContactoView::first();
         $textoshome = HomeView::first();
         $contactos = ContactDetail::where('status', '=', 1)->get();
         $preguntasfrec = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
         $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
-        return view('public.contacto', compact('preguntasfrec', 'textoshome','general','contactos','faqs','contactodetalle'));
+        return view('public.contacto', compact('textocontacto','preguntasfrec', 'textoshome','general','contactos','faqs','contactodetalle'));
     }
 
     public function carrito()

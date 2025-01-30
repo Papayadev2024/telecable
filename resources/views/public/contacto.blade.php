@@ -10,14 +10,17 @@
 
 
   <section class="flex flex-col md:flex-row justify-center items-center px-[5%] xl:px-[10%] pt-5 pb-10 lg:pb-16 gap-6 md:gap-16 relative">
-
+      @php
+          $texto = $textocontacto->subtitle1section ?? "Ingrese un texto";
+          $texto_formateado = preg_replace('/\*(.*?)\*/', '<span class="text-[#59C402] font-gilroy_bold">$1</span>', e($texto));
+      @endphp
       <form id="formContactos" class="w-full md:w-1/2 flex flex-col gap-4 bg-[#F8F8FB] rounded-3xl p-6" data-aos="fade-down">
                 @csrf           
 
-                <h2 class="font-gilroy_medium text-[#001F4F] text-4xl lg:text-4xl 2xl:text-6xl">¡Estamos Aquí para <span class="text-[#59C402] font-gilroy_bold">Ayudarte!</span></h2>
+                <h2 class="font-gilroy_medium text-[#001F4F] text-4xl lg:text-4xl 2xl:text-6xl">{!!$texto_formateado!!}</h2>
                 <div class="flex flex-col gap-2 text-[#001637] font-gilroy_regular text-lg">
                   <p>
-                    Ponte en contacto con nosotros y resolveremos todas tus dudas.
+                    {{$textocontacto->title1section ?? "Ingrese texto"}}
                   </p>
                 </div>
 
@@ -233,9 +236,13 @@
     <section class="bg-cover bg-[#001637] relative py-10 lg:py-16" >
               <div class="px-[5%] md:px-[10%] flex flex-col gap-5 md:gap-10">  
                   <div class="flex flex-col items-center justify-center gap-5">
+                      @php
+                          $texto2 = $textocontacto->title2section ?? "Ingrese un texto";
+                          $texto_formateado2 = preg_replace('/\*(.*?)\*/', '<span class="text-[#59C402] font-gilroy_bold">$1</span>', e($texto2));
+                      @endphp
                       <div class="flex flex-col gap-1 max-w-md text-center" data-aos="fade-down">
-                          <h2 class=" text-[#59C402] font-gilroy_bold text-4xl lg:text-4xl 2xl:text-6xl ">FAQ:  <span class="font-gilroy_medium text-white">Encuentra la Información que Buscas</span></h2>
-                          <p class="flex flex-col gap-2 text-white font-gilroy_regular text-lg">Respuestas a las Preguntas Más Comunes</p>
+                          <h2 class=" text-white font-gilroy_bold text-4xl lg:text-4xl 2xl:text-6xl ">{!!$texto_formateado2!!}</h2>
+                          <p class="flex flex-col gap-2 text-white font-gilroy_regular text-lg">{{$textocontacto->description2section ?? "Ingrese texto"}}</p>
                       </div> 
                      
                       <div class="grid w-full divide-y divide-neutral-200 bg-white px-6 py-2 rounded-3xl" data-aos="fade-down">
