@@ -208,7 +208,7 @@
                                             
                                         
                                             <!-- Información adicional -->
-                                            <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
+                                            {{-- <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
 
                                                 <div class="flex flex-row gap-2">
                                                 <h3 class="font-gilroy_light font-semibold tracking-wider text-white text-sm line-clamp-1 flex flex-row gap-1 items-center">
@@ -255,7 +255,7 @@
                                                     </h3>
                                                     <h2 class="font-gilroy_regular text-white text-sm" x-text="producto.sku"></h2>
                                                 </div>
-                                            </div>   
+                                            </div>    --}}
 
                                             <!-- Botón de WhatsApp -->
                                             <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
