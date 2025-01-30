@@ -33,7 +33,7 @@ class GeneralSeeder extends Seeder
             'form_email' => 'ventas@hpi.com.pe',
             'business_hours' => 'horas',
             'mensaje_whatsapp' => 'Hola estamos atentos a lo que ud desee',
-            'aboutus' => 'Dommine se encuentra interesado en ti. Si deseas tener más información sobre nuestros productos y promociones, entonces completa el siguiente formulario para contactarte o ten en cuenta nuestra ubicación, número telefónico y dirección de correo electrónico.'
+            'aboutus' => 'Más que internet, creamos puentes entre sueños, ideas y experiencias.'
 
         ]);
     }

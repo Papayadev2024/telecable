@@ -13,7 +13,7 @@
                 <a href="{{ route('index') }}">
                     <img src="{{ asset('images/img/tc_logoblanco.png') }}" alt="Telecable" class="w-52 object-left" />
                 </a>
-                <p class="font-gilroy_regular text-base text-white xl:max-w-[200px]">Más que internet, creamos puentes entre sueños, ideas y experiencias.</p>
+                <p class="font-gilroy_regular text-base text-white xl:max-w-[200px]">{{$general[0]->aboutus}}</p>
             </div>
             <div class="flex flex-col gap-5">
                 

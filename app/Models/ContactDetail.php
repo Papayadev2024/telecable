@@ -10,7 +10,6 @@ class ContactDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'categoria_id',
         'area',
         'nombre',
         'celular',

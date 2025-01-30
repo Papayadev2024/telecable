@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('contact_details', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('categoria_id')->nullable();
+            // $table->unsignedBigInteger('categoria_id')->nullable();
             $table->string('area')->nullable();
             $table->string('nombre')->nullable();
             $table->string('celular')->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->boolean('visible')->default(true);
             $table->boolean('status')->default(true);
 
-            $table->foreign('categoria_id')->references('id')->on('categories');
+            //$table->foreign('categoria_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

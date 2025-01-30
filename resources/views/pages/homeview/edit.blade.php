@@ -67,7 +67,7 @@
 
                                     <h2 class="font-semibold text-slate-800 dark:text-slate-100 text-xl tracking-tight">Planes</h2>
 
-                                    <div class="md:col-span-5">
+                                    {{-- <div class="md:col-span-5">
                                         <label for="title2section">Titulo</label>
                                         <div class="relative mb-2 ">
                                             <div
@@ -93,7 +93,7 @@
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Ingrese la descripcion">{{ $homeview->description2section }}</textarea>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="md:col-span-5">
                                         <label for="description2section2">Descripción footer</label>
@@ -113,7 +113,7 @@
                                     
 
                                     <div class="md:col-span-5">
-                                        <label for="title3section">Titulo</label>
+                                        <label for="title3section">Subtitulo</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -127,7 +127,7 @@
                                     </div>
 
                                     <div class="md:col-span-5">
-                                        <label for="description3section">Descripción texto azul</label>
+                                        <label for="description3section">Titulo</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
@@ -140,7 +140,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="md:col-span-5">
+                                    {{-- <div class="md:col-span-5">
                                         <label for="description3section2">Descripción texto verde</label>
                                         <div class="relative mb-2">
                                             <div
@@ -152,10 +152,10 @@
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Ingrese la descripcion">{{ $homeview->description3section2 }}</textarea>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="md:col-span-5">
-                                        <label for="description3section3">Descripción nosotros</label>
+                                        <label for="description3section3">Descripción</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
@@ -163,7 +163,7 @@
                                             </div>
                                             <textarea type="text" id="description3section3"
                                                 name="description3section3"
-                                                class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                class="ckeditor mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Ingrese la descripcion">{{ $homeview->description3section3 }}</textarea>
                                         </div>
                                     </div>
@@ -185,7 +185,7 @@
 
 
                                     <div class="md:col-span-5">
-                                        <label for="title4section">Titulo</label>
+                                        <label for="title4section">Subtitulo</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -199,7 +199,7 @@
                                     </div>
 
                                     <div class="md:col-span-5">
-                                        <label for="description4section">Descripción texto azul</label>
+                                        <label for="description4section">Titulo</label>
                                         <div class="relative mb-2">
                                             <div
                                                 class="absolute top-3 left-0 flex items-center pl-3 pointer-events-none">
@@ -212,7 +212,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="md:col-span-5">
+                                    {{-- <div class="md:col-span-5">
                                         <label for="description4section2">Descripción texto verde</label>
                                         <div class="relative mb-2">
                                             <div
@@ -224,7 +224,7 @@
                                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Ingrese la descripcion">{{ $homeview->description4section2 }}</textarea>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="md:col-span-5">
                                         <label for="url_image4section">Imagen principal</label>
@@ -439,7 +439,26 @@
 
     </div>
 
+    <script src="/ckeditor/ckeditor.js"></script>
     <script>
+        
+        CKEDITOR.replace('description3section3', {
+            toolbar: [
+                { name: 'document', items: ['Source'] }, // Código fuente
+                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'] },
+                { name: 'styles', items: ['Styles', 'Format', 'FontSize'] }, // Tamaño y fuente
+                { name: 'colors', items: ['TextColor', 'BGColor'] }, // Color de texto y fondo
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Blockquote'] },
+                { name: 'insert', items: ['Table', 'HorizontalRule'] },
+                { name: 'links', items: ['Link', 'Unlink'] },
+                { name: 'tools', items: ['Maximize'] } // Maximizar
+            ],
+            extraPlugins: 'colorbutton,font', // Activa plugins para color y fuentes
+            removePlugins: 'elementspath', // Elimina la ruta de elementos
+            resize_enabled: true // Permite redimensionar el editor
+        });
+
         $('document').ready(function() {
 
             // Función para mostrar la alerta de confirmación antes de enviar el formulario

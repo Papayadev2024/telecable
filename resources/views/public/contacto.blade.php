@@ -81,12 +81,9 @@
                         
                     </div>
                      
-                    <div class="flex flex-col items-start justify-start gap-1">
+                    <div class="flex flex-col items-start justify-start gap-2 text-[#001637] font-gilroy_regular text-lg ">
                       
-                        <p class="text-[#001637] font-gilroy_regular text-lg"><span class="font-gilroy_semibold">La Oroya</span> - Av. Huancayo N°215</p>
-                        <p class="text-[#001637] font-gilroy_regular text-lg"><span class="font-gilroy_semibold">La Oroya</span> - Av. Huancayo N°215</p>
-                        <p class="text-[#001637] font-gilroy_regular text-lg"><span class="font-gilroy_semibold">La Oroya</span> - Av. Huancayo N°215</p>
-                        <p class="text-[#001637] font-gilroy_regular text-lg"><span class="font-gilroy_semibold">La Oroya</span> -   Av. Miguel Grau N° 145 (Marcavalle-La Oroya)</p>
+                      {!! $general[0]->mapa!!}
                      
                     </div>
              
@@ -103,11 +100,14 @@
                       </div>
                       
                       <div class="flex flex-col items-start justify-start gap-1">
-                        
-                          <p class="text-[#001637] font-gilroy_regular text-lg"><span class="font-gilroy_semibold">Central Telefónica </span>  -  064-466080</p>
-                          <p class="text-[#001637] font-gilroy_regular text-lg"><span class="font-gilroy_semibold">Central Telefónica</span> - Av. Huancayo N°215</p>
-                          <p class="text-[#001637] font-gilroy_regular text-lg"><span class="font-gilroy_semibold">La Oroya</span> - Av. Huancayo N°215</p>
-                          <p class="text-[#001637] font-gilroy_regular text-lg"><span class="font-gilroy_semibold">La Oroya</span> -   Av. Miguel Grau N° 145 (Marcavalle-La Oroya)</p>
+                           
+                        @foreach($contactodetalle as $contacto)
+                          @if($contacto->celular)
+                              <p class="text-[#001637] font-gilroy_regular text-lg">
+                                  <span class="font-gilroy_semibold">{{ $contacto->nombre }}</span> - {{ $contacto->celular }}
+                              </p>
+                          @endif
+                        @endforeach
                       
                       </div>
               
@@ -124,7 +124,13 @@
                       </div>
                       
                       <div class="flex flex-col items-start justify-start gap-1">
-                          <p class="text-[#001637] font-gilroy_regular text-lg"><span class="font-gilroy_semibold">atención.cliente@telecable.pe</p>                      
+                        @foreach($contactodetalle as $contacto)
+                            @if($contacto->email)
+                                <p class="text-[#001637] font-gilroy_regular text-lg">
+                                    <span class="font-gilroy_semibold">{{ $contacto->email }}</span>
+                                </p>
+                            @endif
+                        @endforeach
                       </div>
               
               </div>
@@ -217,20 +223,15 @@
   </div> --}}
 
 
-  {{-- @if (count($faqs) > 0) --}}
+  @if (count($faqs) > 0)
     <section class="bg-cover bg-[#001637] relative py-10 lg:py-16" >
-              <div class="px-[5%] md:px-[10%] flex flex-col gap-5 md:gap-10">
-                      
-
+              <div class="px-[5%] md:px-[10%] flex flex-col gap-5 md:gap-10">  
                   <div class="flex flex-col items-center justify-center gap-5">
                       <div class="flex flex-col gap-1 max-w-md text-center" data-aos="fade-down">
                           <h2 class=" text-[#59C402] font-gilroy_bold text-4xl lg:text-4xl 2xl:text-6xl ">FAQ:  <span class="font-gilroy_medium text-white">Encuentra la Información que Buscas</span></h2>
                           <p class="flex flex-col gap-2 text-white font-gilroy_regular text-lg">Respuestas a las Preguntas Más Comunes</p>
                       </div> 
                      
-
-                  
-                      
                       <div class="grid w-full divide-y divide-neutral-200 bg-white px-6 py-2 rounded-3xl" data-aos="fade-down">
                         @foreach ($faqs as $faq)
                             <div class="py-1">
@@ -251,13 +252,10 @@
                             </div>
                         @endforeach  
                       </div>
-
                   </div>
-
-                
               </div>  
     </section>
-  {{-- @endif  --}}
+  @endif 
 
 </main>
 

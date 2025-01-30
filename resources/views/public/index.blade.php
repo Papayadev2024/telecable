@@ -123,7 +123,7 @@
                             <h2 class="font-gilroy_bold text-white text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl line-clamp-3">{{$textoshome->description1section ?? 'Ingrese texto'}}</h2>
                     </div>
    
-                    <div class="grid grid-cols-2 md:grid-cols-3 font-gotham_bold w-full overflow-hidden rounded-2xl bg-[#5599FF] mt-5">
+                    <div class="grid grid-cols-1 md:grid-cols-3 font-gotham_bold w-full overflow-hidden rounded-2xl bg-[#5599FF] mt-5">
                         {{-- @foreach ($category as $categoria) --}}
                         <template x-for="(cat, index) in categories" :key="index">
                             <div    
@@ -131,10 +131,12 @@
                                 :class="selected === index 
                                     ? 'bg-[#004FC6]' 
                                     : ''" 
-                                 class="flex flex-col justify-center items-center px-6 py-7 cursor-pointer">
+                                 class="flex flex-row gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer">
                                 <img class="w-12 h-12 object-contain" :src="cat.url_image + cat.name_image"  onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"  />
-                                <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold mt-5" x-text="cat.name"></h3>
-                                <h2 class="text-white text-base font-gilroy_regular" x-text="cat.description"></h2>
+                                <div class="flex flex-col">
+                                    <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold md:mt-5" x-text="cat.name"></h3>
+                                    <h2 class="text-white text-base font-gilroy_regular" x-text="cat.description"></h2>
+                                </div>
                             </div>
                         </template>
                         {{-- @endforeach --}}
@@ -147,9 +149,7 @@
             </div> 
         </section>
 
-      
-        
-            <section  class="bg-cover bg-opacity-100 relative pb-10 lg:pb-16 flex flex-col gap-10"  style="background-image: url('{{asset('images/img/tc_textura3.svg')}}');">
+        <section  class="bg-cover bg-opacity-100 relative pb-10 lg:pb-16 flex flex-col gap-10"  style="background-image: url('{{asset('images/img/tc_textura3.svg')}}');">
                 
                 <div class="px-[5%] md:px-[8%]  py-5 flex md:flex-row gap-5 md:gap-10 lg:-mt-10">
                     <div class="w-full">
@@ -276,7 +276,7 @@
                 
                 <div class="font-gilroy_semibold text-sm text-center text-white">{{$textoshome->description2section2 ?? 'Ingrese texto'}}</div>
             
-            </section>
+        </section>
         
     </div>
 
@@ -291,19 +291,17 @@
                 </svg>
                 {{$textoshome->title3section ?? 'Ingrese texto'}}
             </h3>
+            @php
+                $texto = $textoshome->description3section ?? "Ingrese un texto";
+                $texto_formateado = preg_replace('/\*(.*?)\*/', '<span class="text-[#59C402] font-gilroy_bold">$1</span>', e($texto));
+            @endphp
             
-            <h2 class="font-gilroy_medium text-[#001F4F] text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl line-clamp-2"> {{$textoshome->description3section ?? "Ingrese un texto"}} <span class="text-[#59C402] font-gilroy_bold">{{$textoshome->description3section2}}</span></h2>
+            <h2 class="font-gilroy_medium text-[#001F4F] text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl line-clamp-2">
+                {!! $texto_formateado !!}
+            </h2>
             
             <div class="flex flex-col gap-2 text-[#001637] font-gilroy_regular text-lg">
-              <p>
-                En Telecable, somos expertos en conectar a las personas con tecnología de última generación. Ofrecemos soluciones de internet de fibra óptica diseñadas para brindar velocidad, estabilidad y confiabilidad, siempre adaptándonos a las necesidades de nuestros clientes.
-              </p>
-              <p>
-                Nuestra misión es garantizar una experiencia de conectividad excepcional, respaldada por un equipo comprometido y atención personalizada. Creemos que el internet no solo conecta dispositivos, sino también personas, sueños e ideas.
-              </p>
-              <p>
-                Descubre cómo nuestro servicio puede transformar tu forma de navegar y conectar con el mundo.
-              </p>
+                {!! $textoshome->description3section3 ?? "Ingrese texto" !!}
             </div>
 
             <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
@@ -339,7 +337,6 @@
           </div>
         </section>
 
-
         
         <section class="bg-cover bg-opacity-100 relative py-10 lg:py-16 flex flex-col gap-10 w-full"  style="background-image: url('{{asset('images/img/tc_home.png')}}');">
            
@@ -353,15 +350,18 @@
                         <path d="M21 22.167L22.1667 24.5003" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M7.00004 22.167L5.83337 24.5003" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    Conexión veloz y confiable
+                    {{$textoshome->title4section ?? 'Ingrese texto'}}
                    </h3>
-                
-                   <h2 class="font-gilroy_medium text-white text-4xl lg:text-5xl 2xl:text-7xl line-clamp-2 max-w-xl">¿Por qué elegir <span class="text-[#59C402] font-gilroy_bold">Internet de Fibra Óptica? </span></h2>
+                    @php
+                        $texto2 = $textoshome->description4section ?? "Ingrese un texto";
+                        $texto_formateado2 = preg_replace('/\*(.*?)\*/', '<span class="text-[#59C402] font-gilroy_bold">$1</span>', e($texto2));
+                    @endphp
+                   <h2 class="font-gilroy_medium text-white text-4xl lg:text-5xl 2xl:text-7xl lg:line-clamp-2 max-w-xl">{!! $texto_formateado2 !!}</h2>
                 </div>
 
                 <div class="flex flex-col gap-2 max-w-xs bg-black bg-opacity-50 rounded-2xl p-6">
-                    <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">Conexión Estable</h2>
-                    <p class="font-gilroy_regular text-white text-lg line-clamp-5">Resiste interferencias externas, garantizando un servicio confiable incluso en horarios pico.</p>
+                    <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">{{$textoshome->titlebenefit1 ?? 'Ingrese texto'}}</h2>
+                    <p class="font-gilroy_regular text-white text-lg line-clamp-5">{{$textoshome->descriptionbenefit1 ?? 'Ingrese texto'}}</p>
                     <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
                         <a href="{{route('contacto')}}"><div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
                             <p class="leading-none text-white text-lg">Lo quiero ahora</p>
@@ -375,8 +375,8 @@
             <div class="flex flex-col lg:flex-row lg:justify-between px-[5%] gap-5 md:gap-16">
                 
                 <div class="flex flex-col gap-2 max-w-xs bg-black bg-opacity-50 rounded-2xl p-6">
-                    <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">Velocidad Superior</h2>
-                    <p class="font-gilroy_regular text-white text-lg line-clamp-5">La fibra óptica ofrece mayor rapidez para descargas, streaming y videollamadas sin interrupciones.</p>
+                    <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">{{$textoshome->titlebenefit2 ?? 'Ingrese texto'}}</h2>
+                    <p class="font-gilroy_regular text-white text-lg line-clamp-5">{{$textoshome->descriptionbenefit2 ?? 'Ingrese texto'}}</p>
                     <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
                         <a href="{{route('contacto')}}"><div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
                             <p class="leading-none text-white text-lg">Lo quiero ahora</p>
@@ -385,8 +385,8 @@
                 </div>
 
                 <div class="flex flex-col gap-2 max-w-xs bg-black bg-opacity-50 rounded-2xl p-6">
-                    <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">Alta Capacidad</h2>
-                    <p class="font-gilroy_regular text-white text-lg line-clamp-5">Soporta múltiples dispositivos conectados sin pérdida de calidad.</p>
+                    <h2 class="font-gilroy_bold text-white text-2xl line-clamp-1 ">{{$textoshome->titlebenefit3 ?? 'Ingrese texto'}}</h2>
+                    <p class="font-gilroy_regular text-white text-lg line-clamp-5">{{$textoshome->descriptionbenefit3 ?? 'Ingrese texto'}}</p>
                     <div class="flex flex-col justify-center items-start font-gilroy_semibold group">
                         <a href="{{route('contacto')}}"><div class="bg-[#0066FF] w-auto px-6 text-center py-3 rounded-3xl tracking-normal">
                             <p class="leading-none text-white text-lg">Lo quiero ahora</p>

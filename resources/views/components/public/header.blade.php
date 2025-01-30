@@ -23,17 +23,17 @@
                 />
 
                 <label for="menu" class="transition-all flex flex-col gap-1 z-40 lg:hidden hamburguesa justify-center items-center order-3 lg:order-3">   
-                  <div class="bg-[#E29720] p-3 rounded-2xl">
+                  <div class="bg-[#0066FF] p-3 rounded-2xl">
                       <div class="peer-checked:flex hidden">
                         <p class="w-7 h-1 bg-[#110B79] transition-transform duration-500"></p>
                         <p class="w-7 h-1 bg-[#110B79] transition-transform duration-500"></p>
                         <p class="w-7 h-1 bg-[#110B79] transition-transform duration-500"></p>
                       </div>
                       <svg class="peer-checked:hidden flex" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M8.33464 5.0013C8.33464 3.16035 6.84225 1.66797 5.0013 1.66797C3.16035 1.66797 1.66797 3.16035 1.66797 5.0013C1.66797 6.84225 3.16035 8.33464 5.0013 8.33464C6.84225 8.33464 8.33464 6.84225 8.33464 5.0013Z" stroke="#110B79" stroke-width="1.25"/>
-                        <path d="M8.33464 15.0013C8.33464 13.1604 6.84225 11.668 5.0013 11.668C3.16035 11.668 1.66797 13.1604 1.66797 15.0013C1.66797 16.8422 3.16035 18.3346 5.0013 18.3346C6.84225 18.3346 8.33464 16.8422 8.33464 15.0013Z" stroke="#110B79" stroke-width="1.25"/>
-                        <path d="M18.3346 5.0013C18.3346 3.16035 16.8422 1.66797 15.0013 1.66797C13.1604 1.66797 11.668 3.16035 11.668 5.0013C11.668 6.84225 13.1604 8.33464 15.0013 8.33464C16.8422 8.33464 18.3346 6.84225 18.3346 5.0013Z" stroke="#110B79" stroke-width="1.25"/>
-                        <path d="M18.3346 15.0013C18.3346 13.1604 16.8422 11.668 15.0013 11.668C13.1604 11.668 11.668 13.1604 11.668 15.0013C11.668 16.8422 13.1604 18.3346 15.0013 18.3346C16.8422 18.3346 18.3346 16.8422 18.3346 15.0013Z" stroke="#110B79" stroke-width="1.25"/>
+                        <path d="M8.33464 5.0013C8.33464 3.16035 6.84225 1.66797 5.0013 1.66797C3.16035 1.66797 1.66797 3.16035 1.66797 5.0013C1.66797 6.84225 3.16035 8.33464 5.0013 8.33464C6.84225 8.33464 8.33464 6.84225 8.33464 5.0013Z" stroke="#ffffff" stroke-width="1.25"/>
+                        <path d="M8.33464 15.0013C8.33464 13.1604 6.84225 11.668 5.0013 11.668C3.16035 11.668 1.66797 13.1604 1.66797 15.0013C1.66797 16.8422 3.16035 18.3346 5.0013 18.3346C6.84225 18.3346 8.33464 16.8422 8.33464 15.0013Z" stroke="#ffffff" stroke-width="1.25"/>
+                        <path d="M18.3346 5.0013C18.3346 3.16035 16.8422 1.66797 15.0013 1.66797C13.1604 1.66797 11.668 3.16035 11.668 5.0013C11.668 6.84225 13.1604 8.33464 15.0013 8.33464C16.8422 8.33464 18.3346 6.84225 18.3346 5.0013Z" stroke="#ffffff" stroke-width="1.25"/>
+                        <path d="M18.3346 15.0013C18.3346 13.1604 16.8422 11.668 15.0013 11.668C13.1604 11.668 11.668 13.1604 11.668 15.0013C11.668 16.8422 13.1604 18.3346 15.0013 18.3346C16.8422 18.3346 18.3346 16.8422 18.3346 15.0013Z" stroke="#ffffff" stroke-width="1.25"/>
                       </svg>
                   </div>
                 </label>
@@ -48,8 +48,8 @@
                     </a>
                 </div>
 
-                <ul class="flex font-gilroy_medium text-lg pt-40 fixed inset-0 px-[5%] flex-col lg:flex-row lg:items-center clip-circle-0 peer-checked/menu:clip-circle-full transition-[clip-path] duration-500 gap-5 lg:gap-10 lg:clip-circle-full lg:relative lg:flex lg:justify-items-center lg:p-0 lg:bg-transparent flex-1">
-                    <div class="flex flex-col font-normal lg:flex-row order-2 lg:order-1 lg:w-full lg:justify-center gap-5 lg:gap-10 text-[#001F4F]">
+                <ul class="bg-white flex font-gilroy_regular font-semibold text-lg pt-32 fixed inset-0 px-[5%] flex-col lg:flex-row lg:items-center clip-circle-0 peer-checked/menu:clip-circle-full transition-[clip-path] duration-500 gap-5 lg:gap-10 lg:clip-circle-full lg:relative lg:flex lg:justify-items-center lg:p-0 lg:bg-transparent flex-1">
+                    <div class="flex flex-col lg:flex-row order-2 lg:order-1 lg:w-full lg:justify-center gap-5 lg:gap-10 text-[#001F4F]">
                         <li class="flex flex-col">
                             <a href="{{route('index')}}" class="">Inicio</a>
                         </li>
@@ -68,7 +68,7 @@
                     </div>
                 </ul>
 
-                <div class="hidden md:flex flex-col justify-center items-center font-gilroy_semibold">
+                <div class="hidden md:flex flex-col justify-center items-center font-gilroy_regular font-semibold">
                   <a href="{{route('contacto')}}"><div class="bg-[#0066FF] px-4 py-3 my-auto rounded-3xl">
                       <p class="leading-none text-white">Lo quiero ahora</p>
                   </div></a>
@@ -80,10 +80,12 @@
 
         </div>
 
-        <div class="flex md:hidden flex-col justify-center items-center font-latobold">
-          <div class="bg-[#E29720] px-3 py-2 rounded-lg">
-              <p class="leading-none text-[#21149E]">Habla con nosotros</p>
-          </div>
+        <div class="flex md:hidden flex-col  font-latobold pb-4 px-5">
+          <a href="{{route('contacto')}}">
+            <div class="bg-[#0066FF] px-4 py-3 my-auto rounded-3xl w-full">
+                <p class="leading-none text-white text-center font-gilroy_regular font-semibold">Lo quiero ahora</p>
+            </div>
+          </a>
         </div>
 
     </div>

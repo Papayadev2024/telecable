@@ -92,12 +92,14 @@ class GeneralController extends Controller
                     $num = substr($key, strrpos($key, '-') + 1); // Obtener el número de la especificación
                     $detalleContacto[$num]['Email'] = $value; // Agregar las especificaciones al array asociativo
                     
-                  } elseif (strpos($key, 'Area-') === 0) {
+                  } 
+                  
+                  // elseif (strpos($key, 'Area-') === 0) {
 
-                    $num = substr($key, strrpos($key, '-') + 1); // Obtener el número de la especificación
-                    $detalleContacto[$num]['Area'] = $value; // Agregar las especificaciones al array asociativo
+                  //   $num = substr($key, strrpos($key, '-') + 1); // Obtener el número de la especificación
+                  //   $detalleContacto[$num]['Area'] = $value; // Agregar las especificaciones al array asociativo
                     
-                  }
+                  // }
    
                 }
             }
@@ -122,13 +124,13 @@ class GeneralController extends Controller
         $espect = ContactDetail::find($key);
      
         if ($espect) {
-            $espect->categoria_id = $value['Area'];
+            //$espect->area = $value['Area'];
             $espect->nombre = $value['Nombre'];
             $espect->celular = $value['Celular'];
             $espect->email = $value['Email'];
         } else {
             $espect = new ContactDetail();
-            $espect->categoria_id = $value['Area'];
+            //$espect->area = $value['Area'];
             $espect->nombre = $value['Nombre'];
             $espect->celular = $value['Celular'];
             $espect->email = $value['Email'];

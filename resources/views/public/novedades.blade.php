@@ -41,17 +41,19 @@
                         </div>
 
                         <div class="max-w-5xl mx-auto text-center">
-                            <div class="grid grid-cols-2 md:grid-cols-3 font-gotham_bold w-full rounded-2xl overflow-hidden bg-[#5599FF] mt-5">
+                            <div class="grid grid-cols-1 md:grid-cols-3 font-gotham_bold w-full rounded-2xl overflow-hidden bg-[#5599FF] mt-5">
                                 <template x-for="(cat, index) in categories" :key="index">
                                     <div    
                                         @click="selected = index" 
                                         :class="selected === index 
                                             ? 'bg-[#004FC6]' 
                                             : ''" 
-                                        class="flex flex-col justify-center items-center px-6 py-7 cursor-pointer">
-                                        <img class="w-12 h-12 object-contain" :src="cat.url_image + cat.name_image"  onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"  />
-                                        <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold mt-5" x-text="cat.name"></h3>
-                                        <h2 class="text-white text-base font-gilroy_regular" x-text="cat.description"></h2>
+                                         class="flex flex-row gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer">
+                                         <img class="w-12 h-12 object-contain" :src="cat.url_image + cat.name_image"  onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"  />
+                                         <div class="flex flex-col">
+                                             <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold md:mt-5" x-text="cat.name"></h3>
+                                             <h2 class="text-white text-base font-gilroy_regular" x-text="cat.description"></h2>
+                                         </div>
                                     </div>
                                 </template>
                             </div>

@@ -240,11 +240,12 @@ class IndexController extends Controller
     public function contacto()
     {
         $general = General::all();
+        $contactodetalle = ContactDetail::all();
         $textoshome = HomeView::first();
         $contactos = ContactDetail::where('status', '=', 1)->get();
         $preguntasfrec = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
         $faqs = Faqs::where('status', '=', 1)->where('visible', '=', 1)->get();
-        return view('public.contacto', compact('preguntasfrec', 'textoshome','general','contactos','faqs'));
+        return view('public.contacto', compact('preguntasfrec', 'textoshome','general','contactos','faqs','contactodetalle'));
     }
 
     public function carrito()
