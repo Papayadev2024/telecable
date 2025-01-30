@@ -68,76 +68,82 @@
       
   </section>
       
-
-  <section>
-    <div class="flex flex-col gap-10 w-full px-[5%] lg:px-[10%]  pb-10 lg:pb-20">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-10">
-               
-                    <div class="flex flex-col justify-start items-start">
-                        
-                        <h3 class="font-gilroy_semibold text-[#001F4F] text-xl line-clamp-1 flex flex-row gap-3 items-center">
-                            Dirección
-                        </h3>
-                        
-                    </div>
-                     
-                    <div class="flex flex-col items-start justify-start gap-2 text-[#001637] font-gilroy_regular text-lg ">
-                      
-                      {!! $general[0]->mapa!!}
-                     
-                    </div>
-             
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-10">
-               
-                      <div class="flex flex-col justify-start items-start">
-                          
-                          <h3 class="font-gilroy_semibold text-[#001F4F] text-xl line-clamp-1 flex flex-row gap-3 items-center">
-                            Teléfonos
-                          </h3>
-                          
-                      </div>
-                      
-                      <div class="flex flex-col items-start justify-start gap-1">
-                           
-                        @foreach($contactodetalle as $contacto)
-                          @if($contacto->celular)
-                              <p class="text-[#001637] font-gilroy_regular text-lg">
-                                  <span class="font-gilroy_semibold">{{ $contacto->nombre }}</span> - {{ $contacto->celular }}
-                              </p>
-                          @endif
-                        @endforeach
-                      
-                      </div>
+  @if (count($contactodetalle) > 0 && $general[0]->mapa)
+    <section>
+      <div class="flex flex-col gap-10 w-full px-[5%] lg:px-[10%]  pb-10 lg:pb-20">
               
-              </div>
+              @if ($general[0]->mapa)
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-10">
+                  
+                        <div class="flex flex-col justify-start items-start">
+                            
+                            <h3 class="font-gilroy_semibold text-[#001F4F] text-xl line-clamp-1 flex flex-row gap-3 items-center">
+                                Dirección
+                            </h3>
+                            
+                        </div>
+                        
+                        <div class="flex flex-col items-start justify-start gap-2 text-[#001637] font-gilroy_regular text-lg ">
+                          
+                          {!! $general[0]->mapa!!}
+                        
+                        </div>
+                
+                </div>
+              @endif
 
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-10">
-                      
-                      <div class="flex flex-col justify-start items-start">
+              @if (count($contactodetalle) > 0)
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-10">
+                  
+                          <div class="flex flex-col justify-start items-start">
+                              
+                              <h3 class="font-gilroy_semibold text-[#001F4F] text-xl line-clamp-1 flex flex-row gap-3 items-center">
+                                Teléfonos
+                              </h3>
+                              
+                          </div>
                           
-                          <h3 class="font-gilroy_semibold text-[#001F4F] text-xl line-clamp-1 flex flex-row gap-3 items-center">
-                              Emails
-                          </h3>
+                          <div class="flex flex-col items-start justify-start gap-1">
+                              
+                            @foreach($contactodetalle as $contacto)
+                              @if($contacto->celular)
+                                  <p class="text-[#001637] font-gilroy_regular text-lg">
+                                      <span class="font-gilroy_semibold">{{ $contacto->nombre }}</span> - {{ $contacto->celular }}
+                                  </p>
+                              @endif
+                            @endforeach
                           
-                      </div>
-                      
-                      <div class="flex flex-col items-start justify-start gap-1">
-                        @foreach($contactodetalle as $contacto)
-                            @if($contacto->email)
-                                <p class="text-[#001637] font-gilroy_regular text-lg">
-                                    <span class="font-gilroy_semibold">{{ $contacto->email }}</span>
-                                </p>
-                            @endif
-                        @endforeach
-                      </div>
+                          </div>
+                  
+                </div>
+              @endif
               
-              </div>
-
-    </div>
-</section>
-
+              @if (count($contactodetalle) > 0)
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-10">
+                        
+                        <div class="flex flex-col justify-start items-start">
+                            
+                            <h3 class="font-gilroy_semibold text-[#001F4F] text-xl line-clamp-1 flex flex-row gap-3 items-center">
+                                Emails
+                            </h3>
+                            
+                        </div>
+                        
+                        <div class="flex flex-col items-start justify-start gap-1">
+                          @foreach($contactodetalle as $contacto)
+                              @if($contacto->email)
+                                  <p class="text-[#001637] font-gilroy_regular text-lg">
+                                      <span class="font-gilroy_semibold">{{ $contacto->email }}</span>
+                                  </p>
+                              @endif
+                          @endforeach
+                        </div>
+                
+                </div>
+              @endif
+      </div>
+    </section>
+  @endif
   {{-- <div class="flex flex-col justify-center items-start gap-4">
                       
     <h3 class="font-gotham_bold text-white text-2xl" data-aos="fade-down">¿Quieres contactar con nosotros directamente?</h3>
