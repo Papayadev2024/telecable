@@ -21,9 +21,9 @@
                 }
             }"
         >
-            <section class="bg-center bg-cover bg-no-repeat flex flex-col justify-center relative pb-28" style="background-image: url({{asset('images/img/tc_bannerservicios.png')}})">                        
-                {{-- <img class="object-cover absolute top-0 left-0 h-full object-left w-full bg-gradient-to-r from-[#00388C] to-transparent" src="{{asset('images/img/tc_textura.svg')}}" />
-                <img class="object-cover absolute bottom-0 right-0 h-full object-bottom w-full" src="{{asset('images/img/tc_textura2.svg')}}" /> --}}
+            <section class="bg-center bg-cover bg-no-repeat flex flex-col justify-center relative pb-28" style="background-image: url({{asset('images/img/tc_bannerservicios.jpg')}})">                        
+                {{-- <img class="object-cover absolute top-0 left-0 h-full object-left w-full bg-gradient-to-r from-[#00388C] to-transparent" src="{{asset('images/img/tc_textura.svg')}}" /> --}}
+                <img class="object-cover absolute bottom-0 right-0 h-full object-bottom w-full rotate-180" src="{{asset('images/img/tc_textura2.svg')}}" />
                 <div class="flex flex-col lg:flex-row px-[5%]  py-[5%]  lg:px-[5%]  gap-5 justify-center items-start lg:items-end">
                     <div class="z-20 w-full flex flex-col gap-4 justify-center">
                         

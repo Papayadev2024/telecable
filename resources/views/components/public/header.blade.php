@@ -65,6 +65,9 @@
                         <li class="flex flex-col">
                             <a href="{{route('contacto')}}" class="">Contacto</a>
                         </li>
+                        <li class="flex flex-col">
+                          <a id="downloadBtn"  class="cursor-pointer">Descargar App</a>
+                        </li>
                     </div>
                 </ul>
 
@@ -304,6 +307,48 @@
 
 </header>
 
+<div id="loadingScreen" class="contenedor z-50" style="display: none;">
+  <div class="flex flex-col justify-center items-center"><img class="w-40 rounded-full" src="{{asset('images/img/apptc.png')}}" /></div>
+  <div class="loader hidden"></div>
+  <p class="loading-text font-gilroy_regular">Descargado</p>
+  <div class="progress-bar">
+      <div class="progress"></div>
+  </div>
+</div>
+
+<script> 
+  document.getElementById('downloadBtn').addEventListener('click', function() {
+      document.getElementById('loadingScreen').style.display = 'flex';
+      
+      const loadingText = document.querySelector('.loading-text');
+      const progress = document.querySelector('.progress');
+      let dots = '', progressWidth = 0;
+  
+      const textInterval = setInterval(() => {
+          loadingText.textContent = 'Descargando' + (dots = dots.length < 3 ? dots + '.' : '');
+      }, 500);
+  
+      const progressInterval = setInterval(() => {
+          progress.style.width = (progressWidth += 2) + '%';
+          if (progressWidth >= 100) {
+              clearInterval(textInterval);
+              clearInterval(progressInterval);
+              loadingText.textContent = '¡Descarga completada!';
+              document.querySelector('.loader').style.display = 'none';
+              
+              setTimeout(() => {
+                  const link = document.createElement('a');
+                  link.href = 'apk/TcPlay(3.0.2).apk'; // Cambia por la ruta real del archivo
+                  link.download = 'TcPlay(3.0.2).apk';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                  document.getElementById('loadingScreen').style.display = 'none';
+              }, 300);
+          }
+      }, 100);
+  });
+</script>
 <script>
   function showForm(formId) {
     // Oculta todos los formularios
