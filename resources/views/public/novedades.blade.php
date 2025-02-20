@@ -11,15 +11,47 @@
     @if (count($productos) > 0)
         <div
             x-data="{
-                selected: 1,
+                selected: 0,
                 categories: {{ json_encode($category) }},
                 products: {{ json_encode($productos) }},
                 general: {{ json_encode($general[0]) }},
+                swiperInstance: null,
                 get filteredProducts() {
-                    const selectedCategory = this.categories[this.selected];
+                    if (!this.categories.length) return [];
+                    const selectedCategory = this.categories[this.selected] || {};
                     return this.products.filter(product => product.categoria_id === selectedCategory.id);
+                },
+                reloadSwiper() {
+                    this.$nextTick(() => {
+                        if (window.swiperplan) {
+                            window.swiperplan.destroy(true, true); // Destruye la instancia existente
+                        }
+                        window.swiperplan = new Swiper('.planes', {
+                            slidesPerView: 3,
+                            spaceBetween: 10,
+                            centeredSlides: false,
+                            initialSlide: 0,
+                            loop: false,
+                            autoplay: {
+                                delay: 2500,
+                                disableOnInteraction: false,
+                            },
+                            scrollbar: {
+                                el: '.swiper-scrollbar',
+                                draggable: true,
+                            },
+                            breakpoints: {
+                                0: { slidesPerView: 1 },
+                                768: { slidesPerView: 2 },
+                                920: { slidesPerView: 3 },
+                                1600: { slidesPerView: 4 },
+                            },
+                        });
+                    });
                 }
+
             }"
+            x-init="reloadSwiper()"
         >
             <section class="bg-center bg-cover bg-no-repeat flex flex-col justify-center relative pb-28" style="background-image: url({{asset('images/img/tc_bannerservicios.jpg')}})">                        
                 {{-- <img class="object-cover absolute top-0 left-0 h-full object-left w-full bg-gradient-to-r from-[#00388C] to-transparent" src="{{asset('images/img/tc_textura.svg')}}" /> --}}
@@ -149,7 +181,7 @@
                                                                 <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
                                                                 <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
                                                             </svg>
-                                                                <span x-text="producto.categoria_id === 3 ? 'Netflix:' : 'Instalación:'"></span>
+                                                                Instalación
                                                             </h3>
                                                             <h2 class="font-gilroy_regular text-white text-sm"  x-text="producto.especificacion"></h2>
                                                         </div>

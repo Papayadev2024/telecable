@@ -235,7 +235,7 @@
                                                         <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
                                                         <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
                                                     </svg>
-                                                        <span x-text="producto.categoria_id === 3 ? 'Netflix:' : 'Instalación:'"></span>
+                                                        Instalacion:
                                                     </h3>
                                                     <h2 class="font-gilroy_regular text-white text-sm"  x-text="producto.especificacion"></h2>
                                                 </div>
