@@ -338,8 +338,8 @@
               
               setTimeout(() => {
                   const link = document.createElement('a');
-                  link.href = 'apk/TcPlay(3.0.2).apk'; // Cambia por la ruta real del archivo
-                  link.download = 'TcPlay(3.0.2).apk';
+                  link.href = 'apk/TcPlay(3.1).apk'; // Cambia por la ruta real del archivo
+                  link.download = 'TcPlay(3.1).apk';
                   document.body.appendChild(link);
                   link.click();
                   document.body.removeChild(link);
