@@ -104,9 +104,10 @@
         }"
     >    
         <section class="bg-center h-svh bg-cover bg-no-repeat flex flex-col justify-center relative" style="background-image: url({{asset('images/img/tc_banner.png')}})">
-            {{-- bg-gradient-to-r from-[#00388c98] to-transparent --}}
-            <img class="object-cover absolute top-0 left-0 h-full object-left w-full" src="{{asset('images/img/tc_textura.svg')}}" />
-            <img class="object-cover absolute bottom-0 right-0 h-full object-bottom w-full" src="{{asset('images/img/tc_textura2.svg')}}" />
+            {{--  --}}
+            {{-- <img class="object-cover absolute top-0 left-0 h-full object-left w-full" src="{{asset('images/img/tc_textura.svg')}}" /> --}}
+            <img class="object-cover absolute top-0 left-0 h-full object-left w-full bg-[linear-gradient(to_right,#00388cc2_40%,transparent_80%)]"/>
+            {{-- <img class="object-cover absolute bottom-0 right-0 h-full object-bottom w-full" src="{{asset('images/img/tc_textura2.svg')}}" /> --}}
             <div class="flex flex-col lg:flex-row px-[5%]  py-[5%]  lg:px-[5%]  gap-5 justify-center items-start lg:items-end">
                 <div class="z-20 w-full lg:w-3/4 2xl:w-2/3 flex flex-col gap-4 2xl:gap-10 justify-center">
                     
@@ -123,23 +124,38 @@
                             <h2 class="font-gilroy_bold text-white text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl line-clamp-3">{{$textoshome->description1section ?? 'Ingrese texto'}}</h2>
                     </div>
    
-                    <div class="grid grid-cols-1 md:grid-cols-3 font-gotham_bold w-full overflow-hidden rounded-2xl bg-[#5599FF] mt-5">
-                        {{-- @foreach ($category as $categoria) --}}
-                        <template x-for="(cat, index) in categories" :key="index">
-                            <div    
-                                @click="selected = index" 
-                                :class="selected === index 
-                                    ? 'bg-[#004FC6]' 
-                                    : ''" 
-                                 class="flex flex-row gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer">
-                                <img class="w-12 h-12 object-contain" :src="cat.url_image + cat.name_image"  onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"  />
-                                <div class="flex flex-col">
-                                    <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold md:mt-5" x-text="cat.name"></h3>
-                                    <h2 class="text-white text-base font-gilroy_regular" x-text="cat.description"></h2>
-                                </div>
+                    <div class="font-gotham_bold w-full overflow-hidden rounded-2xl bg-[#5599FF] mt-5">
+                        <div class="categorias_carrusel w-full overflow-hidden rounded-2xl bg-[#5599FF]">
+                            <div class="swiper-wrapper">
+                                {{-- <template x-for="(cat, index) in categories" :key="index">
+                                    <div    
+                                        @click="selected = index" 
+                                        :class="selected === index 
+                                            ? 'bg-[#004FC6]' 
+                                            : ''" 
+                                        class="flex flex-row gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer">
+                                        <img class="w-12 h-12 object-contain" :src="cat.url_image + cat.name_image"  onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"  />
+                                        <div class="flex flex-col">
+                                            <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold md:mt-5 text-center" x-text="cat.name"></h3>
+                                            <h2 class="text-white text-base font-gilroy_regular" x-text="cat.description"></h2>
+                                        </div>
+                                    </div>
+                                </template> --}}
+                                <template x-for="(cat, index) in categories" :key="index">
+                                    <div class="swiper-slide flex flex-row gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer"
+                                         @click="selected = index" 
+                                         :class="selected === index ? 'bg-[#004FC6]' : ''">
+                                        <img class="w-12 h-12 object-contain mx-auto" :src="cat.url_image + cat.name_image" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
+                                        <div class="flex flex-col">
+                                            <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold md:mt-3 text-center" x-text="cat.name"></h3>
+                                            <h2 class="text-white text-base font-gilroy_regular text-center" x-text="cat.description"></h2>
+                                        </div>
+                                    </div>
+                                </template>
                             </div>
-                        </template>
-                        {{-- @endforeach --}}
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
                     </div>
                     
                 </div>
@@ -148,7 +164,34 @@
                 </div>
             </div> 
         </section>
+        <script>
+            // Inicializar Swiper después de que Alpine.js haya renderizado los elementos
+            document.addEventListener('alpine:init', () => {
+                Alpine.nextTick(() => {
+                    new Swiper('.categorias_carrusel', {
+                        // Opciones de configuración
+                        slidesPerView: 1, // Muestra 1 slide por vista en móvil
+                        spaceBetween: 20,
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        breakpoints: {
+                            // Cuando el ancho de la ventana es >= 768px
+                            768: {
+                                slidesPerView: 3, // Muestra 3 slides en desktop
+                            }
+                        }
+                    });
+                });
+            });
 
+            
+        </script>
         <section  class="bg-cover bg-opacity-100 relative pb-10 lg:pb-16 flex flex-col gap-10"  style="background-image: url('{{asset('images/img/tc_textura3.svg')}}');">
                 
                 <div class="px-[5%] md:px-[8%]  py-5 flex md:flex-row gap-5 md:gap-10 lg:-mt-10">
