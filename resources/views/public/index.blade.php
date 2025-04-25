@@ -172,20 +172,6 @@
                     <div class="font-gotham_bold w-full rounded-2xl bg-[#5599FF] mt-5 relative">
                         <div class="categorias_carrusel w-full overflow-hidden rounded-2xl bg-[#5599FF]">
                             <div class="swiper-wrapper">
-                                {{-- <template x-for="(cat, index) in categories" :key="index">
-                                    <div    
-                                        @click="selected = index" 
-                                        :class="selected === index 
-                                            ? 'bg-[#004FC6]' 
-                                            : ''" 
-                                        class="flex flex-row gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer">
-                                        <img class="w-12 h-12 object-contain" :src="cat.url_image + cat.name_image"  onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"  />
-                                        <div class="flex flex-col">
-                                            <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold md:mt-5 text-center" x-text="cat.name"></h3>
-                                            <h2 class="text-white text-base font-gilroy_regular" x-text="cat.description"></h2>
-                                        </div>
-                                    </div>
-                                </template> --}}
                                 <template x-for="(cat, index) in categories" :key="index">
                                     <div class="swiper-slide">
                                         <div class="flex flex-col gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer"
@@ -258,7 +244,7 @@
                 <div class="px-[5%] md:px-[8%]  py-5 flex md:flex-row gap-5 md:gap-10 lg:-mt-10">
                     <div class="w-full">
                         <div class="swiper planes w-full">
-                            <div class="swiper-wrapper">   
+                            <div class="swiper-wrapper" :class="{'md:flex sm:flex-row md:justify-center': filteredProducts.length >= 1 && filteredProducts.length <= 3}">   
                                 <template x-for="producto in filteredProducts" :key="producto.id">
                                     <div class="swiper-slide">
                                         <div class="flex flex-col gap-5 max-w-[390px] bg-white hover:bg-[#1EA7A2] bg-opacity-10 p-6 rounded-3xl mx-auto">
