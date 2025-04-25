@@ -53,12 +53,15 @@
                         <li class="flex flex-col">
                             <a href="{{route('index')}}" class="">Inicio</a>
                         </li>
+
+                        <li class="flex flex-col">
+                          <a href="{{route('nosotros')}}" class="">Nosotros</a>
+                        </li>
+                        
                         <li class="flex flex-col">
                             <a href="{{route('novedades')}}" class="">Planes</a>
                         </li>
-                        <li class="flex flex-col">
-                            <a href="{{route('nosotros')}}" class="">Nosotros</a>
-                        </li>
+                       
                         {{-- <li class="flex flex-col">
                             <a href="{{route('blog.all')}}" class="">Blog</a>
                         </li> --}}
@@ -349,6 +352,7 @@
       }, 100);
   });
 </script>
+
 <script>
   function showForm(formId) {
     // Oculta todos los formularios
@@ -387,7 +391,6 @@
 </script>
 
 <script>
-  
   $(document).ready(function() {
     $('#buscarproducto').keyup(function() {
 
@@ -424,7 +427,6 @@
       }
     });
   });
-
 
   $(document).ready(function() {
     $('#buscarproducto2').keyup(function() {
@@ -496,6 +498,7 @@
       }
   });
 </script>
+
 {{-- <script>
        function applyScrollStyles() {
             const header = document.getElementById('main-header');

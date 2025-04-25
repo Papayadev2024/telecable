@@ -104,8 +104,8 @@
         }"
     >    
         <section class="bg-center h-svh bg-cover bg-no-repeat flex flex-col justify-center relative" style="background-image: url({{asset('images/img/tc_banner.png')}})">
-                                
-            <img class="object-cover absolute top-0 left-0 h-full object-left w-full bg-gradient-to-r from-[#00388C] to-transparent" src="{{asset('images/img/tc_textura.svg')}}" />
+            {{-- bg-gradient-to-r from-[#00388c98] to-transparent --}}
+            <img class="object-cover absolute top-0 left-0 h-full object-left w-full" src="{{asset('images/img/tc_textura.svg')}}" />
             <img class="object-cover absolute bottom-0 right-0 h-full object-bottom w-full" src="{{asset('images/img/tc_textura2.svg')}}" />
             <div class="flex flex-col lg:flex-row px-[5%]  py-[5%]  lg:px-[5%]  gap-5 justify-center items-start lg:items-end">
                 <div class="z-20 w-full lg:w-3/4 2xl:w-2/3 flex flex-col gap-4 2xl:gap-10 justify-center">
@@ -356,7 +356,7 @@
                         $texto2 = $textoshome->description4section ?? "Ingrese un texto";
                         $texto_formateado2 = preg_replace('/\*(.*?)\*/', '<span class="text-[#59C402] font-gilroy_bold">$1</span>', e($texto2));
                     @endphp
-                   <h2 class="font-gilroy_medium text-white text-4xl lg:text-5xl 2xl:text-7xl lg:line-clamp-2 max-w-xl">{!! $texto_formateado2 !!}</h2>
+                   <h2 class="font-gilroy_medium text-white text-4xl lg:text-5xl 2xl:text-7xl lg:line-clamp-2 max-w-xl 2xl:max-w-3xl">{!! $texto_formateado2 !!}</h2>
                 </div>
 
                 <div class="flex flex-col gap-2 max-w-xs bg-black bg-opacity-50 rounded-2xl p-6">
