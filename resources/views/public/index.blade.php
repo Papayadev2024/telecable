@@ -158,12 +158,12 @@
                         </div>
                         <div class="swiper-cat-prev absolute top-1/2 -translate-y-1/2 -left-2 lg:-left-5 z-20 aspect-square">
                             <div class="bg-white rounded-full flex flex-col relative -m-1">
-                                <i class="fa-solid fa-circle-chevron-left text-3xl text-[#004FC6]"></i>
+                                <i class="fa-solid fa-circle-chevron-left text-3xl md:text-4xl text-[#004FC6]"></i>
                             </div>
                         </div>
                         <div class="swiper-cat-next absolute top-1/2 -translate-y-1/2 -right-2 lg:-right-5 z-20 aspect-square">
                             <div class="bg-white rounded-full flex flex-col relative -m-1">
-                                <i class="fa-solid fa-circle-chevron-right text-3xl text-[#004FC6]"></i>
+                                <i class="fa-solid fa-circle-chevron-right text-3xl md:text-4xl text-[#004FC6]"></i>
                             </div>
                         </div>
 
