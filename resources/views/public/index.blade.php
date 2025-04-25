@@ -203,6 +203,42 @@
                             }
                         }
                     });
+
+                    new Swiper(".planes", {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                        centeredSlides: false,
+                        initialSlide: 0,
+                        loop: true,
+                        autoplay: {
+                            delay: 2500,
+                            disableOnInteraction: false,
+                        },
+                        scrollbar: {
+                            el: '.swiper-scrollbar',
+                            draggable: true,
+                        },
+                        breakpoints: {
+                            0: {
+                                slidesPerView: 1,
+                            
+                            },
+                            768: {
+                                slidesPerView: 2,
+                                spaceBetween: 20,
+                            
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 20,
+                            },
+                            1600: {
+                                slidesPerView: 4,
+                                spaceBetween: 20,
+                            
+                            },
+                        },
+                    });
                 });
             });
 
@@ -717,41 +753,7 @@
             },
         });
 
-        var swiper = new Swiper(".planes", {
-            slidesPerView: 3,
-            spaceBetween: 10,
-            centeredSlides: false,
-            initialSlide: 0,
-            loop: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            scrollbar: {
-                el: '.swiper-scrollbar',
-                draggable: true,
-            },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1,
-                   
-                },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                  
-                },
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 20,
-                },
-                1600: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
-                  
-                },
-            },
-        });
+        
 
         var swiper = new Swiper(".lugares", {
             slidesPerView: 3,
