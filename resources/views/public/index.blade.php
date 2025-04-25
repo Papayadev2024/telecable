@@ -106,7 +106,7 @@
         <section class="bg-center h-svh bg-cover bg-no-repeat flex flex-col justify-center relative" style="background-image: url({{asset('images/img/tc_banner.png')}})">
             {{--  --}}
             {{-- <img class="object-cover absolute top-0 left-0 h-full object-left w-full" src="{{asset('images/img/tc_textura.svg')}}" /> --}}
-            <img class="object-cover absolute top-0 left-0 h-full object-left w-full bg-[linear-gradient(to_right,#00388cc2_40%,transparent_80%)]"/>
+            <img class="object-cover border-0 absolute top-0 left-0 h-full object-left w-full bg-[linear-gradient(to_right,#00388cc2_40%,transparent_80%)]"/>
             {{-- <img class="object-cover absolute bottom-0 right-0 h-full object-bottom w-full" src="{{asset('images/img/tc_textura2.svg')}}" /> --}}
             <div class="flex flex-col lg:flex-row px-[5%]  py-[5%]  lg:px-[5%]  gap-5 justify-center items-start lg:items-end">
                 <div class="z-20 w-full lg:w-3/4 2xl:w-2/3 flex flex-col gap-4 2xl:gap-10 justify-center">
@@ -124,7 +124,7 @@
                             <h2 class="font-gilroy_bold text-white text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl line-clamp-3">{{$textoshome->description1section ?? 'Ingrese texto'}}</h2>
                     </div>
    
-                    <div class="font-gotham_bold w-full overflow-hidden rounded-2xl bg-[#5599FF] mt-5">
+                    <div class="font-gotham_bold w-full rounded-2xl bg-[#5599FF] mt-5 relative">
                         <div class="categorias_carrusel w-full overflow-hidden rounded-2xl bg-[#5599FF]">
                             <div class="swiper-wrapper">
                                 {{-- <template x-for="(cat, index) in categories" :key="index">
@@ -142,20 +142,31 @@
                                     </div>
                                 </template> --}}
                                 <template x-for="(cat, index) in categories" :key="index">
-                                    <div class="swiper-slide flex flex-row gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer"
+                                    <div class="swiper-slide">
+                                        <div class="flex flex-col gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer"
                                          @click="selected = index" 
                                          :class="selected === index ? 'bg-[#004FC6]' : ''">
-                                        <img class="w-12 h-12 object-contain mx-auto" :src="cat.url_image + cat.name_image" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
-                                        <div class="flex flex-col">
-                                            <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold md:mt-3 text-center" x-text="cat.name"></h3>
-                                            <h2 class="text-white text-base font-gilroy_regular text-center" x-text="cat.description"></h2>
+                                            <img class="w-12 h-12 object-contain mx-auto" :src="cat.url_image + cat.name_image" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
+                                            <div class="flex flex-col">
+                                                <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold md:mt-3 text-center" x-text="cat.name"></h3>
+                                                <h2 class="text-white text-base font-gilroy_regular text-center" x-text="cat.description"></h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </template>
                             </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
                         </div>
+                        <div class="swiper-cat-prev absolute top-1/2 -translate-y-1/2 -left-2 lg:-left-5 z-20 aspect-square">
+                            <div class="bg-white rounded-full flex flex-col relative -m-1">
+                                <i class="fa-solid fa-circle-chevron-left text-3xl text-[#004FC6]"></i>
+                            </div>
+                        </div>
+                        <div class="swiper-cat-next absolute top-1/2 -translate-y-1/2 -right-2 lg:-right-5 z-20 aspect-square">
+                            <div class="bg-white rounded-full flex flex-col relative -m-1">
+                                <i class="fa-solid fa-circle-chevron-right text-3xl text-[#004FC6]"></i>
+                            </div>
+                        </div>
+
                     </div>
                     
                 </div>
@@ -171,19 +182,24 @@
                     new Swiper('.categorias_carrusel', {
                         // Opciones de configuración
                         slidesPerView: 1, // Muestra 1 slide por vista en móvil
-                        spaceBetween: 20,
+                        spaceBetween: 0,
                         pagination: {
                             el: '.swiper-pagination',
                             clickable: true,
                         },
                         navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
+                            nextEl: '.swiper-cat-next',
+                            prevEl: '.swiper-cat-prev',
                         },
                         breakpoints: {
-                            // Cuando el ancho de la ventana es >= 768px
+                            0: {
+                                slidesPerView: 1, 
+                            },
+                            460: {
+                                slidesPerView: 2, 
+                            },
                             768: {
-                                slidesPerView: 3, // Muestra 3 slides en desktop
+                                slidesPerView: 3, 
                             }
                         }
                     });
