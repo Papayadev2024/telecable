@@ -93,15 +93,60 @@
         
     <div
         x-data="{
-            selected: 1,
+            selected: 0,
             categories: {{ json_encode($category) }},
             products: {{ json_encode($productos) }},
             general: {{ json_encode($general[0]) }},
+            swiperInstance: null,
             get filteredProducts() {
-                const selectedCategory = this.categories[this.selected];
+                if (!this.categories.length) return [];
+                const selectedCategory = this.categories[this.selected] || {};
                 return this.products.filter(product => product.categoria_id === selectedCategory.id);
+            },
+            reloadSwiper() {
+                this.$nextTick(() => {
+                    if (window.swiperplanes) {
+                        window.swiperplanes.destroy(true, true); // Destruye la instancia existente
+                    }
+                    window.swiperplanes = new Swiper('.planes', {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                        centeredSlides: false,
+                        initialSlide: 0,
+                        loop: true,
+                        autoplay: {
+                            delay: 2500,
+                            disableOnInteraction: false,
+                        },
+                        scrollbar: {
+                            el: '.swiper-scrollbar',
+                            draggable: true,
+                        },
+                        breakpoints: {
+                            0: {
+                                slidesPerView: 1,
+                            
+                            },
+                            768: {
+                                slidesPerView: 2,
+                                spaceBetween: 20,
+                            
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 20,
+                            },
+                            1600: {
+                                slidesPerView: 4,
+                                spaceBetween: 20,
+                            
+                            },
+                        },
+                    });
+                });
             }
         }"
+        x-init="reloadSwiper()"
     >    
         <section class="bg-center h-svh bg-cover bg-no-repeat flex flex-col justify-center relative" style="background-image: url({{asset('images/img/tc_banner.png')}})">
             {{--  --}}
@@ -144,7 +189,7 @@
                                 <template x-for="(cat, index) in categories" :key="index">
                                     <div class="swiper-slide">
                                         <div class="flex flex-col gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer"
-                                         @click="selected = index" 
+                                         @click="selected = index; reloadSwiper();" 
                                          :class="selected === index ? 'bg-[#004FC6]' : ''">
                                             <img class="w-12 h-12 object-contain mx-auto" :src="cat.url_image + cat.name_image" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
                                             <div class="flex flex-col">
@@ -202,42 +247,6 @@
                                 slidesPerView: 3, 
                             }
                         }
-                    });
-
-                    new Swiper(".planes", {
-                        slidesPerView: 3,
-                        spaceBetween: 10,
-                        centeredSlides: false,
-                        initialSlide: 0,
-                        loop: true,
-                        autoplay: {
-                            delay: 2500,
-                            disableOnInteraction: false,
-                        },
-                        scrollbar: {
-                            el: '.swiper-scrollbar',
-                            draggable: true,
-                        },
-                        breakpoints: {
-                            0: {
-                                slidesPerView: 1,
-                            
-                            },
-                            768: {
-                                slidesPerView: 2,
-                                spaceBetween: 20,
-                            
-                            },
-                            1024: {
-                                slidesPerView: 3,
-                                spaceBetween: 20,
-                            },
-                            1600: {
-                                slidesPerView: 4,
-                                spaceBetween: 20,
-                            
-                            },
-                        },
                     });
                 });
             });
@@ -669,7 +678,7 @@
             });
         });
 
-        var swiper = new Swiper(".slider", {
+        var swiperslider = new Swiper(".slider", {
             slidesPerView: 1,
             spaceBetween: 0,
             centeredSlides: false,
@@ -692,7 +701,7 @@
 
 
 
-        var swiper = new Swiper(".ofertas", {
+        var swiperofertas = new Swiper(".ofertas", {
             slidesPerView: 2.2,
             spaceBetween: 10,
             centeredSlides: false,
@@ -753,9 +762,43 @@
             },
         });
 
-        
+        var swiperplanes = new Swiper(".planes", {
+            slidesPerView: 3,
+            spaceBetween: 10,
+            centeredSlides: false,
+            initialSlide: 0,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                draggable: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                   
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                  
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                1600: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                  
+                },
+            },
+        });
 
-        var swiper = new Swiper(".lugares", {
+        var swiperlugares = new Swiper(".lugares", {
             slidesPerView: 3,
             direction: 'vertical',
             spaceBetween: 10,
@@ -772,7 +815,7 @@
             },
         });
 
-        var swiper = new Swiper(".slider_blog", {
+        var swiperblog = new Swiper(".slider_blog", {
             slidesPerView: 3,
             spaceBetween: 30,
             centeredSlides: false,
@@ -803,7 +846,7 @@
             },
         });
 
-        var swiper = new Swiper(".categorias", {
+        var swipercategorias = new Swiper(".categorias", {
             slidesPerView: 4,
             spaceBetween: 15,
             centeredSlides: false,
@@ -835,7 +878,7 @@
         });
 
 
-        var swiper = new Swiper(".slider_productos", {
+        var swipersliderproductos = new Swiper(".slider_productos", {
             slidesPerView: 4,
             spaceBetween: 30,
             centeredSlides: false,
