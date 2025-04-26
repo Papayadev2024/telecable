@@ -197,48 +197,14 @@
                                 <i class="fa-solid fa-circle-chevron-right text-3xl md:text-4xl text-[#004FC6]"></i>
                             </div>
                         </div>
-
                     </div>
                     
                 </div>
                 <div class="z-20 w-full lg:w-1/4 2xl:w-1/3 flex flex-col justify-end items-start lg:items-end">
-                    
                 </div>
             </div> 
         </section>
-        <script>
-            // Inicializar Swiper después de que Alpine.js haya renderizado los elementos
-            document.addEventListener('alpine:init', () => {
-                Alpine.nextTick(() => {
-                    new Swiper('.categorias_carrusel', {
-                        // Opciones de configuración
-                        slidesPerView: 1, // Muestra 1 slide por vista en móvil
-                        spaceBetween: 0,
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                        },
-                        navigation: {
-                            nextEl: '.swiper-cat-next',
-                            prevEl: '.swiper-cat-prev',
-                        },
-                        breakpoints: {
-                            0: {
-                                slidesPerView: 1, 
-                            },
-                            460: {
-                                slidesPerView: 2, 
-                            },
-                            768: {
-                                slidesPerView: 3, 
-                            }
-                        }
-                    });
-                });
-            });
-
-            
-        </script>
+        
         <section  class="bg-cover bg-opacity-100 relative pb-10 lg:pb-16 flex flex-col gap-10"  style="background-image: url('{{asset('images/img/tc_textura3.svg')}}');">
                 
                 <div class="px-[5%] md:px-[8%]  py-5 flex md:flex-row gap-5 md:gap-10 lg:-mt-10">
@@ -640,7 +606,37 @@
             });
         });
     </script>
-
+    <script>
+        // Inicializar Swiper después de que Alpine.js haya renderizado los elementos
+        document.addEventListener('alpine:init', () => {
+            Alpine.nextTick(() => {
+                new Swiper('.categorias_carrusel', {
+                    // Opciones de configuración
+                    slidesPerView: 1, // Muestra 1 slide por vista en móvil
+                    spaceBetween: 0,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-cat-next',
+                        prevEl: '.swiper-cat-prev',
+                    },
+                    breakpoints: {
+                        0: {
+                            slidesPerView: 1, 
+                        },
+                        460: {
+                            slidesPerView: 2, 
+                        },
+                        768: {
+                            slidesPerView: 3, 
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const items = document.querySelectorAll('.swiper-slide .flex');
@@ -684,8 +680,6 @@
                 clickable: true,
             },
         });
-
-
 
         var swiperofertas = new Swiper(".ofertas", {
             slidesPerView: 2.2,

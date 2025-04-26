@@ -23,15 +23,15 @@
                 },
                 reloadSwiper() {
                     this.$nextTick(() => {
-                        if (window.swiperplan) {
-                            window.swiperplan.destroy(true, true); // Destruye la instancia existente
+                        if (window.swiperplanes) {
+                            window.swiperplanes.destroy(true, true); // Destruye la instancia existente
                         }
-                        window.swiperplan = new Swiper('.planes', {
+                        window.swiperplanes = new Swiper('.planes', {
                             slidesPerView: 3,
                             spaceBetween: 10,
                             centeredSlides: false,
                             initialSlide: 0,
-                            loop: false,
+                            loop: true,
                             autoplay: {
                                 delay: 2500,
                                 disableOnInteraction: false,
@@ -41,15 +41,28 @@
                                 draggable: true,
                             },
                             breakpoints: {
-                                0: { slidesPerView: 1 },
-                                768: { slidesPerView: 2 },
-                                920: { slidesPerView: 3 },
-                                1600: { slidesPerView: 4 },
+                                0: {
+                                    slidesPerView: 1,
+                                
+                                },
+                                768: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20,
+                                
+                                },
+                                1024: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 20,
+                                },
+                                1600: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 20,
+                                
+                                },
                             },
                         });
                     });
                 }
-
             }"
             x-init="reloadSwiper()"
         >
@@ -72,22 +85,35 @@
                             <h2 class="font-gilroy_medium text-white text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">Servicios que Transforman tu Conexión: <span class="text-[#59C402] font-gilroy_bold">Internet y Televisión Premium </span></h2> 
                         </div>
 
-                        <div class="max-w-5xl mx-auto text-center">
-                            <div class="grid grid-cols-1 md:grid-cols-3 font-gotham_bold w-full rounded-2xl overflow-hidden bg-[#5599FF] mt-5">
-                                <template x-for="(cat, index) in categories" :key="index">
-                                    <div    
-                                        @click="selected = index" 
-                                        :class="selected === index 
-                                            ? 'bg-[#004FC6]' 
-                                            : ''" 
-                                         class="flex flex-row gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer">
-                                         <img class="w-12 h-12 object-contain" :src="cat.url_image + cat.name_image"  onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';"  />
-                                         <div class="flex flex-col">
-                                             <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold md:mt-5" x-text="cat.name"></h3>
-                                             <h2 class="text-white text-base font-gilroy_regular" x-text="cat.description"></h2>
-                                         </div>
+                        <div class="md:max-w-5xl md:mx-auto text-center">
+                            <div class="font-gotham_bold w-full rounded-2xl bg-[#5599FF] mt-5 relative">
+                                <div class="categorias_carrusel w-full overflow-hidden rounded-2xl bg-[#5599FF]">
+                                    <div class="swiper-wrapper">
+                                        <template x-for="(cat, index) in categories" :key="index">
+                                            <div class="swiper-slide">
+                                                <div class="flex flex-col gap-5 md:gap-0 md:flex-col items-center justify-start md:justify-center md:items-center px-6 py-7 cursor-pointer"
+                                                 @click="selected = index; reloadSwiper();" 
+                                                 :class="selected === index ? 'bg-[#004FC6]' : ''">
+                                                    <img class="w-12 h-12 object-contain mx-auto" :src="cat.url_image + cat.name_image" onerror="this.onerror=null;this.src='{{ asset('images/img/noimagen.jpg') }}';" />
+                                                    <div class="flex flex-col">
+                                                        <h3 class="text-white text-lg xl:text-xl font-gilroy_semibold md:mt-3 text-center" x-text="cat.name"></h3>
+                                                        <h2 class="text-white text-base font-gilroy_regular text-center" x-text="cat.description"></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
                                     </div>
-                                </template>
+                                </div>
+                                <div class="swiper-cat-prev absolute top-1/2 -translate-y-1/2 -left-2 lg:-left-5 z-20 aspect-square">
+                                    <div class="bg-white rounded-full flex flex-col relative -m-1">
+                                        <i class="fa-solid fa-circle-chevron-left text-3xl md:text-4xl text-[#004FC6]"></i>
+                                    </div>
+                                </div>
+                                <div class="swiper-cat-next absolute top-1/2 -translate-y-1/2 -right-2 lg:-right-5 z-20 aspect-square">
+                                    <div class="bg-white rounded-full flex flex-col relative -m-1">
+                                        <i class="fa-solid fa-circle-chevron-right text-3xl md:text-4xl text-[#004FC6]"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -100,7 +126,7 @@
                     <div class="px-[5%] md:px-[8%] pb-5 flex md:flex-row gap-5 md:gap-10">
                             <div class="w-full">
                                 <div class="swiper planes w-full">
-                                    <div class="swiper-wrapper">   
+                                    <div class="swiper-wrapper" :class="{'md:flex sm:flex-row md:justify-center': filteredProducts.length >= 1 && filteredProducts.length <= 3}">   
                                         <template x-for="producto in filteredProducts" :key="producto.id">
                                             <div class="swiper-slide">
                                                 <div class="flex flex-col gap-5 max-w-[390px] bg-[#1F509A] p-6 rounded-3xl mx-auto">
@@ -165,7 +191,7 @@
                                                                 <path d="M5.66669 14.8333L7.00002 13.5" stroke="white" stroke-linecap="round"/>
                                                                 <path d="M1.66669 10.8333L3.00002 9.5" stroke="white" stroke-linecap="round"/>
                                                             </svg>
-                                                            <span x-text="producto.categoria_id === 3 ? 'Deco:' : 'Velocidad:'"></span>
+                                                            <span x-text="producto.categoria_id === 8 ? 'Canales:' : (producto.categoria_id === 7 ? 'Deco:' : 'Velocidad:')"></span>
                                                         </h3>
                                                         <h2 class="font-gilroy_regular text-white text-sm" x-text="producto.description" ></h2>
                                                         </div>
@@ -223,7 +249,6 @@
                     <div class="font-gilroy_regular text-sm text-center text-[#001637]">*Planes y precios validos para contrataciones desde el <span class="font-bold">25 de noviembre hasta el 31 de diciembre 2024</span></div>
 
                 </section>
-        
         </div>
     @endif
 
@@ -403,6 +428,35 @@
             spaceBetween: 15,
             loop: true,
             centeredSlides: false,
+    });
+</script>
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.nextTick(() => {
+            new Swiper('.categorias_carrusel', {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-cat-next',
+                    prevEl: '.swiper-cat-prev',
+                },
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1, 
+                    },
+                    460: {
+                        slidesPerView: 2, 
+                    },
+                    768: {
+                        slidesPerView: 3, 
+                    }
+                }
+            });
+        });
     });
 </script>
 @stop
